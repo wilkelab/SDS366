@@ -2,12 +2,26 @@ project:
   type: website
 
 website:
-  title: "quarto-test"
+  title: "SDS 366"
   navbar:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: schedule.qmd
+        text: Schedule
+      - href: syllabus.qmd
+        text: Syllabus
+        
+    right:
+    - text: "Slides"
+      menu:
+        - text: "Class 1: Introduction"
+          href: slides/introduction.html
+          
+    - text: "Worksheets"
+      menu:
+        - text: "Class 2: Aesthetic mappings"
+          href: worksheets/aesthetic-mappings.qmd
 
 format:
   html:

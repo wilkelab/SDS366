@@ -1,11 +1,47 @@
 ---
-title: "quarto-test"
+title: "SDS 366"
+description: Data Visualization in R
 ---
 
-This is a Quarto website.
+This is the home page for SDS 366, Data Visualization in R. All course materials will be posted on this site.
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+Instructor: [Claus O. Wilke](https://clauswilke.com)  
+Meeting times: TTH 5:00pm to 6:30pm
+Venue: MEZ B0.306 
+Syllabus: [click here](syllabus.html)  
+Upcoming lectures and assignments: [click here](schedule.html)  
 
-```{r}
-1 + 1
+## Computing requirements
+
+For students enrolled in this course, you only need a working web browser to access the edupod server, located at: [https://edupod.cns.utexas.edu/](https://edupod.cns.utexas.edu/)
+
+**If you are using the edupod server, stop reading here. Everything is pre-installed and no further action is needed.**
+
+To run any of the materials locally on your own machine, you will need the following:
+
+- A recent version of R, [download from here.](https://cloud.r-project.org/)
+- A recent version of RStudio, [download from here,](https://posit.co/download/rstudio-desktop/) OR a recent version of Positron, [download from here.](https://positron.posit.co/)
+- The following R packages:    
+  broom, cluster, colorspace, cowplot, distill, gapminder, GGally, gganimate,  ggiraph, ggdendro, ggdist, ggforce, ggplot2movies, ggrepel, ggridges, ggthemes, gifski, glue, knitr, learnr, naniar, margins, MASS, Matrix, nycflights13, palmerpenguins, patchwork, rmarkdown, rnaturalearth, rnaturalearthhires, scales, sf, shinyjs, sp, tidyverse, transformr, umap, xaringan
+
+You can install all required R packages at once by running the following code in the R command line:
+
+```r
+# first run this command:
+install.packages(
+  c(
+    "broom", "cluster", "colorspace", "cowplot", "distill", "gapminder", 
+    "GGally", "gganimate", "ggiraph", "ggdendro", "ggdist", "ggforce",
+    "ggplot2movies", "ggrepel", "ggridges", "ggthemes", "gifski", "glue",
+    "knitr", "learnr", "naniar", "margins", "MASS", "Matrix",
+    "nycflights13", "palmerpenguins", "patchwork", "rmarkdown", "rnaturalearth",
+    "scales", "sf", "shinyjs", "sp", "tidyverse", "transformr", "umap",
+    "xaringan"
+  )
+)
+
+# then run this command:
+install.packages(
+  "rnaturalearthhires", repos = "https://packages.ropensci.org", type = "source"
+)
 ```

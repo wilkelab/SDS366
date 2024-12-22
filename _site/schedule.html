@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Data Visualization in R">
 
-<title>SDS 366</title>
+<title>SDS 366 - SDS 366 Schedule Spring 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -124,11 +89,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./schedule.html"> 
+    <a class="nav-link active" href="./schedule.html" aria-current="page"> 
 <span class="menu-text">Schedule</span></a>
   </li>  
   <li class="nav-item">
@@ -175,7 +140,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#computing-requirements" id="toc-computing-requirements" class="nav-link active" data-scroll-target="#computing-requirements">Computing requirements</a></li>
+  <li><a href="#lectures" id="toc-lectures" class="nav-link active" data-scroll-target="#lectures">Lectures</a>
+  <ul class="collapse">
+  <li><a href="#jan-14-2025introduction" id="toc-jan-14-2025introduction" class="nav-link" data-scroll-target="#jan-14-2025introduction">1. Jan 14, 2025—Introduction</a></li>
+  </ul></li>
+  <li><a href="#homeworks" id="toc-homeworks" class="nav-link" data-scroll-target="#homeworks">Homeworks</a></li>
+  <li><a href="#projects" id="toc-projects" class="nav-link" data-scroll-target="#projects">Projects</a></li>
   </ul>
 </nav>
     </div>
@@ -184,14 +154,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">SDS 366</h1>
+<h1 class="title">SDS 366 Schedule Spring 2025</h1>
 </div>
 
-<div>
-  <div class="description">
-    Data Visualization in R
-  </div>
-</div>
 
 
 <div class="quarto-title-meta">
@@ -206,39 +171,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This is the home page for SDS 366, Data Visualization in R. All course materials will be posted on this site.</p>
-<p>Instructor: <a href="https://clauswilke.com">Claus O. Wilke</a><br>
-Meeting times: TTH 5:00pm to 6:30pm Venue: MEZ B0.306 Syllabus: <a href="syllabus.html">click here</a><br>
-Upcoming lectures and assignments: <a href="schedule.html">click here</a></p>
-<section id="computing-requirements" class="level2">
-<h2 class="anchored" data-anchor-id="computing-requirements">Computing requirements</h2>
-<p>For students enrolled in this course, you only need a working web browser to access the edupod server, located at: <a href="https://edupod.cns.utexas.edu/">https://edupod.cns.utexas.edu/</a></p>
-<p><strong>If you are using the edupod server, stop reading here. Everything is pre-installed and no further action is needed.</strong></p>
-<p>To run any of the materials locally on your own machine, you will need the following:</p>
-<ul>
-<li>A recent version of R, <a href="https://cloud.r-project.org/">download from here.</a></li>
-<li>A recent version of RStudio, <a href="https://posit.co/download/rstudio-desktop/">download from here,</a> OR a recent version of Positron, <a href="https://positron.posit.co/">download from here.</a></li>
-<li>The following R packages:<br>
-broom, cluster, colorspace, cowplot, distill, gapminder, GGally, gganimate, ggiraph, ggdendro, ggdist, ggforce, ggplot2movies, ggrepel, ggridges, ggthemes, gifski, glue, knitr, learnr, naniar, margins, MASS, Matrix, nycflights13, palmerpenguins, patchwork, rmarkdown, rnaturalearth, rnaturalearthhires, scales, sf, shinyjs, sp, tidyverse, transformr, umap, xaringan</li>
-</ul>
-<p>You can install all required R packages at once by running the following code in the R command line:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first run this command:</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"broom"</span>, <span class="st">"cluster"</span>, <span class="st">"colorspace"</span>, <span class="st">"cowplot"</span>, <span class="st">"distill"</span>, <span class="st">"gapminder"</span>, </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GGally"</span>, <span class="st">"gganimate"</span>, <span class="st">"ggiraph"</span>, <span class="st">"ggdendro"</span>, <span class="st">"ggdist"</span>, <span class="st">"ggforce"</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ggplot2movies"</span>, <span class="st">"ggrepel"</span>, <span class="st">"ggridges"</span>, <span class="st">"ggthemes"</span>, <span class="st">"gifski"</span>, <span class="st">"glue"</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"knitr"</span>, <span class="st">"learnr"</span>, <span class="st">"naniar"</span>, <span class="st">"margins"</span>, <span class="st">"MASS"</span>, <span class="st">"Matrix"</span>,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nycflights13"</span>, <span class="st">"palmerpenguins"</span>, <span class="st">"patchwork"</span>, <span class="st">"rmarkdown"</span>, <span class="st">"rnaturalearth"</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"scales"</span>, <span class="st">"sf"</span>, <span class="st">"shinyjs"</span>, <span class="st">"sp"</span>, <span class="st">"tidyverse"</span>, <span class="st">"transformr"</span>, <span class="st">"umap"</span>,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"xaringan"</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># then run this command:</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"rnaturalearthhires"</span>, <span class="at">repos =</span> <span class="st">"https://packages.ropensci.org"</span>, <span class="at">type =</span> <span class="st">"source"</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="lectures" class="level2">
+<h2 class="anchored" data-anchor-id="lectures">Lectures</h2>
+<section id="jan-14-2025introduction" class="level3">
+<h3 class="anchored" data-anchor-id="jan-14-2025introduction">1. Jan 14, 2025—Introduction</h3>
+</section>
+</section>
+<section id="homeworks" class="level2">
+<h2 class="anchored" data-anchor-id="homeworks">Homeworks</h2>
+<p>All homeworks are due by 11:00pm on the day they are due. Homeworks need to be submitted as pdf files on Canvas.</p>
+</section>
+<section id="projects" class="level2">
+<h2 class="anchored" data-anchor-id="projects">Projects</h2>
+<p>All projects are due by 11:00pm on the day they are due. Projects need to be submitted on Canvas. Please carefully read the submission instructions for each project.</p>
 
 
 </section>

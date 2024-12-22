@@ -1,0 +1,218 @@
+---
+title: Syllabus
+---
+
+
+## Course title and instructor
+
+**Title:** SDS 366 Data Visualization in R<br>
+**Semester:** Spring 2025<br>
+**Unique:** 57785, TTH 5:00pm to 6:30pm, MEZ B0.306<br>
+
+**Instructor:** Claus	O.	Wilke<br>
+**Email:** wilke@austin.utexas.edu<br>
+**Office Hours:** Mon. 9am - 10am (open Zoom), Thurs. 10am - 11am (open Zoom), or by appointment<br>
+
+**Teaching Assistant:** TBD<br>
+**Email:** TBD<br>
+**Office Hours:**  TBD<br>
+
+
+## Purpose and contents of the class
+
+In this class, students will learn how to visualize data sets and how to reason about and communicate with data visualizations. A substantial component of this class will be dedicated to learning how to program in R. In addition, students will learn how to compile analyses and visualizations into reports, how to make the reports reproducible, and how to post reports on a website or blog.
+
+## Prerequisites
+
+The class requires no prior knowledge of programming. However, students are expected to have successfully completed an introductory statistics class taught with R, such as SDS 320E, and they are expected to have some basic familiarity with the statistical language R.
+
+
+## Textbook
+
+This class draws heavily from materials presented in the following book:
+
+- Claus O. Wilke. [Fundamentals of Data Visualization.](https://clauswilke.com/dataviz) O'Reilly Media, 2019.
+
+Additionally, we will also make use of the following books:
+
+- Hadley Wickham, Danielle Navarro, and Thomas Lin Pedersen. [ggplot2: Elegant Graphics for Data Analysis, 3rd ed.](https://ggplot2-book.org/) Springer, to appear.
+
+- Kieran Healy. [Data Visualization: A Practical Introduction.](https://socviz.co/) Princeton University Press, 2018.
+
+All these books are freely available online and you do not need to purchase a physical copy of either book to succeed in this class.
+
+
+## Topics covered
+
+------------------------------------------------------------------
+  Class Topic                       Coding concepts covered
+------- --------------------------- ------------------------------
+1.      Introduction, reproducible  RStudio setup online, R Markdown
+        workflows
+
+2.      Aesthetic mappings          **ggplot2** quickstart
+
+3.      Telling a story
+
+4.      Visualizing amounts         `geom_col()`, `geom_point()`,
+                                    position adjustments
+
+5.      Coordinate systems and      coords and position scales
+        axes
+
+6.      Visualizing distributions   stats, `geom_density()`,
+        1                           `geom_histogram()`
+
+7.      Visualizing distributions   violin plots, sina plots, ridgeline plots
+        2
+
+8.      Color scales                color and fill scales
+
+9.      Data wrangling 1            `mutate()`, `filter()`, `arrange()`
+
+10.     Data wrangling 2            `group_by()`, `summarize()`, `count()`
+
+11.     Visualizing proportions     bar charts, pie charts
+
+12.     Getting to know your data   handling missing data, `is.na()`, `case_when()`
+
+13.     Getting things into the     `fct_reorder()`, `fct_lump()`
+        right order
+
+14.     Figure design               ggplot themes
+
+15.     Color spaces, color vision  **colorspace** package
+        deficiency
+
+16.     Functions and functional    `map()`, `nest()`, **purrr** package
+        programming
+
+17.     Visualizing trends          `geom_smooth()`
+
+18.     Working with models         `lm`, `cor.test`, **broom** package
+
+19.     Visualizing uncertainty     frequency framing, error bars, **ggdist** package
+
+20.     Dimension reduction 1       PCA
+
+21.     Dimension reduction 2       kernel PCA, t-SNE, UMAP
+
+22.     Clustering 1                k-means clustering
+
+23.     Clustering 2                hierarchical clustering
+        
+24.     Visualizing geospatial      `geom_sf()`, `coord_sf()`
+        data
+
+25.     Redundant coding, text      **ggrepel** package
+        annotations
+
+26.     Interactive plots           **ggiraph** package
+
+27.     Over-plotting               jittering, 2d histograms,
+                                    contour plots
+
+28.     Compound figures            **patchwork** package
+
+----------------------------------------------------------------
+
+
+## Computing requirements
+
+Programming needs to be learned by doing, and a significant portion of the in-class time will be dedicated to working through simple problems. All programming exercises will be available through a web-based system, so the only system requirement for student computers is a modern web browser.
+
+## Course site
+
+All materials and assignments will be posted on the course webpage at:
+[https://wilkelab.org/SDS366](https://wilkelab.org/SDS366)
+
+Assignment deadlines are shown on [the schedule.](https://wilkelab.org/SDS366/schedule.html)
+
+Assignments will be submitted and grades will be posted [on Canvas.](https://utexas.instructure.com)
+
+Participation via presence in class and in online discussions will also be tracked on Canvas.
+
+R compute sessions are available at:
+[https://edupod.cns.utexas.edu](https://edupod.cns.utexas.edu)  
+Note that edupods will be unavailable due to maintenance approximately two hours per month, usually on a Thursday afternoon between 4pm and 6pm. Specific maintenance times are published in advance on the [RCTF wiki.](https://wikis.utexas.edu/display/RCTFusers)
+
+## Assignments and grading
+
+The graded components of this class will be homeworks, projects, peer-grading, and participation. Each week either a homework, a project, or a peer-grading is due. Homeworks will be relatively short visualization problems to be solved by the student, usually involving some small amount of programming to achieve a specified goal. They are graded by the TA. Projects are larger and more involved data analysis problems that involve both programming and writing. They are peer-graded by the students. Students will have at least one week to complete each homework and two weeks to complete each project. The submission deadlines for homeworks and projects will be Thursdays at 11pm.
+
+There will be seven homeworks and three projects. Both homeworks and projects need to be submitted electronically on Canvas. Homeworks are worth 20 points and projects are worth 100 points. The lowest-scoring homework will be dropped, so that a maximum of 120 points can be obtained from the homeworks.
+
+Projects are peer-graded, which involves evaluating three projects by other students according to a detailed grading rubric that will be provided. The final grade for each project is the mean of the peer-graded projects. The peer-grading itself will be graded by the TA, who will also oversee and spot-check the assigned peer grades. Experience has shown that peer-grading is often the most instructive component of this class, so don't take this lightly.
+
+Participation is assessed in two ways. First, students will receive 2 points for every lecture they attend. This is tracked via simple quizzes on Canvas. Second, each week students can receive up to 4 points for making substantive contributions to the Canvas online discussion (2 points per contribution). Total participation points are capped at 52 (13 weeks of class times 4 points), so students can compensate for lack of in-person attendance by participating in discussions and vice versa. **You do not have to get full points in both in-person attendance and online discussions.** No participation is assessed in the first week of class.
+
+Assignment type   Number     Points per assignment  Total points
+--------------- ---------- ----------------------- -------------
+Homework          6 (+1)                        20           120
+Project           3                            100           300
+Peer grading      3                             16            48
+Participation     26 (+26)                       2            52
+
+
+Thus, in summary, each project (+ peer grading) contributes 22% to the final grade, the totality of all homeworks contributes another 23% to the final grade, and participation contributes 10%. **There are no traditional exams in this class and there is no final.**
+
+The	class	will use +/- grading, and the exact grade boundaries will be determined at the end of the semester. However, the following minimum grades will be guaranteed:	
+
+ Points achieved  Minimum guaranteed grade
+---------------- -------------------------
+       468 (90%)                        A-
+       416 (80%)                        B-
+       364 (70%)                        C-
+       260 (50%)                        D-
+
+## Late assignment policy
+
+Homeworks that are submitted past the posted deadline will not be graded and will receive 0 points.
+
+Project submissions will have a 1-day grace period. Projects submitted during the grace period will have 25 points deducted from the obtained grade. After the grace period, students who have not submitted their project will receive 0 points.
+
+Peer grades need to be submitted by the posted deadline. Late submissions will result in 0 points for the peer-grading effort.
+
+In case of illness or other unforeseen circumstances out of your control, please reach out to Claus Wilke as soon as possible. We will consider your request on a case-by-case basis. If you need a deadline extension for valid reasons, please reach out *before* the official submission deadline and state how much of an extension you would need. Whether deadline extensions are possible depends on the severity of your situation as well as whether the solutions to the assignment have already been published.
+
+## Office hours
+
+Both the graduate TA and myself will be available at posted times or by appointment. Office hours will be over Zoom. The most effective way to request an appointment for office hours outside of posted times is to suggest several times that work for you.  I would suggest to write an email such as the following:
+
+    Dear Dr. Wilke,
+    
+    I would like to request a meeting with you outside of 
+    regular office hours this week. I am available Thurs.
+    between 1pm and 2:30pm or Fri. before 11am or after 4pm.
+    
+    Thanks a lot,
+      John Doe
+
+Note that we will not usually make appointments before 9am or after 5pm.
+
+## Email policy
+
+When emailing about this course, please put "SDS366" into the subject line. Emails to the instructor or TA should be restricted to organizational issues, such as requests for appointments, questions about course organization, etc. For all other issues, post in the discussions on Canvas, ask a question during open Zoom, or make an appointment for a one-on-one session.
+
+Specifically, we will not discuss technical issues related to assignments over email. Technical issues are questions concerning how to approach a particular problem, whether a particular solution is correct, or how to use the statistical software R. These questions should be posted as issues on GitHub. Also, we will not discuss grading-related matters over email. If you have a concern about grading, schedule a one-on-one Zoom meeting.
+
+## Special accommodations
+
+**Students with disabilities.** Students with disabilities may request appropriate accommodations from the Division of Diversity and Community Engagement, Services for Students with Disabilities, 512-471-6259, https://diversity.utexas.edu/disability/
+
+**Religious holy days.** Students who must miss a class or an assignment to observe a religious holy day will be given an opportunity to complete the missed work within a reasonable time after the absence. According to UT Austin policy, such students must notify me of the pending absence at least fourteen days prior to the date of observance of a religious holy day. 
+
+## Academic dishonesty
+
+This course is built upon the idea that student interaction is important and a powerful way to learn. We encourage you to communicate with other students, in particular through the discussion forums on Canvas. However, there are times when you need to demonstrate your own ability to work and solve problems. In particular, your homeworks and projects are independent work, unless explicitly stated otherwise. You are allowed to confer with fellow students about general approaches to solve the problems in the assignments, but you have to do the assignments on your own and describe your work in your own words. Students who violate these expectations can expect to receive a failing grade on the assignment and will be reported to Student Judicial Services. These types of violations are reported to professional schools, should you ever decide to apply one day. Don’t do it—it’s not worth the consequences.
+
+
+## Sharing of Course Materials is Prohibited
+
+Any materials in this class that are not posted publicly may not be shared online or with anyone outside of the class unless you have my explicit, written permission. This includes but is not limited to lecture hand-outs, videos, assessments (quizzes, exams, papers, projects, homework assignments), in-class materials, review sheets, and additional problem sets. Unauthorized sharing of materials promotes cheating. It is a violation of the University’s Student Honor Code and an act of academic dishonesty. We are well aware of the sites used for sharing materials, and any materials found online that are associated with you, or any suspected unauthorized sharing of materials, will be reported to Student Conduct and Academic Integrity in the Office of the Dean of Students. These reports can result in sanctions, including failure in the course.
+
+Any materials posted on the public class website (https://wilkelab.org/SDS366/) are considered public and can be shared under the Creative Commons Attribution [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) license.
+
+## Class Recordings
+
+If any class recordings are provided they are reserved only for students in this class for educational purposes and are protected under FERPA. The recordings should not be shared outside the class in any form. Violation of this restriction by a student could lead to Student Misconduct proceedings.
