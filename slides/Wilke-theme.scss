@@ -1,0 +1,26 @@
+/* Reveal theme modifications (applied to default) for
+ * Wilke slide theme
+ */
+
+/*-- scss:defaults --*/
+
+// Include theme-specific font
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Mono);
+
+// fonts
+$font-family-sans-serif: 'Lato', Arial, sans-serif;
+$font-family-monospace: 'Roboto Mono', 'Lucida Console', Monaco, Consolas, monospace; 
+$presentation-heading-font: 'Roboto Condensed', 'Arial Narrow OS', Arial, sans-serif;
+$presentation-font-size-root: 26px;
+$presentation-h1-font-size:	2.5em;
+$presentation-h2-font-size:	2em;
+$presentation-h3-font-size:	1.6em;
+$presentation-h4-font-size:	1.6em;
+$presentation-heading-font-weight: 400;
+$code-block-font-size: 0.94em;
+
+.small-font { font-size: 0.86em !important; }
+.tiny-font { font-size: 0.66em !important; }
+.xtiny-font { font-size: 0.60em !important; }

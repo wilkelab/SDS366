@@ -1,0 +1,111 @@
+---
+title: "Aesthetic mappings"
+format: 
+  revealjs:
+    theme:
+      - default
+      - Wilke-theme.scss
+execute:
+  fig-dpi: 600
+  fig-format: svg
+  fig-asp: 0.618
+  fig-width: 5.5
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+library(cowplot)
+library(colorspace)
+
+# ggplot2 settings so plots scale well for slide size 
+theme_set(theme_gray(16)) # 16 for full width, 18 for half width 
+update_geom_defaults("point", list(size = 2)) # 2 for full width, 2.5 for half width
+
+# this function should be added to cowplot
+align_legend <- function(p, hjust = 0.5)
+{
+  # extract legend
+  g <- cowplot::plot_to_gtable(p)
+  grobs <- g$grobs
+  legend_index <- which(sapply(grobs, function(x) x$name) == "guide-box")
+  legend <- grobs[[legend_index]]
+
+  # extract guides table
+  guides_index <- which(sapply(legend$grobs, function(x) x$name) == "layout")
+
+  # there can be multiple guides within one legend box  
+  for (gi in guides_index) {
+    guides <- legend$grobs[[gi]]
+    
+    # add extra column for spacing
+    # guides$width[5] is the extra spacing from the end of the legend text
+    # to the end of the legend title. If we instead distribute it by `hjust:(1-hjust)` on
+    # both sides, we get an aligned legend
+    spacing <- guides$width[5]
+    guides <- gtable::gtable_add_cols(guides, hjust*spacing, 1)
+    guides$widths[6] <- (1-hjust)*spacing
+    title_index <- guides$layout$name == "title"
+    guides$layout$l[title_index] <- 2
+
+    # reconstruct guides and write back
+    legend$grobs[[gi]] <- guides
+  }
+  
+  # reconstruct legend and write back
+  g$grobs[[legend_index]] <- legend
+  g
+}
+```
+
+# Plots map data onto graphical elements
+
+## Dataset:<br>Daily average temperatures for various locations
+
+::: {.small-font}
+```{r echo=FALSE, message=FALSE}
+temps_long <- read_csv("https://wilkelab.org/SDS375/datasets/tempnormals.csv") |>
+  mutate(
+    location = factor(
+      location, levels = c("Death Valley", "Houston", "San Diego", "Chicago")
+    )
+  )
+
+temps_long |>
+  select(location, day_of_year, month, temperature) |>
+  head(n = 15L) |>
+  knitr::kable("html")
+```
+:::
+
+
+# Creating aesthetic mappings in ggplot
+
+## Getting the data
+
+All examples will use the `temperatures` dataset:
+
+::: {.xtiny-font}
+```{r}
+#| echo: true
+#| message: false
+temperatures <- read_csv("https://wilkelab.org/SDS375/datasets/tempnormals.csv") |>
+  mutate(
+    location = factor(
+      location, levels = c("Death Valley", "Houston", "San Diego", "Chicago")
+    )
+  ) |>
+  select(location, station_id, day_of_year, month, temperature)
+```
+:::
+
+## We define the mapping with `aes()`
+
+```{r}
+#| echo: true
+ggplot(
+  data = temperatures,
+  mapping = aes(x = day_of_year, y = temperature, color = location)
+) + 
+  geom_line()
+```
