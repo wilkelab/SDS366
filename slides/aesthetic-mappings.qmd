@@ -85,7 +85,7 @@ temps_long |>
 
 All examples will use the `temperatures` dataset:
 
-::: {.xtiny-font}
+::: {.tiny-font}
 ```{r}
 #| echo: true
 #| message: false
