@@ -3,6 +3,7 @@ project:
   render:
     - "*.qmd"
     - "!slides/"
+    - "!worksheets/"
 
 website:
   title: "SDS 366"
@@ -20,6 +21,8 @@ website:
       menu:
         - text: "Class 2: Aesthetic mappings"
           href: slides/aesthetic-mappings.qmd
+        - text: "Class 3: Telling a story"
+          href: slides/telling-a-story.qmd
           
     - text: "Worksheets"
       menu:
