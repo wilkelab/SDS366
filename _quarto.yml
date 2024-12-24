@@ -4,6 +4,9 @@ project:
     - "*.qmd"
     - "!slides/"
     - "!worksheets/"
+  resources:
+    - "slides/"
+    - "worksheets/"
 
 website:
   title: "SDS 366"

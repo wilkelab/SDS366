@@ -1,0 +1,3 @@
+Figure sizing and placement
+
+https://github.com/quarto-dev/quarto-cli/issues/7516
