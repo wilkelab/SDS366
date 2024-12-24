@@ -64,7 +64,7 @@ align_legend <- function(p, hjust = 0.5)
 
 ## Dataset:<br>Daily average temperatures for various locations {.scrollable}
 
-::: {.tiny-font}
+::: {.small-font}
 ```{r echo=FALSE, message=FALSE}
 temps_long <- read_csv("https://wilkelab.org/SDS375/datasets/tempnormals.csv") |>
   mutate(
@@ -213,6 +213,7 @@ ggplot(mtcars, aes(disp, mpg, fill = hp, shape = factor(cyl), size = wt)) +
 
 All examples will use the `temperatures` dataset:
 
+::: {.tiny-font}
 ```{r}
 #| echo: true
 #| message: false
@@ -224,6 +225,7 @@ temperatures <- read_csv("https://wilkelab.org/SDS375/datasets/tempnormals.csv")
   ) |>
   select(location, station_id, day_of_year, month, temperature)
 ```
+:::
 
 ## We define the mapping with `aes()`
 
@@ -266,7 +268,8 @@ ggplot(
 ) + geom_point(size = 5)
 ```
 
-::: {.fragment}
+. . .
+
 <br>
 
 Abbreviated form, common arguments remain unnamed:
@@ -275,7 +278,6 @@ Abbreviated form, common arguments remain unnamed:
 ggplot(temperatures, aes(day_of_year, location, color = temperature)) + 
   geom_point(size = 5)
 ```
-:::
 
 ## The geom determines how the data is shown
 
@@ -336,17 +338,16 @@ ggplot(temperatures, aes(month, temperature, fill = location)) +
 
 <br>
 
-::: {.fragment}
 `color`<br>
 Applies color to points, lines, text, borders
-:::
+
+. . .
 
 <br>
 
-::: {.fragment}
 `fill`<br>
 Applies color to any filled areas 
-:::
+
 
 ## Many geoms use both `color` and `fill`
 
@@ -417,10 +418,8 @@ ggplot(temperatures, aes(month, temperature, color = location)) +
 
 ## Further reading
 
-::: {.small-font}
 - Fundamentals of Data Visualization: [Chapter 2: Visualizing data](https://clauswilke.com/dataviz/aesthetic-mapping.html)
 - Data Visualization—A Practical Introduction: [Chapter 3: Make a plot](https://socviz.co/makeplot.html#makeplot)
 - [**ggplot2** reference documentation](https://ggplot2.tidyverse.org/reference/index.html)
 - [**ggplot2** book](https://ggplot2-book.org/)
 - [**ggplot2** cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf)
-:::

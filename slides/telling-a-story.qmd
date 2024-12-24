@@ -1,0 +1,207 @@
+---
+title: "Telling a story"
+author: "Claus O. Wilke"
+format: 
+  revealjs:
+    theme:
+      - default
+      - Wilke-theme.scss
+    auto-stretch: false
+execute:
+  fig-format: svg
+  fig-asp: 0.618
+  fig-width: 5.5
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+library(cowplot)
+library(colorspace)
+
+# ggplot2 settings so plots scale well for slide size 
+theme_set(theme_gray(14))
+update_geom_defaults("point", list(size = 2))
+update_geom_defaults("line", list(linewidth = 1))
+
+preprints <- read_csv("https://wilkelab.org/SDS375/datasets/preprints.csv")
+```
+
+## How did I get to teach data visualization?
+
+
+![](telling-a-story_files/cowplot-logo.svg){.fragment .absolute  top="22%" left="13%" width="30%" }
+
+![](https://clauswilke.com/dataviz/cover.png){.fragment .absolute  top="20%" left="53%" width="30%" style="box-shadow: 3px 5px 3px 1px #00000080;"}
+
+## What is a story?
+
+<br>
+
+::: {.fragment .large-font}
+A story is a collection of observations, facts, or events presented in a specific order such that they create an [emotional reaction.]{.highlight}
+:::
+
+
+## Every story has an arc
+
+::: {.fragment .center-text .large-font}
+Opening
+:::
+
+::: {.fragment .center-text .large-font}
+![](telling-a-story_files/arrow.svg){width="3%" style="margin-top: 0; margin-bottom: -0.3em;"}
+
+Challenge
+:::
+
+::: {.fragment .center-text .large-font}
+![](telling-a-story_files/arrow.svg){width="3%" style="margin-top: 0; margin-bottom: -0.3em;"}
+
+Action
+:::
+
+::: {.fragment .center-text}
+![](telling-a-story_files/arrow.svg){width="3%" style="margin-top: 0; margin-bottom: -0.3em;"}
+
+Resolution
+:::
+
+## Every story has an arc
+
+::: {.center-text .large-font}
+Opening
+:::
+
+::: {.center-text .large-font .highlight}
+![](telling-a-story_files/arrow.svg){width="3%" style="margin-top: 0; margin-bottom: -0.3em;"}
+
+Challenge
+:::
+
+::: {.center-text .large-font}
+![](telling-a-story_files/arrow.svg){width="3%" style="margin-top: 0; margin-bottom: -0.3em;"}
+
+Action
+:::
+
+::: {.center-text .large-font .highlight}
+![](telling-a-story_files/arrow.svg){width="3%" style="margin-top: 0; margin-bottom: -0.3em;"}
+
+Resolution
+:::
+
+::: {.absolute-bottom-right .small-font}
+Challenge and resolution are<br>the two most important parts
+:::
+
+## Mapping my story onto this format
+
+::: {.fragment .move-down-1em}
+**Opening:** We need to make many data visualizations in my lab
+:::
+
+::: {.fragment .move-down-1em}
+**Challenge:** I end up telling my students the same things over and over
+:::
+
+::: {.fragment .move-down-1em}
+**Action:** I go and write a book about data visualization
+:::
+
+::: {.fragment .move-down-1em}
+**Resolution:** The book is written. But now I teach the material, so I still keep saying the same things over and over
+:::
+
+## Other story structures
+
+::: {.fragment .center-text .large-font .move-up-half-em}
+Action
+:::
+
+::: {.fragment .center-text .large-font}
+![](telling-a-story_files/arrow.svg){width="3%" style="margin-top: -0.1em; margin-bottom: -0.5em;"}
+
+Background
+:::
+
+::: {.fragment .center-text .large-font}
+![](telling-a-story_files/arrow.svg){width="3%" style="margin-top: -0.1em; margin-bottom: -0.5em;"}
+
+Development
+:::
+
+::: {.fragment .center-text .large-font}
+![](telling-a-story_files/arrow.svg){width="3%" style="margin-top: -0.1em; margin-bottom: -0.5em;"}
+
+Climax
+:::
+
+::: {.fragment .center-text .large-font}
+![](telling-a-story_files/arrow.svg){width="3%" style="margin-top: -0.1em; margin-bottom: -0.5em;"}
+
+Ending
+:::
+
+::: {.fragment .absolute-bottom-right .small-font}
+(Better for action movies<br>than for scientific reports)
+:::
+
+## Mapping my story onto this format
+
+::: {.fragment .move-down-1em .small-font}
+**Action:** In May 2017, I embark on a major project: Write a book on data visualization
+:::
+
+::: {.fragment .move-down-1em .small-font}
+**Background:** I do this because we need to make many data visualizations in my lab, and I end up telling my students the same things over and over
+:::
+
+::: {.fragment .move-down-1em .small-font}
+**Development:** Writing the book takes me almost two years; along the way, I add many features to ggplot2 and become a member of the ggplot2 team
+:::
+
+::: {.fragment .move-down-1em .small-font}
+**Climax:** The book is released in April 2019
+:::
+
+::: {.fragment .move-down-1em .small-font}
+**Ending:** Now I'm a dataviz teacher
+:::
+
+## Other story structures
+
+<br><br>
+
+::: {.fragment .center-text .large-font}
+Lead
+:::
+
+::: {.fragment .center-text .large-font}
+![](telling-a-story_files/arrow.svg){width="3%" style="margin-top: 0; margin-bottom: -0.3em;"}
+
+Development
+:::
+
+::: {.fragment .absolute-bottom-right .small-font}
+(Commonly used in newspaper articles)
+:::
+
+## Mapping my story onto this format
+
+::: {.fragment .move-down-1em}
+**Lead:** Because I see the need for more education in data visualization, I have written an entire book about the topic
+:::
+
+::: {.fragment .move-down-1em}
+**Development:** I had previously written an R package to improve figure design, but it wasn't sufficient: Good judgement cannot be automated
+:::
+
+::: {.fragment .move-down-1em}
+So I wrote a book; the book is entirely about concepts, not about coding, and it is meant as a resource for anybody doing data visualizations, regardless of their preferred visualization software
+:::
+
+<!-- Segment ends here -->
+
+# Telling a story with figures
+

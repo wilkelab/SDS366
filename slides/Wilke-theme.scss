@@ -13,17 +13,18 @@
 $font-family-sans-serif: 'Lato', Arial, sans-serif;
 $font-family-monospace: 'Roboto Mono', 'Lucida Console', Monaco, Consolas, monospace; 
 $presentation-heading-font: 'Roboto Condensed', 'Arial Narrow OS', Arial, sans-serif;
-$presentation-font-size-root: 26px;
-$presentation-h1-font-size:	2em;
-$presentation-h2-font-size:	2em;
-$presentation-h3-font-size:	1.6em;
-$presentation-h4-font-size:	1.6em;
+$presentation-font-size-root: 36px;
+$presentation-h1-font-size:	1.45em;
+$presentation-h2-font-size:	1.45em;
+$presentation-h3-font-size:	1.2em;
+$presentation-h4-font-size:	1.2em;
 $presentation-heading-font-weight: 400;
-$code-block-font-size: 0.86em;
+$code-block-font-size: 0.66em; /* equivalent to .tiny-font by default */
 
+.large-font { font-size: 1.1em; }
 .small-font { font-size: 0.86em; }
 .tiny-font { font-size: 0.66em; }
-.xtiny-font { font-size: 0.60em; }
+.xtiny-font { font-size: 0.50em; }
 
 .reveal h1 {
   color: red;
@@ -40,3 +41,64 @@ $code-block-font-size: 0.86em;
 .reveal code:not(pre > code) {
   font-size: 0.94em; line-height: 1.0;
 }
+
+/* Style to highlight text */
+.highlight { font-weight: bold; color: #91322F; }
+
+.center-text {
+  text-align: center;
+}
+
+/* classes to manipulate vertical spacing */
+.move-up-half-em {
+  margin-top: -0.5em;
+}
+
+.move-up-1em {
+  margin-top: -1em;
+}
+
+.move-up-2em {
+  margin-top: -2em;
+}
+
+.move-up-3em {
+  margin-top: -3em;
+}
+
+.move-up-4em {
+  margin-top: -4em;
+}
+
+.move-up-5em {
+  margin-top: -5em;
+}
+
+.move-up-6em {
+  margin-top: -6em;
+}
+
+.move-down-1em {
+  margin-top: 1em;
+}
+
+.move-down-2em {
+  margin-top: 2em;
+}
+
+.move-down-3em {
+  margin-top: 3em;
+}
+
+.absolute-bottom-left {
+  position: absolute;
+  bottom: 0; 
+  left: 0;
+}
+
+.absolute-bottom-right {
+  position: absolute;
+  bottom: 0; 
+  right: 0;
+}
+
