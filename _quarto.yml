@@ -20,14 +20,14 @@ website:
     - text: "Slides"
       menu:
         - text: "Class 2: Aesthetic mappings"
-          href: slides/aesthetic-mappings.qmd
+          href: slides/aesthetic-mappings.html
         - text: "Class 3: Telling a story"
-          href: slides/telling-a-story.qmd
+          href: slides/telling-a-story.html
           
     - text: "Worksheets"
       menu:
         - text: "Class 2: Aesthetic mappings"
-          href: worksheets/aesthetic-mappings.qmd
+          href: worksheets/aesthetic-mappings.html
 
 format:
   html:
