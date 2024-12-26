@@ -5,20 +5,26 @@ format: live-html
 engine: knitr
 ---
 
-{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+{{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
 
 ## Introduction
 
 In this worksheet, we will discuss a core concept of ggplot, the mapping of data values onto aesthetics.
 
-First we need to load the required R packages and the data. Please run this code to ensure the subsequent exercises work.
+First we need to load the required R packages. Please wait a moment until the live R session is fully set up and all packages are loaded.
 
 ```{webr}
 #| warning: false
-# load required library
+#| edit: false
 library(tidyverse)
+library(DT)
+```
 
-# data prep
+Next we set up the data.
+
+```{webr}
+#| edit: false
+#| warning: false
 temperatures <-  read_csv("https://wilkelab.org/SDS375/datasets/tempnormals.csv") |>
   mutate(
     location = factor(
@@ -32,7 +38,9 @@ temps_houston <- filter(temperatures, location == "Houston")
 
 We will first work with the dataset `temps_houston` which contains the average temperature for each day of the year for Houston, TX.
 ```{webr}
-temps_houston 
+#| edit: false
+#| autorun: true
+datatable(temps_houston) 
 ```
 
 ## Basic use of ggplot
@@ -148,9 +156,12 @@ ggplot(temps_houston, aes(x = temperature, y = month)) +
 
 ## Adding color
 
-Next we will be working with the dataset `temperatures`, which is similar to `temps_houston` but contains data for three more locations:
+Next we will be working with the dataset `temperatures`, which is similar to `temps_houston` but contains data for three more locations.
+
 ```{webr}
-temperatures
+#| edit: false
+#| autorun: true
+datatable(temperatures) 
 ```
 
 Make a line plot of `temperature` against `day_of_year`, using the `color` aesthetic to color the lines by location. 
