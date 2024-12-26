@@ -424,3 +424,4 @@ ggplot(temperatures, aes(month, temperature, color = location)) +
 - [**ggplot2** book](https://ggplot2-book.org/)
 - [**ggplot2** cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf)
 :::
+

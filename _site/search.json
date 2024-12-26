@@ -1,5 +1,187 @@
 [
   {
+    "objectID": "slides/aesthetic-mappings.html#dataset-daily-average-temperatures-for-various-locations",
+    "href": "slides/aesthetic-mappings.html#dataset-daily-average-temperatures-for-various-locations",
+    "title": "Aesthetic mappings",
+    "section": "Dataset:Daily average temperatures for various locations",
+    "text": "Dataset:Daily average temperatures for various locations\n\n\n\n\n\n\nlocation\nday_of_year\nmonth\ntemperature\n\n\n\n\nDeath Valley\n1\n01\n51.0\n\n\nDeath Valley\n2\n01\n51.2\n\n\nDeath Valley\n3\n01\n51.3\n\n\nDeath Valley\n4\n01\n51.4\n\n\nDeath Valley\n5\n01\n51.6\n\n\nDeath Valley\n6\n01\n51.7\n\n\nDeath Valley\n7\n01\n51.9\n\n\nDeath Valley\n8\n01\n52.0\n\n\nDeath Valley\n9\n01\n52.2\n\n\nDeath Valley\n10\n01\n52.3\n\n\nDeath Valley\n11\n01\n52.5\n\n\nDeath Valley\n12\n01\n52.7\n\n\nDeath Valley\n13\n01\n52.9\n\n\nDeath Valley\n14\n01\n53.0\n\n\nDeath Valley\n15\n01\n53.2\n\n\nDeath Valley\n16\n01\n53.4\n\n\nDeath Valley\n17\n01\n53.6\n\n\nDeath Valley\n18\n01\n53.7\n\n\nDeath Valley\n19\n01\n53.9\n\n\nDeath Valley\n20\n01\n54.1\n\n\nDeath Valley\n21\n01\n54.3\n\n\nDeath Valley\n22\n01\n54.5\n\n\nDeath Valley\n23\n01\n54.6\n\n\nDeath Valley\n24\n01\n54.8\n\n\nDeath Valley\n25\n01\n55.0\n\n\nDeath Valley\n26\n01\n55.2\n\n\nDeath Valley\n27\n01\n55.4\n\n\nDeath Valley\n28\n01\n55.6\n\n\nDeath Valley\n29\n01\n55.8\n\n\nDeath Valley\n30\n01\n56.0\n\n\nDeath Valley\n31\n01\n56.2\n\n\nDeath Valley\n32\n02\n56.4\n\n\nDeath Valley\n33\n02\n56.6\n\n\nDeath Valley\n34\n02\n56.8\n\n\nDeath Valley\n35\n02\n57.0\n\n\nDeath Valley\n36\n02\n57.2\n\n\nDeath Valley\n37\n02\n57.5\n\n\nDeath Valley\n38\n02\n57.7\n\n\nDeath Valley\n39\n02\n57.9\n\n\nDeath Valley\n40\n02\n58.2\n\n\nDeath Valley\n41\n02\n58.4\n\n\nDeath Valley\n42\n02\n58.7\n\n\nDeath Valley\n43\n02\n58.9\n\n\nDeath Valley\n44\n02\n59.2\n\n\nDeath Valley\n45\n02\n59.5\n\n\nDeath Valley\n46\n02\n59.8\n\n\nDeath Valley\n47\n02\n60.1\n\n\nDeath Valley\n48\n02\n60.3\n\n\nDeath Valley\n49\n02\n60.6\n\n\nDeath Valley\n50\n02\n60.9\n\n\nDeath Valley\n51\n02\n61.2\n\n\nDeath Valley\n52\n02\n61.6\n\n\nDeath Valley\n53\n02\n61.9\n\n\nDeath Valley\n54\n02\n62.2\n\n\nDeath Valley\n55\n02\n62.5\n\n\nDeath Valley\n56\n02\n62.8\n\n\nDeath Valley\n57\n02\n63.2\n\n\nDeath Valley\n58\n02\n63.5\n\n\nDeath Valley\n59\n02\n63.8\n\n\nDeath Valley\n60\n02\n64.0\n\n\nDeath Valley\n61\n03\n64.1\n\n\nDeath Valley\n62\n03\n64.5\n\n\nDeath Valley\n63\n03\n64.8\n\n\nDeath Valley\n64\n03\n65.1\n\n\nDeath Valley\n65\n03\n65.4\n\n\nDeath Valley\n66\n03\n65.7\n\n\nDeath Valley\n67\n03\n66.0\n\n\nDeath Valley\n68\n03\n66.3\n\n\nDeath Valley\n69\n03\n66.7\n\n\nDeath Valley\n70\n03\n67.0\n\n\nDeath Valley\n71\n03\n67.2\n\n\nDeath Valley\n72\n03\n67.5\n\n\nDeath Valley\n73\n03\n67.8\n\n\nDeath Valley\n74\n03\n68.1\n\n\nDeath Valley\n75\n03\n68.4\n\n\nDeath Valley\n76\n03\n68.6\n\n\nDeath Valley\n77\n03\n68.9\n\n\nDeath Valley\n78\n03\n69.2\n\n\nDeath Valley\n79\n03\n69.4\n\n\nDeath Valley\n80\n03\n69.7\n\n\nDeath Valley\n81\n03\n69.9\n\n\nDeath Valley\n82\n03\n70.1\n\n\nDeath Valley\n83\n03\n70.4\n\n\nDeath Valley\n84\n03\n70.6\n\n\nDeath Valley\n85\n03\n70.8\n\n\nDeath Valley\n86\n03\n71.1\n\n\nDeath Valley\n87\n03\n71.3\n\n\nDeath Valley\n88\n03\n71.5\n\n\nDeath Valley\n89\n03\n71.7\n\n\nDeath Valley\n90\n03\n71.9\n\n\nDeath Valley\n91\n03\n72.2\n\n\nDeath Valley\n92\n04\n72.4\n\n\nDeath Valley\n93\n04\n72.6\n\n\nDeath Valley\n94\n04\n72.8\n\n\nDeath Valley\n95\n04\n73.1\n\n\nDeath Valley\n96\n04\n73.3\n\n\nDeath Valley\n97\n04\n73.5\n\n\nDeath Valley\n98\n04\n73.8\n\n\nDeath Valley\n99\n04\n74.0\n\n\nDeath Valley\n100\n04\n74.3\n\n\nDeath Valley\n101\n04\n74.5\n\n\nDeath Valley\n102\n04\n74.8\n\n\nDeath Valley\n103\n04\n75.1\n\n\nDeath Valley\n104\n04\n75.3\n\n\nDeath Valley\n105\n04\n75.6\n\n\nDeath Valley\n106\n04\n75.9\n\n\nDeath Valley\n107\n04\n76.2\n\n\nDeath Valley\n108\n04\n76.5\n\n\nDeath Valley\n109\n04\n76.8\n\n\nDeath Valley\n110\n04\n77.1\n\n\nDeath Valley\n111\n04\n77.5\n\n\nDeath Valley\n112\n04\n77.8\n\n\nDeath Valley\n113\n04\n78.1\n\n\nDeath Valley\n114\n04\n78.5\n\n\nDeath Valley\n115\n04\n78.8\n\n\nDeath Valley\n116\n04\n79.2\n\n\nDeath Valley\n117\n04\n79.5\n\n\nDeath Valley\n118\n04\n79.9\n\n\nDeath Valley\n119\n04\n80.3\n\n\nDeath Valley\n120\n04\n80.6\n\n\nDeath Valley\n121\n04\n81.0\n\n\nDeath Valley\n122\n05\n81.4\n\n\nDeath Valley\n123\n05\n81.7\n\n\nDeath Valley\n124\n05\n82.1\n\n\nDeath Valley\n125\n05\n82.5\n\n\nDeath Valley\n126\n05\n82.9\n\n\nDeath Valley\n127\n05\n83.2\n\n\nDeath Valley\n128\n05\n83.6\n\n\nDeath Valley\n129\n05\n84.0\n\n\nDeath Valley\n130\n05\n84.3\n\n\nDeath Valley\n131\n05\n84.7\n\n\nDeath Valley\n132\n05\n85.1\n\n\nDeath Valley\n133\n05\n85.4\n\n\nDeath Valley\n134\n05\n85.8\n\n\nDeath Valley\n135\n05\n86.1\n\n\nDeath Valley\n136\n05\n86.4\n\n\nDeath Valley\n137\n05\n86.8\n\n\nDeath Valley\n138\n05\n87.1\n\n\nDeath Valley\n139\n05\n87.4\n\n\nDeath Valley\n140\n05\n87.8\n\n\nDeath Valley\n141\n05\n88.1\n\n\nDeath Valley\n142\n05\n88.4\n\n\nDeath Valley\n143\n05\n88.7\n\n\nDeath Valley\n144\n05\n89.0\n\n\nDeath Valley\n145\n05\n89.3\n\n\nDeath Valley\n146\n05\n89.6\n\n\nDeath Valley\n147\n05\n89.9\n\n\nDeath Valley\n148\n05\n90.1\n\n\nDeath Valley\n149\n05\n90.4\n\n\nDeath Valley\n150\n05\n90.7\n\n\nDeath Valley\n151\n05\n91.0\n\n\nDeath Valley\n152\n05\n91.3\n\n\nDeath Valley\n153\n06\n91.5\n\n\nDeath Valley\n154\n06\n91.8\n\n\nDeath Valley\n155\n06\n92.1\n\n\nDeath Valley\n156\n06\n92.3\n\n\nDeath Valley\n157\n06\n92.6\n\n\nDeath Valley\n158\n06\n92.9\n\n\nDeath Valley\n159\n06\n93.1\n\n\nDeath Valley\n160\n06\n93.4\n\n\nDeath Valley\n161\n06\n93.7\n\n\nDeath Valley\n162\n06\n94.0\n\n\nDeath Valley\n163\n06\n94.2\n\n\nDeath Valley\n164\n06\n94.5\n\n\nDeath Valley\n165\n06\n94.8\n\n\nDeath Valley\n166\n06\n95.1\n\n\nDeath Valley\n167\n06\n95.4\n\n\nDeath Valley\n168\n06\n95.7\n\n\nDeath Valley\n169\n06\n95.9\n\n\nDeath Valley\n170\n06\n96.2\n\n\nDeath Valley\n171\n06\n96.5\n\n\nDeath Valley\n172\n06\n96.8\n\n\nDeath Valley\n173\n06\n97.1\n\n\nDeath Valley\n174\n06\n97.4\n\n\nDeath Valley\n175\n06\n97.7\n\n\nDeath Valley\n176\n06\n98.0\n\n\nDeath Valley\n177\n06\n98.3\n\n\nDeath Valley\n178\n06\n98.5\n\n\nDeath Valley\n179\n06\n98.8\n\n\nDeath Valley\n180\n06\n99.1\n\n\nDeath Valley\n181\n06\n99.4\n\n\nDeath Valley\n182\n06\n99.6\n\n\nDeath Valley\n183\n07\n99.9\n\n\nDeath Valley\n184\n07\n100.2\n\n\nDeath Valley\n185\n07\n100.4\n\n\nDeath Valley\n186\n07\n100.6\n\n\nDeath Valley\n187\n07\n100.9\n\n\nDeath Valley\n188\n07\n101.1\n\n\nDeath Valley\n189\n07\n101.3\n\n\nDeath Valley\n190\n07\n101.5\n\n\nDeath Valley\n191\n07\n101.7\n\n\nDeath Valley\n192\n07\n101.9\n\n\nDeath Valley\n193\n07\n102.1\n\n\nDeath Valley\n194\n07\n102.2\n\n\nDeath Valley\n195\n07\n102.4\n\n\nDeath Valley\n196\n07\n102.5\n\n\nDeath Valley\n197\n07\n102.6\n\n\nDeath Valley\n198\n07\n102.8\n\n\nDeath Valley\n199\n07\n102.9\n\n\nDeath Valley\n200\n07\n102.9\n\n\nDeath Valley\n201\n07\n103.0\n\n\nDeath Valley\n202\n07\n103.1\n\n\nDeath Valley\n203\n07\n103.1\n\n\nDeath Valley\n204\n07\n103.1\n\n\nDeath Valley\n205\n07\n103.1\n\n\nDeath Valley\n206\n07\n103.2\n\n\nDeath Valley\n207\n07\n103.1\n\n\nDeath Valley\n208\n07\n103.1\n\n\nDeath Valley\n209\n07\n103.1\n\n\nDeath Valley\n210\n07\n103.0\n\n\nDeath Valley\n211\n07\n103.0\n\n\nDeath Valley\n212\n07\n102.9\n\n\nDeath Valley\n213\n07\n102.8\n\n\nDeath Valley\n214\n08\n102.7\n\n\nDeath Valley\n215\n08\n102.6\n\n\nDeath Valley\n216\n08\n102.5\n\n\nDeath Valley\n217\n08\n102.4\n\n\nDeath Valley\n218\n08\n102.3\n\n\nDeath Valley\n219\n08\n102.2\n\n\nDeath Valley\n220\n08\n102.0\n\n\nDeath Valley\n221\n08\n101.9\n\n\nDeath Valley\n222\n08\n101.7\n\n\nDeath Valley\n223\n08\n101.5\n\n\nDeath Valley\n224\n08\n101.4\n\n\nDeath Valley\n225\n08\n101.2\n\n\nDeath Valley\n226\n08\n101.0\n\n\nDeath Valley\n227\n08\n100.8\n\n\nDeath Valley\n228\n08\n100.6\n\n\nDeath Valley\n229\n08\n100.4\n\n\nDeath Valley\n230\n08\n100.2\n\n\nDeath Valley\n231\n08\n100.0\n\n\nDeath Valley\n232\n08\n99.8\n\n\nDeath Valley\n233\n08\n99.6\n\n\nDeath Valley\n234\n08\n99.4\n\n\nDeath Valley\n235\n08\n99.1\n\n\nDeath Valley\n236\n08\n98.9\n\n\nDeath Valley\n237\n08\n98.6\n\n\nDeath Valley\n238\n08\n98.4\n\n\nDeath Valley\n239\n08\n98.1\n\n\nDeath Valley\n240\n08\n97.9\n\n\nDeath Valley\n241\n08\n97.6\n\n\nDeath Valley\n242\n08\n97.3\n\n\nDeath Valley\n243\n08\n97.1\n\n\nDeath Valley\n244\n08\n96.8\n\n\nDeath Valley\n245\n09\n96.5\n\n\nDeath Valley\n246\n09\n96.2\n\n\nDeath Valley\n247\n09\n95.9\n\n\nDeath Valley\n248\n09\n95.6\n\n\nDeath Valley\n249\n09\n95.2\n\n\nDeath Valley\n250\n09\n94.9\n\n\nDeath Valley\n251\n09\n94.6\n\n\nDeath Valley\n252\n09\n94.2\n\n\nDeath Valley\n253\n09\n93.8\n\n\nDeath Valley\n254\n09\n93.5\n\n\nDeath Valley\n255\n09\n93.1\n\n\nDeath Valley\n256\n09\n92.7\n\n\nDeath Valley\n257\n09\n92.3\n\n\nDeath Valley\n258\n09\n91.9\n\n\nDeath Valley\n259\n09\n91.5\n\n\nDeath Valley\n260\n09\n91.1\n\n\nDeath Valley\n261\n09\n90.7\n\n\nDeath Valley\n262\n09\n90.3\n\n\nDeath Valley\n263\n09\n89.8\n\n\nDeath Valley\n264\n09\n89.4\n\n\nDeath Valley\n265\n09\n88.9\n\n\nDeath Valley\n266\n09\n88.5\n\n\nDeath Valley\n267\n09\n88.0\n\n\nDeath Valley\n268\n09\n87.6\n\n\nDeath Valley\n269\n09\n87.1\n\n\nDeath Valley\n270\n09\n86.6\n\n\nDeath Valley\n271\n09\n86.1\n\n\nDeath Valley\n272\n09\n85.7\n\n\nDeath Valley\n273\n09\n85.2\n\n\nDeath Valley\n274\n09\n84.7\n\n\nDeath Valley\n275\n10\n84.2\n\n\nDeath Valley\n276\n10\n83.7\n\n\nDeath Valley\n277\n10\n83.3\n\n\nDeath Valley\n278\n10\n82.8\n\n\nDeath Valley\n279\n10\n82.3\n\n\nDeath Valley\n280\n10\n81.8\n\n\nDeath Valley\n281\n10\n81.3\n\n\nDeath Valley\n282\n10\n80.9\n\n\nDeath Valley\n283\n10\n80.4\n\n\nDeath Valley\n284\n10\n79.9\n\n\nDeath Valley\n285\n10\n79.4\n\n\nDeath Valley\n286\n10\n79.0\n\n\nDeath Valley\n287\n10\n78.5\n\n\nDeath Valley\n288\n10\n78.0\n\n\nDeath Valley\n289\n10\n77.6\n\n\nDeath Valley\n290\n10\n77.1\n\n\nDeath Valley\n291\n10\n76.6\n\n\nDeath Valley\n292\n10\n76.2\n\n\nDeath Valley\n293\n10\n75.7\n\n\nDeath Valley\n294\n10\n75.3\n\n\nDeath Valley\n295\n10\n74.8\n\n\nDeath Valley\n296\n10\n74.3\n\n\nDeath Valley\n297\n10\n73.9\n\n\nDeath Valley\n298\n10\n73.4\n\n\nDeath Valley\n299\n10\n73.0\n\n\nDeath Valley\n300\n10\n72.5\n\n\nDeath Valley\n301\n10\n72.1\n\n\nDeath Valley\n302\n10\n71.6\n\n\nDeath Valley\n303\n10\n71.1\n\n\nDeath Valley\n304\n10\n70.7\n\n\nDeath Valley\n305\n10\n70.2\n\n\nDeath Valley\n306\n11\n69.7\n\n\nDeath Valley\n307\n11\n69.3\n\n\nDeath Valley\n308\n11\n68.8\n\n\nDeath Valley\n309\n11\n68.3\n\n\nDeath Valley\n310\n11\n67.8\n\n\nDeath Valley\n311\n11\n67.3\n\n\nDeath Valley\n312\n11\n66.9\n\n\nDeath Valley\n313\n11\n66.4\n\n\nDeath Valley\n314\n11\n65.9\n\n\nDeath Valley\n315\n11\n65.4\n\n\nDeath Valley\n316\n11\n64.9\n\n\nDeath Valley\n317\n11\n64.4\n\n\nDeath Valley\n318\n11\n63.9\n\n\nDeath Valley\n319\n11\n63.3\n\n\nDeath Valley\n320\n11\n62.8\n\n\nDeath Valley\n321\n11\n62.3\n\n\nDeath Valley\n322\n11\n61.8\n\n\nDeath Valley\n323\n11\n61.3\n\n\nDeath Valley\n324\n11\n60.8\n\n\nDeath Valley\n325\n11\n60.3\n\n\nDeath Valley\n326\n11\n59.8\n\n\nDeath Valley\n327\n11\n59.3\n\n\nDeath Valley\n328\n11\n58.8\n\n\nDeath Valley\n329\n11\n58.3\n\n\nDeath Valley\n330\n11\n57.9\n\n\nDeath Valley\n331\n11\n57.4\n\n\nDeath Valley\n332\n11\n56.9\n\n\nDeath Valley\n333\n11\n56.5\n\n\nDeath Valley\n334\n11\n56.0\n\n\nDeath Valley\n335\n11\n55.6\n\n\nDeath Valley\n336\n12\n55.2\n\n\nDeath Valley\n337\n12\n54.8\n\n\nDeath Valley\n338\n12\n54.4\n\n\nDeath Valley\n339\n12\n54.0\n\n\nDeath Valley\n340\n12\n53.7\n\n\nDeath Valley\n341\n12\n53.3\n\n\nDeath Valley\n342\n12\n53.0\n\n\nDeath Valley\n343\n12\n52.7\n\n\nDeath Valley\n344\n12\n52.4\n\n\nDeath Valley\n345\n12\n52.2\n\n\nDeath Valley\n346\n12\n51.9\n\n\nDeath Valley\n347\n12\n51.7\n\n\nDeath Valley\n348\n12\n51.5\n\n\nDeath Valley\n349\n12\n51.3\n\n\nDeath Valley\n350\n12\n51.1\n\n\nDeath Valley\n351\n12\n51.0\n\n\nDeath Valley\n352\n12\n50.9\n\n\nDeath Valley\n353\n12\n50.8\n\n\nDeath Valley\n354\n12\n50.7\n\n\nDeath Valley\n355\n12\n50.6\n\n\nDeath Valley\n356\n12\n50.6\n\n\nDeath Valley\n357\n12\n50.5\n\n\nDeath Valley\n358\n12\n50.5\n\n\nDeath Valley\n359\n12\n50.5\n\n\nDeath Valley\n360\n12\n50.5\n\n\nDeath Valley\n361\n12\n50.6\n\n\nDeath Valley\n362\n12\n50.6\n\n\nDeath Valley\n363\n12\n50.7\n\n\nDeath Valley\n364\n12\n50.8\n\n\nDeath Valley\n365\n12\n50.8\n\n\nDeath Valley\n366\n12\n50.9\n\n\nHouston\n1\n01\n53.9\n\n\nHouston\n2\n01\n53.8\n\n\nHouston\n3\n01\n53.8\n\n\nHouston\n4\n01\n53.8\n\n\nHouston\n5\n01\n53.8\n\n\nHouston\n6\n01\n53.7\n\n\nHouston\n7\n01\n53.7\n\n\nHouston\n8\n01\n53.7\n\n\nHouston\n9\n01\n53.7\n\n\nHouston\n10\n01\n53.7\n\n\nHouston\n11\n01\n53.7\n\n\nHouston\n12\n01\n53.8\n\n\nHouston\n13\n01\n53.8\n\n\nHouston\n14\n01\n53.8\n\n\nHouston\n15\n01\n53.8\n\n\nHouston\n16\n01\n53.9\n\n\nHouston\n17\n01\n53.9\n\n\nHouston\n18\n01\n53.9\n\n\nHouston\n19\n01\n54.0\n\n\nHouston\n20\n01\n54.0\n\n\nHouston\n21\n01\n54.1\n\n\nHouston\n22\n01\n54.2\n\n\nHouston\n23\n01\n54.2\n\n\nHouston\n24\n01\n54.3\n\n\nHouston\n25\n01\n54.4\n\n\nHouston\n26\n01\n54.4\n\n\nHouston\n27\n01\n54.5\n\n\nHouston\n28\n01\n54.6\n\n\nHouston\n29\n01\n54.7\n\n\nHouston\n30\n01\n54.8\n\n\nHouston\n31\n01\n54.9\n\n\nHouston\n32\n02\n55.0\n\n\nHouston\n33\n02\n55.2\n\n\nHouston\n34\n02\n55.3\n\n\nHouston\n35\n02\n55.4\n\n\nHouston\n36\n02\n55.6\n\n\nHouston\n37\n02\n55.7\n\n\nHouston\n38\n02\n55.8\n\n\nHouston\n39\n02\n56.0\n\n\nHouston\n40\n02\n56.2\n\n\nHouston\n41\n02\n56.3\n\n\nHouston\n42\n02\n56.5\n\n\nHouston\n43\n02\n56.7\n\n\nHouston\n44\n02\n56.8\n\n\nHouston\n45\n02\n57.0\n\n\nHouston\n46\n02\n57.2\n\n\nHouston\n47\n02\n57.4\n\n\nHouston\n48\n02\n57.6\n\n\nHouston\n49\n02\n57.8\n\n\nHouston\n50\n02\n58.0\n\n\nHouston\n51\n02\n58.2\n\n\nHouston\n52\n02\n58.4\n\n\nHouston\n53\n02\n58.6\n\n\nHouston\n54\n02\n58.8\n\n\nHouston\n55\n02\n59.0\n\n\nHouston\n56\n02\n59.3\n\n\nHouston\n57\n02\n59.5\n\n\nHouston\n58\n02\n59.7\n\n\nHouston\n59\n02\n59.9\n\n\nHouston\n60\n02\n60.0\n\n\nHouston\n61\n03\n60.1\n\n\nHouston\n62\n03\n60.4\n\n\nHouston\n63\n03\n60.6\n\n\nHouston\n64\n03\n60.8\n\n\nHouston\n65\n03\n61.0\n\n\nHouston\n66\n03\n61.2\n\n\nHouston\n67\n03\n61.5\n\n\nHouston\n68\n03\n61.7\n\n\nHouston\n69\n03\n61.9\n\n\nHouston\n70\n03\n62.1\n\n\nHouston\n71\n03\n62.3\n\n\nHouston\n72\n03\n62.5\n\n\nHouston\n73\n03\n62.8\n\n\nHouston\n74\n03\n63.0\n\n\nHouston\n75\n03\n63.2\n\n\nHouston\n76\n03\n63.4\n\n\nHouston\n77\n03\n63.6\n\n\nHouston\n78\n03\n63.8\n\n\nHouston\n79\n03\n64.0\n\n\nHouston\n80\n03\n64.2\n\n\nHouston\n81\n03\n64.4\n\n\nHouston\n82\n03\n64.6\n\n\nHouston\n83\n03\n64.8\n\n\nHouston\n84\n03\n65.0\n\n\nHouston\n85\n03\n65.2\n\n\nHouston\n86\n03\n65.4\n\n\nHouston\n87\n03\n65.6\n\n\nHouston\n88\n03\n65.8\n\n\nHouston\n89\n03\n66.0\n\n\nHouston\n90\n03\n66.2\n\n\nHouston\n91\n03\n66.4\n\n\nHouston\n92\n04\n66.6\n\n\nHouston\n93\n04\n66.8\n\n\nHouston\n94\n04\n67.1\n\n\nHouston\n95\n04\n67.3\n\n\nHouston\n96\n04\n67.5\n\n\nHouston\n97\n04\n67.7\n\n\nHouston\n98\n04\n67.9\n\n\nHouston\n99\n04\n68.1\n\n\nHouston\n100\n04\n68.3\n\n\nHouston\n101\n04\n68.5\n\n\nHouston\n102\n04\n68.8\n\n\nHouston\n103\n04\n69.0\n\n\nHouston\n104\n04\n69.2\n\n\nHouston\n105\n04\n69.4\n\n\nHouston\n106\n04\n69.7\n\n\nHouston\n107\n04\n69.9\n\n\nHouston\n108\n04\n70.1\n\n\nHouston\n109\n04\n70.4\n\n\nHouston\n110\n04\n70.6\n\n\nHouston\n111\n04\n70.8\n\n\nHouston\n112\n04\n71.1\n\n\nHouston\n113\n04\n71.3\n\n\nHouston\n114\n04\n71.6\n\n\nHouston\n115\n04\n71.8\n\n\nHouston\n116\n04\n72.1\n\n\nHouston\n117\n04\n72.3\n\n\nHouston\n118\n04\n72.6\n\n\nHouston\n119\n04\n72.8\n\n\nHouston\n120\n04\n73.1\n\n\nHouston\n121\n04\n73.3\n\n\nHouston\n122\n05\n73.6\n\n\nHouston\n123\n05\n73.8\n\n\nHouston\n124\n05\n74.1\n\n\nHouston\n125\n05\n74.3\n\n\nHouston\n126\n05\n74.6\n\n\nHouston\n127\n05\n74.8\n\n\nHouston\n128\n05\n75.0\n\n\nHouston\n129\n05\n75.3\n\n\nHouston\n130\n05\n75.5\n\n\nHouston\n131\n05\n75.8\n\n\nHouston\n132\n05\n76.0\n\n\nHouston\n133\n05\n76.3\n\n\nHouston\n134\n05\n76.5\n\n\nHouston\n135\n05\n76.7\n\n\nHouston\n136\n05\n76.9\n\n\nHouston\n137\n05\n77.2\n\n\nHouston\n138\n05\n77.4\n\n\nHouston\n139\n05\n77.6\n\n\nHouston\n140\n05\n77.8\n\n\nHouston\n141\n05\n78.0\n\n\nHouston\n142\n05\n78.3\n\n\nHouston\n143\n05\n78.5\n\n\nHouston\n144\n05\n78.7\n\n\nHouston\n145\n05\n78.9\n\n\nHouston\n146\n05\n79.0\n\n\nHouston\n147\n05\n79.2\n\n\nHouston\n148\n05\n79.4\n\n\nHouston\n149\n05\n79.6\n\n\nHouston\n150\n05\n79.8\n\n\nHouston\n151\n05\n79.9\n\n\nHouston\n152\n05\n80.1\n\n\nHouston\n153\n06\n80.3\n\n\nHouston\n154\n06\n80.4\n\n\nHouston\n155\n06\n80.6\n\n\nHouston\n156\n06\n80.7\n\n\nHouston\n157\n06\n80.9\n\n\nHouston\n158\n06\n81.0\n\n\nHouston\n159\n06\n81.2\n\n\nHouston\n160\n06\n81.3\n\n\nHouston\n161\n06\n81.4\n\n\nHouston\n162\n06\n81.5\n\n\nHouston\n163\n06\n81.7\n\n\nHouston\n164\n06\n81.8\n\n\nHouston\n165\n06\n81.9\n\n\nHouston\n166\n06\n82.0\n\n\nHouston\n167\n06\n82.1\n\n\nHouston\n168\n06\n82.2\n\n\nHouston\n169\n06\n82.3\n\n\nHouston\n170\n06\n82.4\n\n\nHouston\n171\n06\n82.5\n\n\nHouston\n172\n06\n82.5\n\n\nHouston\n173\n06\n82.6\n\n\nHouston\n174\n06\n82.7\n\n\nHouston\n175\n06\n82.8\n\n\nHouston\n176\n06\n82.8\n\n\nHouston\n177\n06\n82.9\n\n\nHouston\n178\n06\n83.0\n\n\nHouston\n179\n06\n83.0\n\n\nHouston\n180\n06\n83.1\n\n\nHouston\n181\n06\n83.1\n\n\nHouston\n182\n06\n83.2\n\n\nHouston\n183\n07\n83.2\n\n\nHouston\n184\n07\n83.3\n\n\nHouston\n185\n07\n83.3\n\n\nHouston\n186\n07\n83.4\n\n\nHouston\n187\n07\n83.4\n\n\nHouston\n188\n07\n83.5\n\n\nHouston\n189\n07\n83.5\n\n\nHouston\n190\n07\n83.5\n\n\nHouston\n191\n07\n83.6\n\n\nHouston\n192\n07\n83.6\n\n\nHouston\n193\n07\n83.7\n\n\nHouston\n194\n07\n83.7\n\n\nHouston\n195\n07\n83.7\n\n\nHouston\n196\n07\n83.8\n\n\nHouston\n197\n07\n83.8\n\n\nHouston\n198\n07\n83.8\n\n\nHouston\n199\n07\n83.8\n\n\nHouston\n200\n07\n83.9\n\n\nHouston\n201\n07\n83.9\n\n\nHouston\n202\n07\n83.9\n\n\nHouston\n203\n07\n84.0\n\n\nHouston\n204\n07\n84.0\n\n\nHouston\n205\n07\n84.0\n\n\nHouston\n206\n07\n84.1\n\n\nHouston\n207\n07\n84.1\n\n\nHouston\n208\n07\n84.1\n\n\nHouston\n209\n07\n84.2\n\n\nHouston\n210\n07\n84.2\n\n\nHouston\n211\n07\n84.2\n\n\nHouston\n212\n07\n84.2\n\n\nHouston\n213\n07\n84.3\n\n\nHouston\n214\n08\n84.3\n\n\nHouston\n215\n08\n84.3\n\n\nHouston\n216\n08\n84.3\n\n\nHouston\n217\n08\n84.4\n\n\nHouston\n218\n08\n84.4\n\n\nHouston\n219\n08\n84.4\n\n\nHouston\n220\n08\n84.4\n\n\nHouston\n221\n08\n84.4\n\n\nHouston\n222\n08\n84.4\n\n\nHouston\n223\n08\n84.4\n\n\nHouston\n224\n08\n84.4\n\n\nHouston\n225\n08\n84.4\n\n\nHouston\n226\n08\n84.4\n\n\nHouston\n227\n08\n84.4\n\n\nHouston\n228\n08\n84.4\n\n\nHouston\n229\n08\n84.4\n\n\nHouston\n230\n08\n84.3\n\n\nHouston\n231\n08\n84.3\n\n\nHouston\n232\n08\n84.3\n\n\nHouston\n233\n08\n84.2\n\n\nHouston\n234\n08\n84.2\n\n\nHouston\n235\n08\n84.1\n\n\nHouston\n236\n08\n84.0\n\n\nHouston\n237\n08\n84.0\n\n\nHouston\n238\n08\n83.9\n\n\nHouston\n239\n08\n83.8\n\n\nHouston\n240\n08\n83.7\n\n\nHouston\n241\n08\n83.6\n\n\nHouston\n242\n08\n83.5\n\n\nHouston\n243\n08\n83.3\n\n\nHouston\n244\n08\n83.2\n\n\nHouston\n245\n09\n83.1\n\n\nHouston\n246\n09\n82.9\n\n\nHouston\n247\n09\n82.8\n\n\nHouston\n248\n09\n82.6\n\n\nHouston\n249\n09\n82.4\n\n\nHouston\n250\n09\n82.2\n\n\nHouston\n251\n09\n82.1\n\n\nHouston\n252\n09\n81.9\n\n\nHouston\n253\n09\n81.7\n\n\nHouston\n254\n09\n81.5\n\n\nHouston\n255\n09\n81.2\n\n\nHouston\n256\n09\n81.0\n\n\nHouston\n257\n09\n80.8\n\n\nHouston\n258\n09\n80.6\n\n\nHouston\n259\n09\n80.3\n\n\nHouston\n260\n09\n80.1\n\n\nHouston\n261\n09\n79.9\n\n\nHouston\n262\n09\n79.6\n\n\nHouston\n263\n09\n79.4\n\n\nHouston\n264\n09\n79.1\n\n\nHouston\n265\n09\n78.8\n\n\nHouston\n266\n09\n78.6\n\n\nHouston\n267\n09\n78.3\n\n\nHouston\n268\n09\n78.1\n\n\nHouston\n269\n09\n77.8\n\n\nHouston\n270\n09\n77.5\n\n\nHouston\n271\n09\n77.3\n\n\nHouston\n272\n09\n77.0\n\n\nHouston\n273\n09\n76.7\n\n\nHouston\n274\n09\n76.5\n\n\nHouston\n275\n10\n76.2\n\n\nHouston\n276\n10\n75.9\n\n\nHouston\n277\n10\n75.7\n\n\nHouston\n278\n10\n75.4\n\n\nHouston\n279\n10\n75.1\n\n\nHouston\n280\n10\n74.8\n\n\nHouston\n281\n10\n74.6\n\n\nHouston\n282\n10\n74.3\n\n\nHouston\n283\n10\n74.0\n\n\nHouston\n284\n10\n73.8\n\n\nHouston\n285\n10\n73.5\n\n\nHouston\n286\n10\n73.2\n\n\nHouston\n287\n10\n73.0\n\n\nHouston\n288\n10\n72.7\n\n\nHouston\n289\n10\n72.4\n\n\nHouston\n290\n10\n72.2\n\n\nHouston\n291\n10\n71.9\n\n\nHouston\n292\n10\n71.6\n\n\nHouston\n293\n10\n71.4\n\n\nHouston\n294\n10\n71.1\n\n\nHouston\n295\n10\n70.8\n\n\nHouston\n296\n10\n70.6\n\n\nHouston\n297\n10\n70.3\n\n\nHouston\n298\n10\n70.0\n\n\nHouston\n299\n10\n69.7\n\n\nHouston\n300\n10\n69.4\n\n\nHouston\n301\n10\n69.2\n\n\nHouston\n302\n10\n68.9\n\n\nHouston\n303\n10\n68.6\n\n\nHouston\n304\n10\n68.3\n\n\nHouston\n305\n10\n68.0\n\n\nHouston\n306\n11\n67.7\n\n\nHouston\n307\n11\n67.4\n\n\nHouston\n308\n11\n67.1\n\n\nHouston\n309\n11\n66.8\n\n\nHouston\n310\n11\n66.5\n\n\nHouston\n311\n11\n66.2\n\n\nHouston\n312\n11\n65.9\n\n\nHouston\n313\n11\n65.5\n\n\nHouston\n314\n11\n65.2\n\n\nHouston\n315\n11\n64.9\n\n\nHouston\n316\n11\n64.6\n\n\nHouston\n317\n11\n64.3\n\n\nHouston\n318\n11\n63.9\n\n\nHouston\n319\n11\n63.6\n\n\nHouston\n320\n11\n63.3\n\n\nHouston\n321\n11\n63.0\n\n\nHouston\n322\n11\n62.6\n\n\nHouston\n323\n11\n62.3\n\n\nHouston\n324\n11\n62.0\n\n\nHouston\n325\n11\n61.7\n\n\nHouston\n326\n11\n61.4\n\n\nHouston\n327\n11\n61.1\n\n\nHouston\n328\n11\n60.7\n\n\nHouston\n329\n11\n60.4\n\n\nHouston\n330\n11\n60.1\n\n\nHouston\n331\n11\n59.8\n\n\nHouston\n332\n11\n59.5\n\n\nHouston\n333\n11\n59.3\n\n\nHouston\n334\n11\n59.0\n\n\nHouston\n335\n11\n58.7\n\n\nHouston\n336\n12\n58.4\n\n\nHouston\n337\n12\n58.2\n\n\nHouston\n338\n12\n57.9\n\n\nHouston\n339\n12\n57.7\n\n\nHouston\n340\n12\n57.4\n\n\nHouston\n341\n12\n57.2\n\n\nHouston\n342\n12\n57.0\n\n\nHouston\n343\n12\n56.7\n\n\nHouston\n344\n12\n56.5\n\n\nHouston\n345\n12\n56.3\n\n\nHouston\n346\n12\n56.1\n\n\nHouston\n347\n12\n55.9\n\n\nHouston\n348\n12\n55.8\n\n\nHouston\n349\n12\n55.6\n\n\nHouston\n350\n12\n55.4\n\n\nHouston\n351\n12\n55.3\n\n\nHouston\n352\n12\n55.1\n\n\nHouston\n353\n12\n55.0\n\n\nHouston\n354\n12\n54.9\n\n\nHouston\n355\n12\n54.8\n\n\nHouston\n356\n12\n54.6\n\n\nHouston\n357\n12\n54.5\n\n\nHouston\n358\n12\n54.4\n\n\nHouston\n359\n12\n54.3\n\n\nHouston\n360\n12\n54.3\n\n\nHouston\n361\n12\n54.2\n\n\nHouston\n362\n12\n54.1\n\n\nHouston\n363\n12\n54.1\n\n\nHouston\n364\n12\n54.0\n\n\nHouston\n365\n12\n53.9\n\n\nHouston\n366\n12\n53.9\n\n\nChicago\n1\n01\n25.6\n\n\nChicago\n2\n01\n25.5\n\n\nChicago\n3\n01\n25.3\n\n\nChicago\n4\n01\n25.2\n\n\nChicago\n5\n01\n25.1\n\n\nChicago\n6\n01\n25.1\n\n\nChicago\n7\n01\n25.0\n\n\nChicago\n8\n01\n24.9\n\n\nChicago\n9\n01\n24.8\n\n\nChicago\n10\n01\n24.8\n\n\nChicago\n11\n01\n24.7\n\n\nChicago\n12\n01\n24.7\n\n\nChicago\n13\n01\n24.6\n\n\nChicago\n14\n01\n24.6\n\n\nChicago\n15\n01\n24.5\n\n\nChicago\n16\n01\n24.5\n\n\nChicago\n17\n01\n24.5\n\n\nChicago\n18\n01\n24.5\n\n\nChicago\n19\n01\n24.5\n\n\nChicago\n20\n01\n24.5\n\n\nChicago\n21\n01\n24.5\n\n\nChicago\n22\n01\n24.6\n\n\nChicago\n23\n01\n24.6\n\n\nChicago\n24\n01\n24.7\n\n\nChicago\n25\n01\n24.7\n\n\nChicago\n26\n01\n24.8\n\n\nChicago\n27\n01\n24.9\n\n\nChicago\n28\n01\n25.0\n\n\nChicago\n29\n01\n25.1\n\n\nChicago\n30\n01\n25.2\n\n\nChicago\n31\n01\n25.3\n\n\nChicago\n32\n02\n25.5\n\n\nChicago\n33\n02\n25.6\n\n\nChicago\n34\n02\n25.8\n\n\nChicago\n35\n02\n26.0\n\n\nChicago\n36\n02\n26.1\n\n\nChicago\n37\n02\n26.3\n\n\nChicago\n38\n02\n26.6\n\n\nChicago\n39\n02\n26.8\n\n\nChicago\n40\n02\n27.0\n\n\nChicago\n41\n02\n27.3\n\n\nChicago\n42\n02\n27.5\n\n\nChicago\n43\n02\n27.8\n\n\nChicago\n44\n02\n28.1\n\n\nChicago\n45\n02\n28.3\n\n\nChicago\n46\n02\n28.6\n\n\nChicago\n47\n02\n28.9\n\n\nChicago\n48\n02\n29.2\n\n\nChicago\n49\n02\n29.6\n\n\nChicago\n50\n02\n29.9\n\n\nChicago\n51\n02\n30.2\n\n\nChicago\n52\n02\n30.5\n\n\nChicago\n53\n02\n30.9\n\n\nChicago\n54\n02\n31.2\n\n\nChicago\n55\n02\n31.6\n\n\nChicago\n56\n02\n31.9\n\n\nChicago\n57\n02\n32.3\n\n\nChicago\n58\n02\n32.6\n\n\nChicago\n59\n02\n33.0\n\n\nChicago\n60\n02\n33.2\n\n\nChicago\n61\n03\n33.3\n\n\nChicago\n62\n03\n33.7\n\n\nChicago\n63\n03\n34.1\n\n\nChicago\n64\n03\n34.4\n\n\nChicago\n65\n03\n34.8\n\n\nChicago\n66\n03\n35.2\n\n\nChicago\n67\n03\n35.5\n\n\nChicago\n68\n03\n35.9\n\n\nChicago\n69\n03\n36.3\n\n\nChicago\n70\n03\n36.6\n\n\nChicago\n71\n03\n37.0\n\n\nChicago\n72\n03\n37.4\n\n\nChicago\n73\n03\n37.7\n\n\nChicago\n74\n03\n38.1\n\n\nChicago\n75\n03\n38.5\n\n\nChicago\n76\n03\n38.8\n\n\nChicago\n77\n03\n39.2\n\n\nChicago\n78\n03\n39.6\n\n\nChicago\n79\n03\n39.9\n\n\nChicago\n80\n03\n40.3\n\n\nChicago\n81\n03\n40.7\n\n\nChicago\n82\n03\n41.0\n\n\nChicago\n83\n03\n41.4\n\n\nChicago\n84\n03\n41.8\n\n\nChicago\n85\n03\n42.2\n\n\nChicago\n86\n03\n42.5\n\n\nChicago\n87\n03\n42.9\n\n\nChicago\n88\n03\n43.3\n\n\nChicago\n89\n03\n43.7\n\n\nChicago\n90\n03\n44.1\n\n\nChicago\n91\n03\n44.4\n\n\nChicago\n92\n04\n44.8\n\n\nChicago\n93\n04\n45.2\n\n\nChicago\n94\n04\n45.6\n\n\nChicago\n95\n04\n46.0\n\n\nChicago\n96\n04\n46.4\n\n\nChicago\n97\n04\n46.8\n\n\nChicago\n98\n04\n47.2\n\n\nChicago\n99\n04\n47.6\n\n\nChicago\n100\n04\n48.0\n\n\nChicago\n101\n04\n48.4\n\n\nChicago\n102\n04\n48.7\n\n\nChicago\n103\n04\n49.1\n\n\nChicago\n104\n04\n49.5\n\n\nChicago\n105\n04\n49.9\n\n\nChicago\n106\n04\n50.3\n\n\nChicago\n107\n04\n50.7\n\n\nChicago\n108\n04\n51.1\n\n\nChicago\n109\n04\n51.5\n\n\nChicago\n110\n04\n51.9\n\n\nChicago\n111\n04\n52.2\n\n\nChicago\n112\n04\n52.6\n\n\nChicago\n113\n04\n53.0\n\n\nChicago\n114\n04\n53.4\n\n\nChicago\n115\n04\n53.7\n\n\nChicago\n116\n04\n54.1\n\n\nChicago\n117\n04\n54.5\n\n\nChicago\n118\n04\n54.8\n\n\nChicago\n119\n04\n55.2\n\n\nChicago\n120\n04\n55.5\n\n\nChicago\n121\n04\n55.8\n\n\nChicago\n122\n05\n56.2\n\n\nChicago\n123\n05\n56.5\n\n\nChicago\n124\n05\n56.8\n\n\nChicago\n125\n05\n57.2\n\n\nChicago\n126\n05\n57.5\n\n\nChicago\n127\n05\n57.8\n\n\nChicago\n128\n05\n58.1\n\n\nChicago\n129\n05\n58.4\n\n\nChicago\n130\n05\n58.7\n\n\nChicago\n131\n05\n59.0\n\n\nChicago\n132\n05\n59.3\n\n\nChicago\n133\n05\n59.6\n\n\nChicago\n134\n05\n60.0\n\n\nChicago\n135\n05\n60.3\n\n\nChicago\n136\n05\n60.6\n\n\nChicago\n137\n05\n60.9\n\n\nChicago\n138\n05\n61.2\n\n\nChicago\n139\n05\n61.5\n\n\nChicago\n140\n05\n61.8\n\n\nChicago\n141\n05\n62.1\n\n\nChicago\n142\n05\n62.4\n\n\nChicago\n143\n05\n62.7\n\n\nChicago\n144\n05\n63.0\n\n\nChicago\n145\n05\n63.4\n\n\nChicago\n146\n05\n63.7\n\n\nChicago\n147\n05\n64.0\n\n\nChicago\n148\n05\n64.4\n\n\nChicago\n149\n05\n64.7\n\n\nChicago\n150\n05\n65.0\n\n\nChicago\n151\n05\n65.4\n\n\nChicago\n152\n05\n65.7\n\n\nChicago\n153\n06\n66.1\n\n\nChicago\n154\n06\n66.4\n\n\nChicago\n155\n06\n66.8\n\n\nChicago\n156\n06\n67.2\n\n\nChicago\n157\n06\n67.5\n\n\nChicago\n158\n06\n67.9\n\n\nChicago\n159\n06\n68.2\n\n\nChicago\n160\n06\n68.6\n\n\nChicago\n161\n06\n69.0\n\n\nChicago\n162\n06\n69.3\n\n\nChicago\n163\n06\n69.7\n\n\nChicago\n164\n06\n70.0\n\n\nChicago\n165\n06\n70.4\n\n\nChicago\n166\n06\n70.7\n\n\nChicago\n167\n06\n71.1\n\n\nChicago\n168\n06\n71.4\n\n\nChicago\n169\n06\n71.7\n\n\nChicago\n170\n06\n72.1\n\n\nChicago\n171\n06\n72.4\n\n\nChicago\n172\n06\n72.7\n\n\nChicago\n173\n06\n73.0\n\n\nChicago\n174\n06\n73.2\n\n\nChicago\n175\n06\n73.5\n\n\nChicago\n176\n06\n73.8\n\n\nChicago\n177\n06\n74.0\n\n\nChicago\n178\n06\n74.3\n\n\nChicago\n179\n06\n74.5\n\n\nChicago\n180\n06\n74.7\n\n\nChicago\n181\n06\n74.9\n\n\nChicago\n182\n06\n75.1\n\n\nChicago\n183\n07\n75.2\n\n\nChicago\n184\n07\n75.4\n\n\nChicago\n185\n07\n75.5\n\n\nChicago\n186\n07\n75.6\n\n\nChicago\n187\n07\n75.7\n\n\nChicago\n188\n07\n75.8\n\n\nChicago\n189\n07\n75.9\n\n\nChicago\n190\n07\n76.0\n\n\nChicago\n191\n07\n76.0\n\n\nChicago\n192\n07\n76.1\n\n\nChicago\n193\n07\n76.1\n\n\nChicago\n194\n07\n76.1\n\n\nChicago\n195\n07\n76.2\n\n\nChicago\n196\n07\n76.2\n\n\nChicago\n197\n07\n76.2\n\n\nChicago\n198\n07\n76.1\n\n\nChicago\n199\n07\n76.1\n\n\nChicago\n200\n07\n76.1\n\n\nChicago\n201\n07\n76.1\n\n\nChicago\n202\n07\n76.0\n\n\nChicago\n203\n07\n76.0\n\n\nChicago\n204\n07\n75.9\n\n\nChicago\n205\n07\n75.9\n\n\nChicago\n206\n07\n75.8\n\n\nChicago\n207\n07\n75.8\n\n\nChicago\n208\n07\n75.7\n\n\nChicago\n209\n07\n75.7\n\n\nChicago\n210\n07\n75.6\n\n\nChicago\n211\n07\n75.5\n\n\nChicago\n212\n07\n75.5\n\n\nChicago\n213\n07\n75.4\n\n\nChicago\n214\n08\n75.4\n\n\nChicago\n215\n08\n75.3\n\n\nChicago\n216\n08\n75.2\n\n\nChicago\n217\n08\n75.2\n\n\nChicago\n218\n08\n75.1\n\n\nChicago\n219\n08\n75.1\n\n\nChicago\n220\n08\n75.0\n\n\nChicago\n221\n08\n75.0\n\n\nChicago\n222\n08\n74.9\n\n\nChicago\n223\n08\n74.8\n\n\nChicago\n224\n08\n74.8\n\n\nChicago\n225\n08\n74.7\n\n\nChicago\n226\n08\n74.6\n\n\nChicago\n227\n08\n74.6\n\n\nChicago\n228\n08\n74.5\n\n\nChicago\n229\n08\n74.4\n\n\nChicago\n230\n08\n74.3\n\n\nChicago\n231\n08\n74.2\n\n\nChicago\n232\n08\n74.1\n\n\nChicago\n233\n08\n74.0\n\n\nChicago\n234\n08\n73.9\n\n\nChicago\n235\n08\n73.7\n\n\nChicago\n236\n08\n73.6\n\n\nChicago\n237\n08\n73.4\n\n\nChicago\n238\n08\n73.3\n\n\nChicago\n239\n08\n73.1\n\n\nChicago\n240\n08\n72.9\n\n\nChicago\n241\n08\n72.7\n\n\nChicago\n242\n08\n72.5\n\n\nChicago\n243\n08\n72.3\n\n\nChicago\n244\n08\n72.0\n\n\nChicago\n245\n09\n71.8\n\n\nChicago\n246\n09\n71.5\n\n\nChicago\n247\n09\n71.2\n\n\nChicago\n248\n09\n70.9\n\n\nChicago\n249\n09\n70.6\n\n\nChicago\n250\n09\n70.3\n\n\nChicago\n251\n09\n69.9\n\n\nChicago\n252\n09\n69.6\n\n\nChicago\n253\n09\n69.2\n\n\nChicago\n254\n09\n68.8\n\n\nChicago\n255\n09\n68.5\n\n\nChicago\n256\n09\n68.1\n\n\nChicago\n257\n09\n67.7\n\n\nChicago\n258\n09\n67.2\n\n\nChicago\n259\n09\n66.8\n\n\nChicago\n260\n09\n66.4\n\n\nChicago\n261\n09\n66.0\n\n\nChicago\n262\n09\n65.5\n\n\nChicago\n263\n09\n65.1\n\n\nChicago\n264\n09\n64.7\n\n\nChicago\n265\n09\n64.2\n\n\nChicago\n266\n09\n63.8\n\n\nChicago\n267\n09\n63.3\n\n\nChicago\n268\n09\n62.9\n\n\nChicago\n269\n09\n62.4\n\n\nChicago\n270\n09\n62.0\n\n\nChicago\n271\n09\n61.6\n\n\nChicago\n272\n09\n61.1\n\n\nChicago\n273\n09\n60.7\n\n\nChicago\n274\n09\n60.3\n\n\nChicago\n275\n10\n59.9\n\n\nChicago\n276\n10\n59.4\n\n\nChicago\n277\n10\n59.0\n\n\nChicago\n278\n10\n58.6\n\n\nChicago\n279\n10\n58.2\n\n\nChicago\n280\n10\n57.8\n\n\nChicago\n281\n10\n57.5\n\n\nChicago\n282\n10\n57.1\n\n\nChicago\n283\n10\n56.7\n\n\nChicago\n284\n10\n56.3\n\n\nChicago\n285\n10\n56.0\n\n\nChicago\n286\n10\n55.6\n\n\nChicago\n287\n10\n55.3\n\n\nChicago\n288\n10\n54.9\n\n\nChicago\n289\n10\n54.5\n\n\nChicago\n290\n10\n54.2\n\n\nChicago\n291\n10\n53.9\n\n\nChicago\n292\n10\n53.5\n\n\nChicago\n293\n10\n53.2\n\n\nChicago\n294\n10\n52.8\n\n\nChicago\n295\n10\n52.5\n\n\nChicago\n296\n10\n52.1\n\n\nChicago\n297\n10\n51.8\n\n\nChicago\n298\n10\n51.4\n\n\nChicago\n299\n10\n51.1\n\n\nChicago\n300\n10\n50.7\n\n\nChicago\n301\n10\n50.3\n\n\nChicago\n302\n10\n49.9\n\n\nChicago\n303\n10\n49.6\n\n\nChicago\n304\n10\n49.2\n\n\nChicago\n305\n10\n48.8\n\n\nChicago\n306\n11\n48.4\n\n\nChicago\n307\n11\n48.0\n\n\nChicago\n308\n11\n47.5\n\n\nChicago\n309\n11\n47.1\n\n\nChicago\n310\n11\n46.7\n\n\nChicago\n311\n11\n46.2\n\n\nChicago\n312\n11\n45.8\n\n\nChicago\n313\n11\n45.3\n\n\nChicago\n314\n11\n44.8\n\n\nChicago\n315\n11\n44.4\n\n\nChicago\n316\n11\n43.9\n\n\nChicago\n317\n11\n43.4\n\n\nChicago\n318\n11\n42.9\n\n\nChicago\n319\n11\n42.4\n\n\nChicago\n320\n11\n41.9\n\n\nChicago\n321\n11\n41.4\n\n\nChicago\n322\n11\n40.9\n\n\nChicago\n323\n11\n40.4\n\n\nChicago\n324\n11\n39.9\n\n\nChicago\n325\n11\n39.4\n\n\nChicago\n326\n11\n38.8\n\n\nChicago\n327\n11\n38.3\n\n\nChicago\n328\n11\n37.8\n\n\nChicago\n329\n11\n37.3\n\n\nChicago\n330\n11\n36.8\n\n\nChicago\n331\n11\n36.3\n\n\nChicago\n332\n11\n35.8\n\n\nChicago\n333\n11\n35.4\n\n\nChicago\n334\n11\n34.9\n\n\nChicago\n335\n11\n34.4\n\n\nChicago\n336\n12\n34.0\n\n\nChicago\n337\n12\n33.5\n\n\nChicago\n338\n12\n33.1\n\n\nChicago\n339\n12\n32.7\n\n\nChicago\n340\n12\n32.2\n\n\nChicago\n341\n12\n31.8\n\n\nChicago\n342\n12\n31.5\n\n\nChicago\n343\n12\n31.1\n\n\nChicago\n344\n12\n30.7\n\n\nChicago\n345\n12\n30.4\n\n\nChicago\n346\n12\n30.0\n\n\nChicago\n347\n12\n29.7\n\n\nChicago\n348\n12\n29.4\n\n\nChicago\n349\n12\n29.1\n\n\nChicago\n350\n12\n28.8\n\n\nChicago\n351\n12\n28.5\n\n\nChicago\n352\n12\n28.3\n\n\nChicago\n353\n12\n28.0\n\n\nChicago\n354\n12\n27.8\n\n\nChicago\n355\n12\n27.6\n\n\nChicago\n356\n12\n27.3\n\n\nChicago\n357\n12\n27.1\n\n\nChicago\n358\n12\n26.9\n\n\nChicago\n359\n12\n26.7\n\n\nChicago\n360\n12\n26.6\n\n\nChicago\n361\n12\n26.4\n\n\nChicago\n362\n12\n26.2\n\n\nChicago\n363\n12\n26.1\n\n\nChicago\n364\n12\n26.0\n\n\nChicago\n365\n12\n25.8\n\n\nChicago\n366\n12\n25.7\n\n\nSan Diego\n1\n01\n55.2\n\n\nSan Diego\n2\n01\n55.3\n\n\nSan Diego\n3\n01\n55.3\n\n\nSan Diego\n4\n01\n55.4\n\n\nSan Diego\n5\n01\n55.4\n\n\nSan Diego\n6\n01\n55.5\n\n\nSan Diego\n7\n01\n55.5\n\n\nSan Diego\n8\n01\n55.6\n\n\nSan Diego\n9\n01\n55.6\n\n\nSan Diego\n10\n01\n55.7\n\n\nSan Diego\n11\n01\n55.7\n\n\nSan Diego\n12\n01\n55.8\n\n\nSan Diego\n13\n01\n55.8\n\n\nSan Diego\n14\n01\n55.9\n\n\nSan Diego\n15\n01\n55.9\n\n\nSan Diego\n16\n01\n55.9\n\n\nSan Diego\n17\n01\n56.0\n\n\nSan Diego\n18\n01\n56.0\n\n\nSan Diego\n19\n01\n56.0\n\n\nSan Diego\n20\n01\n56.0\n\n\nSan Diego\n21\n01\n56.1\n\n\nSan Diego\n22\n01\n56.1\n\n\nSan Diego\n23\n01\n56.1\n\n\nSan Diego\n24\n01\n56.1\n\n\nSan Diego\n25\n01\n56.1\n\n\nSan Diego\n26\n01\n56.2\n\n\nSan Diego\n27\n01\n56.2\n\n\nSan Diego\n28\n01\n56.2\n\n\nSan Diego\n29\n01\n56.2\n\n\nSan Diego\n30\n01\n56.2\n\n\nSan Diego\n31\n01\n56.2\n\n\nSan Diego\n32\n02\n56.2\n\n\nSan Diego\n33\n02\n56.2\n\n\nSan Diego\n34\n02\n56.3\n\n\nSan Diego\n35\n02\n56.3\n\n\nSan Diego\n36\n02\n56.3\n\n\nSan Diego\n37\n02\n56.3\n\n\nSan Diego\n38\n02\n56.3\n\n\nSan Diego\n39\n02\n56.3\n\n\nSan Diego\n40\n02\n56.4\n\n\nSan Diego\n41\n02\n56.4\n\n\nSan Diego\n42\n02\n56.4\n\n\nSan Diego\n43\n02\n56.4\n\n\nSan Diego\n44\n02\n56.4\n\n\nSan Diego\n45\n02\n56.5\n\n\nSan Diego\n46\n02\n56.5\n\n\nSan Diego\n47\n02\n56.5\n\n\nSan Diego\n48\n02\n56.5\n\n\nSan Diego\n49\n02\n56.6\n\n\nSan Diego\n50\n02\n56.6\n\n\nSan Diego\n51\n02\n56.6\n\n\nSan Diego\n52\n02\n56.7\n\n\nSan Diego\n53\n02\n56.7\n\n\nSan Diego\n54\n02\n56.7\n\n\nSan Diego\n55\n02\n56.7\n\n\nSan Diego\n56\n02\n56.8\n\n\nSan Diego\n57\n02\n56.8\n\n\nSan Diego\n58\n02\n56.8\n\n\nSan Diego\n59\n02\n56.9\n\n\nSan Diego\n60\n02\n56.9\n\n\nSan Diego\n61\n03\n56.9\n\n\nSan Diego\n62\n03\n56.9\n\n\nSan Diego\n63\n03\n56.9\n\n\nSan Diego\n64\n03\n57.0\n\n\nSan Diego\n65\n03\n57.0\n\n\nSan Diego\n66\n03\n57.0\n\n\nSan Diego\n67\n03\n57.0\n\n\nSan Diego\n68\n03\n57.1\n\n\nSan Diego\n69\n03\n57.1\n\n\nSan Diego\n70\n03\n57.1\n\n\nSan Diego\n71\n03\n57.1\n\n\nSan Diego\n72\n03\n57.2\n\n\nSan Diego\n73\n03\n57.2\n\n\nSan Diego\n74\n03\n57.2\n\n\nSan Diego\n75\n03\n57.3\n\n\nSan Diego\n76\n03\n57.3\n\n\nSan Diego\n77\n03\n57.3\n\n\nSan Diego\n78\n03\n57.3\n\n\nSan Diego\n79\n03\n57.4\n\n\nSan Diego\n80\n03\n57.4\n\n\nSan Diego\n81\n03\n57.5\n\n\nSan Diego\n82\n03\n57.5\n\n\nSan Diego\n83\n03\n57.6\n\n\nSan Diego\n84\n03\n57.6\n\n\nSan Diego\n85\n03\n57.7\n\n\nSan Diego\n86\n03\n57.7\n\n\nSan Diego\n87\n03\n57.8\n\n\nSan Diego\n88\n03\n57.8\n\n\nSan Diego\n89\n03\n57.9\n\n\nSan Diego\n90\n03\n58.0\n\n\nSan Diego\n91\n03\n58.1\n\n\nSan Diego\n92\n04\n58.1\n\n\nSan Diego\n93\n04\n58.2\n\n\nSan Diego\n94\n04\n58.3\n\n\nSan Diego\n95\n04\n58.4\n\n\nSan Diego\n96\n04\n58.5\n\n\nSan Diego\n97\n04\n58.6\n\n\nSan Diego\n98\n04\n58.7\n\n\nSan Diego\n99\n04\n58.9\n\n\nSan Diego\n100\n04\n59.0\n\n\nSan Diego\n101\n04\n59.1\n\n\nSan Diego\n102\n04\n59.2\n\n\nSan Diego\n103\n04\n59.4\n\n\nSan Diego\n104\n04\n59.5\n\n\nSan Diego\n105\n04\n59.6\n\n\nSan Diego\n106\n04\n59.8\n\n\nSan Diego\n107\n04\n59.9\n\n\nSan Diego\n108\n04\n60.1\n\n\nSan Diego\n109\n04\n60.2\n\n\nSan Diego\n110\n04\n60.3\n\n\nSan Diego\n111\n04\n60.5\n\n\nSan Diego\n112\n04\n60.6\n\n\nSan Diego\n113\n04\n60.8\n\n\nSan Diego\n114\n04\n60.9\n\n\nSan Diego\n115\n04\n61.1\n\n\nSan Diego\n116\n04\n61.2\n\n\nSan Diego\n117\n04\n61.3\n\n\nSan Diego\n118\n04\n61.5\n\n\nSan Diego\n119\n04\n61.6\n\n\nSan Diego\n120\n04\n61.7\n\n\nSan Diego\n121\n04\n61.8\n\n\nSan Diego\n122\n05\n61.9\n\n\nSan Diego\n123\n05\n62.1\n\n\nSan Diego\n124\n05\n62.2\n\n\nSan Diego\n125\n05\n62.3\n\n\nSan Diego\n126\n05\n62.4\n\n\nSan Diego\n127\n05\n62.5\n\n\nSan Diego\n128\n05\n62.6\n\n\nSan Diego\n129\n05\n62.7\n\n\nSan Diego\n130\n05\n62.7\n\n\nSan Diego\n131\n05\n62.8\n\n\nSan Diego\n132\n05\n62.9\n\n\nSan Diego\n133\n05\n63.0\n\n\nSan Diego\n134\n05\n63.0\n\n\nSan Diego\n135\n05\n63.1\n\n\nSan Diego\n136\n05\n63.2\n\n\nSan Diego\n137\n05\n63.2\n\n\nSan Diego\n138\n05\n63.3\n\n\nSan Diego\n139\n05\n63.4\n\n\nSan Diego\n140\n05\n63.4\n\n\nSan Diego\n141\n05\n63.5\n\n\nSan Diego\n142\n05\n63.6\n\n\nSan Diego\n143\n05\n63.6\n\n\nSan Diego\n144\n05\n63.7\n\n\nSan Diego\n145\n05\n63.8\n\n\nSan Diego\n146\n05\n63.8\n\n\nSan Diego\n147\n05\n63.9\n\n\nSan Diego\n148\n05\n64.0\n\n\nSan Diego\n149\n05\n64.0\n\n\nSan Diego\n150\n05\n64.1\n\n\nSan Diego\n151\n05\n64.2\n\n\nSan Diego\n152\n05\n64.3\n\n\nSan Diego\n153\n06\n64.4\n\n\nSan Diego\n154\n06\n64.5\n\n\nSan Diego\n155\n06\n64.6\n\n\nSan Diego\n156\n06\n64.7\n\n\nSan Diego\n157\n06\n64.8\n\n\nSan Diego\n158\n06\n65.0\n\n\nSan Diego\n159\n06\n65.1\n\n\nSan Diego\n160\n06\n65.2\n\n\nSan Diego\n161\n06\n65.4\n\n\nSan Diego\n162\n06\n65.5\n\n\nSan Diego\n163\n06\n65.7\n\n\nSan Diego\n164\n06\n65.8\n\n\nSan Diego\n165\n06\n66.0\n\n\nSan Diego\n166\n06\n66.2\n\n\nSan Diego\n167\n06\n66.3\n\n\nSan Diego\n168\n06\n66.5\n\n\nSan Diego\n169\n06\n66.7\n\n\nSan Diego\n170\n06\n66.9\n\n\nSan Diego\n171\n06\n67.1\n\n\nSan Diego\n172\n06\n67.2\n\n\nSan Diego\n173\n06\n67.4\n\n\nSan Diego\n174\n06\n67.6\n\n\nSan Diego\n175\n06\n67.8\n\n\nSan Diego\n176\n06\n68.0\n\n\nSan Diego\n177\n06\n68.2\n\n\nSan Diego\n178\n06\n68.4\n\n\nSan Diego\n179\n06\n68.6\n\n\nSan Diego\n180\n06\n68.7\n\n\nSan Diego\n181\n06\n68.9\n\n\nSan Diego\n182\n06\n69.1\n\n\nSan Diego\n183\n07\n69.3\n\n\nSan Diego\n184\n07\n69.4\n\n\nSan Diego\n185\n07\n69.6\n\n\nSan Diego\n186\n07\n69.8\n\n\nSan Diego\n187\n07\n69.9\n\n\nSan Diego\n188\n07\n70.1\n\n\nSan Diego\n189\n07\n70.2\n\n\nSan Diego\n190\n07\n70.3\n\n\nSan Diego\n191\n07\n70.5\n\n\nSan Diego\n192\n07\n70.6\n\n\nSan Diego\n193\n07\n70.7\n\n\nSan Diego\n194\n07\n70.8\n\n\nSan Diego\n195\n07\n70.9\n\n\nSan Diego\n196\n07\n71.1\n\n\nSan Diego\n197\n07\n71.2\n\n\nSan Diego\n198\n07\n71.2\n\n\nSan Diego\n199\n07\n71.3\n\n\nSan Diego\n200\n07\n71.4\n\n\nSan Diego\n201\n07\n71.5\n\n\nSan Diego\n202\n07\n71.6\n\n\nSan Diego\n203\n07\n71.6\n\n\nSan Diego\n204\n07\n71.7\n\n\nSan Diego\n205\n07\n71.8\n\n\nSan Diego\n206\n07\n71.8\n\n\nSan Diego\n207\n07\n71.9\n\n\nSan Diego\n208\n07\n71.9\n\n\nSan Diego\n209\n07\n72.0\n\n\nSan Diego\n210\n07\n72.0\n\n\nSan Diego\n211\n07\n72.1\n\n\nSan Diego\n212\n07\n72.1\n\n\nSan Diego\n213\n07\n72.2\n\n\nSan Diego\n214\n08\n72.2\n\n\nSan Diego\n215\n08\n72.2\n\n\nSan Diego\n216\n08\n72.3\n\n\nSan Diego\n217\n08\n72.3\n\n\nSan Diego\n218\n08\n72.4\n\n\nSan Diego\n219\n08\n72.4\n\n\nSan Diego\n220\n08\n72.4\n\n\nSan Diego\n221\n08\n72.5\n\n\nSan Diego\n222\n08\n72.5\n\n\nSan Diego\n223\n08\n72.5\n\n\nSan Diego\n224\n08\n72.6\n\n\nSan Diego\n225\n08\n72.6\n\n\nSan Diego\n226\n08\n72.6\n\n\nSan Diego\n227\n08\n72.7\n\n\nSan Diego\n228\n08\n72.7\n\n\nSan Diego\n229\n08\n72.7\n\n\nSan Diego\n230\n08\n72.7\n\n\nSan Diego\n231\n08\n72.8\n\n\nSan Diego\n232\n08\n72.8\n\n\nSan Diego\n233\n08\n72.8\n\n\nSan Diego\n234\n08\n72.8\n\n\nSan Diego\n235\n08\n72.8\n\n\nSan Diego\n236\n08\n72.8\n\n\nSan Diego\n237\n08\n72.8\n\n\nSan Diego\n238\n08\n72.8\n\n\nSan Diego\n239\n08\n72.7\n\n\nSan Diego\n240\n08\n72.7\n\n\nSan Diego\n241\n08\n72.7\n\n\nSan Diego\n242\n08\n72.7\n\n\nSan Diego\n243\n08\n72.6\n\n\nSan Diego\n244\n08\n72.6\n\n\nSan Diego\n245\n09\n72.5\n\n\nSan Diego\n246\n09\n72.4\n\n\nSan Diego\n247\n09\n72.4\n\n\nSan Diego\n248\n09\n72.3\n\n\nSan Diego\n249\n09\n72.2\n\n\nSan Diego\n250\n09\n72.1\n\n\nSan Diego\n251\n09\n72.0\n\n\nSan Diego\n252\n09\n71.9\n\n\nSan Diego\n253\n09\n71.8\n\n\nSan Diego\n254\n09\n71.7\n\n\nSan Diego\n255\n09\n71.6\n\n\nSan Diego\n256\n09\n71.4\n\n\nSan Diego\n257\n09\n71.3\n\n\nSan Diego\n258\n09\n71.1\n\n\nSan Diego\n259\n09\n71.0\n\n\nSan Diego\n260\n09\n70.8\n\n\nSan Diego\n261\n09\n70.7\n\n\nSan Diego\n262\n09\n70.5\n\n\nSan Diego\n263\n09\n70.3\n\n\nSan Diego\n264\n09\n70.2\n\n\nSan Diego\n265\n09\n70.0\n\n\nSan Diego\n266\n09\n69.8\n\n\nSan Diego\n267\n09\n69.7\n\n\nSan Diego\n268\n09\n69.5\n\n\nSan Diego\n269\n09\n69.3\n\n\nSan Diego\n270\n09\n69.1\n\n\nSan Diego\n271\n09\n69.0\n\n\nSan Diego\n272\n09\n68.8\n\n\nSan Diego\n273\n09\n68.6\n\n\nSan Diego\n274\n09\n68.4\n\n\nSan Diego\n275\n10\n68.3\n\n\nSan Diego\n276\n10\n68.1\n\n\nSan Diego\n277\n10\n67.9\n\n\nSan Diego\n278\n10\n67.8\n\n\nSan Diego\n279\n10\n67.6\n\n\nSan Diego\n280\n10\n67.4\n\n\nSan Diego\n281\n10\n67.3\n\n\nSan Diego\n282\n10\n67.1\n\n\nSan Diego\n283\n10\n67.0\n\n\nSan Diego\n284\n10\n66.8\n\n\nSan Diego\n285\n10\n66.7\n\n\nSan Diego\n286\n10\n66.5\n\n\nSan Diego\n287\n10\n66.4\n\n\nSan Diego\n288\n10\n66.2\n\n\nSan Diego\n289\n10\n66.1\n\n\nSan Diego\n290\n10\n65.9\n\n\nSan Diego\n291\n10\n65.8\n\n\nSan Diego\n292\n10\n65.6\n\n\nSan Diego\n293\n10\n65.5\n\n\nSan Diego\n294\n10\n65.3\n\n\nSan Diego\n295\n10\n65.2\n\n\nSan Diego\n296\n10\n65.0\n\n\nSan Diego\n297\n10\n64.9\n\n\nSan Diego\n298\n10\n64.7\n\n\nSan Diego\n299\n10\n64.5\n\n\nSan Diego\n300\n10\n64.4\n\n\nSan Diego\n301\n10\n64.2\n\n\nSan Diego\n302\n10\n64.0\n\n\nSan Diego\n303\n10\n63.9\n\n\nSan Diego\n304\n10\n63.7\n\n\nSan Diego\n305\n10\n63.5\n\n\nSan Diego\n306\n11\n63.3\n\n\nSan Diego\n307\n11\n63.1\n\n\nSan Diego\n308\n11\n62.9\n\n\nSan Diego\n309\n11\n62.7\n\n\nSan Diego\n310\n11\n62.5\n\n\nSan Diego\n311\n11\n62.3\n\n\nSan Diego\n312\n11\n62.0\n\n\nSan Diego\n313\n11\n61.8\n\n\nSan Diego\n314\n11\n61.6\n\n\nSan Diego\n315\n11\n61.4\n\n\nSan Diego\n316\n11\n61.1\n\n\nSan Diego\n317\n11\n60.9\n\n\nSan Diego\n318\n11\n60.6\n\n\nSan Diego\n319\n11\n60.4\n\n\nSan Diego\n320\n11\n60.1\n\n\nSan Diego\n321\n11\n59.9\n\n\nSan Diego\n322\n11\n59.6\n\n\nSan Diego\n323\n11\n59.4\n\n\nSan Diego\n324\n11\n59.2\n\n\nSan Diego\n325\n11\n58.9\n\n\nSan Diego\n326\n11\n58.7\n\n\nSan Diego\n327\n11\n58.4\n\n\nSan Diego\n328\n11\n58.2\n\n\nSan Diego\n329\n11\n57.9\n\n\nSan Diego\n330\n11\n57.7\n\n\nSan Diego\n331\n11\n57.5\n\n\nSan Diego\n332\n11\n57.3\n\n\nSan Diego\n333\n11\n57.1\n\n\nSan Diego\n334\n11\n56.9\n\n\nSan Diego\n335\n11\n56.7\n\n\nSan Diego\n336\n12\n56.5\n\n\nSan Diego\n337\n12\n56.3\n\n\nSan Diego\n338\n12\n56.1\n\n\nSan Diego\n339\n12\n56.0\n\n\nSan Diego\n340\n12\n55.8\n\n\nSan Diego\n341\n12\n55.7\n\n\nSan Diego\n342\n12\n55.5\n\n\nSan Diego\n343\n12\n55.4\n\n\nSan Diego\n344\n12\n55.3\n\n\nSan Diego\n345\n12\n55.2\n\n\nSan Diego\n346\n12\n55.1\n\n\nSan Diego\n347\n12\n55.0\n\n\nSan Diego\n348\n12\n55.0\n\n\nSan Diego\n349\n12\n54.9\n\n\nSan Diego\n350\n12\n54.9\n\n\nSan Diego\n351\n12\n54.8\n\n\nSan Diego\n352\n12\n54.8\n\n\nSan Diego\n353\n12\n54.8\n\n\nSan Diego\n354\n12\n54.8\n\n\nSan Diego\n355\n12\n54.8\n\n\nSan Diego\n356\n12\n54.8\n\n\nSan Diego\n357\n12\n54.8\n\n\nSan Diego\n358\n12\n54.8\n\n\nSan Diego\n359\n12\n54.9\n\n\nSan Diego\n360\n12\n54.9\n\n\nSan Diego\n361\n12\n54.9\n\n\nSan Diego\n362\n12\n55.0\n\n\nSan Diego\n363\n12\n55.0\n\n\nSan Diego\n364\n12\n55.1\n\n\nSan Diego\n365\n12\n55.1\n\n\nSan Diego\n366\n12\n55.2"
+  },
+  {
+    "objectID": "slides/aesthetic-mappings.html#temperatures-mapped-onto-y-position",
+    "href": "slides/aesthetic-mappings.html#temperatures-mapped-onto-y-position",
+    "title": "Aesthetic mappings",
+    "section": "Temperatures mapped onto y position",
+    "text": "Temperatures mapped onto y position"
+  },
+  {
+    "objectID": "slides/aesthetic-mappings.html#temperatures-mapped-onto-color",
+    "href": "slides/aesthetic-mappings.html#temperatures-mapped-onto-color",
+    "title": "Aesthetic mappings",
+    "section": "Temperatures mapped onto color",
+    "text": "Temperatures mapped onto color"
+  },
+  {
+    "objectID": "slides/aesthetic-mappings.html#commonly-used-aesthetics",
+    "href": "slides/aesthetic-mappings.html#commonly-used-aesthetics",
+    "title": "Aesthetic mappings",
+    "section": "Commonly used aesthetics",
+    "text": "Commonly used aesthetics"
+  },
+  {
+    "objectID": "slides/aesthetic-mappings.html#the-same-data-values-can-be-mapped-to-different-aesthetics",
+    "href": "slides/aesthetic-mappings.html#the-same-data-values-can-be-mapped-to-different-aesthetics",
+    "title": "Aesthetic mappings",
+    "section": "The same data values can be mapped to different aesthetics",
+    "text": "The same data values can be mapped to different aesthetics"
+  },
+  {
+    "objectID": "slides/aesthetic-mappings.html#we-can-use-many-different-aesthetics-at-once",
+    "href": "slides/aesthetic-mappings.html#we-can-use-many-different-aesthetics-at-once",
+    "title": "Aesthetic mappings",
+    "section": "We can use many different aesthetics at once",
+    "text": "We can use many different aesthetics at once"
+  },
+  {
+    "objectID": "slides/aesthetic-mappings.html#getting-the-data",
+    "href": "slides/aesthetic-mappings.html#getting-the-data",
+    "title": "Aesthetic mappings",
+    "section": "Getting the data",
+    "text": "Getting the data\nAll examples will use the temperatures dataset:\n\ntemperatures &lt;- read_csv(\"https://wilkelab.org/SDS375/datasets/tempnormals.csv\") |&gt;\n  mutate(\n    location = factor(\n      location, levels = c(\"Death Valley\", \"Houston\", \"San Diego\", \"Chicago\")\n    )\n  ) |&gt;\n  select(location, station_id, day_of_year, month, temperature)"
+  },
+  {
+    "objectID": "slides/aesthetic-mappings.html#we-define-the-mapping-with-aes",
+    "href": "slides/aesthetic-mappings.html#we-define-the-mapping-with-aes",
+    "title": "Aesthetic mappings",
+    "section": "We define the mapping with aes()",
+    "text": "We define the mapping with aes()\n\nggplot(\n  data = temperatures,\n  mapping = aes(x = day_of_year, y = temperature, color = location)\n) + \n  geom_line()"
+  },
+  {
+    "objectID": "slides/aesthetic-mappings.html#we-define-the-mapping-with-aes-1",
+    "href": "slides/aesthetic-mappings.html#we-define-the-mapping-with-aes-1",
+    "title": "Aesthetic mappings",
+    "section": "We define the mapping with aes()",
+    "text": "We define the mapping with aes()\n\nggplot(\n  data = temperatures,\n  mapping = aes(x = day_of_year, y = location, color = temperature)\n) + \n  geom_point(size = 5)"
+  },
+  {
+    "objectID": "slides/aesthetic-mappings.html#we-frequently-omit-argument-names",
+    "href": "slides/aesthetic-mappings.html#we-frequently-omit-argument-names",
+    "title": "Aesthetic mappings",
+    "section": "We frequently omit argument names",
+    "text": "We frequently omit argument names\nLong form, all arguments are named:\nggplot(\n  data = temperatures,\n  mapping = aes(x = day_of_year, y = location, color = temperature)\n) + geom_point(size = 5)\n\n\nAbbreviated form, common arguments remain unnamed:\nggplot(temperatures, aes(day_of_year, location, color = temperature)) + \n  geom_point(size = 5)"
+  },
+  {
+    "objectID": "slides/aesthetic-mappings.html#the-geom-determines-how-the-data-is-shown",
+    "href": "slides/aesthetic-mappings.html#the-geom-determines-how-the-data-is-shown",
+    "title": "Aesthetic mappings",
+    "section": "The geom determines how the data is shown",
+    "text": "The geom determines how the data is shown\n\nggplot(temperatures, aes(day_of_year, temperature, color = location)) + \n  geom_line()"
+  },
+  {
+    "objectID": "slides/aesthetic-mappings.html#the-geom-determines-how-the-data-is-shown-1",
+    "href": "slides/aesthetic-mappings.html#the-geom-determines-how-the-data-is-shown-1",
+    "title": "Aesthetic mappings",
+    "section": "The geom determines how the data is shown",
+    "text": "The geom determines how the data is shown\n\nggplot(temperatures, aes(day_of_year, location, color = temperature)) + \n  geom_point(size = 5)"
+  },
+  {
+    "objectID": "slides/aesthetic-mappings.html#the-geom-determines-how-the-data-is-shown-2",
+    "href": "slides/aesthetic-mappings.html#the-geom-determines-how-the-data-is-shown-2",
+    "title": "Aesthetic mappings",
+    "section": "The geom determines how the data is shown",
+    "text": "The geom determines how the data is shown\n\nggplot(temperatures, aes(month, temperature, color = location)) + \n  geom_boxplot()"
+  },
+  {
+    "objectID": "slides/aesthetic-mappings.html#the-geom-determines-how-the-data-is-shown-3",
+    "href": "slides/aesthetic-mappings.html#the-geom-determines-how-the-data-is-shown-3",
+    "title": "Aesthetic mappings",
+    "section": "The geom determines how the data is shown",
+    "text": "The geom determines how the data is shown\n\nggplot(temperatures, aes(month, temperature, fill = location)) + \n  geom_violin() + \n  facet_wrap(~location) # make separate panel per location"
+  },
+  {
+    "objectID": "slides/aesthetic-mappings.html#distinguish-between-color-and-fill",
+    "href": "slides/aesthetic-mappings.html#distinguish-between-color-and-fill",
+    "title": "Aesthetic mappings",
+    "section": "Distinguish between color and fill",
+    "text": "Distinguish between color and fill\n\n\ncolor Applies color to points, lines, text, borders\n\n\n\nfill Applies color to any filled areas"
+  },
+  {
+    "objectID": "slides/aesthetic-mappings.html#many-geoms-use-both-color-and-fill",
+    "href": "slides/aesthetic-mappings.html#many-geoms-use-both-color-and-fill",
+    "title": "Aesthetic mappings",
+    "section": "Many geoms use both color and fill",
+    "text": "Many geoms use both color and fill\n\nggplot(temperatures, aes(month, temperature, color = location)) + \n  geom_boxplot()"
+  },
+  {
+    "objectID": "slides/aesthetic-mappings.html#many-geoms-use-both-color-and-fill-1",
+    "href": "slides/aesthetic-mappings.html#many-geoms-use-both-color-and-fill-1",
+    "title": "Aesthetic mappings",
+    "section": "Many geoms use both color and fill",
+    "text": "Many geoms use both color and fill\n\nggplot(temperatures, aes(month, temperature, fill = location)) + \n  geom_boxplot()"
+  },
+  {
+    "objectID": "slides/aesthetic-mappings.html#many-geoms-use-both-color-and-fill-2",
+    "href": "slides/aesthetic-mappings.html#many-geoms-use-both-color-and-fill-2",
+    "title": "Aesthetic mappings",
+    "section": "Many geoms use both color and fill",
+    "text": "Many geoms use both color and fill\n\nggplot(temperatures, aes(month, temperature, color = location, fill = location)) + \n  geom_boxplot()"
+  },
+  {
+    "objectID": "slides/aesthetic-mappings.html#aesthetics-can-also-be-used-as-parameters",
+    "href": "slides/aesthetic-mappings.html#aesthetics-can-also-be-used-as-parameters",
+    "title": "Aesthetic mappings",
+    "section": "Aesthetics can also be used as parameters",
+    "text": "Aesthetics can also be used as parameters\n\nggplot(temperatures, aes(month, temperature, fill = location)) + \n  geom_boxplot(color = \"steelblue\")"
+  },
+  {
+    "objectID": "slides/aesthetic-mappings.html#aesthetics-can-also-be-used-as-parameters-1",
+    "href": "slides/aesthetic-mappings.html#aesthetics-can-also-be-used-as-parameters-1",
+    "title": "Aesthetic mappings",
+    "section": "Aesthetics can also be used as parameters",
+    "text": "Aesthetics can also be used as parameters\n\nggplot(temperatures, aes(month, temperature, color = location)) + \n  geom_boxplot(fill = \"steelblue\")"
+  },
+  {
+    "objectID": "slides/aesthetic-mappings.html#further-reading",
+    "href": "slides/aesthetic-mappings.html#further-reading",
+    "title": "Aesthetic mappings",
+    "section": "Further reading",
+    "text": "Further reading\n\n\nFundamentals of Data Visualization: Chapter 2: Visualizing data\nData Visualization—A Practical Introduction: Chapter 3: Make a plot\nggplot2 reference documentation\nggplot2 book\nggplot2 cheatsheet"
+  },
+  {
+    "objectID": "slides/test.html#how-did-i-get-to-teach-data-visualization",
+    "href": "slides/test.html#how-did-i-get-to-teach-data-visualization",
+    "title": "Telling a story",
+    "section": "How did I get to teach data visualization?",
+    "text": "How did I get to teach data visualization?"
+  },
+  {
+    "objectID": "schedule.html#homeworks",
+    "href": "schedule.html#homeworks",
+    "title": "SDS 366 Schedule Spring 2025",
+    "section": "Homeworks",
+    "text": "Homeworks\nAll homeworks are due by 11:00pm on the day they are due. Homeworks need to be submitted as pdf files on Canvas."
+  },
+  {
+    "objectID": "schedule.html#projects",
+    "href": "schedule.html#projects",
+    "title": "SDS 366 Schedule Spring 2025",
+    "section": "Projects",
+    "text": "Projects\nAll projects are due by 11:00pm on the day they are due. Projects need to be submitted on Canvas. Please carefully read the submission instructions for each project."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "SDS 366",
+    "section": "",
+    "text": "This is the home page for SDS 366, Data Visualization in R. All course materials will be posted on this site.\nInstructor: Claus O. Wilke\nMeeting times: TTH 5:00pm to 6:30pm Venue: MEZ B0.306 Syllabus: click here\nUpcoming lectures and assignments: click here"
+  },
+  {
+    "objectID": "index.html#computing-requirements",
+    "href": "index.html#computing-requirements",
+    "title": "SDS 366",
+    "section": "Computing requirements",
+    "text": "Computing requirements\nFor students enrolled in this course, you only need a working web browser to access the edupod server, located at: https://edupod.cns.utexas.edu/\nIf you are using the edupod server, stop reading here. Everything is pre-installed and no further action is needed.\nTo run any of the materials locally on your own machine, you will need the following:\n\nA recent version of R, download from here.\nA recent version of RStudio, download from here, OR a recent version of Positron, download from here.\nThe following R packages:\nbroom, cluster, colorspace, cowplot, distill, gapminder, GGally, gganimate, ggiraph, ggdendro, ggdist, ggforce, ggplot2movies, ggrepel, ggridges, ggthemes, gifski, glue, knitr, learnr, naniar, margins, MASS, Matrix, nycflights13, palmerpenguins, patchwork, rmarkdown, rnaturalearth, rnaturalearthhires, scales, sf, shinyjs, sp, tidyverse, transformr, umap, xaringan\n\nYou can install all required R packages at once by running the following code in the R command line:\n# first run this command:\ninstall.packages(\n  c(\n    \"broom\", \"cluster\", \"colorspace\", \"cowplot\", \"distill\", \"gapminder\", \n    \"GGally\", \"gganimate\", \"ggiraph\", \"ggdendro\", \"ggdist\", \"ggforce\",\n    \"ggplot2movies\", \"ggrepel\", \"ggridges\", \"ggthemes\", \"gifski\", \"glue\",\n    \"knitr\", \"learnr\", \"naniar\", \"margins\", \"MASS\", \"Matrix\",\n    \"nycflights13\", \"palmerpenguins\", \"patchwork\", \"rmarkdown\", \"rnaturalearth\",\n    \"scales\", \"sf\", \"shinyjs\", \"sp\", \"tidyverse\", \"transformr\", \"umap\",\n    \"xaringan\"\n  )\n)\n\n# then run this command:\ninstall.packages(\n  \"rnaturalearthhires\", repos = \"https://packages.ropensci.org\", type = \"source\"\n)"
+  },
+  {
     "objectID": "syllabus.html",
     "href": "syllabus.html",
     "title": "Syllabus",
@@ -112,31 +294,129 @@
     "text": "Class Recordings\nIf any class recordings are provided they are reserved only for students in this class for educational purposes and are protected under FERPA. The recordings should not be shared outside the class in any form. Violation of this restriction by a student could lead to Student Misconduct proceedings."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "SDS 366",
-    "section": "",
-    "text": "This is the home page for SDS 366, Data Visualization in R. All course materials will be posted on this site.\nInstructor: Claus O. Wilke\nMeeting times: TTH 5:00pm to 6:30pm Venue: MEZ B0.306 Syllabus: click here\nUpcoming lectures and assignments: click here"
+    "objectID": "slides/telling-a-story.html#how-did-i-get-to-teach-data-visualization",
+    "href": "slides/telling-a-story.html#how-did-i-get-to-teach-data-visualization",
+    "title": "Telling a story",
+    "section": "How did I get to teach data visualization?",
+    "text": "How did I get to teach data visualization?"
   },
   {
-    "objectID": "index.html#computing-requirements",
-    "href": "index.html#computing-requirements",
-    "title": "SDS 366",
-    "section": "Computing requirements",
-    "text": "Computing requirements\nFor students enrolled in this course, you only need a working web browser to access the edupod server, located at: https://edupod.cns.utexas.edu/\nIf you are using the edupod server, stop reading here. Everything is pre-installed and no further action is needed.\nTo run any of the materials locally on your own machine, you will need the following:\n\nA recent version of R, download from here.\nA recent version of RStudio, download from here, OR a recent version of Positron, download from here.\nThe following R packages:\nbroom, cluster, colorspace, cowplot, distill, gapminder, GGally, gganimate, ggiraph, ggdendro, ggdist, ggforce, ggplot2movies, ggrepel, ggridges, ggthemes, gifski, glue, knitr, learnr, naniar, margins, MASS, Matrix, nycflights13, palmerpenguins, patchwork, rmarkdown, rnaturalearth, rnaturalearthhires, scales, sf, shinyjs, sp, tidyverse, transformr, umap, xaringan\n\nYou can install all required R packages at once by running the following code in the R command line:\n# first run this command:\ninstall.packages(\n  c(\n    \"broom\", \"cluster\", \"colorspace\", \"cowplot\", \"distill\", \"gapminder\", \n    \"GGally\", \"gganimate\", \"ggiraph\", \"ggdendro\", \"ggdist\", \"ggforce\",\n    \"ggplot2movies\", \"ggrepel\", \"ggridges\", \"ggthemes\", \"gifski\", \"glue\",\n    \"knitr\", \"learnr\", \"naniar\", \"margins\", \"MASS\", \"Matrix\",\n    \"nycflights13\", \"palmerpenguins\", \"patchwork\", \"rmarkdown\", \"rnaturalearth\",\n    \"scales\", \"sf\", \"shinyjs\", \"sp\", \"tidyverse\", \"transformr\", \"umap\",\n    \"xaringan\"\n  )\n)\n\n# then run this command:\ninstall.packages(\n  \"rnaturalearthhires\", repos = \"https://packages.ropensci.org\", type = \"source\"\n)"
+    "objectID": "slides/telling-a-story.html#what-is-a-story",
+    "href": "slides/telling-a-story.html#what-is-a-story",
+    "title": "Telling a story",
+    "section": "What is a story?",
+    "text": "What is a story?\n\n\nA story is a collection of observations, facts, or events presented in a specific order such that they create an emotional reaction."
   },
   {
-    "objectID": "schedule.html#homeworks",
-    "href": "schedule.html#homeworks",
-    "title": "SDS 366 Schedule Spring 2025",
-    "section": "Homeworks",
-    "text": "Homeworks\nAll homeworks are due by 11:00pm on the day they are due. Homeworks need to be submitted as pdf files on Canvas."
+    "objectID": "slides/telling-a-story.html#every-story-needs-an-arc",
+    "href": "slides/telling-a-story.html#every-story-needs-an-arc",
+    "title": "Telling a story",
+    "section": "Every story needs an arc",
+    "text": "Every story needs an arc\n\nOpening\n\n\n\nChallenge\n\n\n\nAction\n\n\n\nResolution"
   },
   {
-    "objectID": "schedule.html#projects",
-    "href": "schedule.html#projects",
-    "title": "SDS 366 Schedule Spring 2025",
-    "section": "Projects",
-    "text": "Projects\nAll projects are due by 11:00pm on the day they are due. Projects need to be submitted on Canvas. Please carefully read the submission instructions for each project."
+    "objectID": "slides/telling-a-story.html#every-story-needs-an-arc-1",
+    "href": "slides/telling-a-story.html#every-story-needs-an-arc-1",
+    "title": "Telling a story",
+    "section": "Every story needs an arc",
+    "text": "Every story needs an arc\n\nOpening\n\n\n\nChallenge\n\n\n\nAction\n\n\n\nResolution\n\n\nChallenge and resolution arethe two most important parts"
+  },
+  {
+    "objectID": "slides/telling-a-story.html#mapping-my-story-onto-this-format",
+    "href": "slides/telling-a-story.html#mapping-my-story-onto-this-format",
+    "title": "Telling a story",
+    "section": "Mapping my story onto this format",
+    "text": "Mapping my story onto this format\n\nOpening: We need to make many data visualizations in my lab\n\n\nChallenge: I end up telling my students the same things over and over\n\n\nAction: I go and write a book about data visualization\n\n\nResolution: The book is written. But now I teach the material, so I still keep saying the same things over and over"
+  },
+  {
+    "objectID": "slides/telling-a-story.html#other-story-structures",
+    "href": "slides/telling-a-story.html#other-story-structures",
+    "title": "Telling a story",
+    "section": "Other story structures",
+    "text": "Other story structures\n\nAction\n\n\n\nBackground\n\n\n\nDevelopment\n\n\n\nClimax\n\n\n\nEnding\n\n\n(Better for action moviesthan for scientific reports)"
+  },
+  {
+    "objectID": "slides/telling-a-story.html#mapping-my-story-onto-this-format-1",
+    "href": "slides/telling-a-story.html#mapping-my-story-onto-this-format-1",
+    "title": "Telling a story",
+    "section": "Mapping my story onto this format",
+    "text": "Mapping my story onto this format\n\nAction: In May 2017, I embark on a major project: Write a book on data visualization\n\n\nBackground: I do this because we need to make many data visualizations in my lab, and I end up telling my students the same things over and over\n\n\nDevelopment: Writing the book takes me almost two years; along the way, I add many features to ggplot2 and become a member of the ggplot2 team\n\n\nClimax: The book is released in April 2019\n\n\nEnding: Now I’m a dataviz teacher"
+  },
+  {
+    "objectID": "slides/telling-a-story.html#other-story-structures-1",
+    "href": "slides/telling-a-story.html#other-story-structures-1",
+    "title": "Telling a story",
+    "section": "Other story structures",
+    "text": "Other story structures\n\n\nLead\n\n\n\nDevelopment\n\n\n(Commonly used in newspaper articles)"
+  },
+  {
+    "objectID": "slides/telling-a-story.html#mapping-my-story-onto-this-format-2",
+    "href": "slides/telling-a-story.html#mapping-my-story-onto-this-format-2",
+    "title": "Telling a story",
+    "section": "Mapping my story onto this format",
+    "text": "Mapping my story onto this format\n\nLead: Because I see the need for more education in data visualization, I have written an entire book about the topic\n\n\nDevelopment: I had previously written an R package to improve figure design, but it wasn’t sufficient: Good judgement cannot be automated\n\n\nSo I wrote a book; the book is entirely about concepts, not about coding, and it is meant as a resource for anybody doing data visualizations, regardless of their preferred visualization software"
+  },
+  {
+    "objectID": "slides/telling-a-story.html#example-preprints-in-biology",
+    "href": "slides/telling-a-story.html#example-preprints-in-biology",
+    "title": "Telling a story",
+    "section": "Example: Preprints in biology",
+    "text": "Example: Preprints in biology\n\n\n\n\n\n \n\n\n\n\n\nOpening"
+  },
+  {
+    "objectID": "slides/telling-a-story.html#example-preprints-in-biology-1",
+    "href": "slides/telling-a-story.html#example-preprints-in-biology-1",
+    "title": "Telling a story",
+    "section": "Example: Preprints in biology",
+    "text": "Example: Preprints in biology\n\n\n\n\n\n \n\n\n\n\nWhat happened in 2014 to curtail the growth?\n\nChallenge"
+  },
+  {
+    "objectID": "slides/telling-a-story.html#example-preprints-in-biology-2",
+    "href": "slides/telling-a-story.html#example-preprints-in-biology-2",
+    "title": "Telling a story",
+    "section": "Example: Preprints in biology",
+    "text": "Example: Preprints in biology\n\n\n\n\n\n \n\n\n\n\nbioRxiv opened in 2014\n\nResolution"
+  },
+  {
+    "objectID": "slides/telling-a-story.html#keep-in-mind",
+    "href": "slides/telling-a-story.html#keep-in-mind",
+    "title": "Telling a story",
+    "section": "Keep in mind",
+    "text": "Keep in mind\n\n\nEvery figure needs a clear purpose within the story arc\nA complete arc will usually require at least two figures"
+  },
+  {
+    "objectID": "slides/telling-a-story.html#prepare-figures-that-make-a-clear-point",
+    "href": "slides/telling-a-story.html#prepare-figures-that-make-a-clear-point",
+    "title": "Telling a story",
+    "section": "Prepare figures that make a clear point",
+    "text": "Prepare figures that make a clear point"
+  },
+  {
+    "objectID": "slides/telling-a-story.html#prepare-figures-that-make-a-clear-point-1",
+    "href": "slides/telling-a-story.html#prepare-figures-that-make-a-clear-point-1",
+    "title": "Telling a story",
+    "section": "Prepare figures that make a clear point",
+    "text": "Prepare figures that make a clear point\n\n\n\n\n\n \n\n\n\n\nAmerican and Delta have the shortest delays"
+  },
+  {
+    "objectID": "slides/telling-a-story.html#make-your-figures-memorable",
+    "href": "slides/telling-a-story.html#make-your-figures-memorable",
+    "title": "Telling a story",
+    "section": "Make your figures memorable",
+    "text": "Make your figures memorable"
+  },
+  {
+    "objectID": "slides/telling-a-story.html#make-your-figures-memorable-1",
+    "href": "slides/telling-a-story.html#make-your-figures-memorable-1",
+    "title": "Telling a story",
+    "section": "Make your figures memorable",
+    "text": "Make your figures memorable"
+  },
+  {
+    "objectID": "slides/telling-a-story.html#further-reading",
+    "href": "slides/telling-a-story.html#further-reading",
+    "title": "Telling a story",
+    "section": "Further reading",
+    "text": "Further reading\n\n\nFundamentals of Data Visualization: Chapter 29: Telling a story and making a point\nJoshua Schimel (2011) Writing Science: How to Write Papers That Get Cited and Proposals That Get Funded"
   }
 ]

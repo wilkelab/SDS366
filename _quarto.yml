@@ -2,11 +2,10 @@ project:
   type: website
   render:
     - "*.qmd"
-    - "!slides/"
     - "!worksheets/"
   resources:
-    - "slides/"
     - "worksheets/"
+    - "assets/"
 
 website:
   title: "SDS 366"
@@ -23,9 +22,9 @@ website:
     - text: "Slides"
       menu:
         - text: "Class 2: Aesthetic mappings"
-          href: slides/aesthetic-mappings.html
+          href: slides/aesthetic-mappings.qmd
         - text: "Class 3: Telling a story"
-          href: slides/telling-a-story.html
+          href: slides/telling-a-story.qmd
           
     - text: "Worksheets"
       menu:
@@ -40,5 +39,7 @@ format:
     css: styles.css
     toc: true
 
+execute: 
+  freeze: auto
 
 

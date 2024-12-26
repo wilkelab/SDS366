@@ -29,8 +29,7 @@ preprints <- read_csv("https://wilkelab.org/SDS375/datasets/preprints.csv")
 
 ## How did I get to teach data visualization?
 
-
-![](telling-a-story_files/cowplot-logo.svg){.fragment .absolute  top="22%" left="13%" width="30%" }
+![](../assets/telling-a-story/cowplot-logo.svg){.fragment .absolute  top="22%" left="13%" width="30%" }
 
 ![](https://clauswilke.com/dataviz/cover.png){.fragment .absolute  top="20%" left="53%" width="30%" style="box-shadow: 3px 5px 3px 1px #00000080;"}
 
@@ -50,19 +49,19 @@ Opening
 :::
 
 ::: {.fragment .center-text}
-![](telling-a-story_files/arrow.svg){width="3%" style="margin-top: 0; margin-bottom: -0.3em;"}
+![](../assets/telling-a-story/arrow.svg){width="3%" style="margin-top: 0; margin-bottom: -0.3em;"}
 
 Challenge
 :::
 
 ::: {.fragment .center-text}
-![](telling-a-story_files/arrow.svg){width="3%" style="margin-top: 0; margin-bottom: -0.3em;"}
+![](../assets/telling-a-story/arrow.svg){width="3%" style="margin-top: 0; margin-bottom: -0.3em;"}
 
 Action
 :::
 
 ::: {.fragment .center-text}
-![](telling-a-story_files/arrow.svg){width="3%" style="margin-top: 0; margin-bottom: -0.3em;"}
+![](../assets/telling-a-story/arrow.svg){width="3%" style="margin-top: 0; margin-bottom: -0.3em;"}
 
 Resolution
 :::
@@ -74,19 +73,19 @@ Opening
 :::
 
 ::: {.center-text .highlight}
-![](telling-a-story_files/arrow.svg){width="3%" style="margin-top: 0; margin-bottom: -0.3em;"}
+![](../assets/telling-a-story/arrow.svg){width="3%" style="margin-top: 0; margin-bottom: -0.3em;"}
 
 Challenge
 :::
 
 ::: {.center-text}
-![](telling-a-story_files/arrow.svg){width="3%" style="margin-top: 0; margin-bottom: -0.3em;"}
+![](../assets/telling-a-story/arrow.svg){width="3%" style="margin-top: 0; margin-bottom: -0.3em;"}
 
 Action
 :::
 
 ::: {.center-text .highlight}
-![](telling-a-story_files/arrow.svg){width="3%" style="margin-top: 0; margin-bottom: -0.3em;"}
+![](../assets/telling-a-story/arrow.svg){width="3%" style="margin-top: 0; margin-bottom: -0.3em;"}
 
 Resolution
 :::
@@ -120,25 +119,25 @@ Action
 :::
 
 ::: {.fragment .center-text}
-![](telling-a-story_files/arrow.svg){width="3%" style="margin-top: -0.1em; margin-bottom: -0.5em;"}
+![](../assets/telling-a-story/arrow.svg){width="3%" style="margin-top: -0.1em; margin-bottom: -0.5em;"}
 
 Background
 :::
 
 ::: {.fragment .center-text}
-![](telling-a-story_files/arrow.svg){width="3%" style="margin-top: -0.1em; margin-bottom: -0.5em;"}
+![](../assets/telling-a-story/arrow.svg){width="3%" style="margin-top: -0.1em; margin-bottom: -0.5em;"}
 
 Development
 :::
 
 ::: {.fragment .center-text}
-![](telling-a-story_files/arrow.svg){width="3%" style="margin-top: -0.1em; margin-bottom: -0.5em;"}
+![](../assets/telling-a-story/arrow.svg){width="3%" style="margin-top: -0.1em; margin-bottom: -0.5em;"}
 
 Climax
 :::
 
 ::: {.fragment .center-text}
-![](telling-a-story_files/arrow.svg){width="3%" style="margin-top: -0.1em; margin-bottom: -0.5em;"}
+![](../assets/telling-a-story/arrow.svg){width="3%" style="margin-top: -0.1em; margin-bottom: -0.5em;"}
 
 Ending
 :::
@@ -178,7 +177,7 @@ Lead
 :::
 
 ::: {.fragment .center-text}
-![](telling-a-story_files/arrow.svg){width="3%" style="margin-top: 0; margin-bottom: -0.3em;"}
+![](../assets/telling-a-story/arrow.svg){width="3%" style="margin-top: 0; margin-bottom: -0.3em;"}
 
 Development
 :::
