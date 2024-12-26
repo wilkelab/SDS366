@@ -97,19 +97,19 @@ Challenge and resolution are<br>the two most important parts
 
 ## Mapping my story onto this format
 
-::: {.fragment .move-down-1em}
+::: {.fragment .small-font .move-down-1em}
 **Opening:** We need to make many data visualizations in my lab
 :::
 
-::: {.fragment .move-down-1em}
+::: {.fragment .small-font .move-down-1em}
 **Challenge:** I end up telling my students the same things over and over
 :::
 
-::: {.fragment .move-down-1em}
+::: {.fragment .small-font .move-down-1em}
 **Action:** I go and write a book about data visualization
 :::
 
-::: {.fragment .move-down-1em}
+::: {.fragment .small-font .move-down-1em}
 **Resolution:** The book is written. But now I teach the material, so I still keep saying the same things over and over
 :::
 
