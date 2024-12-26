@@ -3,6 +3,8 @@ title: "Aesthetic mappings"
 author: "Claus O. Wilke"
 format: live-html
 engine: knitr
+webr:
+  render-df: gt-interactive
 ---
 
 {{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
@@ -17,7 +19,6 @@ First we need to load the required R packages. Please wait a moment until the li
 #| warning: false
 #| edit: false
 library(tidyverse)
-library(DT)
 ```
 
 Next we set up the data.
@@ -40,7 +41,7 @@ We will first work with the dataset `temps_houston` which contains the average t
 ```{webr}
 #| edit: false
 #| autorun: true
-datatable(temps_houston) 
+temps_houston
 ```
 
 ## Basic use of ggplot
@@ -161,7 +162,7 @@ Next we will be working with the dataset `temperatures`, which is similar to `te
 ```{webr}
 #| edit: false
 #| autorun: true
-datatable(temperatures) 
+temperatures
 ```
 
 Make a line plot of `temperature` against `day_of_year`, using the `color` aesthetic to color the lines by location. 
