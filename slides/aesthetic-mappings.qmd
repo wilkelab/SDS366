@@ -1,7 +1,7 @@
 ---
 title: "Aesthetic mappings"
 author: "Claus O. Wilke"
-date: today
+date: last-modified
 format: 
   revealjs:
     theme:

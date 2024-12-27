@@ -1,7 +1,7 @@
 ---
 title: "Telling a story"
 author: "Claus O. Wilke"
-date: today
+date: last-modified
 format: 
   revealjs:
     theme:
