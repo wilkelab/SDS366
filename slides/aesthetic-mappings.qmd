@@ -64,7 +64,7 @@ align_legend <- function(p, hjust = 0.5)
 
 # Plots map data onto graphical elements
 
-## Dataset:<br>Daily average temperatures for various locations {.scrollable}
+## Dataset:<br>Daily average temperatures for various locations
 
 ::: {.tiny-font}
 ```{r echo=FALSE, message=FALSE}
@@ -77,7 +77,7 @@ temps_long <- read_csv("https://wilkelab.org/SDS366/datasets/tempnormals.csv") |
 
 temps_long |>
   select(location, day_of_year, month, temperature) |>
-  #head(n = 15L) |>
+  head(n = 13L) |>
   knitr::kable("html")
 ```
 :::
@@ -311,7 +311,7 @@ ggplot(temperatures, aes(day_of_year, location, color = temperature)) +
 #| fig-width: 6.5
 #| fig-asp: 0.6
 #| fig-cap: "&nbsp;"
-#| out-width: "80%"
+#| out-width: "75%"
 ggplot(temperatures, aes(month, temperature, color = location)) + 
   geom_boxplot()
 ```
@@ -358,7 +358,7 @@ Applies color to any filled areas
 #| fig-width: 6.5
 #| fig-asp: 0.6
 #| fig-cap: "&nbsp;"
-#| out-width: "80%"
+#| out-width: "75%"
 ggplot(temperatures, aes(month, temperature, color = location)) + 
   geom_boxplot()
 ```
@@ -371,7 +371,7 @@ ggplot(temperatures, aes(month, temperature, color = location)) +
 #| fig-width: 6.5
 #| fig-asp: 0.6
 #| fig-cap: "&nbsp;"
-#| out-width: "80%"
+#| out-width: "75%"
 ggplot(temperatures, aes(month, temperature, fill = location)) + 
   geom_boxplot()
 ```
@@ -384,7 +384,7 @@ ggplot(temperatures, aes(month, temperature, fill = location)) +
 #| fig-width: 6.5
 #| fig-asp: 0.6
 #| fig-cap: "&nbsp;"
-#| out-width: "80%"
+#| out-width: "75%"
 ggplot(temperatures, aes(month, temperature, color = location, fill = location)) + 
   geom_boxplot()
 ```
@@ -397,7 +397,7 @@ ggplot(temperatures, aes(month, temperature, color = location, fill = location))
 #| fig-width: 6.5
 #| fig-asp: 0.6
 #| fig-cap: "&nbsp;"
-#| out-width: "80%"
+#| out-width: "75%"
 ggplot(temperatures, aes(month, temperature, fill = location)) + 
   geom_boxplot(color = "steelblue")
 ```
@@ -410,7 +410,7 @@ ggplot(temperatures, aes(month, temperature, fill = location)) +
 #| fig-width: 6.5
 #| fig-asp: 0.6
 #| fig-cap: "&nbsp;"
-#| out-width: "80%"
+#| out-width: "75%"
 ggplot(temperatures, aes(month, temperature, color = location)) + 
   geom_boxplot(fill = "steelblue")
 ```
