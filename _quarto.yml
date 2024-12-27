@@ -25,6 +25,8 @@ website:
           href: slides/aesthetic-mappings.qmd
         - text: "Class 3: Telling a story"
           href: slides/telling-a-story.qmd
+        - text: "Class 3: Visualizing amounts"
+          href: worksheets/visualizing-amounts.Rmd
           
     - text: "Worksheets"
       menu:

@@ -1,12 +1,14 @@
 ---
 title: "Telling a story"
 author: "Claus O. Wilke"
+date: today
 format: 
   revealjs:
     theme:
       - default
       - Wilke-theme.scss
     auto-stretch: false
+    chalkboard: true
 execute:
   fig-format: svg
   fig-asp: 0.618

@@ -102,3 +102,11 @@ $code-block-font-size: 0.66em; /* equivalent to .tiny-font by default */
   right: 0;
 }
 
+.date {
+  font-size: 0.66em;
+}
+
+.date:before {
+  content: "Last updated: ";
+}
+

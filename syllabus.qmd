@@ -47,7 +47,7 @@ All these books are freely available online and you do not need to purchase a ph
 ------------------------------------------------------------------
   Class Topic                       Coding concepts covered
 ------- --------------------------- ------------------------------
-1.      Introduction, reproducible  RStudio setup online, R Markdown
+1.      Introduction, reproducible  RStudio setup online, Quarto
         workflows
 
 2.      Aesthetic mappings          **ggplot2** quickstart

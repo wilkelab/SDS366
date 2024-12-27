@@ -1,0 +1,733 @@
+---
+title: "Visualizing amounts"
+author: "Claus O. Wilke"
+date: today
+format: 
+  revealjs:
+    theme:
+      - default
+      - Wilke-theme.scss
+    auto-stretch: false
+    chalkboard: true
+execute:
+  fig-format: svg
+  fig-asp: 0.618
+  fig-width: 5.5
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+library(cowplot)
+
+# ggplot2 settings so plots scale well for slide size 
+theme_set(theme_gray(14))
+update_geom_defaults("point", list(size = 2))
+update_geom_defaults("line", list(linewidth = 1))
+
+income_by_age <- readRDS(here::here("datasets", "income_by_age.rds"))
+```
+
+
+## Many datasets contain simple amounts
+
+<br>
+
+::: {.fragment}
+Example: Highest grossing movies Dec. 2017
+
+::: {.small-font}
+```{r}
+#| echo: false
+# Data from Box Office Mojo for Dec. 22-24, 2017. 
+boxoffice <- tibble(
+  rank = 1:5,
+  title = c("Star Wars", "Jumanji", "Pitch Perfect 3", "Greatest Showman", "Ferdinand"),
+  amount = c(71.57, 36.17, 19.93, 8.81, 7.32) # million USD
+)
+
+boxoffice |>
+  knitr::kable("html")
+```
+:::
+
+::: {.absolute-bottom-right .tiny-font}
+Data source: Box Office Mojo
+:::
+:::
+
+## We can visualize amounts with bar plots
+
+```{r}
+#| label: boxoffice-vertical
+#| echo: false
+#| message: false
+#| fig-width: 8.5
+#| fig-asp: 0.5
+#| fig-cap: "&nbsp;"
+#| out-width: "90%"
+boxoffice |>
+  ggplot(aes(x = fct_reorder(title, rank), y = amount)) +
+    geom_col(fill = "#56B4E9", width = 0.6, alpha = 0.9) +
+    scale_y_continuous(
+      expand = c(0, 0),
+      breaks = c(0, 20, 40, 60),
+      labels = c("0", "20", "40", "60"),
+      name = "weekend gross (million USD)"
+    ) +
+    scale_x_discrete(
+      name = NULL,
+      expand = c(0, 0.4)
+    ) +
+    coord_cartesian(clip = "off") +
+    theme_minimal_hgrid(12, rel_small = 1) +
+    theme(
+      axis.line.x = element_blank(),
+      axis.ticks.x = element_blank()
+    )
+```
+
+## Bars can also run horizontally
+
+```{r}
+#| label: boxoffice-horizontal
+#| echo: false
+#| message: false
+#| fig-width: 7
+#| fig-cap: "&nbsp;"
+#| out-width: "70%"
+ggplot(boxoffice, aes(x = fct_reorder(title, desc(rank)), y = amount)) +
+  geom_col(fill = "#56B4E9", alpha = 0.9) +
+  scale_y_continuous(
+    limits = c(0, 75),
+    expand = c(0, 0),
+    breaks = c(0, 20, 40, 60),
+    labels = c("0", "20", "40", "60"),
+    name = "weekend gross (million USD)"
+  ) +
+  scale_x_discrete(
+    name = NULL,
+    expand = c(0, 0.5)
+  ) +
+  coord_flip(clip = "off") +
+  theme_minimal_vgrid(rel_small = 1) +
+  theme(
+    axis.line.y = element_blank(),
+    axis.ticks.y = element_blank()
+  )
+```
+
+## Avoid rotated axis labels
+
+```{r}
+#| label: boxoffice-rot-axis-tick-labels
+#| echo: false
+#| message: false
+#| fig-width: 6
+#| fig-asp: 0.85
+#| fig-cap: "&nbsp;"
+#| out-width: "60%"
+p_box_axrot <- 
+  ggplot(boxoffice, aes(x = fct_reorder(title, rank), y = amount)) +
+    geom_col(fill = "#56B4E9", alpha = 0.9) +
+    scale_y_continuous(
+      expand = c(0, 0),
+      breaks = c(0, 20, 40, 60),
+      labels = c("0", "20", "40", "60"),
+      name = "weekend gross (million USD)"
+    ) +
+    scale_x_discrete(name = NULL) +
+    coord_cartesian(clip = "off") +
+    theme_minimal_hgrid(rel_small = 1) +
+    theme(
+      axis.line.x = element_blank(),
+      axis.ticks.x = element_blank(),
+      axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1),
+      plot.margin = margin(3, 7, 3, 1.5)
+    )
+
+stamp_ugly(p_box_axrot)
+```
+
+## Avoid rotated axis labels
+
+```{r}
+#| label: boxoffice-horizontal2
+#| echo: false
+#| message: false
+#| fig-width: 7
+#| fig-cap: "&nbsp;"
+#| out-width: "70%"
+ggplot(boxoffice, aes(x = fct_reorder(title, desc(rank)), y = amount)) +
+  geom_col(fill = "#56B4E9", alpha = 0.9) +
+  scale_y_continuous(
+    limits = c(0, 75),
+    expand = c(0, 0),
+    breaks = c(0, 20, 40, 60),
+    labels = c("0", "20", "40", "60"),
+    name = "weekend gross (million USD)"
+  ) +
+  scale_x_discrete(
+    name = NULL,
+    expand = c(0, 0.5)
+  ) +
+  coord_flip(clip = "off") +
+  theme_minimal_vgrid(rel_small = 1) +
+  theme(
+    axis.line.y = element_blank(),
+    axis.ticks.y = element_blank()
+  )
+```
+
+## Pay attention to the order of the bars
+
+```{r}
+#| label: boxoffice-horizontal-unordered
+#| echo: false
+#| message: false
+#| fig-width: 7
+#| fig-cap: "&nbsp;"
+#| out-width: "70%"
+p_box_noorder <- ggplot(boxoffice) +
+  aes(
+    x = factor(title, levels = title[c(2, 1, 5, 3, 4)]),
+    y = amount
+  ) +
+  geom_col(fill = "#56B4E9", alpha = 0.9) +
+  scale_y_continuous(
+    limits = c(0, 75),
+    expand = c(0, 0),
+    breaks = c(0, 20, 40, 60),
+    labels = c("0", "20", "40", "60"),
+    name = "weekend gross (million USD)"
+  ) +
+  scale_x_discrete(
+    name = NULL,
+    expand = c(0, 0.5)
+  ) +
+  coord_flip(clip = "off") +
+  theme_minimal_vgrid(rel_small = 1) +
+  theme(
+    axis.line.y = element_blank(),
+    axis.ticks.y = element_blank()
+  )
+
+stamp_bad(p_box_noorder)
+```
+
+## Pay attention to the order of the bars
+
+```{r}
+#| label: boxoffice-horizontal3
+#| echo: false
+#| message: false
+#| fig-width: 7
+#| fig-cap: "&nbsp;"
+#| out-width: "70%"
+ggplot(boxoffice, aes(x = fct_reorder(title, desc(rank)), y = amount)) +
+  geom_col(fill = "#56B4E9", alpha = 0.9) +
+  scale_y_continuous(
+    limits = c(0, 75),
+    expand = c(0, 0),
+    breaks = c(0, 20, 40, 60),
+    labels = c("0", "20", "40", "60"),
+    name = "weekend gross (million USD)"
+  ) +
+  scale_x_discrete(
+    name = NULL,
+    expand = c(0, 0.5)
+  ) +
+  coord_flip(clip = "off") +
+  theme_minimal_vgrid(rel_small = 1) +
+  theme(
+    axis.line.y = element_blank(),
+    axis.ticks.y = element_blank()
+  )
+```
+
+## We can use dots instead of bars
+
+```{r}
+#| label: boxoffice-dotplot
+#| echo: false
+#| message: false
+#| fig-width: 7
+#| fig-cap: "&nbsp;"
+#| out-width: "70%"
+ggplot(boxoffice, aes(x = fct_reorder(title, desc(rank)), y = amount)) +
+  geom_point(color = "#0072B2", size = 4) +
+  scale_y_continuous(
+    limits = c(0, 75),
+    expand = c(0, 0),
+    breaks = c(0, 20, 40, 60),
+    labels = c("0", "20", "40", "60"),
+    name = "weekend gross (million USD)"
+  ) +
+  scale_x_discrete(
+    name = NULL,
+    expand = c(0, 0.5)
+  ) +
+  coord_flip(clip = "off") +
+  theme_minimal_vgrid(rel_small = 1) +
+  theme(
+    axis.line.y = element_blank(),
+    axis.ticks.y = element_blank()
+  )
+```
+
+## Dots are preferable if we want to truncate the axes
+
+```{r}
+#| label: Americas-life-expect
+#| echo: false
+#| message: false
+#| fig-width: 6
+#| fig-asp: 0.9
+#| fig-cap: "&nbsp;"
+#| out-width: "60%"
+library(gapminder)
+
+df_Americas <- gapminder |>
+  filter(year == 2007, continent == "Americas")
+
+ggplot(df_Americas, aes(x = lifeExp, y = fct_reorder(country, lifeExp))) +
+  geom_point(color = "#0072B2", size = 3) +
+  scale_x_continuous(
+    name = "life expectancy (years)",
+    limits = c(59.7, 81.5),
+    expand = c(0, 0)
+  ) +
+  scale_y_discrete(name = NULL, expand = c(0, 0.5)) +
+  theme_minimal_grid(12, rel_small = 1) +
+  theme(
+    plot.margin = margin(18, 6, 3, 1.5)
+  )
+```
+## Dots are preferable if we want to truncate the axes
+
+```{r}
+#| label: Americas-life-expect-bad1
+#| echo: false
+#| message: false
+#| fig-width: 6
+#| fig-asp: 0.9
+#| fig-cap: "&nbsp;"
+#| out-width: "60%"
+p <- ggplot(df_Americas, aes(x = lifeExp, y = fct_reorder(country, lifeExp))) +
+  geom_col(fill = "#56B4E9", alpha = 0.9) +
+  scale_x_continuous(
+    name = "life expectancy (years)",
+    expand = c(0, 0)
+  ) +
+  scale_y_discrete(name = NULL, expand = c(0, 0.5)) +
+  coord_cartesian(xlim = c(59.7, 81.5)) +
+  theme_minimal_grid(12, rel_small = 1) +
+  theme(
+    plot.margin = margin(18, 6, 3, 1.5)
+  )
+
+stamp_bad(p)
+```
+
+::: {.absolute-bottom-right .small-font}
+Bar lengths do<br>not accurately<br> represent the<br>data values<br>&nbsp;
+:::
+
+## Dots are preferable if we want to truncate the axes
+
+```{r}
+#| label: Americas-life-expect-bad2
+#| echo: false
+#| message: false
+#| fig-width: 6
+#| fig-asp: 0.9
+#| fig-cap: "&nbsp;"
+#| out-width: "60%"
+p <- ggplot(df_Americas, aes(x = lifeExp, y = fct_reorder(country, lifeExp))) +
+  geom_col(fill = "#56B4E9", alpha = 0.9) +
+  scale_x_continuous(
+    name = "life expectancy (years)",
+    expand = c(0, 0)
+  ) +
+  scale_y_discrete(name = NULL, expand = c(0, 0.5)) +
+  coord_cartesian(xlim = c(0, 85)) +
+  theme_minimal_grid(12, rel_small = 1) +
+  theme(
+    plot.margin = margin(18, 6, 3, 1.5)
+  )
+
+stamp_bad(p)
+```
+
+::: {.absolute-bottom-right .small-font}
+Key features<br>of the data<br>are obscured<br>&nbsp;
+:::
+
+## Dots are preferable if we want to truncate the axes
+
+```{r}
+#| label: Americas-life-expect2
+#| echo: false
+#| message: false
+#| fig-width: 6
+#| fig-asp: 0.9
+#| fig-cap: "&nbsp;"
+#| out-width: "60%"
+library(gapminder)
+
+df_Americas <- gapminder |>
+  filter(year == 2007, continent == "Americas")
+
+ggplot(df_Americas, aes(x = lifeExp, y = fct_reorder(country, lifeExp))) +
+  geom_point(color = "#0072B2", size = 3) +
+  scale_x_continuous(
+    name = "life expectancy (years)",
+    limits = c(59.7, 81.5),
+    expand = c(0, 0)
+  ) +
+  scale_y_discrete(name = NULL, expand = c(0, 0.5)) +
+  theme_minimal_grid(12, rel_small = 1) +
+  theme(
+    plot.margin = margin(18, 6, 3, 1.5)
+  )
+```
+
+<!-- Segment ends here -->
+
+# Grouped bars
+
+## We use grouped bars for higher-dimensional datasets
+
+::: {.fragment}
+```{r}
+#| label: income-by-age-race-dodged
+#| echo: false
+#| message: false
+#| fig-width: 9
+#| fig-asp: 0.5
+#| fig-cap: "&nbsp;"
+#| out-width: "95%"
+# Take the darkest four colors from 5-class ColorBrewer palette "PuBu"
+# colors_four <- RColorBrewer::brewer.pal(5, "PuBu")[5:2]
+colors_four <- c("#045A8D", "#2B8CBE", "#74A9CF", "#BDC9E1")
+
+ggplot(income_by_age, aes(x = age, y = median_income, fill = race)) +
+  geom_col(position = "dodge", alpha = 0.9) +
+  scale_y_continuous(
+    expand = c(0, 0),
+    name = "median income (USD)",
+    breaks = c(0, 20000, 40000, 60000, 80000, 100000),
+    labels = c("$0", "$20,000", "$40,000", "$60,000", "$80,000", "$100,000")
+  ) +
+  scale_fill_manual(values = colors_four, name = NULL) +
+  coord_cartesian(clip = "off") +
+  xlab("age (years)") +
+  theme_minimal_hgrid() +
+  theme(
+    axis.line.x = element_blank(),
+    axis.ticks.x = element_blank()
+  )
+```
+
+::: {.absolute-bottom-right .tiny-font}
+Data source: United States Census Bureau, 2016
+:::
+:::
+
+## We are free to choose by which variable to group
+
+<br>
+
+```{r}
+#| label: income-by-race-age-dodged
+#| echo: false
+#| message: false
+#| fig-width: 8
+#| fig-asp: 0.4
+#| fig-cap: "&nbsp;"
+#| out-width: "85%"
+# Take the darkest seven colors from 8-class ColorBrewer palette "PuBu"
+# colors_seven <- RColorBrewer::brewer.pal(8, "PuBu")[2:8]
+colors_seven <- c("#ECE7F2", "#D0D1E6", "#A6BDDB", "#74A9CF", "#3690C0", "#0570B0", "#034E7B")
+
+ggplot(income_by_age, aes(x = race, y = median_income, fill = age)) +
+  geom_col(position = "dodge", alpha = 0.9) +
+  scale_y_continuous(
+    expand = c(0, 0),
+    name = "median income (USD)",
+    breaks = c(0, 20000, 40000, 60000, 80000, 100000),
+    labels = c("$0", "$20,000", "$40,000", "$60,000", "$80,000", "$100,000")
+  ) +
+  scale_fill_manual(values = colors_seven, name = "age (yrs)") +
+  coord_cartesian(clip = "off") +
+  xlab(label = NULL) +
+  theme_minimal_hgrid() +
+  theme(
+    axis.line.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    legend.title.align = 0.5
+  )
+```
+
+::: {.absolute-bottom-right .tiny-font}
+Data source: United States Census Bureau, 2016
+:::
+
+## We can also use multiple plot panels (facets)
+
+```{r}
+#| label: income-by-age-race-faceted
+#| echo: false
+#| message: false
+#| fig-width: 8
+#| fig-asp: 0.618
+#| fig-cap: "&nbsp;"
+#| out-width: "85%"
+ggplot(income_by_age, aes(x = age_brief, y = median_income)) +
+  geom_col(fill = "#56B4E9", alpha = 0.9) +
+  scale_y_continuous(
+    expand = c(0, 0),
+    name = "median income (USD)",
+    breaks = c(0, 20000, 40000, 60000, 80000, 100000),
+    labels = c("$0", "$20,000", "$40,000", "$60,000", "$80,000", "$100,000")
+  ) +
+  coord_cartesian(clip = "off") +
+  xlab(label = "age (years)") +
+  facet_wrap(~race, scales = "free_x") +
+  theme_minimal_hgrid(12) +
+  theme(
+    axis.ticks.x = element_blank(),
+    axis.line = element_blank(),
+    strip.text = element_text(size = 12),
+    panel.spacing.y = grid::unit(14, "pt")
+  )
+```
+
+::: {.absolute-bottom-right .tiny-font}
+Data source: United States Census Bureau, 2016
+:::
+
+<!-- Segment ends here -->
+
+# Making bar plots in **ggplot2**
+
+## Dataset: Highest grossing movies Dec. 2017
+
+```{r}
+#| echo: true
+# Data from Box Office Mojo for Dec. 22-24, 2017. 
+boxoffice <- tibble(
+  rank = 1:5,
+  title = c(
+    "Star Wars", "Jumanji", "Pitch Perfect 3",
+    "Greatest Showman", "Ferdinand"
+  ),
+  amount = c(71.57, 36.17, 19.93, 8.81, 7.32) # million USD
+)
+
+boxoffice
+```
+
+## Visualize as a bar plot
+
+```{r}
+#| label: boxoffice-naive
+#| echo: true
+#| fig-width: 8
+#| fig-asp: 0.4
+#| fig-cap: "&nbsp;"
+#| out-width: "75%"
+ggplot(boxoffice, aes(title, amount)) +
+  geom_col()  # "col" stands for column
+```
+
+## Order by data value
+
+```{r}
+#| label: boxoffice-ordered
+#| echo: true
+#| fig-width: 8
+#| fig-asp: 0.4
+#| fig-cap: "&nbsp;"
+#| out-width: "75%"
+ggplot(boxoffice, aes(fct_reorder(title, amount), amount)) +
+  geom_col()  # "col" stands for column
+```
+
+## Order by data value, descending
+
+```{r}
+#| label: boxoffice-ordered2
+#| echo: true
+#| fig-width: 8
+#| fig-asp: 0.4
+#| fig-cap: "&nbsp;"
+#| out-width: "75%"
+ggplot(boxoffice, aes(fct_reorder(title, -amount), amount)) +
+  geom_col() + 
+  xlab(NULL) # remove x axis label
+```
+
+## Flip x and y, set custom x axis label
+
+```{r}
+#| label: boxoffice-ordered3
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+ggplot(boxoffice, aes(amount, fct_reorder(title, amount))) +
+  geom_col() +
+  xlab("amount (in million USD)") +
+  ylab(NULL)
+```
+
+# Sometimes we need to count before visualization
+
+## Example: Visualize number of penguins per species
+
+::: {.small-font}
+```{r}
+library(palmerpenguins)
+penguins
+```
+:::
+
+![](https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/man/figures/logo.png){.absolute  top="0%" left="90%" width="12%"}
+
+## Use `geom_bar()` to count before plotting
+
+```{r}
+#| label: penguins-bars
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+ggplot(penguins, aes(y = species)) + # no x aesthetic needed
+  geom_bar()
+```
+
+## Getting the bars into the right order
+
+::: {.fragment}
+::: {.small-font}
+Option 1: Manually, using `fct_relevel()`
+
+```{r}
+#| label: penguins-bars2
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+ggplot(penguins, aes(y = fct_relevel(species, "Chinstrap", "Gentoo", "Adelie"))) +
+  geom_bar() +
+  ylab(NULL)
+```
+:::
+:::
+
+## Getting the bars into the right order
+
+::: {.small-font}
+Option 2: Using `fct_rev()` and `fct_infreq()` from the **forcats** package
+
+```{r}
+#| label: penguins-bars3
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+ggplot(penguins, aes(y = fct_rev(fct_infreq(species)))) +
+  geom_bar() +
+  ylab(NULL)
+```
+:::
+
+## Display counts by species and sex
+
+::: {.small-font}
+```{r}
+#| label: penguins-sex-species
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+ggplot(penguins, aes(sex, fill = species)) +
+  geom_bar()
+```
+:::
+
+## Remove missing values (`NA`s)
+
+::: {.small-font}
+```{r}
+#| label: penguins-sex-species2
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+penguins2 <- na.omit(penguins) # remove all rows with any missing values
+
+ggplot(penguins2, aes(sex, fill = species)) +
+  geom_bar()
+```
+:::
+
+## Positions define how subgroups are shown
+
+::: {.small-font}
+`position = "dodge"`: Place bars for subgroups side-by-side
+
+```{r}
+#| label: penguins-sex-species-dodge
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+ggplot(penguins2, aes(sex, fill = species)) +
+  geom_bar(position = "dodge")
+```
+:::
+
+## Positions define how subgroups are shown
+
+::: {.small-font}
+`position = "stack"`: Place bars for subgroups on top of each other
+
+```{r}
+#| label: penguins-sex-species-stack
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+ggplot(penguins2, aes(sex, fill = species)) +
+  geom_bar(position = "stack")
+```
+:::
+
+## Positions define how subgroups are shown
+
+::: {.small-font}
+`position = "fill"`: Like `"stack"`, but scale to 100%
+
+```{r}
+#| label: penguins-sex-species-fill
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+ggplot(penguins2, aes(sex, fill = species)) +
+  geom_bar(position = "fill")
+```
+:::
+
+<!-- Segment ends here -->
+
+## Further reading
+
+::: {.small-font}
+- Fundamentals of Data Visualization: [Chapter 6: Visualizing amounts](https://clauswilke.com/dataviz/visualizing-amounts.html)
+- Data Visualization—A Practical Introduction: [Chapter 4.4: Geoms can transform data](https://socviz.co/groupfacettx.html#statfunctions)
+- **ggplot2** reference documentation: [`geom_bar()`, `geom_col()`](https://ggplot2.tidyverse.org/reference/geom_bar.html)
+- **ggplot2** reference documentation: [`position_stack()`, `position_fill()`](https://ggplot2.tidyverse.org/reference/position_stack.html)
+:::
