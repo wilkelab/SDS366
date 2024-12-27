@@ -174,7 +174,7 @@ ggplot(US_counties) +
 
 
 
-US_states <- readRDS(url("https://wilkelab.org/SDS375/datasets/US_states_AKsmall.rds"))
+US_states <- readRDS(url("https://wilkelab.org/SDS366/datasets/US_states_AKsmall.rds"))
 
 ggplot(US_states) + 
   geom_sf() +

@@ -438,7 +438,7 @@
     "href": "slides/aesthetic-mappings.html#getting-the-data",
     "title": "Aesthetic mappings",
     "section": "Getting the data",
-    "text": "Getting the data\nAll examples will use the temperatures dataset:\n\ntemperatures &lt;- read_csv(\"https://wilkelab.org/SDS375/datasets/tempnormals.csv\") |&gt;\n  mutate(\n    location = factor(\n      location, levels = c(\"Death Valley\", \"Houston\", \"San Diego\", \"Chicago\")\n    )\n  ) |&gt;\n  select(location, station_id, day_of_year, month, temperature)"
+    "text": "Getting the data\nAll examples will use the temperatures dataset:\n\ntemperatures &lt;- read_csv(\"https://wilkelab.org/SDS366/datasets/tempnormals.csv\") |&gt;\n  mutate(\n    location = factor(\n      location, levels = c(\"Death Valley\", \"Houston\", \"San Diego\", \"Chicago\")\n    )\n  ) |&gt;\n  select(location, station_id, day_of_year, month, temperature)"
   },
   {
     "objectID": "slides/aesthetic-mappings.html#we-define-the-mapping-with-aes",
