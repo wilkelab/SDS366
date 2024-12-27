@@ -1,0 +1,20 @@
+```{webr} 
+#| exercise: 
+
+```
+
+::: { .hint exercise="" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+
+```
+:::
+:::
+
+::: { .solution exercise="" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+
+```
+:::
+:::

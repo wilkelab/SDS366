@@ -2,8 +2,10 @@ project:
   type: website
   render:
     - "*.qmd"
+    - "!datasets/"
   resources:
     - "assets/"
+    - "datasets/"
 
 website:
   title: "SDS 366"
@@ -30,6 +32,9 @@ website:
           href: worksheets/aesthetic-mappings.qmd
         - text: "Class 3: Visualizing amounts"
           href: worksheets/visualizing-amounts.qmd
+        - text: "Class 4: Coordinate systems and axes"
+          href: worksheets/coordinate-systems-axes.qmd
+        
 
 format:
   html:

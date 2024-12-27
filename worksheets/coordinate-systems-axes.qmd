@@ -33,7 +33,7 @@ boxoffice <- tibble(
   amount = c(71.57, 36.17, 19.93, 8.81, 7.32) # million USD
 )
 
-temperatures <- read_csv("https://wilkelab.org/SDS375/datasets/tempnormals.csv") |>
+temperatures <- read_csv("https://wilkelab.org/SDS366/datasets/tempnormals.csv") |>
   mutate(
     location = factor(
       location, levels = c("Death Valley", "Houston", "San Diego", "Chicago")
@@ -44,7 +44,7 @@ temperatures <- read_csv("https://wilkelab.org/SDS375/datasets/tempnormals.csv")
 temps_wide <- temperatures |>
   pivot_wider(names_from = location, values_from = temperature)
 
-US_census <- read_csv("https://wilkelab.org/SDS375/datasets/US_census.csv")
+US_census <- read_csv("https://wilkelab.org/SDS366/datasets/US_census.csv")
 tx_counties <- US_census |> 
   filter(state == "Texas") |>
   select(name, pop2010) |>
@@ -267,3 +267,248 @@ Try different settings for the `expand` argument. Try both multiplicative and ad
 ## Logarithmic scales
 
 Scales can also transform the data before plotting. For example, log scales such as `scale_x_log10()` and `scale_y_log10()` log-transform the data. To try this out, we'll be working with the `tx_counties` dataset:
+
+```{webr}
+#| edit: false
+ggplot(tx_counties) +
+  aes(x = index, y = popratio) +
+  geom_point()
+```
+
+Modify this plot so the y axis uses a log scale.
+
+```{webr} 
+#| exercise: tx-counties-log
+ggplot(tx_counties) +
+  aes(x = index, y = popratio) +
+  geom_point() +
+  ___
+```
+
+::: { .solution exercise="tx-counties-log" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+ggplot(tx_counties) +
+  aes(x = index, y = popratio) +
+  geom_point() +
+  scale_y_log10()
+```
+:::
+:::
+
+Now customize the log scale by setting `name`, `limits`, `breaks`, and `labels`. These work exactly as they did in `scale_x_continuous()`.
+
+```{webr} 
+#| exercise: tx-counties-log-customize
+
+```
+
+::: { .hint exercise="tx-counties-log-customize" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+ggplot(tx_counties) +
+  aes(x = index, y = popratio) +
+  geom_point() +
+  scale_y_log10(
+    name = ___,
+    limits = ___,
+    breaks = ___,
+    labels = ___
+  )
+```
+:::
+:::
+
+::: { .solution exercise="tx-counties-log-customize" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+ggplot(tx_counties) +
+  aes(x = index, y = popratio) +
+  geom_point() +
+  scale_y_log10(
+    name = "population number / median",
+    limits = c(0.003, 300),
+    breaks = c(0.01, 1, 100),
+    labels = c("0.01", "1", "100")
+  )
+```
+:::
+:::
+
+## Coords
+
+While scales determine how data values are mapped and represented along one dimension, e.g. the x or the y axis, coordinate systems define how these dimensions are projected onto the 2d plot surface. The default coordinate system is the Cartesian coordinate system, which uses orthogonal x and y axes. In the following example, I have added the coord explicitly, but this is not normally necessary.
+
+```{webr}
+#| edit: false
+ggplot(temperatures, aes(day_of_year, temperature, color = location)) +
+  geom_line() +
+  coord_cartesian()  # this is always added by default
+```
+
+We can however add a different coord, for example `coord_polar()` to use a polar coordinate system. Try this out.
+
+```{webr} 
+#| exercise: temperatures-polar
+
+```
+
+::: { .solution exercise="temperatures-polar" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+ggplot(temperatures, aes(day_of_year, temperature, color = location)) +
+  geom_line() +
+  coord_polar()
+```
+:::
+:::
+
+In the polar coordinate system, the y axis (here, temperature) is mapped onto the radius, and the x axis (here, day of year) is mapped onto the angle. You can use `scale_x_continuous()` and `scale_y_continuous()` to modify the radial and angular axes. For example, you may want to change the temperature limits from 0 to 105 so the temperature curve for Chicago doesn't hit the exact center of the plot. Try this out.
+
+```{webr} 
+#| exercise: temperatures-polar2
+
+```
+
+::: { .hint exercise="temperatures-polar2" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+ggplot(temperatures, aes(day_of_year, temperature, color = location)) +
+  geom_line() +
+  coord_polar() +
+  scale_y_continuous(limits = ___)
+```
+:::
+:::
+
+::: { .solution exercise="temperatures-polar2" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+ggplot(temperatures, aes(day_of_year, temperature, color = location)) +
+  geom_line() +
+  coord_polar() +
+  scale_y_continuous(limits = c(0, 105))
+```
+:::
+:::
+
+There are other useful coords. For example, `coord_fixed()` is a Cartesian coordinate system with fixed aspect ratio. This is useful when we plot variables along the x and y axes that are measured in the same units. In this case, we want the two axes to be coordinated, such that one step along x has the same meaning as one step along y.
+
+To demonstrate this, we reshape the `temperatures` dataset into wide format, and then plot temperatures in San Diego versus temperatures in Houston.
+
+
+```{webr}
+#| edit: false
+temps_wide <- temperatures |>
+  pivot_wider(names_from = location, values_from = temperature)
+
+temps_wide
+```
+
+```{webr}
+#| edit: false
+ggplot(temps_wide, aes(`San Diego`, Houston)) +
+  geom_point()
+```
+
+(A side remark: Do you know why we write `` `San Diego` `` and not `"San Diego"` or `'San Diego'` inside the `aes()` function? If you don't, see if you can find out.)
+
+The units along both the x and the y axis are temperatures, but a 10 degree difference in Houston is shown as a shorter distance than a 10 degree difference in San Diego. To address this problem, add `coord_fixed()` to the above plot.
+
+```{webr} 
+#| exercise: temps-scatter-coord
+
+```
+
+::: { .solution exercise="temps-scatter-coord" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+ggplot(temps_wide, aes(`San Diego`, Houston)) +
+  geom_point() +
+  coord_fixed()
+```
+:::
+:::
+
+This plot is technically correct but it doesn't look good, because breaks are spaced differently along the two axes. Also, the plot looks strangely narrow and tall. We can fix both issues by manually setting breaks and limits for both axes. Try this out.
+
+```{webr} 
+#| exercise: temps-scatter-coord2
+
+```
+
+::: { .hint exercise="temps-scatter-coord2" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+ggplot(temps_wide, aes(`San Diego`, Houston)) +
+  geom_point() +
+  coord_fixed() +
+  scale_x_continuous(
+    limits = ___,
+    breaks = ___
+  ) +
+  scale_y_continuous(
+    limits = ___,
+    breaks = ___
+  )
+```
+:::
+:::
+
+::: { .solution exercise="temps-scatter-coord2" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+ggplot(temps_wide, aes(`San Diego`, Houston)) +
+  geom_point() +
+  coord_fixed() +
+  scale_x_continuous(
+    limits = c(45, 85),
+    breaks = c(40, 50, 60, 70, 80)
+  ) +
+  scale_y_continuous(
+    limits = c(48, 88),
+    breaks = c(50, 60, 70, 80)
+  )
+```
+:::
+:::
+
+Finally, as the last example of what can be done with coords, we go back to the problem of setting limits on the box-office bar plot. Instead of setting limits with scale functions, we can also set them via the arguments `xlim` and `ylim` inside the coord, for example here `coord_cartesian()`. (This would be a good reason to explicity add `coord_cartesian()` to a plot.) When we set limits in the coord ggplot does not discard any data points. Instead it simply zooms in or out according to the limits set. Try this out by setting the x limits from 10 to 65 in the box-office plot.
+
+```{webr} 
+#| exercise: boxoffice-coord-xlims
+ggplot(boxoffice) +
+  aes(amount, fct_reorder(title, amount)) +
+  geom_col() +
+  ___
+```
+
+::: { .hint exercise="boxoffice-coord-xlims" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+ggplot(boxoffice) +
+  aes(amount, fct_reorder(title, amount)) +
+  geom_col() +
+  coord_cartesian(
+    xlim = ___
+  )
+```
+:::
+:::
+
+::: { .solution exercise="boxoffice-coord-xlims" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+ggplot(boxoffice) +
+  aes(amount, fct_reorder(title, amount)) +
+  geom_col() +
+  coord_cartesian(
+    xlim = c(10, 65)
+  )
+```
+:::
+:::
+
+**Note:** It is normally not a good idea to start a bar plot at a value other than 0. This exercise was solely meant to demonstrate how limits in coords differ from limits in scales.
+
+
