@@ -24,7 +24,7 @@ theme_set(theme_gray(14))
 update_geom_defaults("point", list(size = 2))
 update_geom_defaults("line", list(linewidth = 1))
 
-preprints <- read_csv("https://wilkelab.org/SDS375/datasets/preprints.csv")
+preprints <- read_csv("https://wilkelab.org/SDS366/datasets/preprints.csv")
 ```
 
 ## How did I get to teach data visualization?

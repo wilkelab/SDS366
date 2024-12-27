@@ -122,7 +122,7 @@ make_kmeans_plot(coords, centroids, centroids, color_points = TRUE)
 
 # spirals
 
-spirals <- read_csv("https://wilkelab.org/SDS375/datasets/spirals.csv")
+spirals <- read_csv("https://wilkelab.org/SDS366/datasets/spirals.csv")
 
 coords <- tibble(
   x = spirals$x,
