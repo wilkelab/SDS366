@@ -1,3 +1,10 @@
 Figure sizing and placement
 
 https://github.com/quarto-dev/quarto-cli/issues/7516
+
+Material to cover for class 1:
+- Edupod
+- Quarto / assignments
+- Live exercises
+- Class materials on github
+- Printing a slideset

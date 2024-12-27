@@ -747,5 +747,362 @@
     "title": "Coordinate systems and axes",
     "section": "Coords",
     "text": "Coords\nWhile scales determine how data values are mapped and represented along one dimension, e.g. the x or the y axis, coordinate systems define how these dimensions are projected onto the 2d plot surface. The default coordinate system is the Cartesian coordinate system, which uses orthogonal x and y axes. In the following example, I have added the coord explicitly, but this is not normally necessary.\n\n\n\n\n\n\n\n\nWe can however add a different coord, for example coord_polar() to use a polar coordinate system. Try this out.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nggplot(temperatures, aes(day_of_year, temperature, color = location)) +\n  geom_line() +\n  coord_polar()\n\n\n\n\nIn the polar coordinate system, the y axis (here, temperature) is mapped onto the radius, and the x axis (here, day of year) is mapped onto the angle. You can use scale_x_continuous() and scale_y_continuous() to modify the radial and angular axes. For example, you may want to change the temperature limits from 0 to 105 so the temperature curve for Chicago doesn’t hit the exact center of the plot. Try this out.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nggplot(temperatures, aes(day_of_year, temperature, color = location)) +\n  geom_line() +\n  coord_polar() +\n  scale_y_continuous(limits = ___)\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nggplot(temperatures, aes(day_of_year, temperature, color = location)) +\n  geom_line() +\n  coord_polar() +\n  scale_y_continuous(limits = c(0, 105))\n\n\n\n\nThere are other useful coords. For example, coord_fixed() is a Cartesian coordinate system with fixed aspect ratio. This is useful when we plot variables along the x and y axes that are measured in the same units. In this case, we want the two axes to be coordinated, such that one step along x has the same meaning as one step along y.\nTo demonstrate this, we reshape the temperatures dataset into wide format, and then plot temperatures in San Diego versus temperatures in Houston.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n(A side remark: Do you know why we write `San Diego` and not \"San Diego\" or 'San Diego' inside the aes() function? If you don’t, see if you can find out.)\nThe units along both the x and the y axis are temperatures, but a 10 degree difference in Houston is shown as a shorter distance than a 10 degree difference in San Diego. To address this problem, add coord_fixed() to the above plot.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nggplot(temps_wide, aes(`San Diego`, Houston)) +\n  geom_point() +\n  coord_fixed()\n\n\n\n\nThis plot is technically correct but it doesn’t look good, because breaks are spaced differently along the two axes. Also, the plot looks strangely narrow and tall. We can fix both issues by manually setting breaks and limits for both axes. Try this out.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nggplot(temps_wide, aes(`San Diego`, Houston)) +\n  geom_point() +\n  coord_fixed() +\n  scale_x_continuous(\n    limits = ___,\n    breaks = ___\n  ) +\n  scale_y_continuous(\n    limits = ___,\n    breaks = ___\n  )\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nggplot(temps_wide, aes(`San Diego`, Houston)) +\n  geom_point() +\n  coord_fixed() +\n  scale_x_continuous(\n    limits = c(45, 85),\n    breaks = c(40, 50, 60, 70, 80)\n  ) +\n  scale_y_continuous(\n    limits = c(48, 88),\n    breaks = c(50, 60, 70, 80)\n  )\n\n\n\n\nFinally, as the last example of what can be done with coords, we go back to the problem of setting limits on the box-office bar plot. Instead of setting limits with scale functions, we can also set them via the arguments xlim and ylim inside the coord, for example here coord_cartesian(). (This would be a good reason to explicity add coord_cartesian() to a plot.) When we set limits in the coord ggplot does not discard any data points. Instead it simply zooms in or out according to the limits set. Try this out by setting the x limits from 10 to 65 in the box-office plot.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nggplot(boxoffice) +\n  aes(amount, fct_reorder(title, amount)) +\n  geom_col() +\n  coord_cartesian(\n    xlim = ___\n  )\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nggplot(boxoffice) +\n  aes(amount, fct_reorder(title, amount)) +\n  geom_col() +\n  coord_cartesian(\n    xlim = c(10, 65)\n  )\n\n\n\n\nNote: It is normally not a good idea to start a bar plot at a value other than 0. This exercise was solely meant to demonstrate how limits in coords differ from limits in scales."
+  },
+  {
+    "objectID": "slides/figure-design.html#many-datasets-contain-simple-amounts",
+    "href": "slides/figure-design.html#many-datasets-contain-simple-amounts",
+    "title": "Visualizing amounts",
+    "section": "Many datasets contain simple amounts",
+    "text": "Many datasets contain simple amounts\n\n\nExample: Highest grossing movies Dec. 2017\n\n\n\n\n\n\nrank\ntitle\namount\n\n\n\n\n1\nStar Wars\n71.57\n\n\n2\nJumanji\n36.17\n\n\n3\nPitch Perfect 3\n19.93\n\n\n4\nGreatest Showman\n8.81\n\n\n5\nFerdinand\n7.32\n\n\n\n\n\n\n\n\n\nData source: Box Office Mojo"
+  },
+  {
+    "objectID": "slides/figure-design.html#we-can-visualize-amounts-with-bar-plots",
+    "href": "slides/figure-design.html#we-can-visualize-amounts-with-bar-plots",
+    "title": "Visualizing amounts",
+    "section": "We can visualize amounts with bar plots",
+    "text": "We can visualize amounts with bar plots"
+  },
+  {
+    "objectID": "slides/figure-design.html#bars-can-also-run-horizontally",
+    "href": "slides/figure-design.html#bars-can-also-run-horizontally",
+    "title": "Visualizing amounts",
+    "section": "Bars can also run horizontally",
+    "text": "Bars can also run horizontally"
+  },
+  {
+    "objectID": "slides/figure-design.html#avoid-rotated-axis-labels",
+    "href": "slides/figure-design.html#avoid-rotated-axis-labels",
+    "title": "Visualizing amounts",
+    "section": "Avoid rotated axis labels",
+    "text": "Avoid rotated axis labels"
+  },
+  {
+    "objectID": "slides/figure-design.html#avoid-rotated-axis-labels-1",
+    "href": "slides/figure-design.html#avoid-rotated-axis-labels-1",
+    "title": "Visualizing amounts",
+    "section": "Avoid rotated axis labels",
+    "text": "Avoid rotated axis labels"
+  },
+  {
+    "objectID": "slides/figure-design.html#pay-attention-to-the-order-of-the-bars",
+    "href": "slides/figure-design.html#pay-attention-to-the-order-of-the-bars",
+    "title": "Visualizing amounts",
+    "section": "Pay attention to the order of the bars",
+    "text": "Pay attention to the order of the bars"
+  },
+  {
+    "objectID": "slides/figure-design.html#pay-attention-to-the-order-of-the-bars-1",
+    "href": "slides/figure-design.html#pay-attention-to-the-order-of-the-bars-1",
+    "title": "Visualizing amounts",
+    "section": "Pay attention to the order of the bars",
+    "text": "Pay attention to the order of the bars"
+  },
+  {
+    "objectID": "slides/figure-design.html#we-can-use-dots-instead-of-bars",
+    "href": "slides/figure-design.html#we-can-use-dots-instead-of-bars",
+    "title": "Visualizing amounts",
+    "section": "We can use dots instead of bars",
+    "text": "We can use dots instead of bars"
+  },
+  {
+    "objectID": "slides/figure-design.html#dots-are-preferable-if-we-want-to-truncate-the-axes",
+    "href": "slides/figure-design.html#dots-are-preferable-if-we-want-to-truncate-the-axes",
+    "title": "Visualizing amounts",
+    "section": "Dots are preferable if we want to truncate the axes",
+    "text": "Dots are preferable if we want to truncate the axes"
+  },
+  {
+    "objectID": "slides/figure-design.html#dots-are-preferable-if-we-want-to-truncate-the-axes-1",
+    "href": "slides/figure-design.html#dots-are-preferable-if-we-want-to-truncate-the-axes-1",
+    "title": "Visualizing amounts",
+    "section": "Dots are preferable if we want to truncate the axes",
+    "text": "Dots are preferable if we want to truncate the axes\n\n\n\n\n\n \n\n\n\n\n\nBar lengths donot accurately represent thedata values"
+  },
+  {
+    "objectID": "slides/figure-design.html#dots-are-preferable-if-we-want-to-truncate-the-axes-2",
+    "href": "slides/figure-design.html#dots-are-preferable-if-we-want-to-truncate-the-axes-2",
+    "title": "Visualizing amounts",
+    "section": "Dots are preferable if we want to truncate the axes",
+    "text": "Dots are preferable if we want to truncate the axes\n\n\n\n\n\n \n\n\n\n\n\nKey featuresof the dataare obscured"
+  },
+  {
+    "objectID": "slides/figure-design.html#dots-are-preferable-if-we-want-to-truncate-the-axes-3",
+    "href": "slides/figure-design.html#dots-are-preferable-if-we-want-to-truncate-the-axes-3",
+    "title": "Visualizing amounts",
+    "section": "Dots are preferable if we want to truncate the axes",
+    "text": "Dots are preferable if we want to truncate the axes"
+  },
+  {
+    "objectID": "slides/figure-design.html#we-use-grouped-bars-for-higher-dimensional-datasets",
+    "href": "slides/figure-design.html#we-use-grouped-bars-for-higher-dimensional-datasets",
+    "title": "Visualizing amounts",
+    "section": "We use grouped bars for higher-dimensional datasets",
+    "text": "We use grouped bars for higher-dimensional datasets\n\n\n\n\n\n\n \n\n\n\n\n\nData source: United States Census Bureau, 2016"
+  },
+  {
+    "objectID": "slides/figure-design.html#we-are-free-to-choose-by-which-variable-to-group",
+    "href": "slides/figure-design.html#we-are-free-to-choose-by-which-variable-to-group",
+    "title": "Visualizing amounts",
+    "section": "We are free to choose by which variable to group",
+    "text": "We are free to choose by which variable to group\n\n\n\n\n\n\n \n\n\n\n\n\nData source: United States Census Bureau, 2016"
+  },
+  {
+    "objectID": "slides/figure-design.html#we-can-also-use-multiple-plot-panels-facets",
+    "href": "slides/figure-design.html#we-can-also-use-multiple-plot-panels-facets",
+    "title": "Visualizing amounts",
+    "section": "We can also use multiple plot panels (facets)",
+    "text": "We can also use multiple plot panels (facets)\n\n\n\n\n\n \n\n\n\n\n\nData source: United States Census Bureau, 2016"
+  },
+  {
+    "objectID": "slides/figure-design.html#dataset-highest-grossing-movies-dec.-2017",
+    "href": "slides/figure-design.html#dataset-highest-grossing-movies-dec.-2017",
+    "title": "Visualizing amounts",
+    "section": "Dataset: Highest grossing movies Dec. 2017",
+    "text": "Dataset: Highest grossing movies Dec. 2017\n\n# Data from Box Office Mojo for Dec. 22-24, 2017. \nboxoffice &lt;- tibble(\n  rank = 1:5,\n  title = c(\n    \"Star Wars\", \"Jumanji\", \"Pitch Perfect 3\",\n    \"Greatest Showman\", \"Ferdinand\"\n  ),\n  amount = c(71.57, 36.17, 19.93, 8.81, 7.32) # million USD\n)\n\nboxoffice\n\n# A tibble: 5 × 3\n   rank title            amount\n  &lt;int&gt; &lt;chr&gt;             &lt;dbl&gt;\n1     1 Star Wars         71.6 \n2     2 Jumanji           36.2 \n3     3 Pitch Perfect 3   19.9 \n4     4 Greatest Showman   8.81\n5     5 Ferdinand          7.32"
+  },
+  {
+    "objectID": "slides/figure-design.html#visualize-as-a-bar-plot",
+    "href": "slides/figure-design.html#visualize-as-a-bar-plot",
+    "title": "Visualizing amounts",
+    "section": "Visualize as a bar plot",
+    "text": "Visualize as a bar plot\n\nggplot(boxoffice, aes(title, amount)) +\n  geom_col()  # \"col\" stands for column"
+  },
+  {
+    "objectID": "slides/figure-design.html#order-by-data-value",
+    "href": "slides/figure-design.html#order-by-data-value",
+    "title": "Visualizing amounts",
+    "section": "Order by data value",
+    "text": "Order by data value\n\nggplot(boxoffice, aes(fct_reorder(title, amount), amount)) +\n  geom_col()  # \"col\" stands for column"
+  },
+  {
+    "objectID": "slides/figure-design.html#order-by-data-value-descending",
+    "href": "slides/figure-design.html#order-by-data-value-descending",
+    "title": "Visualizing amounts",
+    "section": "Order by data value, descending",
+    "text": "Order by data value, descending\n\nggplot(boxoffice, aes(fct_reorder(title, -amount), amount)) +\n  geom_col() + \n  xlab(NULL) # remove x axis label"
+  },
+  {
+    "objectID": "slides/figure-design.html#flip-x-and-y-set-custom-x-axis-label",
+    "href": "slides/figure-design.html#flip-x-and-y-set-custom-x-axis-label",
+    "title": "Visualizing amounts",
+    "section": "Flip x and y, set custom x axis label",
+    "text": "Flip x and y, set custom x axis label\n\nggplot(boxoffice, aes(amount, fct_reorder(title, amount))) +\n  geom_col() +\n  xlab(\"amount (in million USD)\") +\n  ylab(NULL)"
+  },
+  {
+    "objectID": "slides/figure-design.html#example-visualize-number-of-penguins-per-species",
+    "href": "slides/figure-design.html#example-visualize-number-of-penguins-per-species",
+    "title": "Visualizing amounts",
+    "section": "Example: Visualize number of penguins per species",
+    "text": "Example: Visualize number of penguins per species\n\n\n\n# A tibble: 344 × 8\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Torgersen           39.1          18.7               181        3750\n 2 Adelie  Torgersen           39.5          17.4               186        3800\n 3 Adelie  Torgersen           40.3          18                 195        3250\n 4 Adelie  Torgersen           NA            NA                  NA          NA\n 5 Adelie  Torgersen           36.7          19.3               193        3450\n 6 Adelie  Torgersen           39.3          20.6               190        3650\n 7 Adelie  Torgersen           38.9          17.8               181        3625\n 8 Adelie  Torgersen           39.2          19.6               195        4675\n 9 Adelie  Torgersen           34.1          18.1               193        3475\n10 Adelie  Torgersen           42            20.2               190        4250\n# ℹ 334 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;"
+  },
+  {
+    "objectID": "slides/figure-design.html#use-geom_bar-to-count-before-plotting",
+    "href": "slides/figure-design.html#use-geom_bar-to-count-before-plotting",
+    "title": "Visualizing amounts",
+    "section": "Use geom_bar() to count before plotting",
+    "text": "Use geom_bar() to count before plotting\n\nggplot(penguins, aes(y = species)) + # no x aesthetic needed\n  geom_bar()"
+  },
+  {
+    "objectID": "slides/figure-design.html#getting-the-bars-into-the-right-order",
+    "href": "slides/figure-design.html#getting-the-bars-into-the-right-order",
+    "title": "Visualizing amounts",
+    "section": "Getting the bars into the right order",
+    "text": "Getting the bars into the right order\n\n\nOption 1: Manually, using fct_relevel()\n\nggplot(penguins, aes(y = fct_relevel(species, \"Chinstrap\", \"Gentoo\", \"Adelie\"))) +\n  geom_bar() +\n  ylab(NULL)"
+  },
+  {
+    "objectID": "slides/figure-design.html#getting-the-bars-into-the-right-order-1",
+    "href": "slides/figure-design.html#getting-the-bars-into-the-right-order-1",
+    "title": "Visualizing amounts",
+    "section": "Getting the bars into the right order",
+    "text": "Getting the bars into the right order\n\nOption 2: Using fct_rev() and fct_infreq() from the forcats package\n\nggplot(penguins, aes(y = fct_rev(fct_infreq(species)))) +\n  geom_bar() +\n  ylab(NULL)"
+  },
+  {
+    "objectID": "slides/figure-design.html#display-counts-by-species-and-sex",
+    "href": "slides/figure-design.html#display-counts-by-species-and-sex",
+    "title": "Visualizing amounts",
+    "section": "Display counts by species and sex",
+    "text": "Display counts by species and sex\n\n\nggplot(penguins, aes(sex, fill = species)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "slides/figure-design.html#remove-missing-values-nas",
+    "href": "slides/figure-design.html#remove-missing-values-nas",
+    "title": "Visualizing amounts",
+    "section": "Remove missing values (NAs)",
+    "text": "Remove missing values (NAs)\n\n\npenguins2 &lt;- na.omit(penguins) # remove all rows with any missing values\n\nggplot(penguins2, aes(sex, fill = species)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "slides/figure-design.html#positions-define-how-subgroups-are-shown",
+    "href": "slides/figure-design.html#positions-define-how-subgroups-are-shown",
+    "title": "Visualizing amounts",
+    "section": "Positions define how subgroups are shown",
+    "text": "Positions define how subgroups are shown\n\nposition = \"dodge\": Place bars for subgroups side-by-side\n\nggplot(penguins2, aes(sex, fill = species)) +\n  geom_bar(position = \"dodge\")"
+  },
+  {
+    "objectID": "slides/figure-design.html#positions-define-how-subgroups-are-shown-1",
+    "href": "slides/figure-design.html#positions-define-how-subgroups-are-shown-1",
+    "title": "Visualizing amounts",
+    "section": "Positions define how subgroups are shown",
+    "text": "Positions define how subgroups are shown\n\nposition = \"stack\": Place bars for subgroups on top of each other\n\nggplot(penguins2, aes(sex, fill = species)) +\n  geom_bar(position = \"stack\")"
+  },
+  {
+    "objectID": "slides/figure-design.html#positions-define-how-subgroups-are-shown-2",
+    "href": "slides/figure-design.html#positions-define-how-subgroups-are-shown-2",
+    "title": "Visualizing amounts",
+    "section": "Positions define how subgroups are shown",
+    "text": "Positions define how subgroups are shown\n\nposition = \"fill\": Like \"stack\", but scale to 100%\n\nggplot(penguins2, aes(sex, fill = species)) +\n  geom_bar(position = \"fill\")"
+  },
+  {
+    "objectID": "slides/figure-design.html#further-reading",
+    "href": "slides/figure-design.html#further-reading",
+    "title": "Figure design",
+    "section": "Further reading",
+    "text": "Further reading\n\n\nFundamentals of Data Visualization: Chapter 23: Balance the data and the context\nData Visualization—A Practical Introduction: Chapter 8.3: Change the appearance of plots with themes\nggplot2 reference documentation: Complete themes\nggplot2 reference documentation: Modify components of a theme"
+  },
+  {
+    "objectID": "slides/figure-design.html#customizing-theme-elements",
+    "href": "slides/figure-design.html#customizing-theme-elements",
+    "title": "Figure design",
+    "section": "Customizing theme elements",
+    "text": "Customizing theme elements\n\n\n\nggplot(penguins) +\n  aes(flipper_length_mm, body_mass_g) +\n  geom_point(aes(color = species)) +\n  theme_minimal_grid()"
+  },
+  {
+    "objectID": "slides/figure-design.html#using-ready-made-themes",
+    "href": "slides/figure-design.html#using-ready-made-themes",
+    "title": "Figure design",
+    "section": "Using ready-made themes",
+    "text": "Using ready-made themes\n\n\nggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +\n  geom_point()\n  # default theme is theme_gray()"
+  },
+  {
+    "objectID": "slides/figure-design.html#customizing-theme-elements-1",
+    "href": "slides/figure-design.html#customizing-theme-elements-1",
+    "title": "Figure design",
+    "section": "Customizing theme elements",
+    "text": "Customizing theme elements\n\n\n\nggplot(penguins) +\n  aes(flipper_length_mm, body_mass_g) +\n  geom_point(aes(color = species)) +\n  theme_minimal_grid() +\n  theme(\n    # change overall font family\n    # (requires font to be available)\n    text = element_text(\n      family = \"Comic Sans MS\"\n    )\n  )"
+  },
+  {
+    "objectID": "slides/figure-design.html#customizing-theme-elements-2",
+    "href": "slides/figure-design.html#customizing-theme-elements-2",
+    "title": "Figure design",
+    "section": "Customizing theme elements",
+    "text": "Customizing theme elements\n\n\n\nggplot(penguins) +\n  aes(flipper_length_mm, body_mass_g) +\n  geom_point(aes(color = species)) +\n  theme_minimal_grid() +\n  theme(\n    # change color of axis titles\n    axis.title = element_text(\n      color = \"royalblue2\"\n    )\n  )"
+  },
+  {
+    "objectID": "slides/figure-design.html#customizing-theme-elements-3",
+    "href": "slides/figure-design.html#customizing-theme-elements-3",
+    "title": "Figure design",
+    "section": "Customizing theme elements",
+    "text": "Customizing theme elements\n\n\n\nggplot(penguins) +\n  aes(flipper_length_mm, body_mass_g) +\n  geom_point(aes(color = species)) +\n  theme_minimal_grid() +\n  theme(\n    # change color of only the x axis title\n    axis.title.x = element_text(\n      color = \"royalblue2\"\n    )\n  )"
+  },
+  {
+    "objectID": "slides/figure-design.html#customizing-theme-elements-4",
+    "href": "slides/figure-design.html#customizing-theme-elements-4",
+    "title": "Figure design",
+    "section": "Customizing theme elements",
+    "text": "Customizing theme elements\n\n\n\nggplot(penguins) +\n  aes(flipper_length_mm, body_mass_g) +\n  geom_point(aes(color = species)) +\n  theme_minimal_grid() +\n  theme(\n    # change all text colors?\n    # why does it not work?\n    text = element_text(color = \"royalblue2\")\n  )"
+  },
+  {
+    "objectID": "slides/figure-design.html#customizing-theme-elements-5",
+    "href": "slides/figure-design.html#customizing-theme-elements-5",
+    "title": "Figure design",
+    "section": "Customizing theme elements",
+    "text": "Customizing theme elements\n\n\n\nggplot(penguins) +\n  aes(flipper_length_mm, body_mass_g) +\n  geom_point(aes(color = species)) +\n  theme_minimal_grid() +\n  theme(\n    text = element_text(color = \"royalblue2\"),\n    axis.text = element_text(\n      color = \"royalblue2\"\n    )\n  )\n\n\n\n\n\n \n\n\n\n\n\n\nThe element axis.text has its own color set in the theme. Therefore it doesn’t inherit from text."
+  },
+  {
+    "objectID": "slides/figure-design.html#horizontal-and-vertical-alignment",
+    "href": "slides/figure-design.html#horizontal-and-vertical-alignment",
+    "title": "Figure design",
+    "section": "Horizontal and vertical alignment",
+    "text": "Horizontal and vertical alignment\n\n\n\nggplot(penguins) +\n  aes(flipper_length_mm, body_mass_g) +\n  geom_point(aes(color = species)) +\n  theme_minimal_grid() +\n  theme(\n    axis.title.x = element_text(\n      # horizontal justification\n      # (0 = left)\n      hjust = 0\n    )\n  )"
+  },
+  {
+    "objectID": "slides/figure-design.html#horizontal-and-vertical-alignment-1",
+    "href": "slides/figure-design.html#horizontal-and-vertical-alignment-1",
+    "title": "Figure design",
+    "section": "Horizontal and vertical alignment",
+    "text": "Horizontal and vertical alignment\n\n\n\nggplot(penguins) +\n  aes(flipper_length_mm, body_mass_g) +\n  geom_point(aes(color = species)) +\n  theme_minimal_grid() +\n  theme(\n    axis.title.x = element_text(\n      # horizontal justification\n      # (0.5 = center)\n      hjust = 0.5\n    )\n  )"
+  },
+  {
+    "objectID": "slides/figure-design.html#horizontal-and-vertical-alignment-2",
+    "href": "slides/figure-design.html#horizontal-and-vertical-alignment-2",
+    "title": "Figure design",
+    "section": "Horizontal and vertical alignment",
+    "text": "Horizontal and vertical alignment\n\n\n\nggplot(penguins) +\n  aes(flipper_length_mm, body_mass_g) +\n  geom_point(aes(color = species)) +\n  theme_minimal_grid() +\n  theme(\n    axis.title.x = element_text(\n      # horizontal justification\n      # (1 = right)\n      hjust = 1\n    )\n  )"
+  },
+  {
+    "objectID": "slides/figure-design.html#horizontal-and-vertical-alignment-3",
+    "href": "slides/figure-design.html#horizontal-and-vertical-alignment-3",
+    "title": "Figure design",
+    "section": "Horizontal and vertical alignment",
+    "text": "Horizontal and vertical alignment\n\n\n\nggplot(penguins) +\n  aes(flipper_length_mm, body_mass_g) +\n  geom_point(aes(color = species)) +\n  theme_minimal_grid() +\n  theme(\n    axis.text.y = element_text(\n      # vertical justification\n      # (0 = bottom)\n      vjust = 0\n    )\n  )"
+  },
+  {
+    "objectID": "slides/figure-design.html#horizontal-and-vertical-alignment-4",
+    "href": "slides/figure-design.html#horizontal-and-vertical-alignment-4",
+    "title": "Figure design",
+    "section": "Horizontal and vertical alignment",
+    "text": "Horizontal and vertical alignment\n\n\n\nggplot(penguins) +\n  aes(flipper_length_mm, body_mass_g) +\n  geom_point(aes(color = species)) +\n  theme_minimal_grid() +\n  theme(\n    axis.text.y = element_text(\n      # vertical justification\n      # (0.5 = center)\n      vjust = 0.5\n    )\n  )"
+  },
+  {
+    "objectID": "slides/figure-design.html#horizontal-and-vertical-alignment-5",
+    "href": "slides/figure-design.html#horizontal-and-vertical-alignment-5",
+    "title": "Figure design",
+    "section": "Horizontal and vertical alignment",
+    "text": "Horizontal and vertical alignment\n\n\n\nggplot(penguins) +\n  aes(flipper_length_mm, body_mass_g) +\n  geom_point(aes(color = species)) +\n  theme_minimal_grid() +\n  theme(\n    axis.text.y = element_text(\n      # vertical justification\n      # (1 = top)\n      vjust = 1\n    )\n  )"
+  },
+  {
+    "objectID": "slides/figure-design.html#remove-elements-entirely-element_blank",
+    "href": "slides/figure-design.html#remove-elements-entirely-element_blank",
+    "title": "Figure design",
+    "section": "Remove elements entirely: element_blank()",
+    "text": "Remove elements entirely: element_blank()\n\n\n\nggplot(penguins) +\n  aes(flipper_length_mm, body_mass_g) +\n  geom_point(aes(color = species)) +\n  theme_minimal_grid() +\n  theme(\n    # all text gone\n    text = element_blank()\n  )"
+  },
+  {
+    "objectID": "slides/figure-design.html#remove-elements-entirely-element_blank-1",
+    "href": "slides/figure-design.html#remove-elements-entirely-element_blank-1",
+    "title": "Figure design",
+    "section": "Remove elements entirely: element_blank()",
+    "text": "Remove elements entirely: element_blank()\n\n\n\nggplot(penguins) +\n  aes(flipper_length_mm, body_mass_g) +\n  geom_point(aes(color = species)) +\n  theme_minimal_grid() +\n  theme(\n    # no axis titles\n    axis.title = element_blank()\n  )"
+  },
+  {
+    "objectID": "slides/figure-design.html#set-background-color-element_rect",
+    "href": "slides/figure-design.html#set-background-color-element_rect",
+    "title": "Figure design",
+    "section": "Set background color: element_rect()",
+    "text": "Set background color: element_rect()\n\n\n\nggplot(penguins) +\n  aes(flipper_length_mm, body_mass_g) +\n  geom_point(aes(color = species)) +\n  theme_minimal_grid() +\n  theme(\n    plot.background = element_rect(\n      fill = \"aliceblue\"\n    )\n  )"
+  },
+  {
+    "objectID": "slides/figure-design.html#set-background-color-element_rect-1",
+    "href": "slides/figure-design.html#set-background-color-element_rect-1",
+    "title": "Figure design",
+    "section": "Set background color: element_rect()",
+    "text": "Set background color: element_rect()\n\n\n\nggplot(penguins) +\n  aes(flipper_length_mm, body_mass_g) +\n  geom_point(aes(color = species)) +\n  theme_minimal_grid() +\n  theme(\n    panel.background = element_rect(\n      fill = \"aliceblue\"\n    )\n  )"
+  },
+  {
+    "objectID": "slides/figure-design.html#set-background-color-element_rect-2",
+    "href": "slides/figure-design.html#set-background-color-element_rect-2",
+    "title": "Figure design",
+    "section": "Set background color: element_rect()",
+    "text": "Set background color: element_rect()\n\n\n\nggplot(penguins) +\n  aes(flipper_length_mm, body_mass_g) +\n  geom_point(aes(color = species)) +\n  theme_minimal_grid() +\n  theme(\n    legend.box.background = element_rect(\n      fill = \"aliceblue\",\n      color = \"steelblue4\" # line color\n    )\n  )"
+  },
+  {
+    "objectID": "slides/figure-design.html#set-background-color-element_rect-3",
+    "href": "slides/figure-design.html#set-background-color-element_rect-3",
+    "title": "Figure design",
+    "section": "Set background color: element_rect()",
+    "text": "Set background color: element_rect()\n\n\n\nggplot(penguins) +\n  aes(flipper_length_mm, body_mass_g) +\n  geom_point(aes(color = species)) +\n  theme_minimal_grid() +\n  theme(\n    legend.box.background = element_rect(\n      fill = \"aliceblue\",\n      color = \"steelblue4\" # line color\n    ),\n    legend.box.margin = margin(7, 7, 7, 7)\n  )"
+  },
+  {
+    "objectID": "slides/figure-design.html#move-the-legend-legend.position",
+    "href": "slides/figure-design.html#move-the-legend-legend.position",
+    "title": "Figure design",
+    "section": "Move the legend: legend.position",
+    "text": "Move the legend: legend.position\n\n\n\nggplot(penguins) +\n  aes(flipper_length_mm, body_mass_g) +\n  geom_point(aes(color = species)) +\n  theme_minimal_grid() +\n  theme(\n    legend.box.background = element_rect(\n      fill = \"aliceblue\",\n      color = \"steelblue4\" # line color\n    ),\n    legend.box.margin = margin(7, 7, 7, 7),\n    # legend on top of plot\n    legend.position = \"top\"\n  )"
+  },
+  {
+    "objectID": "slides/figure-design.html#move-the-legend-legend.position-1",
+    "href": "slides/figure-design.html#move-the-legend-legend.position-1",
+    "title": "Figure design",
+    "section": "Move the legend: legend.position",
+    "text": "Move the legend: legend.position\n\n\n\nggplot(penguins) +\n  aes(flipper_length_mm, body_mass_g) +\n  geom_point(aes(color = species)) +\n  theme_minimal_grid() +\n  theme(\n    legend.box.background = element_rect(\n      fill = \"aliceblue\",\n      color = \"steelblue4\" # line color\n    ),\n    legend.box.margin = margin(7, 7, 7, 7),\n    # legend inside plot\n    legend.position = \"inside\", \n    # relative position inside plot panel\n    legend.position.inside = c(0.98, 0.02),\n    # justification relative to position\n    legend.justification = c(1, 0)\n  )"
   }
 ]

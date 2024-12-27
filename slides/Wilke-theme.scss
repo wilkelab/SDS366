@@ -113,3 +113,8 @@ $code-block-font-size: 0.66em; /* equivalent to .tiny-font by default */
 figcaption {
   display: none;
 }
+
+/* ensure that code to left of figures doesn't have code blocks with extra height */
+.reveal .column-output-location .column:first-of-type div.sourceCode {
+  height: auto !important;
+}

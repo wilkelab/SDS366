@@ -1,0 +1,518 @@
+---
+title: "Figure design"
+author: "Claus O. Wilke"
+date: last-modified
+format: 
+  revealjs:
+    theme:
+      - default
+      - Wilke-theme.scss
+    auto-stretch: false
+    chalkboard: true
+execute:
+  fig-format: svg
+  fig-asp: 0.618
+  fig-width: 5.5
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+library(cowplot)
+library(ggthemes)
+library(colorspace)
+library(ggridges)
+library(palmerpenguins)
+library(here)
+
+# ggplot2 settings so plots scale well for slide size 
+theme_set(theme_gray(14))
+update_geom_defaults("point", list(size = 2))
+update_geom_defaults("line", list(linewidth = 1))
+
+lincoln_temps <- readRDS(here("datasets", "lincoln_temps.rds"))
+```
+
+# Working with ggplot themes
+
+---
+
+## Using ready-made themes
+
+::: {.small-font}
+```{r}
+#| label: penguins-complete-themes
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig.width: 6
+#| out-width: "60%"
+#| fig-show: hold
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point()
+  # default theme is theme_gray()
+```
+:::
+
+
+## Customizing theme elements
+
+::: {.tiny-font}
+```{r}
+#| label: penguins-theme-elements1
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(penguins) +
+  aes(flipper_length_mm, body_mass_g) +
+  geom_point(aes(color = species)) +
+  theme_minimal_grid()
+```
+:::
+
+## Customizing theme elements
+
+::: {.tiny-font}
+```{r}
+#| label: penguins-theme-elements2
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(penguins) +
+  aes(flipper_length_mm, body_mass_g) +
+  geom_point(aes(color = species)) +
+  theme_minimal_grid() +
+  theme(
+    # change overall font family
+    # (requires font to be available)
+    text = element_text(
+      family = "Comic Sans MS"
+    )
+  )
+```
+:::
+
+## Customizing theme elements
+
+::: {.tiny-font}
+```{r}
+#| label: penguins-theme-elements3
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(penguins) +
+  aes(flipper_length_mm, body_mass_g) +
+  geom_point(aes(color = species)) +
+  theme_minimal_grid() +
+  theme(
+    # change color of axis titles
+    axis.title = element_text(
+      color = "royalblue2"
+    )
+  )
+```
+:::
+
+## Customizing theme elements
+
+::: {.tiny-font}
+```{r}
+#| label: penguins-theme-elements4
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(penguins) +
+  aes(flipper_length_mm, body_mass_g) +
+  geom_point(aes(color = species)) +
+  theme_minimal_grid() +
+  theme(
+    # change color of only the x axis title
+    axis.title.x = element_text(
+      color = "royalblue2"
+    )
+  )
+```
+:::
+
+## Customizing theme elements
+
+::: {.tiny-font}
+```{r}
+#| label: penguins-theme-elements5
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(penguins) +
+  aes(flipper_length_mm, body_mass_g) +
+  geom_point(aes(color = species)) +
+  theme_minimal_grid() +
+  theme(
+    # change all text colors?
+    # why does it not work?
+    text = element_text(color = "royalblue2")
+  )
+```
+:::
+
+## Customizing theme elements
+
+::: {.tiny-font}
+```{r}
+#| label: penguins-theme-elements6
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(penguins) +
+  aes(flipper_length_mm, body_mass_g) +
+  geom_point(aes(color = species)) +
+  theme_minimal_grid() +
+  theme(
+    text = element_text(color = "royalblue2"),
+    axis.text = element_text(
+      color = "royalblue2"
+    )
+  )
+```
+:::
+
+::: {.fragment .small-font}
+The element `axis.text` has its own color set in the theme. Therefore it doesn't inherit from `text`.
+:::
+
+
+## Horizontal and vertical alignment
+
+::: {.tiny-font}
+```{r}
+#| label: penguins-theme-elements7
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(penguins) +
+  aes(flipper_length_mm, body_mass_g) +
+  geom_point(aes(color = species)) +
+  theme_minimal_grid() +
+  theme(
+    axis.title.x = element_text(
+      # horizontal justification
+      # (0 = left)
+      hjust = 0
+    )
+  )
+```
+:::
+
+## Horizontal and vertical alignment
+
+::: {.tiny-font}
+```{r}
+#| label: penguins-theme-elements8
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(penguins) +
+  aes(flipper_length_mm, body_mass_g) +
+  geom_point(aes(color = species)) +
+  theme_minimal_grid() +
+  theme(
+    axis.title.x = element_text(
+      # horizontal justification
+      # (0.5 = center)
+      hjust = 0.5
+    )
+  )
+```
+:::
+
+## Horizontal and vertical alignment
+
+::: {.tiny-font}
+```{r}
+#| label: penguins-theme-elements9
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(penguins) +
+  aes(flipper_length_mm, body_mass_g) +
+  geom_point(aes(color = species)) +
+  theme_minimal_grid() +
+  theme(
+    axis.title.x = element_text(
+      # horizontal justification
+      # (1 = right)
+      hjust = 1
+    )
+  )
+```
+:::
+
+## Horizontal and vertical alignment
+
+::: {.tiny-font}
+```{r}
+#| label: penguins-theme-elements10
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(penguins) +
+  aes(flipper_length_mm, body_mass_g) +
+  geom_point(aes(color = species)) +
+  theme_minimal_grid() +
+  theme(
+    axis.text.y = element_text(
+      # vertical justification
+      # (0 = bottom)
+      vjust = 0
+    )
+  )
+```
+:::
+
+## Horizontal and vertical alignment
+
+::: {.tiny-font}
+```{r}
+#| label: penguins-theme-elements11
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(penguins) +
+  aes(flipper_length_mm, body_mass_g) +
+  geom_point(aes(color = species)) +
+  theme_minimal_grid() +
+  theme(
+    axis.text.y = element_text(
+      # vertical justification
+      # (0.5 = center)
+      vjust = 0.5
+    )
+  )
+```
+:::
+
+## Horizontal and vertical alignment
+
+::: {.tiny-font}
+```{r}
+#| label: penguins-theme-elements12
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(penguins) +
+  aes(flipper_length_mm, body_mass_g) +
+  geom_point(aes(color = species)) +
+  theme_minimal_grid() +
+  theme(
+    axis.text.y = element_text(
+      # vertical justification
+      # (1 = top)
+      vjust = 1
+    )
+  )
+```
+:::
+
+## Remove elements entirely: `element_blank()`
+
+::: {.tiny-font}
+```{r}
+#| label: penguins-theme-elements13
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(penguins) +
+  aes(flipper_length_mm, body_mass_g) +
+  geom_point(aes(color = species)) +
+  theme_minimal_grid() +
+  theme(
+    # all text gone
+    text = element_blank()
+  )
+```
+:::
+
+
+## Remove elements entirely: `element_blank()`
+
+::: {.tiny-font}
+```{r}
+#| label: penguins-theme-elements14
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(penguins) +
+  aes(flipper_length_mm, body_mass_g) +
+  geom_point(aes(color = species)) +
+  theme_minimal_grid() +
+  theme(
+    # no axis titles
+    axis.title = element_blank()
+  )
+```
+:::
+
+## Set background color: `element_rect()`
+
+::: {.tiny-font}
+```{r}
+#| label: penguins-theme-elements15
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(penguins) +
+  aes(flipper_length_mm, body_mass_g) +
+  geom_point(aes(color = species)) +
+  theme_minimal_grid() +
+  theme(
+    plot.background = element_rect(
+      fill = "aliceblue"
+    )
+  )
+```
+:::
+
+## Set background color: `element_rect()`
+
+::: {.tiny-font}
+```{r}
+#| label: penguins-theme-elements16
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(penguins) +
+  aes(flipper_length_mm, body_mass_g) +
+  geom_point(aes(color = species)) +
+  theme_minimal_grid() +
+  theme(
+    panel.background = element_rect(
+      fill = "aliceblue"
+    )
+  )
+```
+:::
+
+## Set background color: `element_rect()`
+
+::: {.tiny-font}
+```{r}
+#| label: penguins-theme-elements17
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(penguins) +
+  aes(flipper_length_mm, body_mass_g) +
+  geom_point(aes(color = species)) +
+  theme_minimal_grid() +
+  theme(
+    legend.box.background = element_rect(
+      fill = "aliceblue",
+      color = "steelblue4" # line color
+    )
+  )
+```
+:::
+
+## Set background color: `element_rect()`
+
+::: {.tiny-font}
+```{r}
+#| label: penguins-theme-elements18
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(penguins) +
+  aes(flipper_length_mm, body_mass_g) +
+  geom_point(aes(color = species)) +
+  theme_minimal_grid() +
+  theme(
+    legend.box.background = element_rect(
+      fill = "aliceblue",
+      color = "steelblue4" # line color
+    ),
+    legend.box.margin = margin(7, 7, 7, 7)
+  )
+```
+:::
+
+## Move the legend: `legend.position`
+
+::: {.tiny-font}
+```{r}
+#| label: penguins-theme-elements19
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(penguins) +
+  aes(flipper_length_mm, body_mass_g) +
+  geom_point(aes(color = species)) +
+  theme_minimal_grid() +
+  theme(
+    legend.box.background = element_rect(
+      fill = "aliceblue",
+      color = "steelblue4" # line color
+    ),
+    legend.box.margin = margin(7, 7, 7, 7),
+    # legend on top of plot
+    legend.position = "top"
+  )
+```
+:::
+
+
+## Move the legend: `legend.position`
+
+::: {.tiny-font}
+```{r}
+#| label: penguins-theme-elements20
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(penguins) +
+  aes(flipper_length_mm, body_mass_g) +
+  geom_point(aes(color = species)) +
+  theme_minimal_grid() +
+  theme(
+    legend.box.background = element_rect(
+      fill = "aliceblue",
+      color = "steelblue4" # line color
+    ),
+    legend.box.margin = margin(7, 7, 7, 7),
+    # legend inside plot
+    legend.position = "inside", 
+    # relative position inside plot panel
+    legend.position.inside = c(0.98, 0.02),
+    # justification relative to position
+    legend.justification = c(1, 0)
+  )
+```
+:::
+
+<!-- Segment ends here -->
+
+## Further reading
+
+::: {.small-font}
+- Fundamentals of Data Visualization: [Chapter 23: Balance the data and the context](https://clauswilke.com/dataviz/balance-data-context.html)
+- Data Visualization—A Practical Introduction: [Chapter 8.3: Change the appearance of plots with themes](https://socviz.co/refineplots.html#change-the-appearance-of-plots-with-themes)
+- ggplot2 reference documentation: [Complete themes](https://ggplot2.tidyverse.org/reference/ggtheme.html)
+- ggplot2 reference documentation: [Modify components of a theme](https://ggplot2.tidyverse.org/reference/theme.html)
+:::
