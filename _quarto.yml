@@ -27,6 +27,8 @@ website:
           href: slides/visualizing-amounts.qmd
         - text: "Class 3b: Telling a story"
           href: slides/telling-a-story.qmd
+        - text: "Class 4: Coordinate systems and axes"
+          href: slides/coordinate-systems-axes.qmd
         - text: "Class 13: Figure design"
           href: slides/figure-design.qmd
         

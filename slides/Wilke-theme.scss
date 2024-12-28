@@ -14,8 +14,8 @@ $font-family-sans-serif: 'Lato', Arial, sans-serif;
 $font-family-monospace: 'Roboto Mono', 'Lucida Console', Monaco, Consolas, monospace; 
 $presentation-heading-font: 'Roboto Condensed', 'Arial Narrow OS', Arial, sans-serif;
 $presentation-font-size-root: 36px;
-$presentation-h1-font-size:	1.45em;
-$presentation-h2-font-size:	1.45em;
+$presentation-h1-font-size:	1.3em;
+$presentation-h2-font-size:	1.3em;
 $presentation-h3-font-size:	1.2em;
 $presentation-h4-font-size:	1.2em;
 $presentation-heading-font-weight: 400;
@@ -124,3 +124,7 @@ figcaption {
 .reveal .column-output-location .column:first-of-type div.sourceCode {
   height: auto !important;
 }
+
+/* .nogap class to remove all margins around figures */
+.reveal .nogap img {margin-top: 0; margin-bottom: 0}
+.reveal .nogap div.quarto-figure {margin-top: 0; margin-bottom: 0}  
