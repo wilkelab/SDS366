@@ -33,6 +33,294 @@ update_geom_defaults("line", list(linewidth = 1))
 lincoln_temps <- readRDS(here("datasets", "lincoln_temps.rds"))
 ```
 
+## {#how-do-we-go data-menu-title="How do we go from this"}
+
+::: {.columns}
+
+::: {.column width="50%"}
+[How do we go from this]{.title-font}
+
+```{r}
+#| label: lincoln-ridgeline-raw
+#| fig-cap: "&nbsp;"
+#| out-width: "90%"
+ggplot(lincoln_temps) +
+  aes(x = mean_temp, y = month_long) +
+  geom_density_ridges()
+```
+:::
+
+::: {.fragment .column width="50%"}
+[&nbsp;&nbsp;&nbsp;to this?]{.title-font}
+
+```{r}
+#| label: lincoln-ridgeline-polished
+#| fig-cap: "&nbsp;"
+#| out-width: "90%"
+ggplot(lincoln_temps) +
+  aes(x = mean_temp, y = month_long) +
+  geom_density_ridges(
+    scale = 3, bandwidth = 3.4,
+    rel_min_height = 0.01,
+    fill = "#7DCCFF",
+    color = "white"
+  ) +
+  scale_x_continuous(
+    name = "mean temperature (°F)",
+    expand = c(0, 0)
+  ) +
+  scale_y_discrete(
+    name = NULL,
+    expand = expansion(add = c(0.2, 2.6))
+  ) +
+  theme_minimal_grid() +
+  theme(
+    axis.text.y = element_text(vjust = 0)
+  )
+```
+:::
+
+:::
+
+::: {.fragment .small-font .move-up-1em}
+Requires coordinated modification of multiple elements:
+:::
+
+::: {.incremental .small-font}
+- geoms (via arguments to geoms)
+- scales (via `scale_*()` functions)
+- plot appearance (via themes)
+:::
+
+## The starting point, a rough draft
+
+::: {.tiny-font}
+```{r}
+#| label: lincoln-ridgeline-progression1
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(lincoln_temps) +
+  aes(x = mean_temp, y = month_long) +
+  geom_density_ridges()
+```
+:::
+
+::: {.fragment .tiny-font}
+You can download the dataset using this code:
+```r
+lincoln_temps <- readRDS(url("https://wilkelab.org/SDS366/datasets/lincoln_temps.rds"))
+```
+:::
+
+## Set `scale` and `bandwidth` to shape ridgelines
+
+::: {.tiny-font}
+```{r}
+#| label: lincoln-ridgeline-progression2
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(lincoln_temps) +
+  aes(x = mean_temp, y = month_long) +
+  geom_density_ridges(
+    scale = 3, bandwidth = 3.4
+  )
+```
+:::
+
+## Set `rel_min_height` to cut ridgelines near zero
+
+::: {.tiny-font}
+```{r}
+#| label: lincoln-ridgeline-progression3
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(lincoln_temps) +
+  aes(x = mean_temp, y = month_long) +
+  geom_density_ridges(
+    scale = 3, bandwidth = 3.4,
+    rel_min_height = 0.01
+  )
+```
+:::
+
+## Use `scale_*()` functions to specify axis labels
+
+::: {.tiny-font}
+```{r}
+#| label: lincoln-ridgeline-progression4
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(lincoln_temps) +
+  aes(x = mean_temp, y = month_long) +
+  geom_density_ridges(
+    scale = 3, bandwidth = 3.4,
+    rel_min_height = 0.01,
+  ) +
+  scale_x_continuous(
+    name = "mean temperature (°F)"
+  ) +
+  scale_y_discrete(
+    name = NULL  # NULL means no label
+  )
+```
+:::
+
+## Specify scale expansion
+
+::: {.tiny-font}
+```{r}
+#| label: lincoln-ridgeline-progression5
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(lincoln_temps) +
+  aes(x = mean_temp, y = month_long) +
+  geom_density_ridges(
+    scale = 3, bandwidth = 3.4,
+    rel_min_height = 0.01
+  ) +
+  scale_x_continuous(
+    name = "mean temperature (°F)",
+    expand = c(0, 0)
+  ) +
+  scale_y_discrete(
+    name = NULL,
+    expand = expansion(add = c(0.2, 2.6))
+  )
+```
+:::
+
+## Set overall plot theme
+
+::: {.tiny-font}
+```{r}
+#| label: lincoln-ridgeline-progression6
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(lincoln_temps) +
+  aes(x = mean_temp, y = month_long) +
+  geom_density_ridges(
+    scale = 3, bandwidth = 3.4,
+    rel_min_height = 0.01
+  ) +
+  scale_x_continuous(
+    name = "mean temperature (°F)",
+    expand = c(0, 0)
+  ) +
+  scale_y_discrete(
+    name = NULL,
+    expand = expansion(add = c(0.2, 2.6))
+  ) +
+  theme_minimal_grid()  # from cowplot
+```
+:::
+
+## Align y axis labels to grid lines
+
+::: {.tiny-font}
+```{r}
+#| label: lincoln-ridgeline-progression7
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(lincoln_temps) +
+  aes(x = mean_temp, y = month_long) +
+  geom_density_ridges(
+    scale = 3, bandwidth = 3.4,
+    rel_min_height = 0.01
+  ) +
+  scale_x_continuous(
+    name = "mean temperature (°F)",
+    expand = c(0, 0)
+  ) +
+  scale_y_discrete(
+    name = NULL,
+    expand = expansion(add = c(0.2, 2.6))
+  ) +
+  theme_minimal_grid() +
+  theme(
+    axis.text.y = element_text(vjust = 0)
+  )
+```
+:::
+
+## Change fill color from default gray to blue
+
+::: {.tiny-font}
+```{r}
+#| label: lincoln-ridgeline-progression8
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(lincoln_temps) +
+  aes(x = mean_temp, y = month_long) +
+  geom_density_ridges(
+    scale = 3, bandwidth = 3.4,
+    rel_min_height = 0.01,
+    fill = "#7DCCFF"
+  ) +
+  scale_x_continuous(
+    name = "mean temperature (°F)",
+    expand = c(0, 0)
+  ) +
+  scale_y_discrete(
+    name = NULL,
+    expand = expansion(add = c(0.2, 2.6))
+  ) +
+  theme_minimal_grid() +
+  theme(
+    axis.text.y = element_text(vjust = 0)
+  )
+```
+:::
+
+## Draw lines in white instead of black
+
+::: {.tiny-font}
+```{r}
+#| label: lincoln-ridgeline-progression9
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(lincoln_temps) +
+  aes(x = mean_temp, y = month_long) +
+  geom_density_ridges(
+    scale = 3, bandwidth = 3.4,
+    rel_min_height = 0.01,
+    fill = "#7DCCFF",
+    color = "white"
+  ) +
+  scale_x_continuous(
+    name = "mean temperature (°F)",
+    expand = c(0, 0)
+  ) +
+  scale_y_discrete(
+    name = NULL,
+    expand = expansion(add = c(0.2, 2.6))
+  ) +
+  theme_minimal_grid() +
+  theme(
+    axis.text.y = element_text(vjust = 0)
+  )
+```
+:::
+
+<!-- Segment ends here -->
+
 # Working with ggplot themes
 
 ---
@@ -53,6 +341,202 @@ ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
 ```
 :::
 
+## Using ready-made themes
+
+::: {.small-font}
+```{r}
+#| label: penguins-complete-themes2
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig.width: 6
+#| out-width: "60%"
+#| fig-show: hold
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point() +
+  theme_gray()
+```
+:::
+
+## Using ready-made themes
+
+::: {.small-font}
+```{r}
+#| label: penguins-complete-themes3
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig.width: 6
+#| out-width: "60%"
+#| fig-show: hold
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point() +
+  theme_gray(14) # most themes take a font-size argument to scale text size
+```
+:::
+
+## Using ready-made themes
+
+::: {.small-font}
+```{r}
+#| label: penguins-complete-themes4
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig.width: 6
+#| out-width: "60%"
+#| fig-show: hold
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point() +
+  theme_bw(14)
+```
+:::
+
+## Using ready-made themes
+
+::: {.small-font}
+```{r}
+#| label: penguins-complete-themes5
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig.width: 6
+#| out-width: "60%"
+#| fig-show: hold
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point() +
+  theme_minimal(14)
+```
+:::
+
+## Using ready-made themes
+
+::: {.small-font}
+```{r}
+#| label: penguins-complete-themes6
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig.width: 6
+#| out-width: "60%"
+#| fig-show: hold
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point() +
+  theme_classic(14)
+```
+:::
+
+## Using ready-made themes
+
+::: {.small-font}
+```{r}
+#| label: penguins-complete-themes7
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig.width: 6
+#| out-width: "60%"
+#| fig-show: hold
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point() +
+  theme_half_open()  # from package cowplot
+```
+:::
+
+## Using ready-made themes
+
+::: {.small-font}
+```{r}
+#| label: penguins-complete-themes8
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig.width: 6
+#| out-width: "60%"
+#| fig-show: hold
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point() +
+  theme_minimal_grid()  # from package cowplot
+```
+:::
+
+## Using ready-made themes
+
+::: {.small-font}
+```{r}
+#| label: penguins-complete-themes9
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig.width: 6
+#| out-width: "60%"
+#| fig-show: hold
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point() +
+  theme_minimal_hgrid()  # from package cowplot
+```
+:::
+
+## Using ready-made themes
+
+::: {.small-font}
+```{r}
+#| label: penguins-complete-themes10
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig.width: 6
+#| out-width: "60%"
+#| fig-show: hold
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point() +
+  theme_minimal_vgrid()  # from package cowplot
+```
+:::
+
+## Using ready-made themes
+
+::: {.small-font}
+```{r}
+#| label: penguins-complete-themes11
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig.width: 4.944
+#| fig.asp: 0.75
+#| out-width: "50%"
+#| fig-show: hold
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point() +
+  theme_economist(14)       # from package ggthemes
+```
+:::
+
+## Using ready-made themes
+
+::: {.small-font}
+```{r}
+#| label: penguins-complete-themes12
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig.width: 4.944
+#| fig.asp: 0.75
+#| out-width: "50%"
+#| fig-show: hold
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point() +
+  theme_economist(14) + # from package ggthemes
+  scale_color_economist() 
+```
+:::
+
+## Using ready-made themes
+
+::: {.small-font}
+```{r}
+#| label: penguins-complete-themes13
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig.width: 4.944
+#| fig.asp: 0.75
+#| out-width: "50%"
+#| fig-show: hold
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point() +
+  theme_fivethirtyeight(14) + # from package ggthemes
+  scale_color_fivethirtyeight()
+```
+:::
 
 ## Customizing theme elements
 

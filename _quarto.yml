@@ -23,10 +23,13 @@ website:
       menu:
         - text: "Class 2: Aesthetic mappings"
           href: slides/aesthetic-mappings.qmd
-        - text: "Class 3: Telling a story"
-          href: slides/telling-a-story.qmd
-        - text: "Class 3: Visualizing amounts"
+        - text: "Class 3a: Visualizing amounts"
           href: slides/visualizing-amounts.qmd
+        - text: "Class 3b: Telling a story"
+          href: slides/telling-a-story.qmd
+        - text: "Class 13: Figure design"
+          href: slides/figure-design.qmd
+        
           
     - text: "Worksheets"
       menu:

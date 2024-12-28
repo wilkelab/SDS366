@@ -26,6 +26,12 @@ $code-block-font-size: 0.66em; /* equivalent to .tiny-font by default */
 .tiny-font { font-size: 0.66em; }
 .xtiny-font { font-size: 0.50em; }
 
+.title-font { 
+  font-family: 'Roboto Condensed', 'Arial Narrow OS', Arial, sans-serif;
+  font-weight: 400;
+  font-size: 1.45em;
+}
+
 .reveal h1 {
   color: red;
   text-align: center;
