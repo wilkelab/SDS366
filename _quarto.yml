@@ -43,7 +43,7 @@ website:
         
     tools:
       - icon: github
-        href: "https://github.com"
+        href: "https://github.com/wilkelab/SDS366"
 
 format:
   html:
