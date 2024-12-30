@@ -3,9 +3,11 @@ project:
   render:
     - "*.qmd"
     - "!datasets/"
+    - "!assignments/"
   resources:
     - "assets/"
     - "datasets/"
+    - "assignments/"
 
 website:
   title: "SDS 366"
@@ -34,6 +36,8 @@ website:
         
       - text: "Worksheets"
         menu:
+          - text: "Class 1: Intro to Quarto"
+            href: assignments/intro_to_Quarto.qmd
           - text: "Class 2: Aesthetic mappings"
             href: worksheets/aesthetic-mappings.qmd
           - text: "Class 3: Visualizing amounts"

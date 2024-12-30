@@ -1,0 +1,41 @@
+---
+title: "Intro to Quarto"
+format: 
+  typst:
+    fig-width: 4
+    fig-height: 2.5
+editor: visual
+---
+
+All assignments in this class will be done via [Quarto documents.](https://quarto.org) Quarto documents are documents that combine text, code, and output, including figures. They are a great way to produce self-contained and documented statistical analyses. Quarto has support for a variety of popular programming languages for data analysis, including R and python.
+
+In this first worksheet, you will learn how to do some basic Quarto editing. After you have made a change to the document, press "Render" in R Studio and see what kind of a result you get. All assignments will be submitted as pdf files and therefore this Quarto document renders into a pdf as well.
+
+Edit only below this line.
+
+------------------------------------------------------------------------
+
+## 1. Basic Markdown editing
+
+Try out basic editing features, as described here: <https://quarto.org/docs/visual-editor/#overview>. Write some text that is bold, and some that is in italics. Make a numbered list and a bulleted list. Make a nested list. Try the block-quote feature.
+
+Also try both the visual and the source editing mode and see which one you prefer.
+
+*Your text goes here.*
+
+## 2. Embedding R code
+
+R code embedded in R chunks will be executed and the output will be shown.
+
+```{r}
+library(ggplot2)
+
+ggplot(mtcars, aes(disp, mpg)) +
+  geom_point()
+```
+
+Now you try it. If you know some ggplot, modify the above plot. For example, plot some other data columns (e.g., `hp`, `qsec`, `gear`), or add some color to the plot. If you don't know ggplot but know some other R, try that. If you don't know any R try basic mathematical expressions, such as `45 + 10` or `sqrt(15)`.
+
+```{r}
+# Your R code goes here
+```

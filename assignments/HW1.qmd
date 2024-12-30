@@ -1,0 +1,36 @@
+---
+title: "Homework 1"
+format: typst
+editor: visual
+---
+
+```{r}
+#| echo: false
+#| message: false
+# !! Do not edit this code chunk !!
+library(tidyverse)
+```
+
+**This homework is due on Jan. 23, 2024 at 11:00pm. Please submit as a pdf file on Canvas.**
+
+**Problem 1: (8 pts)** Demonstrate basic command of Quarto document editing by creating a bulleted list with three items, a numbered list with three items, and a sentence that has one word in bold and one word in italics.
+
+*Your text goes here.*
+
+**Problem 2: (6 pts)** The `economics` dataset contains various time series data from the US economy:
+
+```{r}
+economics
+```
+
+Use ggplot to make a line plot of the total population (`pop`, in thousands) versus time (column `date`).
+
+```{r}
+# your code goes here
+```
+
+**Problem 3: (6 pts)** Again using the `economics` dataset, now make a scatter plot (using `geom_point()`) of the number of unemployed versus the total population (`pop`), and color points by date.
+
+```{r}
+# your code goes here
+```

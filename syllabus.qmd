@@ -52,67 +52,70 @@ All these books are freely available online and you do not need to purchase a ph
 
 2.      Aesthetic mappings          **ggplot2** quickstart
 
-3.      Telling a story
+3.      Visualizing amounts,        `geom_col()`, `geom_point()`,
+        telling a story             position adjustments
 
-4.      Visualizing amounts         `geom_col()`, `geom_point()`,
-                                    position adjustments
-
-5.      Coordinate systems and      coords and position scales
+4.      Coordinate systems and      coords and position scales
         axes
 
-6.      Visualizing distributions   stats, `geom_density()`,
+5.      Visualizing distributions   stats, `geom_density()`,
         1                           `geom_histogram()`
 
-7.      Visualizing distributions   violin plots, sina plots, ridgeline plots
+6.      Visualizing distributions   violin plots, sina plots, ridgeline plots
         2
 
-8.      Color scales                color and fill scales
+7.      Color scales                color and fill scales
 
-9.      Data wrangling 1            `mutate()`, `filter()`, `arrange()`
+8.      Color spaces, color vision  **colorspace** package
+        deficiency
 
-10.     Data wrangling 2            `group_by()`, `summarize()`, `count()`
+9.      Data wrangling              `mutate()`, `filter()`, `arrange()`
+                                    `summarize()`, `join()`, `pivot_longer()`
 
-11.     Visualizing proportions     bar charts, pie charts
+10.     Visualizing proportions     bar charts, pie charts
 
-12.     Getting to know your data   handling missing data, `is.na()`, `case_when()`
+11.     Getting to know your data   handling missing data, `is.na()`, `case_when()`
 
-13.     Getting things into the     `fct_reorder()`, `fct_lump()`
+12.     Getting things into the     `fct_reorder()`, `fct_lump()`
         right order
 
-14.     Figure design               ggplot themes
+13.     Figure design               ggplot themes
 
-15.     Color spaces, color vision  **colorspace** package
-        deficiency
+14.     Compound figures            **patchwork** package
+
+15.     Visualizing trends          `geom_smooth()`
 
 16.     Functions and functional    `map()`, `nest()`, **purrr** package
         programming
 
-17.     Visualizing trends          `geom_smooth()`
+17.     Working with models         `lm`, `cor.test`, **broom** package
 
-18.     Working with models         `lm`, `cor.test`, **broom** package
+18.     Visualizing uncertainty     frequency framing, error bars, **ggdist** package
 
-19.     Visualizing uncertainty     frequency framing, error bars, **ggdist** package
+19.     Dimension reduction 1       PCA
 
-20.     Dimension reduction 1       PCA
+20.     Dimension reduction 2       kernel PCA, t-SNE, UMAP
 
-21.     Dimension reduction 2       kernel PCA, t-SNE, UMAP
+21.     Clustering 1                k-means clustering
 
-22.     Clustering 1                k-means clustering
-
-23.     Clustering 2                hierarchical clustering
+22.     Clustering 2                hierarchical clustering
         
-24.     Visualizing geospatial      `geom_sf()`, `coord_sf()`
+23.     Visualizing geospatial      `geom_sf()`, `coord_sf()`
         data
 
-25.     Redundant coding, text      **ggrepel** package
+24.     Redundant coding, text      **ggrepel** package
         annotations
+
+25.     Over-plotting               jittering, 2d histograms,
+                                    contour plots
 
 26.     Interactive plots           **ggiraph** package
 
-27.     Over-plotting               jittering, 2d histograms,
-                                    contour plots
+27.     Web technologies and        CSS
+        web design
 
-28.     Compound figures            **patchwork** package
+28.     Interactive plots           **gganimate** package
+
 
 ----------------------------------------------------------------
 
