@@ -35,7 +35,8 @@ $code-block-font-size: 0.66em; /* equivalent to .tiny-font by default */
 .reveal h1 {
   color: red;
   text-align: center;
-  margin: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 2em !important;
 }
 
 /* Make inline code slightly smaller; prevents vertical jumps

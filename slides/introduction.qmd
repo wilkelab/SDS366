@@ -1,0 +1,127 @@
+---
+title: "Introduction"
+author: "Claus O. Wilke"
+date: last-modified
+format: 
+  revealjs:
+    theme:
+      - default
+      - Wilke-theme.scss
+    auto-stretch: false
+    chalkboard: true
+execute:
+  fig-format: svg
+  fig-asp: 0.618
+  fig-width: 5.5
+---
+
+## Why Data Visualization?
+
+![](../assets/introduction/Data_science_venn.svg){.fragment .absolute  top="20%" left="20%" width="60%" }
+
+## Why Data Visualization?
+
+![](../assets/introduction/Data_visualization_venn.svg){.fragment .absolute  top="20%" left="20%" width="60%" }
+
+## Why R?
+
+::: {.fragment}
+
+![](../assets/introduction/Rlogo.svg){.absolute  top="10%" left="15%" width="25%" }
+
+![](../assets/introduction/Data_visualization_venn.svg){.absolute  top="49%" left="8%" width="40%" }
+:::
+
+![](../assets/introduction/package-hexlogos.svg){.fragment .absolute  top="5%" left="55%" width="35%" }
+
+## Why me?
+
+::: {.fragment}
+![](https://clauswilke.com/dataviz/cover.png){.absolute  top="7%" left="0%" width="42%" style="box-shadow: 3px 5px 3px 1px #00000080;"}
+
+::: {.absolute-bottom-left .tiny-font}
+[https://clauswilke.com/dataviz](https://clauswilke.com/dataviz)
+:::
+
+:::
+
+![](https://clauswilke.com/dataviz/coordinate_systems_axes_files/figure-html/worldmap-four-projections-1.png){.fragment .absolute  top="5%" left="45%" width="35%" style="box-shadow: 3px 5px 3px 1px #00000080;"}
+
+![](https://clauswilke.com/dataviz/nested_proportions_files/figure-html/US-states-treemap-1.png){.fragment .absolute  top="15%" left="55%" width="35%" style="box-shadow: 3px 5px 3px 1px #00000080;"}
+
+![](https://clauswilke.com/dataviz/geospatial_data_files/figure-html/unemployment-geofacet-1.png){.fragment .absolute  top="25%" left="65%" width="35%" style="box-shadow: 3px 5px 3px 1px #00000080;"}
+
+![](https://clauswilke.com/dataviz/redundant_coding_files/figure-html/temp-ridgeline-colorbar-1.png){.fragment .absolute  top="35%" left="50%" width="35%" style="box-shadow: 3px 5px 3px 1px #00000080;"}
+
+![](https://clauswilke.com/dataviz/multi-panel_figures_files/figure-html/athletes-composite-good-1.png){.fragment .absolute  top="45%" left="60%" width="35%" style="box-shadow: 3px 5px 3px 1px #00000080;"}
+
+## Why me?
+
+![](../assets/introduction/ggplot2.png){width="100%"}
+
+<!-- Segment ends here -->
+
+# Class website/syllabus: [https://wilkelab.org/SDS366](https://wilkelab.org/SDS366)
+
+## Edupod login: [https://edupod.cns.utexas.edu](https://edupod.cns.utexas.edu)
+
+::: {.move-up-1em}
+![](../assets/introduction/edupod-landing.png){width="80%"}
+:::
+
+## Edupod login: [https://edupod.cns.utexas.edu](https://edupod.cns.utexas.edu)
+
+::: {.move-up-1em}
+![](../assets/introduction/edupod-landing-edited.png){width="80%"}
+:::
+
+## Edupod login: [https://edupod.cns.utexas.edu](https://edupod.cns.utexas.edu)
+
+::: {.move-up-1em}
+![](../assets/introduction/edupod-login.png){width="80%"}
+:::
+
+## Working with Quarto documents
+
+::: {.move-up-1em}
+![](../assets/introduction/RStudio-clean.png){width="90%"}
+:::
+
+## Working with Quarto documents
+
+::: {.move-up-1em}
+![](../assets/introduction/RStudio-clean-edited.png){width="90%"}
+:::
+
+## Working with Quarto documents
+
+::: {.move-up-1em}
+![](../assets/introduction/RStudio-quarto.png){width="90%"}
+:::
+
+## Working with Quarto documents
+
+::: {.move-up-1em}
+![](../assets/introduction/RStudio-quarto-edited.png){width="90%"}
+:::
+
+## Working with Quarto documents
+
+::: {.move-up-1em}
+![](../assets/introduction/RStudio-quarto-pdf.png){width="90%"}
+:::
+
+
+## Use "Export" to download PDFs
+
+::: {.move-up-1em}
+![](../assets/introduction/RStudio-pdf-download-edited.png){width="90%"}
+:::
+
+
+## Further reading
+
+::: {.small-font}
+- [Fundamentals of Data Visualization](https://clauswilke.com/dataviz)
+- [Quarto guide](https://quarto.org/docs/guide/)
+:::

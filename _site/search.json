@@ -819,6 +819,20 @@
     "text": "Class Recordings\nIf any class recordings are provided they are reserved only for students in this class for educational purposes and are protected under FERPA. The recordings should not be shared outside the class in any form. Violation of this restriction by a student could lead to Student Misconduct proceedings."
   },
   {
+    "objectID": "schedule.html#homeworks",
+    "href": "schedule.html#homeworks",
+    "title": "SDS 366 Schedule Spring 2025",
+    "section": "Homeworks",
+    "text": "Homeworks\nAll homeworks are due by 11:00pm on the day they are due. Homeworks need to be submitted as pdf files on Canvas."
+  },
+  {
+    "objectID": "schedule.html#projects",
+    "href": "schedule.html#projects",
+    "title": "SDS 366 Schedule Spring 2025",
+    "section": "Projects",
+    "text": "Projects\nAll projects are due by 11:00pm on the day they are due. Projects need to be submitted on Canvas. Please carefully read the submission instructions for each project."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "SDS 366",
@@ -833,18 +847,109 @@
     "text": "Computing requirements\nFor students enrolled in this course, you only need a working web browser to access the edupod server, located at: https://edupod.cns.utexas.edu/\nIf you are using the edupod server, stop reading here. Everything is pre-installed and no further action is needed.\nTo run any of the materials locally on your own machine, you will need the following:\n\nA recent version of R, download from here.\nA recent version of RStudio, download from here, OR a recent version of Positron, download from here.\nThe following R packages:\nbroom, cluster, colorspace, cowplot, distill, gapminder, GGally, gganimate, ggiraph, ggdendro, ggdist, ggforce, ggplot2movies, ggrepel, ggridges, ggthemes, gifski, glue, knitr, learnr, naniar, margins, MASS, Matrix, nycflights13, palmerpenguins, patchwork, rmarkdown, rnaturalearth, rnaturalearthhires, scales, sf, shinyjs, sp, tidyverse, transformr, umap, xaringan\n\nYou can install all required R packages at once by running the following code in the R command line:\n# first run this command:\ninstall.packages(\n  c(\n    \"broom\", \"cluster\", \"colorspace\", \"cowplot\", \"distill\", \"gapminder\", \n    \"GGally\", \"gganimate\", \"ggiraph\", \"ggdendro\", \"ggdist\", \"ggforce\",\n    \"ggplot2movies\", \"ggrepel\", \"ggridges\", \"ggthemes\", \"gifski\", \"glue\",\n    \"knitr\", \"learnr\", \"naniar\", \"margins\", \"MASS\", \"Matrix\",\n    \"nycflights13\", \"palmerpenguins\", \"patchwork\", \"rmarkdown\", \"rnaturalearth\",\n    \"scales\", \"sf\", \"shinyjs\", \"sp\", \"tidyverse\", \"transformr\", \"umap\",\n    \"xaringan\"\n  )\n)\n\n# then run this command:\ninstall.packages(\n  \"rnaturalearthhires\", repos = \"https://packages.ropensci.org\", type = \"source\"\n)"
   },
   {
-    "objectID": "schedule.html#homeworks",
-    "href": "schedule.html#homeworks",
-    "title": "SDS 366 Schedule Spring 2025",
-    "section": "Homeworks",
-    "text": "Homeworks\nAll homeworks are due by 11:00pm on the day they are due. Homeworks need to be submitted as pdf files on Canvas."
+    "objectID": "slides/introduction.html#why-data-visualization",
+    "href": "slides/introduction.html#why-data-visualization",
+    "title": "Introduction",
+    "section": "Why Data Visualization?",
+    "text": "Why Data Visualization?"
   },
   {
-    "objectID": "schedule.html#projects",
-    "href": "schedule.html#projects",
-    "title": "SDS 366 Schedule Spring 2025",
-    "section": "Projects",
-    "text": "Projects\nAll projects are due by 11:00pm on the day they are due. Projects need to be submitted on Canvas. Please carefully read the submission instructions for each project."
+    "objectID": "slides/introduction.html#why-data-visualization-1",
+    "href": "slides/introduction.html#why-data-visualization-1",
+    "title": "Introduction",
+    "section": "Why Data Visualization?",
+    "text": "Why Data Visualization?"
+  },
+  {
+    "objectID": "slides/introduction.html#why-r",
+    "href": "slides/introduction.html#why-r",
+    "title": "Introduction",
+    "section": "Why R?",
+    "text": "Why R?"
+  },
+  {
+    "objectID": "slides/introduction.html#why-me",
+    "href": "slides/introduction.html#why-me",
+    "title": "Introduction",
+    "section": "Why me?",
+    "text": "Why me?\n\n\n\nhttps://clauswilke.com/dataviz"
+  },
+  {
+    "objectID": "slides/introduction.html#why-me-1",
+    "href": "slides/introduction.html#why-me-1",
+    "title": "Introduction",
+    "section": "Why me?",
+    "text": "Why me?"
+  },
+  {
+    "objectID": "slides/introduction.html#edupod-login-httpsedupod.cns.utexas.edu",
+    "href": "slides/introduction.html#edupod-login-httpsedupod.cns.utexas.edu",
+    "title": "Introduction",
+    "section": "Edupod login: https://edupod.cns.utexas.edu",
+    "text": "Edupod login: https://edupod.cns.utexas.edu"
+  },
+  {
+    "objectID": "slides/introduction.html#edupod-login-httpsedupod.cns.utexas.edu-1",
+    "href": "slides/introduction.html#edupod-login-httpsedupod.cns.utexas.edu-1",
+    "title": "Introduction",
+    "section": "Edupod login: https://edupod.cns.utexas.edu",
+    "text": "Edupod login: https://edupod.cns.utexas.edu"
+  },
+  {
+    "objectID": "slides/introduction.html#edupod-login-httpsedupod.cns.utexas.edu-2",
+    "href": "slides/introduction.html#edupod-login-httpsedupod.cns.utexas.edu-2",
+    "title": "Introduction",
+    "section": "Edupod login: https://edupod.cns.utexas.edu",
+    "text": "Edupod login: https://edupod.cns.utexas.edu"
+  },
+  {
+    "objectID": "slides/introduction.html#working-with-quarto-documents",
+    "href": "slides/introduction.html#working-with-quarto-documents",
+    "title": "Introduction",
+    "section": "Working with Quarto documents",
+    "text": "Working with Quarto documents"
+  },
+  {
+    "objectID": "slides/introduction.html#working-with-quarto-documents-1",
+    "href": "slides/introduction.html#working-with-quarto-documents-1",
+    "title": "Introduction",
+    "section": "Working with Quarto documents",
+    "text": "Working with Quarto documents"
+  },
+  {
+    "objectID": "slides/introduction.html#working-with-quarto-documents-2",
+    "href": "slides/introduction.html#working-with-quarto-documents-2",
+    "title": "Introduction",
+    "section": "Working with Quarto documents",
+    "text": "Working with Quarto documents"
+  },
+  {
+    "objectID": "slides/introduction.html#working-with-quarto-documents-3",
+    "href": "slides/introduction.html#working-with-quarto-documents-3",
+    "title": "Introduction",
+    "section": "Working with Quarto documents",
+    "text": "Working with Quarto documents"
+  },
+  {
+    "objectID": "slides/introduction.html#working-with-quarto-documents-4",
+    "href": "slides/introduction.html#working-with-quarto-documents-4",
+    "title": "Introduction",
+    "section": "Working with Quarto documents",
+    "text": "Working with Quarto documents"
+  },
+  {
+    "objectID": "slides/introduction.html#use-export-to-download-pdfs",
+    "href": "slides/introduction.html#use-export-to-download-pdfs",
+    "title": "Introduction",
+    "section": "Use “Export” to download PDFs",
+    "text": "Use “Export” to download PDFs"
+  },
+  {
+    "objectID": "slides/introduction.html#further-reading",
+    "href": "slides/introduction.html#further-reading",
+    "title": "Introduction",
+    "section": "Further reading",
+    "text": "Further reading\n\n\nFundamentals of Data Visualization\nQuarto guide"
   },
   {
     "objectID": "slides/telling-a-story.html#how-did-i-get-to-teach-data-visualization",

@@ -23,6 +23,8 @@ website:
     right:
       - text: "Slides"
         menu:
+          - text: "Class 1: Introduction"
+            href: slides/introduction.qmd
           - text: "Class 2: Aesthetic mappings"
             href: slides/aesthetic-mappings.qmd
           - text: "Class 3a: Visualizing amounts"
