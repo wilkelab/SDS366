@@ -25,7 +25,7 @@ library(here)
 # ggplot2 settings so plots scale well for slide size 
 theme_set(theme_gray(14))
 update_geom_defaults("point", list(size = 2))
-update_geom_defaults("line", list(linewidth = 1))
+#update_geom_defaults("line", list(linewidth = 1))
 
 titanic <- read_csv(here("datasets", "titanic.csv")) %>%
   select(age, sex, class, survived) %>%
@@ -176,10 +176,523 @@ plot_grid(
 )
 ```
 
+## Alternative to histogram: Kernel density estimate (KDE)
+
+<br>
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| label: titanic-age-hist2
+#| fig-width: 7
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+h1 + ggtitle("Histogram") + theme(plot.title.position = "plot")
+```
+:::
+
+::: {.fragment .column width="50%"}
+```{r}
+#| label: titanic-age-kde
+#| fig-width: 7
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+ggplot(titanic, aes(x = age)) + 
+  geom_density(fill = "#56B4E9", color = darken("#56B4E9", 0.5), bw = 2, kernel = "gaussian") + 
+  scale_y_continuous(limits = c(0, 0.046), expand = c(0, 0), name = "density") +
+  scale_x_continuous(name = "age (years)", limits = c(0, 75), expand = c(0, 0)) +
+  coord_cartesian(clip = "off") +
+  ggtitle("Kernel density estimate") +
+  theme_minimal_hgrid(18) +
+  theme(
+    axis.line.x = element_blank(),
+    plot.title.position = "plot"
+  )
+```
+:::
+
+::::
+
+::: {.fragment .small-font .move-up-1em}
+Histograms show raw counts, KDEs show proportions.<br>(KDE total area = 1)
+:::
+
+## KDEs also depend on parameter settings
+
+```{r}
+#| label: titanic-age-kde-grid
+#| fig-width: 8
+#| fig-cap: "&nbsp;"
+#| out-width: "90%"
+pdens1 <- ggplot(titanic, aes(x = age)) + 
+  geom_density(fill = "#56B4E9", color = darken("#56B4E9", 0.5), bw = .5, kernel = "gaussian") + 
+  scale_y_continuous(limits = c(0, 0.046), expand = c(0, 0), name = "density") +
+  scale_x_continuous(name = "age (years)", limits = c(0, 75), expand = c(0, 0)) +
+  coord_cartesian(clip = "off") +
+  theme_minimal_hgrid(14) +
+  theme(axis.line.x = element_blank())
+
+pdens2 <- ggplot(titanic, aes(x = age)) + 
+  geom_density(fill = "#56B4E9", color = darken("#56B4E9", 0.5), bw = 2, kernel = "gaussian") + 
+  scale_y_continuous(limits = c(0, 0.046), expand = c(0, 0), name = "density") +
+  scale_x_continuous(name = "age (years)", limits = c(0, 75), expand = c(0, 0)) +
+  coord_cartesian(clip = "off") +
+  theme_minimal_hgrid(14) +
+  theme(axis.line.x = element_blank())
+
+pdens3 <- ggplot(titanic, aes(x = age)) + 
+  geom_density(fill = "#56B4E9", color = darken("#56B4E9", 0.5), bw = 5, kernel = "gaussian") + 
+  scale_y_continuous(limits = c(0, 0.046), expand = c(0, 0), name = "density") +
+  scale_x_continuous(name = "age (years)", limits = c(0, 75), expand = c(0, 0)) +
+  coord_cartesian(clip = "off") +
+  theme_minimal_hgrid(14) +
+  theme(axis.line.x = element_blank())
+
+pdens4 <- ggplot(titanic, aes(x = age)) + 
+  geom_density(fill = "#56B4E9", color = darken("#56B4E9", 0.5), bw = 2, kernel = "rectangular") + 
+  scale_y_continuous(limits = c(0, 0.046), expand = c(0, 0), name = "density") +
+  scale_x_continuous(name = "age (years)", limits = c(0, 75), expand = c(0, 0)) +
+  coord_cartesian(clip = "off") +
+  theme_minimal_hgrid(14) +
+  theme(axis.line.x = element_blank())
+
+plot_grid(
+  pdens1, NULL, pdens2, 
+  NULL, NULL, NULL,
+  pdens3, NULL, pdens4,
+  align = 'hv',
+  rel_widths = c(1, .04, 1),
+  rel_heights = c(1, .04, 1)
+)
+```
+
+## Careful: KDEs can show non-sensical data
+
+```{r}
+#| label: titanic-age-kde-wrong
+#| fig-width: 7
+#| fig-cap: "&nbsp;"
+#| out-width: "80%"
+pdens_neg <- ggplot(titanic, aes(x = age)) + 
+  geom_density(fill = "#56B4E9", color = darken("#56B4E9", 0.5)) + 
+  scale_y_continuous(limits = c(0, 0.046), expand = c(0, 0), name = "density") +
+  scale_x_continuous(name = "age (years)", limits = c(-10, 79), expand = c(0, 0)) +
+  coord_cartesian(clip = "off") +
+  theme_minimal_hgrid(16) +
+  theme(
+    axis.line.x = element_blank()
+  )
+stamp_wrong(pdens_neg)
+```
+
+## Careful: Are bars stacked or overlapping?
+
+<br>
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| label: titanic-age-hist-stacked
+#| fig-width: 7
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+gender_counts <- tibble(
+  age = (1:25)*3 - 1.5, 
+  male = hist(filter(titanic, sex == "male")$age, breaks = (0:25)*3 - .01, plot = FALSE)$counts,
+  female = hist(filter(titanic, sex == "female")$age, breaks = (0:25)*3 - .01, plot = FALSE)$counts
+) %>%
+  pivot_longer(-age, names_to = "gender", values_to = "count")
+
+gender_counts$gender <- factor(gender_counts$gender, levels = c("female", "male"))
+
+ggplot(gender_counts, aes(x = age, y = count, fill = gender)) + 
+  geom_col(position = "stack") +
+  scale_x_continuous(name = "age (years)", limits = c(0, 75), expand = c(0, 0)) +
+  scale_y_continuous(limits = c(0, 89), expand = c(0, 0), name = "count") +
+  scale_fill_manual(values = c("#D55E00", "#0072B2")) +
+  coord_cartesian(clip = "off") +
+  theme_minimal_hgrid(18) +
+  theme(
+    axis.line.x = element_blank(),
+    legend.position = c(.9, .87),
+    legend.justification = c("right", "top"),
+    legend.box.background = element_rect(fill = "white", color = "white")
+  )
+```
+:::
+
+::: {.fragment .column width="50%"}
+```{r}
+#| label: titanic-age-hist-overlap
+#| fig-width: 7
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+ggplot(gender_counts, aes(x = age, y = count, fill = gender)) + 
+  geom_col(position = "identity", alpha = 0.7) +
+  scale_x_continuous(name = "age (years)", limits = c(0, 75), expand = c(0, 0)) +
+  scale_y_continuous(limits = c(0, 56), expand = c(0, 0), name = "count") +
+  scale_fill_manual(
+    values = c("#D55E00", "#0072B2"),
+    guide = guide_legend(reverse = TRUE)
+  ) +
+  coord_cartesian(clip = "off") +
+  theme_minimal_hgrid(18) +
+  theme(
+    axis.line.x = element_blank(),
+    legend.position = c(.9, .87),
+    legend.justification = c("right", "top"),
+    legend.box.background = element_rect(fill = "white", color = "white")
+  )
+```
+:::
+
+::::
+
+::: {.fragment .small-font .move-up-1em}
+Stacked or overlapping histograms are rarely a good choice.
+:::
+
+## Alternatively: Age pyramid
+
+```{r}
+#| label: titanic-age-pyramid
+#| fig-width: 7
+#| fig-cap: "&nbsp;"
+#| out-width: "80%"
+ggplot(gender_counts, aes(x = age, y = ifelse(gender == "male", -1, 1)*count, fill = gender)) + 
+  geom_col() +
+  scale_x_continuous(name = "age (years)", limits = c(0, 75), expand = c(0, 0)) +
+  scale_y_continuous(name = "count", breaks = 20*(-2:1), labels = c("40", "20", "0", "20")) +
+  scale_fill_manual(values = c("#D55E00", "#0072B2"), guide = "none") +
+  draw_text(x = 70, y = -39, "male", hjust = 0) +
+  draw_text(x = 70, y = 21, "female", hjust = 0) +
+  coord_flip() +
+  theme_minimal_grid(16) +
+  theme(axis.title.x = element_text(hjust = 0.61))
+```
+
+## Alternatively: KDEs showing proportions of total
+
+```{r}
+#| label: titanic-age-props
+#| fig-width: 10
+#| fig-asp: 0.45
+#| fig-cap: "&nbsp;"
+#| out-width: "80%"
+titanic %>%
+  mutate(sex = factor(sex, levels = c("male", "female"))) %>%
+  ggplot(aes(x = age, y = after_stat(count))) +
+  geom_density(
+    data = select(titanic, -sex), aes(fill = "all passengers"),
+    color = "transparent"
+  ) + 
+  geom_density(aes(fill = sex), bw = 2, color = "transparent") +
+  scale_x_continuous(limits = c(0, 75), name = "passenger age (years)", expand = c(0, 0)) +
+  scale_y_continuous(limits = c(0, 26), name = "scaled density", expand = c(0, 0)) +
+  scale_fill_manual(
+    values = c("#b3b3b3a0", "#0072B2", "#D55E00"), 
+    breaks = c("all passengers", "male", "female"),
+    labels = c("all passengers  ", "males  ", "females"),
+    name = NULL,
+    guide = guide_legend(direction = "horizontal")
+  ) +
+  coord_cartesian(clip = "off") +
+  facet_wrap(vars(sex), labeller = labeller(sex = function(sex) paste(sex, "passengers"))) +
+  theme_minimal_hgrid(16) +
+  theme(
+    axis.line.x = element_blank(),
+    strip.text = element_text(size = 14, margin = margin(0, 0, 0.2, 0, "cm")),
+    legend.position = "bottom",
+    legend.justification = "right",
+    legend.margin = margin(4.5, 0, 1.5, 0, "pt"),
+    legend.spacing.x = grid::unit(4.5, "pt"),
+    legend.spacing.y = grid::unit(0, "pt"),
+    legend.box.spacing = grid::unit(0, "cm")
+  )
+```
+
+<!-- Segment ends here -->
+
+# Histograms and density plots in **ggplot2**
+
+## Getting the data
+
+All examples will use the `titanic` dataset:
+
+::: {.small-font}
+```{r message = FALSE}
+#| echo: true
+titanic <- read_csv("https://wilkelab.org/SDS366/datasets/titanic.csv") |>
+  select(age, sex, class, survived)
+
+titanic
+```
+:::
+
+## Making histograms with ggplot: `geom_histogram()`
+
+```{r}
+#| label: titanic-hist-ggplot-demo
+#| echo: true
+#| message: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+ggplot(titanic, aes(age)) +
+  geom_histogram()
+```
+
+## Setting the bin width
+
+```{r}
+#| label: titanic-hist-ggplot-demo2
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+ggplot(titanic, aes(age)) +
+  geom_histogram(binwidth = 5)
+```
+
+::: {.fragment .small-font .move-up-2em}
+Do you like the bin placement?
+:::
+
+## Always set the bin center as well
+
+```{r}
+#| label: titanic-hist-ggplot-demo3
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+ggplot(titanic, aes(age)) +
+  geom_histogram(
+    binwidth = 5,  # width of the bins
+    center = 2.5   # center of the bin containing that value
+  )
+```
+
+## Always set the bin center as well
+
+```{r}
+#| label: titanic-hist-ggplot-demo4
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+ggplot(titanic, aes(age)) +
+  geom_histogram(
+    binwidth = 5,  # width of the bins
+    center = 12.5   # center of the bin containing that value
+  )
+```
+
+## Making density plots with ggplot: `geom_density()`
+
+```{r}
+#| label: titanic-dens-ggplot-demo
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+ggplot(titanic, aes(age)) +
+  geom_density(fill = "skyblue")
+```
+
+## Making density plots with ggplot: `geom_density()`
+
+```{r}
+#| label: titanic-dens-ggplot-demo2
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+ggplot(titanic, aes(age)) +
+  geom_density() # without fill
+```
+
+## Modifying bandwidth (`bw`) and kernel parameters
+
+```{r}
+#| label: titanic-dens-ggplot-demo3
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+ggplot(titanic, aes(age)) +
+  geom_density(
+    fill = "skyblue",
+    bw = 0.5,               # a small bandwidth
+    kernel = "gaussian"     # Gaussian kernel (the default)
+  )
+```
+
+## Modifying bandwidth (`bw`) and kernel parameters
+
+```{r}
+#| label: titanic-dens-ggplot-demo4
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+ggplot(titanic, aes(age)) +
+  geom_density(
+    fill = "skyblue",
+    bw = 2,                 # a moderate bandwidth
+    kernel = "rectangular"  # rectangular kernel
+  )
+```
+
+<!-- Segment ends here -->
+
+# Setting stats explicitly in **ggplot2**
+
+## Statistical transformations (stats) can be set explicitly
+
+```{r}
+#| label: titanic-stat-demo1
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+ggplot(titanic, aes(age)) +
+  geom_density(
+    stat = "density",    # the default for geom_density()
+    fill = "skyblue"
+  )
+```
+
+## Statistical transformations (stats) can be set explicitly
+
+```{r}
+#| label: titanic-stat-demo2
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+ggplot(titanic, aes(age)) +
+  geom_area(  # geom_area() does not normally use stat = "density"
+    stat = "density",
+    fill = "skyblue"
+  )
+```
+
+## Statistical transformations (stats) can be set explicitly
+
+```{r}
+#| label: titanic-stat-demo3
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+ggplot(titanic, aes(age)) +
+  geom_line(  # neither does geom_line()
+    stat = "density"
+  )
+```
+
+## Statistical transformations (stats) can be set explicitly
+
+```{r}
+#| label: titanic-stat-demo4
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+ggplot(titanic, aes(age)) +
+  # we can use multiple geoms on top of each other
+  geom_area(stat = "density", fill = "skyblue") +
+  geom_line(stat = "density")
+```
+
+## Parameters are handed through to the stat
+
+:::: {.columns}
+
+::: {.column width="50%" .tiny-font}
+```{r}
+#| label: titanic-stat-demo5
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+ggplot(titanic, aes(age)) +
+  geom_line(stat = "density", bw = 3)
+```
+:::
+
+::: {.column width="50%" .tiny-font}
+```{r}
+#| label: titanic-stat-demo6
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+ggplot(titanic, aes(age)) +
+  geom_line(stat = "density", bw = 0.3)
+```
+:::
+
+::::
+
+::: {.fragment .small-font .move-up-1em}
+Here, `bw` is a parameter of `stat_density()`, not of `geom_line()`.
+:::
+
+## We can explicitly map results from stat computations
+
+::: {.small-font}
+```{r}
+#| label: titanic-stat-demo7
+#| echo: true
+#| fig-width: 10
+#| fig-asp: 0.3
+#| fig-cap: "&nbsp;"
+#| out-width: "90%"
+ggplot(titanic, aes(age)) +
+  geom_tile( # geom_tile() draws rectangular colored areas
+    aes(
+      y = 1, # draw all tiles at the same y location
+      fill = after_stat(density)  # use computed density for fill
+    ),
+    stat = "density",
+    n = 20    # number of points calculated by stat_density() 
+  ) 
+```
+:::
+
+## We can explicitly map results from stat computations
+
+::: {.small-font}
+```{r}
+#| label: titanic-stat-demo8
+#| echo: true
+#| fig-width: 10
+#| fig-asp: 0.3
+#| fig-cap: "&nbsp;"
+#| out-width: "90%"
+ggplot(titanic, aes(age)) +
+  geom_tile( # geom_tile() draws rectangular colored areas
+    aes(
+      y = 1, # draw all tiles at the same y location
+      fill = after_stat(density)  # use computed density for fill
+    ),
+    stat = "density",
+    n = 200    # number of points calculated by stat_density() 
+  ) 
+```
+:::
 
 <!-- Segment ends here -->
 
 ## Further reading
 
 ::: {.small-font}
+- Fundamentals of Data Visualization: [Chapter 7: Visualizing distributions](https://clauswilke.com/dataviz/histograms-density-plots.html)
+- Data Visualization—A Practical Introduction: [4.6 Histograms and density plots](https://socviz.co/groupfacettx.html#histograms)
+- **ggplot2** reference documentation: [`geom_histogram()`](https://ggplot2.tidyverse.org/reference/geom_histogram)
+- **ggplot2** reference documentation: [`geom_density()`](https://ggplot2.tidyverse.org/reference/geom_density)
 :::

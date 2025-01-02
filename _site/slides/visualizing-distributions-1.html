@@ -30,6 +30,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -805,12 +870,463 @@ Claus O. Wilke
 </div>
 </div>
 </div>
+</section>
+<section id="alternative-to-histogram-kernel-density-estimate-kde" class="slide level2">
+<h2>Alternative to histogram: Kernel density estimate (KDE)</h2>
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-age-hist2-1.svg" style="width:100.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="fragment column" style="width:50%;">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-age-kde-1.svg" style="width:100.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+<div class="fragment small-font move-up-1em">
+<p>Histograms show raw counts, KDEs show proportions.<br>(KDE total area = 1)</p>
+</div>
+</section>
+<section id="kdes-also-depend-on-parameter-settings" class="slide level2">
+<h2>KDEs also depend on parameter settings</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-age-kde-grid-1.svg" style="width:90.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="careful-kdes-can-show-non-sensical-data" class="slide level2">
+<h2>Careful: KDEs can show non-sensical data</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-age-kde-wrong-1.svg" style="width:80.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="careful-are-bars-stacked-or-overlapping" class="slide level2">
+<h2>Careful: Are bars stacked or overlapping?</h2>
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-age-hist-stacked-1.svg" style="width:100.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="fragment column" style="width:50%;">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-age-hist-overlap-1.svg" style="width:100.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+<div class="fragment small-font move-up-1em">
+<p>Stacked or overlapping histograms are rarely a good choice.</p>
+</div>
+</section>
+<section id="alternatively-age-pyramid" class="slide level2">
+<h2>Alternatively: Age pyramid</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-age-pyramid-1.svg" style="width:80.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="alternatively-kdes-showing-proportions-of-total" class="slide level2">
+<h2>Alternatively: KDEs showing proportions of total</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-age-props-1.svg" style="width:80.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<!-- Segment ends here -->
+</section></section>
+<section>
+<section id="histograms-and-density-plots-in-ggplot2" class="title-slide slide level1 center">
+<h1>Histograms and density plots in <strong>ggplot2</strong></h1>
+
+</section>
+<section id="getting-the-data" class="slide level2">
+<h2>Getting the data</h2>
+<p>All examples will use the <code>titanic</code> dataset:</p>
+<div class="small-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>titanic <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://wilkelab.org/SDS366/datasets/titanic.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-2"><a></a>  <span class="fu">select</span>(age, sex, class, survived)</span>
+<span id="cb1-3"><a></a></span>
+<span id="cb1-4"><a></a>titanic</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 756 × 4
+     age sex    class survived
+   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;   
+ 1 29    female 1st   survived
+ 2  2    female 1st   died    
+ 3 30    male   1st   died    
+ 4 25    female 1st   died    
+ 5  0.92 male   1st   survived
+ 6 47    male   1st   survived
+ 7 63    female 1st   survived
+ 8 39    male   1st   died    
+ 9 58    female 1st   survived
+10 71    male   1st   died    
+# ℹ 746 more rows</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="making-histograms-with-ggplot-geom_histogram" class="slide level2">
+<h2>Making histograms with ggplot: <code>geom_histogram()</code></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb3-2"><a></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-hist-ggplot-demo-1.svg" style="width:65.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="setting-the-bin-width" class="slide level2">
+<h2>Setting the bin width</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb5-2"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-hist-ggplot-demo2-1.svg" style="width:65.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="fragment small-font move-up-2em">
+<p>Do you like the bin placement?</p>
+</div>
+</section>
+<section id="always-set-the-bin-center-as-well" class="slide level2">
+<h2>Always set the bin center as well</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb6-2"><a></a>  <span class="fu">geom_histogram</span>(</span>
+<span id="cb6-3"><a></a>    <span class="at">binwidth =</span> <span class="dv">5</span>,  <span class="co"># width of the bins</span></span>
+<span id="cb6-4"><a></a>    <span class="at">center =</span> <span class="fl">2.5</span>   <span class="co"># center of the bin containing that value</span></span>
+<span id="cb6-5"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-hist-ggplot-demo3-1.svg" style="width:65.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="always-set-the-bin-center-as-well-1" class="slide level2">
+<h2>Always set the bin center as well</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb7-2"><a></a>  <span class="fu">geom_histogram</span>(</span>
+<span id="cb7-3"><a></a>    <span class="at">binwidth =</span> <span class="dv">5</span>,  <span class="co"># width of the bins</span></span>
+<span id="cb7-4"><a></a>    <span class="at">center =</span> <span class="fl">12.5</span>   <span class="co"># center of the bin containing that value</span></span>
+<span id="cb7-5"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-hist-ggplot-demo4-1.svg" style="width:65.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="making-density-plots-with-ggplot-geom_density" class="slide level2">
+<h2>Making density plots with ggplot: <code>geom_density()</code></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb8-2"><a></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-dens-ggplot-demo-1.svg" style="width:65.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="making-density-plots-with-ggplot-geom_density-1" class="slide level2">
+<h2>Making density plots with ggplot: <code>geom_density()</code></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb9-2"><a></a>  <span class="fu">geom_density</span>() <span class="co"># without fill</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-dens-ggplot-demo2-1.svg" style="width:65.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="modifying-bandwidth-bw-and-kernel-parameters" class="slide level2">
+<h2>Modifying bandwidth (<code>bw</code>) and kernel parameters</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb10-2"><a></a>  <span class="fu">geom_density</span>(</span>
+<span id="cb10-3"><a></a>    <span class="at">fill =</span> <span class="st">"skyblue"</span>,</span>
+<span id="cb10-4"><a></a>    <span class="at">bw =</span> <span class="fl">0.5</span>,               <span class="co"># a small bandwidth</span></span>
+<span id="cb10-5"><a></a>    <span class="at">kernel =</span> <span class="st">"gaussian"</span>     <span class="co"># Gaussian kernel (the default)</span></span>
+<span id="cb10-6"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-dens-ggplot-demo3-1.svg" style="width:65.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="modifying-bandwidth-bw-and-kernel-parameters-1" class="slide level2">
+<h2>Modifying bandwidth (<code>bw</code>) and kernel parameters</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb11-2"><a></a>  <span class="fu">geom_density</span>(</span>
+<span id="cb11-3"><a></a>    <span class="at">fill =</span> <span class="st">"skyblue"</span>,</span>
+<span id="cb11-4"><a></a>    <span class="at">bw =</span> <span class="dv">2</span>,                 <span class="co"># a moderate bandwidth</span></span>
+<span id="cb11-5"><a></a>    <span class="at">kernel =</span> <span class="st">"rectangular"</span>  <span class="co"># rectangular kernel</span></span>
+<span id="cb11-6"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-dens-ggplot-demo4-1.svg" style="width:65.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<!-- Segment ends here -->
+</section></section>
+<section>
+<section id="setting-stats-explicitly-in-ggplot2" class="title-slide slide level1 center">
+<h1>Setting stats explicitly in <strong>ggplot2</strong></h1>
+
+</section>
+<section id="statistical-transformations-stats-can-be-set-explicitly" class="slide level2">
+<h2>Statistical transformations (stats) can be set explicitly</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb12-2"><a></a>  <span class="fu">geom_density</span>(</span>
+<span id="cb12-3"><a></a>    <span class="at">stat =</span> <span class="st">"density"</span>,    <span class="co"># the default for geom_density()</span></span>
+<span id="cb12-4"><a></a>    <span class="at">fill =</span> <span class="st">"skyblue"</span></span>
+<span id="cb12-5"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-stat-demo1-1.svg" style="width:65.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="statistical-transformations-stats-can-be-set-explicitly-1" class="slide level2">
+<h2>Statistical transformations (stats) can be set explicitly</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb13-2"><a></a>  <span class="fu">geom_area</span>(  <span class="co"># geom_area() does not normally use stat = "density"</span></span>
+<span id="cb13-3"><a></a>    <span class="at">stat =</span> <span class="st">"density"</span>,</span>
+<span id="cb13-4"><a></a>    <span class="at">fill =</span> <span class="st">"skyblue"</span></span>
+<span id="cb13-5"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-stat-demo2-1.svg" style="width:65.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="statistical-transformations-stats-can-be-set-explicitly-2" class="slide level2">
+<h2>Statistical transformations (stats) can be set explicitly</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb14-2"><a></a>  <span class="fu">geom_line</span>(  <span class="co"># neither does geom_line()</span></span>
+<span id="cb14-3"><a></a>    <span class="at">stat =</span> <span class="st">"density"</span></span>
+<span id="cb14-4"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-stat-demo3-1.svg" style="width:65.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="statistical-transformations-stats-can-be-set-explicitly-3" class="slide level2">
+<h2>Statistical transformations (stats) can be set explicitly</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb15-2"><a></a>  <span class="co"># we can use multiple geoms on top of each other</span></span>
+<span id="cb15-3"><a></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">"density"</span>, <span class="at">fill =</span> <span class="st">"skyblue"</span>) <span class="sc">+</span></span>
+<span id="cb15-4"><a></a>  <span class="fu">geom_line</span>(<span class="at">stat =</span> <span class="st">"density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-stat-demo4-1.svg" style="width:65.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="parameters-are-handed-through-to-the-stat" class="slide level2">
+<h2>Parameters are handed through to the stat</h2>
+<div class="columns">
+<div class="column tiny-font" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb16-2"><a></a>  <span class="fu">geom_line</span>(<span class="at">stat =</span> <span class="st">"density"</span>, <span class="at">bw =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-stat-demo5-1.svg" style="width:100.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column tiny-font" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb17-2"><a></a>  <span class="fu">geom_line</span>(<span class="at">stat =</span> <span class="st">"density"</span>, <span class="at">bw =</span> <span class="fl">0.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-stat-demo6-1.svg" style="width:100.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+<div class="fragment small-font move-up-1em">
+<p>Here, <code>bw</code> is a parameter of <code>stat_density()</code>, not of <code>geom_line()</code>.</p>
+</div>
+</section>
+<section id="we-can-explicitly-map-results-from-stat-computations" class="slide level2">
+<h2>We can explicitly map results from stat computations</h2>
+<div class="small-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb18-2"><a></a>  <span class="fu">geom_tile</span>( <span class="co"># geom_tile() draws rectangular colored areas</span></span>
+<span id="cb18-3"><a></a>    <span class="fu">aes</span>(</span>
+<span id="cb18-4"><a></a>      <span class="at">y =</span> <span class="dv">1</span>, <span class="co"># draw all tiles at the same y location</span></span>
+<span id="cb18-5"><a></a>      <span class="at">fill =</span> <span class="fu">after_stat</span>(density)  <span class="co"># use computed density for fill</span></span>
+<span id="cb18-6"><a></a>    ),</span>
+<span id="cb18-7"><a></a>    <span class="at">stat =</span> <span class="st">"density"</span>,</span>
+<span id="cb18-8"><a></a>    <span class="at">n =</span> <span class="dv">20</span>    <span class="co"># number of points calculated by stat_density() </span></span>
+<span id="cb18-9"><a></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-stat-demo7-1.svg" style="width:90.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="we-can-explicitly-map-results-from-stat-computations-1" class="slide level2">
+<h2>We can explicitly map results from stat computations</h2>
+<div class="small-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb19-2"><a></a>  <span class="fu">geom_tile</span>( <span class="co"># geom_tile() draws rectangular colored areas</span></span>
+<span id="cb19-3"><a></a>    <span class="fu">aes</span>(</span>
+<span id="cb19-4"><a></a>      <span class="at">y =</span> <span class="dv">1</span>, <span class="co"># draw all tiles at the same y location</span></span>
+<span id="cb19-5"><a></a>      <span class="at">fill =</span> <span class="fu">after_stat</span>(density)  <span class="co"># use computed density for fill</span></span>
+<span id="cb19-6"><a></a>    ),</span>
+<span id="cb19-7"><a></a>    <span class="at">stat =</span> <span class="st">"density"</span>,</span>
+<span id="cb19-8"><a></a>    <span class="at">n =</span> <span class="dv">200</span>    <span class="co"># number of points calculated by stat_density() </span></span>
+<span id="cb19-9"><a></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-stat-demo8-1.svg" style="width:90.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
 <!-- Segment ends here -->
 </section>
 <section id="further-reading" class="slide level2">
 <h2>Further reading</h2>
 <div class="small-font">
-
+<ul>
+<li>Fundamentals of Data Visualization: <a href="https://clauswilke.com/dataviz/histograms-density-plots.html">Chapter 7: Visualizing distributions</a></li>
+<li>Data Visualization—A Practical Introduction: <a href="https://socviz.co/groupfacettx.html#histograms">4.6 Histograms and density plots</a></li>
+<li><strong>ggplot2</strong> reference documentation: <a href="https://ggplot2.tidyverse.org/reference/geom_histogram"><code>geom_histogram()</code></a></li>
+<li><strong>ggplot2</strong> reference documentation: <a href="https://ggplot2.tidyverse.org/reference/geom_density"><code>geom_density()</code></a></li>
+</ul>
 </div>
 
 <div class="quarto-auto-generated-content">
