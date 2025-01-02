@@ -57,67 +57,110 @@ execute:
 
 ## Why me?
 
-![](../assets/introduction/ggplot2.png){width="100%"}
+::: {.center-text}
+![](../assets/introduction/ggplot2.png){width="100%" style="box-shadow: 3px 5px 3px 1px #00000080;"}
+:::
 
 <!-- Segment ends here -->
 
 # Class website/syllabus: [https://wilkelab.org/SDS366](https://wilkelab.org/SDS366)
 
+## We will use Quarto for all assignments
+
+::: {.center-text}
+![](../assets/introduction/Quarto.png){width="85%" style="box-shadow: 3px 5px 3px 1px #00000080;"}
+:::
+
+::: {.absolute-bottom-right .tiny-font}
+[https://quarto.org/](https://quarto.org/)
+:::
+
 ## Edupod login: [https://edupod.cns.utexas.edu](https://edupod.cns.utexas.edu)
 
-::: {.move-up-1em}
+::: {.move-up-1em .center-text}
 ![](../assets/introduction/edupod-landing.png){width="80%"}
 :::
 
 ## Edupod login: [https://edupod.cns.utexas.edu](https://edupod.cns.utexas.edu)
 
-::: {.move-up-1em}
+::: {.move-up-1em .center-text}
 ![](../assets/introduction/edupod-landing-edited.png){width="80%"}
 :::
 
 ## Edupod login: [https://edupod.cns.utexas.edu](https://edupod.cns.utexas.edu)
 
-::: {.move-up-1em}
+::: {.move-up-1em .center-text}
 ![](../assets/introduction/edupod-login.png){width="80%"}
 :::
 
 ## Working with Quarto documents
 
-::: {.move-up-1em}
+::: {.move-up-1em .center-text}
 ![](../assets/introduction/RStudio-clean.png){width="90%"}
 :::
 
 ## Working with Quarto documents
 
-::: {.move-up-1em}
+::: {.move-up-1em .center-text}
 ![](../assets/introduction/RStudio-clean-edited.png){width="90%"}
 :::
 
 ## Working with Quarto documents
 
-::: {.move-up-1em}
+::: {.move-up-1em .center-text}
 ![](../assets/introduction/RStudio-quarto.png){width="90%"}
 :::
 
 ## Working with Quarto documents
 
-::: {.move-up-1em}
+::: {.move-up-1em .center-text}
 ![](../assets/introduction/RStudio-quarto-edited.png){width="90%"}
 :::
 
 ## Working with Quarto documents
 
-::: {.move-up-1em}
+::: {.move-up-1em .center-text}
 ![](../assets/introduction/RStudio-quarto-pdf.png){width="90%"}
 :::
 
 
 ## Use "Export" to download PDFs
 
-::: {.move-up-1em}
+::: {.move-up-1em .center-text}
 ![](../assets/introduction/RStudio-pdf-download-edited.png){width="90%"}
 :::
 
+## The source for the class website is on GitHub
+
+::: {.move-up-1em .center-text}
+![](../assets/introduction/class-website.png){width="90%"}
+:::
+
+## The source for the class website is on GitHub
+
+::: {.move-up-1em .center-text}
+![](../assets/introduction/class-website-edited.png){width="90%"}
+:::
+
+## The source for the class website is on GitHub
+
+::: {.move-up-1em .center-text}
+![](../assets/introduction/github.png){width="85%"}
+:::
+
+::: {.absolute-bottom-right .tiny-font}
+[https://github.com/wilkelab/SDS366](https://github.com/wilkelab/SDS366)
+:::
+
+## Press 'e' to save slides as PDF
+
+::: {.center-text}
+![](../assets/introduction/print-mode.png){width="70%" style="box-shadow: 3px 5px 3px 1px #00000080;"}
+:::
+
+::: {.small-font}
+(Works best on Chrome)
+:::
 
 ## Further reading
 
