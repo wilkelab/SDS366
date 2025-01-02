@@ -1,0 +1,185 @@
+---
+title: "Visualizing distributions 1"
+author: "Claus O. Wilke"
+date: last-modified
+format: 
+  revealjs:
+    theme:
+      - default
+      - Wilke-theme.scss
+    auto-stretch: false
+    chalkboard: true
+execute:
+  fig-format: svg
+  fig-asp: 0.618
+  fig-width: 5.5
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+library(cowplot)
+library(colorspace)
+library(here)
+
+# ggplot2 settings so plots scale well for slide size 
+theme_set(theme_gray(14))
+update_geom_defaults("point", list(size = 2))
+update_geom_defaults("line", list(linewidth = 1))
+
+titanic <- read_csv(here("datasets", "titanic.csv")) %>%
+  select(age, sex, class, survived) %>%
+  arrange(age, sex, class)
+```
+
+# Histograms and density plots
+
+## Passengers on the Titanic
+
+:::: {.columns}
+
+::: {.column width="30%" .xtiny-font}
+```{r}
+knitr::kable(titanic[1:15,], "html", digits = 1)
+```
+:::
+
+::: {.column width="30%" .xtiny-font}
+```{r}
+knitr::kable(titanic[16:30,], "html", digits = 1)
+```
+:::
+
+::: {.column width="30%" .xtiny-font}
+```{r}
+knitr::kable(titanic[31:45,], "html", digits = 1)
+```
+:::
+
+::::
+
+## Histogram: Define bins and count cases
+
+<br>
+
+```{r}
+age_counts <- hist(titanic$age, breaks = (0:15) * 5 - .01, plot = FALSE)$counts
+age_hist <- tibble(
+  `age range` = c("0–4", "5–9", "10–14", "15–19", "20–24", "25–29", "30–34", "35–39", "40–44", "45–49", "50–54", "55–59", "60–64", "65–69", "70–74", "75–79"),
+  count = c(age_counts, 0)
+)
+```
+
+
+:::: {.columns}
+
+::: {.column width="25%" .tiny-font}
+```{r}
+knitr::kable(age_hist[1:8,], "html")
+```
+:::
+
+::: {.column width="25%" .tiny-font}
+```{r}
+knitr::kable(age_hist[9:16,], "html")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: titanic-age-hist
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+age_hist5 <- age_hist %>%
+  mutate(age = (1:16) * 5 - 2.5) %>%
+  filter(count > 0)
+
+h1 <- ggplot(age_hist5, aes(x = age, y = count)) + 
+  geom_col(width = 4.7, fill = "#56B4E9", na.rm = TRUE)  + 
+  scale_y_continuous(expand = c(0, 0), breaks = 25 * (0:5)) +
+  scale_x_continuous(name = "age (years)", limits = c(0, 75), expand = c(0, 0)) +
+  coord_cartesian(clip = "off") +
+  theme_minimal_hgrid(18) +
+  theme(
+    axis.line.x = element_blank()
+  )
+
+h1
+```
+:::
+
+::::
+
+## Histograms depend on the chosen bin width
+
+```{r}
+#| label: titanic-age-hist-binwidth
+#| fig-width: 8
+#| fig-cap: "&nbsp;"
+#| out-width: "90%"
+age_hist_1 <- tibble(
+  age = (1:75) - 0.5, 
+  count = hist(titanic$age, breaks = (0:75) - .01, plot = FALSE)$counts
+)
+age_hist_3 <- tibble(
+  age = (1:25) * 3 - 1.5, 
+  count = hist(titanic$age, breaks = (0:25) * 3 - .01, plot = FALSE)$counts
+)
+age_hist_15 <- tibble(
+  age = (1:5) * 15 - 7.5, 
+  count = hist(titanic$age, breaks = (0:5) * 15 - .01, plot = FALSE)$counts
+)
+
+
+h2 <- ggplot(age_hist_1, aes(x = age, y = count)) + 
+  geom_col(width = .85, fill = "#56B4E9")  + 
+  scale_y_continuous(expand = c(0, 0), breaks = 10 * (0:5)) +
+  scale_x_continuous(name = "age (years)", limits = c(0, 75), expand = c(0, 0)) +
+  coord_cartesian(clip = "off") +
+  theme_minimal_hgrid(14) +
+  theme(
+    axis.line.x = element_blank()
+  )
+
+h3 <- ggplot(age_hist_3, aes(x = age, y = count)) + 
+  geom_col(width = 2.75, fill = "#56B4E9")  + 
+  scale_y_continuous(expand = c(0, 0), breaks = 25 * (0:5)) +
+  scale_x_continuous(name = "age (years)", limits = c(0, 75), expand = c(0, 0)) +
+  coord_cartesian(clip = "off") +
+  theme_minimal_hgrid(14) +
+  theme(
+    axis.line.x = element_blank()
+  )
+
+h4 <- ggplot(age_hist_15, aes(x = age, y = count)) + 
+  geom_col(width = 14.5, fill = "#56B4E9")  + 
+  scale_y_continuous(expand = c(0, 0), breaks = 100 * (0:4)) +
+  scale_x_continuous(name = "age (years)", limits = c(0, 75), expand = c(0, 0)) +
+  coord_cartesian(clip = "off") +
+  theme_minimal_hgrid(14) +
+  theme(
+    axis.line.x = element_blank()
+  )
+
+h1 <- h1 + theme_minimal_hgrid(16) +
+  theme(
+    axis.line.x = element_blank()
+  )
+
+plot_grid(
+  h2, NULL, h3,
+  NULL, NULL, NULL,
+  h1, NULL, h4,
+  align = 'hv',
+  rel_widths = c(1, .04, 1),
+  rel_heights = c(1, .04, 1)
+)
+```
+
+
+<!-- Segment ends here -->
+
+## Further reading
+
+::: {.small-font}
+:::

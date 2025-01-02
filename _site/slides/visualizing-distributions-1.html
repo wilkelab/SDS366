@@ -11,8 +11,8 @@
   <meta name="generator" content="quarto-1.5.57">
 
   <meta name="author" content="Claus O. Wilke">
-  <meta name="dcterms.date" content="2025-01-01">
-  <title>SDS 366 – Introduction</title>
+  <meta name="dcterms.date" content="2025-01-02">
+  <title>SDS 366 – Visualizing distributions 1</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -329,7 +329,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Introduction</h1>
+  <h1 class="title">Visualizing distributions 1</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -339,150 +339,478 @@ Claus O. Wilke
 </div>
 </div>
 
-  <p class="date">2025-01-01</p>
-</section>
-<section id="why-data-visualization" class="slide level2">
-<h2>Why Data Visualization?</h2>
-<p><img data-src="../assets/introduction/Data_science_venn.svg" class="fragment absolute" style="top: 20%; left: 20%; width: 60%; "></p>
-</section>
-<section id="why-data-visualization-1" class="slide level2">
-<h2>Why Data Visualization?</h2>
-<p><img data-src="../assets/introduction/Data_visualization_venn.svg" class="absolute" style="top: 20%; left: 20%; width: 60%; "></p>
-</section>
-<section id="why-r" class="slide level2">
-<h2>Why R?</h2>
-<div class="fragment">
-<p><img data-src="../assets/introduction/Rlogo.svg" class="absolute" style="top: 10%; left: 15%; width: 25%; "></p>
-<p><img data-src="../assets/introduction/Data_visualization_venn.svg" class="absolute" style="top: 49%; left: 8%; width: 40%; "></p>
-</div>
-<p><img data-src="../assets/introduction/package-hexlogos.svg" class="fragment absolute" style="top: 5%; left: 55%; width: 35%; "></p>
-</section>
-<section id="why-me" class="slide level2">
-<h2>Why me?</h2>
-<div class="fragment">
-<p><img data-src="https://clauswilke.com/dataviz/cover.png" class="absolute" style="box-shadow: 3px 5px 3px 1px #00000080;top: 7%; left: 0%; width: 42%; "></p>
-<div class="absolute-bottom-left tiny-font">
-<p><a href="https://clauswilke.com/dataviz">https://clauswilke.com/dataviz</a></p>
-</div>
-</div>
-<p><img data-src="https://clauswilke.com/dataviz/coordinate_systems_axes_files/figure-html/worldmap-four-projections-1.png" class="fragment absolute" style="box-shadow: 3px 5px 3px 1px #00000080;top: 5%; left: 45%; width: 35%; "></p>
-<p><img data-src="https://clauswilke.com/dataviz/nested_proportions_files/figure-html/US-states-treemap-1.png" class="fragment absolute" style="box-shadow: 3px 5px 3px 1px #00000080;top: 15%; left: 55%; width: 35%; "></p>
-<p><img data-src="https://clauswilke.com/dataviz/geospatial_data_files/figure-html/unemployment-geofacet-1.png" class="fragment absolute" style="box-shadow: 3px 5px 3px 1px #00000080;top: 25%; left: 65%; width: 35%; "></p>
-<p><img data-src="https://clauswilke.com/dataviz/redundant_coding_files/figure-html/temp-ridgeline-colorbar-1.png" class="fragment absolute" style="box-shadow: 3px 5px 3px 1px #00000080;top: 35%; left: 50%; width: 35%; "></p>
-<p><img data-src="https://clauswilke.com/dataviz/multi-panel_figures_files/figure-html/athletes-composite-good-1.png" class="fragment absolute" style="box-shadow: 3px 5px 3px 1px #00000080;top: 45%; left: 60%; width: 35%; "></p>
-</section>
-<section id="why-me-1" class="slide level2">
-<h2>Why me?</h2>
-<div class="center-text">
-<p><img data-src="../assets/introduction/ggplot2.png" style="box-shadow: 3px 5px 3px 1px #00000080;;width:100.0%"></p>
-</div>
-<!-- Segment ends here -->
+  <p class="date">2025-01-02</p>
 </section>
 <section>
-<section id="class-websitesyllabus-httpswilkelab.orgsds366" class="title-slide slide level1 center">
-<h1>Class website/syllabus: <a href="https://wilkelab.org/SDS366">https://wilkelab.org/SDS366</a></h1>
+<section id="histograms-and-density-plots" class="title-slide slide level1 center">
+<h1>Histograms and density plots</h1>
 
 </section>
-<section id="we-will-use-quarto-for-all-assignments" class="slide level2">
-<h2>We will use Quarto for all assignments</h2>
-<div class="center-text">
-<p><img data-src="../assets/introduction/Quarto.png" style="box-shadow: 3px 5px 3px 1px #00000080;;width:85.0%"></p>
+<section id="passengers-on-the-titanic" class="slide level2">
+<h2>Passengers on the Titanic</h2>
+<div class="columns">
+<div class="column xtiny-font" style="width:30%;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">age</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">sex</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">class</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">survived</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.2</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">3rd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.3</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">3rd</td>
+<td style="text-align: left;">died</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.8</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">2nd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.8</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">2nd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.8</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">3rd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.9</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">1st</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1.0</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">2nd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1.0</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">3rd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">2nd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">2nd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">3rd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1.5</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">3rd</td>
+<td style="text-align: left;">died</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1.5</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">3rd</td>
+<td style="text-align: left;">died</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2.0</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">1st</td>
+<td style="text-align: left;">died</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2.0</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">2nd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+</tbody>
+</table>
+
+
 </div>
-<div class="absolute-bottom-right tiny-font">
-<p><a href="https://quarto.org/">https://quarto.org/</a></p>
 </div>
+</div><div class="column xtiny-font" style="width:30%;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">age</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">sex</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">class</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">survived</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">3rd</td>
+<td style="text-align: left;">died</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">3rd</td>
+<td style="text-align: left;">died</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">2nd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">2nd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">2nd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">2nd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">3rd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">2nd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">2nd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">3rd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">3rd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">2nd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">2nd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">3rd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">3rd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</div><div class="column xtiny-font" style="width:30%;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">age</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">sex</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">class</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">survived</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">1st</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">3rd</td>
+<td style="text-align: left;">died</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">3rd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">3rd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">3rd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">3rd</td>
+<td style="text-align: left;">died</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">2nd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">3rd</td>
+<td style="text-align: left;">died</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">1st</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">3rd</td>
+<td style="text-align: left;">died</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">3rd</td>
+<td style="text-align: left;">died</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">2nd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">2nd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">2nd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">2nd</td>
+<td style="text-align: left;">survived</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</div></div>
 </section>
-<section id="edupod-login-httpsedupod.cns.utexas.edu" class="slide level2">
-<h2>Edupod login: <a href="https://edupod.cns.utexas.edu">https://edupod.cns.utexas.edu</a></h2>
-<div class="move-up-1em center-text">
-<p><img data-src="../assets/introduction/edupod-landing.png" style="width:80.0%"></p>
+<section id="histogram-define-bins-and-count-cases" class="slide level2">
+<h2>Histogram: Define bins and count cases</h2>
+<p><br></p>
+<div class="columns">
+<div class="column tiny-font" style="width:25%;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">age range</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0–4</td>
+<td style="text-align: right;">33</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">5–9</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10–14</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">15–19</td>
+<td style="text-align: right;">81</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">20–24</td>
+<td style="text-align: right;">139</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">25–29</td>
+<td style="text-align: right;">113</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">30–34</td>
+<td style="text-align: right;">93</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">35–39</td>
+<td style="text-align: right;">75</td>
+</tr>
+</tbody>
+</table>
+
+
 </div>
+</div>
+</div><div class="column tiny-font" style="width:25%;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">age range</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">40–44</td>
+<td style="text-align: right;">47</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">45–49</td>
+<td style="text-align: right;">59</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">50–54</td>
+<td style="text-align: right;">31</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">55–59</td>
+<td style="text-align: right;">23</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">60–64</td>
+<td style="text-align: right;">19</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">65–69</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">70–74</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">75–79</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-age-hist-1.svg" style="width:100.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
 </section>
-<section id="edupod-login-httpsedupod.cns.utexas.edu-1" class="slide level2">
-<h2>Edupod login: <a href="https://edupod.cns.utexas.edu">https://edupod.cns.utexas.edu</a></h2>
-<div class="move-up-1em center-text">
-<p><img data-src="../assets/introduction/edupod-landing-edited.png" style="width:80.0%"></p>
+<section id="histograms-depend-on-the-chosen-bin-width" class="slide level2">
+<h2>Histograms depend on the chosen bin width</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-age-hist-binwidth-1.svg" style="width:90.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
 </div>
-</section>
-<section id="edupod-login-httpsedupod.cns.utexas.edu-2" class="slide level2">
-<h2>Edupod login: <a href="https://edupod.cns.utexas.edu">https://edupod.cns.utexas.edu</a></h2>
-<div class="move-up-1em center-text">
-<p><img data-src="../assets/introduction/edupod-login.png" style="width:80.0%"></p>
 </div>
-</section>
-<section id="working-with-quarto-documents" class="slide level2">
-<h2>Working with Quarto documents</h2>
-<div class="move-up-1em center-text">
-<p><img data-src="../assets/introduction/RStudio-clean.png" style="width:90.0%"></p>
 </div>
-</section>
-<section id="working-with-quarto-documents-1" class="slide level2">
-<h2>Working with Quarto documents</h2>
-<div class="move-up-1em center-text">
-<p><img data-src="../assets/introduction/RStudio-clean-edited.png" style="width:90.0%"></p>
-</div>
-</section>
-<section id="working-with-quarto-documents-2" class="slide level2">
-<h2>Working with Quarto documents</h2>
-<div class="move-up-1em center-text">
-<p><img data-src="../assets/introduction/RStudio-quarto.png" style="width:90.0%"></p>
-</div>
-</section>
-<section id="working-with-quarto-documents-3" class="slide level2">
-<h2>Working with Quarto documents</h2>
-<div class="move-up-1em center-text">
-<p><img data-src="../assets/introduction/RStudio-quarto-edited.png" style="width:90.0%"></p>
-</div>
-</section>
-<section id="working-with-quarto-documents-4" class="slide level2">
-<h2>Working with Quarto documents</h2>
-<div class="move-up-1em center-text">
-<p><img data-src="../assets/introduction/RStudio-quarto-pdf.png" style="width:90.0%"></p>
-</div>
-</section>
-<section id="use-export-to-download-pdfs" class="slide level2">
-<h2>Use “Export” to download PDFs</h2>
-<div class="move-up-1em center-text">
-<p><img data-src="../assets/introduction/RStudio-pdf-download-edited.png" style="width:90.0%"></p>
-</div>
-</section>
-<section id="the-source-for-the-class-website-is-on-github" class="slide level2">
-<h2>The source for the class website is on GitHub</h2>
-<div class="move-up-1em center-text">
-<p><img data-src="../assets/introduction/class-website.png" style="width:90.0%"></p>
-</div>
-</section>
-<section id="the-source-for-the-class-website-is-on-github-1" class="slide level2">
-<h2>The source for the class website is on GitHub</h2>
-<div class="move-up-1em center-text">
-<p><img data-src="../assets/introduction/class-website-edited.png" style="width:90.0%"></p>
-</div>
-</section>
-<section id="the-source-for-the-class-website-is-on-github-2" class="slide level2">
-<h2>The source for the class website is on GitHub</h2>
-<div class="move-up-1em center-text">
-<p><img data-src="../assets/introduction/github.png" style="width:85.0%"></p>
-</div>
-<div class="absolute-bottom-right tiny-font">
-<p><a href="https://github.com/wilkelab/SDS366">https://github.com/wilkelab/SDS366</a></p>
-</div>
-</section>
-<section id="press-e-to-save-slides-as-pdf" class="slide level2">
-<h2>Press ‘e’ to save slides as PDF</h2>
-<div class="center-text">
-<p><img data-src="../assets/introduction/print-mode.png" style="box-shadow: 3px 5px 3px 1px #00000080;;width:70.0%"></p>
-</div>
-<div class="small-font">
-<p>(Works best on Chrome)</p>
-</div>
+<!-- Segment ends here -->
 </section>
 <section id="further-reading" class="slide level2">
 <h2>Further reading</h2>
 <div class="small-font">
-<ul>
-<li>Fundamentals of Data Visualization: <a href="https://clauswilke.com/dataviz">Read the book online</a></li>
-<li>Quarto docs: <a href="https://quarto.org/docs/guide/">Comprehensive guide</a></li>
-</ul>
+
 </div>
 
 <div class="quarto-auto-generated-content">
@@ -703,6 +1031,44 @@ Claus O. Wilke
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

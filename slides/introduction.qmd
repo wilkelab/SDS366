@@ -165,6 +165,6 @@ execute:
 ## Further reading
 
 ::: {.small-font}
-- [Fundamentals of Data Visualization](https://clauswilke.com/dataviz)
-- [Quarto guide](https://quarto.org/docs/guide/)
+- Fundamentals of Data Visualization: [Read the book online](https://clauswilke.com/dataviz)
+- Quarto docs: [Comprehensive guide](https://quarto.org/docs/guide/)
 :::

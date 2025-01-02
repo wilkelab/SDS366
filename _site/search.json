@@ -707,144 +707,130 @@
     "text": "Counting subgroups\ngeom_bar() automatically counts how many cases there are in each unique combination of different categorical aesthetics. In the previous example, we had only one categorical aesthetic, species. But we can add a second one, for example sex. Then geom_bar() counts the number of cases in each unique combination of species and sex and draws separate bars for each. Try this out by mapping the sex column onto the fill aesthetic.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nggplot(penguins2, aes(x = species, fill = sex)) +\n  geom_bar()\n\n\n\n\nBy default, the bars for different fill values but identical x values will be drawn on top of one-another. But there are other possibilities, which are controled by the position argument to geom_bar(). For example, try to set the position to \"dodge\".\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nggplot(penguins2, aes(x = species, fill = sex)) +\n  geom_bar(position = ___)\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nggplot(penguins2, aes(x = species, fill = sex)) +\n  geom_bar(position = \"dodge\")\n\n\n\n\nIn the above code, also try positions \"stack\" and \"fill\"."
   },
   {
-    "objectID": "syllabus.html",
-    "href": "syllabus.html",
-    "title": "Syllabus",
-    "section": "",
-    "text": "Title: SDS 366 Data Visualization in R Semester: Spring 2025 Unique: 57785, TTH 5:00pm to 6:30pm, MEZ B0.306\nInstructor: Claus O. Wilke Email: wilke@austin.utexas.edu Office Hours: Mon. 9am - 10am (open Zoom), Thurs. 10am - 11am (open Zoom), or by appointment\nTeaching Assistant: TBD Email: TBD Office Hours: TBD"
+    "objectID": "slides/telling-a-story.html#how-did-i-get-to-teach-data-visualization",
+    "href": "slides/telling-a-story.html#how-did-i-get-to-teach-data-visualization",
+    "title": "Telling a story",
+    "section": "How did I get to teach data visualization?",
+    "text": "How did I get to teach data visualization?"
   },
   {
-    "objectID": "syllabus.html#course-title-and-instructor",
-    "href": "syllabus.html#course-title-and-instructor",
-    "title": "Syllabus",
-    "section": "",
-    "text": "Title: SDS 366 Data Visualization in R Semester: Spring 2025 Unique: 57785, TTH 5:00pm to 6:30pm, MEZ B0.306\nInstructor: Claus O. Wilke Email: wilke@austin.utexas.edu Office Hours: Mon. 9am - 10am (open Zoom), Thurs. 10am - 11am (open Zoom), or by appointment\nTeaching Assistant: TBD Email: TBD Office Hours: TBD"
+    "objectID": "slides/telling-a-story.html#what-is-a-story",
+    "href": "slides/telling-a-story.html#what-is-a-story",
+    "title": "Telling a story",
+    "section": "What is a story?",
+    "text": "What is a story?\n\n\nA story is a collection of observations, facts, or events presented in a specific order such that they create an emotional reaction."
   },
   {
-    "objectID": "syllabus.html#purpose-and-contents-of-the-class",
-    "href": "syllabus.html#purpose-and-contents-of-the-class",
-    "title": "Syllabus",
-    "section": "Purpose and contents of the class",
-    "text": "Purpose and contents of the class\nIn this class, students will learn how to visualize data sets and how to reason about and communicate with data visualizations. A substantial component of this class will be dedicated to learning how to program in R. In addition, students will learn how to compile analyses and visualizations into reports, how to make the reports reproducible, and how to post reports on a website or blog."
+    "objectID": "slides/telling-a-story.html#every-story-needs-an-arc",
+    "href": "slides/telling-a-story.html#every-story-needs-an-arc",
+    "title": "Telling a story",
+    "section": "Every story needs an arc",
+    "text": "Every story needs an arc\n\nOpening\n\n\n\nChallenge\n\n\n\nAction\n\n\n\nResolution"
   },
   {
-    "objectID": "syllabus.html#prerequisites",
-    "href": "syllabus.html#prerequisites",
-    "title": "Syllabus",
-    "section": "Prerequisites",
-    "text": "Prerequisites\nThe class requires no prior knowledge of programming. However, students are expected to have successfully completed an introductory statistics class taught with R, such as SDS 320E, and they are expected to have some basic familiarity with the statistical language R."
+    "objectID": "slides/telling-a-story.html#every-story-needs-an-arc-1",
+    "href": "slides/telling-a-story.html#every-story-needs-an-arc-1",
+    "title": "Telling a story",
+    "section": "Every story needs an arc",
+    "text": "Every story needs an arc\n\nOpening\n\n\n\nChallenge\n\n\n\nAction\n\n\n\nResolution\n\n\nChallenge and resolution arethe two most important parts"
   },
   {
-    "objectID": "syllabus.html#textbook",
-    "href": "syllabus.html#textbook",
-    "title": "Syllabus",
-    "section": "Textbook",
-    "text": "Textbook\nThis class draws heavily from materials presented in the following book:\n\nClaus O. Wilke. Fundamentals of Data Visualization. O’Reilly Media, 2019.\n\nAdditionally, we will also make use of the following books:\n\nHadley Wickham, Danielle Navarro, and Thomas Lin Pedersen. ggplot2: Elegant Graphics for Data Analysis, 3rd ed. Springer, to appear.\nKieran Healy. Data Visualization: A Practical Introduction. Princeton University Press, 2018.\n\nAll these books are freely available online and you do not need to purchase a physical copy of either book to succeed in this class."
+    "objectID": "slides/telling-a-story.html#mapping-my-story-onto-this-format",
+    "href": "slides/telling-a-story.html#mapping-my-story-onto-this-format",
+    "title": "Telling a story",
+    "section": "Mapping my story onto this format",
+    "text": "Mapping my story onto this format\n\nOpening: We need to make many data visualizations in my lab\n\n\nChallenge: I end up telling my students the same things over and over\n\n\nAction: I go and write a book about data visualization\n\n\nResolution: The book is written. But now I teach the material, so I still keep saying the same things over and over"
   },
   {
-    "objectID": "syllabus.html#topics-covered",
-    "href": "syllabus.html#topics-covered",
-    "title": "Syllabus",
-    "section": "Topics covered",
-    "text": "Topics covered\n\n\n\n\n\n\n\n\nClass\nTopic\nCoding concepts covered\n\n\n\n\n1.\nIntroduction, reproducible workflows\nRStudio setup online, Quarto\n\n\n2.\nAesthetic mappings\nggplot2 quickstart\n\n\n3.\nVisualizing amounts, telling a story\ngeom_col(), geom_point(), position adjustments\n\n\n4.\nCoordinate systems and axes\ncoords and position scales\n\n\n5.\nVisualizing distributions 1\nstats, geom_density(), geom_histogram()\n\n\n6.\nVisualizing distributions 2\nviolin plots, sina plots, ridgeline plots\n\n\n7.\nColor scales\ncolor and fill scales\n\n\n8.\nColor spaces, color vision deficiency\ncolorspace package\n\n\n9.\nData wrangling\nmutate(), filter(), arrange() summarize(), join(), pivot_longer()\n\n\n10.\nVisualizing proportions\nbar charts, pie charts\n\n\n11.\nGetting to know your data\nhandling missing data, is.na(), case_when()\n\n\n12.\nGetting things into the right order\nfct_reorder(), fct_lump()\n\n\n13.\nFigure design\nggplot themes\n\n\n14.\nCompound figures\npatchwork package\n\n\n15.\nVisualizing trends\ngeom_smooth()\n\n\n16.\nFunctions and functional programming\nmap(), nest(), purrr package\n\n\n17.\nWorking with models\nlm, cor.test, broom package\n\n\n18.\nVisualizing uncertainty\nfrequency framing, error bars, ggdist package\n\n\n19.\nDimension reduction 1\nPCA\n\n\n20.\nDimension reduction 2\nkernel PCA, t-SNE, UMAP\n\n\n21.\nClustering 1\nk-means clustering\n\n\n22.\nClustering 2\nhierarchical clustering\n\n\n23.\nVisualizing geospatial data\ngeom_sf(), coord_sf()\n\n\n24.\nRedundant coding, text annotations\nggrepel package\n\n\n25.\nOver-plotting\njittering, 2d histograms, contour plots\n\n\n26.\nInteractive plots\nggiraph package\n\n\n27.\nWeb technologies and web design\nCSS\n\n\n28.\nInteractive plots\ngganimate package"
+    "objectID": "slides/telling-a-story.html#other-story-structures",
+    "href": "slides/telling-a-story.html#other-story-structures",
+    "title": "Telling a story",
+    "section": "Other story structures",
+    "text": "Other story structures\n\nAction\n\n\n\nBackground\n\n\n\nDevelopment\n\n\n\nClimax\n\n\n\nEnding\n\n\n(Better for action moviesthan for scientific reports)"
   },
   {
-    "objectID": "syllabus.html#computing-requirements",
-    "href": "syllabus.html#computing-requirements",
-    "title": "Syllabus",
-    "section": "Computing requirements",
-    "text": "Computing requirements\nProgramming needs to be learned by doing, and a significant portion of the in-class time will be dedicated to working through simple problems. All programming exercises will be available through a web-based system, so the only system requirement for student computers is a modern web browser."
+    "objectID": "slides/telling-a-story.html#mapping-my-story-onto-this-format-1",
+    "href": "slides/telling-a-story.html#mapping-my-story-onto-this-format-1",
+    "title": "Telling a story",
+    "section": "Mapping my story onto this format",
+    "text": "Mapping my story onto this format\n\nAction: In May 2017, I embark on a major project: Write a book on data visualization\n\n\nBackground: I do this because we need to make many data visualizations in my lab, and I end up telling my students the same things over and over\n\n\nDevelopment: Writing the book takes me almost two years; along the way, I add many features to ggplot2 and become a member of the ggplot2 team\n\n\nClimax: The book is released in April 2019\n\n\nEnding: Now I’m a dataviz teacher"
   },
   {
-    "objectID": "syllabus.html#course-site",
-    "href": "syllabus.html#course-site",
-    "title": "Syllabus",
-    "section": "Course site",
-    "text": "Course site\nAll materials and assignments will be posted on the course webpage at: https://wilkelab.org/SDS366\nAssignment deadlines are shown on the schedule.\nAssignments will be submitted and grades will be posted on Canvas.\nParticipation via presence in class and in online discussions will also be tracked on Canvas.\nR compute sessions are available at: https://edupod.cns.utexas.edu\nNote that edupods will be unavailable due to maintenance approximately two hours per month, usually on a Thursday afternoon between 4pm and 6pm. Specific maintenance times are published in advance on the RCTF wiki."
+    "objectID": "slides/telling-a-story.html#other-story-structures-1",
+    "href": "slides/telling-a-story.html#other-story-structures-1",
+    "title": "Telling a story",
+    "section": "Other story structures",
+    "text": "Other story structures\n\n\nLead\n\n\n\nDevelopment\n\n\n(Commonly used in newspaper articles)"
   },
   {
-    "objectID": "syllabus.html#assignments-and-grading",
-    "href": "syllabus.html#assignments-and-grading",
-    "title": "Syllabus",
-    "section": "Assignments and grading",
-    "text": "Assignments and grading\nThe graded components of this class will be homeworks, projects, peer-grading, and participation. Each week either a homework, a project, or a peer-grading is due. Homeworks will be relatively short visualization problems to be solved by the student, usually involving some small amount of programming to achieve a specified goal. They are graded by the TA. Projects are larger and more involved data analysis problems that involve both programming and writing. They are peer-graded by the students. Students will have at least one week to complete each homework and two weeks to complete each project. The submission deadlines for homeworks and projects will be Thursdays at 11pm.\nThere will be seven homeworks and three projects. Both homeworks and projects need to be submitted electronically on Canvas. Homeworks are worth 20 points and projects are worth 100 points. The lowest-scoring homework will be dropped, so that a maximum of 120 points can be obtained from the homeworks.\nProjects are peer-graded, which involves evaluating three projects by other students according to a detailed grading rubric that will be provided. The final grade for each project is the mean of the peer-graded projects. The peer-grading itself will be graded by the TA, who will also oversee and spot-check the assigned peer grades. Experience has shown that peer-grading is often the most instructive component of this class, so don’t take this lightly.\nParticipation is assessed in two ways. First, students will receive 2 points for every lecture they attend. This is tracked via simple quizzes on Canvas. Second, each week students can receive up to 4 points for making substantive contributions to the Canvas online discussion (2 points per contribution). Total participation points are capped at 52 (13 weeks of class times 4 points), so students can compensate for lack of in-person attendance by participating in discussions and vice versa. You do not have to get full points in both in-person attendance and online discussions. No participation is assessed in the first week of class.\n\n\n\nAssignment type\nNumber\nPoints per assignment\nTotal points\n\n\n\n\nHomework\n6 (+1)\n20\n120\n\n\nProject\n3\n100\n300\n\n\nPeer grading\n3\n16\n48\n\n\nParticipation\n26 (+26)\n2\n52\n\n\n\nThus, in summary, each project (+ peer grading) contributes 22% to the final grade, the totality of all homeworks contributes another 23% to the final grade, and participation contributes 10%. There are no traditional exams in this class and there is no final.\nThe class will use +/- grading, and the exact grade boundaries will be determined at the end of the semester. However, the following minimum grades will be guaranteed:\n\n\n\nPoints achieved\nMinimum guaranteed grade\n\n\n\n\n468 (90%)\nA-\n\n\n416 (80%)\nB-\n\n\n364 (70%)\nC-\n\n\n260 (50%)\nD-"
+    "objectID": "slides/telling-a-story.html#mapping-my-story-onto-this-format-2",
+    "href": "slides/telling-a-story.html#mapping-my-story-onto-this-format-2",
+    "title": "Telling a story",
+    "section": "Mapping my story onto this format",
+    "text": "Mapping my story onto this format\n\nLead: Because I see the need for more education in data visualization, I have written an entire book about the topic\n\n\nDevelopment: I had previously written an R package to improve figure design, but it wasn’t sufficient: Good judgement cannot be automated\n\n\nSo I wrote a book; the book is entirely about concepts, not about coding, and it is meant as a resource for anybody doing data visualizations, regardless of their preferred visualization software"
   },
   {
-    "objectID": "syllabus.html#late-assignment-policy",
-    "href": "syllabus.html#late-assignment-policy",
-    "title": "Syllabus",
-    "section": "Late assignment policy",
-    "text": "Late assignment policy\nHomeworks that are submitted past the posted deadline will not be graded and will receive 0 points.\nProject submissions will have a 1-day grace period. Projects submitted during the grace period will have 25 points deducted from the obtained grade. After the grace period, students who have not submitted their project will receive 0 points.\nPeer grades need to be submitted by the posted deadline. Late submissions will result in 0 points for the peer-grading effort.\nIn case of illness or other unforeseen circumstances out of your control, please reach out to Claus Wilke as soon as possible. We will consider your request on a case-by-case basis. If you need a deadline extension for valid reasons, please reach out before the official submission deadline and state how much of an extension you would need. Whether deadline extensions are possible depends on the severity of your situation as well as whether the solutions to the assignment have already been published."
+    "objectID": "slides/telling-a-story.html#example-preprints-in-biology",
+    "href": "slides/telling-a-story.html#example-preprints-in-biology",
+    "title": "Telling a story",
+    "section": "Example: Preprints in biology",
+    "text": "Example: Preprints in biology\n\n\n\n\n\n \n\n\n\n\n\nOpening"
   },
   {
-    "objectID": "syllabus.html#office-hours",
-    "href": "syllabus.html#office-hours",
-    "title": "Syllabus",
-    "section": "Office hours",
-    "text": "Office hours\nBoth the graduate TA and myself will be available at posted times or by appointment. Office hours will be over Zoom. The most effective way to request an appointment for office hours outside of posted times is to suggest several times that work for you. I would suggest to write an email such as the following:\nDear Dr. Wilke,\n\nI would like to request a meeting with you outside of \nregular office hours this week. I am available Thurs.\nbetween 1pm and 2:30pm or Fri. before 11am or after 4pm.\n\nThanks a lot,\n  John Doe\nNote that we will not usually make appointments before 9am or after 5pm."
+    "objectID": "slides/telling-a-story.html#example-preprints-in-biology-1",
+    "href": "slides/telling-a-story.html#example-preprints-in-biology-1",
+    "title": "Telling a story",
+    "section": "Example: Preprints in biology",
+    "text": "Example: Preprints in biology\n\n\n\n\n\n \n\n\n\n\nWhat happened in 2014 to curtail the growth?\n\nChallenge"
   },
   {
-    "objectID": "syllabus.html#email-policy",
-    "href": "syllabus.html#email-policy",
-    "title": "Syllabus",
-    "section": "Email policy",
-    "text": "Email policy\nWhen emailing about this course, please put “SDS366” into the subject line. Emails to the instructor or TA should be restricted to organizational issues, such as requests for appointments, questions about course organization, etc. For all other issues, post in the discussions on Canvas, ask a question during open Zoom, or make an appointment for a one-on-one session.\nSpecifically, we will not discuss technical issues related to assignments over email. Technical issues are questions concerning how to approach a particular problem, whether a particular solution is correct, or how to use the statistical software R. These questions should be posted as issues on GitHub. Also, we will not discuss grading-related matters over email. If you have a concern about grading, schedule a one-on-one Zoom meeting."
+    "objectID": "slides/telling-a-story.html#example-preprints-in-biology-2",
+    "href": "slides/telling-a-story.html#example-preprints-in-biology-2",
+    "title": "Telling a story",
+    "section": "Example: Preprints in biology",
+    "text": "Example: Preprints in biology\n\n\n\n\n\n \n\n\n\n\nbioRxiv opened in 2014\n\nResolution"
   },
   {
-    "objectID": "syllabus.html#special-accommodations",
-    "href": "syllabus.html#special-accommodations",
-    "title": "Syllabus",
-    "section": "Special accommodations",
-    "text": "Special accommodations\nStudents with disabilities. Students with disabilities may request appropriate accommodations from the Division of Diversity and Community Engagement, Services for Students with Disabilities, 512-471-6259, https://diversity.utexas.edu/disability/\nReligious holy days. Students who must miss a class or an assignment to observe a religious holy day will be given an opportunity to complete the missed work within a reasonable time after the absence. According to UT Austin policy, such students must notify me of the pending absence at least fourteen days prior to the date of observance of a religious holy day."
+    "objectID": "slides/telling-a-story.html#keep-in-mind",
+    "href": "slides/telling-a-story.html#keep-in-mind",
+    "title": "Telling a story",
+    "section": "Keep in mind",
+    "text": "Keep in mind\n\n\nEvery figure needs a clear purpose within the story arc\nA complete arc will usually require at least two figures"
   },
   {
-    "objectID": "syllabus.html#academic-dishonesty",
-    "href": "syllabus.html#academic-dishonesty",
-    "title": "Syllabus",
-    "section": "Academic dishonesty",
-    "text": "Academic dishonesty\nThis course is built upon the idea that student interaction is important and a powerful way to learn. We encourage you to communicate with other students, in particular through the discussion forums on Canvas. However, there are times when you need to demonstrate your own ability to work and solve problems. In particular, your homeworks and projects are independent work, unless explicitly stated otherwise. You are allowed to confer with fellow students about general approaches to solve the problems in the assignments, but you have to do the assignments on your own and describe your work in your own words. Students who violate these expectations can expect to receive a failing grade on the assignment and will be reported to Student Judicial Services. These types of violations are reported to professional schools, should you ever decide to apply one day. Don’t do it—it’s not worth the consequences."
+    "objectID": "slides/telling-a-story.html#prepare-figures-that-make-a-clear-point",
+    "href": "slides/telling-a-story.html#prepare-figures-that-make-a-clear-point",
+    "title": "Telling a story",
+    "section": "Prepare figures that make a clear point",
+    "text": "Prepare figures that make a clear point"
   },
   {
-    "objectID": "syllabus.html#sharing-of-course-materials-is-prohibited",
-    "href": "syllabus.html#sharing-of-course-materials-is-prohibited",
-    "title": "Syllabus",
-    "section": "Sharing of Course Materials is Prohibited",
-    "text": "Sharing of Course Materials is Prohibited\nAny materials in this class that are not posted publicly may not be shared online or with anyone outside of the class unless you have my explicit, written permission. This includes but is not limited to lecture hand-outs, videos, assessments (quizzes, exams, papers, projects, homework assignments), in-class materials, review sheets, and additional problem sets. Unauthorized sharing of materials promotes cheating. It is a violation of the University’s Student Honor Code and an act of academic dishonesty. We are well aware of the sites used for sharing materials, and any materials found online that are associated with you, or any suspected unauthorized sharing of materials, will be reported to Student Conduct and Academic Integrity in the Office of the Dean of Students. These reports can result in sanctions, including failure in the course.\nAny materials posted on the public class website (https://wilkelab.org/SDS366/) are considered public and can be shared under the Creative Commons Attribution CC BY 4.0 license."
+    "objectID": "slides/telling-a-story.html#prepare-figures-that-make-a-clear-point-1",
+    "href": "slides/telling-a-story.html#prepare-figures-that-make-a-clear-point-1",
+    "title": "Telling a story",
+    "section": "Prepare figures that make a clear point",
+    "text": "Prepare figures that make a clear point\n\n\n\n\n\n \n\n\n\n\nAmerican and Delta have the shortest delays"
   },
   {
-    "objectID": "syllabus.html#class-recordings",
-    "href": "syllabus.html#class-recordings",
-    "title": "Syllabus",
-    "section": "Class Recordings",
-    "text": "Class Recordings\nIf any class recordings are provided they are reserved only for students in this class for educational purposes and are protected under FERPA. The recordings should not be shared outside the class in any form. Violation of this restriction by a student could lead to Student Misconduct proceedings."
+    "objectID": "slides/telling-a-story.html#make-your-figures-memorable",
+    "href": "slides/telling-a-story.html#make-your-figures-memorable",
+    "title": "Telling a story",
+    "section": "Make your figures memorable",
+    "text": "Make your figures memorable"
   },
   {
-    "objectID": "schedule.html#homeworks",
-    "href": "schedule.html#homeworks",
-    "title": "SDS 366 Schedule Spring 2025",
-    "section": "Homeworks",
-    "text": "Homeworks\nAll homeworks are due by 11:00pm on the day they are due. Homeworks need to be submitted as pdf files on Canvas."
+    "objectID": "slides/telling-a-story.html#make-your-figures-memorable-1",
+    "href": "slides/telling-a-story.html#make-your-figures-memorable-1",
+    "title": "Telling a story",
+    "section": "Make your figures memorable",
+    "text": "Make your figures memorable"
   },
   {
-    "objectID": "schedule.html#projects",
-    "href": "schedule.html#projects",
-    "title": "SDS 366 Schedule Spring 2025",
-    "section": "Projects",
-    "text": "Projects\nAll projects are due by 11:00pm on the day they are due. Projects need to be submitted on Canvas. Please carefully read the submission instructions for each project."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "SDS 366",
-    "section": "",
-    "text": "This is the home page for SDS 366, Data Visualization in R. All course materials will be posted on this site.\nInstructor: Claus O. Wilke\nMeeting times: TTH 5:00pm to 6:30pm Venue: MEZ B0.306 Syllabus: click here\nUpcoming lectures and assignments: click here"
-  },
-  {
-    "objectID": "index.html#computing-requirements",
-    "href": "index.html#computing-requirements",
-    "title": "SDS 366",
-    "section": "Computing requirements",
-    "text": "Computing requirements\nFor students enrolled in this course, you only need a working web browser to access the edupod server, located at: https://edupod.cns.utexas.edu/\nIf you are using the edupod server, stop reading here. Everything is pre-installed and no further action is needed.\nTo run any of the materials locally on your own machine, you will need the following:\n\nA recent version of R, download from here.\nA recent version of RStudio, download from here, OR a recent version of Positron, download from here.\nThe following R packages:\nbroom, cluster, colorspace, cowplot, distill, gapminder, GGally, gganimate, ggiraph, ggdendro, ggdist, ggforce, ggplot2movies, ggrepel, ggridges, ggthemes, gifski, glue, knitr, learnr, naniar, margins, MASS, Matrix, nycflights13, palmerpenguins, patchwork, rmarkdown, rnaturalearth, rnaturalearthhires, scales, sf, shinyjs, sp, tidyverse, transformr, umap, xaringan\n\nYou can install all required R packages at once by running the following code in the R command line:\n# first run this command:\ninstall.packages(\n  c(\n    \"broom\", \"cluster\", \"colorspace\", \"cowplot\", \"distill\", \"gapminder\", \n    \"GGally\", \"gganimate\", \"ggiraph\", \"ggdendro\", \"ggdist\", \"ggforce\",\n    \"ggplot2movies\", \"ggrepel\", \"ggridges\", \"ggthemes\", \"gifski\", \"glue\",\n    \"knitr\", \"learnr\", \"naniar\", \"margins\", \"MASS\", \"Matrix\",\n    \"nycflights13\", \"palmerpenguins\", \"patchwork\", \"rmarkdown\", \"rnaturalearth\",\n    \"scales\", \"sf\", \"shinyjs\", \"sp\", \"tidyverse\", \"transformr\", \"umap\",\n    \"xaringan\"\n  )\n)\n\n# then run this command:\ninstall.packages(\n  \"rnaturalearthhires\", repos = \"https://packages.ropensci.org\", type = \"source\"\n)"
+    "objectID": "slides/telling-a-story.html#further-reading",
+    "href": "slides/telling-a-story.html#further-reading",
+    "title": "Telling a story",
+    "section": "Further reading",
+    "text": "Further reading\n\n\nFundamentals of Data Visualization: Chapter 29: Telling a story and making a point\nJoshua Schimel (2011) Writing Science: How to Write Papers That Get Cited and Proposals That Get Funded"
   },
   {
     "objectID": "slides/introduction.html#why-data-visualization",
@@ -984,133 +970,175 @@
     "href": "slides/introduction.html#further-reading",
     "title": "Introduction",
     "section": "Further reading",
-    "text": "Further reading\n\n\nFundamentals of Data Visualization\nQuarto guide"
+    "text": "Further reading\n\n\nFundamentals of Data Visualization: Read the book online\nQuarto docs: Comprehensive guide"
   },
   {
-    "objectID": "slides/telling-a-story.html#how-did-i-get-to-teach-data-visualization",
-    "href": "slides/telling-a-story.html#how-did-i-get-to-teach-data-visualization",
-    "title": "Telling a story",
-    "section": "How did I get to teach data visualization?",
-    "text": "How did I get to teach data visualization?"
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "SDS 366",
+    "section": "",
+    "text": "This is the home page for SDS 366, Data Visualization in R. All course materials will be posted on this site.\nInstructor: Claus O. Wilke\nMeeting times: TTH 5:00pm to 6:30pm Venue: MEZ B0.306 Syllabus: click here\nUpcoming lectures and assignments: click here"
   },
   {
-    "objectID": "slides/telling-a-story.html#what-is-a-story",
-    "href": "slides/telling-a-story.html#what-is-a-story",
-    "title": "Telling a story",
-    "section": "What is a story?",
-    "text": "What is a story?\n\n\nA story is a collection of observations, facts, or events presented in a specific order such that they create an emotional reaction."
+    "objectID": "index.html#computing-requirements",
+    "href": "index.html#computing-requirements",
+    "title": "SDS 366",
+    "section": "Computing requirements",
+    "text": "Computing requirements\nFor students enrolled in this course, you only need a working web browser to access the edupod server, located at: https://edupod.cns.utexas.edu/\nIf you are using the edupod server, stop reading here. Everything is pre-installed and no further action is needed.\nTo run any of the materials locally on your own machine, you will need the following:\n\nA recent version of R, download from here.\nA recent version of RStudio, download from here, OR a recent version of Positron, download from here.\nThe following R packages:\nbroom, cluster, colorspace, cowplot, distill, gapminder, GGally, gganimate, ggiraph, ggdendro, ggdist, ggforce, ggplot2movies, ggrepel, ggridges, ggthemes, gifski, glue, knitr, learnr, naniar, margins, MASS, Matrix, nycflights13, palmerpenguins, patchwork, rmarkdown, rnaturalearth, rnaturalearthhires, scales, sf, shinyjs, sp, tidyverse, transformr, umap, xaringan\n\nYou can install all required R packages at once by running the following code in the R command line:\n# first run this command:\ninstall.packages(\n  c(\n    \"broom\", \"cluster\", \"colorspace\", \"cowplot\", \"distill\", \"gapminder\", \n    \"GGally\", \"gganimate\", \"ggiraph\", \"ggdendro\", \"ggdist\", \"ggforce\",\n    \"ggplot2movies\", \"ggrepel\", \"ggridges\", \"ggthemes\", \"gifski\", \"glue\",\n    \"knitr\", \"learnr\", \"naniar\", \"margins\", \"MASS\", \"Matrix\",\n    \"nycflights13\", \"palmerpenguins\", \"patchwork\", \"rmarkdown\", \"rnaturalearth\",\n    \"scales\", \"sf\", \"shinyjs\", \"sp\", \"tidyverse\", \"transformr\", \"umap\",\n    \"xaringan\"\n  )\n)\n\n# then run this command:\ninstall.packages(\n  \"rnaturalearthhires\", repos = \"https://packages.ropensci.org\", type = \"source\"\n)"
   },
   {
-    "objectID": "slides/telling-a-story.html#every-story-needs-an-arc",
-    "href": "slides/telling-a-story.html#every-story-needs-an-arc",
-    "title": "Telling a story",
-    "section": "Every story needs an arc",
-    "text": "Every story needs an arc\n\nOpening\n\n\n\nChallenge\n\n\n\nAction\n\n\n\nResolution"
+    "objectID": "schedule.html#homeworks",
+    "href": "schedule.html#homeworks",
+    "title": "SDS 366 Schedule Spring 2025",
+    "section": "Homeworks",
+    "text": "Homeworks\nAll homeworks are due by 11:00pm on the day they are due. Homeworks need to be submitted as pdf files on Canvas."
   },
   {
-    "objectID": "slides/telling-a-story.html#every-story-needs-an-arc-1",
-    "href": "slides/telling-a-story.html#every-story-needs-an-arc-1",
-    "title": "Telling a story",
-    "section": "Every story needs an arc",
-    "text": "Every story needs an arc\n\nOpening\n\n\n\nChallenge\n\n\n\nAction\n\n\n\nResolution\n\n\nChallenge and resolution arethe two most important parts"
+    "objectID": "schedule.html#projects",
+    "href": "schedule.html#projects",
+    "title": "SDS 366 Schedule Spring 2025",
+    "section": "Projects",
+    "text": "Projects\nAll projects are due by 11:00pm on the day they are due. Projects need to be submitted on Canvas. Please carefully read the submission instructions for each project."
   },
   {
-    "objectID": "slides/telling-a-story.html#mapping-my-story-onto-this-format",
-    "href": "slides/telling-a-story.html#mapping-my-story-onto-this-format",
-    "title": "Telling a story",
-    "section": "Mapping my story onto this format",
-    "text": "Mapping my story onto this format\n\nOpening: We need to make many data visualizations in my lab\n\n\nChallenge: I end up telling my students the same things over and over\n\n\nAction: I go and write a book about data visualization\n\n\nResolution: The book is written. But now I teach the material, so I still keep saying the same things over and over"
+    "objectID": "syllabus.html",
+    "href": "syllabus.html",
+    "title": "Syllabus",
+    "section": "",
+    "text": "Title: SDS 366 Data Visualization in R Semester: Spring 2025 Unique: 57785, TTH 5:00pm to 6:30pm, MEZ B0.306\nInstructor: Claus O. Wilke Email: wilke@austin.utexas.edu Office Hours: Mon. 9am - 10am (open Zoom), Thurs. 10am - 11am (open Zoom), or by appointment\nTeaching Assistant: TBD Email: TBD Office Hours: TBD"
   },
   {
-    "objectID": "slides/telling-a-story.html#other-story-structures",
-    "href": "slides/telling-a-story.html#other-story-structures",
-    "title": "Telling a story",
-    "section": "Other story structures",
-    "text": "Other story structures\n\nAction\n\n\n\nBackground\n\n\n\nDevelopment\n\n\n\nClimax\n\n\n\nEnding\n\n\n(Better for action moviesthan for scientific reports)"
+    "objectID": "syllabus.html#course-title-and-instructor",
+    "href": "syllabus.html#course-title-and-instructor",
+    "title": "Syllabus",
+    "section": "",
+    "text": "Title: SDS 366 Data Visualization in R Semester: Spring 2025 Unique: 57785, TTH 5:00pm to 6:30pm, MEZ B0.306\nInstructor: Claus O. Wilke Email: wilke@austin.utexas.edu Office Hours: Mon. 9am - 10am (open Zoom), Thurs. 10am - 11am (open Zoom), or by appointment\nTeaching Assistant: TBD Email: TBD Office Hours: TBD"
   },
   {
-    "objectID": "slides/telling-a-story.html#mapping-my-story-onto-this-format-1",
-    "href": "slides/telling-a-story.html#mapping-my-story-onto-this-format-1",
-    "title": "Telling a story",
-    "section": "Mapping my story onto this format",
-    "text": "Mapping my story onto this format\n\nAction: In May 2017, I embark on a major project: Write a book on data visualization\n\n\nBackground: I do this because we need to make many data visualizations in my lab, and I end up telling my students the same things over and over\n\n\nDevelopment: Writing the book takes me almost two years; along the way, I add many features to ggplot2 and become a member of the ggplot2 team\n\n\nClimax: The book is released in April 2019\n\n\nEnding: Now I’m a dataviz teacher"
+    "objectID": "syllabus.html#purpose-and-contents-of-the-class",
+    "href": "syllabus.html#purpose-and-contents-of-the-class",
+    "title": "Syllabus",
+    "section": "Purpose and contents of the class",
+    "text": "Purpose and contents of the class\nIn this class, students will learn how to visualize data sets and how to reason about and communicate with data visualizations. A substantial component of this class will be dedicated to learning how to program in R. In addition, students will learn how to compile analyses and visualizations into reports, how to make the reports reproducible, and how to post reports on a website or blog."
   },
   {
-    "objectID": "slides/telling-a-story.html#other-story-structures-1",
-    "href": "slides/telling-a-story.html#other-story-structures-1",
-    "title": "Telling a story",
-    "section": "Other story structures",
-    "text": "Other story structures\n\n\nLead\n\n\n\nDevelopment\n\n\n(Commonly used in newspaper articles)"
+    "objectID": "syllabus.html#prerequisites",
+    "href": "syllabus.html#prerequisites",
+    "title": "Syllabus",
+    "section": "Prerequisites",
+    "text": "Prerequisites\nThe class requires no prior knowledge of programming. However, students are expected to have successfully completed an introductory statistics class taught with R, such as SDS 320E, and they are expected to have some basic familiarity with the statistical language R."
   },
   {
-    "objectID": "slides/telling-a-story.html#mapping-my-story-onto-this-format-2",
-    "href": "slides/telling-a-story.html#mapping-my-story-onto-this-format-2",
-    "title": "Telling a story",
-    "section": "Mapping my story onto this format",
-    "text": "Mapping my story onto this format\n\nLead: Because I see the need for more education in data visualization, I have written an entire book about the topic\n\n\nDevelopment: I had previously written an R package to improve figure design, but it wasn’t sufficient: Good judgement cannot be automated\n\n\nSo I wrote a book; the book is entirely about concepts, not about coding, and it is meant as a resource for anybody doing data visualizations, regardless of their preferred visualization software"
+    "objectID": "syllabus.html#textbook",
+    "href": "syllabus.html#textbook",
+    "title": "Syllabus",
+    "section": "Textbook",
+    "text": "Textbook\nThis class draws heavily from materials presented in the following book:\n\nClaus O. Wilke. Fundamentals of Data Visualization. O’Reilly Media, 2019.\n\nAdditionally, we will also make use of the following books:\n\nHadley Wickham, Danielle Navarro, and Thomas Lin Pedersen. ggplot2: Elegant Graphics for Data Analysis, 3rd ed. Springer, to appear.\nKieran Healy. Data Visualization: A Practical Introduction. Princeton University Press, 2018.\n\nAll these books are freely available online and you do not need to purchase a physical copy of either book to succeed in this class."
   },
   {
-    "objectID": "slides/telling-a-story.html#example-preprints-in-biology",
-    "href": "slides/telling-a-story.html#example-preprints-in-biology",
-    "title": "Telling a story",
-    "section": "Example: Preprints in biology",
-    "text": "Example: Preprints in biology\n\n\n\n\n\n \n\n\n\n\n\nOpening"
+    "objectID": "syllabus.html#topics-covered",
+    "href": "syllabus.html#topics-covered",
+    "title": "Syllabus",
+    "section": "Topics covered",
+    "text": "Topics covered\n\n\n\n\n\n\n\n\nClass\nTopic\nCoding concepts covered\n\n\n\n\n1.\nIntroduction, reproducible workflows\nRStudio setup online, Quarto\n\n\n2.\nAesthetic mappings\nggplot2 quickstart\n\n\n3.\nVisualizing amounts, telling a story\ngeom_col(), geom_point(), position adjustments\n\n\n4.\nCoordinate systems and axes\ncoords and position scales\n\n\n5.\nVisualizing distributions 1\nstats, geom_density(), geom_histogram()\n\n\n6.\nVisualizing distributions 2\nviolin plots, sina plots, ridgeline plots\n\n\n7.\nColor scales\ncolor and fill scales\n\n\n8.\nColor spaces, color vision deficiency\ncolorspace package\n\n\n9.\nData wrangling\nmutate(), filter(), arrange() summarize(), join(), pivot_longer()\n\n\n10.\nVisualizing proportions\nbar charts, pie charts\n\n\n11.\nGetting to know your data\nhandling missing data, is.na(), case_when()\n\n\n12.\nGetting things into the right order\nfct_reorder(), fct_lump()\n\n\n13.\nFigure design\nggplot themes\n\n\n14.\nCompound figures\npatchwork package\n\n\n15.\nVisualizing trends\ngeom_smooth()\n\n\n16.\nFunctions and functional programming\nmap(), nest(), purrr package\n\n\n17.\nWorking with models\nlm, cor.test, broom package\n\n\n18.\nVisualizing uncertainty\nfrequency framing, error bars, ggdist package\n\n\n19.\nDimension reduction 1\nPCA\n\n\n20.\nDimension reduction 2\nkernel PCA, t-SNE, UMAP\n\n\n21.\nClustering 1\nk-means clustering\n\n\n22.\nClustering 2\nhierarchical clustering\n\n\n23.\nVisualizing geospatial data\ngeom_sf(), coord_sf()\n\n\n24.\nRedundant coding, text annotations\nggrepel package\n\n\n25.\nOver-plotting\njittering, 2d histograms, contour plots\n\n\n26.\nInteractive plots\nggiraph package\n\n\n27.\nWeb technologies and web design\nCSS\n\n\n28.\nInteractive plots\ngganimate package"
   },
   {
-    "objectID": "slides/telling-a-story.html#example-preprints-in-biology-1",
-    "href": "slides/telling-a-story.html#example-preprints-in-biology-1",
-    "title": "Telling a story",
-    "section": "Example: Preprints in biology",
-    "text": "Example: Preprints in biology\n\n\n\n\n\n \n\n\n\n\nWhat happened in 2014 to curtail the growth?\n\nChallenge"
+    "objectID": "syllabus.html#computing-requirements",
+    "href": "syllabus.html#computing-requirements",
+    "title": "Syllabus",
+    "section": "Computing requirements",
+    "text": "Computing requirements\nProgramming needs to be learned by doing, and a significant portion of the in-class time will be dedicated to working through simple problems. All programming exercises will be available through a web-based system, so the only system requirement for student computers is a modern web browser."
   },
   {
-    "objectID": "slides/telling-a-story.html#example-preprints-in-biology-2",
-    "href": "slides/telling-a-story.html#example-preprints-in-biology-2",
-    "title": "Telling a story",
-    "section": "Example: Preprints in biology",
-    "text": "Example: Preprints in biology\n\n\n\n\n\n \n\n\n\n\nbioRxiv opened in 2014\n\nResolution"
+    "objectID": "syllabus.html#course-site",
+    "href": "syllabus.html#course-site",
+    "title": "Syllabus",
+    "section": "Course site",
+    "text": "Course site\nAll materials and assignments will be posted on the course webpage at: https://wilkelab.org/SDS366\nAssignment deadlines are shown on the schedule.\nAssignments will be submitted and grades will be posted on Canvas.\nParticipation via presence in class and in online discussions will also be tracked on Canvas.\nR compute sessions are available at: https://edupod.cns.utexas.edu\nNote that edupods will be unavailable due to maintenance approximately two hours per month, usually on a Thursday afternoon between 4pm and 6pm. Specific maintenance times are published in advance on the RCTF wiki."
   },
   {
-    "objectID": "slides/telling-a-story.html#keep-in-mind",
-    "href": "slides/telling-a-story.html#keep-in-mind",
-    "title": "Telling a story",
-    "section": "Keep in mind",
-    "text": "Keep in mind\n\n\nEvery figure needs a clear purpose within the story arc\nA complete arc will usually require at least two figures"
+    "objectID": "syllabus.html#assignments-and-grading",
+    "href": "syllabus.html#assignments-and-grading",
+    "title": "Syllabus",
+    "section": "Assignments and grading",
+    "text": "Assignments and grading\nThe graded components of this class will be homeworks, projects, peer-grading, and participation. Each week either a homework, a project, or a peer-grading is due. Homeworks will be relatively short visualization problems to be solved by the student, usually involving some small amount of programming to achieve a specified goal. They are graded by the TA. Projects are larger and more involved data analysis problems that involve both programming and writing. They are peer-graded by the students. Students will have at least one week to complete each homework and two weeks to complete each project. The submission deadlines for homeworks and projects will be Thursdays at 11pm.\nThere will be seven homeworks and three projects. Both homeworks and projects need to be submitted electronically on Canvas. Homeworks are worth 20 points and projects are worth 100 points. The lowest-scoring homework will be dropped, so that a maximum of 120 points can be obtained from the homeworks.\nProjects are peer-graded, which involves evaluating three projects by other students according to a detailed grading rubric that will be provided. The final grade for each project is the mean of the peer-graded projects. The peer-grading itself will be graded by the TA, who will also oversee and spot-check the assigned peer grades. Experience has shown that peer-grading is often the most instructive component of this class, so don’t take this lightly.\nParticipation is assessed in two ways. First, students will receive 2 points for every lecture they attend. This is tracked via simple quizzes on Canvas. Second, each week students can receive up to 4 points for making substantive contributions to the Canvas online discussion (2 points per contribution). Total participation points are capped at 52 (13 weeks of class times 4 points), so students can compensate for lack of in-person attendance by participating in discussions and vice versa. You do not have to get full points in both in-person attendance and online discussions. No participation is assessed in the first week of class.\n\n\n\nAssignment type\nNumber\nPoints per assignment\nTotal points\n\n\n\n\nHomework\n6 (+1)\n20\n120\n\n\nProject\n3\n100\n300\n\n\nPeer grading\n3\n16\n48\n\n\nParticipation\n26 (+26)\n2\n52\n\n\n\nThus, in summary, each project (+ peer grading) contributes 22% to the final grade, the totality of all homeworks contributes another 23% to the final grade, and participation contributes 10%. There are no traditional exams in this class and there is no final.\nThe class will use +/- grading, and the exact grade boundaries will be determined at the end of the semester. However, the following minimum grades will be guaranteed:\n\n\n\nPoints achieved\nMinimum guaranteed grade\n\n\n\n\n468 (90%)\nA-\n\n\n416 (80%)\nB-\n\n\n364 (70%)\nC-\n\n\n260 (50%)\nD-"
   },
   {
-    "objectID": "slides/telling-a-story.html#prepare-figures-that-make-a-clear-point",
-    "href": "slides/telling-a-story.html#prepare-figures-that-make-a-clear-point",
-    "title": "Telling a story",
-    "section": "Prepare figures that make a clear point",
-    "text": "Prepare figures that make a clear point"
+    "objectID": "syllabus.html#late-assignment-policy",
+    "href": "syllabus.html#late-assignment-policy",
+    "title": "Syllabus",
+    "section": "Late assignment policy",
+    "text": "Late assignment policy\nHomeworks that are submitted past the posted deadline will not be graded and will receive 0 points.\nProject submissions will have a 1-day grace period. Projects submitted during the grace period will have 25 points deducted from the obtained grade. After the grace period, students who have not submitted their project will receive 0 points.\nPeer grades need to be submitted by the posted deadline. Late submissions will result in 0 points for the peer-grading effort.\nIn case of illness or other unforeseen circumstances out of your control, please reach out to Claus Wilke as soon as possible. We will consider your request on a case-by-case basis. If you need a deadline extension for valid reasons, please reach out before the official submission deadline and state how much of an extension you would need. Whether deadline extensions are possible depends on the severity of your situation as well as whether the solutions to the assignment have already been published."
   },
   {
-    "objectID": "slides/telling-a-story.html#prepare-figures-that-make-a-clear-point-1",
-    "href": "slides/telling-a-story.html#prepare-figures-that-make-a-clear-point-1",
-    "title": "Telling a story",
-    "section": "Prepare figures that make a clear point",
-    "text": "Prepare figures that make a clear point\n\n\n\n\n\n \n\n\n\n\nAmerican and Delta have the shortest delays"
+    "objectID": "syllabus.html#office-hours",
+    "href": "syllabus.html#office-hours",
+    "title": "Syllabus",
+    "section": "Office hours",
+    "text": "Office hours\nBoth the graduate TA and myself will be available at posted times or by appointment. Office hours will be over Zoom. The most effective way to request an appointment for office hours outside of posted times is to suggest several times that work for you. I would suggest to write an email such as the following:\nDear Dr. Wilke,\n\nI would like to request a meeting with you outside of \nregular office hours this week. I am available Thurs.\nbetween 1pm and 2:30pm or Fri. before 11am or after 4pm.\n\nThanks a lot,\n  John Doe\nNote that we will not usually make appointments before 9am or after 5pm."
   },
   {
-    "objectID": "slides/telling-a-story.html#make-your-figures-memorable",
-    "href": "slides/telling-a-story.html#make-your-figures-memorable",
-    "title": "Telling a story",
-    "section": "Make your figures memorable",
-    "text": "Make your figures memorable"
+    "objectID": "syllabus.html#email-policy",
+    "href": "syllabus.html#email-policy",
+    "title": "Syllabus",
+    "section": "Email policy",
+    "text": "Email policy\nWhen emailing about this course, please put “SDS366” into the subject line. Emails to the instructor or TA should be restricted to organizational issues, such as requests for appointments, questions about course organization, etc. For all other issues, post in the discussions on Canvas, ask a question during open Zoom, or make an appointment for a one-on-one session.\nSpecifically, we will not discuss technical issues related to assignments over email. Technical issues are questions concerning how to approach a particular problem, whether a particular solution is correct, or how to use the statistical software R. These questions should be posted as issues on GitHub. Also, we will not discuss grading-related matters over email. If you have a concern about grading, schedule a one-on-one Zoom meeting."
   },
   {
-    "objectID": "slides/telling-a-story.html#make-your-figures-memorable-1",
-    "href": "slides/telling-a-story.html#make-your-figures-memorable-1",
-    "title": "Telling a story",
-    "section": "Make your figures memorable",
-    "text": "Make your figures memorable"
+    "objectID": "syllabus.html#special-accommodations",
+    "href": "syllabus.html#special-accommodations",
+    "title": "Syllabus",
+    "section": "Special accommodations",
+    "text": "Special accommodations\nStudents with disabilities. Students with disabilities may request appropriate accommodations from the Division of Diversity and Community Engagement, Services for Students with Disabilities, 512-471-6259, https://diversity.utexas.edu/disability/\nReligious holy days. Students who must miss a class or an assignment to observe a religious holy day will be given an opportunity to complete the missed work within a reasonable time after the absence. According to UT Austin policy, such students must notify me of the pending absence at least fourteen days prior to the date of observance of a religious holy day."
   },
   {
-    "objectID": "slides/telling-a-story.html#further-reading",
-    "href": "slides/telling-a-story.html#further-reading",
-    "title": "Telling a story",
+    "objectID": "syllabus.html#academic-dishonesty",
+    "href": "syllabus.html#academic-dishonesty",
+    "title": "Syllabus",
+    "section": "Academic dishonesty",
+    "text": "Academic dishonesty\nThis course is built upon the idea that student interaction is important and a powerful way to learn. We encourage you to communicate with other students, in particular through the discussion forums on Canvas. However, there are times when you need to demonstrate your own ability to work and solve problems. In particular, your homeworks and projects are independent work, unless explicitly stated otherwise. You are allowed to confer with fellow students about general approaches to solve the problems in the assignments, but you have to do the assignments on your own and describe your work in your own words. Students who violate these expectations can expect to receive a failing grade on the assignment and will be reported to Student Judicial Services. These types of violations are reported to professional schools, should you ever decide to apply one day. Don’t do it—it’s not worth the consequences."
+  },
+  {
+    "objectID": "syllabus.html#sharing-of-course-materials-is-prohibited",
+    "href": "syllabus.html#sharing-of-course-materials-is-prohibited",
+    "title": "Syllabus",
+    "section": "Sharing of Course Materials is Prohibited",
+    "text": "Sharing of Course Materials is Prohibited\nAny materials in this class that are not posted publicly may not be shared online or with anyone outside of the class unless you have my explicit, written permission. This includes but is not limited to lecture hand-outs, videos, assessments (quizzes, exams, papers, projects, homework assignments), in-class materials, review sheets, and additional problem sets. Unauthorized sharing of materials promotes cheating. It is a violation of the University’s Student Honor Code and an act of academic dishonesty. We are well aware of the sites used for sharing materials, and any materials found online that are associated with you, or any suspected unauthorized sharing of materials, will be reported to Student Conduct and Academic Integrity in the Office of the Dean of Students. These reports can result in sanctions, including failure in the course.\nAny materials posted on the public class website (https://wilkelab.org/SDS366/) are considered public and can be shared under the Creative Commons Attribution CC BY 4.0 license."
+  },
+  {
+    "objectID": "syllabus.html#class-recordings",
+    "href": "syllabus.html#class-recordings",
+    "title": "Syllabus",
+    "section": "Class Recordings",
+    "text": "Class Recordings\nIf any class recordings are provided they are reserved only for students in this class for educational purposes and are protected under FERPA. The recordings should not be shared outside the class in any form. Violation of this restriction by a student could lead to Student Misconduct proceedings."
+  },
+  {
+    "objectID": "slides/visualizing-distributions-1.html#passengers-on-the-titanic",
+    "href": "slides/visualizing-distributions-1.html#passengers-on-the-titanic",
+    "title": "Visualizing distributions 1",
+    "section": "Passengers on the Titanic",
+    "text": "Passengers on the Titanic\n\n\n\n\n\n\n\nage\nsex\nclass\nsurvived\n\n\n\n\n0.2\nfemale\n3rd\nsurvived\n\n\n0.3\nmale\n3rd\ndied\n\n\n0.8\nmale\n2nd\nsurvived\n\n\n0.8\nmale\n2nd\nsurvived\n\n\n0.8\nmale\n3rd\nsurvived\n\n\n0.9\nmale\n1st\nsurvived\n\n\n1.0\nfemale\n2nd\nsurvived\n\n\n1.0\nfemale\n3rd\nsurvived\n\n\n1.0\nmale\n2nd\nsurvived\n\n\n1.0\nmale\n2nd\nsurvived\n\n\n1.0\nmale\n3rd\nsurvived\n\n\n1.5\nfemale\n3rd\ndied\n\n\n1.5\nfemale\n3rd\ndied\n\n\n2.0\nfemale\n1st\ndied\n\n\n2.0\nfemale\n2nd\nsurvived\n\n\n\n\n\n\n\n\n\n\n\n\n\nage\nsex\nclass\nsurvived\n\n\n\n\n2\nfemale\n3rd\ndied\n\n\n2\nfemale\n3rd\ndied\n\n\n2\nmale\n2nd\nsurvived\n\n\n2\nmale\n2nd\nsurvived\n\n\n2\nmale\n2nd\nsurvived\n\n\n3\nfemale\n2nd\nsurvived\n\n\n3\nfemale\n3rd\nsurvived\n\n\n3\nmale\n2nd\nsurvived\n\n\n3\nmale\n2nd\nsurvived\n\n\n3\nmale\n3rd\nsurvived\n\n\n3\nmale\n3rd\nsurvived\n\n\n4\nfemale\n2nd\nsurvived\n\n\n4\nfemale\n2nd\nsurvived\n\n\n4\nfemale\n3rd\nsurvived\n\n\n4\nfemale\n3rd\nsurvived\n\n\n\n\n\n\n\n\n\n\n\n\n\nage\nsex\nclass\nsurvived\n\n\n\n\n4\nmale\n1st\nsurvived\n\n\n4\nmale\n3rd\ndied\n\n\n4\nmale\n3rd\nsurvived\n\n\n5\nfemale\n3rd\nsurvived\n\n\n5\nfemale\n3rd\nsurvived\n\n\n5\nmale\n3rd\ndied\n\n\n6\nfemale\n2nd\nsurvived\n\n\n6\nfemale\n3rd\ndied\n\n\n6\nmale\n1st\nsurvived\n\n\n6\nmale\n3rd\ndied\n\n\n6\nmale\n3rd\ndied\n\n\n7\nfemale\n2nd\nsurvived\n\n\n8\nfemale\n2nd\nsurvived\n\n\n8\nfemale\n2nd\nsurvived\n\n\n8\nmale\n2nd\nsurvived"
+  },
+  {
+    "objectID": "slides/visualizing-distributions-1.html#histogram-define-bins-and-count-cases",
+    "href": "slides/visualizing-distributions-1.html#histogram-define-bins-and-count-cases",
+    "title": "Visualizing distributions 1",
+    "section": "Histogram: Define bins and count cases",
+    "text": "Histogram: Define bins and count cases\n\n\n\n\n\n\n\n\nage range\ncount\n\n\n\n\n0–4\n33\n\n\n5–9\n20\n\n\n10–14\n15\n\n\n15–19\n81\n\n\n20–24\n139\n\n\n25–29\n113\n\n\n30–34\n93\n\n\n35–39\n75\n\n\n\n\n\n\n\n\n\n\n\n\n\nage range\ncount\n\n\n\n\n40–44\n47\n\n\n45–49\n59\n\n\n50–54\n31\n\n\n55–59\n23\n\n\n60–64\n19\n\n\n65–69\n4\n\n\n70–74\n4\n\n\n75–79\n0"
+  },
+  {
+    "objectID": "slides/visualizing-distributions-1.html#histograms-depend-on-the-chosen-bin-width",
+    "href": "slides/visualizing-distributions-1.html#histograms-depend-on-the-chosen-bin-width",
+    "title": "Visualizing distributions 1",
+    "section": "Histograms depend on the chosen bin width",
+    "text": "Histograms depend on the chosen bin width"
+  },
+  {
+    "objectID": "slides/visualizing-distributions-1.html#further-reading",
+    "href": "slides/visualizing-distributions-1.html#further-reading",
+    "title": "Visualizing distributions 1",
     "section": "Further reading",
-    "text": "Further reading\n\n\nFundamentals of Data Visualization: Chapter 29: Telling a story and making a point\nJoshua Schimel (2011) Writing Science: How to Write Papers That Get Cited and Proposals That Get Funded"
+    "text": "Further reading"
   },
   {
     "objectID": "worksheets/aesthetic-mappings.html",

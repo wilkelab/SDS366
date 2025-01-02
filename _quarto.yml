@@ -33,6 +33,8 @@ website:
             href: slides/telling-a-story.qmd
           - text: "Class 4: Coordinate systems and axes"
             href: slides/coordinate-systems-axes.qmd
+          - text: "Class 5: Visualizing distributions 1"
+            href: slides/visualizing-distributions-1.qmd
           - text: "Class 13: Figure design"
             href: slides/figure-design.qmd
         
