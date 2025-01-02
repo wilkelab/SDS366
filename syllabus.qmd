@@ -146,7 +146,7 @@ The graded components of this class will be homeworks, projects, peer-grading, a
 
 There will be seven homeworks and three projects. Both homeworks and projects need to be submitted electronically on Canvas. Homeworks are worth 20 points and projects are worth 100 points. The lowest-scoring homework will be dropped, so that a maximum of 120 points can be obtained from the homeworks.
 
-Projects are peer-graded, which involves evaluating three projects by other students according to a detailed grading rubric that will be provided. The final grade for each project is the mean of the peer-graded projects. The peer-grading itself will be graded by the TA, who will also oversee and spot-check the assigned peer grades. Experience has shown that peer-grading is often the most instructive component of this class, so don't take this lightly.
+Projects are peer-graded, which involves evaluating three projects by other students according to a detailed grading rubric that will be provided. The final grade for each project is the mean of the peer-graded projects, subject to oversight and potential grade correction (up or down, as warranted) by the TA. The peer-grading itself will also be graded by the TA. Experience has shown that peer-grading is often the most instructive component of this class, so don't take this lightly.
 
 Participation is assessed in two ways. First, students will receive 2 points for every lecture they attend. This is tracked via simple quizzes on Canvas. Second, each week students can receive up to 4 points for making substantive contributions to the Canvas online discussion (2 points per contribution). Total participation points are capped at 52 (13 weeks of class times 4 points), so students can compensate for lack of in-person attendance by participating in discussions and vice versa. **You do not have to get full points in both in-person attendance and online discussions.** No participation is assessed in the first week of class.
 
@@ -198,7 +198,7 @@ Note that we will not usually make appointments before 9am or after 5pm.
 
 When emailing about this course, please put "SDS366" into the subject line. Emails to the instructor or TA should be restricted to organizational issues, such as requests for appointments, questions about course organization, etc. For all other issues, post in the discussions on Canvas, ask a question during open Zoom, or make an appointment for a one-on-one session.
 
-Specifically, we will not discuss technical issues related to assignments over email. Technical issues are questions concerning how to approach a particular problem, whether a particular solution is correct, or how to use the statistical software R. These questions should be posted as issues on GitHub. Also, we will not discuss grading-related matters over email. If you have a concern about grading, schedule a one-on-one Zoom meeting.
+Specifically, we will not discuss technical issues related to assignments over email. Technical issues are questions concerning how to approach a particular problem, whether a particular solution is correct, or how to use the statistical software R. These questions should be posted on the Discussion forums on Canvas. Also, we will not discuss grading-related matters over email. If you have a concern about grading, schedule a one-on-one Zoom meeting.
 
 ## Special accommodations
 

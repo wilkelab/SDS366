@@ -39,3 +39,7 @@ Now you try it. If you know some ggplot, modify the above plot. For example, plo
 ```{r}
 # Your R code goes here
 ```
+
+## 3. Rendering to pdf
+
+When you have made your changes, render the entire document to pdf. Then make sure you know where the pdf file is located. If you are using the edupod computer, export the pdf file so you have it on your local computer. You will need to know how to do this in future assignments, when you are expected to upload the final pdf file you have created.
