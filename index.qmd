@@ -1,6 +1,7 @@
 ---
 title: "SDS 366"
 description: Data Visualization in R
+format: html
 ---
 
 This is the home page for SDS 366, Data Visualization in R. All course materials will be posted on this site.

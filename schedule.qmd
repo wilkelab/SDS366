@@ -1,5 +1,6 @@
 ---
 title: "SDS 366 Schedule Spring 2025"
+format: html
 ---
 
 ## Lectures

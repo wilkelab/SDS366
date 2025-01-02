@@ -54,13 +54,16 @@ website:
 format:
   html:
     theme:
-      light:
-        flatly
-      dark:
-        darkly
+      light: cosmo
+      dark: solar
     css: styles.css
     toc: true
-
+  live-html:
+    theme:
+      light: cosmo
+      dark: solar
+    css: styles.css
+    toc: true
 execute: 
   freeze: auto
 
