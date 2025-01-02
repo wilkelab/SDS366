@@ -55,13 +55,13 @@ format:
   html:
     theme:
       light: cosmo
-      dark: solar
+      dark: [solar, theme-dark.scss]
     css: styles.css
     toc: true
   live-html:
     theme:
       light: cosmo
-      dark: solar
+      dark: [solar, theme-dark.scss]
     css: styles.css
     toc: true
 execute: 
