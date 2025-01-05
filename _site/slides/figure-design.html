@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.39">
 
   <meta name="author" content="Claus O. Wilke">
-  <meta name="dcterms.date" content="2024-12-28">
+  <meta name="dcterms.date" content="2025-01-05">
   <title>SDS 366 – Figure design</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -95,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-80920a296602927170ae890c726d62e3.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-781f6ba2a367431802b1f20d16123e35.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -205,7 +205,7 @@ Claus O. Wilke
 </div>
 </div>
 
-  <p class="date">2024-12-28</p>
+  <p class="date">2025-01-05</p>
 </section>
 <section id="how-do-we-go" class="slide level2" data-menu-title="How do we go from this">
 <h2></h2>
@@ -235,10 +235,10 @@ Claus O. Wilke
 </div>
 </div>
 </div></div>
-<div class="fragment small-font move-up-1em">
+<div class="fragment move-up-1em">
 <p>Requires coordinated modification of multiple elements:</p>
 </div>
-<div class="small-font">
+<div>
 <ul>
 <li class="fragment">geoms (via arguments to geoms)</li>
 <li class="fragment">scales (via <code>scale_*()</code> functions)</li>
@@ -248,7 +248,7 @@ Claus O. Wilke
 </section>
 <section id="the-starting-point-a-rough-draft" class="slide level2">
 <h2>The starting point, a rough draft</h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">ggplot</span>(lincoln_temps) <span class="sc">+</span></span>
@@ -265,14 +265,14 @@ Claus O. Wilke
 </div>
 </div></div>
 </div>
-<div class="fragment tiny-font">
+<div class="fragment smaller-font">
 <p>You can download the dataset using this code:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>lincoln_temps <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">url</span>(<span class="st">"https://wilkelab.org/SDS366/datasets/lincoln_temps.rds"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="set-scale-and-bandwidth-to-shape-ridgelines" class="slide level2">
 <h2>Set <code>scale</code> and <code>bandwidth</code> to shape ridgelines</h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">ggplot</span>(lincoln_temps) <span class="sc">+</span></span>
@@ -294,7 +294,7 @@ Claus O. Wilke
 </section>
 <section id="set-rel_min_height-to-cut-ridgelines-near-zero" class="slide level2">
 <h2>Set <code>rel_min_height</code> to cut ridgelines near zero</h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">ggplot</span>(lincoln_temps) <span class="sc">+</span></span>
@@ -317,7 +317,7 @@ Claus O. Wilke
 </section>
 <section id="use-scale_-functions-to-specify-axis-labels" class="slide level2">
 <h2>Use <code>scale_*()</code> functions to specify axis labels</h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">ggplot</span>(lincoln_temps) <span class="sc">+</span></span>
@@ -346,7 +346,7 @@ Claus O. Wilke
 </section>
 <section id="specify-scale-expansion" class="slide level2">
 <h2>Specify scale expansion</h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">ggplot</span>(lincoln_temps) <span class="sc">+</span></span>
@@ -377,7 +377,7 @@ Claus O. Wilke
 </section>
 <section id="set-overall-plot-theme" class="slide level2">
 <h2>Set overall plot theme</h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">ggplot</span>(lincoln_temps) <span class="sc">+</span></span>
@@ -409,7 +409,7 @@ Claus O. Wilke
 </section>
 <section id="align-y-axis-labels-to-grid-lines" class="slide level2">
 <h2>Align y axis labels to grid lines</h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">ggplot</span>(lincoln_temps) <span class="sc">+</span></span>
@@ -444,7 +444,7 @@ Claus O. Wilke
 </section>
 <section id="change-fill-color-from-default-gray-to-blue" class="slide level2">
 <h2>Change fill color from default gray to blue</h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">ggplot</span>(lincoln_temps) <span class="sc">+</span></span>
@@ -480,7 +480,7 @@ Claus O. Wilke
 </section>
 <section id="draw-lines-in-white-instead-of-black" class="slide level2">
 <h2>Draw lines in white instead of black</h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">ggplot</span>(lincoln_temps) <span class="sc">+</span></span>
@@ -759,7 +759,7 @@ Claus O. Wilke
 </section>
 <section id="customizing-theme-elements" class="slide level2">
 <h2>Customizing theme elements</h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
@@ -780,7 +780,7 @@ Claus O. Wilke
 </section>
 <section id="customizing-theme-elements-1" class="slide level2">
 <h2>Customizing theme elements</h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
@@ -808,7 +808,7 @@ Claus O. Wilke
 </section>
 <section id="customizing-theme-elements-2" class="slide level2">
 <h2>Customizing theme elements</h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
@@ -835,7 +835,7 @@ Claus O. Wilke
 </section>
 <section id="customizing-theme-elements-3" class="slide level2">
 <h2>Customizing theme elements</h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
@@ -862,7 +862,7 @@ Claus O. Wilke
 </section>
 <section id="customizing-theme-elements-4" class="slide level2">
 <h2>Customizing theme elements</h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
@@ -888,7 +888,7 @@ Claus O. Wilke
 </section>
 <section id="customizing-theme-elements-5" class="slide level2">
 <h2>Customizing theme elements</h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
@@ -912,13 +912,13 @@ Claus O. Wilke
 </div>
 </div></div>
 </div>
-<div class="fragment small-font">
+<div class="fragment">
 <p>The element <code>axis.text</code> has its own color set in the theme. Therefore it doesn’t inherit from <code>text</code>.</p>
 </div>
 </section>
 <section id="horizontal-and-vertical-alignment" class="slide level2">
 <h2>Horizontal and vertical alignment</h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
@@ -946,7 +946,7 @@ Claus O. Wilke
 </section>
 <section id="horizontal-and-vertical-alignment-1" class="slide level2">
 <h2>Horizontal and vertical alignment</h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
@@ -974,7 +974,7 @@ Claus O. Wilke
 </section>
 <section id="horizontal-and-vertical-alignment-2" class="slide level2">
 <h2>Horizontal and vertical alignment</h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
@@ -1002,7 +1002,7 @@ Claus O. Wilke
 </section>
 <section id="horizontal-and-vertical-alignment-3" class="slide level2">
 <h2>Horizontal and vertical alignment</h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
@@ -1030,7 +1030,7 @@ Claus O. Wilke
 </section>
 <section id="horizontal-and-vertical-alignment-4" class="slide level2">
 <h2>Horizontal and vertical alignment</h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
@@ -1058,7 +1058,7 @@ Claus O. Wilke
 </section>
 <section id="horizontal-and-vertical-alignment-5" class="slide level2">
 <h2>Horizontal and vertical alignment</h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
@@ -1086,7 +1086,7 @@ Claus O. Wilke
 </section>
 <section id="remove-elements-entirely-element_blank" class="slide level2">
 <h2>Remove elements entirely: <code>element_blank()</code></h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
@@ -1111,7 +1111,7 @@ Claus O. Wilke
 </section>
 <section id="remove-elements-entirely-element_blank-1" class="slide level2">
 <h2>Remove elements entirely: <code>element_blank()</code></h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
@@ -1136,7 +1136,7 @@ Claus O. Wilke
 </section>
 <section id="set-background-color-element_rect" class="slide level2">
 <h2>Set background color: <code>element_rect()</code></h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
@@ -1162,7 +1162,7 @@ Claus O. Wilke
 </section>
 <section id="set-background-color-element_rect-1" class="slide level2">
 <h2>Set background color: <code>element_rect()</code></h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
@@ -1188,7 +1188,7 @@ Claus O. Wilke
 </section>
 <section id="set-background-color-element_rect-2" class="slide level2">
 <h2>Set background color: <code>element_rect()</code></h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
@@ -1215,7 +1215,7 @@ Claus O. Wilke
 </section>
 <section id="set-background-color-element_rect-3" class="slide level2">
 <h2>Set background color: <code>element_rect()</code></h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
@@ -1243,7 +1243,7 @@ Claus O. Wilke
 </section>
 <section id="move-the-legend-legend.position" class="slide level2">
 <h2>Move the legend: <code>legend.position</code></h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
@@ -1273,7 +1273,7 @@ Claus O. Wilke
 </section>
 <section id="move-the-legend-legend.position-1" class="slide level2">
 <h2>Move the legend: <code>legend.position</code></h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
@@ -1308,14 +1308,12 @@ Claus O. Wilke
 </section>
 <section id="further-reading" class="slide level2">
 <h2>Further reading</h2>
-<div class="small-font">
 <ul>
 <li>Fundamentals of Data Visualization: <a href="https://clauswilke.com/dataviz/balance-data-context.html">Chapter 23: Balance the data and the context</a></li>
 <li>Data Visualization—A Practical Introduction: <a href="https://socviz.co/refineplots.html#change-the-appearance-of-plots-with-themes">Chapter 8.3: Change the appearance of plots with themes</a></li>
 <li>ggplot2 reference documentation: <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">Complete themes</a></li>
 <li>ggplot2 reference documentation: <a href="https://ggplot2.tidyverse.org/reference/theme.html">Modify components of a theme</a></li>
 </ul>
-</div>
 
 
 </section></section>

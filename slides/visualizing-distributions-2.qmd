@@ -39,7 +39,6 @@ lincoln_temps <- readRDS(here("datasets", "lincoln_temps.rds"))
 ::: {.column width="50%" .small-font}
 Mean temperatures in Lincoln, NE, in January 2016:
 
-::: {.small-font}
 ```{r}
 lincoln_temps |>
   filter(month == "Jan") |>
@@ -48,9 +47,8 @@ lincoln_temps |>
   knitr::kable()
 ```
 :::
-:::
 
-::: {.fragment .column width="50%" .small-font}
+::: {.fragment .column width="50%"}
 ```{r}
 #| label: temps-densities-january
 #| fig-cap: "&nbsp;"
@@ -170,7 +168,7 @@ ggplot(lincoln_temps, aes(x = month, y = mean_temp)) +
   theme_half_open()
 ```
 
-::: {.fragment .small-font .move-up-2em}
+::: {.fragment .move-up-2em}
 A boxplot is a crude way of visualizing a distribution.
 :::
 
@@ -228,7 +226,7 @@ ggplot(lincoln_temps, aes(x = month, y = mean_temp)) +
   theme_half_open()
 ```
 
-::: {.fragment .small-font .move-up-2em}
+::: {.fragment .move-up-2em}
 A violin plot is a density plot rotated 90 degrees and then mirrored.
 :::
 
@@ -274,11 +272,9 @@ plot_grid(p_points, p_violin, rel_widths = c(.65, 1), nrow = 1)
 
 ## For small datasets, you can also use a strip chart
 
-::: {.fragment .small-font}
 Advantage: Can see raw data points instead of abstract representation.
-:::
 
-::: {.fragment .small-font}
+::: {.fragment}
 ```{r}
 #| label: temps-stripchart
 #| fig-cap: "&nbsp;"
@@ -295,17 +291,14 @@ ggplot(lincoln_temps, aes(x = month, y = mean_temp)) +
 ```
 :::
 
-::: {.fragment .small-font .move-up-2em}
+::: {.fragment .move-up-2em}
 Horizontal jittering may be necessary to avoid overlapping points.
 :::
 
 ## For small datasets, you can also use a strip chart
 
-::: {.small-font}
 Advantage: Can see raw data points instead of abstract representation.
-:::
 
-::: {.small-font}
 ```{r}
 #| label: temps-stripchart2
 #| fig-cap: "&nbsp;"
@@ -317,19 +310,15 @@ ggplot(lincoln_temps, aes(x = month, y = mean_temp)) +
   ylab("mean temperature (°F)") +
   theme_half_open()
 ```
-:::
 
-::: {.small-font .move-up-2em}
+::: {.move-up-2em}
 Horizontal jittering may be necessary to avoid overlapping points.
 :::
 
 ## For small datasets, you can also use a strip chart
 
-::: {.small-font}
 Advantage: Can see raw data points instead of abstract representation.
-:::
 
-::: {.small-font}
 ```{r}
 #| label: temps-stripchart3
 #| fig-cap: "&nbsp;"
@@ -344,9 +333,8 @@ ggplot(lincoln_temps, aes(x = month, y = mean_temp)) +
   ylab("mean temperature (°F)") +
   theme_half_open()
 ```
-:::
 
-::: {.small-font .move-up-2em}
+::: {.move-up-2em}
 Horizontal jittering may be necessary to avoid overlapping points.
 :::
 
@@ -365,7 +353,7 @@ ggplot(lincoln_temps, aes(x = month, y = mean_temp)) +
   theme_half_open()
 ```
 
-::: {.fragment .small-font .move-up-2em}
+::: {.fragment .move-up-2em}
 Such plots are called sina plots, to honor [Sina Hadi Sohi.](https://clauswilke.com/dataviz/boxplots-violins.html#fig:lincoln-temp-sina)
 :::
 
@@ -392,7 +380,7 @@ lincoln_temps %>%
   theme_minimal_grid(16)
 ```
 
-::: {.fragment .small-font .move-up-2em}
+::: {.fragment .move-up-2em}
 How about we stagger the densities vertically?
 :::
 
@@ -422,7 +410,7 @@ ggplot(lincoln_temps, aes(x = mean_temp, y = month_long)) +
   )
 ```
 
-::: {.fragment .small-font .move-up-2em}
+::: {.fragment .move-up-2em}
 Notice the single fill color. More colors would be distracting.
 :::
 
@@ -432,7 +420,7 @@ Notice the single fill color. More colors would be distracting.
 
 ## Getting the data
 
-::: {.tiny-font}
+::: {.smaller-font}
 All examples will use the `lincoln_temps` dataset:
 
 ```{r}
@@ -446,7 +434,7 @@ lincoln_temps
 
 ## Making boxplots, violins, etc. in **ggplot2**
 
-::: {.small-font .center-text}
+::: {.center-text .move-down-1em}
 Plot type    | Geom                    | Notes
 :----------- | :-----------------      | :-------------------------
 boxplot      | `geom_boxplot()`        |
@@ -554,9 +542,7 @@ ggplot(lincoln_temps, aes(x = mean_temp, y = month_long)) +
 
 ## Further reading
 
-::: {.small-font}
 - Fundamentals of Data Visualization: [Chapter 7: Visualizing many distributions at once](https://clauswilke.com/dataviz/boxplots-violins.html)
 - **ggplot2** reference documentation: [`geom_boxplot()`](https://ggplot2.tidyverse.org/reference/geom_histogram), [`geom_violin()`](https://ggplot2.tidyverse.org/reference/geom_violin), [`position_jitter()`](https://ggplot2.tidyverse.org/reference/position_jitter.html)
 - **ggforce** reference documentation: [`geom_sina()`](https://ggforce.data-imaginist.com/reference/geom_sina.html)
 - **ggridges** reference documentation: [`geom_density_ridges()`](https://wilkelab.org/ggridges/reference/geom_density_ridges.html)
-:::

@@ -37,7 +37,7 @@ tempnormals <- read_csv(here("datasets", "tempnormals.csv"))
 #| label: cartesian-coord
 #| fig-cap: "&nbsp;"
 #| fig.asp: 0.8
-#| out-width: "55%"
+#| out-width: "65%"
 df_points <- data.frame(x = c(-1, 0, 2),
                         y = c(-1, 0, 1),
                         label = c("(–1, –1)", "(0, 0)", "(2, 1)"),
@@ -206,7 +206,7 @@ plot_grid(
 
 ## Logarithmic scales (log scales)
 
-::: {.small-font .move-down-1em}
+::: {.move-down-1em}
 Visualize these five values: 1, &nbsp; 3.16, &nbsp; 10, &nbsp; 31.6, &nbsp; 100
 :::
 
@@ -294,7 +294,7 @@ ggdraw(plotlist[[3]])
 
 ## Example: Population number of Texas counties
 
-[A linear scale emphasizes large counties]{.small-font}
+A linear scale emphasizes large counties
 
 ```{r}
 #| label: texas-counties-linear
@@ -340,7 +340,7 @@ ggplot(tx_counties, aes(x = index, y = popratio)) +
 ```
 ## Example: Population number of Texas counties
 
-[A log scale shows symmetry around the median]{.small-font}
+A log scale shows symmetry around the median
 
 ```{r}
 #| label: texas-counties-log
@@ -467,9 +467,7 @@ ggplot(df_points, aes(x, y)) +
 
 ## Cartesian vs polar example
 
-<br>
-
-::: {.columns}
+::: {.columns .move-down-1em}
 
 ::: {.column width="50%"}
 ```{r}
@@ -540,9 +538,11 @@ ggplot(temps_long, aes(x = date, y = temperature, color = location)) +
 
 ## Getting the data
 
-[The `boxoffice` dataset:]{.small-font}
+::: {.small-font}
+The `boxoffice` dataset:
+:::
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| echo: true
 #| message: false
@@ -555,9 +555,11 @@ boxoffice <- tibble(
 :::
 
 ::: {.fragment}
-[The `tx_counties` dataset:]{.small-font}
+::: {.small-font}
+The `tx_counties` dataset:
+:::
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| echo: true
 #| message: false
@@ -568,13 +570,14 @@ tx_counties <- read_csv("https://wilkelab.org/SDS375/datasets/US_census.csv") |>
   mutate(index = 1:n())
 ```
 :::
-
 :::
 
 ::: {.fragment}
-[The `temperatures` dataset:]{.small-font}
+::: {.small-font}
+The `temperatures` dataset:
+:::
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| echo: true
 #| message: false
@@ -592,9 +595,9 @@ temperatures <- read_csv("https://wilkelab.org/SDS375/datasets/tempnormals.csv")
 
 ## Scale functions customize the x and y axes
 
-[Recall the box-office example from a prior lecture:]{.small-font}
+Recall the box-office example from a prior lecture:
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: boxoffice-scale-progression1
 #| echo: true
@@ -607,9 +610,9 @@ ggplot(boxoffice) +
 
 ## Scale functions customize the x and y axes
 
-[Add scale functions (no change in figure so far):]{.small-font}
+Add scale functions (no change in figure so far):
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: boxoffice-scale-progression2
 #| echo: true
@@ -625,9 +628,9 @@ ggplot(boxoffice) +
 
 ## Scale functions customize the x and y axes
 
-[The parameter `name` sets the axis title:]{.small-font}
+The parameter `name` sets the axis title:
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: boxoffice-scale-progression3
 #| echo: true
@@ -645,16 +648,16 @@ ggplot(boxoffice) +
 ```
 :::
 
-::: {.fragment .small-font}
+::: {.fragment}
 Note: We could do the same with `xlab()` and `ylab()`
 :::
 
 
 ## Scale functions customize the x and y axes
 
-[The parameter `limits` sets the scale limits:]{.small-font}
+The parameter `limits` sets the scale limits:
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: boxoffice-scale-progression4
 #| echo: true
@@ -673,16 +676,16 @@ ggplot(boxoffice) +
 ```
 :::
 
-::: {.fragment .small-font}
+::: {.fragment}
 Note: We could do the same with `xlim()` and `ylim()` but I advise against it, as these functions can have unexpected side-effects
 :::
 
 
 ## Scale functions customize the x and y axes
 
-[The parameter `breaks` sets the axis tick positions:]{.small-font}
+The parameter `breaks` sets the axis tick positions:
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: boxoffice-scale-progression5
 #| echo: true
@@ -704,9 +707,9 @@ ggplot(boxoffice) +
 
 ## Scale functions customize the x and y axes
 
-[The parameter `labels` sets the axis tick labels:]{.small-font}
+The parameter `labels` sets the axis tick labels:
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: boxoffice-scale-progression6
 #| echo: true
@@ -729,9 +732,9 @@ ggplot(boxoffice) +
 
 ## Scale functions customize the x and y axes
 
-[The parameter `expand` sets the axis expansion:]{.small-font}
+The parameter `expand` sets the axis expansion:
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: boxoffice-scale-progression7
 #| echo: true
@@ -758,9 +761,9 @@ ggplot(boxoffice) +
 ::: {.columns}
 
 ::: {.column width="50%"}
-[Linear y scale:]{.small-font}
+Linear y scale:
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: tx-counties-ggplot-linear
 #| echo: true
@@ -778,9 +781,9 @@ ggplot(tx_counties) +
 :::
 
 ::: {.fragment .column width="50%"}
-[Log y scale:]{.small-font}
+Log y scale:
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: tx-counties-ggplot-log
 #| echo: true
@@ -804,9 +807,9 @@ ggplot(tx_counties) +
 ::: {.columns}
 
 ::: {.column width="50%"}
-[Linear y scale:]{.small-font}
+Linear y scale:
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: tx-counties-ggplot-linear2
 #| echo: true
@@ -828,9 +831,9 @@ ggplot(tx_counties) +
 :::
 
 ::: {.column width="50%"}
-[Log y scale:]{.small-font}
+Log y scale:
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: tx-counties-ggplot-log2
 #| echo: true
@@ -855,7 +858,7 @@ ggplot(tx_counties) +
 
 ## Coords define the coordinate system
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: temperatures-cartesian
 #| echo: true
@@ -869,7 +872,7 @@ ggplot(temperatures, aes(day_of_year, temperature, color = location)) +
 
 ## Coords define the coordinate system
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: temperatures-polar
 #| echo: true
@@ -884,7 +887,7 @@ ggplot(temperatures, aes(day_of_year, temperature, color = location)) +
 
 ## Coords define the coordinate system
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: temperatures-polar2
 #| echo: true
@@ -903,10 +906,8 @@ ggplot(temperatures, aes(day_of_year, temperature, color = location)) +
 
 ## Further reading
 
-::: {.small-font}
 - Fundamentals of Data Visualization: [Chapter 3: Coordinate systems and axes](https://clauswilke.com/dataviz/coordinate-systems-axes.html)
 - **ggplot2** reference documentation: [Scales](https://ggplot2.tidyverse.org/reference/index.html#section-scales)
 - **ggplot2** reference documentation: [Coordinate systems](https://ggplot2.tidyverse.org/reference/index.html#section-coordinate-systems)
 - **ggplot2** book: [Position scales](https://ggplot2-book.org/scale-position.html)
 - **ggplot2** book: [Coordinate systems](https://ggplot2-book.org/coord.html)
-:::

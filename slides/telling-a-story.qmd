@@ -37,32 +37,30 @@ preprints <- read_csv("https://wilkelab.org/SDS366/datasets/preprints.csv")
 
 ## What is a story?
 
-<br>
-
-::: {.fragment}
+::: {.fragment .large-font .move-down-1em}
 A story is a collection of observations, facts, or events presented in a specific order such that they create an [emotional reaction.]{.highlight}
 :::
 
 
 ## Every story needs an arc
 
-::: {.fragment .center-text}
+::: {.fragment .large-font .center-text .move-down-1em}
 Opening
 :::
 
-::: {.fragment .center-text}
+::: {.fragment .large-font .center-text}
 ![](../assets/telling-a-story/arrow.svg){width="3%" style="margin-top: 0; margin-bottom: -0.3em;"}
 
 Challenge
 :::
 
-::: {.fragment .center-text}
+::: {.fragment .large-font .center-text}
 ![](../assets/telling-a-story/arrow.svg){width="3%" style="margin-top: 0; margin-bottom: -0.3em;"}
 
 Action
 :::
 
-::: {.fragment .center-text}
+::: {.fragment .large-font .center-text}
 ![](../assets/telling-a-story/arrow.svg){width="3%" style="margin-top: 0; margin-bottom: -0.3em;"}
 
 Resolution
@@ -70,135 +68,133 @@ Resolution
 
 ## Every story needs an arc
 
-::: {.center-text}
+::: {.large-font .center-text .move-down-1em}
 Opening
 :::
 
-::: {.center-text .highlight}
+::: {.large-font .center-text .highlight}
 ![](../assets/telling-a-story/arrow.svg){width="3%" style="margin-top: 0; margin-bottom: -0.3em;"}
 
 Challenge
 :::
 
-::: {.center-text}
+::: {.large-font .center-text}
 ![](../assets/telling-a-story/arrow.svg){width="3%" style="margin-top: 0; margin-bottom: -0.3em;"}
 
 Action
 :::
 
-::: {.center-text .highlight}
+::: {.large-font .center-text .highlight}
 ![](../assets/telling-a-story/arrow.svg){width="3%" style="margin-top: 0; margin-bottom: -0.3em;"}
 
 Resolution
 :::
 
-::: {.absolute-bottom-right .small-font}
+::: {.absolute-bottom-right }
 Challenge and resolution are<br>the two most important parts
 :::
 
 ## Mapping my story onto this format
 
-::: {.fragment .small-font .move-down-1em}
+::: {.fragment .move-down-1em}
 **Opening:** We need to make many data visualizations in my lab
 :::
 
-::: {.fragment .small-font .move-down-1em}
+::: {.fragment .move-down-1em}
 **Challenge:** I end up telling my students the same things over and over
 :::
 
-::: {.fragment .small-font .move-down-1em}
+::: {.fragment .move-down-1em}
 **Action:** I go and write a book about data visualization
 :::
 
-::: {.fragment .small-font .move-down-1em}
+::: {.fragment .move-down-1em}
 **Resolution:** The book is written. But now I teach the material, so I still keep saying the same things over and over
 :::
 
 ## Other story structures
 
-::: {.fragment .center-text .move-up-half-em}
+::: {.fragment .large-font .center-text .move-up-half-em}
 Action
 :::
 
-::: {.fragment .center-text}
+::: {.fragment .large-font .center-text}
 ![](../assets/telling-a-story/arrow.svg){width="3%" style="margin-top: -0.1em; margin-bottom: -0.5em;"}
 
 Background
 :::
 
-::: {.fragment .center-text}
+::: {.fragment .large-font .center-text}
 ![](../assets/telling-a-story/arrow.svg){width="3%" style="margin-top: -0.1em; margin-bottom: -0.5em;"}
 
 Development
 :::
 
-::: {.fragment .center-text}
+::: {.fragment .large-font .center-text}
 ![](../assets/telling-a-story/arrow.svg){width="3%" style="margin-top: -0.1em; margin-bottom: -0.5em;"}
 
 Climax
 :::
 
-::: {.fragment .center-text}
+::: {.fragment .large-font .center-text}
 ![](../assets/telling-a-story/arrow.svg){width="3%" style="margin-top: -0.1em; margin-bottom: -0.5em;"}
 
 Ending
 :::
 
-::: {.fragment .absolute-bottom-right .small-font}
+::: {.fragment .absolute-bottom-right}
 (Better for action movies<br>than for scientific reports)
 :::
 
 ## Mapping my story onto this format
 
-::: {.fragment .move-down-1em .small-font}
+::: {.fragment .move-down-1em}
 **Action:** In May 2017, I embark on a major project: Write a book on data visualization
 :::
 
-::: {.fragment .move-down-1em .small-font}
+::: {.fragment .move-down-1em}
 **Background:** I do this because we need to make many data visualizations in my lab, and I end up telling my students the same things over and over
 :::
 
-::: {.fragment .move-down-1em .small-font}
+::: {.fragment .move-down-1em}
 **Development:** Writing the book takes me almost two years; along the way, I add many features to ggplot2 and become a member of the ggplot2 team
 :::
 
-::: {.fragment .move-down-1em .small-font}
+::: {.fragment .move-down-1em}
 **Climax:** The book is released in April 2019
 :::
 
-::: {.fragment .move-down-1em .small-font}
+::: {.fragment .move-down-1em}
 **Ending:** Now I'm a dataviz teacher
 :::
 
 ## Other story structures
 
-<br><br>
-
-::: {.fragment .center-text}
+::: {.fragment .large-font .center-text .move-down-2em}
 Lead
 :::
 
-::: {.fragment .center-text}
+::: {.fragment .large-font .center-text}
 ![](../assets/telling-a-story/arrow.svg){width="3%" style="margin-top: 0; margin-bottom: -0.3em;"}
 
 Development
 :::
 
-::: {.fragment .absolute-bottom-right .small-font}
+::: {.fragment .absolute-bottom-right}
 (Commonly used in newspaper articles)
 :::
 
 ## Mapping my story onto this format
 
-::: {.fragment .small-font .move-down-1em}
+::: {.fragment .move-down-1em}
 **Lead:** Because I see the need for more education in data visualization, I have written an entire book about the topic
 :::
 
-::: {.fragment .small-font .move-down-1em}
+::: {.fragment .move-down-1em}
 **Development:** I had previously written an R package to improve figure design, but it wasn't sufficient: Good judgement cannot be automated
 :::
 
-::: {.fragment .small-font .move-down-1em}
+::: {.fragment .move-down-1em}
 So I wrote a book; the book is entirely about concepts, not about coding, and it is meant as a resource for anybody doing data visualizations, regardless of their preferred visualization software
 :::
 
@@ -288,7 +284,7 @@ df_preprints |>
   )
 ```
 
-[What happened in 2014 to curtail the growth?]{.small-font style="position: absolute; top: 42%; left: 58%; width: 3.8in; background: white;"}
+[What happened in 2014 to curtail the growth?]{style="position: absolute; top: 42%; left: 58%; width: 3.8in; background: white;"}
 
 
 ::: {.absolute-bottom-right}
@@ -328,7 +324,7 @@ ggplot(df_preprints, aes(date, count, color = archive)) +
   )
 ```
 
-[bioRxiv opened in 2014]{.small-font style="position: absolute; top: 60%; left: 62%; width: 3.8in; background: white;"}
+[bioRxiv opened in 2014]{style="position: absolute; top: 60%; left: 62%; width: 3.8in; background: white;"}
 
 
 ::: {.absolute-bottom-right}
@@ -468,26 +464,24 @@ flights_grouped |>
   )
 ```
 
-[American and Delta have the shortest delays]{.small-font style="position: absolute; top: 14%; left: 38%; width: 3.8in; background: white;"}
+[American and Delta have the shortest delays]{style="position: absolute; top: 14%; left: 38%; width: 3.8in; background: white;"}
 
 ## Make your figures memorable
 
-<br>
-
+::: {.move-down-1em}
 ![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/petownership-bar-1.png){.fragment width="80%" fig-align="center"}
+:::
 
 ## Make your figures memorable
 
-<br>
-
+::: {.move-down-1em}
 ![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/petownership-isotype-1.png){width="80%" fig-align="center"}
+:::
 
 <!-- Segment ends here -->
 
 ## Further reading
 
-::: {.small-font}
 - Fundamentals of Data Visualization: [Chapter 29: Telling a story and making a point](https://clauswilke.com/dataviz/telling-a-story.html)
 
 - Joshua Schimel (2011) Writing Science: How to Write Papers That Get Cited and Proposals That Get Funded
-:::

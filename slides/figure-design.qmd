@@ -82,11 +82,11 @@ ggplot(lincoln_temps) +
 
 :::
 
-::: {.fragment .small-font .move-up-1em}
+::: {.fragment .move-up-1em}
 Requires coordinated modification of multiple elements:
 :::
 
-::: {.incremental .small-font}
+::: {.incremental}
 - geoms (via arguments to geoms)
 - scales (via `scale_*()` functions)
 - plot appearance (via themes)
@@ -94,7 +94,7 @@ Requires coordinated modification of multiple elements:
 
 ## The starting point, a rough draft
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: lincoln-ridgeline-progression1
 #| echo: true
@@ -107,7 +107,7 @@ ggplot(lincoln_temps) +
 ```
 :::
 
-::: {.fragment .tiny-font}
+::: {.fragment .smaller-font}
 You can download the dataset using this code:
 ```r
 lincoln_temps <- readRDS(url("https://wilkelab.org/SDS366/datasets/lincoln_temps.rds"))
@@ -116,7 +116,7 @@ lincoln_temps <- readRDS(url("https://wilkelab.org/SDS366/datasets/lincoln_temps
 
 ## Set `scale` and `bandwidth` to shape ridgelines
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: lincoln-ridgeline-progression2
 #| echo: true
@@ -133,7 +133,7 @@ ggplot(lincoln_temps) +
 
 ## Set `rel_min_height` to cut ridgelines near zero
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: lincoln-ridgeline-progression3
 #| echo: true
@@ -151,7 +151,7 @@ ggplot(lincoln_temps) +
 
 ## Use `scale_*()` functions to specify axis labels
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: lincoln-ridgeline-progression4
 #| echo: true
@@ -175,7 +175,7 @@ ggplot(lincoln_temps) +
 
 ## Specify scale expansion
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: lincoln-ridgeline-progression5
 #| echo: true
@@ -201,7 +201,7 @@ ggplot(lincoln_temps) +
 
 ## Set overall plot theme
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: lincoln-ridgeline-progression6
 #| echo: true
@@ -228,7 +228,7 @@ ggplot(lincoln_temps) +
 
 ## Align y axis labels to grid lines
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: lincoln-ridgeline-progression7
 #| echo: true
@@ -258,7 +258,7 @@ ggplot(lincoln_temps) +
 
 ## Change fill color from default gray to blue
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: lincoln-ridgeline-progression8
 #| echo: true
@@ -289,7 +289,7 @@ ggplot(lincoln_temps) +
 
 ## Draw lines in white instead of black
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: lincoln-ridgeline-progression9
 #| echo: true
@@ -540,7 +540,7 @@ ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
 
 ## Customizing theme elements
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: penguins-theme-elements1
 #| echo: true
@@ -556,7 +556,7 @@ ggplot(penguins) +
 
 ## Customizing theme elements
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: penguins-theme-elements2
 #| echo: true
@@ -579,7 +579,7 @@ ggplot(penguins) +
 
 ## Customizing theme elements
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: penguins-theme-elements3
 #| echo: true
@@ -601,7 +601,7 @@ ggplot(penguins) +
 
 ## Customizing theme elements
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: penguins-theme-elements4
 #| echo: true
@@ -623,7 +623,7 @@ ggplot(penguins) +
 
 ## Customizing theme elements
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: penguins-theme-elements5
 #| echo: true
@@ -644,7 +644,7 @@ ggplot(penguins) +
 
 ## Customizing theme elements
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: penguins-theme-elements6
 #| echo: true
@@ -664,14 +664,14 @@ ggplot(penguins) +
 ```
 :::
 
-::: {.fragment .small-font}
+::: {.fragment}
 The element `axis.text` has its own color set in the theme. Therefore it doesn't inherit from `text`.
 :::
 
 
 ## Horizontal and vertical alignment
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: penguins-theme-elements7
 #| echo: true
@@ -694,7 +694,7 @@ ggplot(penguins) +
 
 ## Horizontal and vertical alignment
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: penguins-theme-elements8
 #| echo: true
@@ -717,7 +717,7 @@ ggplot(penguins) +
 
 ## Horizontal and vertical alignment
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: penguins-theme-elements9
 #| echo: true
@@ -740,7 +740,7 @@ ggplot(penguins) +
 
 ## Horizontal and vertical alignment
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: penguins-theme-elements10
 #| echo: true
@@ -763,7 +763,7 @@ ggplot(penguins) +
 
 ## Horizontal and vertical alignment
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: penguins-theme-elements11
 #| echo: true
@@ -786,7 +786,7 @@ ggplot(penguins) +
 
 ## Horizontal and vertical alignment
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: penguins-theme-elements12
 #| echo: true
@@ -809,7 +809,7 @@ ggplot(penguins) +
 
 ## Remove elements entirely: `element_blank()`
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: penguins-theme-elements13
 #| echo: true
@@ -830,7 +830,7 @@ ggplot(penguins) +
 
 ## Remove elements entirely: `element_blank()`
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: penguins-theme-elements14
 #| echo: true
@@ -850,7 +850,7 @@ ggplot(penguins) +
 
 ## Set background color: `element_rect()`
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: penguins-theme-elements15
 #| echo: true
@@ -871,7 +871,7 @@ ggplot(penguins) +
 
 ## Set background color: `element_rect()`
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: penguins-theme-elements16
 #| echo: true
@@ -892,7 +892,7 @@ ggplot(penguins) +
 
 ## Set background color: `element_rect()`
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: penguins-theme-elements17
 #| echo: true
@@ -914,7 +914,7 @@ ggplot(penguins) +
 
 ## Set background color: `element_rect()`
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: penguins-theme-elements18
 #| echo: true
@@ -937,7 +937,7 @@ ggplot(penguins) +
 
 ## Move the legend: `legend.position`
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: penguins-theme-elements19
 #| echo: true
@@ -963,7 +963,7 @@ ggplot(penguins) +
 
 ## Move the legend: `legend.position`
 
-::: {.tiny-font}
+::: {.smaller-font}
 ```{r}
 #| label: penguins-theme-elements20
 #| echo: true
@@ -994,9 +994,7 @@ ggplot(penguins) +
 
 ## Further reading
 
-::: {.small-font}
 - Fundamentals of Data Visualization: [Chapter 23: Balance the data and the context](https://clauswilke.com/dataviz/balance-data-context.html)
 - Data Visualization—A Practical Introduction: [Chapter 8.3: Change the appearance of plots with themes](https://socviz.co/refineplots.html#change-the-appearance-of-plots-with-themes)
 - ggplot2 reference documentation: [Complete themes](https://ggplot2.tidyverse.org/reference/ggtheme.html)
 - ggplot2 reference documentation: [Modify components of a theme](https://ggplot2.tidyverse.org/reference/theme.html)
-:::

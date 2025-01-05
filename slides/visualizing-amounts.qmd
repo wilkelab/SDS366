@@ -36,7 +36,6 @@ income_by_age <- readRDS(here::here("datasets", "income_by_age.rds"))
 ::: {.fragment}
 Example: Highest grossing movies Dec. 2017
 
-::: {.small-font}
 ```{r}
 #| echo: false
 # Data from Box Office Mojo for Dec. 22-24, 2017. 
@@ -49,9 +48,8 @@ boxoffice <- tibble(
 boxoffice |>
   knitr::kable("html")
 ```
-:::
 
-::: {.absolute-bottom-right .tiny-font}
+::: {.absolute-bottom-right .smaller-font}
 Data source: Box Office Mojo
 :::
 :::
@@ -303,6 +301,7 @@ ggplot(df_Americas, aes(x = lifeExp, y = fct_reorder(country, lifeExp))) +
     plot.margin = margin(18, 6, 3, 1.5)
   )
 ```
+
 ## Dots are preferable if we want to truncate the axes
 
 ```{r}
@@ -329,7 +328,7 @@ p <- ggplot(df_Americas, aes(x = lifeExp, y = fct_reorder(country, lifeExp))) +
 stamp_bad(p)
 ```
 
-::: {.absolute-bottom-right .small-font}
+::: {.absolute-bottom-right}
 Bar lengths do<br>not accurately<br> represent the<br>data values<br>&nbsp;
 :::
 
@@ -359,7 +358,7 @@ p <- ggplot(df_Americas, aes(x = lifeExp, y = fct_reorder(country, lifeExp))) +
 stamp_bad(p)
 ```
 
-::: {.absolute-bottom-right .small-font}
+::: {.absolute-bottom-right}
 Key features<br>of the data<br>are obscured<br>&nbsp;
 :::
 
@@ -429,7 +428,7 @@ ggplot(income_by_age, aes(x = age, y = median_income, fill = race)) +
   )
 ```
 
-::: {.absolute-bottom-right .tiny-font}
+::: {.absolute-bottom-right .smaller-font}
 Data source: United States Census Bureau, 2016
 :::
 :::
@@ -469,7 +468,7 @@ ggplot(income_by_age, aes(x = race, y = median_income, fill = age)) +
   )
 ```
 
-::: {.absolute-bottom-right .tiny-font}
+::: {.absolute-bottom-right .smaller-font}
 Data source: United States Census Bureau, 2016
 :::
 
@@ -503,7 +502,7 @@ ggplot(income_by_age, aes(x = age_brief, y = median_income)) +
   )
 ```
 
-::: {.absolute-bottom-right .tiny-font}
+::: {.absolute-bottom-right .smaller-font}
 Data source: United States Census Bureau, 2016
 :::
 
@@ -511,6 +510,7 @@ Data source: United States Census Bureau, 2016
 
 # Making bar plots in **ggplot2**
 
+::: {.small-font}
 ## Dataset: Highest grossing movies Dec. 2017
 
 ```{r}
@@ -527,6 +527,7 @@ boxoffice <- tibble(
 
 boxoffice
 ```
+:::
 
 ## Visualize as a bar plot
 
@@ -536,7 +537,7 @@ boxoffice
 #| fig-width: 8
 #| fig-asp: 0.4
 #| fig-cap: "&nbsp;"
-#| out-width: "75%"
+#| out-width: "85%"
 ggplot(boxoffice, aes(title, amount)) +
   geom_col()  # "col" stands for column
 ```
@@ -549,7 +550,7 @@ ggplot(boxoffice, aes(title, amount)) +
 #| fig-width: 8
 #| fig-asp: 0.4
 #| fig-cap: "&nbsp;"
-#| out-width: "75%"
+#| out-width: "85%"
 ggplot(boxoffice, aes(fct_reorder(title, amount), amount)) +
   geom_col()  # "col" stands for column
 ```
@@ -562,7 +563,7 @@ ggplot(boxoffice, aes(fct_reorder(title, amount), amount)) +
 #| fig-width: 8
 #| fig-asp: 0.4
 #| fig-cap: "&nbsp;"
-#| out-width: "75%"
+#| out-width: "85%"
 ggplot(boxoffice, aes(fct_reorder(title, -amount), amount)) +
   geom_col() + 
   xlab(NULL) # remove x axis label
@@ -586,14 +587,16 @@ ggplot(boxoffice, aes(amount, fct_reorder(title, amount))) +
 
 ## Example: Visualize number of penguins per species
 
-::: {.small-font}
+::: {.smaller-font}
 ```{r}
+#| echo: true
 library(palmerpenguins)
+
 penguins
 ```
 :::
 
-![](https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/man/figures/logo.png){.absolute  top="0%" left="90%" width="12%"}
+![](https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/man/figures/logo.png){.absolute  top="23%" left="87%" width="12%"}
 
 ## Use `geom_bar()` to count before plotting
 
@@ -610,7 +613,6 @@ ggplot(penguins, aes(y = species)) + # no x aesthetic needed
 ## Getting the bars into the right order
 
 ::: {.fragment}
-::: {.small-font}
 Option 1: Manually, using `fct_relevel()`
 
 ```{r}
@@ -619,16 +621,15 @@ Option 1: Manually, using `fct_relevel()`
 #| fig-width: 5.5
 #| fig-cap: "&nbsp;"
 #| out-width: "65%"
-ggplot(penguins, aes(y = fct_relevel(species, "Chinstrap", "Gentoo", "Adelie"))) +
+ggplot(penguins) +
+  aes(y = fct_relevel(species, "Chinstrap", "Gentoo", "Adelie")) +
   geom_bar() +
   ylab(NULL)
 ```
 :::
-:::
 
 ## Getting the bars into the right order
 
-::: {.small-font}
 Option 2: Using `fct_rev()` and `fct_infreq()` from the **forcats** package
 
 ```{r}
@@ -637,15 +638,14 @@ Option 2: Using `fct_rev()` and `fct_infreq()` from the **forcats** package
 #| fig-width: 5.5
 #| fig-cap: "&nbsp;"
 #| out-width: "65%"
-ggplot(penguins, aes(y = fct_rev(fct_infreq(species)))) +
+ggplot(penguins) +
+  aes(y = fct_rev(fct_infreq(species))) +
   geom_bar() +
   ylab(NULL)
 ```
-:::
 
 ## Display counts by species and sex
 
-::: {.small-font}
 ```{r}
 #| label: penguins-sex-species
 #| echo: true
@@ -655,29 +655,27 @@ ggplot(penguins, aes(y = fct_rev(fct_infreq(species)))) +
 ggplot(penguins, aes(sex, fill = species)) +
   geom_bar()
 ```
-:::
 
 ## Remove missing values (`NA`s)
 
-::: {.small-font}
 ```{r}
 #| label: penguins-sex-species2
 #| echo: true
 #| fig-width: 5.5
 #| fig-cap: "&nbsp;"
 #| out-width: "65%"
-penguins2 <- na.omit(penguins) # remove all rows with any missing values
+# remove all rows with any missing values
+penguins2 <- na.omit(penguins)
 
 ggplot(penguins2, aes(sex, fill = species)) +
   geom_bar()
 ```
-:::
 
 ## Positions define how subgroups are shown
 
-::: {.small-font}
 `position = "dodge"`: Place bars for subgroups side-by-side
 
+::: {.move-down-1em}
 ```{r}
 #| label: penguins-sex-species-dodge
 #| echo: true
@@ -691,9 +689,9 @@ ggplot(penguins2, aes(sex, fill = species)) +
 
 ## Positions define how subgroups are shown
 
-::: {.small-font}
 `position = "stack"`: Place bars for subgroups on top of each other
 
+::: {.move-down-1em}
 ```{r}
 #| label: penguins-sex-species-stack
 #| echo: true
@@ -707,9 +705,9 @@ ggplot(penguins2, aes(sex, fill = species)) +
 
 ## Positions define how subgroups are shown
 
-::: {.small-font}
 `position = "fill"`: Like `"stack"`, but scale to 100%
 
+::: {.move-down-1em}
 ```{r}
 #| label: penguins-sex-species-fill
 #| echo: true
@@ -725,9 +723,7 @@ ggplot(penguins2, aes(sex, fill = species)) +
 
 ## Further reading
 
-::: {.small-font}
 - Fundamentals of Data Visualization: [Chapter 6: Visualizing amounts](https://clauswilke.com/dataviz/visualizing-amounts.html)
 - Data Visualization—A Practical Introduction: [Chapter 4.4: Geoms can transform data](https://socviz.co/groupfacettx.html#statfunctions)
 - **ggplot2** reference documentation: [`geom_bar()`, `geom_col()`](https://ggplot2.tidyverse.org/reference/geom_bar.html)
 - **ggplot2** reference documentation: [`position_stack()`, `position_fill()`](https://ggplot2.tidyverse.org/reference/position_stack.html)
-:::

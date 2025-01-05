@@ -39,7 +39,7 @@ execute:
 ::: {.fragment}
 ![](https://clauswilke.com/dataviz/cover.png){.absolute  top="7%" left="0%" width="42%" style="box-shadow: 3px 5px 3px 1px #00000080;"}
 
-::: {.absolute-bottom-left .tiny-font}
+::: {.absolute-bottom-left .small-font}
 [https://clauswilke.com/dataviz](https://clauswilke.com/dataviz)
 :::
 
@@ -71,7 +71,7 @@ execute:
 ![](../assets/introduction/Quarto.png){width="85%" style="box-shadow: 3px 5px 3px 1px #00000080;"}
 :::
 
-::: {.absolute-bottom-right .tiny-font}
+::: {.absolute-bottom-right .small-font}
 [https://quarto.org/](https://quarto.org/)
 :::
 
@@ -148,7 +148,7 @@ execute:
 ![](../assets/introduction/github.png){width="85%"}
 :::
 
-::: {.absolute-bottom-right .tiny-font}
+::: {.absolute-bottom-right .small-font}
 [https://github.com/wilkelab/SDS366](https://github.com/wilkelab/SDS366)
 :::
 
@@ -158,13 +158,9 @@ execute:
 ![](../assets/introduction/print-mode.png){width="70%" style="box-shadow: 3px 5px 3px 1px #00000080;"}
 :::
 
-::: {.small-font}
 (Works best on Chrome)
-:::
 
 ## Further reading
 
-::: {.small-font}
 - Fundamentals of Data Visualization: [Read the book online](https://clauswilke.com/dataviz)
 - Quarto docs: [Comprehensive guide](https://quarto.org/docs/guide/)
-:::

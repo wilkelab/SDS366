@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.39">
 
   <meta name="author" content="Claus O. Wilke">
-  <meta name="dcterms.date" content="2025-01-04">
+  <meta name="dcterms.date" content="2025-01-05">
   <title>SDS 366 – Visualizing distributions 1</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -95,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-80920a296602927170ae890c726d62e3.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-781f6ba2a367431802b1f20d16123e35.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -205,7 +205,7 @@ Claus O. Wilke
 </div>
 </div>
 
-  <p class="date">2025-01-04</p>
+  <p class="date">2025-01-05</p>
 </section>
 <section>
 <section id="histograms-and-density-plots" class="title-slide slide level1 center">
@@ -215,7 +215,7 @@ Claus O. Wilke
 <section id="passengers-on-the-titanic" class="slide level2">
 <h2>Passengers on the Titanic</h2>
 <div class="columns">
-<div class="column xtiny-font" style="width:30%;">
+<div class="column tiny-font" style="width:32%;">
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top" data-quarto-postprocess="true">
@@ -324,7 +324,7 @@ Claus O. Wilke
 
 </div>
 </div>
-</div><div class="column xtiny-font" style="width:30%;">
+</div><div class="column tiny-font" style="width:32%;">
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top" data-quarto-postprocess="true">
@@ -433,7 +433,7 @@ Claus O. Wilke
 
 </div>
 </div>
-</div><div class="column xtiny-font" style="width:30%;">
+</div><div class="column tiny-font" style="width:32%;">
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top" data-quarto-postprocess="true">
@@ -548,7 +548,7 @@ Claus O. Wilke
 <h2>Histogram: Define bins and count cases</h2>
 <p><br></p>
 <div class="columns">
-<div class="column tiny-font" style="width:25%;">
+<div class="column smaller-font" style="width:25%;">
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top" data-quarto-postprocess="true">
@@ -597,7 +597,7 @@ Claus O. Wilke
 
 </div>
 </div>
-</div><div class="column tiny-font" style="width:25%;">
+</div><div class="column smaller-font" style="width:25%;">
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top" data-quarto-postprocess="true">
@@ -699,7 +699,7 @@ Claus O. Wilke
 </div>
 </div>
 </div></div>
-<div class="fragment small-font move-up-1em">
+<div class="fragment move-up-1em">
 <p>Histograms show raw counts, KDEs show proportions.<br>(KDE total area = 1)</p>
 </div>
 </section>
@@ -756,7 +756,7 @@ Claus O. Wilke
 </div>
 </div>
 </div></div>
-<div class="fragment small-font move-up-1em">
+<div class="fragment move-up-1em">
 <p>Stacked or overlapping histograms are rarely a good choice.</p>
 </div>
 </section>
@@ -807,8 +807,8 @@ Claus O. Wilke
 </section>
 <section id="getting-the-data" class="slide level2">
 <h2>Getting the data</h2>
-<p>All examples will use the <code>titanic</code> dataset:</p>
 <div class="small-font">
+<p>All examples will use the <code>titanic</code> dataset:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>titanic <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://wilkelab.org/SDS366/datasets/titanic.csv"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb1-2"><a></a>  <span class="fu">select</span>(age, sex, class, survived)</span>
@@ -865,7 +865,7 @@ Claus O. Wilke
 </div>
 </div>
 </div>
-<div class="fragment small-font move-up-2em">
+<div class="fragment move-up-2em">
 <p>Do you like the bin placement?</p>
 </div>
 </section>
@@ -1052,7 +1052,7 @@ Claus O. Wilke
 <section id="parameters-are-handed-through-to-the-stat" class="slide level2">
 <h2>Parameters are handed through to the stat</h2>
 <div class="columns">
-<div class="column tiny-font" style="width:50%;">
+<div class="column smaller-font" style="width:50%;">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
 <span id="cb16-2"><a></a>  <span class="fu">geom_line</span>(<span class="at">stat =</span> <span class="st">"density"</span>, <span class="at">bw =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1065,7 +1065,7 @@ Claus O. Wilke
 </div>
 </div>
 </div>
-</div><div class="column tiny-font" style="width:50%;">
+</div><div class="column smaller-font" style="width:50%;">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
 <span id="cb17-2"><a></a>  <span class="fu">geom_line</span>(<span class="at">stat =</span> <span class="st">"density"</span>, <span class="at">bw =</span> <span class="fl">0.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1079,13 +1079,12 @@ Claus O. Wilke
 </div>
 </div>
 </div></div>
-<div class="fragment small-font move-up-1em">
+<div class="fragment move-up-1em">
 <p>Here, <code>bw</code> is a parameter of <code>stat_density()</code>, not of <code>geom_line()</code>.</p>
 </div>
 </section>
 <section id="we-can-explicitly-map-results-from-stat-computations" class="slide level2">
 <h2>We can explicitly map results from stat computations</h2>
-<div class="small-font">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
 <span id="cb18-2"><a></a>  <span class="fu">geom_tile</span>( <span class="co"># geom_tile() draws rectangular colored areas</span></span>
@@ -1105,11 +1104,9 @@ Claus O. Wilke
 </div>
 </div>
 </div>
-</div>
 </section>
 <section id="we-can-explicitly-map-results-from-stat-computations-1" class="slide level2">
 <h2>We can explicitly map results from stat computations</h2>
-<div class="small-font">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
 <span id="cb19-2"><a></a>  <span class="fu">geom_tile</span>( <span class="co"># geom_tile() draws rectangular colored areas</span></span>
@@ -1129,19 +1126,16 @@ Claus O. Wilke
 </div>
 </div>
 </div>
-</div>
 <!-- Segment ends here -->
 </section>
 <section id="further-reading" class="slide level2">
 <h2>Further reading</h2>
-<div class="small-font">
 <ul>
 <li>Fundamentals of Data Visualization: <a href="https://clauswilke.com/dataviz/histograms-density-plots.html">Chapter 7: Visualizing distributions</a></li>
 <li>Data Visualization—A Practical Introduction: <a href="https://socviz.co/groupfacettx.html#histograms">4.6 Histograms and density plots</a></li>
 <li><strong>ggplot2</strong> reference documentation: <a href="https://ggplot2.tidyverse.org/reference/geom_histogram"><code>geom_histogram()</code></a></li>
 <li><strong>ggplot2</strong> reference documentation: <a href="https://ggplot2.tidyverse.org/reference/geom_density"><code>geom_density()</code></a></li>
 </ul>
-</div>
 
 
 </section></section>

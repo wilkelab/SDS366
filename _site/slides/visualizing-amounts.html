@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.39">
 
   <meta name="author" content="Claus O. Wilke">
-  <meta name="dcterms.date" content="2024-12-26">
+  <meta name="dcterms.date" content="2025-01-05">
   <title>SDS 366 – Visualizing amounts</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -95,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-80920a296602927170ae890c726d62e3.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-781f6ba2a367431802b1f20d16123e35.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -205,14 +205,13 @@ Claus O. Wilke
 </div>
 </div>
 
-  <p class="date">2024-12-26</p>
+  <p class="date">2025-01-05</p>
 </section>
 <section id="many-datasets-contain-simple-amounts" class="slide level2">
 <h2>Many datasets contain simple amounts</h2>
 <p><br></p>
 <div class="fragment">
 <p>Example: Highest grossing movies Dec.&nbsp;2017</p>
-<div class="small-font">
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top" data-quarto-postprocess="true">
@@ -255,8 +254,7 @@ Claus O. Wilke
 
 </div>
 </div>
-</div>
-<div class="absolute-bottom-right tiny-font">
+<div class="absolute-bottom-right smaller-font">
 <p>Data source: Box Office Mojo</p>
 </div>
 </div>
@@ -377,7 +375,7 @@ Claus O. Wilke
 </div>
 </div>
 </div>
-<div class="absolute-bottom-right small-font">
+<div class="absolute-bottom-right">
 <p>Bar lengths do<br>not accurately<br> represent the<br>data values<br>&nbsp;</p>
 </div>
 </section>
@@ -393,7 +391,7 @@ Claus O. Wilke
 </div>
 </div>
 </div>
-<div class="absolute-bottom-right small-font">
+<div class="absolute-bottom-right">
 <p>Key features<br>of the data<br>are obscured<br>&nbsp;</p>
 </div>
 </section>
@@ -429,7 +427,7 @@ Claus O. Wilke
 </div>
 </div>
 </div>
-<div class="absolute-bottom-right tiny-font">
+<div class="absolute-bottom-right smaller-font">
 <p>Data source: United States Census Bureau, 2016</p>
 </div>
 </div>
@@ -447,7 +445,7 @@ Claus O. Wilke
 </div>
 </div>
 </div>
-<div class="absolute-bottom-right tiny-font">
+<div class="absolute-bottom-right smaller-font">
 <p>Data source: United States Census Bureau, 2016</p>
 </div>
 </section>
@@ -463,7 +461,7 @@ Claus O. Wilke
 </div>
 </div>
 </div>
-<div class="absolute-bottom-right tiny-font">
+<div class="absolute-bottom-right smaller-font">
 <p>Data source: United States Census Bureau, 2016</p>
 </div>
 <!-- Segment ends here -->
@@ -473,7 +471,7 @@ Claus O. Wilke
 <h1>Making bar plots in <strong>ggplot2</strong></h1>
 
 </section>
-<section id="dataset-highest-grossing-movies-dec.-2017" class="slide level2">
+<section id="dataset-highest-grossing-movies-dec.-2017" class="slide level2 small-font">
 <h2>Dataset: Highest grossing movies Dec.&nbsp;2017</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co"># Data from Box Office Mojo for Dec. 22-24, 2017. </span></span>
@@ -507,7 +505,7 @@ Claus O. Wilke
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-amounts_files/figure-revealjs/boxoffice-naive-1.svg" style="width:75.0%"></p>
+<p><img data-src="visualizing-amounts_files/figure-revealjs/boxoffice-naive-1.svg" style="width:85.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -522,7 +520,7 @@ Claus O. Wilke
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-amounts_files/figure-revealjs/boxoffice-ordered-1.svg" style="width:75.0%"></p>
+<p><img data-src="visualizing-amounts_files/figure-revealjs/boxoffice-ordered-1.svg" style="width:85.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -538,7 +536,7 @@ Claus O. Wilke
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-amounts_files/figure-revealjs/boxoffice-ordered2-1.svg" style="width:75.0%"></p>
+<p><img data-src="visualizing-amounts_files/figure-revealjs/boxoffice-ordered2-1.svg" style="width:85.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -569,8 +567,11 @@ Claus O. Wilke
 </section>
 <section id="example-visualize-number-of-penguins-per-species" class="slide level2">
 <h2>Example: Visualize number of penguins per species</h2>
-<div class="small-font">
+<div class="smaller-font">
 <div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb7-2"><a></a></span>
+<span id="cb7-3"><a></a>penguins</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 344 × 8
    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
@@ -590,13 +591,13 @@ Claus O. Wilke
 </div>
 </div>
 </div>
-<p><img data-src="https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/man/figures/logo.png" class="absolute" style="top: 0%; left: 90%; width: 12%; "></p>
+<p><img data-src="https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/man/figures/logo.png" class="absolute" style="top: 23%; left: 87%; width: 12%; "></p>
 </section>
 <section id="use-geom_bar-to-count-before-plotting" class="slide level2">
 <h2>Use <code>geom_bar()</code> to count before plotting</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">y =</span> species)) <span class="sc">+</span> <span class="co"># no x aesthetic needed</span></span>
-<span id="cb8-2"><a></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">y =</span> species)) <span class="sc">+</span> <span class="co"># no x aesthetic needed</span></span>
+<span id="cb9-2"><a></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -610,12 +611,12 @@ Claus O. Wilke
 <section id="getting-the-bars-into-the-right-order" class="slide level2">
 <h2>Getting the bars into the right order</h2>
 <div class="fragment">
-<div class="small-font">
 <p>Option 1: Manually, using <code>fct_relevel()</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fct_relevel</span>(species, <span class="st">"Chinstrap"</span>, <span class="st">"Gentoo"</span>, <span class="st">"Adelie"</span>))) <span class="sc">+</span></span>
-<span id="cb9-2"><a></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb9-3"><a></a>  <span class="fu">ylab</span>(<span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
+<span id="cb10-2"><a></a>  <span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fct_relevel</span>(species, <span class="st">"Chinstrap"</span>, <span class="st">"Gentoo"</span>, <span class="st">"Adelie"</span>)) <span class="sc">+</span></span>
+<span id="cb10-3"><a></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb10-4"><a></a>  <span class="fu">ylab</span>(<span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -626,16 +627,15 @@ Claus O. Wilke
 </div>
 </div>
 </div>
-</div>
 </section>
 <section id="getting-the-bars-into-the-right-order-1" class="slide level2">
 <h2>Getting the bars into the right order</h2>
-<div class="small-font">
 <p>Option 2: Using <code>fct_rev()</code> and <code>fct_infreq()</code> from the <strong>forcats</strong> package</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fct_rev</span>(<span class="fu">fct_infreq</span>(species)))) <span class="sc">+</span></span>
-<span id="cb10-2"><a></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb10-3"><a></a>  <span class="fu">ylab</span>(<span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
+<span id="cb11-2"><a></a>  <span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fct_rev</span>(<span class="fu">fct_infreq</span>(species))) <span class="sc">+</span></span>
+<span id="cb11-3"><a></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb11-4"><a></a>  <span class="fu">ylab</span>(<span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -645,14 +645,12 @@ Claus O. Wilke
 </div>
 </div>
 </div>
-</div>
 </section>
 <section id="display-counts-by-species-and-sex" class="slide level2">
 <h2>Display counts by species and sex</h2>
-<div class="small-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(sex, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
-<span id="cb11-2"><a></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(sex, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb12-2"><a></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -662,16 +660,15 @@ Claus O. Wilke
 </div>
 </div>
 </div>
-</div>
 </section>
 <section id="remove-missing-values-nas" class="slide level2">
 <h2>Remove missing values (<code>NA</code>s)</h2>
-<div class="small-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>penguins2 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(penguins) <span class="co"># remove all rows with any missing values</span></span>
-<span id="cb12-2"><a></a></span>
-<span id="cb12-3"><a></a><span class="fu">ggplot</span>(penguins2, <span class="fu">aes</span>(sex, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
-<span id="cb12-4"><a></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="co"># remove all rows with any missing values</span></span>
+<span id="cb13-2"><a></a>penguins2 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(penguins)</span>
+<span id="cb13-3"><a></a></span>
+<span id="cb13-4"><a></a><span class="fu">ggplot</span>(penguins2, <span class="fu">aes</span>(sex, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb13-5"><a></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -681,15 +678,14 @@ Claus O. Wilke
 </div>
 </div>
 </div>
-</div>
 </section>
 <section id="positions-define-how-subgroups-are-shown" class="slide level2">
 <h2>Positions define how subgroups are shown</h2>
-<div class="small-font">
 <p><code>position = "dodge"</code>: Place bars for subgroups side-by-side</p>
+<div class="move-down-1em">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">ggplot</span>(penguins2, <span class="fu">aes</span>(sex, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
-<span id="cb13-2"><a></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"dodge"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">ggplot</span>(penguins2, <span class="fu">aes</span>(sex, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb14-2"><a></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"dodge"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -703,11 +699,11 @@ Claus O. Wilke
 </section>
 <section id="positions-define-how-subgroups-are-shown-1" class="slide level2">
 <h2>Positions define how subgroups are shown</h2>
-<div class="small-font">
 <p><code>position = "stack"</code>: Place bars for subgroups on top of each other</p>
+<div class="move-down-1em">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">ggplot</span>(penguins2, <span class="fu">aes</span>(sex, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
-<span id="cb14-2"><a></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"stack"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">ggplot</span>(penguins2, <span class="fu">aes</span>(sex, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb15-2"><a></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"stack"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -721,11 +717,11 @@ Claus O. Wilke
 </section>
 <section id="positions-define-how-subgroups-are-shown-2" class="slide level2">
 <h2>Positions define how subgroups are shown</h2>
-<div class="small-font">
 <p><code>position = "fill"</code>: Like <code>"stack"</code>, but scale to 100%</p>
+<div class="move-down-1em">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">ggplot</span>(penguins2, <span class="fu">aes</span>(sex, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
-<span id="cb15-2"><a></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">ggplot</span>(penguins2, <span class="fu">aes</span>(sex, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb16-2"><a></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -740,14 +736,12 @@ Claus O. Wilke
 </section>
 <section id="further-reading" class="slide level2">
 <h2>Further reading</h2>
-<div class="small-font">
 <ul>
 <li>Fundamentals of Data Visualization: <a href="https://clauswilke.com/dataviz/visualizing-amounts.html">Chapter 6: Visualizing amounts</a></li>
 <li>Data Visualization—A Practical Introduction: <a href="https://socviz.co/groupfacettx.html#statfunctions">Chapter 4.4: Geoms can transform data</a></li>
 <li><strong>ggplot2</strong> reference documentation: <a href="https://ggplot2.tidyverse.org/reference/geom_bar.html"><code>geom_bar()</code>, <code>geom_col()</code></a></li>
 <li><strong>ggplot2</strong> reference documentation: <a href="https://ggplot2.tidyverse.org/reference/position_stack.html"><code>position_stack()</code>, <code>position_fill()</code></a></li>
 </ul>
-</div>
 
 
 </section></section>

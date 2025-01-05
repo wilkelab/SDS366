@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.39">
 
   <meta name="author" content="Claus O. Wilke">
-  <meta name="dcterms.date" content="2024-12-28">
+  <meta name="dcterms.date" content="2025-01-05">
   <title>SDS 366 – Coordinate systems and axes</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -95,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-80920a296602927170ae890c726d62e3.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-781f6ba2a367431802b1f20d16123e35.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -205,7 +205,7 @@ Claus O. Wilke
 </div>
 </div>
 
-  <p class="date">2024-12-28</p>
+  <p class="date">2025-01-05</p>
 </section>
 <section id="most-data-visualizations-use-cartesian-coordinates" class="slide level2">
 <h2>Most data visualizations use Cartesian coordinates</h2>
@@ -213,7 +213,7 @@ Claus O. Wilke
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="coordinate-systems-axes_files/figure-revealjs/cartesian-coord-1.svg" style="width:55.0%"></p>
+<p><img data-src="coordinate-systems-axes_files/figure-revealjs/cartesian-coord-1.svg" style="width:65.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -267,7 +267,7 @@ Claus O. Wilke
 </section>
 <section id="logarithmic-scales-log-scales" class="slide level2">
 <h2>Logarithmic scales (log scales)</h2>
-<div class="small-font move-down-1em">
+<div class="move-down-1em">
 <p>Visualize these five values: 1, &nbsp; 3.16, &nbsp; 10, &nbsp; 31.6, &nbsp; 100</p>
 </div>
 <p><br></p>
@@ -310,7 +310,7 @@ Claus O. Wilke
 </section>
 <section id="example-population-number-of-texas-counties" class="slide level2">
 <h2>Example: Population number of Texas counties</h2>
-<p><span class="small-font">A linear scale emphasizes large counties</span></p>
+<p>A linear scale emphasizes large counties</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -324,7 +324,7 @@ Claus O. Wilke
 </section>
 <section id="example-population-number-of-texas-counties-1" class="slide level2">
 <h2>Example: Population number of Texas counties</h2>
-<p><span class="small-font">A log scale shows symmetry around the median</span></p>
+<p>A log scale shows symmetry around the median</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -365,8 +365,7 @@ Claus O. Wilke
 </section>
 <section id="cartesian-vs-polar-example" class="slide level2">
 <h2>Cartesian vs polar example</h2>
-<p><br></p>
-<div class="columns">
+<div class="columns move-down-1em">
 <div class="column" style="width:50%;">
 <div class="cell">
 <div class="cell-output-display">
@@ -399,8 +398,10 @@ Claus O. Wilke
 </section>
 <section id="getting-the-data" class="slide level2">
 <h2>Getting the data</h2>
-<p><span class="small-font">The <code>boxoffice</code> dataset:</span></p>
-<div class="tiny-font">
+<div class="small-font">
+<p>The <code>boxoffice</code> dataset:</p>
+</div>
+<div class="smaller-font">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>boxoffice <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
 <span id="cb1-2"><a></a>  <span class="at">rank =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
@@ -410,8 +411,10 @@ Claus O. Wilke
 </div>
 </div>
 <div class="fragment">
-<p><span class="small-font">The <code>tx_counties</code> dataset:</span></p>
-<div class="tiny-font">
+<div class="small-font">
+<p>The <code>tx_counties</code> dataset:</p>
+</div>
+<div class="smaller-font">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>tx_counties <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://wilkelab.org/SDS375/datasets/US_census.csv"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb2-2"><a></a>  <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">"Texas"</span>) <span class="sc">|&gt;</span></span>
@@ -422,8 +425,10 @@ Claus O. Wilke
 </div>
 </div>
 <div class="fragment">
-<p><span class="small-font">The <code>temperatures</code> dataset:</span></p>
-<div class="tiny-font">
+<div class="small-font">
+<p>The <code>temperatures</code> dataset:</p>
+</div>
+<div class="smaller-font">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>temperatures <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://wilkelab.org/SDS375/datasets/tempnormals.csv"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb3-2"><a></a>  <span class="fu">mutate</span>(</span>
@@ -438,8 +443,8 @@ Claus O. Wilke
 </section>
 <section id="scale-functions-customize-the-x-and-y-axes" class="slide level2">
 <h2>Scale functions customize the x and y axes</h2>
-<p><span class="small-font">Recall the box-office example from a prior lecture:</span></p>
-<div class="tiny-font">
+<p>Recall the box-office example from a prior lecture:</p>
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">ggplot</span>(boxoffice) <span class="sc">+</span></span>
@@ -458,8 +463,8 @@ Claus O. Wilke
 </section>
 <section id="scale-functions-customize-the-x-and-y-axes-1" class="slide level2">
 <h2>Scale functions customize the x and y axes</h2>
-<p><span class="small-font">Add scale functions (no change in figure so far):</span></p>
-<div class="tiny-font">
+<p>Add scale functions (no change in figure so far):</p>
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb5" data-code-line-numbers="4-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">ggplot</span>(boxoffice) <span class="sc">+</span></span>
@@ -480,8 +485,8 @@ Claus O. Wilke
 </section>
 <section id="scale-functions-customize-the-x-and-y-axes-2" class="slide level2">
 <h2>Scale functions customize the x and y axes</h2>
-<p><span class="small-font">The parameter <code>name</code> sets the axis title:</span></p>
-<div class="tiny-font">
+<p>The parameter <code>name</code> sets the axis title:</p>
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb6" data-code-line-numbers="5,8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">ggplot</span>(boxoffice) <span class="sc">+</span></span>
@@ -503,14 +508,14 @@ Claus O. Wilke
 </div>
 </div></div>
 </div>
-<div class="fragment small-font">
+<div class="fragment">
 <p>Note: We could do the same with <code>xlab()</code> and <code>ylab()</code></p>
 </div>
 </section>
 <section id="scale-functions-customize-the-x-and-y-axes-3" class="slide level2">
 <h2>Scale functions customize the x and y axes</h2>
-<p><span class="small-font">The parameter <code>limits</code> sets the scale limits:</span></p>
-<div class="tiny-font">
+<p>The parameter <code>limits</code> sets the scale limits:</p>
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb7" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">ggplot</span>(boxoffice) <span class="sc">+</span></span>
@@ -533,14 +538,14 @@ Claus O. Wilke
 </div>
 </div></div>
 </div>
-<div class="fragment small-font">
+<div class="fragment">
 <p>Note: We could do the same with <code>xlim()</code> and <code>ylim()</code> but I advise against it, as these functions can have unexpected side-effects</p>
 </div>
 </section>
 <section id="scale-functions-customize-the-x-and-y-axes-4" class="slide level2">
 <h2>Scale functions customize the x and y axes</h2>
-<p><span class="small-font">The parameter <code>breaks</code> sets the axis tick positions:</span></p>
-<div class="tiny-font">
+<p>The parameter <code>breaks</code> sets the axis tick positions:</p>
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb8" data-code-line-numbers="7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">ggplot</span>(boxoffice) <span class="sc">+</span></span>
@@ -567,8 +572,8 @@ Claus O. Wilke
 </section>
 <section id="scale-functions-customize-the-x-and-y-axes-5" class="slide level2">
 <h2>Scale functions customize the x and y axes</h2>
-<p><span class="small-font">The parameter <code>labels</code> sets the axis tick labels:</span></p>
-<div class="tiny-font">
+<p>The parameter <code>labels</code> sets the axis tick labels:</p>
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb9" data-code-line-numbers="8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">ggplot</span>(boxoffice) <span class="sc">+</span></span>
@@ -596,8 +601,8 @@ Claus O. Wilke
 </section>
 <section id="scale-functions-customize-the-x-and-y-axes-6" class="slide level2">
 <h2>Scale functions customize the x and y axes</h2>
-<p><span class="small-font">The parameter <code>expand</code> sets the axis expansion:</span></p>
-<div class="tiny-font">
+<p>The parameter <code>expand</code> sets the axis expansion:</p>
+<div class="smaller-font">
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb10" data-code-line-numbers="9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">ggplot</span>(boxoffice) <span class="sc">+</span></span>
@@ -628,8 +633,8 @@ Claus O. Wilke
 <h2>Scale functions define transformations</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><span class="small-font">Linear y scale:</span></p>
-<div class="tiny-font">
+<p>Linear y scale:</p>
+<div class="smaller-font">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">ggplot</span>(tx_counties) <span class="sc">+</span></span>
 <span id="cb11-2"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> index, <span class="at">y =</span> popratio) <span class="sc">+</span></span>
@@ -646,8 +651,8 @@ Claus O. Wilke
 </div>
 </div>
 </div><div class="fragment column" style="width:50%;">
-<p><span class="small-font">Log y scale:</span></p>
-<div class="tiny-font">
+<p>Log y scale:</p>
+<div class="smaller-font">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">ggplot</span>(tx_counties) <span class="sc">+</span></span>
 <span id="cb12-2"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> index, <span class="at">y =</span> popratio) <span class="sc">+</span></span>
@@ -669,8 +674,8 @@ Claus O. Wilke
 <h2>Parameters work the same for all scale functions</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><span class="small-font">Linear y scale:</span></p>
-<div class="tiny-font">
+<p>Linear y scale:</p>
+<div class="smaller-font">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13" data-code-line-numbers="5-7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">ggplot</span>(tx_counties) <span class="sc">+</span></span>
 <span id="cb13-2"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> index, <span class="at">y =</span> popratio) <span class="sc">+</span></span>
@@ -691,8 +696,8 @@ Claus O. Wilke
 </div>
 </div>
 </div><div class="column" style="width:50%;">
-<p><span class="small-font">Log y scale:</span></p>
-<div class="tiny-font">
+<p>Log y scale:</p>
+<div class="smaller-font">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14" data-code-line-numbers="5-7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">ggplot</span>(tx_counties) <span class="sc">+</span></span>
 <span id="cb14-2"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> index, <span class="at">y =</span> popratio) <span class="sc">+</span></span>
@@ -716,7 +721,7 @@ Claus O. Wilke
 </section>
 <section id="coords-define-the-coordinate-system" class="slide level2">
 <h2>Coords define the coordinate system</h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(day_of_year, temperature, <span class="at">color =</span> location)) <span class="sc">+</span></span>
 <span id="cb15-2"><a></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
@@ -734,7 +739,7 @@ Claus O. Wilke
 </section>
 <section id="coords-define-the-coordinate-system-1" class="slide level2">
 <h2>Coords define the coordinate system</h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(day_of_year, temperature, <span class="at">color =</span> location)) <span class="sc">+</span></span>
 <span id="cb16-2"><a></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
@@ -752,7 +757,7 @@ Claus O. Wilke
 </section>
 <section id="coords-define-the-coordinate-system-2" class="slide level2">
 <h2>Coords define the coordinate system</h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(day_of_year, temperature, <span class="at">color =</span> location)) <span class="sc">+</span></span>
 <span id="cb17-2"><a></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
@@ -772,7 +777,6 @@ Claus O. Wilke
 </section>
 <section id="further-reading" class="slide level2">
 <h2>Further reading</h2>
-<div class="small-font">
 <ul>
 <li>Fundamentals of Data Visualization: <a href="https://clauswilke.com/dataviz/coordinate-systems-axes.html">Chapter 3: Coordinate systems and axes</a></li>
 <li><strong>ggplot2</strong> reference documentation: <a href="https://ggplot2.tidyverse.org/reference/index.html#section-scales">Scales</a></li>
@@ -780,7 +784,6 @@ Claus O. Wilke
 <li><strong>ggplot2</strong> book: <a href="https://ggplot2-book.org/scale-position.html">Position scales</a></li>
 <li><strong>ggplot2</strong> book: <a href="https://ggplot2-book.org/coord.html">Coordinate systems</a></li>
 </ul>
-</div>
 
 
 </section></section>

@@ -13,25 +13,26 @@
 $font-family-sans-serif: 'Lato', Arial, sans-serif;
 $font-family-monospace: 'Roboto Mono', 'Lucida Console', Monaco, Consolas, monospace; 
 $presentation-heading-font: 'Roboto Condensed', 'Arial Narrow OS', Arial, sans-serif;
-$presentation-font-size-root: 36px;
-$presentation-h1-font-size:	1.3em;
-$presentation-h2-font-size:	1.3em;
-$presentation-h3-font-size:	1.2em;
-$presentation-h4-font-size:	1.2em;
+$presentation-font-size-root: 32px; //36px;
+$presentation-h1-font-size:	1.46em; // 1.3em;
+$presentation-h2-font-size:	1.46em; // 1.3em;
+$presentation-h3-font-size:	1.35em; // 1.2em;
+$presentation-h4-font-size:	1.35em; // 1.2em;
 $presentation-heading-font-weight: 400;
-$code-block-font-size: 0.66em; // equivalent to .tiny-font by default
+$code-block-font-size: 0.74em; // equivalent to .tiny-font by default
 
 /*-- scss:rules --*/
 
-.large-font { font-size: 1.1em; }
+.large-font { font-size: 1.125em; }
 .small-font { font-size: 0.86em; }
+.smaller-font { font-size: 0.74em; }
 .tiny-font { font-size: 0.66em; }
-.xtiny-font { font-size: 0.50em; }
+.xtiny-font { font-size: 0.55em; }
 
 .title-font { 
   font-family: 'Roboto Condensed', 'Arial Narrow OS', Arial, sans-serif;
   font-weight: 400;
-  font-size: 1.45em;
+  font-size: 1.63em;
 }
 
 .reveal h1 {
@@ -110,7 +111,7 @@ $code-block-font-size: 0.66em; // equivalent to .tiny-font by default
 }
 
 .date {
-  font-size: 0.66em;
+  font-size: 0.74em;
 }
 
 .date:before {

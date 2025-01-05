@@ -66,7 +66,7 @@ align_legend <- function(p, hjust = 0.5)
 
 ## Dataset:<br>Daily average temperatures for various locations
 
-::: {.tiny-font}
+::: {.small-font}
 ```{r echo=FALSE, message=FALSE}
 temps_long <- read_csv("https://wilkelab.org/SDS366/datasets/tempnormals.csv") |>
   mutate(
@@ -116,8 +116,7 @@ ggplot(temps_long, aes(x = date, y = temperature, color = location)) +
 
 ## Temperatures mapped onto color
 
-<br>
-
+::: {.move-down-1em}
 ```{r}
 #| label: four-locations-temps-by-month
 #| echo: false
@@ -153,6 +152,7 @@ ggplot(mean_temps, aes(x = month_name, y = location, fill = mean)) +
     legend.title = element_text(size = 14, hjust = 0.5)
   )
 ```
+:::
 
 ## Commonly used aesthetics
 
@@ -171,7 +171,7 @@ ggplot(mean_temps, aes(x = month_name, y = location, fill = mean)) +
 #| fig-width: 6
 #| fig-asp: 0.8
 #| fig-cap: "&nbsp;"
-#| out-width: "60%"
+#| out-width: "70%"
 ggplot(mtcars, aes(disp, mpg, fill = hp, shape = factor(cyl), size = wt)) + 
   geom_point(color = "white") +
   scale_shape_manual(values = c(23, 24, 21), name = "cylinders") +
@@ -215,6 +215,7 @@ ggplot(mtcars, aes(disp, mpg, fill = hp, shape = factor(cyl), size = wt)) +
 
 All examples will use the `temperatures` dataset:
 
+::: {.smaller-font}
 ```{r}
 #| echo: true
 #| message: false
@@ -226,9 +227,11 @@ temperatures <- read_csv("https://wilkelab.org/SDS366/datasets/tempnormals.csv")
   ) |>
   select(location, station_id, day_of_year, month, temperature)
 ```
+:::
 
 ## We define the mapping with `aes()`
 
+::: {.small-font}
 ```{r}
 #| label: ggplot-temps-example
 #| echo: true
@@ -240,9 +243,11 @@ ggplot(
 ) + 
   geom_line()
 ```
+:::
 
 ## We define the mapping with `aes()`
 
+::: {.small-font}
 ```{r}
 #| label: ggplot-temps-example2
 #| echo: true
@@ -256,31 +261,35 @@ ggplot(
 ) + 
   geom_point(size = 5)
 ```
+:::
 
 ## We frequently omit argument names
 
 Long form, all arguments are named:
 
+::: {.small-font}
 ```r
 ggplot(
   data = temperatures,
   mapping = aes(x = day_of_year, y = location, color = temperature)
 ) + geom_point(size = 5)
 ```
+:::
 
-::: {.fragment}
-<br>
-
+::: {.fragment .move-down-1em}
 Abbreviated form, common arguments remain unnamed:
 
+::: {.small-font}
 ```r
 ggplot(temperatures, aes(day_of_year, location, color = temperature)) + 
   geom_point(size = 5)
 ```
 :::
+:::
 
 ## The geom determines how the data is shown
 
+::: {.small-font}
 ```{r}
 #| label: ggplot-temps-example5
 #| echo: true
@@ -289,9 +298,11 @@ ggplot(temperatures, aes(day_of_year, location, color = temperature)) +
 ggplot(temperatures, aes(day_of_year, temperature, color = location)) + 
   geom_line()
 ```
+:::
 
 ## The geom determines how the data is shown
 
+::: {.small-font}
 ```{r}
 #| label: ggplot-temps-example6
 #| echo: true
@@ -302,9 +313,11 @@ ggplot(temperatures, aes(day_of_year, temperature, color = location)) +
 ggplot(temperatures, aes(day_of_year, location, color = temperature)) + 
   geom_point(size = 5)
 ```
+:::
 
 ## The geom determines how the data is shown
 
+::: {.small-font}
 ```{r}
 #| label: ggplot-temps-example7
 #| echo: true
@@ -315,9 +328,11 @@ ggplot(temperatures, aes(day_of_year, location, color = temperature)) +
 ggplot(temperatures, aes(month, temperature, color = location)) + 
   geom_boxplot()
 ```
+:::
 
 ## The geom determines how the data is shown
 
+::: {.small-font}
 ```{r}
 #| label: ggplot-temps-example8
 #| echo: true
@@ -329,6 +344,7 @@ ggplot(temperatures, aes(month, temperature, fill = location)) +
   geom_violin() + 
   facet_wrap(~location) # make separate panel per location
 ```
+:::
 
 <!-- Segment ends here -->
 
@@ -336,22 +352,19 @@ ggplot(temperatures, aes(month, temperature, fill = location)) +
 
 ## Distinguish between `color` and `fill`
 
-<br>
-
-::: {.fragment}
+::: {.move-down-1em}
 `color`<br>
 Applies color to points, lines, text, borders
 :::
 
-<br>
-
-::: {.fragment}
+::: {.fragment .move-down-1em}
 `fill`<br>
 Applies color to any filled areas 
 :::
 
 ## Many geoms use both `color` and `fill`
 
+::: {.small-font}
 ```{r}
 #| label: ggplot-color-fill
 #| echo: true
@@ -362,9 +375,11 @@ Applies color to any filled areas
 ggplot(temperatures, aes(month, temperature, color = location)) + 
   geom_boxplot()
 ```
+:::
 
 ## Many geoms use both `color` and `fill`
 
+::: {.small-font}
 ```{r}
 #| label: ggplot-color-fill2
 #| echo: true
@@ -375,9 +390,11 @@ ggplot(temperatures, aes(month, temperature, color = location)) +
 ggplot(temperatures, aes(month, temperature, fill = location)) + 
   geom_boxplot()
 ```
+:::
 
 ## Many geoms use both `color` and `fill`
 
+::: {.small-font}
 ```{r}
 #| label: ggplot-color-fill3
 #| echo: true
@@ -388,9 +405,11 @@ ggplot(temperatures, aes(month, temperature, fill = location)) +
 ggplot(temperatures, aes(month, temperature, color = location, fill = location)) + 
   geom_boxplot()
 ```
+:::
 
 ## Aesthetics can also be used as parameters
 
+::: {.small-font}
 ```{r}
 #| label: ggplot-color-fill-params
 #| echo: true
@@ -401,9 +420,11 @@ ggplot(temperatures, aes(month, temperature, color = location, fill = location))
 ggplot(temperatures, aes(month, temperature, fill = location)) + 
   geom_boxplot(color = "steelblue")
 ```
+:::
 
 ## Aesthetics can also be used as parameters
 
+::: {.small-font}
 ```{r}
 #| label: ggplot-color-fill-params2
 #| echo: true
@@ -414,16 +435,15 @@ ggplot(temperatures, aes(month, temperature, fill = location)) +
 ggplot(temperatures, aes(month, temperature, color = location)) + 
   geom_boxplot(fill = "steelblue")
 ```
+:::
 
 <!-- Segment ends here -->
 
 ## Further reading
 
-::: {.small-font}
 - Fundamentals of Data Visualization: [Chapter 2: Visualizing data](https://clauswilke.com/dataviz/aesthetic-mapping.html)
 - Data Visualization—A Practical Introduction: [Chapter 3: Make a plot](https://socviz.co/makeplot.html#makeplot)
 - [**ggplot2** reference documentation](https://ggplot2.tidyverse.org/reference/index.html)
 - [**ggplot2** book](https://ggplot2-book.org/)
 - [**ggplot2** cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf)
-:::
 

@@ -41,19 +41,19 @@ cows <- read_csv(here("datasets", "cows.csv")) |>
 
 :::: {.columns}
 
-::: {.column width="30%" .xtiny-font}
+::: {.column width="32%" .tiny-font}
 ```{r}
 knitr::kable(titanic[1:15,], "html", digits = 1)
 ```
 :::
 
-::: {.column width="30%" .xtiny-font}
+::: {.column width="32%" .tiny-font}
 ```{r}
 knitr::kable(titanic[16:30,], "html", digits = 1)
 ```
 :::
 
-::: {.column width="30%" .xtiny-font}
+::: {.column width="32%" .tiny-font}
 ```{r}
 knitr::kable(titanic[31:45,], "html", digits = 1)
 ```
@@ -76,13 +76,13 @@ age_hist <- tibble(
 
 :::: {.columns}
 
-::: {.column width="25%" .tiny-font}
+::: {.column width="25%" .smaller-font}
 ```{r}
 knitr::kable(age_hist[1:8,], "html")
 ```
 :::
 
-::: {.column width="25%" .tiny-font}
+::: {.column width="25%" .smaller-font}
 ```{r}
 knitr::kable(age_hist[9:16,], "html")
 ```
@@ -188,7 +188,6 @@ plot_grid(
 ::: {.column width="50%"}
 ```{r}
 #| label: titanic-age-hist2
-#| fig-width: 7
 #| fig-cap: "&nbsp;"
 #| out-width: "100%"
 h1 + ggtitle("Histogram") + theme(plot.title.position = "plot")
@@ -198,7 +197,6 @@ h1 + ggtitle("Histogram") + theme(plot.title.position = "plot")
 ::: {.fragment .column width="50%"}
 ```{r}
 #| label: titanic-age-kde
-#| fig-width: 7
 #| fig-cap: "&nbsp;"
 #| out-width: "100%"
 ggplot(titanic, aes(x = age)) + 
@@ -217,7 +215,7 @@ ggplot(titanic, aes(x = age)) +
 
 ::::
 
-::: {.fragment .small-font .move-up-1em}
+::: {.fragment .move-up-1em}
 Histograms show raw counts, KDEs show proportions.<br>(KDE total area = 1)
 :::
 
@@ -298,7 +296,6 @@ stamp_wrong(pdens_neg)
 ::: {.column width="50%"}
 ```{r}
 #| label: titanic-age-hist-stacked
-#| fig-width: 7
 #| fig-cap: "&nbsp;"
 #| out-width: "100%"
 gender_counts <- tibble(
@@ -319,7 +316,8 @@ ggplot(gender_counts, aes(x = age, y = count, fill = gender)) +
   theme_minimal_hgrid(18) +
   theme(
     axis.line.x = element_blank(),
-    legend.position = c(.9, .87),
+    legend.position = "inside",
+    legend.position.inside = c(.97, .87),
     legend.justification = c("right", "top"),
     legend.box.background = element_rect(fill = "white", color = "white")
   )
@@ -329,7 +327,6 @@ ggplot(gender_counts, aes(x = age, y = count, fill = gender)) +
 ::: {.fragment .column width="50%"}
 ```{r}
 #| label: titanic-age-hist-overlap
-#| fig-width: 7
 #| fig-cap: "&nbsp;"
 #| out-width: "100%"
 ggplot(gender_counts, aes(x = age, y = count, fill = gender)) + 
@@ -344,7 +341,8 @@ ggplot(gender_counts, aes(x = age, y = count, fill = gender)) +
   theme_minimal_hgrid(18) +
   theme(
     axis.line.x = element_blank(),
-    legend.position = c(.9, .87),
+    legend.position = "inside",
+    legend.position.inside = c(.97, .87),
     legend.justification = c("right", "top"),
     legend.box.background = element_rect(fill = "white", color = "white")
   )
@@ -353,7 +351,7 @@ ggplot(gender_counts, aes(x = age, y = count, fill = gender)) +
 
 ::::
 
-::: {.fragment .small-font .move-up-1em}
+::: {.fragment .move-up-1em}
 Stacked or overlapping histograms are rarely a good choice.
 :::
 
@@ -479,9 +477,9 @@ ggplot(cows_dens, aes(x = butterfat, y = density, color = breed, fill = breed)) 
 
 ## Getting the data
 
+::: {.small-font}
 All examples will use the `titanic` dataset:
 
-::: {.small-font}
 ```{r message = FALSE}
 #| echo: true
 titanic <- read_csv("https://wilkelab.org/SDS366/datasets/titanic.csv") |>
@@ -516,7 +514,7 @@ ggplot(titanic, aes(age)) +
   geom_histogram(binwidth = 5)
 ```
 
-::: {.fragment .small-font .move-up-2em}
+::: {.fragment .move-up-2em}
 Do you like the bin placement?
 :::
 
@@ -672,7 +670,7 @@ ggplot(titanic, aes(age)) +
 
 :::: {.columns}
 
-::: {.column width="50%" .tiny-font}
+::: {.column width="50%" .smaller-font}
 ```{r}
 #| label: titanic-stat-demo5
 #| echo: true
@@ -684,7 +682,7 @@ ggplot(titanic, aes(age)) +
 ```
 :::
 
-::: {.column width="50%" .tiny-font}
+::: {.column width="50%" .smaller-font}
 ```{r}
 #| label: titanic-stat-demo6
 #| echo: true
@@ -698,13 +696,12 @@ ggplot(titanic, aes(age)) +
 
 ::::
 
-::: {.fragment .small-font .move-up-1em}
+::: {.fragment .move-up-1em}
 Here, `bw` is a parameter of `stat_density()`, not of `geom_line()`.
 :::
 
 ## We can explicitly map results from stat computations
 
-::: {.small-font}
 ```{r}
 #| label: titanic-stat-demo7
 #| echo: true
@@ -722,11 +719,9 @@ ggplot(titanic, aes(age)) +
     n = 20    # number of points calculated by stat_density() 
   ) 
 ```
-:::
 
 ## We can explicitly map results from stat computations
 
-::: {.small-font}
 ```{r}
 #| label: titanic-stat-demo8
 #| echo: true
@@ -744,15 +739,12 @@ ggplot(titanic, aes(age)) +
     n = 200    # number of points calculated by stat_density() 
   ) 
 ```
-:::
 
 <!-- Segment ends here -->
 
 ## Further reading
 
-::: {.small-font}
 - Fundamentals of Data Visualization: [Chapter 7: Visualizing distributions](https://clauswilke.com/dataviz/histograms-density-plots.html)
 - Data Visualization—A Practical Introduction: [4.6 Histograms and density plots](https://socviz.co/groupfacettx.html#histograms)
 - **ggplot2** reference documentation: [`geom_histogram()`](https://ggplot2.tidyverse.org/reference/geom_histogram)
 - **ggplot2** reference documentation: [`geom_density()`](https://ggplot2.tidyverse.org/reference/geom_density)
-:::

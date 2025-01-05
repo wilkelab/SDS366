@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.39">
 
   <meta name="author" content="Claus O. Wilke">
-  <meta name="dcterms.date" content="2024-12-27">
+  <meta name="dcterms.date" content="2025-01-05">
   <title>SDS 366 – Aesthetic mappings</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -95,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-80920a296602927170ae890c726d62e3.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-781f6ba2a367431802b1f20d16123e35.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -205,7 +205,7 @@ Claus O. Wilke
 </div>
 </div>
 
-  <p class="date">2024-12-27</p>
+  <p class="date">2025-01-05</p>
 </section>
 <section>
 <section id="plots-map-data-onto-graphical-elements" class="title-slide slide level1 center">
@@ -214,7 +214,7 @@ Claus O. Wilke
 </section>
 <section id="dataset-daily-average-temperatures-for-various-locations" class="slide level2">
 <h2>Dataset:<br>Daily average temperatures for various locations</h2>
-<div class="tiny-font">
+<div class="small-font">
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top" data-quarto-postprocess="true">
@@ -328,7 +328,7 @@ Claus O. Wilke
 </section>
 <section id="temperatures-mapped-onto-color" class="slide level2">
 <h2>Temperatures mapped onto color</h2>
-<p><br></p>
+<div class="move-down-1em">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -336,6 +336,7 @@ Claus O. Wilke
 <p><img data-src="aesthetic-mappings_files/figure-revealjs/four-locations-temps-by-month-1.svg" style="width:100.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
+</div>
 </div>
 </div>
 </div>
@@ -362,7 +363,7 @@ Claus O. Wilke
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="aesthetic-mappings_files/figure-revealjs/mtcars-five-scale-1.svg" style="width:60.0%"></p>
+<p><img data-src="aesthetic-mappings_files/figure-revealjs/mtcars-five-scale-1.svg" style="width:70.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -378,6 +379,7 @@ Claus O. Wilke
 <section id="getting-the-data" class="slide level2">
 <h2>Getting the data</h2>
 <p>All examples will use the <code>temperatures</code> dataset:</p>
+<div class="smaller-font">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>temperatures <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://wilkelab.org/SDS366/datasets/tempnormals.csv"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb1-2"><a></a>  <span class="fu">mutate</span>(</span>
@@ -387,9 +389,11 @@ Claus O. Wilke
 <span id="cb1-6"><a></a>  ) <span class="sc">|&gt;</span></span>
 <span id="cb1-7"><a></a>  <span class="fu">select</span>(location, station_id, day_of_year, month, temperature)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</div>
 </section>
 <section id="we-define-the-mapping-with-aes" class="slide level2">
 <h2>We define the mapping with <code>aes()</code></h2>
+<div class="small-font">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">ggplot</span>(</span>
 <span id="cb2-2"><a></a>  <span class="at">data =</span> temperatures,</span>
@@ -405,9 +409,11 @@ Claus O. Wilke
 </div>
 </div>
 </div>
+</div>
 </section>
 <section id="we-define-the-mapping-with-aes-1" class="slide level2">
 <h2>We define the mapping with <code>aes()</code></h2>
+<div class="small-font">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">ggplot</span>(</span>
 <span id="cb3-2"><a></a>  <span class="at">data =</span> temperatures,</span>
@@ -423,23 +429,28 @@ Claus O. Wilke
 </div>
 </div>
 </div>
+</div>
 </section>
 <section id="we-frequently-omit-argument-names" class="slide level2">
 <h2>We frequently omit argument names</h2>
 <p>Long form, all arguments are named:</p>
+<div class="small-font">
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">ggplot</span>(</span>
 <span id="cb4-2"><a></a>  <span class="at">data =</span> temperatures,</span>
 <span id="cb4-3"><a></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> day_of_year, <span class="at">y =</span> location, <span class="at">color =</span> temperature)</span>
 <span id="cb4-4"><a></a>) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="fragment">
-<p><br></p>
+</div>
+<div class="fragment move-down-1em">
 <p>Abbreviated form, common arguments remain unnamed:</p>
+<div class="small-font">
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(day_of_year, location, <span class="at">color =</span> temperature)) <span class="sc">+</span> </span>
 <span id="cb5-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 </section>
 <section id="the-geom-determines-how-the-data-is-shown" class="slide level2">
 <h2>The geom determines how the data is shown</h2>
+<div class="small-font">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(day_of_year, temperature, <span class="at">color =</span> location)) <span class="sc">+</span> </span>
 <span id="cb6-2"><a></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -452,9 +463,11 @@ Claus O. Wilke
 </div>
 </div>
 </div>
+</div>
 </section>
 <section id="the-geom-determines-how-the-data-is-shown-1" class="slide level2">
 <h2>The geom determines how the data is shown</h2>
+<div class="small-font">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(day_of_year, location, <span class="at">color =</span> temperature)) <span class="sc">+</span> </span>
 <span id="cb7-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -467,9 +480,11 @@ Claus O. Wilke
 </div>
 </div>
 </div>
+</div>
 </section>
 <section id="the-geom-determines-how-the-data-is-shown-2" class="slide level2">
 <h2>The geom determines how the data is shown</h2>
+<div class="small-font">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(month, temperature, <span class="at">color =</span> location)) <span class="sc">+</span> </span>
 <span id="cb8-2"><a></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -482,9 +497,11 @@ Claus O. Wilke
 </div>
 </div>
 </div>
+</div>
 </section>
 <section id="the-geom-determines-how-the-data-is-shown-3" class="slide level2">
 <h2>The geom determines how the data is shown</h2>
+<div class="small-font">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(month, temperature, <span class="at">fill =</span> location)) <span class="sc">+</span> </span>
 <span id="cb9-2"><a></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span> </span>
@@ -498,6 +515,7 @@ Claus O. Wilke
 </div>
 </div>
 </div>
+</div>
 <!-- Segment ends here -->
 </section></section>
 <section>
@@ -507,17 +525,16 @@ Claus O. Wilke
 </section>
 <section id="distinguish-between-color-and-fill" class="slide level2">
 <h2>Distinguish between <code>color</code> and <code>fill</code></h2>
-<p><br></p>
-<div class="fragment">
+<div class="move-down-1em">
 <p><code>color</code><br> Applies color to points, lines, text, borders</p>
 </div>
-<p><br></p>
-<div class="fragment">
+<div class="fragment move-down-1em">
 <p><code>fill</code><br> Applies color to any filled areas</p>
 </div>
 </section>
 <section id="many-geoms-use-both-color-and-fill" class="slide level2">
 <h2>Many geoms use both <code>color</code> and <code>fill</code></h2>
+<div class="small-font">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(month, temperature, <span class="at">color =</span> location)) <span class="sc">+</span> </span>
 <span id="cb10-2"><a></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -530,9 +547,11 @@ Claus O. Wilke
 </div>
 </div>
 </div>
+</div>
 </section>
 <section id="many-geoms-use-both-color-and-fill-1" class="slide level2">
 <h2>Many geoms use both <code>color</code> and <code>fill</code></h2>
+<div class="small-font">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(month, temperature, <span class="at">fill =</span> location)) <span class="sc">+</span> </span>
 <span id="cb11-2"><a></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -545,9 +564,11 @@ Claus O. Wilke
 </div>
 </div>
 </div>
+</div>
 </section>
 <section id="many-geoms-use-both-color-and-fill-2" class="slide level2">
 <h2>Many geoms use both <code>color</code> and <code>fill</code></h2>
+<div class="small-font">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(month, temperature, <span class="at">color =</span> location, <span class="at">fill =</span> location)) <span class="sc">+</span> </span>
 <span id="cb12-2"><a></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -560,9 +581,11 @@ Claus O. Wilke
 </div>
 </div>
 </div>
+</div>
 </section>
 <section id="aesthetics-can-also-be-used-as-parameters" class="slide level2">
 <h2>Aesthetics can also be used as parameters</h2>
+<div class="small-font">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(month, temperature, <span class="at">fill =</span> location)) <span class="sc">+</span> </span>
 <span id="cb13-2"><a></a>  <span class="fu">geom_boxplot</span>(<span class="at">color =</span> <span class="st">"steelblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -575,9 +598,11 @@ Claus O. Wilke
 </div>
 </div>
 </div>
+</div>
 </section>
 <section id="aesthetics-can-also-be-used-as-parameters-1" class="slide level2">
 <h2>Aesthetics can also be used as parameters</h2>
+<div class="small-font">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(month, temperature, <span class="at">color =</span> location)) <span class="sc">+</span> </span>
 <span id="cb14-2"><a></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -590,11 +615,11 @@ Claus O. Wilke
 </div>
 </div>
 </div>
+</div>
 <!-- Segment ends here -->
 </section>
 <section id="further-reading" class="slide level2">
 <h2>Further reading</h2>
-<div class="small-font">
 <ul>
 <li>Fundamentals of Data Visualization: <a href="https://clauswilke.com/dataviz/aesthetic-mapping.html">Chapter 2: Visualizing data</a></li>
 <li>Data Visualization—A Practical Introduction: <a href="https://socviz.co/makeplot.html#makeplot">Chapter 3: Make a plot</a></li>
@@ -602,7 +627,6 @@ Claus O. Wilke
 <li><a href="https://ggplot2-book.org/"><strong>ggplot2</strong> book</a></li>
 <li><a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf"><strong>ggplot2</strong> cheatsheet</a></li>
 </ul>
-</div>
 
 
 </section></section>

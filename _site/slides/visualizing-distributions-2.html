@@ -95,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-80920a296602927170ae890c726d62e3.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-781f6ba2a367431802b1f20d16123e35.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -212,7 +212,6 @@ Claus O. Wilke
 <div class="columns">
 <div class="column small-font" style="width:50%;">
 <p>Mean temperatures in Lincoln, NE, in January 2016:</p>
-<div class="small-font">
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top">
@@ -267,8 +266,7 @@ Claus O. Wilke
 </table>
 </div>
 </div>
-</div>
-</div><div class="fragment column small-font" style="width:50%;">
+</div><div class="fragment column" style="width:50%;">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -337,7 +335,7 @@ Claus O. Wilke
 </div>
 </div>
 </div>
-<div class="fragment small-font move-up-2em">
+<div class="fragment move-up-2em">
 <p>A boxplot is a crude way of visualizing a distribution.</p>
 </div>
 </section>
@@ -366,7 +364,7 @@ Claus O. Wilke
 </div>
 </div>
 </div>
-<div class="fragment small-font move-up-2em">
+<div class="fragment move-up-2em">
 <p>A violin plot is a density plot rotated 90 degrees and then mirrored.</p>
 </div>
 </section>
@@ -385,10 +383,8 @@ Claus O. Wilke
 </section>
 <section id="for-small-datasets-you-can-also-use-a-strip-chart" class="slide level2">
 <h2>For small datasets, you can also use a strip chart</h2>
-<div class="fragment small-font">
 <p>Advantage: Can see raw data points instead of abstract representation.</p>
-</div>
-<div class="fragment small-font">
+<div class="fragment">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -400,16 +396,13 @@ Claus O. Wilke
 </div>
 </div>
 </div>
-<div class="fragment small-font move-up-2em">
+<div class="fragment move-up-2em">
 <p>Horizontal jittering may be necessary to avoid overlapping points.</p>
 </div>
 </section>
 <section id="for-small-datasets-you-can-also-use-a-strip-chart-1" class="slide level2">
 <h2>For small datasets, you can also use a strip chart</h2>
-<div class="small-font">
 <p>Advantage: Can see raw data points instead of abstract representation.</p>
-</div>
-<div class="small-font">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -420,17 +413,13 @@ Claus O. Wilke
 </div>
 </div>
 </div>
-</div>
-<div class="small-font move-up-2em">
+<div class="move-up-2em">
 <p>Horizontal jittering may be necessary to avoid overlapping points.</p>
 </div>
 </section>
 <section id="for-small-datasets-you-can-also-use-a-strip-chart-2" class="slide level2">
 <h2>For small datasets, you can also use a strip chart</h2>
-<div class="small-font">
 <p>Advantage: Can see raw data points instead of abstract representation.</p>
-</div>
-<div class="small-font">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -441,8 +430,7 @@ Claus O. Wilke
 </div>
 </div>
 </div>
-</div>
-<div class="small-font move-up-2em">
+<div class="move-up-2em">
 <p>Horizontal jittering may be necessary to avoid overlapping points.</p>
 </div>
 </section>
@@ -458,7 +446,7 @@ Claus O. Wilke
 </div>
 </div>
 </div>
-<div class="fragment small-font move-up-2em">
+<div class="fragment move-up-2em">
 <p>Such plots are called sina plots, to honor <a href="https://clauswilke.com/dataviz/boxplots-violins.html#fig:lincoln-temp-sina">Sina Hadi Sohi.</a></p>
 </div>
 </section>
@@ -474,7 +462,7 @@ Claus O. Wilke
 </div>
 </div>
 </div>
-<div class="fragment small-font move-up-2em">
+<div class="fragment move-up-2em">
 <p>How about we stagger the densities vertically?</p>
 </div>
 </section>
@@ -490,7 +478,7 @@ Claus O. Wilke
 </div>
 </div>
 </div>
-<div class="fragment small-font move-up-2em">
+<div class="fragment move-up-2em">
 <p>Notice the single fill color. More colors would be distracting.</p>
 </div>
 <!-- Segment ends here -->
@@ -502,7 +490,7 @@ Claus O. Wilke
 </section>
 <section id="getting-the-data" class="slide level2">
 <h2>Getting the data</h2>
-<div class="tiny-font">
+<div class="smaller-font">
 <p>All examples will use the <code>lincoln_temps</code> dataset:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>lincoln_temps <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">url</span>(<span class="st">"https://wilkelab.org/SDS366/datasets/lincoln_temps.rds"</span>))</span>
@@ -529,7 +517,7 @@ Claus O. Wilke
 </section>
 <section id="making-boxplots-violins-etc.-in-ggplot2-1" class="slide level2">
 <h2>Making boxplots, violins, etc. in <strong>ggplot2</strong></h2>
-<div class="small-font center-text">
+<div class="center-text move-down-1em">
 <table class="caption-top">
 <colgroup>
 <col style="width: 21%">
@@ -688,14 +676,12 @@ Claus O. Wilke
 </section>
 <section id="further-reading" class="slide level2">
 <h2>Further reading</h2>
-<div class="small-font">
 <ul>
 <li>Fundamentals of Data Visualization: <a href="https://clauswilke.com/dataviz/boxplots-violins.html">Chapter 7: Visualizing many distributions at once</a></li>
 <li><strong>ggplot2</strong> reference documentation: <a href="https://ggplot2.tidyverse.org/reference/geom_histogram"><code>geom_boxplot()</code></a>, <a href="https://ggplot2.tidyverse.org/reference/geom_violin"><code>geom_violin()</code></a>, <a href="https://ggplot2.tidyverse.org/reference/position_jitter.html"><code>position_jitter()</code></a></li>
 <li><strong>ggforce</strong> reference documentation: <a href="https://ggforce.data-imaginist.com/reference/geom_sina.html"><code>geom_sina()</code></a></li>
 <li><strong>ggridges</strong> reference documentation: <a href="https://wilkelab.org/ggridges/reference/geom_density_ridges.html"><code>geom_density_ridges()</code></a></li>
 </ul>
-</div>
 
 
 </section></section>
