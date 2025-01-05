@@ -1,6 +1,9 @@
 ---
 title: "Homework 1"
-format: typst
+format:
+  typst:
+    fig-format: png
+    fig-dpi: 300
 editor: visual
 ---
 
@@ -34,3 +37,4 @@ Use ggplot to make a line plot of the total population (`pop`, in thousands) ver
 ```{r}
 # your code goes here
 ```
+
