@@ -458,6 +458,98 @@ ridgeline    | `geom_density_ridges()` | From package **ggridges**
 
 ## Examples: Boxplot
 
+::: {.small-font}
+```{r}
+#| label: temps-examples-boxplot
+#| echo: true
+#| fig-width: 6
+#| fig-cap: "&nbsp;"
+#| out-width: "60%"
+ggplot(lincoln_temps, aes(x = month, y = mean_temp)) +
+  geom_boxplot(fill = "skyblue") 
+```
+:::
+
+## Examples: Violins
+
+::: {.small-font}
+```{r}
+#| label: temps-examples-violins
+#| echo: true
+#| fig-width: 6
+#| fig-cap: "&nbsp;"
+#| out-width: "60%"
+ggplot(lincoln_temps, aes(x = month, y = mean_temp)) +
+  geom_violin(fill = "skyblue") 
+```
+:::
+
+## Examples: Strip chart (no jitter)
+
+::: {.small-font}
+```{r}
+#| label: temps-examples-stripchart
+#| echo: true
+#| fig-width: 6
+#| fig-cap: "&nbsp;"
+#| out-width: "60%"
+ggplot(lincoln_temps, aes(x = month, y = mean_temp)) +
+  geom_point(size = 0.75)  # reduce point size to minimize overplotting 
+```
+:::
+
+## Examples: Strip chart (w/ jitter)
+
+::: {.small-font}
+```{r}
+#| label: temps-examples-stripchart-jitter
+#| echo: true
+#| fig-width: 6
+#| fig-cap: "&nbsp;"
+#| out-width: "60%"
+ggplot(lincoln_temps, aes(x = month, y = mean_temp)) +
+  geom_point(size = 0.75,  # reduce point size to minimize overplotting 
+    position = position_jitter(
+      width = 0.15,  # amount of jitter in horizontal direction
+      height = 0     # amount of jitter in vertical direction (0 = none)
+    )
+  )
+```
+:::
+
+## Examples: Sina plot
+
+::: {.small-font}
+```{r}
+#| label: temps-examples-sina
+#| echo: true
+#| fig-width: 6
+#| fig-cap: "&nbsp;"
+#| out-width: "60%"
+library(ggforce) # for geom_sina()
+
+ggplot(lincoln_temps, aes(x = month, y = mean_temp)) +
+  geom_violin(fill = "skyblue", color = NA) + # violins in background
+  geom_sina(size = 0.75) # sina jittered points in foreground
+```
+:::
+
+## Examples: Ridgeline plot
+
+::: {.small-font}
+```{r}
+#| label: temps-examples-ridgeline
+#| echo: true
+#| fig-width: 6
+#| fig-cap: "&nbsp;"
+#| out-width: "60%"
+library(ggridges) # for geom_density_ridges
+
+ggplot(lincoln_temps, aes(x = mean_temp, y = month_long)) +
+  geom_density_ridges()
+```
+:::
+
 <!-- Segment ends here -->
 
 ## Further reading

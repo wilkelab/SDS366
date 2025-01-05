@@ -575,6 +575,115 @@ Claus O. Wilke
 </section>
 <section id="examples-boxplot" class="slide level2">
 <h2>Examples: Boxplot</h2>
+<div class="small-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">ggplot</span>(lincoln_temps, <span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> mean_temp)) <span class="sc">+</span></span>
+<span id="cb3-2"><a></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-2_files/figure-revealjs/temps-examples-boxplot-1.svg" style="width:60.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="examples-violins" class="slide level2">
+<h2>Examples: Violins</h2>
+<div class="small-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">ggplot</span>(lincoln_temps, <span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> mean_temp)) <span class="sc">+</span></span>
+<span id="cb4-2"><a></a>  <span class="fu">geom_violin</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-2_files/figure-revealjs/temps-examples-violins-1.svg" style="width:60.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="examples-strip-chart-no-jitter" class="slide level2">
+<h2>Examples: Strip chart (no jitter)</h2>
+<div class="small-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">ggplot</span>(lincoln_temps, <span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> mean_temp)) <span class="sc">+</span></span>
+<span id="cb5-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.75</span>)  <span class="co"># reduce point size to minimize overplotting </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-2_files/figure-revealjs/temps-examples-stripchart-1.svg" style="width:60.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="examples-strip-chart-w-jitter" class="slide level2">
+<h2>Examples: Strip chart (w/ jitter)</h2>
+<div class="small-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">ggplot</span>(lincoln_temps, <span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> mean_temp)) <span class="sc">+</span></span>
+<span id="cb6-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.75</span>,  <span class="co"># reduce point size to minimize overplotting </span></span>
+<span id="cb6-3"><a></a>    <span class="at">position =</span> <span class="fu">position_jitter</span>(</span>
+<span id="cb6-4"><a></a>      <span class="at">width =</span> <span class="fl">0.15</span>,  <span class="co"># amount of jitter in horizontal direction</span></span>
+<span id="cb6-5"><a></a>      <span class="at">height =</span> <span class="dv">0</span>     <span class="co"># amount of jitter in vertical direction (0 = none)</span></span>
+<span id="cb6-6"><a></a>    )</span>
+<span id="cb6-7"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-2_files/figure-revealjs/temps-examples-stripchart-jitter-1.svg" style="width:60.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="examples-sina-plot" class="slide level2">
+<h2>Examples: Sina plot</h2>
+<div class="small-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">library</span>(ggforce) <span class="co"># for geom_sina()</span></span>
+<span id="cb7-2"><a></a></span>
+<span id="cb7-3"><a></a><span class="fu">ggplot</span>(lincoln_temps, <span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> mean_temp)) <span class="sc">+</span></span>
+<span id="cb7-4"><a></a>  <span class="fu">geom_violin</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>, <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span> <span class="co"># violins in background</span></span>
+<span id="cb7-5"><a></a>  <span class="fu">geom_sina</span>(<span class="at">size =</span> <span class="fl">0.75</span>) <span class="co"># sina jittered points in foreground</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-2_files/figure-revealjs/temps-examples-sina-1.svg" style="width:60.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="examples-ridgeline-plot" class="slide level2">
+<h2>Examples: Ridgeline plot</h2>
+<div class="small-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">library</span>(ggridges) <span class="co"># for geom_density_ridges</span></span>
+<span id="cb8-2"><a></a></span>
+<span id="cb8-3"><a></a><span class="fu">ggplot</span>(lincoln_temps, <span class="fu">aes</span>(<span class="at">x =</span> mean_temp, <span class="at">y =</span> month_long)) <span class="sc">+</span></span>
+<span id="cb8-4"><a></a>  <span class="fu">geom_density_ridges</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-2_files/figure-revealjs/temps-examples-ridgeline-1.svg" style="width:60.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
 <!-- Segment ends here -->
 </section>
 <section id="further-reading" class="slide level2">

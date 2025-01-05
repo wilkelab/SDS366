@@ -7,8 +7,8 @@ format: html
 This is the home page for SDS 366, Data Visualization in R. All course materials will be posted on this site.
 
 Instructor: [Claus O. Wilke](https://clauswilke.com)  
-Meeting times: TTH 5:00pm to 6:30pm
-Venue: MEZ B0.306 
+Meeting times: TTH 5:00pm to 6:30pm  
+Venue: MEZ B0.306  
 Syllabus: [click here](syllabus.html)  
 Upcoming lectures and assignments: [click here](schedule.html)  
 

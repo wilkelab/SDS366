@@ -50,7 +50,9 @@ website:
             href: worksheets/visualizing-amounts.qmd
           - text: "Class 4: Coordinate systems and axes"
             href: worksheets/coordinate-systems-axes.qmd
-        
+          - text: "Class 5: Visualizing distributions 1"
+            href: worksheets/visualizing-distributions-1.qmd
+            
     tools:
       - icon: github
         href: "https://github.com/wilkelab/SDS366"
