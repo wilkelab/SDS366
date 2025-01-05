@@ -93,8 +93,8 @@ knitr::kable(age_hist[9:16,], "html")
 #| label: titanic-age-hist
 #| fig-cap: "&nbsp;"
 #| out-width: "100%"
-age_hist5 <- age_hist %>%
-  mutate(age = (1:16) * 5 - 2.5) %>%
+age_hist5 <- age_hist |>
+  mutate(age = (1:16) * 5 - 2.5) |>
   filter(count > 0)
 
 h1 <- ggplot(age_hist5, aes(x = age, y = count)) + 
@@ -305,7 +305,7 @@ gender_counts <- tibble(
   age = (1:25)*3 - 1.5, 
   male = hist(filter(titanic, sex == "male")$age, breaks = (0:25)*3 - .01, plot = FALSE)$counts,
   female = hist(filter(titanic, sex == "female")$age, breaks = (0:25)*3 - .01, plot = FALSE)$counts
-) %>%
+) |>
   pivot_longer(-age, names_to = "gender", values_to = "count")
 
 gender_counts$gender <- factor(gender_counts$gender, levels = c("female", "male"))
@@ -384,8 +384,8 @@ ggplot(gender_counts, aes(x = age, y = ifelse(gender == "male", -1, 1)*count, fi
 #| fig-asp: 0.45
 #| fig-cap: "&nbsp;"
 #| out-width: "80%"
-titanic %>%
-  mutate(sex = factor(sex, levels = c("male", "female"))) %>%
+titanic |>
+  mutate(sex = factor(sex, levels = c("male", "female"))) |>
   ggplot(aes(x = age, y = after_stat(count))) +
   geom_density(
     data = select(titanic, -sex), aes(fill = "all passengers"),

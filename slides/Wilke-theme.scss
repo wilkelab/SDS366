@@ -36,8 +36,8 @@ $code-block-font-size: 0.66em; // equivalent to .tiny-font by default
 
 .reveal h1 {
   text-align: center;
-  margin-top: 0 !important;
-  margin-bottom: 2em !important;
+  margin-top: 0;
+  margin-bottom: 2em;
 }
 
 // Make inline code slightly smaller; prevents vertical jumps
@@ -124,9 +124,33 @@ figcaption {
 // ensure that code to left of figures doesn't have
 // code blocks with extra height
 .reveal .column-output-location .column:first-of-type div.sourceCode {
-  height: auto !important;
+  height: auto;
 }
 
 // .nogap class to remove all margins around figures
 .reveal .nogap img {margin-top: 0; margin-bottom: 0}
 .reveal .nogap div.quarto-figure {margin-top: 0; margin-bottom: 0}
+
+// table formatting
+.reveal table th {
+    padding: .1em .5em .1em .5em;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+}
+
+.reveal table td {
+    padding: .1em .5em .1em .5em;
+    border-bottom: 0px;
+}
+
+.reveal table tr.header {
+    background-color: #e0e0e0;
+}
+
+.reveal table tr.even {
+    background-color: #e0e0e0;
+}
+
+.reveal table tr:last-of-type {
+    border-bottom: 1px solid;
+}
