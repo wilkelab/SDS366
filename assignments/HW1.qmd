@@ -4,6 +4,8 @@ format:
   typst:
     fig-format: png
     fig-dpi: 300
+    fig-width: 4
+    fig-height: 2.5
 editor: visual
 ---
 
@@ -29,12 +31,15 @@ economics
 Use ggplot to make a line plot of the total population (`pop`, in thousands) versus time (column `date`).
 
 ```{r}
+#| out-width: 65% # do not modify this line
+
 # your code goes here
 ```
 
 **Problem 3: (6 pts)** Again using the `economics` dataset, now make a scatter plot (using `geom_point()`) of the number of unemployed versus the total population (`pop`), and color points by date.
 
 ```{r}
+#| out-width: 65% # do not modify this line
+
 # your code goes here
 ```
-

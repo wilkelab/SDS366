@@ -2,6 +2,8 @@
 title: "Intro to Quarto"
 format: 
   typst:
+    fig-format: png
+    fig-dpi: 300
     fig-width: 4
     fig-height: 2.5
 editor: visual
@@ -28,6 +30,7 @@ Also try both the visual and the source editing mode and see which one you prefe
 R code embedded in R chunks will be executed and the output will be shown.
 
 ```{r}
+#| out-width: 65%
 library(ggplot2)
 
 ggplot(mtcars, aes(disp, mpg)) +
@@ -37,6 +40,8 @@ ggplot(mtcars, aes(disp, mpg)) +
 Now you try it. If you know some ggplot, modify the above plot. For example, plot some other data columns (e.g., `hp`, `qsec`, `gear`), or add some color to the plot. If you don't know ggplot but know some other R, try that. If you don't know any R try basic mathematical expressions, such as `45 + 10` or `sqrt(15)`.
 
 ```{r}
+#| out-width: 65%
+
 # Your R code goes here
 ```
 
