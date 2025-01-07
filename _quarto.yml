@@ -54,7 +54,9 @@ website:
             href: worksheets/visualizing-distributions-1.qmd
           - text: "Class 6: Visualizing distributions 2"
             href: worksheets/visualizing-distributions-2.qmd
-            
+          - text: "Class 7: Color scales"
+            href: worksheets/color-scales.Rmd
+        
     tools:
       - icon: github
         href: "https://github.com/wilkelab/SDS366"
