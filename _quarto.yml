@@ -4,10 +4,12 @@ project:
     - "*.qmd"
     - "!datasets/"
     - "!assignments/"
+    - "!choose-color/"
   resources:
     - "assets/"
     - "datasets/"
     - "assignments/"
+    - "choose-color/"
 
 website:
   title: "SDS 366"
@@ -56,6 +58,8 @@ website:
             href: worksheets/visualizing-distributions-2.qmd
           - text: "Class 7: Color scales"
             href: worksheets/color-scales.Rmd
+          - text: "Class 8: Choose color"
+            href: choose-color/index.html
         
     tools:
       - icon: github

@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.39">
 
   <meta name="author" content="Claus O. Wilke">
-  <meta name="dcterms.date" content="2025-01-05">
+  <meta name="dcterms.date" content="2025-01-07">
   <title>SDS 366 – Aesthetic mappings</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -205,7 +205,7 @@ Claus O. Wilke
 </div>
 </div>
 
-  <p class="date">2025-01-05</p>
+  <p class="date">2025-01-07</p>
 </section>
 <section>
 <section id="plots-map-data-onto-graphical-elements" class="title-slide slide level1 center">
@@ -216,6 +216,17 @@ Claus O. Wilke
 <h2>Dataset:<br>Daily average temperatures for various locations</h2>
 <div class="small-font">
 <div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>temps_long <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://wilkelab.org/SDS366/datasets/tempnormals.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-3"><a></a>    <span class="at">location =</span> <span class="fu">factor</span>(</span>
+<span id="cb1-4"><a></a>      location, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Death Valley"</span>, <span class="st">"Houston"</span>, <span class="st">"San Diego"</span>, <span class="st">"Chicago"</span>)</span>
+<span id="cb1-5"><a></a>    )</span>
+<span id="cb1-6"><a></a>  )</span>
+<span id="cb1-7"><a></a></span>
+<span id="cb1-8"><a></a>temps_long <span class="sc">|&gt;</span></span>
+<span id="cb1-9"><a></a>  <span class="fu">select</span>(location, day_of_year, month, temperature) <span class="sc">|&gt;</span></span>
+<span id="cb1-10"><a></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">13</span>L) <span class="sc">|&gt;</span></span>
+<span id="cb1-11"><a></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="st">"html"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top" data-quarto-postprocess="true">
 <thead>
@@ -319,7 +330,7 @@ Claus O. Wilke
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="aesthetic-mappings_files/figure-revealjs/temp-normals-vs-time-1.svg" style="width:80.0%"></p>
+<p><img data-src="aesthetic-mappings_files/figure-html/temp-normals-vs-time-1.svg" style="width:80.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -333,7 +344,7 @@ Claus O. Wilke
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="aesthetic-mappings_files/figure-revealjs/four-locations-temps-by-month-1.svg" style="width:100.0%"></p>
+<p><img data-src="aesthetic-mappings_files/figure-html/four-locations-temps-by-month-1.svg" style="width:100.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -363,7 +374,7 @@ Claus O. Wilke
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="aesthetic-mappings_files/figure-revealjs/mtcars-five-scale-1.svg" style="width:70.0%"></p>
+<p><img data-src="aesthetic-mappings_files/figure-html/mtcars-five-scale-1.svg" style="width:70.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -381,13 +392,13 @@ Claus O. Wilke
 <p>All examples will use the <code>temperatures</code> dataset:</p>
 <div class="smaller-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>temperatures <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://wilkelab.org/SDS366/datasets/tempnormals.csv"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb1-2"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb1-3"><a></a>    <span class="at">location =</span> <span class="fu">factor</span>(</span>
-<span id="cb1-4"><a></a>      location, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Death Valley"</span>, <span class="st">"Houston"</span>, <span class="st">"San Diego"</span>, <span class="st">"Chicago"</span>)</span>
-<span id="cb1-5"><a></a>    )</span>
-<span id="cb1-6"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb1-7"><a></a>  <span class="fu">select</span>(location, station_id, day_of_year, month, temperature)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>temperatures <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://wilkelab.org/SDS366/datasets/tempnormals.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-3"><a></a>    <span class="at">location =</span> <span class="fu">factor</span>(</span>
+<span id="cb2-4"><a></a>      location, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Death Valley"</span>, <span class="st">"Houston"</span>, <span class="st">"San Diego"</span>, <span class="st">"Chicago"</span>)</span>
+<span id="cb2-5"><a></a>    )</span>
+<span id="cb2-6"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb2-7"><a></a>  <span class="fu">select</span>(location, station_id, day_of_year, month, temperature)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -395,15 +406,15 @@ Claus O. Wilke
 <h2>We define the mapping with <code>aes()</code></h2>
 <div class="small-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb2-2"><a></a>  <span class="at">data =</span> temperatures,</span>
-<span id="cb2-3"><a></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> day_of_year, <span class="at">y =</span> temperature, <span class="at">color =</span> location)</span>
-<span id="cb2-4"><a></a>) <span class="sc">+</span> </span>
-<span id="cb2-5"><a></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">ggplot</span>(</span>
+<span id="cb3-2"><a></a>  <span class="at">data =</span> temperatures,</span>
+<span id="cb3-3"><a></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> day_of_year, <span class="at">y =</span> temperature, <span class="at">color =</span> location)</span>
+<span id="cb3-4"><a></a>) <span class="sc">+</span> </span>
+<span id="cb3-5"><a></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="aesthetic-mappings_files/figure-revealjs/ggplot-temps-example-1.svg" style="width:65.0%"></p>
+<p><img data-src="aesthetic-mappings_files/figure-html/ggplot-temps-example-1.svg" style="width:65.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -415,15 +426,15 @@ Claus O. Wilke
 <h2>We define the mapping with <code>aes()</code></h2>
 <div class="small-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb3-2"><a></a>  <span class="at">data =</span> temperatures,</span>
-<span id="cb3-3"><a></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> day_of_year, <span class="at">y =</span> location, <span class="at">color =</span> temperature)</span>
-<span id="cb3-4"><a></a>) <span class="sc">+</span> </span>
-<span id="cb3-5"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">ggplot</span>(</span>
+<span id="cb4-2"><a></a>  <span class="at">data =</span> temperatures,</span>
+<span id="cb4-3"><a></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> day_of_year, <span class="at">y =</span> location, <span class="at">color =</span> temperature)</span>
+<span id="cb4-4"><a></a>) <span class="sc">+</span> </span>
+<span id="cb4-5"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="aesthetic-mappings_files/figure-revealjs/ggplot-temps-example2-1.svg" style="width:85.0%"></p>
+<p><img data-src="aesthetic-mappings_files/figure-html/ggplot-temps-example2-1.svg" style="width:85.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -435,16 +446,16 @@ Claus O. Wilke
 <h2>We frequently omit argument names</h2>
 <p>Long form, all arguments are named:</p>
 <div class="small-font">
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb4-2"><a></a>  <span class="at">data =</span> temperatures,</span>
-<span id="cb4-3"><a></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> day_of_year, <span class="at">y =</span> location, <span class="at">color =</span> temperature)</span>
-<span id="cb4-4"><a></a>) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">ggplot</span>(</span>
+<span id="cb5-2"><a></a>  <span class="at">data =</span> temperatures,</span>
+<span id="cb5-3"><a></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> day_of_year, <span class="at">y =</span> location, <span class="at">color =</span> temperature)</span>
+<span id="cb5-4"><a></a>) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment move-down-1em">
 <p>Abbreviated form, common arguments remain unnamed:</p>
 <div class="small-font">
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(day_of_year, location, <span class="at">color =</span> temperature)) <span class="sc">+</span> </span>
-<span id="cb5-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(day_of_year, location, <span class="at">color =</span> temperature)) <span class="sc">+</span> </span>
+<span id="cb6-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -452,12 +463,12 @@ Claus O. Wilke
 <h2>The geom determines how the data is shown</h2>
 <div class="small-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(day_of_year, temperature, <span class="at">color =</span> location)) <span class="sc">+</span> </span>
-<span id="cb6-2"><a></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(day_of_year, temperature, <span class="at">color =</span> location)) <span class="sc">+</span> </span>
+<span id="cb7-2"><a></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="aesthetic-mappings_files/figure-revealjs/ggplot-temps-example5-1.svg" style="width:65.0%"></p>
+<p><img data-src="aesthetic-mappings_files/figure-html/ggplot-temps-example5-1.svg" style="width:65.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -469,12 +480,12 @@ Claus O. Wilke
 <h2>The geom determines how the data is shown</h2>
 <div class="small-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(day_of_year, location, <span class="at">color =</span> temperature)) <span class="sc">+</span> </span>
-<span id="cb7-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(day_of_year, location, <span class="at">color =</span> temperature)) <span class="sc">+</span> </span>
+<span id="cb8-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="aesthetic-mappings_files/figure-revealjs/ggplot-temps-example6-1.svg" style="width:85.0%"></p>
+<p><img data-src="aesthetic-mappings_files/figure-html/ggplot-temps-example6-1.svg" style="width:85.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -486,12 +497,12 @@ Claus O. Wilke
 <h2>The geom determines how the data is shown</h2>
 <div class="small-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(month, temperature, <span class="at">color =</span> location)) <span class="sc">+</span> </span>
-<span id="cb8-2"><a></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(month, temperature, <span class="at">color =</span> location)) <span class="sc">+</span> </span>
+<span id="cb9-2"><a></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="aesthetic-mappings_files/figure-revealjs/ggplot-temps-example7-1.svg" style="width:75.0%"></p>
+<p><img data-src="aesthetic-mappings_files/figure-html/ggplot-temps-example7-1.svg" style="width:75.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -503,13 +514,13 @@ Claus O. Wilke
 <h2>The geom determines how the data is shown</h2>
 <div class="small-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(month, temperature, <span class="at">fill =</span> location)) <span class="sc">+</span> </span>
-<span id="cb9-2"><a></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span> </span>
-<span id="cb9-3"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>location) <span class="co"># make separate panel per location</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(month, temperature, <span class="at">fill =</span> location)) <span class="sc">+</span> </span>
+<span id="cb10-2"><a></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span> </span>
+<span id="cb10-3"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>location) <span class="co"># make separate panel per location</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="aesthetic-mappings_files/figure-revealjs/ggplot-temps-example8-1.svg" style="width:90.0%"></p>
+<p><img data-src="aesthetic-mappings_files/figure-html/ggplot-temps-example8-1.svg" style="width:90.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -536,12 +547,12 @@ Claus O. Wilke
 <h2>Many geoms use both <code>color</code> and <code>fill</code></h2>
 <div class="small-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(month, temperature, <span class="at">color =</span> location)) <span class="sc">+</span> </span>
-<span id="cb10-2"><a></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(month, temperature, <span class="at">color =</span> location)) <span class="sc">+</span> </span>
+<span id="cb11-2"><a></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="aesthetic-mappings_files/figure-revealjs/ggplot-color-fill-1.svg" style="width:75.0%"></p>
+<p><img data-src="aesthetic-mappings_files/figure-html/ggplot-color-fill-1.svg" style="width:75.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -553,12 +564,12 @@ Claus O. Wilke
 <h2>Many geoms use both <code>color</code> and <code>fill</code></h2>
 <div class="small-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(month, temperature, <span class="at">fill =</span> location)) <span class="sc">+</span> </span>
-<span id="cb11-2"><a></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(month, temperature, <span class="at">fill =</span> location)) <span class="sc">+</span> </span>
+<span id="cb12-2"><a></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="aesthetic-mappings_files/figure-revealjs/ggplot-color-fill2-1.svg" style="width:75.0%"></p>
+<p><img data-src="aesthetic-mappings_files/figure-html/ggplot-color-fill2-1.svg" style="width:75.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -570,12 +581,12 @@ Claus O. Wilke
 <h2>Many geoms use both <code>color</code> and <code>fill</code></h2>
 <div class="small-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(month, temperature, <span class="at">color =</span> location, <span class="at">fill =</span> location)) <span class="sc">+</span> </span>
-<span id="cb12-2"><a></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(month, temperature, <span class="at">color =</span> location, <span class="at">fill =</span> location)) <span class="sc">+</span> </span>
+<span id="cb13-2"><a></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="aesthetic-mappings_files/figure-revealjs/ggplot-color-fill3-1.svg" style="width:75.0%"></p>
+<p><img data-src="aesthetic-mappings_files/figure-html/ggplot-color-fill3-1.svg" style="width:75.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -587,12 +598,12 @@ Claus O. Wilke
 <h2>Aesthetics can also be used as parameters</h2>
 <div class="small-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(month, temperature, <span class="at">fill =</span> location)) <span class="sc">+</span> </span>
-<span id="cb13-2"><a></a>  <span class="fu">geom_boxplot</span>(<span class="at">color =</span> <span class="st">"steelblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(month, temperature, <span class="at">fill =</span> location)) <span class="sc">+</span> </span>
+<span id="cb14-2"><a></a>  <span class="fu">geom_boxplot</span>(<span class="at">color =</span> <span class="st">"steelblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="aesthetic-mappings_files/figure-revealjs/ggplot-color-fill-params-1.svg" style="width:75.0%"></p>
+<p><img data-src="aesthetic-mappings_files/figure-html/ggplot-color-fill-params-1.svg" style="width:75.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -604,12 +615,12 @@ Claus O. Wilke
 <h2>Aesthetics can also be used as parameters</h2>
 <div class="small-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(month, temperature, <span class="at">color =</span> location)) <span class="sc">+</span> </span>
-<span id="cb14-2"><a></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(month, temperature, <span class="at">color =</span> location)) <span class="sc">+</span> </span>
+<span id="cb15-2"><a></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="aesthetic-mappings_files/figure-revealjs/ggplot-color-fill-params2-1.svg" style="width:75.0%"></p>
+<p><img data-src="aesthetic-mappings_files/figure-html/ggplot-color-fill-params2-1.svg" style="width:75.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -847,44 +858,6 @@ Claus O. Wilke
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

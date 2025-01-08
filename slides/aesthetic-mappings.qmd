@@ -67,7 +67,8 @@ align_legend <- function(p, hjust = 0.5)
 ## Dataset:<br>Daily average temperatures for various locations
 
 ::: {.small-font}
-```{r echo=FALSE, message=FALSE}
+```{r}
+#| message: false
 temps_long <- read_csv("https://wilkelab.org/SDS366/datasets/tempnormals.csv") |>
   mutate(
     location = factor(

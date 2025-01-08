@@ -12,11 +12,11 @@ format: html
 
 **Instructor:** Claus	O.	Wilke<br>
 **Email:** wilke@austin.utexas.edu<br>
-**Office Hours:** Mon. 9am - 10am (open Zoom), Thurs. 10am - 11am (open Zoom), or by appointment<br>
+**Office Hours:** Mon. 9am–10am (open Zoom), Thurs. 10am–11am (open Zoom), or by appointment<br>
 
-**Teaching Assistant:** TBD<br>
-**Email:** TBD<br>
-**Office Hours:**  TBD<br>
+**Teaching Assistant:** Aaron Feller<br>
+**Email:** aaron.feller@utexas.edu<br>
+**Office Hours:** Wed. 2:30pm–3:30pm (open Zoom), Thurs. 3pm–4pm (open Zoom), or by appointment<br>
 
 
 ## Purpose and contents of the class

@@ -604,6 +604,21 @@ ggplot(titanic, aes(age)) +
   )
 ```
 
+
+## Small multiples: `facet_wrap()`
+
+```{r}
+#| label: titanic-dens-facets
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+ggplot(titanic, aes(age)) +
+  geom_density(fill = "skyblue") +
+  facet_wrap(~class)
+```
+
+
 <!-- Segment ends here -->
 
 # Setting stats explicitly in **ggplot2**

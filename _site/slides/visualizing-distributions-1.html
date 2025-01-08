@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.39">
 
   <meta name="author" content="Claus O. Wilke">
-  <meta name="dcterms.date" content="2025-01-05">
+  <meta name="dcterms.date" content="2025-01-07">
   <title>SDS 366 – Visualizing distributions 1</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -205,7 +205,7 @@ Claus O. Wilke
 </div>
 </div>
 
-  <p class="date">2025-01-05</p>
+  <p class="date">2025-01-07</p>
 </section>
 <section>
 <section id="histograms-and-density-plots" class="title-slide slide level1 center">
@@ -217,6 +217,7 @@ Claus O. Wilke
 <div class="columns">
 <div class="column tiny-font" style="width:32%;">
 <div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>knitr<span class="sc">::</span><span class="fu">kable</span>(titanic[<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>,], <span class="st">"html"</span>, <span class="at">digits =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top" data-quarto-postprocess="true">
 <thead>
@@ -326,6 +327,7 @@ Claus O. Wilke
 </div>
 </div><div class="column tiny-font" style="width:32%;">
 <div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>knitr<span class="sc">::</span><span class="fu">kable</span>(titanic[<span class="dv">16</span><span class="sc">:</span><span class="dv">30</span>,], <span class="st">"html"</span>, <span class="at">digits =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top" data-quarto-postprocess="true">
 <thead>
@@ -435,6 +437,7 @@ Claus O. Wilke
 </div>
 </div><div class="column tiny-font" style="width:32%;">
 <div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>knitr<span class="sc">::</span><span class="fu">kable</span>(titanic[<span class="dv">31</span><span class="sc">:</span><span class="dv">45</span>,], <span class="st">"html"</span>, <span class="at">digits =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top" data-quarto-postprocess="true">
 <thead>
@@ -547,9 +550,17 @@ Claus O. Wilke
 <section id="histogram-define-bins-and-count-cases" class="slide level2">
 <h2>Histogram: Define bins and count cases</h2>
 <p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>age_counts <span class="ot">&lt;-</span> <span class="fu">hist</span>(titanic<span class="sc">$</span>age, <span class="at">breaks =</span> (<span class="dv">0</span><span class="sc">:</span><span class="dv">15</span>) <span class="sc">*</span> <span class="dv">5</span> <span class="sc">-</span> .<span class="dv">01</span>, <span class="at">plot =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>counts</span>
+<span id="cb4-2"><a></a>age_hist <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb4-3"><a></a>  <span class="st">`</span><span class="at">age range</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0–4"</span>, <span class="st">"5–9"</span>, <span class="st">"10–14"</span>, <span class="st">"15–19"</span>, <span class="st">"20–24"</span>, <span class="st">"25–29"</span>, <span class="st">"30–34"</span>, <span class="st">"35–39"</span>, <span class="st">"40–44"</span>, <span class="st">"45–49"</span>, <span class="st">"50–54"</span>, <span class="st">"55–59"</span>, <span class="st">"60–64"</span>, <span class="st">"65–69"</span>, <span class="st">"70–74"</span>, <span class="st">"75–79"</span>),</span>
+<span id="cb4-4"><a></a>  <span class="at">count =</span> <span class="fu">c</span>(age_counts, <span class="dv">0</span>)</span>
+<span id="cb4-5"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="columns">
 <div class="column smaller-font" style="width:25%;">
 <div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>knitr<span class="sc">::</span><span class="fu">kable</span>(age_hist[<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>,], <span class="st">"html"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top" data-quarto-postprocess="true">
 <thead>
@@ -599,6 +610,7 @@ Claus O. Wilke
 </div>
 </div><div class="column smaller-font" style="width:25%;">
 <div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>knitr<span class="sc">::</span><span class="fu">kable</span>(age_hist[<span class="dv">9</span><span class="sc">:</span><span class="dv">16</span>,], <span class="st">"html"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top" data-quarto-postprocess="true">
 <thead>
@@ -648,10 +660,25 @@ Claus O. Wilke
 </div>
 </div><div class="fragment column" style="width:50%;">
 <div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>age_hist5 <span class="ot">&lt;-</span> age_hist <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a></a>  <span class="fu">mutate</span>(<span class="at">age =</span> (<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>) <span class="sc">*</span> <span class="dv">5</span> <span class="sc">-</span> <span class="fl">2.5</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a></a>  <span class="fu">filter</span>(count <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb7-4"><a></a></span>
+<span id="cb7-5"><a></a>h1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(age_hist5, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> count)) <span class="sc">+</span> </span>
+<span id="cb7-6"><a></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">4.7</span>, <span class="at">fill =</span> <span class="st">"#56B4E9"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)  <span class="sc">+</span> </span>
+<span id="cb7-7"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">breaks =</span> <span class="dv">25</span> <span class="sc">*</span> (<span class="dv">0</span><span class="sc">:</span><span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb7-8"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"age (years)"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">75</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb7-9"><a></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
+<span id="cb7-10"><a></a>  <span class="fu">theme_minimal_hgrid</span>(<span class="dv">18</span>) <span class="sc">+</span></span>
+<span id="cb7-11"><a></a>  <span class="fu">theme</span>(</span>
+<span id="cb7-12"><a></a>    <span class="at">axis.line.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb7-13"><a></a>  )</span>
+<span id="cb7-14"><a></a></span>
+<span id="cb7-15"><a></a>h1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-age-hist-1.svg" style="width:100.0%"></p>
+<p><img data-src="visualizing-distributions-1_files/figure-html/titanic-age-hist-1.svg" style="width:100.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -662,10 +689,67 @@ Claus O. Wilke
 <section id="histograms-depend-on-the-chosen-bin-width" class="slide level2">
 <h2>Histograms depend on the chosen bin width</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>age_hist_1 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb8-2"><a></a>  <span class="at">age =</span> (<span class="dv">1</span><span class="sc">:</span><span class="dv">75</span>) <span class="sc">-</span> <span class="fl">0.5</span>, </span>
+<span id="cb8-3"><a></a>  <span class="at">count =</span> <span class="fu">hist</span>(titanic<span class="sc">$</span>age, <span class="at">breaks =</span> (<span class="dv">0</span><span class="sc">:</span><span class="dv">75</span>) <span class="sc">-</span> .<span class="dv">01</span>, <span class="at">plot =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>counts</span>
+<span id="cb8-4"><a></a>)</span>
+<span id="cb8-5"><a></a>age_hist_3 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb8-6"><a></a>  <span class="at">age =</span> (<span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>) <span class="sc">*</span> <span class="dv">3</span> <span class="sc">-</span> <span class="fl">1.5</span>, </span>
+<span id="cb8-7"><a></a>  <span class="at">count =</span> <span class="fu">hist</span>(titanic<span class="sc">$</span>age, <span class="at">breaks =</span> (<span class="dv">0</span><span class="sc">:</span><span class="dv">25</span>) <span class="sc">*</span> <span class="dv">3</span> <span class="sc">-</span> .<span class="dv">01</span>, <span class="at">plot =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>counts</span>
+<span id="cb8-8"><a></a>)</span>
+<span id="cb8-9"><a></a>age_hist_15 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb8-10"><a></a>  <span class="at">age =</span> (<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) <span class="sc">*</span> <span class="dv">15</span> <span class="sc">-</span> <span class="fl">7.5</span>, </span>
+<span id="cb8-11"><a></a>  <span class="at">count =</span> <span class="fu">hist</span>(titanic<span class="sc">$</span>age, <span class="at">breaks =</span> (<span class="dv">0</span><span class="sc">:</span><span class="dv">5</span>) <span class="sc">*</span> <span class="dv">15</span> <span class="sc">-</span> .<span class="dv">01</span>, <span class="at">plot =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>counts</span>
+<span id="cb8-12"><a></a>)</span>
+<span id="cb8-13"><a></a></span>
+<span id="cb8-14"><a></a></span>
+<span id="cb8-15"><a></a>h2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(age_hist_1, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> count)) <span class="sc">+</span> </span>
+<span id="cb8-16"><a></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> .<span class="dv">85</span>, <span class="at">fill =</span> <span class="st">"#56B4E9"</span>)  <span class="sc">+</span> </span>
+<span id="cb8-17"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">breaks =</span> <span class="dv">10</span> <span class="sc">*</span> (<span class="dv">0</span><span class="sc">:</span><span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb8-18"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"age (years)"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">75</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb8-19"><a></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
+<span id="cb8-20"><a></a>  <span class="fu">theme_minimal_hgrid</span>(<span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb8-21"><a></a>  <span class="fu">theme</span>(</span>
+<span id="cb8-22"><a></a>    <span class="at">axis.line.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb8-23"><a></a>  )</span>
+<span id="cb8-24"><a></a></span>
+<span id="cb8-25"><a></a>h3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(age_hist_3, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> count)) <span class="sc">+</span> </span>
+<span id="cb8-26"><a></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">2.75</span>, <span class="at">fill =</span> <span class="st">"#56B4E9"</span>)  <span class="sc">+</span> </span>
+<span id="cb8-27"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">breaks =</span> <span class="dv">25</span> <span class="sc">*</span> (<span class="dv">0</span><span class="sc">:</span><span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb8-28"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"age (years)"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">75</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb8-29"><a></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
+<span id="cb8-30"><a></a>  <span class="fu">theme_minimal_hgrid</span>(<span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb8-31"><a></a>  <span class="fu">theme</span>(</span>
+<span id="cb8-32"><a></a>    <span class="at">axis.line.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb8-33"><a></a>  )</span>
+<span id="cb8-34"><a></a></span>
+<span id="cb8-35"><a></a>h4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(age_hist_15, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> count)) <span class="sc">+</span> </span>
+<span id="cb8-36"><a></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">14.5</span>, <span class="at">fill =</span> <span class="st">"#56B4E9"</span>)  <span class="sc">+</span> </span>
+<span id="cb8-37"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">breaks =</span> <span class="dv">100</span> <span class="sc">*</span> (<span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>)) <span class="sc">+</span></span>
+<span id="cb8-38"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"age (years)"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">75</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb8-39"><a></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
+<span id="cb8-40"><a></a>  <span class="fu">theme_minimal_hgrid</span>(<span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb8-41"><a></a>  <span class="fu">theme</span>(</span>
+<span id="cb8-42"><a></a>    <span class="at">axis.line.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb8-43"><a></a>  )</span>
+<span id="cb8-44"><a></a></span>
+<span id="cb8-45"><a></a>h1 <span class="ot">&lt;-</span> h1 <span class="sc">+</span> <span class="fu">theme_minimal_hgrid</span>(<span class="dv">16</span>) <span class="sc">+</span></span>
+<span id="cb8-46"><a></a>  <span class="fu">theme</span>(</span>
+<span id="cb8-47"><a></a>    <span class="at">axis.line.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb8-48"><a></a>  )</span>
+<span id="cb8-49"><a></a></span>
+<span id="cb8-50"><a></a><span class="fu">plot_grid</span>(</span>
+<span id="cb8-51"><a></a>  h2, <span class="cn">NULL</span>, h3,</span>
+<span id="cb8-52"><a></a>  <span class="cn">NULL</span>, <span class="cn">NULL</span>, <span class="cn">NULL</span>,</span>
+<span id="cb8-53"><a></a>  h1, <span class="cn">NULL</span>, h4,</span>
+<span id="cb8-54"><a></a>  <span class="at">align =</span> <span class="st">'hv'</span>,</span>
+<span id="cb8-55"><a></a>  <span class="at">rel_widths =</span> <span class="fu">c</span>(<span class="dv">1</span>, .<span class="dv">04</span>, <span class="dv">1</span>),</span>
+<span id="cb8-56"><a></a>  <span class="at">rel_heights =</span> <span class="fu">c</span>(<span class="dv">1</span>, .<span class="dv">04</span>, <span class="dv">1</span>)</span>
+<span id="cb8-57"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-age-hist-binwidth-1.svg" style="width:90.0%"></p>
+<p><img data-src="visualizing-distributions-1_files/figure-html/titanic-age-hist-binwidth-1.svg" style="width:90.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -678,10 +762,11 @@ Claus O. Wilke
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>h1 <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"Histogram"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.title.position =</span> <span class="st">"plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-age-hist2-1.svg" style="width:100.0%"></p>
+<p><img data-src="visualizing-distributions-1_files/figure-html/titanic-age-hist2-1.svg" style="width:100.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -689,10 +774,21 @@ Claus O. Wilke
 </div>
 </div><div class="fragment column" style="width:50%;">
 <div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(<span class="at">x =</span> age)) <span class="sc">+</span> </span>
+<span id="cb10-2"><a></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"#56B4E9"</span>, <span class="at">color =</span> <span class="fu">darken</span>(<span class="st">"#56B4E9"</span>, <span class="fl">0.5</span>), <span class="at">bw =</span> <span class="dv">2</span>, <span class="at">kernel =</span> <span class="st">"gaussian"</span>) <span class="sc">+</span> </span>
+<span id="cb10-3"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.046</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">name =</span> <span class="st">"density"</span>) <span class="sc">+</span></span>
+<span id="cb10-4"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"age (years)"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">75</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb10-5"><a></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
+<span id="cb10-6"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Kernel density estimate"</span>) <span class="sc">+</span></span>
+<span id="cb10-7"><a></a>  <span class="fu">theme_minimal_hgrid</span>(<span class="dv">18</span>) <span class="sc">+</span></span>
+<span id="cb10-8"><a></a>  <span class="fu">theme</span>(</span>
+<span id="cb10-9"><a></a>    <span class="at">axis.line.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb10-10"><a></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span></span>
+<span id="cb10-11"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-age-kde-1.svg" style="width:100.0%"></p>
+<p><img data-src="visualizing-distributions-1_files/figure-html/titanic-age-kde-1.svg" style="width:100.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -706,10 +802,50 @@ Claus O. Wilke
 <section id="kdes-also-depend-on-parameter-settings" class="slide level2">
 <h2>KDEs also depend on parameter settings</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>pdens1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(<span class="at">x =</span> age)) <span class="sc">+</span> </span>
+<span id="cb11-2"><a></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"#56B4E9"</span>, <span class="at">color =</span> <span class="fu">darken</span>(<span class="st">"#56B4E9"</span>, <span class="fl">0.5</span>), <span class="at">bw =</span> .<span class="dv">5</span>, <span class="at">kernel =</span> <span class="st">"gaussian"</span>) <span class="sc">+</span> </span>
+<span id="cb11-3"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.046</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">name =</span> <span class="st">"density"</span>) <span class="sc">+</span></span>
+<span id="cb11-4"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"age (years)"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">75</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb11-5"><a></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
+<span id="cb11-6"><a></a>  <span class="fu">theme_minimal_hgrid</span>(<span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb11-7"><a></a>  <span class="fu">theme</span>(<span class="at">axis.line.x =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb11-8"><a></a></span>
+<span id="cb11-9"><a></a>pdens2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(<span class="at">x =</span> age)) <span class="sc">+</span> </span>
+<span id="cb11-10"><a></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"#56B4E9"</span>, <span class="at">color =</span> <span class="fu">darken</span>(<span class="st">"#56B4E9"</span>, <span class="fl">0.5</span>), <span class="at">bw =</span> <span class="dv">2</span>, <span class="at">kernel =</span> <span class="st">"gaussian"</span>) <span class="sc">+</span> </span>
+<span id="cb11-11"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.046</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">name =</span> <span class="st">"density"</span>) <span class="sc">+</span></span>
+<span id="cb11-12"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"age (years)"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">75</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb11-13"><a></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
+<span id="cb11-14"><a></a>  <span class="fu">theme_minimal_hgrid</span>(<span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb11-15"><a></a>  <span class="fu">theme</span>(<span class="at">axis.line.x =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb11-16"><a></a></span>
+<span id="cb11-17"><a></a>pdens3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(<span class="at">x =</span> age)) <span class="sc">+</span> </span>
+<span id="cb11-18"><a></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"#56B4E9"</span>, <span class="at">color =</span> <span class="fu">darken</span>(<span class="st">"#56B4E9"</span>, <span class="fl">0.5</span>), <span class="at">bw =</span> <span class="dv">5</span>, <span class="at">kernel =</span> <span class="st">"gaussian"</span>) <span class="sc">+</span> </span>
+<span id="cb11-19"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.046</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">name =</span> <span class="st">"density"</span>) <span class="sc">+</span></span>
+<span id="cb11-20"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"age (years)"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">75</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb11-21"><a></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
+<span id="cb11-22"><a></a>  <span class="fu">theme_minimal_hgrid</span>(<span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb11-23"><a></a>  <span class="fu">theme</span>(<span class="at">axis.line.x =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb11-24"><a></a></span>
+<span id="cb11-25"><a></a>pdens4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(<span class="at">x =</span> age)) <span class="sc">+</span> </span>
+<span id="cb11-26"><a></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"#56B4E9"</span>, <span class="at">color =</span> <span class="fu">darken</span>(<span class="st">"#56B4E9"</span>, <span class="fl">0.5</span>), <span class="at">bw =</span> <span class="dv">2</span>, <span class="at">kernel =</span> <span class="st">"rectangular"</span>) <span class="sc">+</span> </span>
+<span id="cb11-27"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.046</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">name =</span> <span class="st">"density"</span>) <span class="sc">+</span></span>
+<span id="cb11-28"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"age (years)"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">75</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb11-29"><a></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
+<span id="cb11-30"><a></a>  <span class="fu">theme_minimal_hgrid</span>(<span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb11-31"><a></a>  <span class="fu">theme</span>(<span class="at">axis.line.x =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb11-32"><a></a></span>
+<span id="cb11-33"><a></a><span class="fu">plot_grid</span>(</span>
+<span id="cb11-34"><a></a>  pdens1, <span class="cn">NULL</span>, pdens2, </span>
+<span id="cb11-35"><a></a>  <span class="cn">NULL</span>, <span class="cn">NULL</span>, <span class="cn">NULL</span>,</span>
+<span id="cb11-36"><a></a>  pdens3, <span class="cn">NULL</span>, pdens4,</span>
+<span id="cb11-37"><a></a>  <span class="at">align =</span> <span class="st">'hv'</span>,</span>
+<span id="cb11-38"><a></a>  <span class="at">rel_widths =</span> <span class="fu">c</span>(<span class="dv">1</span>, .<span class="dv">04</span>, <span class="dv">1</span>),</span>
+<span id="cb11-39"><a></a>  <span class="at">rel_heights =</span> <span class="fu">c</span>(<span class="dv">1</span>, .<span class="dv">04</span>, <span class="dv">1</span>)</span>
+<span id="cb11-40"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-age-kde-grid-1.svg" style="width:90.0%"></p>
+<p><img data-src="visualizing-distributions-1_files/figure-html/titanic-age-kde-grid-1.svg" style="width:90.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -719,10 +855,20 @@ Claus O. Wilke
 <section id="careful-kdes-can-show-non-sensical-data" class="slide level2">
 <h2>Careful: KDEs can show non-sensical data</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>pdens_neg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(<span class="at">x =</span> age)) <span class="sc">+</span> </span>
+<span id="cb12-2"><a></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"#56B4E9"</span>, <span class="at">color =</span> <span class="fu">darken</span>(<span class="st">"#56B4E9"</span>, <span class="fl">0.5</span>)) <span class="sc">+</span> </span>
+<span id="cb12-3"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.046</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">name =</span> <span class="st">"density"</span>) <span class="sc">+</span></span>
+<span id="cb12-4"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"age (years)"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">79</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb12-5"><a></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
+<span id="cb12-6"><a></a>  <span class="fu">theme_minimal_hgrid</span>(<span class="dv">16</span>) <span class="sc">+</span></span>
+<span id="cb12-7"><a></a>  <span class="fu">theme</span>(</span>
+<span id="cb12-8"><a></a>    <span class="at">axis.line.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb12-9"><a></a>  )</span>
+<span id="cb12-10"><a></a><span class="fu">stamp_wrong</span>(pdens_neg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-age-kde-wrong-1.svg" style="width:80.0%"></p>
+<p><img data-src="visualizing-distributions-1_files/figure-html/titanic-age-kde-wrong-1.svg" style="width:80.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -735,10 +881,33 @@ Claus O. Wilke
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>gender_counts <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb13-2"><a></a>  <span class="at">age =</span> (<span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>)<span class="sc">*</span><span class="dv">3</span> <span class="sc">-</span> <span class="fl">1.5</span>, </span>
+<span id="cb13-3"><a></a>  <span class="at">male =</span> <span class="fu">hist</span>(<span class="fu">filter</span>(titanic, sex <span class="sc">==</span> <span class="st">"male"</span>)<span class="sc">$</span>age, <span class="at">breaks =</span> (<span class="dv">0</span><span class="sc">:</span><span class="dv">25</span>)<span class="sc">*</span><span class="dv">3</span> <span class="sc">-</span> .<span class="dv">01</span>, <span class="at">plot =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>counts,</span>
+<span id="cb13-4"><a></a>  <span class="at">female =</span> <span class="fu">hist</span>(<span class="fu">filter</span>(titanic, sex <span class="sc">==</span> <span class="st">"female"</span>)<span class="sc">$</span>age, <span class="at">breaks =</span> (<span class="dv">0</span><span class="sc">:</span><span class="dv">25</span>)<span class="sc">*</span><span class="dv">3</span> <span class="sc">-</span> .<span class="dv">01</span>, <span class="at">plot =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>counts</span>
+<span id="cb13-5"><a></a>) <span class="sc">|&gt;</span></span>
+<span id="cb13-6"><a></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>age, <span class="at">names_to =</span> <span class="st">"gender"</span>, <span class="at">values_to =</span> <span class="st">"count"</span>)</span>
+<span id="cb13-7"><a></a></span>
+<span id="cb13-8"><a></a>gender_counts<span class="sc">$</span>gender <span class="ot">&lt;-</span> <span class="fu">factor</span>(gender_counts<span class="sc">$</span>gender, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"female"</span>, <span class="st">"male"</span>))</span>
+<span id="cb13-9"><a></a></span>
+<span id="cb13-10"><a></a><span class="fu">ggplot</span>(gender_counts, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> count, <span class="at">fill =</span> gender)) <span class="sc">+</span> </span>
+<span id="cb13-11"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>) <span class="sc">+</span></span>
+<span id="cb13-12"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"age (years)"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">75</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb13-13"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">89</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">name =</span> <span class="st">"count"</span>) <span class="sc">+</span></span>
+<span id="cb13-14"><a></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#D55E00"</span>, <span class="st">"#0072B2"</span>)) <span class="sc">+</span></span>
+<span id="cb13-15"><a></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
+<span id="cb13-16"><a></a>  <span class="fu">theme_minimal_hgrid</span>(<span class="dv">18</span>) <span class="sc">+</span></span>
+<span id="cb13-17"><a></a>  <span class="fu">theme</span>(</span>
+<span id="cb13-18"><a></a>    <span class="at">axis.line.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb13-19"><a></a>    <span class="at">legend.position =</span> <span class="st">"inside"</span>,</span>
+<span id="cb13-20"><a></a>    <span class="at">legend.position.inside =</span> <span class="fu">c</span>(.<span class="dv">97</span>, .<span class="dv">87</span>),</span>
+<span id="cb13-21"><a></a>    <span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"top"</span>),</span>
+<span id="cb13-22"><a></a>    <span class="at">legend.box.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="st">"white"</span>)</span>
+<span id="cb13-23"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-age-hist-stacked-1.svg" style="width:100.0%"></p>
+<p><img data-src="visualizing-distributions-1_files/figure-html/titanic-age-hist-stacked-1.svg" style="width:100.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -746,10 +915,27 @@ Claus O. Wilke
 </div>
 </div><div class="fragment column" style="width:50%;">
 <div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">ggplot</span>(gender_counts, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> count, <span class="at">fill =</span> gender)) <span class="sc">+</span> </span>
+<span id="cb14-2"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"identity"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb14-3"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"age (years)"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">75</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb14-4"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">56</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">name =</span> <span class="st">"count"</span>) <span class="sc">+</span></span>
+<span id="cb14-5"><a></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb14-6"><a></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#D55E00"</span>, <span class="st">"#0072B2"</span>),</span>
+<span id="cb14-7"><a></a>    <span class="at">guide =</span> <span class="fu">guide_legend</span>(<span class="at">reverse =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-8"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb14-9"><a></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
+<span id="cb14-10"><a></a>  <span class="fu">theme_minimal_hgrid</span>(<span class="dv">18</span>) <span class="sc">+</span></span>
+<span id="cb14-11"><a></a>  <span class="fu">theme</span>(</span>
+<span id="cb14-12"><a></a>    <span class="at">axis.line.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb14-13"><a></a>    <span class="at">legend.position =</span> <span class="st">"inside"</span>,</span>
+<span id="cb14-14"><a></a>    <span class="at">legend.position.inside =</span> <span class="fu">c</span>(.<span class="dv">97</span>, .<span class="dv">87</span>),</span>
+<span id="cb14-15"><a></a>    <span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"top"</span>),</span>
+<span id="cb14-16"><a></a>    <span class="at">legend.box.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="st">"white"</span>)</span>
+<span id="cb14-17"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-age-hist-overlap-1.svg" style="width:100.0%"></p>
+<p><img data-src="visualizing-distributions-1_files/figure-html/titanic-age-hist-overlap-1.svg" style="width:100.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -763,10 +949,20 @@ Claus O. Wilke
 <section id="alternative-age-pyramid" class="slide level2">
 <h2>Alternative: Age pyramid</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">ggplot</span>(gender_counts, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> <span class="fu">ifelse</span>(gender <span class="sc">==</span> <span class="st">"male"</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>)<span class="sc">*</span>count, <span class="at">fill =</span> gender)) <span class="sc">+</span> </span>
+<span id="cb15-2"><a></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb15-3"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"age (years)"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">75</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb15-4"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">"count"</span>, <span class="at">breaks =</span> <span class="dv">20</span><span class="sc">*</span>(<span class="sc">-</span><span class="dv">2</span><span class="sc">:</span><span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"40"</span>, <span class="st">"20"</span>, <span class="st">"0"</span>, <span class="st">"20"</span>)) <span class="sc">+</span></span>
+<span id="cb15-5"><a></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#D55E00"</span>, <span class="st">"#0072B2"</span>), <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb15-6"><a></a>  <span class="fu">draw_text</span>(<span class="at">x =</span> <span class="dv">70</span>, <span class="at">y =</span> <span class="sc">-</span><span class="dv">39</span>, <span class="st">"male"</span>, <span class="at">hjust =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb15-7"><a></a>  <span class="fu">draw_text</span>(<span class="at">x =</span> <span class="dv">70</span>, <span class="at">y =</span> <span class="dv">21</span>, <span class="st">"female"</span>, <span class="at">hjust =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb15-8"><a></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb15-9"><a></a>  <span class="fu">theme_minimal_grid</span>(<span class="dv">16</span>) <span class="sc">+</span></span>
+<span id="cb15-10"><a></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.61</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-age-pyramid-1.svg" style="width:80.0%"></p>
+<p><img data-src="visualizing-distributions-1_files/figure-html/titanic-age-pyramid-1.svg" style="width:80.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -776,10 +972,40 @@ Claus O. Wilke
 <section id="alternative-densities-showing-proportions-of-total" class="slide level2">
 <h2>Alternative: Densities showing proportions of total</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>titanic <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a></a>  <span class="fu">mutate</span>(<span class="at">sex =</span> <span class="fu">factor</span>(sex, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"male"</span>, <span class="st">"female"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> <span class="fu">after_stat</span>(count))) <span class="sc">+</span></span>
+<span id="cb16-4"><a></a>  <span class="fu">geom_density</span>(</span>
+<span id="cb16-5"><a></a>    <span class="at">data =</span> <span class="fu">select</span>(titanic, <span class="sc">-</span>sex), <span class="fu">aes</span>(<span class="at">fill =</span> <span class="st">"all passengers"</span>),</span>
+<span id="cb16-6"><a></a>    <span class="at">color =</span> <span class="st">"transparent"</span></span>
+<span id="cb16-7"><a></a>  ) <span class="sc">+</span> </span>
+<span id="cb16-8"><a></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">fill =</span> sex), <span class="at">bw =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">"transparent"</span>) <span class="sc">+</span></span>
+<span id="cb16-9"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">75</span>), <span class="at">name =</span> <span class="st">"passenger age (years)"</span>, <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb16-10"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">26</span>), <span class="at">name =</span> <span class="st">"scaled density"</span>, <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb16-11"><a></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb16-12"><a></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#b3b3b3a0"</span>, <span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>), </span>
+<span id="cb16-13"><a></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">"all passengers"</span>, <span class="st">"male"</span>, <span class="st">"female"</span>),</span>
+<span id="cb16-14"><a></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"all passengers  "</span>, <span class="st">"males  "</span>, <span class="st">"females"</span>),</span>
+<span id="cb16-15"><a></a>    <span class="at">name =</span> <span class="cn">NULL</span>,</span>
+<span id="cb16-16"><a></a>    <span class="at">guide =</span> <span class="fu">guide_legend</span>(<span class="at">direction =</span> <span class="st">"horizontal"</span>)</span>
+<span id="cb16-17"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb16-18"><a></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
+<span id="cb16-19"><a></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(sex), <span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">sex =</span> <span class="cf">function</span>(sex) <span class="fu">paste</span>(sex, <span class="st">"passengers"</span>))) <span class="sc">+</span></span>
+<span id="cb16-20"><a></a>  <span class="fu">theme_minimal_hgrid</span>(<span class="dv">16</span>) <span class="sc">+</span></span>
+<span id="cb16-21"><a></a>  <span class="fu">theme</span>(</span>
+<span id="cb16-22"><a></a>    <span class="at">axis.line.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb16-23"><a></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.2</span>, <span class="dv">0</span>, <span class="st">"cm"</span>)),</span>
+<span id="cb16-24"><a></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb16-25"><a></a>    <span class="at">legend.justification =</span> <span class="st">"right"</span>,</span>
+<span id="cb16-26"><a></a>    <span class="at">legend.margin =</span> <span class="fu">margin</span>(<span class="fl">4.5</span>, <span class="dv">0</span>, <span class="fl">1.5</span>, <span class="dv">0</span>, <span class="st">"pt"</span>),</span>
+<span id="cb16-27"><a></a>    <span class="at">legend.spacing.x =</span> grid<span class="sc">::</span><span class="fu">unit</span>(<span class="fl">4.5</span>, <span class="st">"pt"</span>),</span>
+<span id="cb16-28"><a></a>    <span class="at">legend.spacing.y =</span> grid<span class="sc">::</span><span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">"pt"</span>),</span>
+<span id="cb16-29"><a></a>    <span class="at">legend.box.spacing =</span> grid<span class="sc">::</span><span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">"cm"</span>)</span>
+<span id="cb16-30"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-age-props-1.svg" style="width:80.0%"></p>
+<p><img data-src="visualizing-distributions-1_files/figure-html/titanic-age-props-1.svg" style="width:80.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -789,10 +1015,58 @@ Claus O. Wilke
 <section id="overlapping-density-plots-usually-look-fine" class="slide level2">
 <h2>Overlapping density plots usually look fine</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="co"># compute densities for butterfat amount</span></span>
+<span id="cb17-2"><a></a>cows_dens <span class="ot">&lt;-</span> <span class="fu">group_by</span>(cows, breed) <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a></a>  <span class="fu">do</span>(ggplot2<span class="sc">:::</span><span class="fu">compute_density</span>(.<span class="sc">$</span>butterfat, <span class="cn">NULL</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb17-4"><a></a>  <span class="fu">rename</span>(<span class="at">butterfat =</span> x)</span>
+<span id="cb17-5"><a></a></span>
+<span id="cb17-6"><a></a><span class="co"># get the maximum values</span></span>
+<span id="cb17-7"><a></a>cows_max <span class="ot">&lt;-</span> <span class="fu">filter</span>(cows_dens, density <span class="sc">==</span> <span class="fu">max</span>(density)) <span class="sc">|&gt;</span></span>
+<span id="cb17-8"><a></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb17-9"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-10"><a></a>    <span class="at">hjust =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>),</span>
+<span id="cb17-11"><a></a>    <span class="at">vjust =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>),</span>
+<span id="cb17-12"><a></a>    <span class="at">nudge_x =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.2</span>, <span class="sc">-</span><span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="fl">0.23</span>),</span>
+<span id="cb17-13"><a></a>    <span class="at">nudge_y =</span> <span class="fu">c</span>(<span class="fl">0.03</span>, <span class="fl">0.03</span>, <span class="sc">-</span><span class="fl">0.2</span>, <span class="sc">-</span><span class="fl">0.06</span>) </span>
+<span id="cb17-14"><a></a>  )</span>
+<span id="cb17-15"><a></a></span>
+<span id="cb17-16"><a></a><span class="fu">ggplot</span>(cows_dens, <span class="fu">aes</span>(<span class="at">x =</span> butterfat, <span class="at">y =</span> density, <span class="at">color =</span> breed, <span class="at">fill =</span> breed)) <span class="sc">+</span> </span>
+<span id="cb17-17"><a></a>  <span class="fu">geom_density</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb17-18"><a></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb17-19"><a></a>    <span class="at">data =</span> cows_max,</span>
+<span id="cb17-20"><a></a>    <span class="fu">aes</span>(</span>
+<span id="cb17-21"><a></a>      <span class="at">label =</span> breed, <span class="at">hjust =</span> hjust, <span class="at">vjust =</span> vjust,</span>
+<span id="cb17-22"><a></a>      <span class="at">color =</span> breed,</span>
+<span id="cb17-23"><a></a>      <span class="at">x =</span> butterfat <span class="sc">+</span> nudge_x, </span>
+<span id="cb17-24"><a></a>      <span class="at">y =</span> density <span class="sc">+</span> nudge_y</span>
+<span id="cb17-25"><a></a>    ),</span>
+<span id="cb17-26"><a></a>    <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb17-27"><a></a>    <span class="at">size =</span> <span class="dv">12</span>,</span>
+<span id="cb17-28"><a></a>    <span class="at">size.unit =</span> <span class="st">"pt"</span></span>
+<span id="cb17-29"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb17-30"><a></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb17-31"><a></a>    <span class="at">values =</span> <span class="fu">darken</span>(<span class="fu">c</span>(<span class="st">"#56B4E9"</span>, <span class="st">"#E69F00"</span>, <span class="st">"#D55E00"</span>, <span class="st">"#009E73"</span>), <span class="fl">0.3</span>),</span>
+<span id="cb17-32"><a></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">"Ayrshire"</span>, <span class="st">"Guernsey"</span>, <span class="st">"Holstein-Friesian"</span>, <span class="st">"Jersey"</span>),</span>
+<span id="cb17-33"><a></a>    <span class="at">guide =</span> <span class="st">"none"</span></span>
+<span id="cb17-34"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb17-35"><a></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb17-36"><a></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#56B4E950"</span>, <span class="st">"#E69F0050"</span>, <span class="st">"#D55E0050"</span>, <span class="st">"#009E7350"</span>),</span>
+<span id="cb17-37"><a></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">"Ayrshire"</span>, <span class="st">"Guernsey"</span>, <span class="st">"Holstein-Friesian"</span>, <span class="st">"Jersey"</span>),</span>
+<span id="cb17-38"><a></a>    <span class="at">guide =</span> <span class="st">"none"</span></span>
+<span id="cb17-39"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb17-40"><a></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb17-41"><a></a>    <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>),</span>
+<span id="cb17-42"><a></a>    <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>, <span class="at">scale =</span> <span class="dv">1</span>),</span>
+<span id="cb17-43"><a></a>    <span class="at">name =</span> <span class="st">"butterfat contents"</span></span>
+<span id="cb17-44"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb17-45"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">1.99</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb17-46"><a></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
+<span id="cb17-47"><a></a>  <span class="fu">theme_minimal_hgrid</span>() <span class="sc">+</span></span>
+<span id="cb17-48"><a></a>  <span class="fu">theme</span>(<span class="at">axis.line.x =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-distributions-1_files/figure-revealjs/butterfat-densitites-1.svg" style="width:75.0%"></p>
+<p><img data-src="visualizing-distributions-1_files/figure-html/butterfat-densitites-1.svg" style="width:75.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -810,10 +1084,10 @@ Claus O. Wilke
 <div class="small-font">
 <p>All examples will use the <code>titanic</code> dataset:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>titanic <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://wilkelab.org/SDS366/datasets/titanic.csv"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb1-2"><a></a>  <span class="fu">select</span>(age, sex, class, survived)</span>
-<span id="cb1-3"><a></a></span>
-<span id="cb1-4"><a></a>titanic</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>titanic <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://wilkelab.org/SDS366/datasets/titanic.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a></a>  <span class="fu">select</span>(age, sex, class, survived)</span>
+<span id="cb18-3"><a></a></span>
+<span id="cb18-4"><a></a>titanic</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 756 × 4
      age sex    class survived
@@ -836,15 +1110,15 @@ Claus O. Wilke
 <section id="making-histograms-with-ggplot-geom_histogram" class="slide level2">
 <h2>Making histograms with ggplot: <code>geom_histogram()</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
-<span id="cb3-2"><a></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb20-2"><a></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 </div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-hist-ggplot-demo-1.svg" style="width:65.0%"></p>
+<p><img data-src="visualizing-distributions-1_files/figure-html/titanic-hist-ggplot-demo-1.svg" style="width:65.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -854,12 +1128,12 @@ Claus O. Wilke
 <section id="setting-the-bin-width" class="slide level2">
 <h2>Setting the bin width</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
-<span id="cb5-2"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb22-2"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-hist-ggplot-demo2-1.svg" style="width:65.0%"></p>
+<p><img data-src="visualizing-distributions-1_files/figure-html/titanic-hist-ggplot-demo2-1.svg" style="width:65.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -872,15 +1146,15 @@ Claus O. Wilke
 <section id="always-set-the-bin-center-as-well" class="slide level2">
 <h2>Always set the bin center as well</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
-<span id="cb6-2"><a></a>  <span class="fu">geom_histogram</span>(</span>
-<span id="cb6-3"><a></a>    <span class="at">binwidth =</span> <span class="dv">5</span>,  <span class="co"># width of the bins</span></span>
-<span id="cb6-4"><a></a>    <span class="at">center =</span> <span class="fl">2.5</span>   <span class="co"># center of the bin containing that value</span></span>
-<span id="cb6-5"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb23-2"><a></a>  <span class="fu">geom_histogram</span>(</span>
+<span id="cb23-3"><a></a>    <span class="at">binwidth =</span> <span class="dv">5</span>,  <span class="co"># width of the bins</span></span>
+<span id="cb23-4"><a></a>    <span class="at">center =</span> <span class="fl">2.5</span>   <span class="co"># center of the bin containing that value</span></span>
+<span id="cb23-5"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-hist-ggplot-demo3-1.svg" style="width:65.0%"></p>
+<p><img data-src="visualizing-distributions-1_files/figure-html/titanic-hist-ggplot-demo3-1.svg" style="width:65.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -890,15 +1164,15 @@ Claus O. Wilke
 <section id="always-set-the-bin-center-as-well-1" class="slide level2">
 <h2>Always set the bin center as well</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
-<span id="cb7-2"><a></a>  <span class="fu">geom_histogram</span>(</span>
-<span id="cb7-3"><a></a>    <span class="at">binwidth =</span> <span class="dv">5</span>,  <span class="co"># width of the bins</span></span>
-<span id="cb7-4"><a></a>    <span class="at">center =</span> <span class="fl">12.5</span>   <span class="co"># center of the bin containing that value</span></span>
-<span id="cb7-5"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb24-2"><a></a>  <span class="fu">geom_histogram</span>(</span>
+<span id="cb24-3"><a></a>    <span class="at">binwidth =</span> <span class="dv">5</span>,  <span class="co"># width of the bins</span></span>
+<span id="cb24-4"><a></a>    <span class="at">center =</span> <span class="fl">12.5</span>   <span class="co"># center of the bin containing that value</span></span>
+<span id="cb24-5"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-hist-ggplot-demo4-1.svg" style="width:65.0%"></p>
+<p><img data-src="visualizing-distributions-1_files/figure-html/titanic-hist-ggplot-demo4-1.svg" style="width:65.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -908,12 +1182,12 @@ Claus O. Wilke
 <section id="making-density-plots-with-ggplot-geom_density" class="slide level2">
 <h2>Making density plots with ggplot: <code>geom_density()</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
-<span id="cb8-2"><a></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb25-2"><a></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-dens-ggplot-demo-1.svg" style="width:65.0%"></p>
+<p><img data-src="visualizing-distributions-1_files/figure-html/titanic-dens-ggplot-demo-1.svg" style="width:65.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -923,12 +1197,12 @@ Claus O. Wilke
 <section id="making-density-plots-with-ggplot-geom_density-1" class="slide level2">
 <h2>Making density plots with ggplot: <code>geom_density()</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
-<span id="cb9-2"><a></a>  <span class="fu">geom_density</span>() <span class="co"># without fill</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb26-2"><a></a>  <span class="fu">geom_density</span>() <span class="co"># without fill</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-dens-ggplot-demo2-1.svg" style="width:65.0%"></p>
+<p><img data-src="visualizing-distributions-1_files/figure-html/titanic-dens-ggplot-demo2-1.svg" style="width:65.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -938,16 +1212,16 @@ Claus O. Wilke
 <section id="modifying-bandwidth-bw-and-kernel-parameters" class="slide level2">
 <h2>Modifying bandwidth (<code>bw</code>) and kernel parameters</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
-<span id="cb10-2"><a></a>  <span class="fu">geom_density</span>(</span>
-<span id="cb10-3"><a></a>    <span class="at">fill =</span> <span class="st">"skyblue"</span>,</span>
-<span id="cb10-4"><a></a>    <span class="at">bw =</span> <span class="fl">0.5</span>,               <span class="co"># a small bandwidth</span></span>
-<span id="cb10-5"><a></a>    <span class="at">kernel =</span> <span class="st">"gaussian"</span>     <span class="co"># Gaussian kernel (the default)</span></span>
-<span id="cb10-6"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb27-2"><a></a>  <span class="fu">geom_density</span>(</span>
+<span id="cb27-3"><a></a>    <span class="at">fill =</span> <span class="st">"skyblue"</span>,</span>
+<span id="cb27-4"><a></a>    <span class="at">bw =</span> <span class="fl">0.5</span>,               <span class="co"># a small bandwidth</span></span>
+<span id="cb27-5"><a></a>    <span class="at">kernel =</span> <span class="st">"gaussian"</span>     <span class="co"># Gaussian kernel (the default)</span></span>
+<span id="cb27-6"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-dens-ggplot-demo3-1.svg" style="width:65.0%"></p>
+<p><img data-src="visualizing-distributions-1_files/figure-html/titanic-dens-ggplot-demo3-1.svg" style="width:65.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -957,16 +1231,32 @@ Claus O. Wilke
 <section id="modifying-bandwidth-bw-and-kernel-parameters-1" class="slide level2">
 <h2>Modifying bandwidth (<code>bw</code>) and kernel parameters</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
-<span id="cb11-2"><a></a>  <span class="fu">geom_density</span>(</span>
-<span id="cb11-3"><a></a>    <span class="at">fill =</span> <span class="st">"skyblue"</span>,</span>
-<span id="cb11-4"><a></a>    <span class="at">bw =</span> <span class="dv">2</span>,                 <span class="co"># a moderate bandwidth</span></span>
-<span id="cb11-5"><a></a>    <span class="at">kernel =</span> <span class="st">"rectangular"</span>  <span class="co"># rectangular kernel</span></span>
-<span id="cb11-6"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb28-2"><a></a>  <span class="fu">geom_density</span>(</span>
+<span id="cb28-3"><a></a>    <span class="at">fill =</span> <span class="st">"skyblue"</span>,</span>
+<span id="cb28-4"><a></a>    <span class="at">bw =</span> <span class="dv">2</span>,                 <span class="co"># a moderate bandwidth</span></span>
+<span id="cb28-5"><a></a>    <span class="at">kernel =</span> <span class="st">"rectangular"</span>  <span class="co"># rectangular kernel</span></span>
+<span id="cb28-6"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-dens-ggplot-demo4-1.svg" style="width:65.0%"></p>
+<p><img data-src="visualizing-distributions-1_files/figure-html/titanic-dens-ggplot-demo4-1.svg" style="width:65.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="small-multiples-facet_wrap" class="slide level2">
+<h2>Small multiples: <code>facet_wrap()</code></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb29-2"><a></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>) <span class="sc">+</span></span>
+<span id="cb29-3"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-distributions-1_files/figure-html/titanic-dens-facets-1.svg" style="width:65.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -982,15 +1272,15 @@ Claus O. Wilke
 <section id="statistical-transformations-stats-can-be-set-explicitly" class="slide level2">
 <h2>Statistical transformations (stats) can be set explicitly</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
-<span id="cb12-2"><a></a>  <span class="fu">geom_density</span>(</span>
-<span id="cb12-3"><a></a>    <span class="at">stat =</span> <span class="st">"density"</span>,    <span class="co"># the default for geom_density()</span></span>
-<span id="cb12-4"><a></a>    <span class="at">fill =</span> <span class="st">"skyblue"</span></span>
-<span id="cb12-5"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb30-2"><a></a>  <span class="fu">geom_density</span>(</span>
+<span id="cb30-3"><a></a>    <span class="at">stat =</span> <span class="st">"density"</span>,    <span class="co"># the default for geom_density()</span></span>
+<span id="cb30-4"><a></a>    <span class="at">fill =</span> <span class="st">"skyblue"</span></span>
+<span id="cb30-5"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-stat-demo1-1.svg" style="width:65.0%"></p>
+<p><img data-src="visualizing-distributions-1_files/figure-html/titanic-stat-demo1-1.svg" style="width:65.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -1000,15 +1290,15 @@ Claus O. Wilke
 <section id="statistical-transformations-stats-can-be-set-explicitly-1" class="slide level2">
 <h2>Statistical transformations (stats) can be set explicitly</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
-<span id="cb13-2"><a></a>  <span class="fu">geom_area</span>(  <span class="co"># geom_area() does not normally use stat = "density"</span></span>
-<span id="cb13-3"><a></a>    <span class="at">stat =</span> <span class="st">"density"</span>,</span>
-<span id="cb13-4"><a></a>    <span class="at">fill =</span> <span class="st">"skyblue"</span></span>
-<span id="cb13-5"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb31-2"><a></a>  <span class="fu">geom_area</span>(  <span class="co"># geom_area() does not normally use stat = "density"</span></span>
+<span id="cb31-3"><a></a>    <span class="at">stat =</span> <span class="st">"density"</span>,</span>
+<span id="cb31-4"><a></a>    <span class="at">fill =</span> <span class="st">"skyblue"</span></span>
+<span id="cb31-5"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-stat-demo2-1.svg" style="width:65.0%"></p>
+<p><img data-src="visualizing-distributions-1_files/figure-html/titanic-stat-demo2-1.svg" style="width:65.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -1018,14 +1308,14 @@ Claus O. Wilke
 <section id="statistical-transformations-stats-can-be-set-explicitly-2" class="slide level2">
 <h2>Statistical transformations (stats) can be set explicitly</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
-<span id="cb14-2"><a></a>  <span class="fu">geom_line</span>(  <span class="co"># neither does geom_line()</span></span>
-<span id="cb14-3"><a></a>    <span class="at">stat =</span> <span class="st">"density"</span></span>
-<span id="cb14-4"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb32-2"><a></a>  <span class="fu">geom_line</span>(  <span class="co"># neither does geom_line()</span></span>
+<span id="cb32-3"><a></a>    <span class="at">stat =</span> <span class="st">"density"</span></span>
+<span id="cb32-4"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-stat-demo3-1.svg" style="width:65.0%"></p>
+<p><img data-src="visualizing-distributions-1_files/figure-html/titanic-stat-demo3-1.svg" style="width:65.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -1035,14 +1325,14 @@ Claus O. Wilke
 <section id="statistical-transformations-stats-can-be-set-explicitly-3" class="slide level2">
 <h2>Statistical transformations (stats) can be set explicitly</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
-<span id="cb15-2"><a></a>  <span class="co"># we can use multiple geoms on top of each other</span></span>
-<span id="cb15-3"><a></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">"density"</span>, <span class="at">fill =</span> <span class="st">"skyblue"</span>) <span class="sc">+</span></span>
-<span id="cb15-4"><a></a>  <span class="fu">geom_line</span>(<span class="at">stat =</span> <span class="st">"density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb33-2"><a></a>  <span class="co"># we can use multiple geoms on top of each other</span></span>
+<span id="cb33-3"><a></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">"density"</span>, <span class="at">fill =</span> <span class="st">"skyblue"</span>) <span class="sc">+</span></span>
+<span id="cb33-4"><a></a>  <span class="fu">geom_line</span>(<span class="at">stat =</span> <span class="st">"density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-stat-demo4-1.svg" style="width:65.0%"></p>
+<p><img data-src="visualizing-distributions-1_files/figure-html/titanic-stat-demo4-1.svg" style="width:65.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -1054,12 +1344,12 @@ Claus O. Wilke
 <div class="columns">
 <div class="column smaller-font" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
-<span id="cb16-2"><a></a>  <span class="fu">geom_line</span>(<span class="at">stat =</span> <span class="st">"density"</span>, <span class="at">bw =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb34-2"><a></a>  <span class="fu">geom_line</span>(<span class="at">stat =</span> <span class="st">"density"</span>, <span class="at">bw =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-stat-demo5-1.svg" style="width:100.0%"></p>
+<p><img data-src="visualizing-distributions-1_files/figure-html/titanic-stat-demo5-1.svg" style="width:100.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -1067,12 +1357,12 @@ Claus O. Wilke
 </div>
 </div><div class="column smaller-font" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
-<span id="cb17-2"><a></a>  <span class="fu">geom_line</span>(<span class="at">stat =</span> <span class="st">"density"</span>, <span class="at">bw =</span> <span class="fl">0.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb35-2"><a></a>  <span class="fu">geom_line</span>(<span class="at">stat =</span> <span class="st">"density"</span>, <span class="at">bw =</span> <span class="fl">0.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-stat-demo6-1.svg" style="width:100.0%"></p>
+<p><img data-src="visualizing-distributions-1_files/figure-html/titanic-stat-demo6-1.svg" style="width:100.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -1086,19 +1376,19 @@ Claus O. Wilke
 <section id="we-can-explicitly-map-results-from-stat-computations" class="slide level2">
 <h2>We can explicitly map results from stat computations</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
-<span id="cb18-2"><a></a>  <span class="fu">geom_tile</span>( <span class="co"># geom_tile() draws rectangular colored areas</span></span>
-<span id="cb18-3"><a></a>    <span class="fu">aes</span>(</span>
-<span id="cb18-4"><a></a>      <span class="at">y =</span> <span class="dv">1</span>, <span class="co"># draw all tiles at the same y location</span></span>
-<span id="cb18-5"><a></a>      <span class="at">fill =</span> <span class="fu">after_stat</span>(density)  <span class="co"># use computed density for fill</span></span>
-<span id="cb18-6"><a></a>    ),</span>
-<span id="cb18-7"><a></a>    <span class="at">stat =</span> <span class="st">"density"</span>,</span>
-<span id="cb18-8"><a></a>    <span class="at">n =</span> <span class="dv">20</span>    <span class="co"># number of points calculated by stat_density() </span></span>
-<span id="cb18-9"><a></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb36-2"><a></a>  <span class="fu">geom_tile</span>( <span class="co"># geom_tile() draws rectangular colored areas</span></span>
+<span id="cb36-3"><a></a>    <span class="fu">aes</span>(</span>
+<span id="cb36-4"><a></a>      <span class="at">y =</span> <span class="dv">1</span>, <span class="co"># draw all tiles at the same y location</span></span>
+<span id="cb36-5"><a></a>      <span class="at">fill =</span> <span class="fu">after_stat</span>(density)  <span class="co"># use computed density for fill</span></span>
+<span id="cb36-6"><a></a>    ),</span>
+<span id="cb36-7"><a></a>    <span class="at">stat =</span> <span class="st">"density"</span>,</span>
+<span id="cb36-8"><a></a>    <span class="at">n =</span> <span class="dv">20</span>    <span class="co"># number of points calculated by stat_density() </span></span>
+<span id="cb36-9"><a></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-stat-demo7-1.svg" style="width:90.0%"></p>
+<p><img data-src="visualizing-distributions-1_files/figure-html/titanic-stat-demo7-1.svg" style="width:90.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -1108,19 +1398,19 @@ Claus O. Wilke
 <section id="we-can-explicitly-map-results-from-stat-computations-1" class="slide level2">
 <h2>We can explicitly map results from stat computations</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
-<span id="cb19-2"><a></a>  <span class="fu">geom_tile</span>( <span class="co"># geom_tile() draws rectangular colored areas</span></span>
-<span id="cb19-3"><a></a>    <span class="fu">aes</span>(</span>
-<span id="cb19-4"><a></a>      <span class="at">y =</span> <span class="dv">1</span>, <span class="co"># draw all tiles at the same y location</span></span>
-<span id="cb19-5"><a></a>      <span class="at">fill =</span> <span class="fu">after_stat</span>(density)  <span class="co"># use computed density for fill</span></span>
-<span id="cb19-6"><a></a>    ),</span>
-<span id="cb19-7"><a></a>    <span class="at">stat =</span> <span class="st">"density"</span>,</span>
-<span id="cb19-8"><a></a>    <span class="at">n =</span> <span class="dv">200</span>    <span class="co"># number of points calculated by stat_density() </span></span>
-<span id="cb19-9"><a></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
+<span id="cb37-2"><a></a>  <span class="fu">geom_tile</span>( <span class="co"># geom_tile() draws rectangular colored areas</span></span>
+<span id="cb37-3"><a></a>    <span class="fu">aes</span>(</span>
+<span id="cb37-4"><a></a>      <span class="at">y =</span> <span class="dv">1</span>, <span class="co"># draw all tiles at the same y location</span></span>
+<span id="cb37-5"><a></a>      <span class="at">fill =</span> <span class="fu">after_stat</span>(density)  <span class="co"># use computed density for fill</span></span>
+<span id="cb37-6"><a></a>    ),</span>
+<span id="cb37-7"><a></a>    <span class="at">stat =</span> <span class="st">"density"</span>,</span>
+<span id="cb37-8"><a></a>    <span class="at">n =</span> <span class="dv">200</span>    <span class="co"># number of points calculated by stat_density() </span></span>
+<span id="cb37-9"><a></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-distributions-1_files/figure-revealjs/titanic-stat-demo8-1.svg" style="width:90.0%"></p>
+<p><img data-src="visualizing-distributions-1_files/figure-html/titanic-stat-demo8-1.svg" style="width:90.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -1356,44 +1646,6 @@ Claus O. Wilke
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
