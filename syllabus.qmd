@@ -202,7 +202,7 @@ Specifically, we will not discuss technical issues related to assignments over e
 
 ## Special accommodations
 
-**Students with disabilities.** Students with disabilities may request appropriate accommodations from the Division of Diversity and Community Engagement, Services for Students with Disabilities, 512-471-6259, https://diversity.utexas.edu/disability/
+**Students with disabilities.** If you are a student with a disability, or think you may have a disability, and need accommodations please contact Disability and Access (D&A). You may refer to D&A’s website for contact and more information: [https://disability.utexas.edu/.](https://disability.utexas.edu/) If you are already registered with D&A, please deliver your Accommodation Letter to me as early as possible in the semester so we can discuss your approved accommodations.
 
 **Religious holy days.** Students who must miss a class or an assignment to observe a religious holy day will be given an opportunity to complete the missed work within a reasonable time after the absence. According to UT Austin policy, such students must notify me of the pending absence at least fourteen days prior to the date of observance of a religious holy day. 
 
@@ -215,8 +215,8 @@ This course is built upon the idea that student interaction is important and a p
 
 Any materials in this class that are not posted publicly may not be shared online or with anyone outside of the class unless you have my explicit, written permission. This includes but is not limited to lecture hand-outs, videos, assessments (quizzes, exams, papers, projects, homework assignments), in-class materials, review sheets, and additional problem sets. Unauthorized sharing of materials promotes cheating. It is a violation of the University’s Student Honor Code and an act of academic dishonesty. We are well aware of the sites used for sharing materials, and any materials found online that are associated with you, or any suspected unauthorized sharing of materials, will be reported to Student Conduct and Academic Integrity in the Office of the Dean of Students. These reports can result in sanctions, including failure in the course.
 
-Any materials posted on the public class website (https://wilkelab.org/SDS366/) are considered public and can be shared under the Creative Commons Attribution [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) license.
+Any materials posted on the public class website ([https://wilkelab.org/SDS366/](https://wilkelab.org/SDS366/)) are considered public and can be shared under the Creative Commons Attribution [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) license.
 
 ## Class Recordings
 
-If any class recordings are provided they are reserved only for students in this class for educational purposes and are protected under FERPA. The recordings should not be shared outside the class in any form. Violation of this restriction by a student could lead to Student Misconduct proceedings.
+In case any class recordings are provided they are reserved only for students in this class for educational purposes and are protected under FERPA. The recordings should not be shared outside the class in any form. Violation of this restriction by a student could lead to Student Misconduct proceedings.

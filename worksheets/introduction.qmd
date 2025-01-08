@@ -1,0 +1,9 @@
+---
+title: "Introduction to Quarto"
+author: "Claus O. Wilke"
+format: html
+---
+
+All assignments in this class will be done via [Quarto documents.](https://quarto.org) Quarto documents are documents that combine text, code, and output, including figures. They are a great way to produce self-contained and documented statistical analyses. Quarto has support for a variety of popular programming languages for data analysis, including R and python.
+
+To get familiar with Quarto, please download [this Quarto template worksheet,](../assignments/intro_to_Quarto.qmd) complete it, and render into a PDF. You will use this same workflow in all homeworks and projects throughout the semester.

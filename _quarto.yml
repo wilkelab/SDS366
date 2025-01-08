@@ -44,8 +44,8 @@ website:
         
       - text: "Worksheets"
         menu:
-          - text: "Class 1: Intro to Quarto"
-            href: assignments/intro_to_Quarto.qmd
+          - text: "Class 1: Introduction"
+            href: worksheets/introduction.qmd
           - text: "Class 2: Aesthetic mappings"
             href: worksheets/aesthetic-mappings.qmd
           - text: "Class 3: Visualizing amounts"
@@ -57,9 +57,18 @@ website:
           - text: "Class 6: Visualizing distributions 2"
             href: worksheets/visualizing-distributions-2.qmd
           - text: "Class 7: Color scales"
-            href: worksheets/color-scales.Rmd
-          - text: "Class 8: Choose color"
-            href: choose-color/index.html
+            href: worksheets/color-scales.qmd
+          - text: "Class 8: Color selection"
+            href: worksheets/color-selection.qmd
+
+      - text: "Resources"
+        menu:
+        - text: "Textbook"
+          href: "https://clauswilke.com/dataviz"
+          target: "_blank"
+        - text: "Color chooser app"
+          href: choose-color/index.html
+          target: "_blank"
         
     tools:
       - icon: github

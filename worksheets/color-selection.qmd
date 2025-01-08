@@ -1,0 +1,132 @@
+---
+title: "Color selection"
+author: "Claus O. Wilke"
+format: live-html
+engine: knitr
+webr:
+  render-df: gt-interactive
+---
+
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+
+## Introduction
+
+In this worksheet, you will practice choosing your own colors.
+
+First we need to load the required R packages. Please wait a moment until the live R session is fully set up and all packages are loaded.
+
+```{webr}
+#| warning: false
+#| edit: false
+library(tidyverse)
+library(palmerpenguins)
+library(sf)
+```
+
+Next we set up the data.
+
+```{webr}
+#| edit: false
+#| warning: false
+texas_income <- readRDS(url("https://wilkelab.org/SDS366/datasets/Texas_income.rds"))
+```
+
+We will be working with two datasets. First, the `penguins` dataset we have used previously:
+```r
+penguins
+```
+
+::: {.column-page}
+```{webr}
+#| echo: false
+penguins
+```
+:::
+
+Second, the `texas_income` dataset, which has data on the median income of counties in Texas:
+```{webr}
+#| edit: false
+texas_income
+```
+
+We will start with a scatter plot of the `penguins` dataset.
+
+```{webr}
+#| label: penguins-base
+#| edit: false
+ggplot(penguins, aes(body_mass_g, bill_length_mm, color = species)) +
+  geom_point(size = 2, na.rm = TRUE)
+```
+
+Use the <a href="../choose-color/" target="_blank">color chooser app</a> to manually pick three colors that are appropriate for a qualitative color scale. Then modify the plot to use this scale.
+
+```{webr} 
+#| exercise: penguins
+
+```
+
+::: { .hint exercise="penguins" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+ggplot(penguins, aes(body_mass_g, bill_length_mm, color = species)) +
+  geom_point(size = 2, na.rm = TRUE) +
+  scale_color_manual(
+    values = ___ # your colors here 
+  )
+```
+:::
+:::
+
+::: { .solution exercise="penguins" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+ggplot(penguins, aes(body_mass_g, bill_length_mm, color = species)) +
+  geom_point(size = 2, na.rm = TRUE) +
+  scale_color_manual(
+    # this is just an example, there are many possible choices here
+    values = c('#BF8A21', '#A74C48', '#17517A')
+  )
+```
+:::
+:::
+
+Now let's consider this map of Texas that shows median income as color. (We will talk more about how to draw maps in a later class.)
+
+```{webr}
+#| label: Texas-base
+#| edit: false
+ggplot(texas_income) +
+  geom_sf(aes(fill = median_income))
+```
+
+Use the <a href="../choose-color/" target="_blank">color chooser app</a> to manually pick four to six colors that are appropriate for a sequential color scale. Then modify the plot to use this scale. (To create a manual color gradient, use `scale_fill_gradientn()`.)
+
+```{webr} 
+#| exercise: Texas
+
+```
+
+::: { .hint exercise="Texas" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+ggplot(texas_income) +
+  geom_sf(aes(fill = median_income)) +
+  scale_fill_gradientn(
+    colours = ___ # your colors here 
+  )
+```
+:::
+:::
+
+::: { .solution exercise="Texas" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+ggplot(texas_income) +
+  geom_sf(aes(fill = median_income)) +
+  scale_fill_gradientn(
+    # this is just an example, there are many possible choices here
+    colours = c('#F4F9E1', '#C6D77C', '#8B9B38', '#475010')
+  )
+```
+:::
+:::
