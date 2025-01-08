@@ -605,19 +605,37 @@ ggplot(titanic, aes(age)) +
 ```
 
 
+# Side-note: We often want multiple plots side-by-side
+
 ## Small multiples: `facet_wrap()`
 
 ```{r}
 #| label: titanic-dens-facets
 #| echo: true
-#| fig-width: 5.5
+#| fig-width: 7
+#| fig-asp: 0.4
+#| fig-cap: "&nbsp;"
+#| out-width: "85%"
+ggplot(titanic, aes(age)) +
+  geom_density(fill = "skyblue") +
+  # make a separate facet for each class
+  facet_wrap(~class)
+```
+
+## Small multiples: `facet_grid()`
+
+```{r}
+#| label: titanic-dens-facets2
+#| echo: true
+#| fig-width: 7
+#| fig-asp: 0.7
 #| fig-cap: "&nbsp;"
 #| out-width: "65%"
 ggplot(titanic, aes(age)) +
   geom_density(fill = "skyblue") +
-  facet_wrap(~class)
+  # make a separate facet for each combination of class and survival
+  facet_grid(survived ~ class)
 ```
-
 
 <!-- Segment ends here -->
 
