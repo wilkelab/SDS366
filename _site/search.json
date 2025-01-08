@@ -917,6 +917,335 @@
     "text": "Further reading\n\nFundamentals of Data Visualization: Chapter 23: Balance the data and the context\nData Visualization—A Practical Introduction: Chapter 8.3: Change the appearance of plots with themes\nggplot2 reference documentation: Complete themes\nggplot2 reference documentation: Modify components of a theme"
   },
   {
+    "objectID": "slides/color-scales.html#uses-of-color-in-data-visualization",
+    "href": "slides/color-scales.html#uses-of-color-in-data-visualization",
+    "title": "Color scales",
+    "section": "Uses of color in data visualization",
+    "text": "Uses of color in data visualization\n\n\n\n1. Distinguish categories (qualitative)"
+  },
+  {
+    "objectID": "slides/color-scales.html#qualitative-scale-example",
+    "href": "slides/color-scales.html#qualitative-scale-example",
+    "title": "Color scales",
+    "section": "Qualitative scale example",
+    "text": "Qualitative scale example\n\n\n\n\n\n \n\n\n\n\n\nPalette name: Okabe-Ito"
+  },
+  {
+    "objectID": "slides/color-scales.html#qualitative-scale-example-1",
+    "href": "slides/color-scales.html#qualitative-scale-example-1",
+    "title": "Color scales",
+    "section": "Qualitative scale example",
+    "text": "Qualitative scale example\n\n\n\n\n\n \n\n\n\n\n\nPalette name: ColorBrewer Set1"
+  },
+  {
+    "objectID": "slides/color-scales.html#qualitative-scale-example-2",
+    "href": "slides/color-scales.html#qualitative-scale-example-2",
+    "title": "Color scales",
+    "section": "Qualitative scale example",
+    "text": "Qualitative scale example\n\n\n\n\n\n \n\n\n\n\n\nPalette name: ColorBrewer Set3"
+  },
+  {
+    "objectID": "slides/color-scales.html#uses-of-color-in-data-visualization-1",
+    "href": "slides/color-scales.html#uses-of-color-in-data-visualization-1",
+    "title": "Color scales",
+    "section": "Uses of color in data visualization",
+    "text": "Uses of color in data visualization\n\n\n\n1. Distinguish categories (qualitative)\n\n\n\n\n\n\n\n2. Represent numeric values (sequential)"
+  },
+  {
+    "objectID": "slides/color-scales.html#sequential-scale-example",
+    "href": "slides/color-scales.html#sequential-scale-example",
+    "title": "Color scales",
+    "section": "Sequential scale example",
+    "text": "Sequential scale example\n\n\n\n\n\n\n \n\n\n\n\n\n\nPalette name: Viridis"
+  },
+  {
+    "objectID": "slides/color-scales.html#sequential-scale-example-1",
+    "href": "slides/color-scales.html#sequential-scale-example-1",
+    "title": "Color scales",
+    "section": "Sequential scale example",
+    "text": "Sequential scale example\n\n\n\n\n\n\n \n\n\n\n\n\n\nPalette name: Inferno"
+  },
+  {
+    "objectID": "slides/color-scales.html#sequential-scale-example-2",
+    "href": "slides/color-scales.html#sequential-scale-example-2",
+    "title": "Color scales",
+    "section": "Sequential scale example",
+    "text": "Sequential scale example\n\n\n\n\n\n\n \n\n\n\n\n\n\nPalette name: Cividis"
+  },
+  {
+    "objectID": "slides/color-scales.html#uses-of-color-in-data-visualization-2",
+    "href": "slides/color-scales.html#uses-of-color-in-data-visualization-2",
+    "title": "Color scales",
+    "section": "Uses of color in data visualization",
+    "text": "Uses of color in data visualization\n\n\n\n1. Distinguish categories (qualitative)\n\n\n\n\n\n\n\n2. Represent numeric values (sequential)\n\n\n\n\n\n\n\n3. Represent numeric values (diverging)"
+  },
+  {
+    "objectID": "slides/color-scales.html#diverging-scale-example",
+    "href": "slides/color-scales.html#diverging-scale-example",
+    "title": "Color scales",
+    "section": "Diverging scale example",
+    "text": "Diverging scale example\n\n\n\n\n\n \n\n\n\n\n\nPalette name: ColorBrewer PiYG"
+  },
+  {
+    "objectID": "slides/color-scales.html#diverging-scale-example-1",
+    "href": "slides/color-scales.html#diverging-scale-example-1",
+    "title": "Color scales",
+    "section": "Diverging scale example",
+    "text": "Diverging scale example\n\n\n\n\n\n \n\n\n\n\n\nPalette name: Carto Earth"
+  },
+  {
+    "objectID": "slides/color-scales.html#diverging-scale-example-2",
+    "href": "slides/color-scales.html#diverging-scale-example-2",
+    "title": "Color scales",
+    "section": "Diverging scale example",
+    "text": "Diverging scale example\n\n\n\n\n\n \n\n\n\n\n\nPalette name: Blue-Red"
+  },
+  {
+    "objectID": "slides/color-scales.html#uses-of-color-in-data-visualization-3",
+    "href": "slides/color-scales.html#uses-of-color-in-data-visualization-3",
+    "title": "Color scales",
+    "section": "Uses of color in data visualization",
+    "text": "Uses of color in data visualization\n\n\n\n1. Distinguish categories (qualitative)\n\n\n\n\n\n\n\n2. Represent numeric values (sequential)\n\n\n\n\n\n\n\n3. Represent numeric values (diverging)\n\n\n\n\n\n\n\n4. Highlight"
+  },
+  {
+    "objectID": "slides/color-scales.html#highlight-example",
+    "href": "slides/color-scales.html#highlight-example",
+    "title": "Color scales",
+    "section": "Highlight example",
+    "text": "Highlight example\n\n\n\n\n\n \n\n\n\n\n\nPalette name: Grays with accents"
+  },
+  {
+    "objectID": "slides/color-scales.html#highlight-example-1",
+    "href": "slides/color-scales.html#highlight-example-1",
+    "title": "Color scales",
+    "section": "Highlight example",
+    "text": "Highlight example\n\n\n\n\n\n \n\n\n\n\n\nPalette name: Okabe Ito accent"
+  },
+  {
+    "objectID": "slides/color-scales.html#highlight-example-2",
+    "href": "slides/color-scales.html#highlight-example-2",
+    "title": "Color scales",
+    "section": "Highlight example",
+    "text": "Highlight example\n\n\n\n\n\n \n\n\n\n\n\nPalette name: ColorBrewer accent"
+  },
+  {
+    "objectID": "slides/color-scales.html#getting-the-data",
+    "href": "slides/color-scales.html#getting-the-data",
+    "title": "Color scales",
+    "section": "Getting the data",
+    "text": "Getting the data\n\nThe temps_months dataset:\n\ntemps_months &lt;- read_csv(\"https://wilkelab.org/SDS366/datasets/tempnormals.csv\") |&gt;\n  group_by(location, month_name) |&gt;\n  summarize(mean = mean(temperature)) |&gt;\n  mutate(\n    month = factor(\n      month_name,\n      levels = c(\"Jan\", \"Feb\", \"Mar\", \"Apr\", \"May\", \"Jun\", \"Jul\", \"Aug\", \"Sep\", \"Oct\", \"Nov\", \"Dec\")\n    ),\n    location = factor(location, levels = c(\"Death Valley\", \"Houston\", \"San Diego\", \"Chicago\"))\n  ) |&gt;\n  select(-month_name)\n\ntemps_months\n\n# A tibble: 48 × 3\n# Groups:   location [4]\n   location  mean month\n   &lt;fct&gt;    &lt;dbl&gt; &lt;fct&gt;\n 1 Chicago   50.4 Apr  \n 2 Chicago   74.1 Aug  \n 3 Chicago   29   Dec  \n 4 Chicago   28.9 Feb  \n 5 Chicago   24.8 Jan  \n 6 Chicago   75.8 Jul  \n 7 Chicago   71.0 Jun  \n 8 Chicago   38.8 Mar  \n 9 Chicago   60.9 May  \n10 Chicago   41.6 Nov  \n# ℹ 38 more rows"
+  },
+  {
+    "objectID": "slides/color-scales.html#getting-the-data-1",
+    "href": "slides/color-scales.html#getting-the-data-1",
+    "title": "Color scales",
+    "section": "Getting the data",
+    "text": "Getting the data\n\nThe popgrowth dataset:\n\nUS_census &lt;- read_csv(\"https://wilkelab.org/SDS366/datasets/US_census.csv\")\nUS_regions &lt;- read_csv(\"https://wilkelab.org/SDS366/datasets/US_regions.csv\")\n\npopgrowth &lt;- left_join(US_census, US_regions) |&gt;\n    group_by(region, division, state) |&gt;\n    summarize(\n      pop2000 = sum(pop2000, na.rm = TRUE),\n      pop2010 = sum(pop2010, na.rm = TRUE),\n      popgrowth = (pop2010-pop2000)/pop2000,\n      .groups = \"drop\"\n    ) |&gt;\n    mutate(region = factor(region, levels = c(\"West\", \"South\", \"Midwest\", \"Northeast\")))\n\npopgrowth\n\n# A tibble: 51 × 6\n   region  division           state      pop2000  pop2010 popgrowth\n   &lt;fct&gt;   &lt;chr&gt;              &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;\n 1 Midwest East North Central Illinois  12419293 12830632   0.0331 \n 2 Midwest East North Central Indiana    6080485  6483802   0.0663 \n 3 Midwest East North Central Michigan   9938444  9883640  -0.00551\n 4 Midwest East North Central Ohio      11353140 11536504   0.0162 \n 5 Midwest East North Central Wisconsin  5363675  5686986   0.0603 \n 6 Midwest West North Central Iowa       2926324  3046355   0.0410 \n 7 Midwest West North Central Kansas     2688418  2853118   0.0613 \n 8 Midwest West North Central Minnesota  4919479  5303925   0.0781 \n 9 Midwest West North Central Missouri   5595211  5988927   0.0704 \n10 Midwest West North Central Nebraska   1711263  1826341   0.0672 \n# ℹ 41 more rows"
+  },
+  {
+    "objectID": "slides/color-scales.html#ggplot2-color-scale-functions-are-a-bit-of-a-mess",
+    "href": "slides/color-scales.html#ggplot2-color-scale-functions-are-a-bit-of-a-mess",
+    "title": "Color scales",
+    "section": "ggplot2 color scale functions are a bit of a mess",
+    "text": "ggplot2 color scale functions are a bit of a mess\n\n\n\n\n\n\n\n\n\n\nScale function                                   \nAesthetic   \nData type    \nPalette type\n\n\n\n\nscale_color_hue()\ncolor\ndiscrete\nqualitative"
+  },
+  {
+    "objectID": "slides/color-scales.html#ggplot2-color-scale-functions-are-a-bit-of-a-mess-1",
+    "href": "slides/color-scales.html#ggplot2-color-scale-functions-are-a-bit-of-a-mess-1",
+    "title": "Color scales",
+    "section": "ggplot2 color scale functions are a bit of a mess",
+    "text": "ggplot2 color scale functions are a bit of a mess\n\n\n\n\n\n\n\n\n\n\nScale function                                   \nAesthetic   \nData type    \nPalette type\n\n\n\n\nscale_color_hue()\ncolor\ndiscrete\nqualitative\n\n\nscale_fill_hue()\nfill\ndiscrete\nqualitative"
+  },
+  {
+    "objectID": "slides/color-scales.html#ggplot2-color-scale-functions-are-a-bit-of-a-mess-2",
+    "href": "slides/color-scales.html#ggplot2-color-scale-functions-are-a-bit-of-a-mess-2",
+    "title": "Color scales",
+    "section": "ggplot2 color scale functions are a bit of a mess",
+    "text": "ggplot2 color scale functions are a bit of a mess\n\n\n\n\n\n\n\n\n\n\nScale function                                   \nAesthetic   \nData type    \nPalette type\n\n\n\n\nscale_color_hue()\ncolor\ndiscrete\nqualitative\n\n\nscale_fill_hue()\nfill\ndiscrete\nqualitative\n\n\nscale_color_gradient()\ncolor\ncontinuous\nsequential"
+  },
+  {
+    "objectID": "slides/color-scales.html#ggplot2-color-scale-functions-are-a-bit-of-a-mess-3",
+    "href": "slides/color-scales.html#ggplot2-color-scale-functions-are-a-bit-of-a-mess-3",
+    "title": "Color scales",
+    "section": "ggplot2 color scale functions are a bit of a mess",
+    "text": "ggplot2 color scale functions are a bit of a mess\n\n\n\n\n\n\n\n\n\n\nScale function                                   \nAesthetic   \nData type    \nPalette type\n\n\n\n\nscale_color_hue()\ncolor\ndiscrete\nqualitative\n\n\nscale_fill_hue()\nfill\ndiscrete\nqualitative\n\n\nscale_color_gradient()\ncolor\ncontinuous\nsequential\n\n\nscale_color_gradient2()\ncolor\ncontinuous\ndiverging"
+  },
+  {
+    "objectID": "slides/color-scales.html#ggplot2-color-scale-functions-are-a-bit-of-a-mess-4",
+    "href": "slides/color-scales.html#ggplot2-color-scale-functions-are-a-bit-of-a-mess-4",
+    "title": "Color scales",
+    "section": "ggplot2 color scale functions are a bit of a mess",
+    "text": "ggplot2 color scale functions are a bit of a mess\n\n\n\n\n\n\n\n\n\n\nScale function                                   \nAesthetic   \nData type    \nPalette type\n\n\n\n\nscale_color_hue()\ncolor\ndiscrete\nqualitative\n\n\nscale_fill_hue()\nfill\ndiscrete\nqualitative\n\n\nscale_color_gradient()\ncolor\ncontinuous\nsequential\n\n\nscale_color_gradient2()\ncolor\ncontinuous\ndiverging\n\n\nscale_fill_viridis_c()\ncolor\ncontinuous\nsequential\n\n\nscale_fill_viridis_d()\nfill\ndiscrete\nsequential\n\n\nscale_color_brewer()\ncolor\ndiscrete\nqualitative, diverging, sequential\n\n\nscale_fill_brewer()\nfill\ndiscrete\nqualitative, diverging, sequential\n\n\nscale_color_distiller()\ncolor\ncontinuous\nqualitative, diverging, sequential\n\n\n\n\n… and there are many many more"
+  },
+  {
+    "objectID": "slides/color-scales.html#examples",
+    "href": "slides/color-scales.html#examples",
+    "title": "Color scales",
+    "section": "Examples",
+    "text": "Examples\n\nggplot(temps_months, aes(x = month, y = location, fill = mean)) + \n  geom_tile(width = 0.95, height = 0.95) + \n  coord_fixed(expand = FALSE) +\n  theme_classic()\n  # no fill scale defined, default is scale_fill_gradient()"
+  },
+  {
+    "objectID": "slides/color-scales.html#examples-1",
+    "href": "slides/color-scales.html#examples-1",
+    "title": "Color scales",
+    "section": "Examples",
+    "text": "Examples\n\nggplot(temps_months, aes(x = month, y = location, fill = mean)) + \n  geom_tile(width = 0.95, height = 0.95) + \n  coord_fixed(expand = FALSE) +\n  theme_classic() +\n  scale_fill_gradient()"
+  },
+  {
+    "objectID": "slides/color-scales.html#examples-2",
+    "href": "slides/color-scales.html#examples-2",
+    "title": "Color scales",
+    "section": "Examples",
+    "text": "Examples\n\nggplot(temps_months, aes(x = month, y = location, fill = mean)) + \n  geom_tile(width = 0.95, height = 0.95) + \n  coord_fixed(expand = FALSE) +\n  theme_classic() +\n  scale_fill_viridis_c() # the _c stands for continuous"
+  },
+  {
+    "objectID": "slides/color-scales.html#examples-3",
+    "href": "slides/color-scales.html#examples-3",
+    "title": "Color scales",
+    "section": "Examples",
+    "text": "Examples\n\nggplot(temps_months, aes(x = month, y = location, fill = mean)) + \n  geom_tile(width = 0.95, height = 0.95) + \n  coord_fixed(expand = FALSE) +\n  theme_classic() +\n  scale_fill_viridis_c(option = \"B\", begin = 0.15)"
+  },
+  {
+    "objectID": "slides/color-scales.html#examples-4",
+    "href": "slides/color-scales.html#examples-4",
+    "title": "Color scales",
+    "section": "Examples",
+    "text": "Examples\n\nggplot(temps_months, aes(x = month, y = location, fill = mean)) + \n  geom_tile(width = 0.95, height = 0.95) + \n  coord_fixed(expand = FALSE) +\n  theme_classic() +\n  scale_fill_distiller(palette = \"YlGnBu\")"
+  },
+  {
+    "objectID": "slides/color-scales.html#the-colorspace-package-creates-some-order",
+    "href": "slides/color-scales.html#the-colorspace-package-creates-some-order",
+    "title": "Color scales",
+    "section": "The colorspace package creates some order",
+    "text": "The colorspace package creates some order\nScale name: scale_&lt;aesthetic&gt;_&lt;datatype&gt;_&lt;colorscale&gt;()\n\n&lt;aesthetic&gt;: name of the aesthetic (fill, color, colour)\n\n\n&lt;datatype&gt;: type of variable plotted (discrete, continuous, binned)\n\n\n&lt;colorscale&gt;: type of the color scale (qualitative, sequential, diverging, divergingx)\n\n\n\n\n\n\n\n\n\n\n\nScale function\nAesthetic\nData type\nPalette type\n\n\n\n\nscale_color_discrete_qualitative()\ncolor\ndiscrete\nqualitative\n\n\nscale_fill_continuous_sequential()\nfill\ncontinuous\nsequential\n\n\nscale_colour_continous_divergingx()\ncolour\ncontinuous\ndiverging"
+  },
+  {
+    "objectID": "slides/color-scales.html#examples-5",
+    "href": "slides/color-scales.html#examples-5",
+    "title": "Color scales",
+    "section": "Examples",
+    "text": "Examples\n\nggplot(temps_months, aes(x = month, y = location, fill = mean)) + \n  geom_tile(width = 0.95, height = 0.95) + \n  coord_fixed(expand = FALSE) +\n  theme_classic() +\n  scale_fill_continuous_sequential(palette = \"YlGnBu\", rev = FALSE)"
+  },
+  {
+    "objectID": "slides/color-scales.html#examples-6",
+    "href": "slides/color-scales.html#examples-6",
+    "title": "Color scales",
+    "section": "Examples",
+    "text": "Examples\n\nggplot(temps_months, aes(x = month, y = location, fill = mean)) + \n  geom_tile(width = 0.95, height = 0.95) + \n  coord_fixed(expand = FALSE) +\n  theme_classic() +\n  scale_fill_continuous_sequential(palette = \"Viridis\", rev = FALSE)"
+  },
+  {
+    "objectID": "slides/color-scales.html#examples-7",
+    "href": "slides/color-scales.html#examples-7",
+    "title": "Color scales",
+    "section": "Examples",
+    "text": "Examples\n\nggplot(temps_months, aes(x = month, y = location, fill = mean)) + \n  geom_tile(width = 0.95, height = 0.95) + \n  coord_fixed(expand = FALSE) +\n  theme_classic() +\n  scale_fill_continuous_sequential(\n    palette = \"Inferno\", begin = 0.15, rev = FALSE\n  )"
+  },
+  {
+    "objectID": "slides/color-scales.html#all-sequential-palettes",
+    "href": "slides/color-scales.html#all-sequential-palettes",
+    "title": "Color scales",
+    "section": "",
+    "text": "# all sequential palettes provided by the colorspace package\ncolorspace::hcl_palettes(type = \"sequential\", plot = TRUE)"
+  },
+  {
+    "objectID": "slides/color-scales.html#all-diverging-palettes",
+    "href": "slides/color-scales.html#all-diverging-palettes",
+    "title": "Color scales",
+    "section": "",
+    "text": "# all diverging palettes provided by the colorspace package\ncolorspace::hcl_palettes(type = \"diverging\", plot = TRUE, n = 9)"
+  },
+  {
+    "objectID": "slides/color-scales.html#all-divergingx-palettes",
+    "href": "slides/color-scales.html#all-divergingx-palettes",
+    "title": "Color scales",
+    "section": "",
+    "text": "# all divergingx palettes provided by the colorspace package\ncolorspace::divergingx_palettes(plot = TRUE, n = 9)"
+  },
+  {
+    "objectID": "slides/color-scales.html#discrete-qualitative-scales-are-best-set-manually",
+    "href": "slides/color-scales.html#discrete-qualitative-scales-are-best-set-manually",
+    "title": "Color scales",
+    "section": "Discrete, qualitative scales are best set manually",
+    "text": "Discrete, qualitative scales are best set manually\n\nggplot(popgrowth, aes(x = pop2000, y = popgrowth, color = region)) +\n  geom_point() +\n  scale_x_log10()\n  # no color scale defined, default is scale_color_hue()"
+  },
+  {
+    "objectID": "slides/color-scales.html#discrete-qualitative-scales-are-best-set-manually-1",
+    "href": "slides/color-scales.html#discrete-qualitative-scales-are-best-set-manually-1",
+    "title": "Color scales",
+    "section": "Discrete, qualitative scales are best set manually",
+    "text": "Discrete, qualitative scales are best set manually\n\nggplot(popgrowth, aes(x = pop2000, y = popgrowth, color = region)) +\n  geom_point() +\n  scale_x_log10() +\n  scale_color_hue()"
+  },
+  {
+    "objectID": "slides/color-scales.html#discrete-qualitative-scales-are-best-set-manually-2",
+    "href": "slides/color-scales.html#discrete-qualitative-scales-are-best-set-manually-2",
+    "title": "Color scales",
+    "section": "Discrete, qualitative scales are best set manually",
+    "text": "Discrete, qualitative scales are best set manually\n\nlibrary(ggthemes)  # for scale_color_colorblind()\n\nggplot(popgrowth, aes(x = pop2000, y = popgrowth, color = region)) +\n  geom_point() +\n  scale_x_log10() +\n  scale_color_colorblind()  # uses Okabe-Ito colors"
+  },
+  {
+    "objectID": "slides/color-scales.html#discrete-qualitative-scales-are-best-set-manually-3",
+    "href": "slides/color-scales.html#discrete-qualitative-scales-are-best-set-manually-3",
+    "title": "Color scales",
+    "section": "Discrete, qualitative scales are best set manually",
+    "text": "Discrete, qualitative scales are best set manually\n\nggplot(popgrowth, aes(x = pop2000, y = popgrowth, color = region)) +\n  geom_point() +\n  scale_x_log10() +\n  scale_color_manual(\n    values = c(West = \"#E69F00\", South = \"#56B4E9\",\n               Midwest = \"#009E73\", Northeast = \"#F0E442\")\n  )"
+  },
+  {
+    "objectID": "slides/color-scales.html#okabe-ito-rgb-codes",
+    "href": "slides/color-scales.html#okabe-ito-rgb-codes",
+    "title": "Color scales",
+    "section": "Okabe-Ito RGB codes",
+    "text": "Okabe-Ito RGB codes\n\n\n\n\n\nName\nHex code   \nR, G, B (0-255)\n\n\n\n\norange\n#E69F00\n230, 159, 0\n\n\nsky blue\n#56B4E9\n86, 180, 233\n\n\nbluish green\n#009E73\n0, 158, 115\n\n\nyellow\n#F0E442\n240, 228, 66\n\n\nblue\n#0072B2\n0, 114, 178\n\n\nvermilion\n#D55E00\n213, 94, 0\n\n\nreddish purple\n#CC79A7\n204, 121, 167\n\n\nblack\n#000000\n0, 0, 0"
+  },
+  {
+    "objectID": "slides/color-scales.html#further-reading",
+    "href": "slides/color-scales.html#further-reading",
+    "title": "Color scales",
+    "section": "Further reading",
+    "text": "Further reading\n\nFundamentals of Data Visualization: Chapter 4: Color scales\nFundamentals of Data Visualization: Figure 19.10: Okabe-Ito color palette\nggplot2 book: Colour scales and legends\nggplot2 reference documentation: Scales\ncolorspace package: HCL-Based Color Scales for ggplot2"
+  },
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "SDS 366 Schedule Spring 2025",
+    "section": "",
+    "text": "Materials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
+  },
+  {
+    "objectID": "schedule.html#lectures",
+    "href": "schedule.html#lectures",
+    "title": "SDS 366 Schedule Spring 2025",
+    "section": "",
+    "text": "Materials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
+  },
+  {
+    "objectID": "schedule.html#homeworks",
+    "href": "schedule.html#homeworks",
+    "title": "SDS 366 Schedule Spring 2025",
+    "section": "Homeworks",
+    "text": "Homeworks\nAll homeworks are due by 11:00pm on the day they are due. Homeworks need to be submitted as pdf files on Canvas.\n\nHomework 1 (due Jan 23, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 2 (due Jan 30, 2025)\n\n\nHomework 3 (due Feb 6, 2025)\n\n\nHomework 4 (due Feb 27, 2025)\n\n\nHomework 5 (due Mar 6, 2025)\n\n\nHomework 6 (due Apr 3, 2025)\n\n\nHomework 7 (due Apr 10, 2025)"
+  },
+  {
+    "objectID": "schedule.html#projects",
+    "href": "schedule.html#projects",
+    "title": "SDS 366 Schedule Spring 2025",
+    "section": "Projects",
+    "text": "Projects\nAll projects are due by 11:00pm on the day they are due. Projects need to be submitted on Canvas. Please carefully read the submission instructions for each project.\n\nProject 1 (due Feb 13, 2025)\n\n\nProject 2 (due Mar 13, 2025)\n\n\nProject 3 (due Apr 26, 2025)"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "SDS 366",
+    "section": "",
+    "text": "This is the home page for SDS 366, Data Visualization in R. All course materials will be posted on this site.\nInstructor: Claus O. Wilke\nMeeting times: TTH 5:00pm to 6:30pm\nVenue: MEZ B0.306\nSyllabus: click here\nUpcoming lectures and assignments: click here"
+  },
+  {
+    "objectID": "index.html#computing-requirements",
+    "href": "index.html#computing-requirements",
+    "title": "SDS 366",
+    "section": "Computing requirements",
+    "text": "Computing requirements\nFor students enrolled in this course, you only need a working web browser to access the edupod server, located at: https://edupod.cns.utexas.edu/\nIf you are using the edupod server, stop reading here. Everything is pre-installed and no further action is needed.\nTo run any of the materials locally on your own machine, you will need the following:\n\nA recent version of R, download from here.\nA recent version of RStudio, download from here, OR a recent version of Positron, download from here.\nThe following R packages:\nbroom, cluster, colorspace, cowplot, gapminder, GGally, gganimate, ggiraph, ggdendro, ggdist, ggforce, ggplot2movies, ggrepel, ggridges, ggthemes, gifski, glue, knitr, learnr, naniar, margins, MASS, Matrix, nycflights13, palmerpenguins, patchwork, quarto, rmarkdown, rnaturalearth, rnaturalearthhires, scales, sf, sp, tidyverse, transformr, tsne, umap\n\nYou can install all required R packages at once by running the following code in the R command line:\n# first run this command:\ninstall.packages(\n  c(\n    \"broom\", \"cluster\", \"colorspace\", \"cowplot\", \"gapminder\", \n    \"GGally\", \"gganimate\", \"ggiraph\", \"ggdendro\", \"ggdist\", \"ggforce\",\n    \"ggplot2movies\", \"ggrepel\", \"ggridges\", \"ggthemes\", \"gifski\", \"glue\",\n    \"knitr\", \"learnr\", \"naniar\", \"margins\", \"MASS\", \"Matrix\",\n    \"nycflights13\", \"palmerpenguins\", \"patchwork\", \"quarto\", \"rmarkdown\",\n    \"rnaturalearth\", \"scales\", \"sf\", \"sp\", \"tidyverse\",\n    \"transformr\", \"tsne\", \"umap\"\n  )\n)\n\n# then run this command:\ninstall.packages(\n  \"rnaturalearthhires\", repos = \"https://packages.ropensci.org\", type = \"source\"\n)"
+  },
+  {
     "objectID": "slides/aesthetic-mappings.html#dataset-daily-average-temperatures-for-various-locations",
     "href": "slides/aesthetic-mappings.html#dataset-daily-average-temperatures-for-various-locations",
     "title": "Aesthetic mappings",
@@ -1062,48 +1391,6 @@
     "title": "Aesthetic mappings",
     "section": "Further reading",
     "text": "Further reading\n\nFundamentals of Data Visualization: Chapter 2: Visualizing data\nData Visualization—A Practical Introduction: Chapter 3: Make a plot\nggplot2 reference documentation\nggplot2 book\nggplot2 cheatsheet"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "SDS 366",
-    "section": "",
-    "text": "This is the home page for SDS 366, Data Visualization in R. All course materials will be posted on this site.\nInstructor: Claus O. Wilke\nMeeting times: TTH 5:00pm to 6:30pm\nVenue: MEZ B0.306\nSyllabus: click here\nUpcoming lectures and assignments: click here"
-  },
-  {
-    "objectID": "index.html#computing-requirements",
-    "href": "index.html#computing-requirements",
-    "title": "SDS 366",
-    "section": "Computing requirements",
-    "text": "Computing requirements\nFor students enrolled in this course, you only need a working web browser to access the edupod server, located at: https://edupod.cns.utexas.edu/\nIf you are using the edupod server, stop reading here. Everything is pre-installed and no further action is needed.\nTo run any of the materials locally on your own machine, you will need the following:\n\nA recent version of R, download from here.\nA recent version of RStudio, download from here, OR a recent version of Positron, download from here.\nThe following R packages:\nbroom, cluster, colorspace, cowplot, gapminder, GGally, gganimate, ggiraph, ggdendro, ggdist, ggforce, ggplot2movies, ggrepel, ggridges, ggthemes, gifski, glue, knitr, learnr, naniar, margins, MASS, Matrix, nycflights13, palmerpenguins, patchwork, quarto, rmarkdown, rnaturalearth, rnaturalearthhires, scales, sf, sp, tidyverse, transformr, tsne, umap\n\nYou can install all required R packages at once by running the following code in the R command line:\n# first run this command:\ninstall.packages(\n  c(\n    \"broom\", \"cluster\", \"colorspace\", \"cowplot\", \"gapminder\", \n    \"GGally\", \"gganimate\", \"ggiraph\", \"ggdendro\", \"ggdist\", \"ggforce\",\n    \"ggplot2movies\", \"ggrepel\", \"ggridges\", \"ggthemes\", \"gifski\", \"glue\",\n    \"knitr\", \"learnr\", \"naniar\", \"margins\", \"MASS\", \"Matrix\",\n    \"nycflights13\", \"palmerpenguins\", \"patchwork\", \"quarto\", \"rmarkdown\",\n    \"rnaturalearth\", \"scales\", \"sf\", \"sp\", \"tidyverse\",\n    \"transformr\", \"tsne\", \"umap\"\n  )\n)\n\n# then run this command:\ninstall.packages(\n  \"rnaturalearthhires\", repos = \"https://packages.ropensci.org\", type = \"source\"\n)"
-  },
-  {
-    "objectID": "schedule.html",
-    "href": "schedule.html",
-    "title": "SDS 366 Schedule Spring 2025",
-    "section": "",
-    "text": "Materials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
-  },
-  {
-    "objectID": "schedule.html#lectures",
-    "href": "schedule.html#lectures",
-    "title": "SDS 366 Schedule Spring 2025",
-    "section": "",
-    "text": "Materials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
-  },
-  {
-    "objectID": "schedule.html#homeworks",
-    "href": "schedule.html#homeworks",
-    "title": "SDS 366 Schedule Spring 2025",
-    "section": "Homeworks",
-    "text": "Homeworks\nAll homeworks are due by 11:00pm on the day they are due. Homeworks need to be submitted as pdf files on Canvas.\n\nHomework 1 (due Jan 23, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 2 (due Jan 30, 2025)\n\n\nHomework 3 (due Feb 6, 2025)\n\n\nHomework 4 (due Feb 27, 2025)\n\n\nHomework 5 (due Mar 6, 2025)\n\n\nHomework 6 (due Apr 3, 2025)\n\n\nHomework 7 (due Apr 10, 2025)"
-  },
-  {
-    "objectID": "schedule.html#projects",
-    "href": "schedule.html#projects",
-    "title": "SDS 366 Schedule Spring 2025",
-    "section": "Projects",
-    "text": "Projects\nAll projects are due by 11:00pm on the day they are due. Projects need to be submitted on Canvas. Please carefully read the submission instructions for each project.\n\nProject 1 (due Feb 13, 2025)\n\n\nProject 2 (due Mar 13, 2025)\n\n\nProject 3 (due Apr 26, 2025)"
   },
   {
     "objectID": "slides/coordinate-systems-axes.html#most-data-visualizations-use-cartesian-coordinates",
@@ -1824,14 +2111,14 @@
     "href": "worksheets/color-selection.html",
     "title": "Color selection",
     "section": "",
-    "text": "In this worksheet, you will practice choosing your own colors.\nFirst we need to load the required R packages. Please wait a moment until the live R session is fully set up and all packages are loaded.\n\n\n\n\n\n\n\n\nNext we set up the data.\n\n\n\n\n\n\n\n\nWe will be working with two datasets. First, the penguins dataset we have used previously:\npenguins\n\n\n\n\n\n\n\n\n\n\nSecond, the texas_income dataset, which has data on the median income of counties in Texas:\n\n\n\n\n\n\n\n\nWe will start with a scatter plot of the penguins dataset.\n\n\n\n\n\n\n\n\nUse the color chooser app to manually pick three colors that are appropriate for a qualitative color scale. Then modify the plot to use this scale.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nggplot(penguins, aes(body_mass_g, bill_length_mm, color = species)) +\n  geom_point(size = 2, na.rm = TRUE) +\n  scale_color_manual(\n    values = ___ # your colors here \n  )\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nggplot(penguins, aes(body_mass_g, bill_length_mm, color = species)) +\n  geom_point(size = 2, na.rm = TRUE) +\n  scale_color_manual(\n    # this is just an example, there are many possible choices here\n    values = c('#BF8A21', '#A74C48', '#17517A')\n  )\n\n\n\n\nNow let’s consider this map of Texas that shows median income as color. (We will talk more about how to draw maps in a later class.)\n\n\n\n\n\n\n\n\nUse the color chooser app to manually pick four to six colors that are appropriate for a sequential color scale. Then modify the plot to use this scale. (To create a manual color gradient, use scale_fill_gradientn().)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nggplot(texas_income) +\n  geom_sf(aes(fill = median_income)) +\n  scale_fill_gradientn(\n    colours = ___ # your colors here \n  )\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nggplot(texas_income) +\n  geom_sf(aes(fill = median_income)) +\n  scale_fill_gradientn(\n    # this is just an example, there are many possible choices here\n    colours = c('#F4F9E1', '#C6D77C', '#8B9B38', '#475010')\n  )"
+    "text": "In this worksheet, you will practice choosing your own colors.\nFirst we need to load the required R packages. Please wait a moment until the live R session is fully set up and all packages are loaded.\n\n\n\n\n\n\n\n\nNext we set up the data.\n\n\n\n\n\n\n\n\nWe will be working with two datasets that we have seen previously. First, the penguins dataset:\npenguins\n\n\n\n\n\n\n\n\n\n\nSecond, the temps_months dataset which contains the mean temperature for each month in four different locations.\n\n\n\n\n\n\n\n\nWe will start with a scatter plot of the penguins dataset.\n\n\n\n\n\n\n\n\nUse the color chooser app to manually pick three colors that are appropriate for a qualitative color scale. Then modify the plot to use this scale.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nggplot(penguins, aes(body_mass_g, bill_length_mm, color = species)) +\n  geom_point(size = 2, na.rm = TRUE) +\n  scale_color_manual(\n    values = ___ # your colors here \n  )\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nggplot(penguins, aes(body_mass_g, bill_length_mm, color = species)) +\n  geom_point(size = 2, na.rm = TRUE) +\n  scale_color_manual(\n    # this is just an example, there are many possible choices here\n    values = c('#BF8A21', '#A74C48', '#17517A')\n  )\n\n\n\n\nNow let’s consider this heat map of temperatures in different locations throughout the year.\n\n\n\n\n\n\n\n\nUse the color chooser app to manually pick four to six colors that are appropriate for a sequential color scale. Then modify the plot to use this scale. (To create a manual color gradient, use scale_fill_gradientn().)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nggplot(temps_months, aes(x = month, y = location, fill = mean)) + \n  geom_tile() + \n  coord_fixed(expand = FALSE) +\n  scale_fill_gradientn(\n    colours = ___ # your colors here \n  )\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nggplot(temps_months, aes(x = month, y = location, fill = mean)) + \n  geom_tile() + \n  coord_fixed(expand = FALSE) +\n  scale_fill_gradientn(\n    # this is just an example, there are many possible choices here\n    colours = c('#475010', '#8B9B38', '#C6D77C', '#F4F9E1')\n  )"
   },
   {
     "objectID": "worksheets/color-selection.html#introduction",
     "href": "worksheets/color-selection.html#introduction",
     "title": "Color selection",
     "section": "",
-    "text": "In this worksheet, you will practice choosing your own colors.\nFirst we need to load the required R packages. Please wait a moment until the live R session is fully set up and all packages are loaded.\n\n\n\n\n\n\n\n\nNext we set up the data.\n\n\n\n\n\n\n\n\nWe will be working with two datasets. First, the penguins dataset we have used previously:\npenguins\n\n\n\n\n\n\n\n\n\n\nSecond, the texas_income dataset, which has data on the median income of counties in Texas:\n\n\n\n\n\n\n\n\nWe will start with a scatter plot of the penguins dataset.\n\n\n\n\n\n\n\n\nUse the color chooser app to manually pick three colors that are appropriate for a qualitative color scale. Then modify the plot to use this scale.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nggplot(penguins, aes(body_mass_g, bill_length_mm, color = species)) +\n  geom_point(size = 2, na.rm = TRUE) +\n  scale_color_manual(\n    values = ___ # your colors here \n  )\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nggplot(penguins, aes(body_mass_g, bill_length_mm, color = species)) +\n  geom_point(size = 2, na.rm = TRUE) +\n  scale_color_manual(\n    # this is just an example, there are many possible choices here\n    values = c('#BF8A21', '#A74C48', '#17517A')\n  )\n\n\n\n\nNow let’s consider this map of Texas that shows median income as color. (We will talk more about how to draw maps in a later class.)\n\n\n\n\n\n\n\n\nUse the color chooser app to manually pick four to six colors that are appropriate for a sequential color scale. Then modify the plot to use this scale. (To create a manual color gradient, use scale_fill_gradientn().)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nggplot(texas_income) +\n  geom_sf(aes(fill = median_income)) +\n  scale_fill_gradientn(\n    colours = ___ # your colors here \n  )\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nggplot(texas_income) +\n  geom_sf(aes(fill = median_income)) +\n  scale_fill_gradientn(\n    # this is just an example, there are many possible choices here\n    colours = c('#F4F9E1', '#C6D77C', '#8B9B38', '#475010')\n  )"
+    "text": "In this worksheet, you will practice choosing your own colors.\nFirst we need to load the required R packages. Please wait a moment until the live R session is fully set up and all packages are loaded.\n\n\n\n\n\n\n\n\nNext we set up the data.\n\n\n\n\n\n\n\n\nWe will be working with two datasets that we have seen previously. First, the penguins dataset:\npenguins\n\n\n\n\n\n\n\n\n\n\nSecond, the temps_months dataset which contains the mean temperature for each month in four different locations.\n\n\n\n\n\n\n\n\nWe will start with a scatter plot of the penguins dataset.\n\n\n\n\n\n\n\n\nUse the color chooser app to manually pick three colors that are appropriate for a qualitative color scale. Then modify the plot to use this scale.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nggplot(penguins, aes(body_mass_g, bill_length_mm, color = species)) +\n  geom_point(size = 2, na.rm = TRUE) +\n  scale_color_manual(\n    values = ___ # your colors here \n  )\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nggplot(penguins, aes(body_mass_g, bill_length_mm, color = species)) +\n  geom_point(size = 2, na.rm = TRUE) +\n  scale_color_manual(\n    # this is just an example, there are many possible choices here\n    values = c('#BF8A21', '#A74C48', '#17517A')\n  )\n\n\n\n\nNow let’s consider this heat map of temperatures in different locations throughout the year.\n\n\n\n\n\n\n\n\nUse the color chooser app to manually pick four to six colors that are appropriate for a sequential color scale. Then modify the plot to use this scale. (To create a manual color gradient, use scale_fill_gradientn().)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nggplot(temps_months, aes(x = month, y = location, fill = mean)) + \n  geom_tile() + \n  coord_fixed(expand = FALSE) +\n  scale_fill_gradientn(\n    colours = ___ # your colors here \n  )\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nggplot(temps_months, aes(x = month, y = location, fill = mean)) + \n  geom_tile() + \n  coord_fixed(expand = FALSE) +\n  scale_fill_gradientn(\n    # this is just an example, there are many possible choices here\n    colours = c('#475010', '#8B9B38', '#C6D77C', '#F4F9E1')\n  )"
   },
   {
     "objectID": "worksheets/introduction.html",

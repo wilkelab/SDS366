@@ -20,7 +20,6 @@ First we need to load the required R packages. Please wait a moment until the li
 #| edit: false
 library(tidyverse)
 library(palmerpenguins)
-library(sf)
 ```
 
 Next we set up the data.
@@ -28,10 +27,30 @@ Next we set up the data.
 ```{webr}
 #| edit: false
 #| warning: false
-texas_income <- readRDS(url("https://wilkelab.org/SDS366/datasets/Texas_income.rds"))
+temperatures <- read_csv("https://wilkelab.org/SDS366/datasets/tempnormals.csv") |>
+  mutate(
+    location = factor(
+      location, levels = c("Death Valley", "Houston", "San Diego", "Chicago")
+    )
+  ) |>
+  select(location, day_of_year, month, temperature)
+
+temps_months <- read_csv("https://wilkelab.org/SDS366/datasets/tempnormals.csv") |>
+  group_by(location, month_name) |>
+  summarize(mean = mean(temperature)) |>
+  mutate(
+    month = factor(
+      month_name,
+      levels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+    ),
+    location = factor(
+      location, levels = c("Death Valley", "Houston", "San Diego", "Chicago")
+    )
+  ) |>
+  select(-month_name)
 ```
 
-We will be working with two datasets. First, the `penguins` dataset we have used previously:
+We will be working with two datasets that we have seen previously. First, the `penguins` dataset:
 ```r
 penguins
 ```
@@ -43,10 +62,10 @@ penguins
 ```
 :::
 
-Second, the `texas_income` dataset, which has data on the median income of counties in Texas:
+Second, the `temps_months` dataset which contains the mean temperature for each month in four different locations.
 ```{webr}
 #| edit: false
-texas_income
+temps_months
 ```
 
 We will start with a scatter plot of the `penguins` dataset.
@@ -90,27 +109,30 @@ ggplot(penguins, aes(body_mass_g, bill_length_mm, color = species)) +
 :::
 :::
 
-Now let's consider this map of Texas that shows median income as color. (We will talk more about how to draw maps in a later class.)
+Now let's consider this heat map of temperatures in different locations throughout the year.
 
 ```{webr}
-#| label: Texas-base
+#| label: temps-base
 #| edit: false
-ggplot(texas_income) +
-  geom_sf(aes(fill = median_income))
+#| fig-height: 3
+ggplot(temps_months, aes(x = month, y = location, fill = mean)) + 
+  geom_tile() + 
+  coord_fixed(expand = FALSE)
 ```
 
 Use the <a href="../choose-color/" target="_blank">color chooser app</a> to manually pick four to six colors that are appropriate for a sequential color scale. Then modify the plot to use this scale. (To create a manual color gradient, use `scale_fill_gradientn()`.)
 
 ```{webr} 
-#| exercise: Texas
+#| exercise: temps
 
 ```
 
-::: { .hint exercise="Texas" }
+::: { .hint exercise="temps" }
 ::: { .callout-tip title="Hint" collapse="false"}
 ```r
-ggplot(texas_income) +
-  geom_sf(aes(fill = median_income)) +
+ggplot(temps_months, aes(x = month, y = location, fill = mean)) + 
+  geom_tile() + 
+  coord_fixed(expand = FALSE) +
   scale_fill_gradientn(
     colours = ___ # your colors here 
   )
@@ -118,14 +140,15 @@ ggplot(texas_income) +
 :::
 :::
 
-::: { .solution exercise="Texas" }
+::: { .solution exercise="temps" }
 ::: { .callout-tip title="Solution" collapse="false"}
 ```r
-ggplot(texas_income) +
-  geom_sf(aes(fill = median_income)) +
+ggplot(temps_months, aes(x = month, y = location, fill = mean)) + 
+  geom_tile() + 
+  coord_fixed(expand = FALSE) +
   scale_fill_gradientn(
     # this is just an example, there are many possible choices here
-    colours = c('#F4F9E1', '#C6D77C', '#8B9B38', '#475010')
+    colours = c('#475010', '#8B9B38', '#C6D77C', '#F4F9E1')
   )
 ```
 :::

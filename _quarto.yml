@@ -39,6 +39,8 @@ website:
             href: slides/visualizing-distributions-1.qmd
           - text: "Class 6: Visualizing distributions 2"
             href: slides/visualizing-distributions-2.qmd
+          - text: "Class 7: Color scales"
+            href: slides/color-scales.qmd
           - text: "Class 13: Figure design"
             href: slides/figure-design.qmd
         

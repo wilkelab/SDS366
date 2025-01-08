@@ -177,6 +177,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Class 6: Visualizing distributions 2</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="../slides/color-scales.html">
+ <span class="dropdown-text">Class 7: Color scales</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../slides/figure-design.html">
  <span class="dropdown-text">Class 13: Figure design</span></a>
   </li>  
@@ -296,7 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </div>
 <script type="webr-1-contents">
-eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlLCJ3YXJuaW5nIjpmYWxzZX0sImNvZGUiOiJsaWJyYXJ5KHRpZHl2ZXJzZSlcbmxpYnJhcnkocGFsbWVycGVuZ3VpbnMpXG5saWJyYXJ5KHNmKSJ9
+eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlLCJ3YXJuaW5nIjpmYWxzZX0sImNvZGUiOiJsaWJyYXJ5KHRpZHl2ZXJzZSlcbmxpYnJhcnkocGFsbWVycGVuZ3VpbnMpIn0=
 </script>
 </div>
 </div>
@@ -307,11 +311,11 @@ eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlLCJ3YXJuaW5nIjpmYWxzZX0sImNvZGUiOiJs
 
 </div>
 <script type="webr-2-contents">
-eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlLCJ3YXJuaW5nIjpmYWxzZX0sImNvZGUiOiJ0ZXhhc19pbmNvbWUgPC0gcmVhZFJEUyh1cmwoXCJodHRwczovL3dpbGtlbGFiLm9yZy9TRFMzNjYvZGF0YXNldHMvVGV4YXNfaW5jb21lLnJkc1wiKSkifQ==
+eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlLCJ3YXJuaW5nIjpmYWxzZX0sImNvZGUiOiJ0ZW1wZXJhdHVyZXMgPC0gcmVhZF9jc3YoXCJodHRwczovL3dpbGtlbGFiLm9yZy9TRFMzNjYvZGF0YXNldHMvdGVtcG5vcm1hbHMuY3N2XCIpIHw+XG4gIG11dGF0ZShcbiAgICBsb2NhdGlvbiA9IGZhY3RvcihcbiAgICAgIGxvY2F0aW9uLCBsZXZlbHMgPSBjKFwiRGVhdGggVmFsbGV5XCIsIFwiSG91c3RvblwiLCBcIlNhbiBEaWVnb1wiLCBcIkNoaWNhZ29cIilcbiAgICApXG4gICkgfD5cbiAgc2VsZWN0KGxvY2F0aW9uLCBkYXlfb2ZfeWVhciwgbW9udGgsIHRlbXBlcmF0dXJlKVxuXG50ZW1wc19tb250aHMgPC0gcmVhZF9jc3YoXCJodHRwczovL3dpbGtlbGFiLm9yZy9TRFMzNjYvZGF0YXNldHMvdGVtcG5vcm1hbHMuY3N2XCIpIHw+XG4gIGdyb3VwX2J5KGxvY2F0aW9uLCBtb250aF9uYW1lKSB8PlxuICBzdW1tYXJpemUobWVhbiA9IG1lYW4odGVtcGVyYXR1cmUpKSB8PlxuICBtdXRhdGUoXG4gICAgbW9udGggPSBmYWN0b3IoXG4gICAgICBtb250aF9uYW1lLFxuICAgICAgbGV2ZWxzID0gYyhcIkphblwiLCBcIkZlYlwiLCBcIk1hclwiLCBcIkFwclwiLCBcIk1heVwiLCBcIkp1blwiLCBcIkp1bFwiLCBcIkF1Z1wiLCBcIlNlcFwiLCBcIk9jdFwiLCBcIk5vdlwiLCBcIkRlY1wiKVxuICAgICksXG4gICAgbG9jYXRpb24gPSBmYWN0b3IoXG4gICAgICBsb2NhdGlvbiwgbGV2ZWxzID0gYyhcIkRlYXRoIFZhbGxleVwiLCBcIkhvdXN0b25cIiwgXCJTYW4gRGllZ29cIiwgXCJDaGljYWdvXCIpXG4gICAgKVxuICApIHw+XG4gIHNlbGVjdCgtbW9udGhfbmFtZSkifQ==
 </script>
 </div>
 </div>
-<p>We will be working with two datasets. First, the <code>penguins</code> dataset we have used previously:</p>
+<p>We will be working with two datasets that we have seen previously. First, the <code>penguins</code> dataset:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>penguins</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="column-page">
 <div class="cell">
@@ -325,14 +329,14 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZX0sImNvZGUiOiJwZW5n
 </div>
 </div>
 </div>
-<p>Second, the <code>texas_income</code> dataset, which has data on the median income of counties in Texas:</p>
+<p>Second, the <code>temps_months</code> dataset which contains the mean temperature for each month in four different locations.</p>
 <div class="cell" data-edit="false">
 <div>
 <div id="webr-4" class="exercise-cell">
 
 </div>
 <script type="webr-4-contents">
-eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlfSwiY29kZSI6InRleGFzX2luY29tZSJ9
+eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlfSwiY29kZSI6InRlbXBzX21vbnRocyJ9
 </script>
 </div>
 </div>
@@ -403,29 +407,29 @@ Solution
 </div>
 </div>
 </div>
-<p>Now let’s consider this map of Texas that shows median income as color. (We will talk more about how to draw maps in a later class.)</p>
+<p>Now let’s consider this heat map of temperatures in different locations throughout the year.</p>
 <div class="cell" data-edit="false">
 <div>
 <div id="webr-7" class="exercise-cell">
 
 </div>
 <script type="webr-7-contents">
-eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlLCJsYWJlbCI6IlRleGFzLWJhc2UifSwiY29kZSI6ImdncGxvdCh0ZXhhc19pbmNvbWUpICtcbiAgZ2VvbV9zZihhZXMoZmlsbCA9IG1lZGlhbl9pbmNvbWUpKSJ9
+eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlLCJmaWctaGVpZ2h0IjozLCJsYWJlbCI6InRlbXBzLWJhc2UifSwiY29kZSI6ImdncGxvdCh0ZW1wc19tb250aHMsIGFlcyh4ID0gbW9udGgsIHkgPSBsb2NhdGlvbiwgZmlsbCA9IG1lYW4pKSArIFxuICBnZW9tX3RpbGUoKSArIFxuICBjb29yZF9maXhlZChleHBhbmQgPSBGQUxTRSkifQ==
 </script>
 </div>
 </div>
 <p>Use the <a href="../choose-color/" target="_blank">color chooser app</a> to manually pick four to six colors that are appropriate for a sequential color scale. Then modify the plot to use this scale. (To create a manual color gradient, use <code>scale_fill_gradientn()</code>.)</p>
-<div class="cell" data-exercise="Texas">
+<div class="cell" data-exercise="temps">
 <div>
 <div id="webr-8" class="exercise-cell">
 
 </div>
 <script type="webr-8-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiVGV4YXMifSwiY29kZSI6IiJ9
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoidGVtcHMifSwiY29kZSI6IiJ9
 </script>
 </div>
 </div>
-<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="Texas">
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="temps">
 <div class="callout callout-style-default callout-tip callout-titled" title="Hint">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -438,16 +442,17 @@ Hint
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(texas_income) <span class="sc">+</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> median_income)) <span class="sc">+</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">colours =</span> ___ <span class="co"># your colors here </span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(temps_months, <span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> location, <span class="at">fill =</span> mean)) <span class="sc">+</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>() <span class="sc">+</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>(<span class="at">expand =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">colours =</span> ___ <span class="co"># your colors here </span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="Texas">
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="temps">
 <div class="callout callout-style-default callout-tip callout-titled" title="Solution">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -460,12 +465,13 @@ Solution
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(texas_income) <span class="sc">+</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> median_income)) <span class="sc">+</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># this is just an example, there are many possible choices here</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">colours =</span> <span class="fu">c</span>(<span class="st">'#F4F9E1'</span>, <span class="st">'#C6D77C'</span>, <span class="st">'#8B9B38'</span>, <span class="st">'#475010'</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(temps_months, <span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> location, <span class="at">fill =</span> mean)) <span class="sc">+</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>() <span class="sc">+</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>(<span class="at">expand =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># this is just an example, there are many possible choices here</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">colours =</span> <span class="fu">c</span>(<span class="st">'#475010'</span>, <span class="st">'#8B9B38'</span>, <span class="st">'#C6D77C'</span>, <span class="st">'#F4F9E1'</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
