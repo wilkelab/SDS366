@@ -1,0 +1,634 @@
+---
+title: "Color spaces and color-vision deficiency"
+author: "Claus O. Wilke"
+date: last-modified
+format: 
+  revealjs:
+    theme:
+      - default
+      - Wilke-theme.scss
+    auto-stretch: false
+    chalkboard: true
+execute:
+  fig-format: svg
+  fig-asp: 0.618
+  fig-width: 5.5
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+library(cowplot)
+library(colorspace)
+library(here)
+
+# ggplot2 settings so plots scale well for slide size 
+theme_set(theme_gray(14))
+update_geom_defaults("point", list(size = 2))
+#update_geom_defaults("line", list(linewidth = 1))
+
+# color space plot theme
+theme_colorspace <- function(size = 12) {
+  theme_minimal_grid(size, line_size = 0.2) +
+  panel_border(color = "black", size = 0.4) +
+  theme(
+    axis.ticks.length = grid::unit(0, "pt"),
+    axis.ticks = element_line(linewidth = 0.2, color = "black"),
+    strip.text = element_text(size = size)
+  )
+}
+```
+
+# How does a computer represent color?
+
+## The RGB color space
+
+<br>
+
+:::: {.columns .small-font}
+
+::: {.column width="40%"}
+red R (0-255):<br>&emsp;&emsp;amount of red light
+
+green G (0-255):<br>&emsp;&emsp;amount of green light
+
+blue B (0-255):<br>&emsp;&emsp;amount of blue light
+:::
+
+::: {.fragment .column width="60%"}
+<table>
+  <thead>
+    <tr class="header">
+      <th>R</th> <th>G</th> <th>B</th> <th>hex code</th> <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="odd">
+      <td>0</td> <td>0</td> <td>0</td> <td>#000000</td> <td style="background: #000000; width: 5em;"></td>
+    </tr>
+    <tr class="odd">
+      <td>255</td> <td>255</td> <td>255</td> <td>#FFFFFF</td> <td style="background: #FFFFFF; width: 5em;"></td>
+    </tr>
+    <tr class="odd">
+      <td>255</td> <td>0</td> <td>0</td> <td>#FF0000</td> <td style="background: #FF0000; width: 5em;"></td>
+    </tr>
+    <tr class="odd">
+      <td>0</td> <td>255</td> <td>255</td> <td>#00FFFF</td> <td style="background: #00FFFF; width: 5em;"></td>
+    </tr>
+    <tr class="odd">
+      <td>128</td> <td>128</td> <td>128</td> <td>#808080</td> <td style="background: #808080; width: 5em;"></td>
+    </tr>
+    <tr class="odd">
+      <td>0</td> <td>158</td> <td>115</td> <td>#009E73</td> <td style="background: #009E73; width: 5em;"></td>
+    </tr>
+  </tbody>
+</table>
+:::
+::::
+
+## The RGB color space
+
+::: {.move-up-half-em}
+```{r}
+#| label: rgb-viz
+#| fig-width: 10
+#| fig-asp: 0.55
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+rgb_by_b <- expand_grid(
+  R = seq(0, 255, by = 2),
+  G = seq(0, 255, by = 2),
+  B = seq(0, 255, by = 35)
+)
+
+rgb_by_b$hex <- hex(sRGB(as.matrix(rgb_by_b)/255))
+
+rgb_by_b %>%
+  ggplot(aes(R, G, fill = hex)) +
+  geom_raster(na.rm = TRUE) +
+  scale_fill_identity() +
+  scale_x_continuous(
+    name = "red R",
+    breaks = (0:5)*50,
+    labels = c("0", "", "100", "", "200", "")
+  ) +
+  scale_y_continuous(
+    name = "green G",
+    breaks = (0:5)*50,
+    labels = c("0", "", "100", "", "200", "")
+  ) +
+  facet_wrap(
+    vars(B),
+    ncol = 4,
+    labeller = as_labeller(function(x) glue::glue("blue B = {x}"))
+  ) +
+  coord_fixed(expand = FALSE) +
+  theme_colorspace() +
+  theme(axis.ticks.length = grid::unit(3, "pt"))
+```
+:::
+
+::: {.fragment .move-up-2em}
+Most people cannot reason well about the RGB color space
+:::
+
+## The HSV color space
+
+:::: {.columns .small-font}
+
+::: {.column width="50%"}
+hue H (0-360):<br>&emsp;&emsp;hue of the color
+
+saturation S (0-1):<br>&emsp;&emsp;colorfulness relative to the brightness<br>&emsp;&emsp;of the color
+
+value V (0-1):<br>&emsp;&emsp;subjective perception of amount<br>&emsp;&emsp;of light emitted
+:::
+
+::: {.column width="50%" .move-up-1em}
+```{r}
+#| label: hsv-viz-single
+#| fig-width: 5
+#| fig-asp: 1
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+hsv_by_h <- expand_grid(
+  H = seq(0, 330, by = 30),
+  S = seq(0, 1, by = .01),
+  V = seq(0, 1, by = .01)
+)
+
+hsv_by_h$hex <- hex(HSV(as.matrix(hsv_by_h)))
+
+hsv_by_h %>%
+  filter(H == 90) %>%
+  ggplot(aes(S, V, fill = hex)) +
+  geom_raster(na.rm = TRUE) +
+  scale_fill_identity() +
+  scale_x_continuous(
+    name = "saturation S",
+    breaks = (0:4)*.25,
+    labels = c("0", "", "0.5", "", "")
+  ) +
+  scale_y_continuous(
+    name = "value V",
+    breaks = (0:4)*.25,
+    labels = c("0", "", "0.5", "", "1.0")
+  ) +
+  facet_wrap(
+    vars(H),
+    ncol = 6,
+    labeller = as_labeller(function(x) glue::glue("hue H = {x}"))
+  ) +
+  coord_fixed(expand = FALSE) +
+  theme_colorspace(16) +
+  theme(axis.ticks.length = grid::unit(3, "pt"))
+```
+:::
+
+::::
+
+## The HSV color space
+
+::: {.move-up-half-em}
+```{r}
+#| label: hsv-viz
+#| fig-width: 10
+#| fig-asp: 0.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+hsv_by_h %>%
+  ggplot(aes(S, V, fill = hex)) +
+  geom_raster(na.rm = TRUE) +
+  scale_fill_identity() +
+  scale_x_continuous(
+    name = "saturation S",
+    breaks = (0:4)*.25,
+    labels = c("0", "", "0.5", "", "")
+  ) +
+  scale_y_continuous(
+    name = "value V",
+    breaks = (0:4)*.25,
+    labels = c("0", "", "0.5", "", "1.0")
+  ) +
+  facet_wrap(
+    vars(H),
+    ncol = 6,
+    labeller = as_labeller(function(x) glue::glue("hue H = {x}"))
+  ) +
+  coord_fixed(expand = FALSE) +
+  theme_colorspace() +
+  theme(axis.ticks.length = grid::unit(3, "pt"))
+```
+:::
+
+::: {.fragment .move-up-2em}
+Problem: Color changes in non-intuitive ways with saturation and value
+:::
+
+
+## The HLS color space
+
+:::: {.columns .small-font}
+
+::: {.column width="50%"}
+hue H (0-360):<br>&emsp;&emsp;hue of the color
+
+lightness L (0-1):<br>&emsp;&emsp;brightness relative to the brightness<br>&emsp;&emsp;of a similarly illuminated white
+
+saturation S (0-1):<br>&emsp;&emsp;colorfulness relative to the brightness<br>&emsp;&emsp;of the color
+:::
+
+::: {.column width="50%" .move-up-1em}
+```{r}
+#| label: hls-viz-single
+#| fig-width: 5
+#| fig-asp: 1
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+hls_by_h <- expand_grid(
+  H = seq(0, 330, by = 30),
+  L = seq(0, 1, by = .01),
+  S = seq(0, 1, by = .01)
+)
+
+hls_by_h$hex <- hex(HLS(as.matrix(hls_by_h)))
+
+hls_by_h %>%
+  filter(H == 90) %>%
+  ggplot(aes(S, L, fill = hex)) +
+  geom_raster(na.rm = TRUE) +
+  scale_fill_identity() +
+  scale_x_continuous(
+    name = "saturation S",
+    breaks = (0:4)*.25,
+    labels = c("0", "", "0.5", "", "")
+  ) +
+  scale_y_continuous(
+    name = "lightness L",
+    breaks = (0:4)*.25,
+    labels = c("0", "", "0.5", "", "1.0")
+  ) +
+  facet_wrap(
+    vars(H),
+    ncol = 6,
+    labeller = as_labeller(function(x) glue::glue("hue H = {x}"))
+  ) +
+  coord_fixed(expand = FALSE) +
+  theme_colorspace(16) +
+  theme(axis.ticks.length = grid::unit(3, "pt"))
+```
+:::
+
+::::
+
+## The HLS color space
+
+::: {.move-up-half-em}
+```{r}
+#| label: hls-viz
+#| fig-width: 10
+#| fig-asp: 0.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+hls_by_h %>%
+  ggplot(aes(S, L, fill = hex)) +
+  geom_raster(na.rm = TRUE) +
+  scale_fill_identity() +
+  scale_x_continuous(
+    name = "saturation S",
+    breaks = (0:4)*.25,
+    labels = c("0", "", "0.5", "", "")
+  ) +
+  scale_y_continuous(
+    name = "lightness L",
+    breaks = (0:4)*.25,
+    labels = c("0", "", "0.5", "", "1.0")
+  ) +
+  facet_wrap(
+    vars(H),
+    ncol = 6,
+    labeller = as_labeller(function(x) glue::glue("hue H = {x}"))
+  ) +
+  coord_fixed(expand = FALSE) +
+  theme_colorspace() +
+  theme(axis.ticks.length = grid::unit(3, "pt"))
+```
+:::
+
+::: {.fragment .move-up-2em}
+Problem: For high saturation, perceived lightness changes with hue
+:::
+
+## The Luv color space
+
+:::: {.columns .small-font}
+
+::: {.column width="50%"}
+luminance L (0-100):<br>&emsp;&emsp;amount of light emitted
+
+green/red axis u (approx. -100 to 100):<br>&emsp;&emsp;amount of green vs. red
+
+blue/yellow axis v (approx. -100 to 100):<br>&emsp;&emsp;amount of blue vs. yellow
+:::
+
+::: {.column width="50%" .move-up-1em}
+```{r}
+#| label: luv-viz-single
+#| fig-width: 5
+#| fig-asp: 1
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+luv_by_l <- expand_grid(
+  L = seq(20, 90, by = 10),
+  U = seq(-80, 170, by = 1),
+  V = seq(-145, 110, by = 1),
+)
+
+luv_by_l$hex <- hex(LUV(as.matrix(luv_by_l)))
+
+p_luv <- luv_by_l %>%
+  filter(L == 60) %>%
+  ggplot(aes(U, V)) +
+  geom_raster(aes(fill = hex), na.rm = TRUE) +
+  scale_x_continuous(
+    name = "green/red axis u",
+    breaks = (-3:3)*50,
+    labels = c("", "-100", "-50", "0", "50", "100", "")
+  ) +
+  scale_y_continuous(
+    name = "blue/yellow axis v",
+    breaks = (-3:3)*50,
+    labels = c("", "-100", "-50", "0", "50", "100", "")
+  ) +
+  scale_fill_identity() +
+  facet_wrap(
+    vars(L),
+    ncol = 4,
+    labeller = as_labeller(function(x) glue::glue("luminance L = {x}"))
+  ) +
+  coord_fixed(
+    expand = FALSE,
+    xlim = c(-65, 145),
+    ylim = c(-120, 80)
+  ) +
+  theme_colorspace(16)
+
+p_luv
+```
+:::
+
+::::
+
+## The Luv space in polar coordinates: HCL
+
+:::: {.columns .small-font}
+
+::: {.column width="50%"}
+hue H (0-360):<br>&emsp;&emsp;hue of the color
+
+luminance L (0-100):<br>&emsp;&emsp;amount of light emitted
+
+chroma C ():<br>&emsp;&emsp;colorfulness of the color
+:::
+
+::: {.column width="50%" .move-up-1em}
+```{r}
+#| label: hcl-viz-single
+#| fig-width: 5
+#| fig-asp: 1
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+rC <- 60
+hue_df <- tibble(
+  t = seq(0, 2*pi, length.out = 100),
+  U = rC*sin(t),
+  V = rC*cos(t)
+)
+
+chroma_df <- tibble(
+  U = 4*rC*sin(pi/3),
+  V = 4*rC*cos(pi/3)
+)
+
+labels_df <- tibble(
+  U = c(1.4*rC*sin(pi/3), 1.01*rC*sin(.8*pi)),
+  V = c(1.4*rC*cos(pi/3), 1.01*rC*cos(.8*pi)),
+  label = c("chroma C", "hue L")
+)
+
+p_luv +
+  geom_segment(
+    data = chroma_df,
+    aes(x = 0, y = 0, xend = U, yend = V),
+    linewidth = 0.2
+  ) +
+  geom_path(
+    data = hue_df,
+    linewidth = 0.2
+  ) +
+  geom_text(
+    data = labels_df,
+    aes(label = label),
+    size = 16*(12/14)/.pt,
+    hjust = 0, vjust = 1
+  )
+```
+:::
+
+::::
+
+## The HCL color space: Hue-Chroma plane
+
+```{r}
+#| label: hcl-hue-chroma-plane
+#| fig-width: 10
+#| fig-asp: 0.6
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+luv_by_l %>%
+  ggplot(aes(U, V, fill = hex)) +
+  geom_raster(na.rm = TRUE) +
+  scale_x_continuous(
+    name = "green/red axis u",
+    breaks = (-3:3)*50,
+    labels = c("", "-100", "", "0", "", "100", "")
+  ) +
+  scale_y_continuous(
+    name = "blue/yellow axis v",
+    breaks = (-3:3)*50,
+    labels = c("", "-100", "", "0", "", "100", "")
+  ) +
+  scale_fill_identity() +
+  facet_wrap(
+    vars(L),
+    ncol = 4,
+    labeller = as_labeller(function(x) glue::glue("luminance L = {x}"))
+  ) +
+  coord_fixed(expand = FALSE) +
+  theme_colorspace()
+```
+
+## The HCL color space: Luminance-Chroma plane
+
+```{r}
+#| label: hcl-chroma-luminance-plane
+#| fig-width: 9
+#| fig-asp: 0.6
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+hcl_by_h <- expand_grid(
+  L = seq(1, 99, by = 0.5),
+  C = seq(0, 155, by = 1),
+  H = seq(0, 330, by = 30)
+)
+
+hcl_by_h$hex <- hex(polarLUV(as.matrix(hcl_by_h)))
+
+hcl_by_h %>%
+  ggplot(aes(C, L, fill = hex)) +
+  geom_raster(na.rm = TRUE) +
+  scale_fill_identity() +
+  scale_x_continuous(
+    name = "chroma C",
+    breaks = (0:3)*50,
+    labels = c("0", "", "100", "")
+  ) +
+  scale_y_continuous(
+    name = "luminance L",
+    limits = c(0, 100),
+    breaks = (0:4)*25,
+    labels = c("0", "", "50", "", "100")
+  ) +
+  facet_wrap(
+    vars(H),
+    ncol = 4,
+    labeller = as_labeller(function(x) glue::glue("hue H = {x}"))
+  ) +
+  coord_fixed(expand = FALSE) +
+  theme_colorspace()
+```
+
+<!-- Segment ends here -->
+
+# Explore HCL colors interactively
+
+## We can explore HCL colors from R
+
+```r
+colorspace::choose_color()
+```
+
+![](../assets/color-spaces/choose_color1.png){.fragment .absolute  top="5%" left="45%" width="55%" style="box-shadow: 3px 5px 3px 1px #00000080;"}
+
+![](../assets/color-spaces/choose_color2.png){.fragment .absolute  top="20%" left="0%" width="55%" style="box-shadow: 3px 5px 3px 1px #00000080;"}
+
+![](../assets/color-spaces/choose_color3.png){.fragment .absolute  top="35%" left="25%" width="55%" style="box-shadow: 3px 5px 3px 1px #00000080;"}
+
+## We can explore HCL colors from R
+
+The app is also available on the class website
+
+::: {.move-up-1em}
+![](../assets/color-spaces/class-website.png){fig-align="center" width="65%"}
+:::
+
+::: {.move-up-2em}
+<a href="https://wilkelab.org/SDS366/choose-color/" target="_blank">Open color chooser app</a>
+:::
+
+<!-- Segment ends here -->
+
+# A few considerations when choosing colors
+
+## 1. Avoid high chroma
+
+:::: {.columns}
+
+::: {.fragment .column width="50%"}
+High chroma: Toys
+
+![](../assets/color-spaces/toys-image.jpg){width="100%" style="box-shadow: 3px 5px 3px 1px #00000080;"}
+:::
+
+::: {.fragment .column width="50%"}
+Low chroma: Elegance
+
+![](../assets/color-spaces/home-interior.jpg){width="90%" style="box-shadow: 3px 5px 3px 1px #00000080;"}
+:::
+
+::::
+
+::: {.notes}
+[Toys photo by Pixabay from Pexels](https://www.pexels.com/photo/super-mario-and-yoshi-plastic-figure-163077/)
+
+[Home interior photo by Saviesa Home from Pexels](https://www.pexels.com/photo/kitchen-island-2089698/)
+:::
+
+## 2. Be aware of color-vision deficiency
+
+::: {.fragment}
+5%–8% of men are color blind!
+:::
+
+::: {.fragment}
+![](https://clauswilke.com/dataviz/pitfalls_of_color_use_files/figure-html/red-green-cvd-sim-1.png){width="100%"}
+
+Red-green color-vision deficiency is the most common
+:::
+
+## 2. Be aware of color-vision deficiency
+
+5%–8% of men are color blind!
+
+![](https://clauswilke.com/dataviz/pitfalls_of_color_use_files/figure-html/blue-green-cvd-sim-1.png){width="100%"}
+
+Blue-green color-vision deficiency is rare but does occur
+
+## 2. Be aware of color-vision deficiency
+
+Choose colors that can be distinguished with CVD
+
+![](https://clauswilke.com/dataviz/pitfalls_of_color_use_files/figure-html/PiYG-cvd-sim-1.png){width="100%"}
+
+## Consider using the Okabe-Ito scale
+
+![](https://clauswilke.com/dataviz/pitfalls_of_color_use_files/figure-html/palette-Okabe-Ito-1.png){width="100%}
+
+::: {.smaller-font }
+Name           | Hex code &nbsp;&nbsp; | R, G, B (0-255)
+:----------    | :-------  | :--------
+orange         | #E69F00   | 230, 159, 0
+sky blue	     | #56B4E9   | 86, 180, 233
+bluish green   | #009E73   | 0, 158, 115
+yellow	       | #F0E442   | 240, 228, 66
+blue	         | #0072B2   | 0, 114, 178
+vermilion	     | #D55E00   | 213, 94, 0
+reddish purple | #CC79A7   | 204, 121, 167
+black	         | #000000   | 0, 0, 0
+:::
+
+## CVD is worse for thin lines and tiny dots
+
+![](https://clauswilke.com/dataviz/pitfalls_of_color_use_files/figure-html/colors-thin-lines-1.png){width="65%" fig-align="center"}
+
+## When in doubt, run CVD simulations
+
+::: {.small-font}
+Original
+:::
+
+::: {.move-up-1em}
+![](https://clauswilke.com/dataviz/redundant_coding_files/figure-html/iris-scatter-three-shapes-1.png){width="50%" style="box-shadow: 3px 5px 3px 1px #00000080; padding: 8px;"}
+:::
+
+![](https://clauswilke.com/dataviz/redundant_coding_files/figure-html/iris-scatter-three-shapes-cvd-1.png){.fragment .absolute top="18%" left="25%" width="70%" style="box-shadow: 3px 5px 3px 1px #00000080; padding: 16px 8px 8px 16px; background: white;"}
+
+<!-- Segment ends here -->
+
+## Further reading
+
+- Fundamentals of Data Visualization: [Chapter 19: Common pitfalls of color use](https://clauswilke.com/dataviz/color-pitfalls.html)
+- Wikipedia: [HSL and HSV](https://en.wikipedia.org/wiki/HSL_and_HSV)
+- **colorspace** package documentation: [Color Spaces](https://colorspace.r-forge.r-project.org/articles/color_spaces.html)
+- **colorspace** package documentation: [Apps for Choosing Colors and Palettes Interactively](https://colorspace.r-forge.r-project.org/articles/hclwizard.html)
+
