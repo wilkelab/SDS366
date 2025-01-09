@@ -41,7 +41,7 @@ website:
             href: slides/visualizing-distributions-2.qmd
           - text: "Class 7: Color scales"
             href: slides/color-scales.qmd
-          - text: "Class 7: Color spaces and color-vision deficiency"
+          - text: "Class 8: Color spaces and color-vision deficiency"
             href: slides/color-spaces.qmd
           - text: "Class 13: Figure design"
             href: slides/figure-design.qmd
