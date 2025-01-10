@@ -76,6 +76,8 @@ website:
         - text: "Color chooser app"
           href: apps/bin/choose-color/index.html
           target: "_blank"
+        - text: "CVD simulations"
+          href: apps/bin/cvd-emulator/index.html
         
     tools:
       - icon: github

@@ -3,9 +3,7 @@
 #
 # To deploy:
 # shinylive::export("apps/src/choose-color", "apps/bin/choose-color")
-# file.copy(from="apps/src/choose-color/hclcolorpicker.css", to="apps/bin/choose-color") 
-# file.copy(from="apps/src/choose-color/hclcolorpicker_darkmode.css", to="apps/bin/choose-color") 
-
+# system("cp apps/src/choose-color/*.css apps/bin/choose-color/")
 
 #library(shiny)
 #library(shinyjs)
