@@ -4,12 +4,12 @@ project:
     - "*.qmd"
     - "!datasets/"
     - "!assignments/"
-    - "!choose-color/"
+    - "!apps/"
   resources:
     - "assets/"
     - "datasets/"
     - "assignments/"
-    - "choose-color/"
+    - "apps/bin/"
 
 website:
   title: "SDS 366"
@@ -70,8 +70,11 @@ website:
         - text: "Textbook"
           href: "https://clauswilke.com/dataviz"
           target: "_blank"
+        - text: "Edupod"
+          href: "https://edupod.cns.utexas.edu"
+          target: "_blank"
         - text: "Color chooser app"
-          href: choose-color/index.html
+          href: apps/bin/choose-color/index.html
           target: "_blank"
         
     tools:
