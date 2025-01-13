@@ -1218,6 +1218,27 @@
     "text": "Computing requirements\nFor students enrolled in this course, you only need a working web browser to access the edupod server, located at: https://edupod.cns.utexas.edu/\nIf you are using the edupod server, stop reading here. Everything is pre-installed and no further action is needed.\nTo run any of the materials locally on your own machine, you will need the following:\n\nA recent version of R, download from here.\nA recent version of RStudio, download from here, OR a recent version of Positron, download from here.\nThe following R packages:\nbroom, cluster, colorspace, cowplot, gapminder, GGally, gganimate, ggiraph, ggdendro, ggdist, ggforce, ggplot2movies, ggrepel, ggridges, ggthemes, gifski, glue, knitr, learnr, naniar, margins, MASS, Matrix, nycflights13, palmerpenguins, patchwork, quarto, rmarkdown, rnaturalearth, rnaturalearthhires, scales, sf, sp, tidyverse, transformr, tsne, umap\n\nYou can install all required R packages at once by running the following code in the R command line:\n# first run this command:\ninstall.packages(\n  c(\n    \"broom\", \"cluster\", \"colorspace\", \"cowplot\", \"gapminder\", \n    \"GGally\", \"gganimate\", \"ggiraph\", \"ggdendro\", \"ggdist\", \"ggforce\",\n    \"ggplot2movies\", \"ggrepel\", \"ggridges\", \"ggthemes\", \"gifski\", \"glue\",\n    \"knitr\", \"learnr\", \"naniar\", \"margins\", \"MASS\", \"Matrix\",\n    \"nycflights13\", \"palmerpenguins\", \"patchwork\", \"quarto\", \"rmarkdown\",\n    \"rnaturalearth\", \"scales\", \"sf\", \"sp\", \"tidyverse\",\n    \"transformr\", \"tsne\", \"umap\"\n  )\n)\n\n# then run this command:\ninstall.packages(\n  \"rnaturalearthhires\", repos = \"https://packages.ropensci.org\", type = \"source\"\n)"
   },
   {
+    "objectID": "accommodations.html",
+    "href": "accommodations.html",
+    "title": "Disability and Access Accommodations",
+    "section": "",
+    "text": "Some students receive special course accommodations from Disability and Access. Below is a list of common accommodation requests and my explanation of how I usually handle them. If you have any questions regarding any of these accommodations and/or have additional requests, please reach out to me on Canvas, in office hours, or after class and we can discuss."
+  },
+  {
+    "objectID": "accommodations.html#classroom-accommodations",
+    "href": "accommodations.html#classroom-accommodations",
+    "title": "Disability and Access Accommodations",
+    "section": "Classroom Accommodations",
+    "text": "Classroom Accommodations\n\nUse of technology to take notes during class. You are welcome to use any note-taking technology you find helpful. To the extent that your note-taking technology creates any sort of recordings of class materials, see the next point.\nUse of technology to audio record during class. You are welcome to record audio, for your own personal use as a study aid. Audio recordings should not be shared or otherwise made available to third parties. Be aware that the section in the syllabus about class recordings applies to any personal recordings you may be making.\nA copy of class notes from a volunteer. I am happy to ask whether there are any volunteers willing to share class notes.\nAccess to materials shown in class. All materials are posted either on Canvas or on the class website, https://wilkelab.org/SDS366.\nFlexibility with deadlines. The amount of flexibility we can provide is strongly constrained by the class structure. We cannot accept homework submissions after the assignment has been graded and solutions have been released. This will typically happen 2-3 days after the original deadline. We cannot accept project submissions after the project has been released for peer grading. This will happen 2 days after the original deadline. In all cases, if you need a deadline extension please reach out on Canvas as early as possible (ideally before the deadline has passed) and ask for a specific amount of time you would like to have added to the deadline (example: “Could I have a deadline extension of one day?”). Mention in your message that you have an approved accommodation for flexibility with deadlines. You do not need to explain why you need the extension.\nPlease note that deadline extensions should be occasional, one-off events. I will not approve a blanket deadline extension for all assingments throughout the semester. I also encourage you to manage your deadlines proactively. Materials for homework assignments will be posted at least one week before the deadline, and materials for projects will be posted at least two weeks before the deadline. This should give you plenty of time to complete your assignments early and not push things to the last minute.\nFlexibility with attendance. Regular attendance is a component of the overall grade in this class. However, you are not required to attend every single lecture. You can make up missed lectures by participating in the online discussions on Canvas instead. See the participation component of the class grade described in the syllabus."
+  },
+  {
+    "objectID": "accommodations.html#testing-accommodations",
+    "href": "accommodations.html#testing-accommodations",
+    "title": "Disability and Access Accommodations",
+    "section": "Testing accommodations",
+    "text": "Testing accommodations\nThis class does not have any timed exams or tests and therefore testing accommodations do not apply."
+  },
+  {
     "objectID": "schedule.html",
     "href": "schedule.html",
     "title": "SDS 366 Schedule Spring 2025",
