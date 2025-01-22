@@ -3,8 +3,6 @@ title: "Introduction to R"
 author: "Claus O. Wilke"
 format: live-html
 engine: knitr
-webr:
-  render-df: gt-interactive
 ---
 
 {{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
@@ -86,7 +84,7 @@ c("orange", "banana", "grapefruit")
 :::
 :::
 
-Mathematical operations are always vectorized, so you can for example multiply all values in a vector by the same number or calculate multiple square roots at once. You can also do mathematical operations with two (or more vectors) and the operation will be element-wise. If the numbers of elements don't match you will get a warning but R will still give you a result. However, it's generally best to avoid combining vectors with mismatched lengths, as the results can be non-intuitive.
+Mathematical operations are always vectorized, so you can for example multiply all values in a vector by the same number or calculate multiple square roots at once. You can also do mathematical operations with two (or more) vectors and the operation will be element-wise. If the numbers of elements don't match you will get a warning but R will still give you a result. However, it's generally best to avoid combining vectors with mismatched lengths, as the results can be non-intuitive.
 
 ```{webr}
 #| edit: false
@@ -96,7 +94,7 @@ sqrt(c(4, 9, 16, 25))
 1:5 + c(1, 1, 2, 2) # mismatch in the number of elements
 ```
 
-Try this out. Make a vector of all the squares of the numbers from 1 to 5. Also make a vector of the values 0.25, 0.5, 0.75 via a mathematical expression.
+Try this out. Make a vector of all the squares of the numbers from 1 to 5. Also make a vector of the values 0.25, 0.5, 0.75, by using a vectorized mathematical expression.
 
 ```{webr} 
 #| exercise: vectors-math
@@ -111,10 +109,146 @@ Try this out. Make a vector of all the squares of the numbers from 1 to 5. Also 
 :::
 :::
 
+R also has logical values `TRUE` and `FALSE` (written in all capitals). Logical values also are vectorized, and they can be created by vectorized comparisons. This is very important for data analysis tasks.
+
+```{webr}
+#| edit: false
+c(TRUE, FALSE, FALSE, TRUE)
+(1:10) > 5 
+c(1, 2, 1, 2) == 2
+```
+
+Try this out. Manually create a vector of logical values. Then create a vector of logical values via comparison.
+
+```{webr} 
+#| exercise: logicals
+```
+
+::: { .solution exercise="logicals" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+c(TRUE, TRUE, TRUE, FALSE)
+(1:10) <= 5
+```
+:::
+:::
+
+You can combine vectors of logical values with `&` (logical AND) and `|` (logical OR). You can negate logical values with `!` (logical NOT). 
+
+```{webr}
+#| edit: false
+!(c(1, 2, 1, 2) == 2)
+c(TRUE, TRUE) & c(TRUE, FALSE)
+c(FALSE, TRUE) | c(TRUE, FALSE)
+```
+
+Try this out. Combine some logical vectors with `&` and `|`. Also negate a logical vector.
+
+```{webr} 
+#| exercise: logicals2
+```
+
+::: { .solution exercise="logicals2" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+!c(FALSE, TRUE) & c(TRUE, FALSE)
+c(FALSE, TRUE) | c(TRUE, FALSE)
+```
+:::
+:::
+
+
 ## Mising values
+
+R supports the concept of missing values. Missing values are data values that don't exist. This is a common issue in real-world data. For example, consider a scenario where people are asked to fill out a questionaire about various aspects of who they are and where they live, and one question asks about where they were born, and some people simply don't answer that question. The result is a missing value, and we need the ability to express this concept.
+
+In R, missing values are denoted by `NA`. You can use `NA` as a value for any vector.
+
+```{webr}
+#| edit: false
+c(1, 2, NA, 4) # missing value in position 3
+c("red", NA, "green", NA) # missing values in positions 2 and 4
+```
+Note that the `NA` indicating a missing value is not enclosed in quotes, even for vectors of words (i.e, character strings).
+
+In computations, missing values remain missing. You can check for missingness via `is.na()`.
+```{webr}
+#| edit: false
+5*c(1, 2, NA, 4)
+is.na(c(1, 2, NA, 4))
+```
+
+Try this out. Make both a numerical and a character vector with some missing values. Also test for the missing positions in one of the vectors you made.
+
+```{webr} 
+#| exercise: NA
+```
+
+::: { .solution exercise="NA" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+c(NA, 1, NA, 1)
+c("banana", NA, "orange", NA)
+is.na(c("banana", NA, "orange", NA))
+```
+:::
+:::
 
 ## Variables and functions
 
+Any data values or objects that you are working with in R can be assigned to variables to be reused later. Assignment in R is expressed with the `<-` operator. (You can also assign with `=` but this is generally discouraged)
+
+```{webr}
+#| edit: false
+names <- c("John", "Lily", "Mark", "Anna")
+names
+names == "Anna"
+
+numbers <- c(1, 4, 5, 2)
+5*numbers
+exp(numbers)
+```
+
+Try this out. Assign the number 5 to a variable called `foo` and calculate the cosine of this number. 
+```{webr} 
+#| exercise: variables
+```
+
+::: { .solution exercise="variables" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+foo <- 5
+cos(foo)
+```
+:::
+:::
+
+We commonly use and interact with functions in R. Functions are a way to store code and reuse it at a later stage. To call a function (which means to execute the code the function stores), you write the name of the variable storing the function followed by parentheses, as in `sin()` for the sine function. Inside the parentheses we can place values that are called "arguments", as in `sin(0.5)`. The arguments turn into variables that are used inside the function body.
+
+In R, function arguments are always named, which means you can write the name of the argument when you provide the argument value, as in `sin(x = 0.5)`. This is helpful for functions with many arguments, as without providing the argument names it can be confusing which value gets assigned to which argument. If you don't name the function arguments, then values are assigned to arguments in order (positional matching), similarly to most other programming languages.
+
+In the following example, the function `example_fun()` takes three arguments, `a`, `b`, and `c`, and each argument has a default value that will be used in case the argument is not provided when the function is called. The function then simply writes out the values of the arguments. This allows us to explore how argument matching works in R.
+
+```{webr}
+#| edit: false
+# function definition
+example_fun <- function(a = "default a", b = "default b", c = "default c") {
+  cat("a:", a, "\nb:", b, "\nc:", c, "\n")
+}
+
+# using the function
+example_fun()
+example_fun(1, 2)
+example_fun(b = 2)
+example_fun(c = 1, b = 2)
+```
+
+Now try this out yourself. Using the function `example_fun()` defined above, see what happens when you provide different arguments, positional or named.
+
+```{webr} 
+#| exercise: functions
+example_fun(___)
+```
 
 ## Packages
 
@@ -144,16 +278,106 @@ library(cowplot)
 :::
 :::
 
-## Data frames
-
-
-
 ## Numerical and logical indexing
 
+R has a variety of ways to extract specific values or subsets of a vector. 
+
+```{webr}
+#| edit: false
+names <- c("John", "Lily", "Mark", "Anna")
+names[2]
+names[1:3]
+names[c(1, 3)]
+
+```
 In R, the first element of a vector is number 1, not number 0 as it is in most other languages (Python, C, Rust, etc.).
+
+Negative indices *remove* the respective elements.
+
+```{webr}
+#| edit: false
+names[-2]
+names[-(1:3)]
+names[c(-1, -3)]
+```
+
+```{webr}
+#| edit: false
+numbers <- c(1, 7, 4)
+numbers[c(TRUE, FALSE, TRUE)]
+numbers[numbers > 5]
+```
+
+
+
+**still to do**
+
+
+## Data frames
+
+A core concept of R is the data frame, which holds data in tabular form. A data frame is made up of multiple columns that all have the same number of elements. Different columns can be of different types.
+
+There are a variety of ways to create a data frame. We will usually use the `tibble()` function from the **tidyverse** package.
+
+```{webr}
+#| edit: false
+tibble(
+  name = c("John", "Lily", "Mark", "Anna"),
+  age = c(25, 26, 15, 19),
+  hometown = c("Austin", "Houston", NA, "San Antonio")
+)
+```
+
+Note how we can assign names to the columns via named arguments in the `tibble()` function.
+
+Try this out. Create a tibble of your own.
+
+```{webr} 
+#| exercise: tibble
+```
+
 
 ## Flow control
 
 R has standard flow-control features such as `for` loops and `if`/`else` statements. These are almost never needed in data analysis and therefore I will not cover them here. If you find yourself wanting to use those constructs chances are you are replicating procedural programming patterns you have learned in other languages but that are not the most elegant way to solve the given data analysis problem. I would encourage you to think about how to solve your problem using vectorized or functional programming patterns instead. (Functional programming patterns such as `map()` go beyond this basic tutorial but will be covered later in this class.)
 
-*Discuss `if_else()`.*
+A concept closely related to flow control is the `if_else()` function from the **tidyverse** package. With `if_else()`, you can run a comparison at each position in a vector and then create a new vector whose elements depend on the outcome of each comparison.
+
+For example, we can replace each occurrence of the word "orange" by "citrus" like so:
+
+```{webr}
+#| edit: false
+fruit <- c("orange", "banana", "apple", "orange", "grape")
+if_else(fruit == "orange", "citrus", fruit)
+```
+
+The first argument to `if_else()` is the logical condition you want to execute, the second argument is the resulting value if the condition is true, and the third argument is the resulting value if the condition is false.
+
+Try this out. In the following example, replace all numbers greater than 5 with the number 5 in the vector `numbers`.
+
+```{webr} 
+#| exercise: if-else
+numbers <- c(10, 2, 4, 7, 6, -1, -8)
+if_else(___)
+```
+
+::: { .hint exercise="if-else" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+numbers <- c(10, 2, 4, 7, 6, -1, -8)
+if_else(numbers > 5, ___, ___)
+```
+:::
+:::
+
+
+::: { .solution exercise="if-else" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+numbers <- c(10, 2, 4, 7, 6, -1, -8)
+if_else(numbers > 5, 5, numbers)
+```
+:::
+:::
+
+
