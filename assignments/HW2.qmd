@@ -1,0 +1,61 @@
+---
+title: "Homework 2"
+format:
+  typst:
+    fig-format: png
+    fig-dpi: 300
+    fig-width: 6
+    fig-height: 4
+editor: visual
+---
+
+```{r}
+#| echo: false
+#| message: false
+# !! Do not edit this code chunk !!
+library(tidyverse)
+library(palmerpenguins)
+
+# data prep:
+txhouse <- txhousing |>
+  filter(city %in% c('Austin', 'Houston', 'San Antonio', 'Dallas')) |>
+  filter(year %in% c('2000', '2005', '2010', '2015')) |>
+  group_by(city, year) |>
+  summarize(total_sales = sum(sales))
+
+penguins2 <- na.omit(penguins)
+```
+
+**This homework is due on Jan. 30, 2025 at 11:00pm. Please submit as a pdf file on Canvas.**
+
+**Problem 1: (6 pts)** For this problem you will work with the dataset `txhouse` that has been derived from the `txhousing` dataset provided by **ggplot2**. See here for details of the original dataset: <https://ggplot2.tidyverse.org/reference/txhousing.html>. `txhouse` contains three columns: `city` (listing four Texas cities), `year` (containing four years between 2000 and 2015) and `total_sales` indicating the total number of sales for the specified year and city.
+
+```{r}
+txhouse
+```
+
+Use ggplot to make a bar plot of the total housing sales (column `total_sales`) for each `year`, color the bar borders white, and fill the bars by `city`. 
+
+```{r}
+# Your code goes here.
+```
+
+**Problem 2: (8 pts)** Modify the plot from Problem 1 by placing bars for different cities side-by-side, rather than stacked. Also, reorder the bars within each year by descending order of total sales. See the slides from the lecture on visualizing amounts for hints on how to do this.
+
+(You do not need to clean up the title of the legend or any of the axis labels. This problem is entirely about bar placement.)
+
+```{r}
+# Your code goes here.
+```
+
+**Problem 3: (6 pts)** For this problem you will be working with the `penguins2` dataset, which is a slightly modified version of the `penguins` dataset from the **palmerpenguins** package.
+
+```{r}
+penguins2
+```
+
+Make a scatter plot of bill length (column `bill_length_mm`) versus body mass (column `body_mass_g`), and color the points by island (column `island`). Use scale functions to adjust the axis title for both axes. For the bill length axis, also adjust the limits from 28 to 72 and place axis ticks at 30, 50, and 70.
+
+```{r}
+# Your code goes here.
+```

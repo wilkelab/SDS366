@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.39">
 
   <meta name="author" content="Claus O. Wilke">
-  <meta name="dcterms.date" content="2025-01-13">
+  <meta name="dcterms.date" content="2025-01-22">
   <title>SDS 366 – Coordinate systems and axes</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -206,7 +206,7 @@ Claus O. Wilke
 </div>
 </div>
 
-  <p class="date">2025-01-13</p>
+  <p class="date">2025-01-22</p>
 </section>
 <section id="most-data-visualizations-use-cartesian-coordinates" class="slide level2">
 <h2>Most data visualizations use Cartesian coordinates</h2>
@@ -417,7 +417,7 @@ Claus O. Wilke
 </div>
 <div class="smaller-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>tx_counties <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://wilkelab.org/SDS375/datasets/US_census.csv"</span>) <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>tx_counties <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://wilkelab.org/SDS366/datasets/US_census.csv"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb2-2"><a></a>  <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">"Texas"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb2-3"><a></a>  <span class="fu">mutate</span>(<span class="at">popratio =</span> pop2010<span class="sc">/</span><span class="fu">median</span>(pop2010)) <span class="sc">|&gt;</span></span>
 <span id="cb2-4"><a></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(popratio)) <span class="sc">|&gt;</span></span>
@@ -431,7 +431,7 @@ Claus O. Wilke
 </div>
 <div class="smaller-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>temperatures <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://wilkelab.org/SDS375/datasets/tempnormals.csv"</span>) <span class="sc">|&gt;</span></span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>temperatures <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://wilkelab.org/SDS366/datasets/tempnormals.csv"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb3-2"><a></a>  <span class="fu">mutate</span>(</span>
 <span id="cb3-3"><a></a>    <span class="at">location =</span> <span class="fu">factor</span>(</span>
 <span id="cb3-4"><a></a>      location, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Death Valley"</span>, <span class="st">"Houston"</span>, <span class="st">"San Diego"</span>, <span class="st">"Chicago"</span>)</span>

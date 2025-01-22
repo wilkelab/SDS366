@@ -1250,21 +1250,21 @@
     "href": "schedule.html",
     "title": "SDS 366 Schedule Spring 2025",
     "section": "",
-    "text": "Materials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
+    "text": "Materials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I\n\nSlides Part II\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
   },
   {
     "objectID": "schedule.html#lectures",
     "href": "schedule.html#lectures",
     "title": "SDS 366 Schedule Spring 2025",
     "section": "",
-    "text": "Materials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
+    "text": "Materials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I\n\nSlides Part II\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
   },
   {
     "objectID": "schedule.html#homeworks",
     "href": "schedule.html#homeworks",
     "title": "SDS 366 Schedule Spring 2025",
     "section": "Homeworks",
-    "text": "Homeworks\nAll homeworks are due by 11:00pm on the day they are due. Homeworks need to be submitted as pdf files on Canvas.\n\nHomework 1 (due Jan 23, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 2 (due Jan 30, 2025)\n\n\nHomework 3 (due Feb 6, 2025)\n\n\nHomework 4 (due Feb 27, 2025)\n\n\nHomework 5 (due Mar 6, 2025)\n\n\nHomework 6 (due Apr 3, 2025)\n\n\nHomework 7 (due Apr 10, 2025)"
+    "text": "Homeworks\nAll homeworks are due by 11:00pm on the day they are due. Homeworks need to be submitted as pdf files on Canvas.\n\nHomework 1 (due Jan 23, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 2 (due Jan 30, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 3 (due Feb 6, 2025)\n\n\nHomework 4 (due Feb 27, 2025)\n\n\nHomework 5 (due Mar 6, 2025)\n\n\nHomework 6 (due Apr 3, 2025)\n\n\nHomework 7 (due Apr 10, 2025)"
   },
   {
     "objectID": "schedule.html#projects",
@@ -1621,7 +1621,7 @@
     "href": "slides/coordinate-systems-axes.html#getting-the-data",
     "title": "Coordinate systems and axes",
     "section": "Getting the data",
-    "text": "Getting the data\n\nThe boxoffice dataset:\n\n\n\nboxoffice &lt;- tibble(\n  rank = 1:5,\n  title = c(\"Star Wars\", \"Jumanji\", \"Pitch Perfect 3\", \"Greatest Showman\", \"Ferdinand\"),\n  amount = c(71.57, 36.17, 19.93, 8.81, 7.32) # million USD\n)\n\n\n\n\nThe tx_counties dataset:\n\n\n\ntx_counties &lt;- read_csv(\"https://wilkelab.org/SDS375/datasets/US_census.csv\") |&gt; \n  filter(state == \"Texas\") |&gt;\n  mutate(popratio = pop2010/median(pop2010)) |&gt;\n  arrange(desc(popratio)) |&gt;\n  mutate(index = 1:n())\n\n\n\n\n\nThe temperatures dataset:\n\n\n\ntemperatures &lt;- read_csv(\"https://wilkelab.org/SDS375/datasets/tempnormals.csv\") |&gt;\n  mutate(\n    location = factor(\n      location, levels = c(\"Death Valley\", \"Houston\", \"San Diego\", \"Chicago\")\n    )\n  ) |&gt;\n  select(location, station_id, day_of_year, month, temperature)"
+    "text": "Getting the data\n\nThe boxoffice dataset:\n\n\n\nboxoffice &lt;- tibble(\n  rank = 1:5,\n  title = c(\"Star Wars\", \"Jumanji\", \"Pitch Perfect 3\", \"Greatest Showman\", \"Ferdinand\"),\n  amount = c(71.57, 36.17, 19.93, 8.81, 7.32) # million USD\n)\n\n\n\n\nThe tx_counties dataset:\n\n\n\ntx_counties &lt;- read_csv(\"https://wilkelab.org/SDS366/datasets/US_census.csv\") |&gt; \n  filter(state == \"Texas\") |&gt;\n  mutate(popratio = pop2010/median(pop2010)) |&gt;\n  arrange(desc(popratio)) |&gt;\n  mutate(index = 1:n())\n\n\n\n\n\nThe temperatures dataset:\n\n\n\ntemperatures &lt;- read_csv(\"https://wilkelab.org/SDS366/datasets/tempnormals.csv\") |&gt;\n  mutate(\n    location = factor(\n      location, levels = c(\"Death Valley\", \"Houston\", \"San Diego\", \"Chicago\")\n    )\n  ) |&gt;\n  select(location, station_id, day_of_year, month, temperature)"
   },
   {
     "objectID": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes",

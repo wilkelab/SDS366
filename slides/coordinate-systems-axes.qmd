@@ -570,7 +570,7 @@ The `tx_counties` dataset:
 ```{r}
 #| echo: true
 #| message: false
-tx_counties <- read_csv("https://wilkelab.org/SDS375/datasets/US_census.csv") |> 
+tx_counties <- read_csv("https://wilkelab.org/SDS366/datasets/US_census.csv") |> 
   filter(state == "Texas") |>
   mutate(popratio = pop2010/median(pop2010)) |>
   arrange(desc(popratio)) |>
@@ -588,7 +588,7 @@ The `temperatures` dataset:
 ```{r}
 #| echo: true
 #| message: false
-temperatures <- read_csv("https://wilkelab.org/SDS375/datasets/tempnormals.csv") |>
+temperatures <- read_csv("https://wilkelab.org/SDS366/datasets/tempnormals.csv") |>
   mutate(
     location = factor(
       location, levels = c("Death Valley", "Houston", "San Diego", "Chicago")

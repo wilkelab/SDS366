@@ -19,6 +19,29 @@ format: html
 - [Slides](slides/aesthetic-mappings.qmd)  
 - [Worksheet](worksheets/aesthetic-mappings.qmd)
 
+### 3. Jan 23, 2024—Visualizing amounts/telling a story
+
+<p class="nospace">Materials:</p>
+
+- [Slides Part I](slides/visualizing-amounts.qmd)  
+- [Slides Part II](slides/telling-a-story.qmd)  
+- [Worksheet](worksheets/visualizing-amounts.qmd)
+
+### 4. Jan 28, 2024—Coordinate systems and axes
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/coordinate-systems-axes.qmd)  
+- [Worksheet](worksheets/coordinate-systems-axes.qmd)
+
+### 5. Jan 30, 2024—Visualizing distributions 1
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/visualizing-distributions-1.qmd)  
+- [Worksheet](worksheets/visualizing-distributions-1.qmd)
+
+
 ## Homeworks
 
 All homeworks are due by 11:00pm on the day they are due. Homeworks need to be submitted as pdf files on Canvas.
@@ -31,6 +54,11 @@ All homeworks are due by 11:00pm on the day they are due. Homeworks need to be s
 - [PDF](assignments/HW1.pdf)
 
 ### Homework 2 (due Jan 30, 2025)
+
+<p class="nospace">Materials:</p>
+
+- [Quarto template](assignments/HW2.qmd)
+- [PDF](assignments/HW2.pdf)
 
 ### Homework 3 (due Feb 6, 2025)
 
