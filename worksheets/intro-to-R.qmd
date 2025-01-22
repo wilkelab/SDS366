@@ -1,0 +1,159 @@
+---
+title: "Introduction to R"
+author: "Claus O. Wilke"
+format: live-html
+engine: knitr
+webr:
+  render-df: gt-interactive
+---
+
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+
+```{webr}
+#| warning: false
+#| edit: false
+#| echo: false
+library(tidyverse) # load tidyverse so all the webR packages get loaded
+detach("package:tidyverse") # detach so we can later see the loading message
+detach("package:tidyr")
+detach("package:ggplot2")
+detach("package:purrr")
+detach("package:forcats")
+detach("package:readr")
+detach("package:stringr")
+detach("package:lubridate")
+```
+
+## Introduction
+
+In this worksheet, we will cover some of the basic concepts of the R programming language. The worksheet is not an exhaustive introduction to the language, but it will cover the most important concepts and in particular the concepts where R differs from other languages you may be familiar with. If you have prior R experience you can skip this worksheet.
+
+R is a language designed for interactive data analysis, and some of its features may seem strange when approached from the perspective of a general purpose programming language. Keep in mind that language features that simplify interactive work may get in the way of writing complex programs and vice versa.
+
+Please wait a moment until the live R session is fully set up and all packages are loaded.
+
+## Basic data types
+
+R implements all the standard mathematical operations you would expect, such as addition, subtraction, etc., as well as special functions. This will generally work just like you would expect from other languages.
+
+```{webr}
+#| edit: false
+5 + 2
+7 * (3 - 2.9)
+exp(0.5)
+cos(2*pi)
+5^2
+```
+
+Try this out. Can you calculate 2 to the power of 5? Or the sin of pi/4? Or the square-root of 2?
+
+```{webr} 
+#| exercise: basic-math
+```
+
+::: { .solution exercise="basic-math" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+2^5
+sin(pi/4)
+sqrt(2)
+```
+:::
+:::
+
+One way in which R differs from most programming languages is that it is inherently vectorized. In R, you always work with vectors of numbers rather than with individual values. (A vector is an ordered set of values of the same data type.) Vectors are created with `c(...)`, as in `c(1, 2, 3)`. You can also create vectors of consecutive integers using the colon notation, as in `1:3` or `3:1`. The latter places the integers into the reverse order.
+
+```{webr}
+#| edit: false
+c(1, 2, 3)
+1:3
+3:1
+```
+
+Try this out. Make a vector of the integers from 1 to 10. Make a vector of the values 0.25, 0.5, 0.75. Make a vector of the words "orange", "banana", "grapefruit".
+
+```{webr} 
+#| exercise: vectors
+```
+
+::: { .solution exercise="vectors" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+1:10
+c(0.25, 0.5, 0.75)
+c("orange", "banana", "grapefruit")
+```
+:::
+:::
+
+Mathematical operations are always vectorized, so you can for example multiply all values in a vector by the same number or calculate multiple square roots at once. You can also do mathematical operations with two (or more vectors) and the operation will be element-wise. If the numbers of elements don't match you will get a warning but R will still give you a result. However, it's generally best to avoid combining vectors with mismatched lengths, as the results can be non-intuitive.
+
+```{webr}
+#| edit: false
+5*(1:5)
+sqrt(c(4, 9, 16, 25))
+1:5 + c(1, 1, 2, 2, 2)
+1:5 + c(1, 1, 2, 2) # mismatch in the number of elements
+```
+
+Try this out. Make a vector of all the squares of the numbers from 1 to 5. Also make a vector of the values 0.25, 0.5, 0.75 via a mathematical expression.
+
+```{webr} 
+#| exercise: vectors-math
+```
+
+::: { .solution exercise="vectors-math" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+(1:5)^2
+(1:3)/4
+```
+:::
+:::
+
+## Mising values
+
+## Variables and functions
+
+
+## Packages
+
+Many R features are provided by extension packages. You need to load those packages with `library()` before you can use them. For example, throughout this class, we make extensive use of the **tidyverse** package and therefore you will see `library(tidyverse)` at the beginning of most worksheets and homework templates. One of the most common problem students encounter in assignments is that they want to use a function from a package but have not properly loaded the package.
+
+Note that we don't normally put the package name in quotes inside the `library()` statement.
+
+Upon loading, some packages write out all sorts of messages. In particular, the **tidyverse** package lists a number of "conflicts". This frequently confuses students as they think something has gone wrong. You can just ignore these conflicts. They are expected and they will not interfere with your work in this class.
+
+```{webr}
+#| edit: false
+library(tidyverse)
+```
+
+Try out loading a package. Load the package **ggridges**. Then load the package **cowplot**.
+
+```{webr} 
+#| exercise: package-loading
+```
+
+::: { .solution exercise="package-loading" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+library(ggridges)
+library(cowplot)
+```
+:::
+:::
+
+## Data frames
+
+
+
+## Numerical and logical indexing
+
+In R, the first element of a vector is number 1, not number 0 as it is in most other languages (Python, C, Rust, etc.).
+
+## Flow control
+
+R has standard flow-control features such as `for` loops and `if`/`else` statements. These are almost never needed in data analysis and therefore I will not cover them here. If you find yourself wanting to use those constructs chances are you are replicating procedural programming patterns you have learned in other languages but that are not the most elegant way to solve the given data analysis problem. I would encourage you to think about how to solve your problem using vectorized or functional programming patterns instead. (Functional programming patterns such as `map()` go beyond this basic tutorial but will be covered later in this class.)
+
+*Discuss `if_else()`.*
