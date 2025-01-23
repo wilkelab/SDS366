@@ -84,7 +84,7 @@ c("orange", "banana", "grapefruit")
 :::
 :::
 
-Mathematical operations are always vectorized, so you can for example multiply all values in a vector by the same number or calculate multiple square roots at once. You can also do mathematical operations with two (or more) vectors and the operation will be element-wise. If the numbers of elements don't match you will get a warning but R will still give you a result. However, it's generally best to avoid combining vectors with mismatched lengths, as the results can be non-intuitive.
+Mathematical operations are also vectorized, so you can for example multiply all values in a vector by the same number or calculate multiple square roots at once. You can also do mathematical operations combining two (or more) vectors and the operation will be element-wise. If the numbers of elements don't match you will get a warning but R will still give you a result. However, it's generally best to avoid combining vectors with mismatched lengths, as the results can be non-intuitive.
 
 ```{webr}
 #| edit: false
@@ -196,20 +196,19 @@ is.na(c("banana", NA, "orange", NA))
 
 ## Variables and functions
 
-Any data values or objects that you are working with in R can be assigned to variables to be reused later. Assignment in R is expressed with the `<-` operator. (You can also assign with `=` but this is generally discouraged)
+Any data values or objects that you are working with in R can be assigned to variables to be reused later. Assignment in R is expressed with the `<-` operator. (You can also assign with `=` but this is generally discouraged.) If you subsequently just write the variable name by itself R prints out the value corresponding to that variable.
 
 ```{webr}
 #| edit: false
 names <- c("John", "Lily", "Mark", "Anna")
 names
 names == "Anna"
-
 numbers <- c(1, 4, 5, 2)
 5*numbers
 exp(numbers)
 ```
 
-Try this out. Assign the number 5 to a variable called `foo` and calculate the cosine of this number. 
+Try this out. Assign the number 5 to a variable called `foo` and then print the value of `foo`. Then calculate the cosine of this number. 
 ```{webr} 
 #| exercise: variables
 ```
@@ -218,16 +217,17 @@ Try this out. Assign the number 5 to a variable called `foo` and calculate the c
 ::: { .callout-tip title="Solution" collapse="false"}
 ```r
 foo <- 5
+foo
 cos(foo)
 ```
 :::
 :::
 
-We commonly use and interact with functions in R. Functions are a way to store code and reuse it at a later stage. To call a function (which means to execute the code the function stores), you write the name of the variable storing the function followed by parentheses, as in `sin()` for the sine function. Inside the parentheses we can place values that are called "arguments", as in `sin(0.5)`. The arguments turn into variables that are used inside the function body.
+In addition to working with variables, we commonly use and interact with functions in R. Functions are a way to store code and reuse it at a later stage. To call a function (which means to execute the code the function stores), you write the name of the variable storing the function followed by parentheses, as in `sin()` for the sine function. Inside the parentheses we can place values that are called "arguments," as in `sin(0.5)`. These arguments turn into variables that are used inside the function body.
 
-In R, function arguments are always named, which means you can write the name of the argument when you provide the argument value, as in `sin(x = 0.5)`. This is helpful for functions with many arguments, as without providing the argument names it can be confusing which value gets assigned to which argument. If you don't name the function arguments, then values are assigned to arguments in order (positional matching), similarly to most other programming languages.
+In R, function arguments are always named, which means you can write the name of the argument when you provide the argument value, as in `sin(x = 0.5)`. This is helpful for functions with many arguments, as without providing the argument names it can be confusing which value gets assigned to which argument. If you don't name the function arguments, then values are assigned to arguments in order (positional matching), similarly to how most other programming languages work.
 
-In the following example, the function `example_fun()` takes three arguments, `a`, `b`, and `c`, and each argument has a default value that will be used in case the argument is not provided when the function is called. The function then simply writes out the values of the arguments. This allows us to explore how argument matching works in R.
+In the following example, the function `example_fun()` takes three arguments, `a`, `b`, and `c`, and each argument has a default value that will be used in case the argument is not provided when the function is called. The function then simply prints the values of the arguments. This allows us to explore how argument matching works in R.
 
 ```{webr}
 #| edit: false
@@ -243,7 +243,7 @@ example_fun(b = 2)
 example_fun(c = 1, b = 2)
 ```
 
-Now try this out yourself. Using the function `example_fun()` defined above, see what happens when you provide different arguments, positional or named.
+Now try this out yourself. Using the function `example_fun()` defined above, see what happens when you provide different arguments, positional or named. Do you understand what `example_fun(2, a = 1)` does?
 
 ```{webr} 
 #| exercise: functions
@@ -280,7 +280,7 @@ library(cowplot)
 
 ## Numerical and logical indexing
 
-R has a variety of ways to extract specific values or subsets of a vector. 
+R has a variety of ways to extract specific values or subsets of a vector. First, you can extract an individual element by indexing with square brackets. For example, if `x` is a vector, `x[1]` is the first element, `x[2]` is the second element, and so on. Note that in R, the first element of a vector is number 1, not number 0 as it is in most other languages (Python, C, Rust, etc.). You can also extract multiple elements by placing a vector of numeric values inside the square brackets.
 
 ```{webr}
 #| edit: false
@@ -288,9 +288,7 @@ names <- c("John", "Lily", "Mark", "Anna")
 names[2]
 names[1:3]
 names[c(1, 3)]
-
 ```
-In R, the first element of a vector is number 1, not number 0 as it is in most other languages (Python, C, Rust, etc.).
 
 Negative indices *remove* the respective elements.
 
@@ -301,6 +299,24 @@ names[-(1:3)]
 names[c(-1, -3)]
 ```
 
+Try this out. Extract the first element from the `names` vector, then extract the last two, then extract all but the first.
+
+```{webr} 
+#| exercise: indexing
+```
+
+::: { .solution exercise="indexing" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+names[1]
+names[c(3, 4)]
+names[-1]
+```
+:::
+:::
+
+In addition to numerical indexing, a frequently used indexing approach in R is logical indexing. In logical indexing, you provide inside the square brackets a logical vector that indicates for each element whether you want to keep it (`TRUE`) or not (`FALSE`). The benefit of this indexing approach is that you can combine it with logical statements to extract all elements that meet a specific condition.
+
 ```{webr}
 #| edit: false
 numbers <- c(1, 7, 4)
@@ -308,10 +324,21 @@ numbers[c(TRUE, FALSE, TRUE)]
 numbers[numbers > 5]
 ```
 
+Try this out, by extracting all the even numbers from the numerical vector `1:10`. To test whether a number `x` is even, you can use `x %% 2 == 0`.
 
+```{webr} 
+#| exercise: logical-indexing
+numbers <- 1:10
+```
 
-**still to do**
-
+::: { .solution exercise="logical-indexing" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+numbers <- 1:10
+numbers[numbers %% 2 == 0]
+```
+:::
+:::
 
 ## Data frames
 
@@ -339,7 +366,7 @@ Try this out. Create a tibble of your own.
 
 ## Flow control
 
-R has standard flow-control features such as `for` loops and `if`/`else` statements. These are almost never needed in data analysis and therefore I will not cover them here. If you find yourself wanting to use those constructs chances are you are replicating procedural programming patterns you have learned in other languages but that are not the most elegant way to solve the given data analysis problem. I would encourage you to think about how to solve your problem using vectorized or functional programming patterns instead. (Functional programming patterns such as `map()` go beyond this basic tutorial but will be covered later in this class.)
+R has standard flow-control features such as `for` loops and `if`/`else` statements. These are almost never needed in data analysis and therefore I will not cover them here. If you find yourself wanting to use those constructs chances are you are replicating procedural programming patterns you have learned in other languages but that are not the most elegant way to solving a data analysis problem. I would encourage you to think about how to solve your problem using vectorized or functional programming patterns instead. (Functional programming patterns such as `map()` go beyond this basic tutorial but will be covered later in this class.)
 
 A concept closely related to flow control is the `if_else()` function from the **tidyverse** package. With `if_else()`, you can run a comparison at each position in a vector and then create a new vector whose elements depend on the outcome of each comparison.
 

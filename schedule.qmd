@@ -10,7 +10,8 @@ format: html
 <p class="nospace">Materials:</p>
 
 - [Slides](slides/introduction.qmd)  
-- [Worksheet](assignments/intro_to_Quarto.qmd)
+- [Worksheet 1: Introduction to Quarto](worksheets/intro-to-Quarto.qmd)
+- [Worksheet 2: Introduction to R](worksheets/intro-to-R.qmd)
 
 ### 2. Jan 16, 2024—Aesthetic mappings
 
