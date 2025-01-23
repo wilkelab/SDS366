@@ -158,7 +158,7 @@ c(FALSE, TRUE) | c(TRUE, FALSE)
 :::
 
 
-## Mising values
+## Missing values
 
 R supports the concept of missing values. Missing values are data values that don't exist. This is a common issue in real-world data. For example, consider a scenario where people are asked to fill out a questionaire about various aspects of who they are and where they live, and one question asks about where they were born, and some people simply don't answer that question. The result is a missing value, and we need the ability to express this concept.
 
