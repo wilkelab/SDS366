@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.39">
 
   <meta name="author" content="Claus O. Wilke">
-  <meta name="dcterms.date" content="2025-01-22">
+  <meta name="dcterms.date" content="2025-01-27">
   <title>SDS 366 – Coordinate systems and axes</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -206,7 +206,7 @@ Claus O. Wilke
 </div>
 </div>
 
-  <p class="date">2025-01-22</p>
+  <p class="date">2025-01-27</p>
 </section>
 <section id="most-data-visualizations-use-cartesian-coordinates" class="slide level2">
 <h2>Most data visualizations use Cartesian coordinates</h2>
@@ -425,20 +425,29 @@ Claus O. Wilke
 </div>
 </div>
 </div>
-<div class="fragment">
+</section>
+<section id="getting-the-data-1" class="slide level2">
+<h2>Getting the data</h2>
 <div class="small-font">
-<p>The <code>temperatures</code> dataset:</p>
+<p>The <code>temperatures</code> and <code>temps_wide</code> datasets (long and wide format of the same data):</p>
 </div>
 <div class="smaller-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>temperatures <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://wilkelab.org/SDS366/datasets/tempnormals.csv"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb3-3"><a></a>    <span class="at">location =</span> <span class="fu">factor</span>(</span>
-<span id="cb3-4"><a></a>      location, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Death Valley"</span>, <span class="st">"Houston"</span>, <span class="st">"San Diego"</span>, <span class="st">"Chicago"</span>)</span>
-<span id="cb3-5"><a></a>    )</span>
-<span id="cb3-6"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb3-7"><a></a>  <span class="fu">select</span>(location, station_id, day_of_year, month, temperature)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="co"># long format</span></span>
+<span id="cb3-2"><a></a>temperatures <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://wilkelab.org/SDS366/datasets/tempnormals.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-4"><a></a>    <span class="at">location =</span> <span class="fu">factor</span>(</span>
+<span id="cb3-5"><a></a>      location, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Death Valley"</span>, <span class="st">"Houston"</span>, <span class="st">"San Diego"</span>, <span class="st">"Chicago"</span>)</span>
+<span id="cb3-6"><a></a>    )</span>
+<span id="cb3-7"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb3-8"><a></a>  <span class="fu">select</span>(location, station_id, day_of_year, month, temperature)</span>
+<span id="cb3-9"><a></a></span>
+<span id="cb3-10"><a></a><span class="co"># wide format</span></span>
+<span id="cb3-11"><a></a>temps_wide <span class="ot">&lt;-</span> temperatures <span class="sc">|&gt;</span></span>
+<span id="cb3-12"><a></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb3-13"><a></a>    <span class="at">id_cols =</span> <span class="fu">c</span>(<span class="st">"month"</span>, <span class="st">"day_of_year"</span>),</span>
+<span id="cb3-14"><a></a>    <span class="at">names_from =</span> <span class="st">"location"</span>, <span class="at">values_from =</span> <span class="st">"temperature"</span></span>
+<span id="cb3-15"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -773,6 +782,69 @@ Claus O. Wilke
 </div>
 </div>
 </div>
+</div>
+</section>
+<section id="use-coord_fixed-for-fixed-aspect-ratio" class="slide level2">
+<h2>Use <code>coord_fixed()</code> for fixed aspect ratio</h2>
+<div class="smaller-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">ggplot</span>(temps_wide, <span class="fu">aes</span>(<span class="st">`</span><span class="at">San Diego</span><span class="st">`</span>, Houston)) <span class="sc">+</span></span>
+<span id="cb18-2"><a></a>  <span class="fu">geom_path</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="coordinate-systems-axes_files/figure-revealjs/axis-scaling-bad-1.svg" style="width:60.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="small-font move-up-1em">
+<p>(Bad, x and y axis show the same values scaled differently)</p>
+</div>
+</section>
+<section id="use-coord_fixed-for-fixed-aspect-ratio-1" class="slide level2">
+<h2>Use <code>coord_fixed()</code> for fixed aspect ratio</h2>
+<div class="smaller-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">ggplot</span>(temps_wide, <span class="fu">aes</span>(<span class="st">`</span><span class="at">San Diego</span><span class="st">`</span>, Houston)) <span class="sc">+</span></span>
+<span id="cb19-2"><a></a>  <span class="fu">geom_path</span>() <span class="sc">+</span></span>
+<span id="cb19-3"><a></a>  <span class="fu">coord_fixed</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="coordinate-systems-axes_files/figure-revealjs/axis-scaling-good-1.svg" style="width:60.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="small-font move-up-1em">
+<p>(Better, x and y axis are now scaled the same)</p>
+</div>
+</section>
+<section id="use-coord_fixed-for-fixed-aspect-ratio-2" class="slide level2">
+<h2>Use <code>coord_fixed()</code> for fixed aspect ratio</h2>
+<div class="smaller-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">ggplot</span>(temps_wide, <span class="fu">aes</span>(<span class="st">`</span><span class="at">San Diego</span><span class="st">`</span>, Houston)) <span class="sc">+</span></span>
+<span id="cb20-2"><a></a>  <span class="fu">geom_path</span>() <span class="sc">+</span></span>
+<span id="cb20-3"><a></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb20-4"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">75</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="coordinate-systems-axes_files/figure-revealjs/axis-scaling-good2-1.svg" style="width:60.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="small-font move-up-1em">
+<p>(Even better, similar axis ticks along both axes)</p>
 </div>
 <!-- Segment ends here -->
 </section>

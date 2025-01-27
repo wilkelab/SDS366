@@ -579,15 +579,17 @@ tx_counties <- read_csv("https://wilkelab.org/SDS366/datasets/US_census.csv") |>
 :::
 :::
 
-::: {.fragment}
+## Getting the data
+
 ::: {.small-font}
-The `temperatures` dataset:
+The `temperatures` and `temps_wide` datasets (long and wide format of the same data):
 :::
 
 ::: {.smaller-font}
 ```{r}
 #| echo: true
 #| message: false
+# long format
 temperatures <- read_csv("https://wilkelab.org/SDS366/datasets/tempnormals.csv") |>
   mutate(
     location = factor(
@@ -595,9 +597,14 @@ temperatures <- read_csv("https://wilkelab.org/SDS366/datasets/tempnormals.csv")
     )
   ) |>
   select(location, station_id, day_of_year, month, temperature)
-```
-:::
 
+# wide format
+temps_wide <- temperatures |>
+  pivot_wider(
+    id_cols = c("month", "day_of_year"),
+    names_from = "location", values_from = "temperature"
+  )
+```
 :::
 
 ## Scale functions customize the x and y axes
@@ -906,6 +913,62 @@ ggplot(temperatures, aes(day_of_year, temperature, color = location)) +
   coord_polar() +
   scale_y_continuous(limits = c(0, 105))  # fix up temperature limits
 ```
+:::
+
+
+## Use `coord_fixed()` for fixed aspect ratio
+
+::: {.smaller-font}
+```{r}
+#| label: axis-scaling-bad
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "60%"
+ggplot(temps_wide, aes(`San Diego`, Houston)) +
+  geom_path()
+```
+:::
+
+::: {.small-font .move-up-1em}
+(Bad, x and y axis show the same values scaled differently)
+:::
+
+## Use `coord_fixed()` for fixed aspect ratio
+
+::: {.smaller-font}
+```{r}
+#| label: axis-scaling-good
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "60%"
+ggplot(temps_wide, aes(`San Diego`, Houston)) +
+  geom_path() +
+  coord_fixed()
+```
+:::
+
+::: {.small-font .move-up-1em}
+(Better, x and y axis are now scaled the same)
+:::
+
+
+## Use `coord_fixed()` for fixed aspect ratio
+
+::: {.smaller-font}
+```{r}
+#| label: axis-scaling-good2
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "60%"
+ggplot(temps_wide, aes(`San Diego`, Houston)) +
+  geom_path() +
+  coord_fixed() +
+  scale_x_continuous(breaks = c(50, 60, 70), limits = c(50, 75))
+```
+:::
+
+::: {.small-font .move-up-1em}
+(Even better, similar axis ticks along both axes)
 :::
 
 

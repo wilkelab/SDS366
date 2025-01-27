@@ -725,7 +725,14 @@
     "href": "slides/coordinate-systems-axes.html#getting-the-data",
     "title": "Coordinate systems and axes",
     "section": "Getting the data",
-    "text": "Getting the data\n\nThe boxoffice dataset:\n\n\n\nboxoffice &lt;- tibble(\n  rank = 1:5,\n  title = c(\"Star Wars\", \"Jumanji\", \"Pitch Perfect 3\", \"Greatest Showman\", \"Ferdinand\"),\n  amount = c(71.57, 36.17, 19.93, 8.81, 7.32) # million USD\n)\n\n\n\n\nThe tx_counties dataset:\n\n\n\ntx_counties &lt;- read_csv(\"https://wilkelab.org/SDS366/datasets/US_census.csv\") |&gt; \n  filter(state == \"Texas\") |&gt;\n  mutate(popratio = pop2010/median(pop2010)) |&gt;\n  arrange(desc(popratio)) |&gt;\n  mutate(index = 1:n())\n\n\n\n\n\nThe temperatures dataset:\n\n\n\ntemperatures &lt;- read_csv(\"https://wilkelab.org/SDS366/datasets/tempnormals.csv\") |&gt;\n  mutate(\n    location = factor(\n      location, levels = c(\"Death Valley\", \"Houston\", \"San Diego\", \"Chicago\")\n    )\n  ) |&gt;\n  select(location, station_id, day_of_year, month, temperature)"
+    "text": "Getting the data\n\nThe boxoffice dataset:\n\n\n\nboxoffice &lt;- tibble(\n  rank = 1:5,\n  title = c(\"Star Wars\", \"Jumanji\", \"Pitch Perfect 3\", \"Greatest Showman\", \"Ferdinand\"),\n  amount = c(71.57, 36.17, 19.93, 8.81, 7.32) # million USD\n)\n\n\n\n\nThe tx_counties dataset:\n\n\n\ntx_counties &lt;- read_csv(\"https://wilkelab.org/SDS366/datasets/US_census.csv\") |&gt; \n  filter(state == \"Texas\") |&gt;\n  mutate(popratio = pop2010/median(pop2010)) |&gt;\n  arrange(desc(popratio)) |&gt;\n  mutate(index = 1:n())"
+  },
+  {
+    "objectID": "slides/coordinate-systems-axes.html#getting-the-data-1",
+    "href": "slides/coordinate-systems-axes.html#getting-the-data-1",
+    "title": "Coordinate systems and axes",
+    "section": "Getting the data",
+    "text": "Getting the data\n\nThe temperatures and temps_wide datasets (long and wide format of the same data):\n\n\n\n# long format\ntemperatures &lt;- read_csv(\"https://wilkelab.org/SDS366/datasets/tempnormals.csv\") |&gt;\n  mutate(\n    location = factor(\n      location, levels = c(\"Death Valley\", \"Houston\", \"San Diego\", \"Chicago\")\n    )\n  ) |&gt;\n  select(location, station_id, day_of_year, month, temperature)\n\n# wide format\ntemps_wide &lt;- temperatures |&gt;\n  pivot_wider(\n    id_cols = c(\"month\", \"day_of_year\"),\n    names_from = \"location\", values_from = \"temperature\"\n  )"
   },
   {
     "objectID": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes",
@@ -810,6 +817,27 @@
     "title": "Coordinate systems and axes",
     "section": "Coords define the coordinate system",
     "text": "Coords define the coordinate system\n\n\nggplot(temperatures, aes(day_of_year, temperature, color = location)) +\n  geom_line() +\n  coord_polar() +\n  scale_y_continuous(limits = c(0, 105))  # fix up temperature limits"
+  },
+  {
+    "objectID": "slides/coordinate-systems-axes.html#use-coord_fixed-for-fixed-aspect-ratio",
+    "href": "slides/coordinate-systems-axes.html#use-coord_fixed-for-fixed-aspect-ratio",
+    "title": "Coordinate systems and axes",
+    "section": "Use coord_fixed() for fixed aspect ratio",
+    "text": "Use coord_fixed() for fixed aspect ratio\n\n\nggplot(temps_wide, aes(`San Diego`, Houston)) +\n  geom_path()\n\n\n\n\n \n\n\n\n\n\n\n(Bad, x and y axis show the same values scaled differently)"
+  },
+  {
+    "objectID": "slides/coordinate-systems-axes.html#use-coord_fixed-for-fixed-aspect-ratio-1",
+    "href": "slides/coordinate-systems-axes.html#use-coord_fixed-for-fixed-aspect-ratio-1",
+    "title": "Coordinate systems and axes",
+    "section": "Use coord_fixed() for fixed aspect ratio",
+    "text": "Use coord_fixed() for fixed aspect ratio\n\n\nggplot(temps_wide, aes(`San Diego`, Houston)) +\n  geom_path() +\n  coord_fixed()\n\n\n\n\n \n\n\n\n\n\n\n(Better, x and y axis are now scaled the same)"
+  },
+  {
+    "objectID": "slides/coordinate-systems-axes.html#use-coord_fixed-for-fixed-aspect-ratio-2",
+    "href": "slides/coordinate-systems-axes.html#use-coord_fixed-for-fixed-aspect-ratio-2",
+    "title": "Coordinate systems and axes",
+    "section": "Use coord_fixed() for fixed aspect ratio",
+    "text": "Use coord_fixed() for fixed aspect ratio\n\n\nggplot(temps_wide, aes(`San Diego`, Houston)) +\n  geom_path() +\n  coord_fixed() +\n  scale_x_continuous(breaks = c(50, 60, 70), limits = c(50, 75))\n\n\n\n\n \n\n\n\n\n\n\n(Even better, similar axis ticks along both axes)"
   },
   {
     "objectID": "slides/coordinate-systems-axes.html#further-reading",
@@ -2310,11 +2338,11 @@
     "text": "Basic data types\nR implements all the standard mathematical operations you would expect, such as addition, subtraction, etc., as well as special functions. This will generally work just like you would expect from other languages.\n\n\n\n\n\n\n\n\nTry this out. Can you calculate 2 to the power of 5? Or the sin of pi/4? Or the square-root of 2?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n2^5\nsin(pi/4)\nsqrt(2)\n\n\n\n\nOne way in which R differs from most programming languages is that it is inherently vectorized. In R, you always work with vectors of numbers rather than with individual values. (A vector is an ordered set of values of the same data type.) Vectors are created with c(...), as in c(1, 2, 3). You can also create vectors of consecutive integers using the colon notation, as in 1:3 or 3:1. The latter places the integers into the reverse order.\n\n\n\n\n\n\n\n\nTry this out. Make a vector of the integers from 1 to 10. Make a vector of the values 0.25, 0.5, 0.75. Make a vector of the words “orange”, “banana”, “grapefruit”.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n1:10\nc(0.25, 0.5, 0.75)\nc(\"orange\", \"banana\", \"grapefruit\")\n\n\n\n\nMathematical operations are also vectorized, so you can for example multiply all values in a vector by the same number or calculate multiple square roots at once. You can also do mathematical operations combining two (or more) vectors and the operation will be element-wise. If the numbers of elements don’t match you will get a warning but R will still give you a result. However, it’s generally best to avoid combining vectors with mismatched lengths, as the results can be non-intuitive.\n\n\n\n\n\n\n\n\nTry this out. Make a vector of all the squares of the numbers from 1 to 5. Also make a vector of the values 0.25, 0.5, 0.75, by using a vectorized mathematical expression.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n(1:5)^2\n(1:3)/4\n\n\n\n\nR also has logical values TRUE and FALSE (written in all capitals). Logical values also are vectorized, and they can be created by vectorized comparisons. This is very important for data analysis tasks.\n\n\n\n\n\n\n\n\nTry this out. Manually create a vector of logical values. Then create a vector of logical values via comparison.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nc(TRUE, TRUE, TRUE, FALSE)\n(1:10) &lt;= 5\n\n\n\n\nYou can combine vectors of logical values with & (logical AND) and | (logical OR). You can negate logical values with ! (logical NOT).\n\n\n\n\n\n\n\n\nTry this out. Combine some logical vectors with & and |. Also negate a logical vector.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n!c(FALSE, TRUE) & c(TRUE, FALSE)\nc(FALSE, TRUE) | c(TRUE, FALSE)"
   },
   {
-    "objectID": "worksheets/intro-to-R.html#mising-values",
-    "href": "worksheets/intro-to-R.html#mising-values",
+    "objectID": "worksheets/intro-to-R.html#missing-values",
+    "href": "worksheets/intro-to-R.html#missing-values",
     "title": "Introduction to R",
-    "section": "Mising values",
-    "text": "Mising values\nR supports the concept of missing values. Missing values are data values that don’t exist. This is a common issue in real-world data. For example, consider a scenario where people are asked to fill out a questionaire about various aspects of who they are and where they live, and one question asks about where they were born, and some people simply don’t answer that question. The result is a missing value, and we need the ability to express this concept.\nIn R, missing values are denoted by NA. You can use NA as a value for any vector.\n\n\n\n\n\n\n\n\nNote that the NA indicating a missing value is not enclosed in quotes, even for vectors of words (i.e, character strings).\nIn computations, missing values remain missing. You can check for missingness via is.na().\n\n\n\n\n\n\n\n\nTry this out. Make both a numerical and a character vector with some missing values. Also test for the missing positions in one of the vectors you made.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nc(NA, 1, NA, 1)\nc(\"banana\", NA, \"orange\", NA)\nis.na(c(\"banana\", NA, \"orange\", NA))"
+    "section": "Missing values",
+    "text": "Missing values\nR supports the concept of missing values. Missing values are data values that don’t exist. This is a common issue in real-world data. For example, consider a scenario where people are asked to fill out a questionaire about various aspects of who they are and where they live, and one question asks about where they were born, and some people simply don’t answer that question. The result is a missing value, and we need the ability to express this concept.\nIn R, missing values are denoted by NA. You can use NA as a value for any vector.\n\n\n\n\n\n\n\n\nNote that the NA indicating a missing value is not enclosed in quotes, even for vectors of words (i.e, character strings).\nIn computations, missing values remain missing. You can check for missingness via is.na().\n\n\n\n\n\n\n\n\nTry this out. Make both a numerical and a character vector with some missing values. Also test for the missing positions in one of the vectors you made.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nc(NA, 1, NA, 1)\nc(\"banana\", NA, \"orange\", NA)\nis.na(c(\"banana\", NA, \"orange\", NA))"
   },
   {
     "objectID": "worksheets/intro-to-R.html#variables-and-functions",
