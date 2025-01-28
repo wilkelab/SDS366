@@ -43,7 +43,7 @@ We will be working with two datasets. First, box-office gross results for Dec. 2
 boxoffice
 ```
 
-Second, data on individual penguins on Antarctica. Note that missing values have been removed:
+Second, data on individual penguins in Antarctica. Note that missing values have been removed:
 ```r
 penguins2
 ```

@@ -1,0 +1,553 @@
+---
+title: "Data wrangling 1"
+author: "Claus O. Wilke"
+format: live-html
+engine: knitr
+webr:
+  render-df: gt-interactive
+---
+
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+
+## Introduction
+
+In this worksheet, we will discuss how to perform basic data manipulations, such as filtering data rows that meet certain conditions, choosing data columns, and arranging data in ascending or descending order.
+
+First we need to load the required R packages. Please wait a moment until the live R session is fully set up and all packages are loaded.
+
+```{webr}
+#| warning: false
+#| edit: false
+library(tidyverse)
+library(palmerpenguins)
+```
+
+Next we set up the data. We will be working with data on individual penguins in Antarctica.
+```r
+penguins
+```
+
+::: {.column-page}
+```{webr}
+#| echo: false
+penguins
+```
+:::
+
+
+
+## The pipe (symbol `|>`, read "and then")
+
+When writing complex data analysis pipelines, we frequently use the pipe operator `|>` to move data from one analysis step to the next. The pipe is pronounced "and then", and it takes the data on its left and uses it as the first argument for the function on its right.
+
+For example, to see the first few lines of a dataset, we often write `head(data)`. Instead, we can write `data |> head()`.
+
+Try this yourself. Write code that displays the first few lines of the `penguins` dataset, using `|>` and `head()`:
+
+```{webr} 
+#| exercise: head
+penguins
+```
+
+::: { .hint exercise="head" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+penguins ___ head()
+```
+:::
+:::
+
+::: { .solution exercise="head" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+penguins |> head()
+```
+:::
+:::
+
+In older R code, you may also see `%>%` (called the "magrittr" pipe) instead of `|>` (the "native" pipe). While these two operators have subtle differences, for all intents and purposes you can treat them interchangeably. Try the previous exercise with the magrittr pipe instead of the native pipe.
+
+```{webr} 
+#| exercise: head2
+```
+
+::: { .hint exercise="head2" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+penguins ___ head()
+```
+:::
+:::
+
+::: { .solution exercise="head2" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+penguins %>% head()
+```
+:::
+:::
+
+
+## Choosing data rows
+
+The function `filter()` allows you to find rows in a dataset that meet one or more specific conditions. The syntax is `data |> filter(condition)`, where condition is a logical condition. For example, `filter(x > 5)` would pick all rows for which the value in column `x` is greater than 5.
+
+As an example, the following code picks all penguins from the island Biscoe:
+
+```{webr}
+#| edit: false
+penguins |>
+  filter(island == "Biscoe")
+```
+
+Now it's your turn. Pick all penguins from the island Dream:
+
+```{webr} 
+#| exercise: filter-island
+penguins |>
+  filter(___)
+```
+
+::: { .solution exercise="filter-island" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+penguins |>
+  filter(island == "Dream")
+```
+:::
+:::
+
+You can also state multiple conditions, separated by a comma. For example, `filter(x > 5, y < 2)` would pick all rows for which the value in the column `x` is greater than 5 and the value in the column `y` is less than 2. Note that the conditions are combined via logical AND, both need to be satisfied for the row to be picked.
+
+To try this out, pick all penguins of species Chinstrap from the island Dream:
+
+```{webr} 
+#| exercise: filter-species-island
+
+```
+
+::: { .hint exercise="filter-species-island" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+penguins |>
+  filter(species == ___, island == ___)
+```
+:::
+:::
+
+::: { .solution exercise="filter-species-island" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+penguins |>
+  filter(species == "Chinstrap", island == "Dream")
+```
+:::
+:::
+
+## Choosing data columns
+
+The function `select()` allows you to pick specific data columns by name. This is frequently useful when a dataset has many more columns than we are interested in at the time. For example, if we are only interested in the penguins' species, island, and sex, we could select these three columns:
+
+```{webr}
+#| edit: false
+penguins |>
+  select(species, island, sex)
+```
+
+Try this yourself, picking the columns representing the penguin species (`species`), the bill length (`bill_length_mm`), and then flipper length (`flipper_length_mm`).
+
+```{webr} 
+#| exercise: select-exercise
+
+```
+
+::: { .hint exercise="select-exercise" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+penguins |>
+  select(___)
+```
+:::
+:::
+
+::: { .solution exercise="select-exercise" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+penguins |>
+  select(species, bill_length_mm, flipper_length_mm)
+```
+:::
+:::
+
+Another situation that arises frequently is one where we want to remove specific columns. We can also do this with `select()`, but now write `select(-column)` to remove one or more columns.
+
+Try this. Remove the column `species`.
+
+```{webr} 
+#| exercise: select-remove
+
+```
+
+::: { .hint exercise="select-remove" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+penguins |>
+  select(___)
+```
+:::
+:::
+
+::: { .solution exercise="select-remove" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+penguins |>
+  select(-species)
+```
+:::
+:::
+
+And now remove both `species` and `island`.
+
+```{webr} 
+#| exercise: select-remove2
+
+```
+
+::: { .hint exercise="select-remove2" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+penguins |>
+  select(-___, -___)
+```
+:::
+:::
+
+::: { .solution exercise="select-remove2" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+penguins |>
+  select(-species, -island)
+```
+:::
+:::
+
+## Sorting data
+
+The function `arrange()` allows you to sort data by one or more columns. For example, `data |> arrange(x)` would sort the data by increasing values of `x`, and `data |> arrange(x, y)` would sort the data first by `x` and then, for ties in `x`, by `y`.
+
+As an example, the following code sorts penguins by their flipper length:
+
+```{webr}
+#| edit: false
+penguins |>
+  arrange(flipper_length_mm)
+```
+
+Now it's your turn. Sort the penguins by bill length:
+
+```{webr} 
+#| exercise: arrange-bill-length
+```
+
+::: { .hint exercise="arrange-bill-length" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+penguins |>
+  arrange(___)
+```
+:::
+:::
+
+::: { .solution exercise="arrange-bill-length" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+penguins |>
+  arrange(bill_length_mm)
+```
+:::
+:::
+
+To arrange data in descending order, enclose the data column in `desc()`. For example, `data |> arrange(desc(x))` would sort the data by decreasing values of `x`. (`desc` stands for "descending".)
+
+Try this out. Sort the penguins by bill length, from largest to smallest:
+
+```{webr} 
+#| exercise: arrange-bill-length2
+```
+
+::: { .hint exercise="arrange-bill-length2" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+penguins |>
+  arrange(___(bill_length_mm))
+```
+:::
+:::
+
+::: { .solution exercise="arrange-bill-length2" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+penguins |>
+  arrange(desc(bill_length_mm))
+```
+:::
+:::
+
+
+## Counting
+
+We frequently want to count how many times a particular value or combination of values occurs in a dataset. We do this using the `count()` function. For example, the following code counts how many penguins of the different species there are in the `penguins` dataset.
+
+```{webr}
+#| edit: false
+penguins |>
+  count(species)
+```
+
+Now try this yourself. Count how many male and female penguins there are.
+
+```{webr} 
+#| exercise: count-simple
+
+```
+
+::: { .hint exercise="count-simple" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+penguins |>
+  count(___)
+```
+:::
+:::
+
+::: { .solution exercise="count-simple" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+penguins |>
+  count(sex)
+```
+:::
+:::
+
+We can also perform more fine-grained counts, by providing the `count()` function with more than one column name. See if you can count how many male and female penguins the dataset contains for each species. 
+
+```{webr} 
+#| exercise: count-complex
+
+```
+
+::: { .hint exercise="count-complex" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+penguins |>
+  count(___, sex)
+```
+:::
+:::
+
+::: { .solution exercise="count-complex" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+penguins |>
+  count(species, sex)
+```
+:::
+:::
+
+
+Now count how many penguins of each species the dataset contains for each island. 
+
+```{webr} 
+#| exercise: count-complex2
+
+```
+
+::: { .hint exercise="count-complex2" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+penguins |>
+  count(___, species)
+```
+:::
+:::
+
+::: { .solution exercise="count-complex2" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+penguins |>
+  count(island, species)
+```
+:::
+:::
+
+
+## Chaining analysis steps into pipelines
+
+We can chain multiple analysis steps into a pipeline by continuing to add "and then" statements. For example, `data |> count(...) |> arrange(...)` would first count and then sort the data.
+
+Try this out by counting the number of penguins of each species and then sorting by the number of penguins.
+
+```{webr} 
+#| exercise: analysis-chain
+
+```
+
+::: { .hint exercise="analysis-chain" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+penguins |>
+  count(___) |>
+  arrange(___)
+```
+:::
+:::
+
+::: { .solution exercise="analysis-chain" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+penguins |>
+  count(species) |>
+  arrange(n)
+```
+:::
+:::
+
+You may remember from before that the default sorting is from the smallest to the largest value. Repeat the previous exercise but now arrange the penguin species from the most frequent to the least frequent:
+
+```{webr} 
+#| exercise: analysis-chain2
+
+```
+
+::: { .hint exercise="analysis-chain2" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+penguins |>
+  count(species) |>
+  arrange(___)
+```
+:::
+:::
+
+::: { .solution exercise="analysis-chain2" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+penguins |>
+  count(species) |>
+  arrange(desc(n))
+```
+:::
+:::
+
+## Creating new data columns
+
+The function `mutate()` allows you to add new columns to a data table. For example, `data |> mutate(sum = x + y)` would create a new column `sum` that is the sum of the columns `x` and `y`:
+
+```{webr}
+#| edit: false
+data <- tibble(x = 1:3, y = c(10, 20, 30))
+data
+```
+
+```{webr}
+#| edit: false
+data |>
+  mutate(
+    sum = x + y
+  )
+```
+
+Note that the part to the left of the equals sign (here, `sum`) is the name of the new column, and the part to the right of the equals sign (here, `x + y`) is an R expression that evaluates to the values in the new column.
+
+Now apply this concept to the `penguins` dataset. Add a new column `bill_ratio` that is the ratio of bill length and bill depth:
+
+```{webr} 
+#| exercise: mutate-bill-ratio
+penguins |>
+  select(species, bill_length_mm, bill_depth_mm) |>
+  mutate(
+    ___ = ___
+  )
+```
+
+::: { .hint exercise="mutate-bill-ratio" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+penguins |>
+  select(species, bill_length_mm, bill_depth_mm) |>
+  mutate(
+    bill_ratio = ___
+  )
+```
+:::
+:::
+
+::: { .solution exercise="mutate-bill-ratio" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+penguins |>
+  select(species, bill_length_mm, bill_depth_mm) |>
+  mutate(
+    bill_ratio = bill_length_mm / bill_depth_mm
+  )
+```
+:::
+:::
+
+## Counting with custom conditions
+
+It is quite common that we want to count items that meet a specific condition. For example, let's say we want to count how many penguins of different species have flippers longer than 200mm. To do this efficiently, we first create a new column that indicates whether the condition is met or not, and we then use count with that indicator column.
+
+The easiest way to create indicator columns is via the function `if_else()`, which takes three arguments: a condition, a result if the condition is met, and a result if the condition is not met. The following example shows how to create an indicator column showing whether a variable is positive or negative:
+
+```{webr}
+#| edit: false
+data <- tibble(x = c(-0.5, 2.3, 50, -1.4))
+data
+```
+
+```{webr}
+#| edit: false
+data |>
+  mutate(
+    sign_of_x = if_else(x >= 0, "positive", "negative")
+  )
+```
+
+Now try this yourself. Count how many penguins of different species have flippers longer than 200mm. Then sort your results from most frequent to least frequent.
+
+```{webr} 
+#| exercise: flipper-length-count
+penguins |>
+  mutate(
+    ___
+  ) |>
+  count(___) |>
+  arrange(___)
+```
+
+::: { .hint exercise="flipper-length-count" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+penguins |>
+  mutate(
+    flipper_length = if_else(___, "greater than 200mm", "less than 200mm")
+  ) |>
+  count(___, flipper_length) |>
+  arrange(___)
+```
+:::
+:::
+
+::: { .solution exercise="flipper-length-count" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+penguins |>
+  mutate(
+    flipper_length = if_else(flipper_length_mm > 200, "greater than 200mm", "less than 200mm")
+  ) |>
+  count(species, flipper_length) |>
+  arrange(desc(n))
+```
+:::
+:::

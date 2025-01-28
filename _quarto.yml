@@ -66,6 +66,11 @@ website:
             href: worksheets/color-scales.qmd
           - text: "Class 8: Color selection"
             href: worksheets/color-selection.qmd
+          - text: "Class 9a: Data wrangling 1"
+            href: worksheets/data-wrangling-1.qmd
+          - text: "Class 9b: Data wrangling 2"
+            href: worksheets/data-wrangling-2.Rmd
+        
 
       - text: "Resources"
         menu:
