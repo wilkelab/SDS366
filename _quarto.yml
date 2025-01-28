@@ -43,6 +43,8 @@ website:
             href: slides/color-scales.qmd
           - text: "Class 8: Color spaces and color-vision deficiency"
             href: slides/color-spaces.qmd
+          - text: "Class 9a: Data wrangling 1"
+            href: slides/data-wrangling-1.qmd
           - text: "Class 13: Figure design"
             href: slides/figure-design.qmd
         

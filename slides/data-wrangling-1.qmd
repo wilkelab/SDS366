@@ -1,0 +1,316 @@
+---
+title: "Data wrangling 1"
+author: "Claus O. Wilke"
+date: last-modified
+format: 
+  revealjs:
+    theme:
+      - default
+      - Wilke-theme.scss
+    auto-stretch: false
+    chalkboard: true
+    drop:
+      engine: webr
+      webr:
+        packages:
+          - tidyverse
+          - ggridges
+          - ggforce
+revealjs-plugins:
+  - drop
+execute:
+  fig-format: svg
+  fig-asp: 0.618
+  fig-width: 5.5
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+library(palmerpenguins)
+
+# ggplot2 settings so plots scale well for slide size 
+theme_set(theme_gray(14))
+update_geom_defaults("point", list(size = 2))
+#update_geom_defaults("line", list(linewidth = 1))
+```
+
+## Elementary data manipulations
+
+::: {.incremental}
+- Pick rows: `filter()`
+- Pick columns: `select()`
+- Sort rows: `arrange()`
+- Count things: `count()`
+- Make new columns: `mutate()`
+:::
+
+# But first: the pipe operator `|>`
+
+# `|>` is pronounced "and then"
+
+## The pipe `|>` feeds data into functions
+
+::: {.fragment .small-font}
+```{r}
+#| echo: true
+library(palmerpenguins) # loads the `penguins` dataset
+
+head(penguins)
+```
+:::
+
+## The pipe `|>` feeds data into functions
+
+::: {.small-font}
+```{r}
+#| echo: true
+library(palmerpenguins) # loads the `penguins` dataset
+
+# head(penguins)
+penguins |>
+  head()
+```
+:::
+
+## The pipe `|>` feeds data into functions
+
+::: {.small-font}
+```{r}
+#| label: penguins-scatter
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "60%"
+ggplot(penguins, aes(bill_length_mm, bill_depth_mm, color = species)) + 
+  geom_point()
+```
+:::
+
+## The pipe `|>` feeds data into functions
+
+::: {.small-font}
+```{r}
+#| label: penguins-scatter2
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "60%"
+penguins |>
+  ggplot(aes(bill_length_mm, bill_depth_mm, color = species)) +
+  geom_point()
+```
+:::
+
+## Old-school "magrittr" pipe: `%>%`
+
+::: {.small-font}
+```{r}
+#| label: penguins-scatter3
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| out-width: "60%"
+penguins %>%
+  ggplot(aes(bill_length_mm, bill_depth_mm, color = species)) +
+  geom_point()
+```
+:::
+
+
+## Which to use? Native pipe or old-school pipe?
+
+::: {.incremental}
+- The native pipe `|>` is the future. I'll be using it throughout.
+- The magrittr `%>%` works fine. You can use it if you llike to.
+:::
+
+<!-- Segment ends here -->
+
+# Picking rows or columns, and sorting
+
+## Pick rows from a table: `filter()`
+
+::: {.move-down-2em}
+![](../assets/data-wrangling-1/filter.svg){fig-align="center" width="75%"}
+:::
+
+## Filter out penguins of species Gentoo
+
+::: {.small-font}
+```{r}
+#| echo: true
+penguins |>
+  filter(species == "Gentoo")
+```
+:::
+
+## Filter out penguins with bill length > 50 mm
+
+::: {.small-font}
+```{r}
+#| echo: true
+penguins |>
+  filter(bill_length_mm > 50)
+```
+:::
+
+## Pick columns from a table: `select()`
+
+::: {.move-down-2em}
+![](../assets/data-wrangling-1/select.svg){fig-align="center" width="75%"}
+:::
+
+
+## Pick columns `species`, `island`, and `sex`
+
+::: {.small-font}
+```{r}
+#| echo: true
+penguins |>
+  select(species, island, sex)
+```
+:::
+
+## Sort the rows in a table: `arrange()`
+
+::: {.move-down-2em}
+![](../assets/data-wrangling-1/arrange.svg){fig-align="center" width="75%"}
+:::
+
+## Sort penguins by bill length, ascending
+
+::: {.small-font}
+```{r}
+#| echo: true
+penguins |>
+  arrange(bill_length_mm)
+```
+:::
+
+## Sort penguins by bill length, descending
+
+::: {.small-font}
+```{r}
+#| echo: true
+penguins |>
+  arrange(desc(bill_length_mm))
+```
+:::
+
+<!-- Segment ends here -->
+
+# Counting things
+
+## Count things
+
+::: {.small-font}
+```{r}
+#| echo: true
+penguins
+```
+:::
+
+## Count things
+
+::: {.small-font}
+```{r}
+#| echo: true
+penguins |>
+  count(species)
+```
+:::
+
+## Count things
+
+::: {.small-font}
+```{r}
+#| echo: true
+penguins |>
+  count(species, island)
+```
+:::
+
+## Use the pipe to build analysis pipelines
+
+::: {.small-font}
+```{r}
+#| echo: true
+penguins |>
+  filter(species == "Adelie")
+```
+:::
+
+## Use the pipe to build analysis pipelines
+
+::: {.small-font}
+```{r}
+#| echo: true
+penguins |>
+  filter(species == "Adelie") |>
+  select(island, sex)
+```
+:::
+
+## Use the pipe to build analysis pipelines
+
+::: {.small-font}
+```{r}
+#| echo: true
+penguins |>
+  filter(species == "Adelie") |>
+  select(island, sex) |>
+  count(island, sex)
+```
+:::
+
+<!-- Segment ends here -->
+
+# Adding new columns to a table
+
+## Make a new table column: `mutate()`
+
+::: {.move-down-2em}
+![](../assets/data-wrangling-1/mutate.svg){fig-align="center" width="75%"}
+:::
+
+## Example: flipper length in cm
+
+::: {.small-font}
+```{r}
+#| echo: true
+penguins |>
+  select(species, island, flipper_length_mm)
+```
+:::
+
+## Example: flipper length in cm
+
+::: {.small-font}
+```{r}
+#| echo: true
+penguins |>
+  select(species, island, flipper_length_mm) |>
+  mutate(flipper_length_cm = flipper_length_mm / 10)
+```
+:::
+
+## Make multiple columns at once
+
+::: {.small-font}
+```{r}
+#| echo: true
+penguins |>
+  select(species, island, flipper_length_mm) |>
+  mutate(
+    flipper_length_cm = flipper_length_mm / 10,  # <- notice the comma
+    flipper_length_in = flipper_length_mm / 25.4
+  )
+```
+:::
+
+<!-- Segment ends here -->
+
+## Further reading
+
+- R for Data Science: [Chapter 5: Data transformation](https://r4ds.had.co.nz/transform.html)
+- R for Data Science: [Chapter 18: Pipes](https://r4ds.had.co.nz/pipes.html)
+- **dplyr** documentation: [Introduction to dplyr](https://dplyr.tidyverse.org/articles/dplyr.html)
+- **dplyr** reference documentation: [One table verbs](https://dplyr.tidyverse.org/reference/index.html#section-one-table-verbs)
