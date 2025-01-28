@@ -735,536 +735,368 @@
     "text": "Further reading\n\nFundamentals of Data Visualization: Read the book online\nQuarto docs: Comprehensive guide"
   },
   {
-    "objectID": "slides/data-wrangling-1.html#elementary-data-manipulations",
-    "href": "slides/data-wrangling-1.html#elementary-data-manipulations",
-    "title": "Data wrangling 1",
+    "objectID": "slides/data-wrangling-2.html#elementary-data-manipulations",
+    "href": "slides/data-wrangling-2.html#elementary-data-manipulations",
+    "title": "Data wrangling 2",
     "section": "Elementary data manipulations",
-    "text": "Elementary data manipulations\n\n\nPick rows: filter()\nPick columns: select()\nSort rows: arrange()\nCount things: count()\nMake new columns: mutate()"
+    "text": "Elementary data manipulations\n\n\nPrevious class:\n\nPick rows: filter()\nPick columns: select()\nSort rows: arrange()\nCount things: count()\nMake new columns: mutate()\n\n\nThis class:\n\n\nAnalyze subsets:group_by() and summarize()\nReshape:pivot_wider(), pivot_longer()\nCombine datasets:left_join(), inner_join(), ..."
   },
   {
-    "objectID": "slides/data-wrangling-1.html#the-pipe-feeds-data-into-functions",
-    "href": "slides/data-wrangling-1.html#the-pipe-feeds-data-into-functions",
-    "title": "Data wrangling 1",
-    "section": "The pipe |> feeds data into functions",
-    "text": "The pipe |&gt; feeds data into functions\n\n\nlibrary(palmerpenguins) # loads the `penguins` dataset\n\nhead(penguins)\n\n# A tibble: 6 × 8\n  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Adelie  Torgersen           39.1          18.7               181        3750\n2 Adelie  Torgersen           39.5          17.4               186        3800\n3 Adelie  Torgersen           40.3          18                 195        3250\n4 Adelie  Torgersen           NA            NA                  NA          NA\n5 Adelie  Torgersen           36.7          19.3               193        3450\n6 Adelie  Torgersen           39.3          20.6               190        3650\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;"
+    "objectID": "slides/data-wrangling-2.html#analyze-subsets-group_by-and-summarize",
+    "href": "slides/data-wrangling-2.html#analyze-subsets-group_by-and-summarize",
+    "title": "Data wrangling 2",
+    "section": "Analyze subsets: group_by() and summarize()",
+    "text": "Analyze subsets: group_by() and summarize()"
   },
   {
-    "objectID": "slides/data-wrangling-1.html#the-pipe-feeds-data-into-functions-1",
-    "href": "slides/data-wrangling-1.html#the-pipe-feeds-data-into-functions-1",
-    "title": "Data wrangling 1",
-    "section": "The pipe |> feeds data into functions",
-    "text": "The pipe |&gt; feeds data into functions\n\n\nlibrary(palmerpenguins) # loads the `penguins` dataset\n\n# head(penguins)\npenguins |&gt;\n  head()\n\n# A tibble: 6 × 8\n  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Adelie  Torgersen           39.1          18.7               181        3750\n2 Adelie  Torgersen           39.5          17.4               186        3800\n3 Adelie  Torgersen           40.3          18                 195        3250\n4 Adelie  Torgersen           NA            NA                  NA          NA\n5 Adelie  Torgersen           36.7          19.3               193        3450\n6 Adelie  Torgersen           39.3          20.6               190        3650\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;"
+    "objectID": "slides/data-wrangling-2.html#example-application-of-grouping-counting",
+    "href": "slides/data-wrangling-2.html#example-application-of-grouping-counting",
+    "title": "Data wrangling 2",
+    "section": "Example application of grouping: Counting",
+    "text": "Example application of grouping: Counting\nPreviously, we counted like so:\n\n\nlibrary(palmerpenguins) # loads the `penguins` dataset\n\npenguins |&gt;\n  count(species)\n\n# A tibble: 3 × 2\n  species       n\n  &lt;fct&gt;     &lt;int&gt;\n1 Adelie      152\n2 Chinstrap    68\n3 Gentoo      124\n\n\n\n\nNow let’s do it the hard way . . ."
   },
   {
-    "objectID": "slides/data-wrangling-1.html#the-pipe-feeds-data-into-functions-2",
-    "href": "slides/data-wrangling-1.html#the-pipe-feeds-data-into-functions-2",
-    "title": "Data wrangling 1",
-    "section": "The pipe |> feeds data into functions",
-    "text": "The pipe |&gt; feeds data into functions\n\n\nggplot(penguins, aes(bill_length_mm, bill_depth_mm, color = species)) + \n  geom_point()"
+    "objectID": "slides/data-wrangling-2.html#example-application-of-grouping-counting-1",
+    "href": "slides/data-wrangling-2.html#example-application-of-grouping-counting-1",
+    "title": "Data wrangling 2",
+    "section": "Example application of grouping: Counting",
+    "text": "Example application of grouping: Counting\nLet’s go back to the raw data:\n\n\npenguins\n\n# A tibble: 344 × 8\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Torgersen           39.1          18.7               181        3750\n 2 Adelie  Torgersen           39.5          17.4               186        3800\n 3 Adelie  Torgersen           40.3          18                 195        3250\n 4 Adelie  Torgersen           NA            NA                  NA          NA\n 5 Adelie  Torgersen           36.7          19.3               193        3450\n 6 Adelie  Torgersen           39.3          20.6               190        3650\n 7 Adelie  Torgersen           38.9          17.8               181        3625\n 8 Adelie  Torgersen           39.2          19.6               195        4675\n 9 Adelie  Torgersen           34.1          18.1               193        3475\n10 Adelie  Torgersen           42            20.2               190        4250\n# ℹ 334 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;"
   },
   {
-    "objectID": "slides/data-wrangling-1.html#the-pipe-feeds-data-into-functions-3",
-    "href": "slides/data-wrangling-1.html#the-pipe-feeds-data-into-functions-3",
-    "title": "Data wrangling 1",
-    "section": "The pipe |> feeds data into functions",
-    "text": "The pipe |&gt; feeds data into functions\n\n\npenguins |&gt;\n  ggplot(aes(bill_length_mm, bill_depth_mm, color = species)) +\n  geom_point()"
+    "objectID": "slides/data-wrangling-2.html#example-application-of-grouping-counting-2",
+    "href": "slides/data-wrangling-2.html#example-application-of-grouping-counting-2",
+    "title": "Data wrangling 2",
+    "section": "Example application of grouping: Counting",
+    "text": "Example application of grouping: Counting\nLet’s group it:\n\n\npenguins |&gt;\n  group_by(species)\n\n# A tibble: 344 × 8\n# Groups:   species [3]\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Torgersen           39.1          18.7               181        3750\n 2 Adelie  Torgersen           39.5          17.4               186        3800\n 3 Adelie  Torgersen           40.3          18                 195        3250\n 4 Adelie  Torgersen           NA            NA                  NA          NA\n 5 Adelie  Torgersen           36.7          19.3               193        3450\n 6 Adelie  Torgersen           39.3          20.6               190        3650\n 7 Adelie  Torgersen           38.9          17.8               181        3625\n 8 Adelie  Torgersen           39.2          19.6               195        4675\n 9 Adelie  Torgersen           34.1          18.1               193        3475\n10 Adelie  Torgersen           42            20.2               190        4250\n# ℹ 334 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;"
   },
   {
-    "objectID": "slides/data-wrangling-1.html#old-school-magrittr-pipe",
-    "href": "slides/data-wrangling-1.html#old-school-magrittr-pipe",
-    "title": "Data wrangling 1",
-    "section": "Old-school “magrittr” pipe: %>%",
-    "text": "Old-school “magrittr” pipe: %&gt;%\n\n\npenguins %&gt;%\n  ggplot(aes(bill_length_mm, bill_depth_mm, color = species)) +\n  geom_point()"
+    "objectID": "slides/data-wrangling-2.html#example-application-of-grouping-counting-3",
+    "href": "slides/data-wrangling-2.html#example-application-of-grouping-counting-3",
+    "title": "Data wrangling 2",
+    "section": "Example application of grouping: Counting",
+    "text": "Example application of grouping: Counting\nAnd summarize:\n\n\npenguins |&gt;\n  group_by(species) |&gt;\n  summarize(\n    n = n()  # n() returns the number of observations per group\n  )\n\n# A tibble: 3 × 2\n  species       n\n  &lt;fct&gt;     &lt;int&gt;\n1 Adelie      152\n2 Chinstrap    68\n3 Gentoo      124"
   },
   {
-    "objectID": "slides/data-wrangling-1.html#which-to-use-native-pipe-or-old-school-pipe",
-    "href": "slides/data-wrangling-1.html#which-to-use-native-pipe-or-old-school-pipe",
-    "title": "Data wrangling 1",
-    "section": "Which to use? Native pipe or old-school pipe?",
-    "text": "Which to use? Native pipe or old-school pipe?\n\n\nThe native pipe |&gt; is the future. I’ll be using it throughout.\nThe magrittr %&gt;% works fine. You can use it if you llike to."
+    "objectID": "slides/data-wrangling-2.html#example-application-of-grouping-counting-4",
+    "href": "slides/data-wrangling-2.html#example-application-of-grouping-counting-4",
+    "title": "Data wrangling 2",
+    "section": "Example application of grouping: Counting",
+    "text": "Example application of grouping: Counting\nNow let’s group by multiple variables:\n\n\npenguins |&gt;\n  group_by(species, island)\n\n# A tibble: 344 × 8\n# Groups:   species, island [5]\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Torgersen           39.1          18.7               181        3750\n 2 Adelie  Torgersen           39.5          17.4               186        3800\n 3 Adelie  Torgersen           40.3          18                 195        3250\n 4 Adelie  Torgersen           NA            NA                  NA          NA\n 5 Adelie  Torgersen           36.7          19.3               193        3450\n 6 Adelie  Torgersen           39.3          20.6               190        3650\n 7 Adelie  Torgersen           38.9          17.8               181        3625\n 8 Adelie  Torgersen           39.2          19.6               195        4675\n 9 Adelie  Torgersen           34.1          18.1               193        3475\n10 Adelie  Torgersen           42            20.2               190        4250\n# ℹ 334 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;"
   },
   {
-    "objectID": "slides/data-wrangling-1.html#pick-rows-from-a-table-filter",
-    "href": "slides/data-wrangling-1.html#pick-rows-from-a-table-filter",
-    "title": "Data wrangling 1",
-    "section": "Pick rows from a table: filter()",
-    "text": "Pick rows from a table: filter()"
+    "objectID": "slides/data-wrangling-2.html#example-application-of-grouping-counting-5",
+    "href": "slides/data-wrangling-2.html#example-application-of-grouping-counting-5",
+    "title": "Data wrangling 2",
+    "section": "Example application of grouping: Counting",
+    "text": "Example application of grouping: Counting\nAnd summarize:\n\n\npenguins |&gt;\n  group_by(species, island) |&gt;\n  summarize(\n    n = n()  # n() returns the number of observations per group\n  )\n\n# A tibble: 5 × 3\n# Groups:   species [3]\n  species   island        n\n  &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt;\n1 Adelie    Biscoe       44\n2 Adelie    Dream        56\n3 Adelie    Torgersen    52\n4 Chinstrap Dream        68\n5 Gentoo    Biscoe      124"
   },
   {
-    "objectID": "slides/data-wrangling-1.html#filter-out-penguins-of-species-gentoo",
-    "href": "slides/data-wrangling-1.html#filter-out-penguins-of-species-gentoo",
-    "title": "Data wrangling 1",
-    "section": "Filter out penguins of species Gentoo",
-    "text": "Filter out penguins of species Gentoo\n\n\npenguins |&gt;\n  filter(species == \"Gentoo\")\n\n# A tibble: 124 × 8\n   species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Gentoo  Biscoe           46.1          13.2               211        4500\n 2 Gentoo  Biscoe           50            16.3               230        5700\n 3 Gentoo  Biscoe           48.7          14.1               210        4450\n 4 Gentoo  Biscoe           50            15.2               218        5700\n 5 Gentoo  Biscoe           47.6          14.5               215        5400\n 6 Gentoo  Biscoe           46.5          13.5               210        4550\n 7 Gentoo  Biscoe           45.4          14.6               211        4800\n 8 Gentoo  Biscoe           46.7          15.3               219        5200\n 9 Gentoo  Biscoe           43.3          13.4               209        4400\n10 Gentoo  Biscoe           46.8          15.4               215        5150\n# ℹ 114 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;"
+    "objectID": "slides/data-wrangling-2.html#example-application-of-grouping-counting-6",
+    "href": "slides/data-wrangling-2.html#example-application-of-grouping-counting-6",
+    "title": "Data wrangling 2",
+    "section": "Example application of grouping: Counting",
+    "text": "Example application of grouping: Counting\ncount(...) is a short-cut for:group_by(...) |&gt; summarize(n = n())\n\n\n\n#\npenguins |&gt;\n  count(species)\n\n# A tibble: 3 × 2\n  species       n\n  &lt;fct&gt;     &lt;int&gt;\n1 Adelie      152\n2 Chinstrap    68\n3 Gentoo      124\n\n\n\n\npenguins |&gt;\n  group_by(species) |&gt;\n  summarize(n = n())\n\n# A tibble: 3 × 2\n  species       n\n  &lt;fct&gt;     &lt;int&gt;\n1 Adelie      152\n2 Chinstrap    68\n3 Gentoo      124\n\n\n\n\nThe output is exactly the same"
   },
   {
-    "objectID": "slides/data-wrangling-1.html#filter-out-penguins-with-bill-length-50-mm",
-    "href": "slides/data-wrangling-1.html#filter-out-penguins-with-bill-length-50-mm",
-    "title": "Data wrangling 1",
-    "section": "Filter out penguins with bill length > 50 mm",
-    "text": "Filter out penguins with bill length &gt; 50 mm\n\n\npenguins |&gt;\n  filter(bill_length_mm &gt; 50)\n\n# A tibble: 52 × 8\n   species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Gentoo  Biscoe           50.2          14.3               218        5700\n 2 Gentoo  Biscoe           59.6          17                 230        6050\n 3 Gentoo  Biscoe           50.5          15.9               222        5550\n 4 Gentoo  Biscoe           50.5          15.9               225        5400\n 5 Gentoo  Biscoe           50.1          15                 225        5000\n 6 Gentoo  Biscoe           50.4          15.3               224        5550\n 7 Gentoo  Biscoe           54.3          15.7               231        5650\n 8 Gentoo  Biscoe           50.7          15                 223        5550\n 9 Gentoo  Biscoe           51.1          16.3               220        6000\n10 Gentoo  Biscoe           52.5          15.6               221        5450\n# ℹ 42 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;"
+    "objectID": "slides/data-wrangling-2.html#performing-multiple-summaries-at-once",
+    "href": "slides/data-wrangling-2.html#performing-multiple-summaries-at-once",
+    "title": "Data wrangling 2",
+    "section": "Performing multiple summaries at once",
+    "text": "Performing multiple summaries at once\n\n\npenguins |&gt;\n  group_by(species) |&gt;\n  summarize(\n    n = n(),                                      # number of penguins\n    mean_mass = mean(body_mass_g),                # mean body mass\n    max_flipper_length = max(flipper_length_mm),  # max flipper length\n    percent_female = sum(sex == \"female\")/n()     # percent of female penguins\n  )\n\n\n\n# A tibble: 3 × 5\n  species       n mean_mass max_flipper_length percent_female\n  &lt;fct&gt;     &lt;int&gt;     &lt;dbl&gt;              &lt;int&gt;          &lt;dbl&gt;\n1 Adelie      152       NA                  NA           NA  \n2 Chinstrap    68     3733.                212            0.5\n3 Gentoo      124       NA                  NA           NA  \n\n\n\n\nEach statement in summarize() creates one new column\n\n\nBut why all the NAs?"
   },
   {
-    "objectID": "slides/data-wrangling-1.html#pick-columns-from-a-table-select",
-    "href": "slides/data-wrangling-1.html#pick-columns-from-a-table-select",
-    "title": "Data wrangling 1",
-    "section": "Pick columns from a table: select()",
-    "text": "Pick columns from a table: select()"
+    "objectID": "slides/data-wrangling-2.html#performing-multiple-summaries-at-once-1",
+    "href": "slides/data-wrangling-2.html#performing-multiple-summaries-at-once-1",
+    "title": "Data wrangling 2",
+    "section": "Performing multiple summaries at once",
+    "text": "Performing multiple summaries at once\n\n\npenguins |&gt;\n  group_by(species) |&gt;\n  summarize(\n    n = n(),\n    mean_mass = mean(body_mass_g, na.rm = TRUE),\n    max_flipper_length = max(flipper_length_mm, na.rm = TRUE),\n    percent_female = sum(sex == \"female\", na.rm = TRUE)/sum(!is.na(sex))\n  )\n\n# A tibble: 3 × 5\n  species       n mean_mass max_flipper_length percent_female\n  &lt;fct&gt;     &lt;int&gt;     &lt;dbl&gt;              &lt;int&gt;          &lt;dbl&gt;\n1 Adelie      152     3701.                210          0.5  \n2 Chinstrap    68     3733.                212          0.5  \n3 Gentoo      124     5076.                231          0.487\n\n\n\n\nWe typically need to tell R how exactly NAs should be handled"
   },
   {
-    "objectID": "slides/data-wrangling-1.html#pick-columns-species-island-and-sex",
-    "href": "slides/data-wrangling-1.html#pick-columns-species-island-and-sex",
-    "title": "Data wrangling 1",
-    "section": "Pick columns species, island, and sex",
-    "text": "Pick columns species, island, and sex\n\n\npenguins |&gt;\n  select(species, island, sex)\n\n# A tibble: 344 × 3\n   species island    sex   \n   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt; \n 1 Adelie  Torgersen male  \n 2 Adelie  Torgersen female\n 3 Adelie  Torgersen female\n 4 Adelie  Torgersen &lt;NA&gt;  \n 5 Adelie  Torgersen female\n 6 Adelie  Torgersen male  \n 7 Adelie  Torgersen female\n 8 Adelie  Torgersen male  \n 9 Adelie  Torgersen &lt;NA&gt;  \n10 Adelie  Torgersen &lt;NA&gt;  \n# ℹ 334 more rows"
+    "objectID": "slides/data-wrangling-2.html#reshape-pivot_wider-and-pivot_longer",
+    "href": "slides/data-wrangling-2.html#reshape-pivot_wider-and-pivot_longer",
+    "title": "Data wrangling 2",
+    "section": "Reshape: pivot_wider() and pivot_longer()",
+    "text": "Reshape: pivot_wider() and pivot_longer()"
   },
   {
-    "objectID": "slides/data-wrangling-1.html#sort-the-rows-in-a-table-arrange",
-    "href": "slides/data-wrangling-1.html#sort-the-rows-in-a-table-arrange",
-    "title": "Data wrangling 1",
-    "section": "Sort the rows in a table: arrange()",
-    "text": "Sort the rows in a table: arrange()"
+    "objectID": "slides/data-wrangling-2.html#reshaping-example-making-a-wide-summary-table",
+    "href": "slides/data-wrangling-2.html#reshaping-example-making-a-wide-summary-table",
+    "title": "Data wrangling 2",
+    "section": "Reshaping example: Making a wide summary table",
+    "text": "Reshaping example: Making a wide summary table\n\n\npenguins |&gt;\n  count(species, island)\n\n# A tibble: 5 × 3\n  species   island        n\n  &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt;\n1 Adelie    Biscoe       44\n2 Adelie    Dream        56\n3 Adelie    Torgersen    52\n4 Chinstrap Dream        68\n5 Gentoo    Biscoe      124"
   },
   {
-    "objectID": "slides/data-wrangling-1.html#sort-penguins-by-bill-length-ascending",
-    "href": "slides/data-wrangling-1.html#sort-penguins-by-bill-length-ascending",
-    "title": "Data wrangling 1",
-    "section": "Sort penguins by bill length, ascending",
-    "text": "Sort penguins by bill length, ascending\n\n\npenguins |&gt;\n  arrange(bill_length_mm)\n\n# A tibble: 344 × 8\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Dream               32.1          15.5               188        3050\n 2 Adelie  Dream               33.1          16.1               178        2900\n 3 Adelie  Torgersen           33.5          19                 190        3600\n 4 Adelie  Dream               34            17.1               185        3400\n 5 Adelie  Torgersen           34.1          18.1               193        3475\n 6 Adelie  Torgersen           34.4          18.4               184        3325\n 7 Adelie  Biscoe              34.5          18.1               187        2900\n 8 Adelie  Torgersen           34.6          21.1               198        4400\n 9 Adelie  Torgersen           34.6          17.2               189        3200\n10 Adelie  Biscoe              35            17.9               190        3450\n# ℹ 334 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;"
+    "objectID": "slides/data-wrangling-2.html#reshaping-example-making-a-wide-summary-table-1",
+    "href": "slides/data-wrangling-2.html#reshaping-example-making-a-wide-summary-table-1",
+    "title": "Data wrangling 2",
+    "section": "Reshaping example: Making a wide summary table",
+    "text": "Reshaping example: Making a wide summary table\n\n\npenguins |&gt;\n  count(species, island) |&gt;\n  pivot_wider(names_from = \"island\", values_from = \"n\")\n\n# A tibble: 3 × 4\n  species   Biscoe Dream Torgersen\n  &lt;fct&gt;      &lt;int&gt; &lt;int&gt;     &lt;int&gt;\n1 Adelie        44    56        52\n2 Chinstrap     NA    68        NA\n3 Gentoo       124    NA        NA\n\n\n\n\nThe NAs indicate cases that don’t exist"
   },
   {
-    "objectID": "slides/data-wrangling-1.html#sort-penguins-by-bill-length-descending",
-    "href": "slides/data-wrangling-1.html#sort-penguins-by-bill-length-descending",
-    "title": "Data wrangling 1",
-    "section": "Sort penguins by bill length, descending",
-    "text": "Sort penguins by bill length, descending\n\n\npenguins |&gt;\n  arrange(desc(bill_length_mm))\n\n# A tibble: 344 × 8\n   species   island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Gentoo    Biscoe           59.6          17                 230        6050\n 2 Chinstrap Dream            58            17.8               181        3700\n 3 Gentoo    Biscoe           55.9          17                 228        5600\n 4 Chinstrap Dream            55.8          19.8               207        4000\n 5 Gentoo    Biscoe           55.1          16                 230        5850\n 6 Gentoo    Biscoe           54.3          15.7               231        5650\n 7 Chinstrap Dream            54.2          20.8               201        4300\n 8 Chinstrap Dream            53.5          19.9               205        4500\n 9 Gentoo    Biscoe           53.4          15.8               219        5500\n10 Chinstrap Dream            52.8          20                 205        4550\n# ℹ 334 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;"
+    "objectID": "slides/data-wrangling-2.html#and-going-back-to-long-format",
+    "href": "slides/data-wrangling-2.html#and-going-back-to-long-format",
+    "title": "Data wrangling 2",
+    "section": "And going back to long format",
+    "text": "And going back to long format\n\n\npenguins_wide &lt;- penguins |&gt;\n  count(species, island) |&gt;\n  pivot_wider(names_from = \"island\", values_from = \"n\")\n\npenguins_wide |&gt; \n  pivot_longer(cols = -species, names_to = \"island\", values_to = \"n\")\n\n# A tibble: 9 × 3\n  species   island        n\n  &lt;fct&gt;     &lt;chr&gt;     &lt;int&gt;\n1 Adelie    Biscoe       44\n2 Adelie    Dream        56\n3 Adelie    Torgersen    52\n4 Chinstrap Biscoe       NA\n5 Chinstrap Dream        68\n6 Chinstrap Torgersen    NA\n7 Gentoo    Biscoe      124\n8 Gentoo    Dream        NA\n9 Gentoo    Torgersen    NA"
   },
   {
-    "objectID": "slides/data-wrangling-1.html#count-things",
-    "href": "slides/data-wrangling-1.html#count-things",
-    "title": "Data wrangling 1",
-    "section": "Count things",
-    "text": "Count things\n\n\npenguins\n\n# A tibble: 344 × 8\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Torgersen           39.1          18.7               181        3750\n 2 Adelie  Torgersen           39.5          17.4               186        3800\n 3 Adelie  Torgersen           40.3          18                 195        3250\n 4 Adelie  Torgersen           NA            NA                  NA          NA\n 5 Adelie  Torgersen           36.7          19.3               193        3450\n 6 Adelie  Torgersen           39.3          20.6               190        3650\n 7 Adelie  Torgersen           38.9          17.8               181        3625\n 8 Adelie  Torgersen           39.2          19.6               195        4675\n 9 Adelie  Torgersen           34.1          18.1               193        3475\n10 Adelie  Torgersen           42            20.2               190        4250\n# ℹ 334 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;"
+    "objectID": "slides/data-wrangling-2.html#and-going-back-to-long-format-1",
+    "href": "slides/data-wrangling-2.html#and-going-back-to-long-format-1",
+    "title": "Data wrangling 2",
+    "section": "And going back to long format",
+    "text": "And going back to long format\nColumn specifications work just like in select():\n\n\n# specify columns by subtraction\npenguins_wide |&gt; \n  pivot_longer(cols = -species, names_to = \"island\", values_to = \"n\")\n\n# A tibble: 9 × 3\n  species   island        n\n  &lt;fct&gt;     &lt;chr&gt;     &lt;int&gt;\n1 Adelie    Biscoe       44\n2 Adelie    Dream        56\n3 Adelie    Torgersen    52\n4 Chinstrap Biscoe       NA\n5 Chinstrap Dream        68\n6 Chinstrap Torgersen    NA\n7 Gentoo    Biscoe      124\n8 Gentoo    Dream        NA\n9 Gentoo    Torgersen    NA"
   },
   {
-    "objectID": "slides/data-wrangling-1.html#count-things-1",
-    "href": "slides/data-wrangling-1.html#count-things-1",
-    "title": "Data wrangling 1",
-    "section": "Count things",
-    "text": "Count things\n\n\npenguins |&gt;\n  count(species)\n\n# A tibble: 3 × 2\n  species       n\n  &lt;fct&gt;     &lt;int&gt;\n1 Adelie      152\n2 Chinstrap    68\n3 Gentoo      124"
+    "objectID": "slides/data-wrangling-2.html#and-going-back-to-long-format-2",
+    "href": "slides/data-wrangling-2.html#and-going-back-to-long-format-2",
+    "title": "Data wrangling 2",
+    "section": "And going back to long format",
+    "text": "And going back to long format\nColumn specifications work just like in select():\n\n\n# specify columns by explicit listing\npenguins_wide |&gt; \n  pivot_longer(cols = c(Biscoe, Dream, Torgersen), names_to = \"island\", values_to = \"n\")\n\n# A tibble: 9 × 3\n  species   island        n\n  &lt;fct&gt;     &lt;chr&gt;     &lt;int&gt;\n1 Adelie    Biscoe       44\n2 Adelie    Dream        56\n3 Adelie    Torgersen    52\n4 Chinstrap Biscoe       NA\n5 Chinstrap Dream        68\n6 Chinstrap Torgersen    NA\n7 Gentoo    Biscoe      124\n8 Gentoo    Dream        NA\n9 Gentoo    Torgersen    NA"
   },
   {
-    "objectID": "slides/data-wrangling-1.html#count-things-2",
-    "href": "slides/data-wrangling-1.html#count-things-2",
-    "title": "Data wrangling 1",
-    "section": "Count things",
-    "text": "Count things\n\n\npenguins |&gt;\n  count(species, island)\n\n# A tibble: 5 × 3\n  species   island        n\n  &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt;\n1 Adelie    Biscoe       44\n2 Adelie    Dream        56\n3 Adelie    Torgersen    52\n4 Chinstrap Dream        68\n5 Gentoo    Biscoe      124"
+    "objectID": "slides/data-wrangling-2.html#and-going-back-to-long-format-3",
+    "href": "slides/data-wrangling-2.html#and-going-back-to-long-format-3",
+    "title": "Data wrangling 2",
+    "section": "And going back to long format",
+    "text": "And going back to long format\nColumn specifications work just like in select():\n\n\n# specify columns by range\npenguins_wide |&gt; \n  pivot_longer(cols = Biscoe:Torgersen, names_to = \"island\", values_to = \"n\")\n\n# A tibble: 9 × 3\n  species   island        n\n  &lt;fct&gt;     &lt;chr&gt;     &lt;int&gt;\n1 Adelie    Biscoe       44\n2 Adelie    Dream        56\n3 Adelie    Torgersen    52\n4 Chinstrap Biscoe       NA\n5 Chinstrap Dream        68\n6 Chinstrap Torgersen    NA\n7 Gentoo    Biscoe      124\n8 Gentoo    Dream        NA\n9 Gentoo    Torgersen    NA"
   },
   {
-    "objectID": "slides/data-wrangling-1.html#use-the-pipe-to-build-analysis-pipelines",
-    "href": "slides/data-wrangling-1.html#use-the-pipe-to-build-analysis-pipelines",
-    "title": "Data wrangling 1",
-    "section": "Use the pipe to build analysis pipelines",
-    "text": "Use the pipe to build analysis pipelines\n\n\npenguins |&gt;\n  filter(species == \"Adelie\")\n\n# A tibble: 152 × 8\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Torgersen           39.1          18.7               181        3750\n 2 Adelie  Torgersen           39.5          17.4               186        3800\n 3 Adelie  Torgersen           40.3          18                 195        3250\n 4 Adelie  Torgersen           NA            NA                  NA          NA\n 5 Adelie  Torgersen           36.7          19.3               193        3450\n 6 Adelie  Torgersen           39.3          20.6               190        3650\n 7 Adelie  Torgersen           38.9          17.8               181        3625\n 8 Adelie  Torgersen           39.2          19.6               195        4675\n 9 Adelie  Torgersen           34.1          18.1               193        3475\n10 Adelie  Torgersen           42            20.2               190        4250\n# ℹ 142 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;"
+    "objectID": "slides/data-wrangling-2.html#we-use-joins-to-add-columns-from-one-table-into-another",
+    "href": "slides/data-wrangling-2.html#we-use-joins-to-add-columns-from-one-table-into-another",
+    "title": "Data wrangling 2",
+    "section": "We use joins to add columns from one table into another",
+    "text": "We use joins to add columns from one table into another"
   },
   {
-    "objectID": "slides/data-wrangling-1.html#use-the-pipe-to-build-analysis-pipelines-1",
-    "href": "slides/data-wrangling-1.html#use-the-pipe-to-build-analysis-pipelines-1",
-    "title": "Data wrangling 1",
-    "section": "Use the pipe to build analysis pipelines",
-    "text": "Use the pipe to build analysis pipelines\n\n\npenguins |&gt;\n  filter(species == \"Adelie\") |&gt;\n  select(island, sex)\n\n# A tibble: 152 × 2\n   island    sex   \n   &lt;fct&gt;     &lt;fct&gt; \n 1 Torgersen male  \n 2 Torgersen female\n 3 Torgersen female\n 4 Torgersen &lt;NA&gt;  \n 5 Torgersen female\n 6 Torgersen male  \n 7 Torgersen female\n 8 Torgersen male  \n 9 Torgersen &lt;NA&gt;  \n10 Torgersen &lt;NA&gt;  \n# ℹ 142 more rows"
+    "objectID": "slides/data-wrangling-2.html#example-band-members-and-their-instruments",
+    "href": "slides/data-wrangling-2.html#example-band-members-and-their-instruments",
+    "title": "Data wrangling 2",
+    "section": "Example: band members and their instruments",
+    "text": "Example: band members and their instruments\n\n\n\n# some members of famous bands\nband_members\n\n# A tibble: 3 × 2\n  name  band   \n  &lt;chr&gt; &lt;chr&gt;  \n1 Mick  Stones \n2 John  Beatles\n3 Paul  Beatles\n\n\n\n\n# instruments played\nband_instruments\n\n# A tibble: 3 × 2\n  name  plays \n  &lt;chr&gt; &lt;chr&gt; \n1 John  guitar\n2 Paul  bass  \n3 Keith guitar\n\n\n\n\n\n\n# add right table to left\nleft_join(band_members, band_instruments)\n\n# A tibble: 3 × 3\n  name  band    plays \n  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; \n1 Mick  Stones  &lt;NA&gt;  \n2 John  Beatles guitar\n3 Paul  Beatles bass"
   },
   {
-    "objectID": "slides/data-wrangling-1.html#use-the-pipe-to-build-analysis-pipelines-2",
-    "href": "slides/data-wrangling-1.html#use-the-pipe-to-build-analysis-pipelines-2",
-    "title": "Data wrangling 1",
-    "section": "Use the pipe to build analysis pipelines",
-    "text": "Use the pipe to build analysis pipelines\n\n\npenguins |&gt;\n  filter(species == \"Adelie\") |&gt;\n  select(island, sex) |&gt;\n  count(island, sex)\n\n# A tibble: 8 × 3\n  island    sex        n\n  &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt;\n1 Biscoe    female    22\n2 Biscoe    male      22\n3 Dream     female    27\n4 Dream     male      28\n5 Dream     &lt;NA&gt;       1\n6 Torgersen female    24\n7 Torgersen male      23\n8 Torgersen &lt;NA&gt;       5"
+    "objectID": "slides/data-wrangling-2.html#example-band-members-and-their-instruments-1",
+    "href": "slides/data-wrangling-2.html#example-band-members-and-their-instruments-1",
+    "title": "Data wrangling 2",
+    "section": "Example: band members and their instruments",
+    "text": "Example: band members and their instruments\n\n\n\n# some members of famous bands\nband_members\n\n# A tibble: 3 × 2\n  name  band   \n  &lt;chr&gt; &lt;chr&gt;  \n1 Mick  Stones \n2 John  Beatles\n3 Paul  Beatles\n\n\n\n\n# instruments played\nband_instruments\n\n# A tibble: 3 × 2\n  name  plays \n  &lt;chr&gt; &lt;chr&gt; \n1 John  guitar\n2 Paul  bass  \n3 Keith guitar\n\n\n\n\n\n\n# add left table to right\nright_join(band_members, band_instruments)\n\n# A tibble: 3 × 3\n  name  band    plays \n  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; \n1 John  Beatles guitar\n2 Paul  Beatles bass  \n3 Keith &lt;NA&gt;    guitar"
   },
   {
-    "objectID": "slides/data-wrangling-1.html#make-a-new-table-column-mutate",
-    "href": "slides/data-wrangling-1.html#make-a-new-table-column-mutate",
-    "title": "Data wrangling 1",
-    "section": "Make a new table column: mutate()",
-    "text": "Make a new table column: mutate()"
+    "objectID": "slides/data-wrangling-2.html#example-band-members-and-their-instruments-2",
+    "href": "slides/data-wrangling-2.html#example-band-members-and-their-instruments-2",
+    "title": "Data wrangling 2",
+    "section": "Example: band members and their instruments",
+    "text": "Example: band members and their instruments\n\n\n\n# some members of famous bands\nband_members\n\n# A tibble: 3 × 2\n  name  band   \n  &lt;chr&gt; &lt;chr&gt;  \n1 Mick  Stones \n2 John  Beatles\n3 Paul  Beatles\n\n\n\n\n# instruments played\nband_instruments\n\n# A tibble: 3 × 2\n  name  plays \n  &lt;chr&gt; &lt;chr&gt; \n1 John  guitar\n2 Paul  bass  \n3 Keith guitar\n\n\n\n\n\n\n# keep intersection only\ninner_join(band_members, band_instruments)\n\n# A tibble: 2 × 3\n  name  band    plays \n  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; \n1 John  Beatles guitar\n2 Paul  Beatles bass"
   },
   {
-    "objectID": "slides/data-wrangling-1.html#example-flipper-length-in-cm",
-    "href": "slides/data-wrangling-1.html#example-flipper-length-in-cm",
-    "title": "Data wrangling 1",
-    "section": "Example: flipper length in cm",
-    "text": "Example: flipper length in cm\n\n\npenguins |&gt;\n  select(species, island, flipper_length_mm)\n\n# A tibble: 344 × 3\n   species island    flipper_length_mm\n   &lt;fct&gt;   &lt;fct&gt;                 &lt;int&gt;\n 1 Adelie  Torgersen               181\n 2 Adelie  Torgersen               186\n 3 Adelie  Torgersen               195\n 4 Adelie  Torgersen                NA\n 5 Adelie  Torgersen               193\n 6 Adelie  Torgersen               190\n 7 Adelie  Torgersen               181\n 8 Adelie  Torgersen               195\n 9 Adelie  Torgersen               193\n10 Adelie  Torgersen               190\n# ℹ 334 more rows"
+    "objectID": "slides/data-wrangling-2.html#example-band-members-and-their-instruments-3",
+    "href": "slides/data-wrangling-2.html#example-band-members-and-their-instruments-3",
+    "title": "Data wrangling 2",
+    "section": "Example: band members and their instruments",
+    "text": "Example: band members and their instruments\n\n\n\n# some members of famous bands\nband_members\n\n# A tibble: 3 × 2\n  name  band   \n  &lt;chr&gt; &lt;chr&gt;  \n1 Mick  Stones \n2 John  Beatles\n3 Paul  Beatles\n\n\n\n\n# instruments played\nband_instruments\n\n# A tibble: 3 × 2\n  name  plays \n  &lt;chr&gt; &lt;chr&gt; \n1 John  guitar\n2 Paul  bass  \n3 Keith guitar\n\n\n\n\n\n\n# merge all cases\nfull_join(band_members, band_instruments)\n\n# A tibble: 4 × 3\n  name  band    plays \n  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; \n1 Mick  Stones  &lt;NA&gt;  \n2 John  Beatles guitar\n3 Paul  Beatles bass  \n4 Keith &lt;NA&gt;    guitar"
   },
   {
-    "objectID": "slides/data-wrangling-1.html#example-flipper-length-in-cm-1",
-    "href": "slides/data-wrangling-1.html#example-flipper-length-in-cm-1",
-    "title": "Data wrangling 1",
-    "section": "Example: flipper length in cm",
-    "text": "Example: flipper length in cm\n\n\npenguins |&gt;\n  select(species, island, flipper_length_mm) |&gt;\n  mutate(flipper_length_cm = flipper_length_mm / 10)\n\n# A tibble: 344 × 4\n   species island    flipper_length_mm flipper_length_cm\n   &lt;fct&gt;   &lt;fct&gt;                 &lt;int&gt;             &lt;dbl&gt;\n 1 Adelie  Torgersen               181              18.1\n 2 Adelie  Torgersen               186              18.6\n 3 Adelie  Torgersen               195              19.5\n 4 Adelie  Torgersen                NA              NA  \n 5 Adelie  Torgersen               193              19.3\n 6 Adelie  Torgersen               190              19  \n 7 Adelie  Torgersen               181              18.1\n 8 Adelie  Torgersen               195              19.5\n 9 Adelie  Torgersen               193              19.3\n10 Adelie  Torgersen               190              19  \n# ℹ 334 more rows"
+    "objectID": "slides/data-wrangling-2.html#the-different-joins-at-a-glance",
+    "href": "slides/data-wrangling-2.html#the-different-joins-at-a-glance",
+    "title": "Data wrangling 2",
+    "section": "The different joins at a glance",
+    "text": "The different joins at a glance"
   },
   {
-    "objectID": "slides/data-wrangling-1.html#make-multiple-columns-at-once",
-    "href": "slides/data-wrangling-1.html#make-multiple-columns-at-once",
-    "title": "Data wrangling 1",
-    "section": "Make multiple columns at once",
-    "text": "Make multiple columns at once\n\n\npenguins |&gt;\n  select(species, island, flipper_length_mm) |&gt;\n  mutate(\n    flipper_length_cm = flipper_length_mm / 10,  # &lt;- notice the comma\n    flipper_length_in = flipper_length_mm / 25.4\n  )\n\n# A tibble: 344 × 5\n   species island    flipper_length_mm flipper_length_cm flipper_length_in\n   &lt;fct&gt;   &lt;fct&gt;                 &lt;int&gt;             &lt;dbl&gt;             &lt;dbl&gt;\n 1 Adelie  Torgersen               181              18.1              7.13\n 2 Adelie  Torgersen               186              18.6              7.32\n 3 Adelie  Torgersen               195              19.5              7.68\n 4 Adelie  Torgersen                NA              NA               NA   \n 5 Adelie  Torgersen               193              19.3              7.60\n 6 Adelie  Torgersen               190              19                7.48\n 7 Adelie  Torgersen               181              18.1              7.13\n 8 Adelie  Torgersen               195              19.5              7.68\n 9 Adelie  Torgersen               193              19.3              7.60\n10 Adelie  Torgersen               190              19                7.48\n# ℹ 334 more rows"
+    "objectID": "slides/data-wrangling-2.html#the-different-joins-at-a-glance-1",
+    "href": "slides/data-wrangling-2.html#the-different-joins-at-a-glance-1",
+    "title": "Data wrangling 2",
+    "section": "The different joins at a glance",
+    "text": "The different joins at a glance\n\n\n\n\nTip: In case of doubt, use left_join()\n\nIn my experience, left_join() is the right choice 70–80% of the time"
   },
   {
-    "objectID": "slides/data-wrangling-1.html#further-reading",
-    "href": "slides/data-wrangling-1.html#further-reading",
-    "title": "Data wrangling 1",
+    "objectID": "slides/data-wrangling-2.html#further-reading",
+    "href": "slides/data-wrangling-2.html#further-reading",
+    "title": "Data wrangling 2",
     "section": "Further reading",
-    "text": "Further reading\n\nR for Data Science: Chapter 5: Data transformation\nR for Data Science: Chapter 18: Pipes\ndplyr documentation: Introduction to dplyr\ndplyr reference documentation: One table verbs"
+    "text": "Further reading\n\nR for Data Science: Chapter 5.6: Grouped summaries with summarise()\nR for Data Science: Chapter 12.3: Pivoting\nR for Data Science: Chapter 13: Relational data\ndplyr documentation: Grouped data\ntidyr documentation: Pivoting\ndplyr documentation: Mutating joins"
   },
   {
-    "objectID": "slides/color-spaces.html#the-rgb-color-space",
-    "href": "slides/color-spaces.html#the-rgb-color-space",
-    "title": "Color spaces and color-vision deficiency",
-    "section": "The RGB color space",
-    "text": "The RGB color space\n\n\n\nred R (0-255):  amount of red light\ngreen G (0-255):  amount of green light\nblue B (0-255):  amount of blue light\n\n\n\n\n\nR\n\n\nG\n\n\nB\n\n\nhex code\n\n\n     color     \n\n\n\n\n\n\n0\n\n\n0\n\n\n0\n\n\n#000000\n\n\n\n\n\n\n255\n\n\n255\n\n\n255\n\n\n#FFFFFF\n\n\n\n\n\n\n255\n\n\n0\n\n\n0\n\n\n#FF0000\n\n\n\n\n\n\n0\n\n\n255\n\n\n255\n\n\n#00FFFF\n\n\n\n\n\n\n128\n\n\n128\n\n\n128\n\n\n#808080\n\n\n\n\n\n\n0\n\n\n158\n\n\n115\n\n\n#009E73"
+    "objectID": "slides/coordinate-systems-axes.html#most-data-visualizations-use-cartesian-coordinates",
+    "href": "slides/coordinate-systems-axes.html#most-data-visualizations-use-cartesian-coordinates",
+    "title": "Coordinate systems and axes",
+    "section": "Most data visualizations use Cartesian coordinates",
+    "text": "Most data visualizations use Cartesian coordinates"
   },
   {
-    "objectID": "slides/color-spaces.html#the-rgb-color-space-1",
-    "href": "slides/color-spaces.html#the-rgb-color-space-1",
-    "title": "Color spaces and color-vision deficiency",
-    "section": "The RGB color space",
-    "text": "The RGB color space\n\n\n\n\n\n\n \n\n\n\n\n\n\nMost people cannot reason well about the RGB color space"
+    "objectID": "slides/coordinate-systems-axes.html#changing-units-does-not-change-the-plot",
+    "href": "slides/coordinate-systems-axes.html#changing-units-does-not-change-the-plot",
+    "title": "Coordinate systems and axes",
+    "section": "Changing units does not change the plot",
+    "text": "Changing units does not change the plot"
   },
   {
-    "objectID": "slides/color-spaces.html#the-hsv-color-space",
-    "href": "slides/color-spaces.html#the-hsv-color-space",
-    "title": "Color spaces and color-vision deficiency",
-    "section": "The HSV color space",
-    "text": "The HSV color space\n\n\nhue H (0-360):  hue of the color\nsaturation S (0-1):  colorfulness relative to the brightness  of the color\nvalue V (0-1):  subjective perception of amount  of light emitted"
+    "objectID": "slides/coordinate-systems-axes.html#if-scale-units-are-unrelated-aspect-ratio-is-arbitrary",
+    "href": "slides/coordinate-systems-axes.html#if-scale-units-are-unrelated-aspect-ratio-is-arbitrary",
+    "title": "Coordinate systems and axes",
+    "section": "If scale units are unrelated, aspect ratio is arbitrary",
+    "text": "If scale units are unrelated, aspect ratio is arbitrary"
   },
   {
-    "objectID": "slides/color-spaces.html#the-hsv-color-space-1",
-    "href": "slides/color-spaces.html#the-hsv-color-space-1",
-    "title": "Color spaces and color-vision deficiency",
-    "section": "The HSV color space",
-    "text": "The HSV color space\n\n\n\n\n\n\n \n\n\n\n\n\n\nProblem: Color changes in non-intuitive ways with saturation and value"
+    "objectID": "slides/coordinate-systems-axes.html#logarithmic-scales-log-scales",
+    "href": "slides/coordinate-systems-axes.html#logarithmic-scales-log-scales",
+    "title": "Coordinate systems and axes",
+    "section": "Logarithmic scales (log scales)",
+    "text": "Logarithmic scales (log scales)\n\nVisualize these five values: 1,   3.16,   10,   31.6,   100"
   },
   {
-    "objectID": "slides/color-spaces.html#the-hls-color-space",
-    "href": "slides/color-spaces.html#the-hls-color-space",
-    "title": "Color spaces and color-vision deficiency",
-    "section": "The HLS color space",
-    "text": "The HLS color space\n\n\nhue H (0-360):  hue of the color\nlightness L (0-1):  brightness relative to the brightness  of a similarly illuminated white\nsaturation S (0-1):  colorfulness relative to the brightness  of the color"
+    "objectID": "slides/coordinate-systems-axes.html#example-population-number-of-texas-counties",
+    "href": "slides/coordinate-systems-axes.html#example-population-number-of-texas-counties",
+    "title": "Coordinate systems and axes",
+    "section": "Example: Population number of Texas counties",
+    "text": "Example: Population number of Texas counties\nA linear scale emphasizes large counties"
   },
   {
-    "objectID": "slides/color-spaces.html#the-hls-color-space-1",
-    "href": "slides/color-spaces.html#the-hls-color-space-1",
-    "title": "Color spaces and color-vision deficiency",
-    "section": "The HLS color space",
-    "text": "The HLS color space\n\n\n\n\n\n\n \n\n\n\n\n\n\nProblem: For high saturation, perceived lightness changes with hue"
+    "objectID": "slides/coordinate-systems-axes.html#example-population-number-of-texas-counties-1",
+    "href": "slides/coordinate-systems-axes.html#example-population-number-of-texas-counties-1",
+    "title": "Coordinate systems and axes",
+    "section": "Example: Population number of Texas counties",
+    "text": "Example: Population number of Texas counties\nA log scale shows symmetry around the median"
   },
   {
-    "objectID": "slides/color-spaces.html#the-luv-color-space",
-    "href": "slides/color-spaces.html#the-luv-color-space",
-    "title": "Color spaces and color-vision deficiency",
-    "section": "The Luv color space",
-    "text": "The Luv color space\n\n\nluminance L (0-100):  amount of light emitted\ngreen/red axis u (approx. -100 to 100):  amount of green vs. red\nblue/yellow axis v (approx. -100 to 100):  amount of blue vs. yellow"
+    "objectID": "slides/coordinate-systems-axes.html#nonlinear-coordinate-systems-polar-coordinates",
+    "href": "slides/coordinate-systems-axes.html#nonlinear-coordinate-systems-polar-coordinates",
+    "title": "Coordinate systems and axes",
+    "section": "Nonlinear coordinate systems: Polar coordinates",
+    "text": "Nonlinear coordinate systems: Polar coordinates"
   },
   {
-    "objectID": "slides/color-spaces.html#the-luv-space-in-polar-coordinates-hcl",
-    "href": "slides/color-spaces.html#the-luv-space-in-polar-coordinates-hcl",
-    "title": "Color spaces and color-vision deficiency",
-    "section": "The Luv space in polar coordinates: HCL",
-    "text": "The Luv space in polar coordinates: HCL\n\n\nhue H (0-360):  hue of the color\nluminance L (0-100):  amount of light emitted\nchroma C ():  colorfulness of the color"
+    "objectID": "slides/coordinate-systems-axes.html#cartesian-vs-polar-example",
+    "href": "slides/coordinate-systems-axes.html#cartesian-vs-polar-example",
+    "title": "Coordinate systems and axes",
+    "section": "Cartesian vs polar example",
+    "text": "Cartesian vs polar example"
   },
   {
-    "objectID": "slides/color-spaces.html#the-hcl-color-space-hue-chroma-plane",
-    "href": "slides/color-spaces.html#the-hcl-color-space-hue-chroma-plane",
-    "title": "Color spaces and color-vision deficiency",
-    "section": "The HCL color space: Hue-Chroma plane",
-    "text": "The HCL color space: Hue-Chroma plane"
-  },
-  {
-    "objectID": "slides/color-spaces.html#the-hcl-color-space-luminance-chroma-plane",
-    "href": "slides/color-spaces.html#the-hcl-color-space-luminance-chroma-plane",
-    "title": "Color spaces and color-vision deficiency",
-    "section": "The HCL color space: Luminance-Chroma plane",
-    "text": "The HCL color space: Luminance-Chroma plane"
-  },
-  {
-    "objectID": "slides/color-spaces.html#we-can-explore-hcl-colors-from-r",
-    "href": "slides/color-spaces.html#we-can-explore-hcl-colors-from-r",
-    "title": "Color spaces and color-vision deficiency",
-    "section": "We can explore HCL colors from R",
-    "text": "We can explore HCL colors from R\ncolorspace::choose_color()"
-  },
-  {
-    "objectID": "slides/color-spaces.html#we-can-explore-hcl-colors-from-r-1",
-    "href": "slides/color-spaces.html#we-can-explore-hcl-colors-from-r-1",
-    "title": "Color spaces and color-vision deficiency",
-    "section": "We can explore HCL colors from R",
-    "text": "We can explore HCL colors from R\nThe app is also available on the class website\n\n\n\n\n\n\n\n\nOpen color chooser app"
-  },
-  {
-    "objectID": "slides/color-spaces.html#avoid-high-chroma",
-    "href": "slides/color-spaces.html#avoid-high-chroma",
-    "title": "Color spaces and color-vision deficiency",
-    "section": "1. Avoid high chroma",
-    "text": "1. Avoid high chroma\n\n\nHigh chroma: Toys\n\n\nLow chroma: Elegance\n\n\n\nToys photo by Pixabay from Pexels\nHome interior photo by Saviesa Home from Pexels"
-  },
-  {
-    "objectID": "slides/color-spaces.html#be-aware-of-color-vision-deficiency",
-    "href": "slides/color-spaces.html#be-aware-of-color-vision-deficiency",
-    "title": "Color spaces and color-vision deficiency",
-    "section": "2. Be aware of color-vision deficiency",
-    "text": "2. Be aware of color-vision deficiency\n\n5%–8% of men are color blind!\n\n\n\nRed-green color-vision deficiency is the most common"
-  },
-  {
-    "objectID": "slides/color-spaces.html#be-aware-of-color-vision-deficiency-1",
-    "href": "slides/color-spaces.html#be-aware-of-color-vision-deficiency-1",
-    "title": "Color spaces and color-vision deficiency",
-    "section": "2. Be aware of color-vision deficiency",
-    "text": "2. Be aware of color-vision deficiency\n5%–8% of men are color blind!\n\nBlue-green color-vision deficiency is rare but does occur"
-  },
-  {
-    "objectID": "slides/color-spaces.html#be-aware-of-color-vision-deficiency-2",
-    "href": "slides/color-spaces.html#be-aware-of-color-vision-deficiency-2",
-    "title": "Color spaces and color-vision deficiency",
-    "section": "2. Be aware of color-vision deficiency",
-    "text": "2. Be aware of color-vision deficiency\nChoose colors that can be distinguished with CVD"
-  },
-  {
-    "objectID": "slides/color-spaces.html#consider-using-the-okabe-ito-scale",
-    "href": "slides/color-spaces.html#consider-using-the-okabe-ito-scale",
-    "title": "Color spaces and color-vision deficiency",
-    "section": "Consider using the Okabe-Ito scale",
-    "text": "Consider using the Okabe-Ito scale\n\n\n\n\n\nName\nHex code   \nR, G, B (0-255)\n\n\n\n\norange\n#E69F00\n230, 159, 0\n\n\nsky blue\n#56B4E9\n86, 180, 233\n\n\nbluish green\n#009E73\n0, 158, 115\n\n\nyellow\n#F0E442\n240, 228, 66\n\n\nblue\n#0072B2\n0, 114, 178\n\n\nvermilion\n#D55E00\n213, 94, 0\n\n\nreddish purple\n#CC79A7\n204, 121, 167\n\n\nblack\n#000000\n0, 0, 0"
-  },
-  {
-    "objectID": "slides/color-spaces.html#cvd-is-worse-for-thin-lines-and-tiny-dots",
-    "href": "slides/color-spaces.html#cvd-is-worse-for-thin-lines-and-tiny-dots",
-    "title": "Color spaces and color-vision deficiency",
-    "section": "CVD is worse for thin lines and tiny dots",
-    "text": "CVD is worse for thin lines and tiny dots"
-  },
-  {
-    "objectID": "slides/color-spaces.html#when-in-doubt-run-cvd-simulations",
-    "href": "slides/color-spaces.html#when-in-doubt-run-cvd-simulations",
-    "title": "Color spaces and color-vision deficiency",
-    "section": "When in doubt, run CVD simulations",
-    "text": "When in doubt, run CVD simulations\n\nOriginal"
-  },
-  {
-    "objectID": "slides/color-spaces.html#further-reading",
-    "href": "slides/color-spaces.html#further-reading",
-    "title": "Color spaces and color-vision deficiency",
-    "section": "Further reading",
-    "text": "Further reading\n\nFundamentals of Data Visualization: Chapter 19: Common pitfalls of color use\nWikipedia: HSL and HSV\ncolorspace package documentation: Color Spaces\ncolorspace package documentation: Apps for Choosing Colors and Palettes Interactively"
-  },
-  {
-    "objectID": "slides/aesthetic-mappings.html#dataset-daily-average-temperatures-for-various-locations",
-    "href": "slides/aesthetic-mappings.html#dataset-daily-average-temperatures-for-various-locations",
-    "title": "Aesthetic mappings",
-    "section": "Dataset:Daily average temperatures for various locations",
-    "text": "Dataset:Daily average temperatures for various locations\n\n\n\n\n\n\nlocation\nday_of_year\nmonth\ntemperature\n\n\n\n\nDeath Valley\n1\n01\n51.0\n\n\nDeath Valley\n2\n01\n51.2\n\n\nDeath Valley\n3\n01\n51.3\n\n\nDeath Valley\n4\n01\n51.4\n\n\nDeath Valley\n5\n01\n51.6\n\n\nDeath Valley\n6\n01\n51.7\n\n\nDeath Valley\n7\n01\n51.9\n\n\nDeath Valley\n8\n01\n52.0\n\n\nDeath Valley\n9\n01\n52.2\n\n\nDeath Valley\n10\n01\n52.3\n\n\nDeath Valley\n11\n01\n52.5\n\n\nDeath Valley\n12\n01\n52.7\n\n\nDeath Valley\n13\n01\n52.9"
-  },
-  {
-    "objectID": "slides/aesthetic-mappings.html#temperatures-mapped-onto-y-position",
-    "href": "slides/aesthetic-mappings.html#temperatures-mapped-onto-y-position",
-    "title": "Aesthetic mappings",
-    "section": "Temperatures mapped onto y position",
-    "text": "Temperatures mapped onto y position"
-  },
-  {
-    "objectID": "slides/aesthetic-mappings.html#temperatures-mapped-onto-color",
-    "href": "slides/aesthetic-mappings.html#temperatures-mapped-onto-color",
-    "title": "Aesthetic mappings",
-    "section": "Temperatures mapped onto color",
-    "text": "Temperatures mapped onto color"
-  },
-  {
-    "objectID": "slides/aesthetic-mappings.html#commonly-used-aesthetics",
-    "href": "slides/aesthetic-mappings.html#commonly-used-aesthetics",
-    "title": "Aesthetic mappings",
-    "section": "Commonly used aesthetics",
-    "text": "Commonly used aesthetics"
-  },
-  {
-    "objectID": "slides/aesthetic-mappings.html#the-same-data-values-can-be-mapped-to-different-aesthetics",
-    "href": "slides/aesthetic-mappings.html#the-same-data-values-can-be-mapped-to-different-aesthetics",
-    "title": "Aesthetic mappings",
-    "section": "The same data values can be mapped to different aesthetics",
-    "text": "The same data values can be mapped to different aesthetics"
-  },
-  {
-    "objectID": "slides/aesthetic-mappings.html#we-can-use-many-different-aesthetics-at-once",
-    "href": "slides/aesthetic-mappings.html#we-can-use-many-different-aesthetics-at-once",
-    "title": "Aesthetic mappings",
-    "section": "We can use many different aesthetics at once",
-    "text": "We can use many different aesthetics at once"
-  },
-  {
-    "objectID": "slides/aesthetic-mappings.html#getting-the-data",
-    "href": "slides/aesthetic-mappings.html#getting-the-data",
-    "title": "Aesthetic mappings",
+    "objectID": "slides/coordinate-systems-axes.html#getting-the-data",
+    "href": "slides/coordinate-systems-axes.html#getting-the-data",
+    "title": "Coordinate systems and axes",
     "section": "Getting the data",
-    "text": "Getting the data\nAll examples will use the temperatures dataset:\n\n\ntemperatures &lt;- read_csv(\"https://wilkelab.org/SDS366/datasets/tempnormals.csv\") |&gt;\n  mutate(\n    location = factor(\n      location, levels = c(\"Death Valley\", \"Houston\", \"San Diego\", \"Chicago\")\n    )\n  ) |&gt;\n  select(location, station_id, day_of_year, month, temperature)"
+    "text": "Getting the data\n\nThe boxoffice dataset:\n\n\n\nboxoffice &lt;- tibble(\n  rank = 1:5,\n  title = c(\"Star Wars\", \"Jumanji\", \"Pitch Perfect 3\", \"Greatest Showman\", \"Ferdinand\"),\n  amount = c(71.57, 36.17, 19.93, 8.81, 7.32) # million USD\n)\n\n\n\n\nThe tx_counties dataset:\n\n\n\ntx_counties &lt;- read_csv(\"https://wilkelab.org/SDS366/datasets/US_census.csv\") |&gt; \n  filter(state == \"Texas\") |&gt;\n  mutate(popratio = pop2010/median(pop2010)) |&gt;\n  arrange(desc(popratio)) |&gt;\n  mutate(index = 1:n())"
   },
   {
-    "objectID": "slides/aesthetic-mappings.html#we-define-the-mapping-with-aes",
-    "href": "slides/aesthetic-mappings.html#we-define-the-mapping-with-aes",
-    "title": "Aesthetic mappings",
-    "section": "We define the mapping with aes()",
-    "text": "We define the mapping with aes()\n\n\nggplot(\n  data = temperatures,\n  mapping = aes(x = day_of_year, y = temperature, color = location)\n) + \n  geom_line()"
+    "objectID": "slides/coordinate-systems-axes.html#getting-the-data-1",
+    "href": "slides/coordinate-systems-axes.html#getting-the-data-1",
+    "title": "Coordinate systems and axes",
+    "section": "Getting the data",
+    "text": "Getting the data\n\nThe temperatures and temps_wide datasets (long and wide format of the same data):\n\n\n\n# long format\ntemperatures &lt;- read_csv(\"https://wilkelab.org/SDS366/datasets/tempnormals.csv\") |&gt;\n  mutate(\n    location = factor(\n      location, levels = c(\"Death Valley\", \"Houston\", \"San Diego\", \"Chicago\")\n    )\n  ) |&gt;\n  select(location, station_id, day_of_year, month, temperature)\n\n# wide format\ntemps_wide &lt;- temperatures |&gt;\n  pivot_wider(\n    id_cols = c(\"month\", \"day_of_year\"),\n    names_from = \"location\", values_from = \"temperature\"\n  )"
   },
   {
-    "objectID": "slides/aesthetic-mappings.html#we-define-the-mapping-with-aes-1",
-    "href": "slides/aesthetic-mappings.html#we-define-the-mapping-with-aes-1",
-    "title": "Aesthetic mappings",
-    "section": "We define the mapping with aes()",
-    "text": "We define the mapping with aes()\n\n\nggplot(\n  data = temperatures,\n  mapping = aes(x = day_of_year, y = location, color = temperature)\n) + \n  geom_point(size = 5)"
+    "objectID": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes",
+    "href": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes",
+    "title": "Coordinate systems and axes",
+    "section": "Scale functions customize the x and y axes",
+    "text": "Scale functions customize the x and y axes\nRecall the box-office example from a prior lecture:\n\n\n\nggplot(boxoffice) +\n  aes(amount, fct_reorder(title, amount)) +\n  geom_col()"
   },
   {
-    "objectID": "slides/aesthetic-mappings.html#we-frequently-omit-argument-names",
-    "href": "slides/aesthetic-mappings.html#we-frequently-omit-argument-names",
-    "title": "Aesthetic mappings",
-    "section": "We frequently omit argument names",
-    "text": "We frequently omit argument names\nLong form, all arguments are named:\n\nggplot(\n  data = temperatures,\n  mapping = aes(x = day_of_year, y = location, color = temperature)\n) + geom_point(size = 5)\n\n\nAbbreviated form, common arguments remain unnamed:\n\nggplot(temperatures, aes(day_of_year, location, color = temperature)) + \n  geom_point(size = 5)"
+    "objectID": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes-1",
+    "href": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes-1",
+    "title": "Coordinate systems and axes",
+    "section": "Scale functions customize the x and y axes",
+    "text": "Scale functions customize the x and y axes\nAdd scale functions (no change in figure so far):\n\n\n\nggplot(boxoffice) +\n  aes(amount, fct_reorder(title, amount)) +\n  geom_col() +\n  scale_x_continuous() +\n  scale_y_discrete()"
   },
   {
-    "objectID": "slides/aesthetic-mappings.html#the-geom-determines-how-the-data-is-shown",
-    "href": "slides/aesthetic-mappings.html#the-geom-determines-how-the-data-is-shown",
-    "title": "Aesthetic mappings",
-    "section": "The geom determines how the data is shown",
-    "text": "The geom determines how the data is shown\n\n\nggplot(temperatures, aes(day_of_year, temperature, color = location)) + \n  geom_line()"
+    "objectID": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes-2",
+    "href": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes-2",
+    "title": "Coordinate systems and axes",
+    "section": "Scale functions customize the x and y axes",
+    "text": "Scale functions customize the x and y axes\nThe parameter name sets the axis title:\n\n\n\nggplot(boxoffice) +\n  aes(amount, fct_reorder(title, amount)) +\n  geom_col() +\n  scale_x_continuous(\n    name = \"weekend gross (million USD)\"\n  ) +\n  scale_y_discrete(\n    name = NULL  # no axis title\n  )\n\n\n\n\n\n\n\n\n\n\n\nNote: We could do the same with xlab() and ylab()"
   },
   {
-    "objectID": "slides/aesthetic-mappings.html#the-geom-determines-how-the-data-is-shown-1",
-    "href": "slides/aesthetic-mappings.html#the-geom-determines-how-the-data-is-shown-1",
-    "title": "Aesthetic mappings",
-    "section": "The geom determines how the data is shown",
-    "text": "The geom determines how the data is shown\n\n\nggplot(temperatures, aes(day_of_year, location, color = temperature)) + \n  geom_point(size = 5)"
+    "objectID": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes-3",
+    "href": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes-3",
+    "title": "Coordinate systems and axes",
+    "section": "Scale functions customize the x and y axes",
+    "text": "Scale functions customize the x and y axes\nThe parameter limits sets the scale limits:\n\n\n\nggplot(boxoffice) +\n  aes(amount, fct_reorder(title, amount)) +\n  geom_col() +\n  scale_x_continuous(\n    name = \"weekend gross (million USD)\",\n    limits = c(0, 80)\n  ) +\n  scale_y_discrete(\n    name = NULL\n  )\n\n\n\n\n\n\n\n\n\n\n\nNote: We could do the same with xlim() and ylim() but I advise against it, as these functions can have unexpected side-effects"
   },
   {
-    "objectID": "slides/aesthetic-mappings.html#the-geom-determines-how-the-data-is-shown-2",
-    "href": "slides/aesthetic-mappings.html#the-geom-determines-how-the-data-is-shown-2",
-    "title": "Aesthetic mappings",
-    "section": "The geom determines how the data is shown",
-    "text": "The geom determines how the data is shown\n\n\nggplot(temperatures, aes(month, temperature, color = location)) + \n  geom_boxplot()"
+    "objectID": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes-4",
+    "href": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes-4",
+    "title": "Coordinate systems and axes",
+    "section": "Scale functions customize the x and y axes",
+    "text": "Scale functions customize the x and y axes\nThe parameter breaks sets the axis tick positions:\n\n\n\nggplot(boxoffice) +\n  aes(amount, fct_reorder(title, amount)) +\n  geom_col() +\n  scale_x_continuous(\n    name = \"weekend gross (million USD)\",\n    limits = c(0, 80),\n    breaks = c(0, 25, 50, 75)\n  ) +\n  scale_y_discrete(\n    name = NULL\n  )"
   },
   {
-    "objectID": "slides/aesthetic-mappings.html#the-geom-determines-how-the-data-is-shown-3",
-    "href": "slides/aesthetic-mappings.html#the-geom-determines-how-the-data-is-shown-3",
-    "title": "Aesthetic mappings",
-    "section": "The geom determines how the data is shown",
-    "text": "The geom determines how the data is shown\n\n\nggplot(temperatures, aes(month, temperature, fill = location)) + \n  geom_violin() + \n  facet_wrap(~location) # make separate panel per location"
+    "objectID": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes-5",
+    "href": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes-5",
+    "title": "Coordinate systems and axes",
+    "section": "Scale functions customize the x and y axes",
+    "text": "Scale functions customize the x and y axes\nThe parameter labels sets the axis tick labels:\n\n\n\nggplot(boxoffice) +\n  aes(amount, fct_reorder(title, amount)) +\n  geom_col() +\n  scale_x_continuous(\n    name = \"weekend gross (million USD)\",\n    limits = c(0, 80),\n    breaks = c(0, 25, 50, 75),\n    labels = c(\"0\", \"$25M\", \"$50M\", \"$75M\")\n  ) +\n  scale_y_discrete(\n    name = NULL\n  )"
   },
   {
-    "objectID": "slides/aesthetic-mappings.html#distinguish-between-color-and-fill",
-    "href": "slides/aesthetic-mappings.html#distinguish-between-color-and-fill",
-    "title": "Aesthetic mappings",
-    "section": "Distinguish between color and fill",
-    "text": "Distinguish between color and fill\n\ncolor Applies color to points, lines, text, borders\n\n\nfill Applies color to any filled areas"
+    "objectID": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes-6",
+    "href": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes-6",
+    "title": "Coordinate systems and axes",
+    "section": "Scale functions customize the x and y axes",
+    "text": "Scale functions customize the x and y axes\nThe parameter expand sets the axis expansion:\n\n\n\nggplot(boxoffice) +\n  aes(amount, fct_reorder(title, amount)) +\n  geom_col() +\n  scale_x_continuous(\n    name = \"weekend gross (million USD)\",\n    limits = c(0, 80),\n    breaks = c(0, 25, 50, 75),\n    labels = c(\"0\", \"$25M\", \"$50M\", \"$75M\"),\n    expand = expansion(mult = c(0, 0.06))\n  ) +\n  scale_y_discrete(\n    name = NULL\n  )"
   },
   {
-    "objectID": "slides/aesthetic-mappings.html#many-geoms-use-both-color-and-fill",
-    "href": "slides/aesthetic-mappings.html#many-geoms-use-both-color-and-fill",
-    "title": "Aesthetic mappings",
-    "section": "Many geoms use both color and fill",
-    "text": "Many geoms use both color and fill\n\n\nggplot(temperatures, aes(month, temperature, color = location)) + \n  geom_boxplot()"
+    "objectID": "slides/coordinate-systems-axes.html#scale-functions-define-transformations",
+    "href": "slides/coordinate-systems-axes.html#scale-functions-define-transformations",
+    "title": "Coordinate systems and axes",
+    "section": "Scale functions define transformations",
+    "text": "Scale functions define transformations\n\n\nLinear y scale:\n\n\nggplot(tx_counties) +\n  aes(x = index, y = popratio) +\n  geom_point() +\n  scale_y_continuous() \n\n\n\n\n \n\n\n\n\n\n\nLog y scale:\n\n\nggplot(tx_counties) +\n  aes(x = index, y = popratio) +\n  geom_point() +\n  scale_y_log10()"
   },
   {
-    "objectID": "slides/aesthetic-mappings.html#many-geoms-use-both-color-and-fill-1",
-    "href": "slides/aesthetic-mappings.html#many-geoms-use-both-color-and-fill-1",
-    "title": "Aesthetic mappings",
-    "section": "Many geoms use both color and fill",
-    "text": "Many geoms use both color and fill\n\n\nggplot(temperatures, aes(month, temperature, fill = location)) + \n  geom_boxplot()"
+    "objectID": "slides/coordinate-systems-axes.html#parameters-work-the-same-for-all-scale-functions",
+    "href": "slides/coordinate-systems-axes.html#parameters-work-the-same-for-all-scale-functions",
+    "title": "Coordinate systems and axes",
+    "section": "Parameters work the same for all scale functions",
+    "text": "Parameters work the same for all scale functions\n\n\nLinear y scale:\n\n\nggplot(tx_counties) +\n  aes(x = index, y = popratio) +\n  geom_point() +\n  scale_y_continuous(\n    name = \"population number / median\",\n    breaks = c(0, 100, 200),\n    labels = c(\"0\", \"100\", \"200\")\n  )\n\n\n\n\n \n\n\n\n\n\n\nLog y scale:\n\n\nggplot(tx_counties) +\n  aes(x = index, y = popratio) +\n  geom_point() +\n  scale_y_log10(\n    name = \"population number / median\",\n    breaks = c(0.01, 1, 100),\n    labels = c(\"0.01\", \"1\", \"100\")\n  )"
   },
   {
-    "objectID": "slides/aesthetic-mappings.html#many-geoms-use-both-color-and-fill-2",
-    "href": "slides/aesthetic-mappings.html#many-geoms-use-both-color-and-fill-2",
-    "title": "Aesthetic mappings",
-    "section": "Many geoms use both color and fill",
-    "text": "Many geoms use both color and fill\n\n\nggplot(temperatures, aes(month, temperature, color = location, fill = location)) + \n  geom_boxplot()"
+    "objectID": "slides/coordinate-systems-axes.html#coords-define-the-coordinate-system",
+    "href": "slides/coordinate-systems-axes.html#coords-define-the-coordinate-system",
+    "title": "Coordinate systems and axes",
+    "section": "Coords define the coordinate system",
+    "text": "Coords define the coordinate system\n\n\nggplot(temperatures, aes(day_of_year, temperature, color = location)) +\n  geom_line() +\n  coord_cartesian()  # cartesian coords are the default"
   },
   {
-    "objectID": "slides/aesthetic-mappings.html#aesthetics-can-also-be-used-as-parameters",
-    "href": "slides/aesthetic-mappings.html#aesthetics-can-also-be-used-as-parameters",
-    "title": "Aesthetic mappings",
-    "section": "Aesthetics can also be used as parameters",
-    "text": "Aesthetics can also be used as parameters\n\n\nggplot(temperatures, aes(month, temperature, fill = location)) + \n  geom_boxplot(color = \"steelblue\")"
+    "objectID": "slides/coordinate-systems-axes.html#coords-define-the-coordinate-system-1",
+    "href": "slides/coordinate-systems-axes.html#coords-define-the-coordinate-system-1",
+    "title": "Coordinate systems and axes",
+    "section": "Coords define the coordinate system",
+    "text": "Coords define the coordinate system\n\n\nggplot(temperatures, aes(day_of_year, temperature, color = location)) +\n  geom_line() +\n  coord_polar()   # polar coords"
   },
   {
-    "objectID": "slides/aesthetic-mappings.html#aesthetics-can-also-be-used-as-parameters-1",
-    "href": "slides/aesthetic-mappings.html#aesthetics-can-also-be-used-as-parameters-1",
-    "title": "Aesthetic mappings",
-    "section": "Aesthetics can also be used as parameters",
-    "text": "Aesthetics can also be used as parameters\n\n\nggplot(temperatures, aes(month, temperature, color = location)) + \n  geom_boxplot(fill = \"steelblue\")"
+    "objectID": "slides/coordinate-systems-axes.html#coords-define-the-coordinate-system-2",
+    "href": "slides/coordinate-systems-axes.html#coords-define-the-coordinate-system-2",
+    "title": "Coordinate systems and axes",
+    "section": "Coords define the coordinate system",
+    "text": "Coords define the coordinate system\n\n\nggplot(temperatures, aes(day_of_year, temperature, color = location)) +\n  geom_line() +\n  coord_polar() +\n  scale_y_continuous(limits = c(0, 105))  # fix up temperature limits"
   },
   {
-    "objectID": "slides/aesthetic-mappings.html#further-reading",
-    "href": "slides/aesthetic-mappings.html#further-reading",
-    "title": "Aesthetic mappings",
+    "objectID": "slides/coordinate-systems-axes.html#use-coord_fixed-for-fixed-aspect-ratio",
+    "href": "slides/coordinate-systems-axes.html#use-coord_fixed-for-fixed-aspect-ratio",
+    "title": "Coordinate systems and axes",
+    "section": "Use coord_fixed() for fixed aspect ratio",
+    "text": "Use coord_fixed() for fixed aspect ratio\n\n\nggplot(temps_wide, aes(`San Diego`, Houston)) +\n  geom_path()\n\n\n\n\n \n\n\n\n\n\n\n(Bad, x and y axis show the same values scaled differently)"
+  },
+  {
+    "objectID": "slides/coordinate-systems-axes.html#use-coord_fixed-for-fixed-aspect-ratio-1",
+    "href": "slides/coordinate-systems-axes.html#use-coord_fixed-for-fixed-aspect-ratio-1",
+    "title": "Coordinate systems and axes",
+    "section": "Use coord_fixed() for fixed aspect ratio",
+    "text": "Use coord_fixed() for fixed aspect ratio\n\n\nggplot(temps_wide, aes(`San Diego`, Houston)) +\n  geom_path() +\n  coord_fixed()\n\n\n\n\n \n\n\n\n\n\n\n(Better, x and y axis are now scaled the same)"
+  },
+  {
+    "objectID": "slides/coordinate-systems-axes.html#use-coord_fixed-for-fixed-aspect-ratio-2",
+    "href": "slides/coordinate-systems-axes.html#use-coord_fixed-for-fixed-aspect-ratio-2",
+    "title": "Coordinate systems and axes",
+    "section": "Use coord_fixed() for fixed aspect ratio",
+    "text": "Use coord_fixed() for fixed aspect ratio\n\n\nggplot(temps_wide, aes(`San Diego`, Houston)) +\n  geom_path() +\n  coord_fixed() +\n  scale_x_continuous(breaks = c(50, 60, 70), limits = c(50, 75))\n\n\n\n\n \n\n\n\n\n\n\n(Even better, similar axis ticks along both axes)"
+  },
+  {
+    "objectID": "slides/coordinate-systems-axes.html#further-reading",
+    "href": "slides/coordinate-systems-axes.html#further-reading",
+    "title": "Coordinate systems and axes",
     "section": "Further reading",
-    "text": "Further reading\n\nFundamentals of Data Visualization: Chapter 2: Visualizing data\nData Visualization—A Practical Introduction: Chapter 3: Make a plot\nggplot2 reference documentation\nggplot2 book\nggplot2 cheatsheet"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "SDS 366",
-    "section": "",
-    "text": "This is the home page for SDS 366, Data Visualization in R. All course materials will be posted on this site.\nInstructor: Claus O. Wilke\nMeeting times: TTH 5:00pm to 6:30pm\nVenue: FAC 21\nSyllabus: click here\nUpcoming lectures and assignments: click here"
-  },
-  {
-    "objectID": "index.html#computing-requirements",
-    "href": "index.html#computing-requirements",
-    "title": "SDS 366",
-    "section": "Computing requirements",
-    "text": "Computing requirements\nFor students enrolled in this course, you only need a working web browser to access the edupod server, located at: https://edupod.cns.utexas.edu/\nIf you are using the edupod server, stop reading here. Everything is pre-installed and no further action is needed.\nTo run any of the materials locally on your own machine, you will need the following:\n\nA recent version of R, download from here.\nA recent version of RStudio, download from here, OR a recent version of Positron, download from here.\nThe following R packages:\nbroom, cluster, colorspace, cowplot, gapminder, GGally, gganimate, ggiraph, ggdendro, ggdist, ggforce, ggplot2movies, ggrepel, ggridges, ggthemes, gifski, glue, knitr, learnr, naniar, margins, MASS, Matrix, nycflights13, palmerpenguins, patchwork, quarto, rmarkdown, rnaturalearth, rnaturalearthhires, scales, sf, sp, tidyverse, transformr, tsne, umap\n\nYou can install all required R packages at once by running the following code in the R command line:\n# first run this command:\ninstall.packages(\n  c(\n    \"broom\", \"cluster\", \"colorspace\", \"cowplot\", \"gapminder\", \n    \"GGally\", \"gganimate\", \"ggiraph\", \"ggdendro\", \"ggdist\", \"ggforce\",\n    \"ggplot2movies\", \"ggrepel\", \"ggridges\", \"ggthemes\", \"gifski\", \"glue\",\n    \"knitr\", \"learnr\", \"naniar\", \"margins\", \"MASS\", \"Matrix\",\n    \"nycflights13\", \"palmerpenguins\", \"patchwork\", \"quarto\", \"rmarkdown\",\n    \"rnaturalearth\", \"scales\", \"sf\", \"sp\", \"tidyverse\",\n    \"transformr\", \"tsne\", \"umap\"\n  )\n)\n\n# then run this command:\ninstall.packages(\n  \"rnaturalearthhires\", repos = \"https://packages.ropensci.org\", type = \"source\"\n)"
-  },
-  {
-    "objectID": "accommodations.html",
-    "href": "accommodations.html",
-    "title": "Disability and Access Accommodations",
-    "section": "",
-    "text": "Some students receive special course accommodations from Disability and Access. Below is a list of common accommodation requests and my explanation of how I usually handle them. If you have any questions regarding any of these accommodations and/or have additional requests, please reach out to me on Canvas, in office hours, or after class and we can discuss."
-  },
-  {
-    "objectID": "accommodations.html#classroom-accommodations",
-    "href": "accommodations.html#classroom-accommodations",
-    "title": "Disability and Access Accommodations",
-    "section": "Classroom Accommodations",
-    "text": "Classroom Accommodations\n\nUse of technology to take notes during class. You are welcome to use any note-taking technology you find helpful. To the extent that your note-taking technology creates any sort of recordings of class materials, see the next point.\nUse of technology to audio record during class. You are welcome to record audio, for your own personal use as a study aid. Audio recordings should not be shared or otherwise made available to third parties. Be aware that the section in the syllabus about class recordings applies to any personal recordings you may be making.\nA copy of class notes from a volunteer. I am happy to ask whether there are any volunteers willing to share class notes.\nAccess to materials shown in class. All materials are posted either on Canvas or on the class website, https://wilkelab.org/SDS366.\nFlexibility with deadlines. The amount of flexibility we can provide is strongly constrained by the class structure. We cannot accept homework submissions after the assignment has been graded and solutions have been released. This will typically happen 2-3 days after the original deadline. We cannot accept project submissions after the project has been released for peer grading. This will happen 2 days after the original deadline. In all cases, if you need a deadline extension please reach out on Canvas as early as possible (ideally before the deadline has passed) and ask for a specific amount of time you would like to have added to the deadline. (Example: “Could I have a deadline extension of one day?”) Mention in your message that you have an approved accommodation for flexibility with deadlines. You do not need to explain why you need the extension.\nPlease note that deadline extensions should be occasional, one-off events. I will not approve a blanket deadline extension for all assingments throughout the semester. I also encourage you to manage your deadlines proactively. Materials for homework assignments will be posted at least one week before the deadline, and materials for projects will be posted at least two weeks before the deadline. This should give you plenty of time to complete your assignments early and not push things to the last minute.\nFlexibility with attendance. Regular attendance is a component of the overall grade in this class. However, you are not required to attend every single lecture. You can make up for missed lectures by participating in the online discussions on Canvas instead. See the participation component of the class grade described in the syllabus."
-  },
-  {
-    "objectID": "accommodations.html#testing-accommodations",
-    "href": "accommodations.html#testing-accommodations",
-    "title": "Disability and Access Accommodations",
-    "section": "Testing accommodations",
-    "text": "Testing accommodations\nThis class does not have any timed exams or tests and therefore testing accommodations do not apply."
-  },
-  {
-    "objectID": "schedule.html",
-    "href": "schedule.html",
-    "title": "SDS 366 Schedule Spring 2025",
-    "section": "",
-    "text": "Materials:\n\n\nSlides\n\nWorksheet 1: Introduction to Quarto\nWorksheet 2: Introduction to R\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I\n\nSlides Part II\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
-  },
-  {
-    "objectID": "schedule.html#lectures",
-    "href": "schedule.html#lectures",
-    "title": "SDS 366 Schedule Spring 2025",
-    "section": "",
-    "text": "Materials:\n\n\nSlides\n\nWorksheet 1: Introduction to Quarto\nWorksheet 2: Introduction to R\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I\n\nSlides Part II\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
-  },
-  {
-    "objectID": "schedule.html#homeworks",
-    "href": "schedule.html#homeworks",
-    "title": "SDS 366 Schedule Spring 2025",
-    "section": "Homeworks",
-    "text": "Homeworks\nAll homeworks are due by 11:00pm on the day they are due. Homeworks need to be submitted as pdf files on Canvas.\n\nHomework 1 (due Jan 23, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 2 (due Jan 30, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 3 (due Feb 6, 2025)\n\n\nHomework 4 (due Feb 27, 2025)\n\n\nHomework 5 (due Mar 6, 2025)\n\n\nHomework 6 (due Apr 3, 2025)\n\n\nHomework 7 (due Apr 10, 2025)"
-  },
-  {
-    "objectID": "schedule.html#projects",
-    "href": "schedule.html#projects",
-    "title": "SDS 366 Schedule Spring 2025",
-    "section": "Projects",
-    "text": "Projects\nAll projects are due by 11:00pm on the day they are due. Projects need to be submitted on Canvas. Please carefully read the submission instructions for each project.\n\nProject 1 (due Feb 13, 2025)\n\n\nProject 2 (due Mar 13, 2025)\n\n\nProject 3 (due Apr 26, 2025)"
+    "text": "Further reading\n\nFundamentals of Data Visualization: Chapter 3: Coordinate systems and axes\nggplot2 reference documentation: Scales\nggplot2 reference documentation: Coordinate systems\nggplot2 book: Position scales\nggplot2 book: Coordinate systems"
   },
   {
     "objectID": "slides/color-scales.html#uses-of-color-in-data-visualization",
@@ -1554,186 +1386,536 @@
     "text": "Further reading\n\nFundamentals of Data Visualization: Chapter 4: Color scales\nFundamentals of Data Visualization: Figure 19.10: Okabe-Ito color palette\nggplot2 book: Colour scales and legends\nggplot2 reference documentation: Scales\ncolorspace package: HCL-Based Color Scales for ggplot2"
   },
   {
-    "objectID": "slides/coordinate-systems-axes.html#most-data-visualizations-use-cartesian-coordinates",
-    "href": "slides/coordinate-systems-axes.html#most-data-visualizations-use-cartesian-coordinates",
-    "title": "Coordinate systems and axes",
-    "section": "Most data visualizations use Cartesian coordinates",
-    "text": "Most data visualizations use Cartesian coordinates"
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "SDS 366 Schedule Spring 2025",
+    "section": "",
+    "text": "Materials:\n\n\nSlides\n\nWorksheet 1: Introduction to Quarto\nWorksheet 2: Introduction to R\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I\n\nSlides Part II\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
   },
   {
-    "objectID": "slides/coordinate-systems-axes.html#changing-units-does-not-change-the-plot",
-    "href": "slides/coordinate-systems-axes.html#changing-units-does-not-change-the-plot",
-    "title": "Coordinate systems and axes",
-    "section": "Changing units does not change the plot",
-    "text": "Changing units does not change the plot"
+    "objectID": "schedule.html#lectures",
+    "href": "schedule.html#lectures",
+    "title": "SDS 366 Schedule Spring 2025",
+    "section": "",
+    "text": "Materials:\n\n\nSlides\n\nWorksheet 1: Introduction to Quarto\nWorksheet 2: Introduction to R\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I\n\nSlides Part II\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
   },
   {
-    "objectID": "slides/coordinate-systems-axes.html#if-scale-units-are-unrelated-aspect-ratio-is-arbitrary",
-    "href": "slides/coordinate-systems-axes.html#if-scale-units-are-unrelated-aspect-ratio-is-arbitrary",
-    "title": "Coordinate systems and axes",
-    "section": "If scale units are unrelated, aspect ratio is arbitrary",
-    "text": "If scale units are unrelated, aspect ratio is arbitrary"
+    "objectID": "schedule.html#homeworks",
+    "href": "schedule.html#homeworks",
+    "title": "SDS 366 Schedule Spring 2025",
+    "section": "Homeworks",
+    "text": "Homeworks\nAll homeworks are due by 11:00pm on the day they are due. Homeworks need to be submitted as pdf files on Canvas.\n\nHomework 1 (due Jan 23, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 2 (due Jan 30, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 3 (due Feb 6, 2025)\n\n\nHomework 4 (due Feb 27, 2025)\n\n\nHomework 5 (due Mar 6, 2025)\n\n\nHomework 6 (due Apr 3, 2025)\n\n\nHomework 7 (due Apr 10, 2025)"
   },
   {
-    "objectID": "slides/coordinate-systems-axes.html#logarithmic-scales-log-scales",
-    "href": "slides/coordinate-systems-axes.html#logarithmic-scales-log-scales",
-    "title": "Coordinate systems and axes",
-    "section": "Logarithmic scales (log scales)",
-    "text": "Logarithmic scales (log scales)\n\nVisualize these five values: 1,   3.16,   10,   31.6,   100"
+    "objectID": "schedule.html#projects",
+    "href": "schedule.html#projects",
+    "title": "SDS 366 Schedule Spring 2025",
+    "section": "Projects",
+    "text": "Projects\nAll projects are due by 11:00pm on the day they are due. Projects need to be submitted on Canvas. Please carefully read the submission instructions for each project.\n\nProject 1 (due Feb 13, 2025)\n\n\nProject 2 (due Mar 13, 2025)\n\n\nProject 3 (due Apr 26, 2025)"
   },
   {
-    "objectID": "slides/coordinate-systems-axes.html#example-population-number-of-texas-counties",
-    "href": "slides/coordinate-systems-axes.html#example-population-number-of-texas-counties",
-    "title": "Coordinate systems and axes",
-    "section": "Example: Population number of Texas counties",
-    "text": "Example: Population number of Texas counties\nA linear scale emphasizes large counties"
+    "objectID": "accommodations.html",
+    "href": "accommodations.html",
+    "title": "Disability and Access Accommodations",
+    "section": "",
+    "text": "Some students receive special course accommodations from Disability and Access. Below is a list of common accommodation requests and my explanation of how I usually handle them. If you have any questions regarding any of these accommodations and/or have additional requests, please reach out to me on Canvas, in office hours, or after class and we can discuss."
   },
   {
-    "objectID": "slides/coordinate-systems-axes.html#example-population-number-of-texas-counties-1",
-    "href": "slides/coordinate-systems-axes.html#example-population-number-of-texas-counties-1",
-    "title": "Coordinate systems and axes",
-    "section": "Example: Population number of Texas counties",
-    "text": "Example: Population number of Texas counties\nA log scale shows symmetry around the median"
+    "objectID": "accommodations.html#classroom-accommodations",
+    "href": "accommodations.html#classroom-accommodations",
+    "title": "Disability and Access Accommodations",
+    "section": "Classroom Accommodations",
+    "text": "Classroom Accommodations\n\nUse of technology to take notes during class. You are welcome to use any note-taking technology you find helpful. To the extent that your note-taking technology creates any sort of recordings of class materials, see the next point.\nUse of technology to audio record during class. You are welcome to record audio, for your own personal use as a study aid. Audio recordings should not be shared or otherwise made available to third parties. Be aware that the section in the syllabus about class recordings applies to any personal recordings you may be making.\nA copy of class notes from a volunteer. I am happy to ask whether there are any volunteers willing to share class notes.\nAccess to materials shown in class. All materials are posted either on Canvas or on the class website, https://wilkelab.org/SDS366.\nFlexibility with deadlines. The amount of flexibility we can provide is strongly constrained by the class structure. We cannot accept homework submissions after the assignment has been graded and solutions have been released. This will typically happen 2-3 days after the original deadline. We cannot accept project submissions after the project has been released for peer grading. This will happen 2 days after the original deadline. In all cases, if you need a deadline extension please reach out on Canvas as early as possible (ideally before the deadline has passed) and ask for a specific amount of time you would like to have added to the deadline. (Example: “Could I have a deadline extension of one day?”) Mention in your message that you have an approved accommodation for flexibility with deadlines. You do not need to explain why you need the extension.\nPlease note that deadline extensions should be occasional, one-off events. I will not approve a blanket deadline extension for all assingments throughout the semester. I also encourage you to manage your deadlines proactively. Materials for homework assignments will be posted at least one week before the deadline, and materials for projects will be posted at least two weeks before the deadline. This should give you plenty of time to complete your assignments early and not push things to the last minute.\nFlexibility with attendance. Regular attendance is a component of the overall grade in this class. However, you are not required to attend every single lecture. You can make up for missed lectures by participating in the online discussions on Canvas instead. See the participation component of the class grade described in the syllabus."
   },
   {
-    "objectID": "slides/coordinate-systems-axes.html#nonlinear-coordinate-systems-polar-coordinates",
-    "href": "slides/coordinate-systems-axes.html#nonlinear-coordinate-systems-polar-coordinates",
-    "title": "Coordinate systems and axes",
-    "section": "Nonlinear coordinate systems: Polar coordinates",
-    "text": "Nonlinear coordinate systems: Polar coordinates"
+    "objectID": "accommodations.html#testing-accommodations",
+    "href": "accommodations.html#testing-accommodations",
+    "title": "Disability and Access Accommodations",
+    "section": "Testing accommodations",
+    "text": "Testing accommodations\nThis class does not have any timed exams or tests and therefore testing accommodations do not apply."
   },
   {
-    "objectID": "slides/coordinate-systems-axes.html#cartesian-vs-polar-example",
-    "href": "slides/coordinate-systems-axes.html#cartesian-vs-polar-example",
-    "title": "Coordinate systems and axes",
-    "section": "Cartesian vs polar example",
-    "text": "Cartesian vs polar example"
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "SDS 366",
+    "section": "",
+    "text": "This is the home page for SDS 366, Data Visualization in R. All course materials will be posted on this site.\nInstructor: Claus O. Wilke\nMeeting times: TTH 5:00pm to 6:30pm\nVenue: FAC 21\nSyllabus: click here\nUpcoming lectures and assignments: click here"
   },
   {
-    "objectID": "slides/coordinate-systems-axes.html#getting-the-data",
-    "href": "slides/coordinate-systems-axes.html#getting-the-data",
-    "title": "Coordinate systems and axes",
+    "objectID": "index.html#computing-requirements",
+    "href": "index.html#computing-requirements",
+    "title": "SDS 366",
+    "section": "Computing requirements",
+    "text": "Computing requirements\nFor students enrolled in this course, you only need a working web browser to access the edupod server, located at: https://edupod.cns.utexas.edu/\nIf you are using the edupod server, stop reading here. Everything is pre-installed and no further action is needed.\nTo run any of the materials locally on your own machine, you will need the following:\n\nA recent version of R, download from here.\nA recent version of RStudio, download from here, OR a recent version of Positron, download from here.\nThe following R packages:\nbroom, cluster, colorspace, cowplot, gapminder, GGally, gganimate, ggiraph, ggdendro, ggdist, ggforce, ggplot2movies, ggrepel, ggridges, ggthemes, gifski, glue, knitr, learnr, naniar, margins, MASS, Matrix, nycflights13, palmerpenguins, patchwork, quarto, rmarkdown, rnaturalearth, rnaturalearthhires, scales, sf, sp, tidyverse, transformr, tsne, umap\n\nYou can install all required R packages at once by running the following code in the R command line:\n# first run this command:\ninstall.packages(\n  c(\n    \"broom\", \"cluster\", \"colorspace\", \"cowplot\", \"gapminder\", \n    \"GGally\", \"gganimate\", \"ggiraph\", \"ggdendro\", \"ggdist\", \"ggforce\",\n    \"ggplot2movies\", \"ggrepel\", \"ggridges\", \"ggthemes\", \"gifski\", \"glue\",\n    \"knitr\", \"learnr\", \"naniar\", \"margins\", \"MASS\", \"Matrix\",\n    \"nycflights13\", \"palmerpenguins\", \"patchwork\", \"quarto\", \"rmarkdown\",\n    \"rnaturalearth\", \"scales\", \"sf\", \"sp\", \"tidyverse\",\n    \"transformr\", \"tsne\", \"umap\"\n  )\n)\n\n# then run this command:\ninstall.packages(\n  \"rnaturalearthhires\", repos = \"https://packages.ropensci.org\", type = \"source\"\n)"
+  },
+  {
+    "objectID": "slides/aesthetic-mappings.html#dataset-daily-average-temperatures-for-various-locations",
+    "href": "slides/aesthetic-mappings.html#dataset-daily-average-temperatures-for-various-locations",
+    "title": "Aesthetic mappings",
+    "section": "Dataset:Daily average temperatures for various locations",
+    "text": "Dataset:Daily average temperatures for various locations\n\n\n\n\n\n\nlocation\nday_of_year\nmonth\ntemperature\n\n\n\n\nDeath Valley\n1\n01\n51.0\n\n\nDeath Valley\n2\n01\n51.2\n\n\nDeath Valley\n3\n01\n51.3\n\n\nDeath Valley\n4\n01\n51.4\n\n\nDeath Valley\n5\n01\n51.6\n\n\nDeath Valley\n6\n01\n51.7\n\n\nDeath Valley\n7\n01\n51.9\n\n\nDeath Valley\n8\n01\n52.0\n\n\nDeath Valley\n9\n01\n52.2\n\n\nDeath Valley\n10\n01\n52.3\n\n\nDeath Valley\n11\n01\n52.5\n\n\nDeath Valley\n12\n01\n52.7\n\n\nDeath Valley\n13\n01\n52.9"
+  },
+  {
+    "objectID": "slides/aesthetic-mappings.html#temperatures-mapped-onto-y-position",
+    "href": "slides/aesthetic-mappings.html#temperatures-mapped-onto-y-position",
+    "title": "Aesthetic mappings",
+    "section": "Temperatures mapped onto y position",
+    "text": "Temperatures mapped onto y position"
+  },
+  {
+    "objectID": "slides/aesthetic-mappings.html#temperatures-mapped-onto-color",
+    "href": "slides/aesthetic-mappings.html#temperatures-mapped-onto-color",
+    "title": "Aesthetic mappings",
+    "section": "Temperatures mapped onto color",
+    "text": "Temperatures mapped onto color"
+  },
+  {
+    "objectID": "slides/aesthetic-mappings.html#commonly-used-aesthetics",
+    "href": "slides/aesthetic-mappings.html#commonly-used-aesthetics",
+    "title": "Aesthetic mappings",
+    "section": "Commonly used aesthetics",
+    "text": "Commonly used aesthetics"
+  },
+  {
+    "objectID": "slides/aesthetic-mappings.html#the-same-data-values-can-be-mapped-to-different-aesthetics",
+    "href": "slides/aesthetic-mappings.html#the-same-data-values-can-be-mapped-to-different-aesthetics",
+    "title": "Aesthetic mappings",
+    "section": "The same data values can be mapped to different aesthetics",
+    "text": "The same data values can be mapped to different aesthetics"
+  },
+  {
+    "objectID": "slides/aesthetic-mappings.html#we-can-use-many-different-aesthetics-at-once",
+    "href": "slides/aesthetic-mappings.html#we-can-use-many-different-aesthetics-at-once",
+    "title": "Aesthetic mappings",
+    "section": "We can use many different aesthetics at once",
+    "text": "We can use many different aesthetics at once"
+  },
+  {
+    "objectID": "slides/aesthetic-mappings.html#getting-the-data",
+    "href": "slides/aesthetic-mappings.html#getting-the-data",
+    "title": "Aesthetic mappings",
     "section": "Getting the data",
-    "text": "Getting the data\n\nThe boxoffice dataset:\n\n\n\nboxoffice &lt;- tibble(\n  rank = 1:5,\n  title = c(\"Star Wars\", \"Jumanji\", \"Pitch Perfect 3\", \"Greatest Showman\", \"Ferdinand\"),\n  amount = c(71.57, 36.17, 19.93, 8.81, 7.32) # million USD\n)\n\n\n\n\nThe tx_counties dataset:\n\n\n\ntx_counties &lt;- read_csv(\"https://wilkelab.org/SDS366/datasets/US_census.csv\") |&gt; \n  filter(state == \"Texas\") |&gt;\n  mutate(popratio = pop2010/median(pop2010)) |&gt;\n  arrange(desc(popratio)) |&gt;\n  mutate(index = 1:n())"
+    "text": "Getting the data\nAll examples will use the temperatures dataset:\n\n\ntemperatures &lt;- read_csv(\"https://wilkelab.org/SDS366/datasets/tempnormals.csv\") |&gt;\n  mutate(\n    location = factor(\n      location, levels = c(\"Death Valley\", \"Houston\", \"San Diego\", \"Chicago\")\n    )\n  ) |&gt;\n  select(location, station_id, day_of_year, month, temperature)"
   },
   {
-    "objectID": "slides/coordinate-systems-axes.html#getting-the-data-1",
-    "href": "slides/coordinate-systems-axes.html#getting-the-data-1",
-    "title": "Coordinate systems and axes",
-    "section": "Getting the data",
-    "text": "Getting the data\n\nThe temperatures and temps_wide datasets (long and wide format of the same data):\n\n\n\n# long format\ntemperatures &lt;- read_csv(\"https://wilkelab.org/SDS366/datasets/tempnormals.csv\") |&gt;\n  mutate(\n    location = factor(\n      location, levels = c(\"Death Valley\", \"Houston\", \"San Diego\", \"Chicago\")\n    )\n  ) |&gt;\n  select(location, station_id, day_of_year, month, temperature)\n\n# wide format\ntemps_wide &lt;- temperatures |&gt;\n  pivot_wider(\n    id_cols = c(\"month\", \"day_of_year\"),\n    names_from = \"location\", values_from = \"temperature\"\n  )"
+    "objectID": "slides/aesthetic-mappings.html#we-define-the-mapping-with-aes",
+    "href": "slides/aesthetic-mappings.html#we-define-the-mapping-with-aes",
+    "title": "Aesthetic mappings",
+    "section": "We define the mapping with aes()",
+    "text": "We define the mapping with aes()\n\n\nggplot(\n  data = temperatures,\n  mapping = aes(x = day_of_year, y = temperature, color = location)\n) + \n  geom_line()"
   },
   {
-    "objectID": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes",
-    "href": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes",
-    "title": "Coordinate systems and axes",
-    "section": "Scale functions customize the x and y axes",
-    "text": "Scale functions customize the x and y axes\nRecall the box-office example from a prior lecture:\n\n\n\nggplot(boxoffice) +\n  aes(amount, fct_reorder(title, amount)) +\n  geom_col()"
+    "objectID": "slides/aesthetic-mappings.html#we-define-the-mapping-with-aes-1",
+    "href": "slides/aesthetic-mappings.html#we-define-the-mapping-with-aes-1",
+    "title": "Aesthetic mappings",
+    "section": "We define the mapping with aes()",
+    "text": "We define the mapping with aes()\n\n\nggplot(\n  data = temperatures,\n  mapping = aes(x = day_of_year, y = location, color = temperature)\n) + \n  geom_point(size = 5)"
   },
   {
-    "objectID": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes-1",
-    "href": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes-1",
-    "title": "Coordinate systems and axes",
-    "section": "Scale functions customize the x and y axes",
-    "text": "Scale functions customize the x and y axes\nAdd scale functions (no change in figure so far):\n\n\n\nggplot(boxoffice) +\n  aes(amount, fct_reorder(title, amount)) +\n  geom_col() +\n  scale_x_continuous() +\n  scale_y_discrete()"
+    "objectID": "slides/aesthetic-mappings.html#we-frequently-omit-argument-names",
+    "href": "slides/aesthetic-mappings.html#we-frequently-omit-argument-names",
+    "title": "Aesthetic mappings",
+    "section": "We frequently omit argument names",
+    "text": "We frequently omit argument names\nLong form, all arguments are named:\n\nggplot(\n  data = temperatures,\n  mapping = aes(x = day_of_year, y = location, color = temperature)\n) + geom_point(size = 5)\n\n\nAbbreviated form, common arguments remain unnamed:\n\nggplot(temperatures, aes(day_of_year, location, color = temperature)) + \n  geom_point(size = 5)"
   },
   {
-    "objectID": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes-2",
-    "href": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes-2",
-    "title": "Coordinate systems and axes",
-    "section": "Scale functions customize the x and y axes",
-    "text": "Scale functions customize the x and y axes\nThe parameter name sets the axis title:\n\n\n\nggplot(boxoffice) +\n  aes(amount, fct_reorder(title, amount)) +\n  geom_col() +\n  scale_x_continuous(\n    name = \"weekend gross (million USD)\"\n  ) +\n  scale_y_discrete(\n    name = NULL  # no axis title\n  )\n\n\n\n\n\n\n\n\n\n\n\nNote: We could do the same with xlab() and ylab()"
+    "objectID": "slides/aesthetic-mappings.html#the-geom-determines-how-the-data-is-shown",
+    "href": "slides/aesthetic-mappings.html#the-geom-determines-how-the-data-is-shown",
+    "title": "Aesthetic mappings",
+    "section": "The geom determines how the data is shown",
+    "text": "The geom determines how the data is shown\n\n\nggplot(temperatures, aes(day_of_year, temperature, color = location)) + \n  geom_line()"
   },
   {
-    "objectID": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes-3",
-    "href": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes-3",
-    "title": "Coordinate systems and axes",
-    "section": "Scale functions customize the x and y axes",
-    "text": "Scale functions customize the x and y axes\nThe parameter limits sets the scale limits:\n\n\n\nggplot(boxoffice) +\n  aes(amount, fct_reorder(title, amount)) +\n  geom_col() +\n  scale_x_continuous(\n    name = \"weekend gross (million USD)\",\n    limits = c(0, 80)\n  ) +\n  scale_y_discrete(\n    name = NULL\n  )\n\n\n\n\n\n\n\n\n\n\n\nNote: We could do the same with xlim() and ylim() but I advise against it, as these functions can have unexpected side-effects"
+    "objectID": "slides/aesthetic-mappings.html#the-geom-determines-how-the-data-is-shown-1",
+    "href": "slides/aesthetic-mappings.html#the-geom-determines-how-the-data-is-shown-1",
+    "title": "Aesthetic mappings",
+    "section": "The geom determines how the data is shown",
+    "text": "The geom determines how the data is shown\n\n\nggplot(temperatures, aes(day_of_year, location, color = temperature)) + \n  geom_point(size = 5)"
   },
   {
-    "objectID": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes-4",
-    "href": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes-4",
-    "title": "Coordinate systems and axes",
-    "section": "Scale functions customize the x and y axes",
-    "text": "Scale functions customize the x and y axes\nThe parameter breaks sets the axis tick positions:\n\n\n\nggplot(boxoffice) +\n  aes(amount, fct_reorder(title, amount)) +\n  geom_col() +\n  scale_x_continuous(\n    name = \"weekend gross (million USD)\",\n    limits = c(0, 80),\n    breaks = c(0, 25, 50, 75)\n  ) +\n  scale_y_discrete(\n    name = NULL\n  )"
+    "objectID": "slides/aesthetic-mappings.html#the-geom-determines-how-the-data-is-shown-2",
+    "href": "slides/aesthetic-mappings.html#the-geom-determines-how-the-data-is-shown-2",
+    "title": "Aesthetic mappings",
+    "section": "The geom determines how the data is shown",
+    "text": "The geom determines how the data is shown\n\n\nggplot(temperatures, aes(month, temperature, color = location)) + \n  geom_boxplot()"
   },
   {
-    "objectID": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes-5",
-    "href": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes-5",
-    "title": "Coordinate systems and axes",
-    "section": "Scale functions customize the x and y axes",
-    "text": "Scale functions customize the x and y axes\nThe parameter labels sets the axis tick labels:\n\n\n\nggplot(boxoffice) +\n  aes(amount, fct_reorder(title, amount)) +\n  geom_col() +\n  scale_x_continuous(\n    name = \"weekend gross (million USD)\",\n    limits = c(0, 80),\n    breaks = c(0, 25, 50, 75),\n    labels = c(\"0\", \"$25M\", \"$50M\", \"$75M\")\n  ) +\n  scale_y_discrete(\n    name = NULL\n  )"
+    "objectID": "slides/aesthetic-mappings.html#the-geom-determines-how-the-data-is-shown-3",
+    "href": "slides/aesthetic-mappings.html#the-geom-determines-how-the-data-is-shown-3",
+    "title": "Aesthetic mappings",
+    "section": "The geom determines how the data is shown",
+    "text": "The geom determines how the data is shown\n\n\nggplot(temperatures, aes(month, temperature, fill = location)) + \n  geom_violin() + \n  facet_wrap(~location) # make separate panel per location"
   },
   {
-    "objectID": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes-6",
-    "href": "slides/coordinate-systems-axes.html#scale-functions-customize-the-x-and-y-axes-6",
-    "title": "Coordinate systems and axes",
-    "section": "Scale functions customize the x and y axes",
-    "text": "Scale functions customize the x and y axes\nThe parameter expand sets the axis expansion:\n\n\n\nggplot(boxoffice) +\n  aes(amount, fct_reorder(title, amount)) +\n  geom_col() +\n  scale_x_continuous(\n    name = \"weekend gross (million USD)\",\n    limits = c(0, 80),\n    breaks = c(0, 25, 50, 75),\n    labels = c(\"0\", \"$25M\", \"$50M\", \"$75M\"),\n    expand = expansion(mult = c(0, 0.06))\n  ) +\n  scale_y_discrete(\n    name = NULL\n  )"
+    "objectID": "slides/aesthetic-mappings.html#distinguish-between-color-and-fill",
+    "href": "slides/aesthetic-mappings.html#distinguish-between-color-and-fill",
+    "title": "Aesthetic mappings",
+    "section": "Distinguish between color and fill",
+    "text": "Distinguish between color and fill\n\ncolor Applies color to points, lines, text, borders\n\n\nfill Applies color to any filled areas"
   },
   {
-    "objectID": "slides/coordinate-systems-axes.html#scale-functions-define-transformations",
-    "href": "slides/coordinate-systems-axes.html#scale-functions-define-transformations",
-    "title": "Coordinate systems and axes",
-    "section": "Scale functions define transformations",
-    "text": "Scale functions define transformations\n\n\nLinear y scale:\n\n\nggplot(tx_counties) +\n  aes(x = index, y = popratio) +\n  geom_point() +\n  scale_y_continuous() \n\n\n\n\n \n\n\n\n\n\n\nLog y scale:\n\n\nggplot(tx_counties) +\n  aes(x = index, y = popratio) +\n  geom_point() +\n  scale_y_log10()"
+    "objectID": "slides/aesthetic-mappings.html#many-geoms-use-both-color-and-fill",
+    "href": "slides/aesthetic-mappings.html#many-geoms-use-both-color-and-fill",
+    "title": "Aesthetic mappings",
+    "section": "Many geoms use both color and fill",
+    "text": "Many geoms use both color and fill\n\n\nggplot(temperatures, aes(month, temperature, color = location)) + \n  geom_boxplot()"
   },
   {
-    "objectID": "slides/coordinate-systems-axes.html#parameters-work-the-same-for-all-scale-functions",
-    "href": "slides/coordinate-systems-axes.html#parameters-work-the-same-for-all-scale-functions",
-    "title": "Coordinate systems and axes",
-    "section": "Parameters work the same for all scale functions",
-    "text": "Parameters work the same for all scale functions\n\n\nLinear y scale:\n\n\nggplot(tx_counties) +\n  aes(x = index, y = popratio) +\n  geom_point() +\n  scale_y_continuous(\n    name = \"population number / median\",\n    breaks = c(0, 100, 200),\n    labels = c(\"0\", \"100\", \"200\")\n  )\n\n\n\n\n \n\n\n\n\n\n\nLog y scale:\n\n\nggplot(tx_counties) +\n  aes(x = index, y = popratio) +\n  geom_point() +\n  scale_y_log10(\n    name = \"population number / median\",\n    breaks = c(0.01, 1, 100),\n    labels = c(\"0.01\", \"1\", \"100\")\n  )"
+    "objectID": "slides/aesthetic-mappings.html#many-geoms-use-both-color-and-fill-1",
+    "href": "slides/aesthetic-mappings.html#many-geoms-use-both-color-and-fill-1",
+    "title": "Aesthetic mappings",
+    "section": "Many geoms use both color and fill",
+    "text": "Many geoms use both color and fill\n\n\nggplot(temperatures, aes(month, temperature, fill = location)) + \n  geom_boxplot()"
   },
   {
-    "objectID": "slides/coordinate-systems-axes.html#coords-define-the-coordinate-system",
-    "href": "slides/coordinate-systems-axes.html#coords-define-the-coordinate-system",
-    "title": "Coordinate systems and axes",
-    "section": "Coords define the coordinate system",
-    "text": "Coords define the coordinate system\n\n\nggplot(temperatures, aes(day_of_year, temperature, color = location)) +\n  geom_line() +\n  coord_cartesian()  # cartesian coords are the default"
+    "objectID": "slides/aesthetic-mappings.html#many-geoms-use-both-color-and-fill-2",
+    "href": "slides/aesthetic-mappings.html#many-geoms-use-both-color-and-fill-2",
+    "title": "Aesthetic mappings",
+    "section": "Many geoms use both color and fill",
+    "text": "Many geoms use both color and fill\n\n\nggplot(temperatures, aes(month, temperature, color = location, fill = location)) + \n  geom_boxplot()"
   },
   {
-    "objectID": "slides/coordinate-systems-axes.html#coords-define-the-coordinate-system-1",
-    "href": "slides/coordinate-systems-axes.html#coords-define-the-coordinate-system-1",
-    "title": "Coordinate systems and axes",
-    "section": "Coords define the coordinate system",
-    "text": "Coords define the coordinate system\n\n\nggplot(temperatures, aes(day_of_year, temperature, color = location)) +\n  geom_line() +\n  coord_polar()   # polar coords"
+    "objectID": "slides/aesthetic-mappings.html#aesthetics-can-also-be-used-as-parameters",
+    "href": "slides/aesthetic-mappings.html#aesthetics-can-also-be-used-as-parameters",
+    "title": "Aesthetic mappings",
+    "section": "Aesthetics can also be used as parameters",
+    "text": "Aesthetics can also be used as parameters\n\n\nggplot(temperatures, aes(month, temperature, fill = location)) + \n  geom_boxplot(color = \"steelblue\")"
   },
   {
-    "objectID": "slides/coordinate-systems-axes.html#coords-define-the-coordinate-system-2",
-    "href": "slides/coordinate-systems-axes.html#coords-define-the-coordinate-system-2",
-    "title": "Coordinate systems and axes",
-    "section": "Coords define the coordinate system",
-    "text": "Coords define the coordinate system\n\n\nggplot(temperatures, aes(day_of_year, temperature, color = location)) +\n  geom_line() +\n  coord_polar() +\n  scale_y_continuous(limits = c(0, 105))  # fix up temperature limits"
+    "objectID": "slides/aesthetic-mappings.html#aesthetics-can-also-be-used-as-parameters-1",
+    "href": "slides/aesthetic-mappings.html#aesthetics-can-also-be-used-as-parameters-1",
+    "title": "Aesthetic mappings",
+    "section": "Aesthetics can also be used as parameters",
+    "text": "Aesthetics can also be used as parameters\n\n\nggplot(temperatures, aes(month, temperature, color = location)) + \n  geom_boxplot(fill = \"steelblue\")"
   },
   {
-    "objectID": "slides/coordinate-systems-axes.html#use-coord_fixed-for-fixed-aspect-ratio",
-    "href": "slides/coordinate-systems-axes.html#use-coord_fixed-for-fixed-aspect-ratio",
-    "title": "Coordinate systems and axes",
-    "section": "Use coord_fixed() for fixed aspect ratio",
-    "text": "Use coord_fixed() for fixed aspect ratio\n\n\nggplot(temps_wide, aes(`San Diego`, Houston)) +\n  geom_path()\n\n\n\n\n \n\n\n\n\n\n\n(Bad, x and y axis show the same values scaled differently)"
-  },
-  {
-    "objectID": "slides/coordinate-systems-axes.html#use-coord_fixed-for-fixed-aspect-ratio-1",
-    "href": "slides/coordinate-systems-axes.html#use-coord_fixed-for-fixed-aspect-ratio-1",
-    "title": "Coordinate systems and axes",
-    "section": "Use coord_fixed() for fixed aspect ratio",
-    "text": "Use coord_fixed() for fixed aspect ratio\n\n\nggplot(temps_wide, aes(`San Diego`, Houston)) +\n  geom_path() +\n  coord_fixed()\n\n\n\n\n \n\n\n\n\n\n\n(Better, x and y axis are now scaled the same)"
-  },
-  {
-    "objectID": "slides/coordinate-systems-axes.html#use-coord_fixed-for-fixed-aspect-ratio-2",
-    "href": "slides/coordinate-systems-axes.html#use-coord_fixed-for-fixed-aspect-ratio-2",
-    "title": "Coordinate systems and axes",
-    "section": "Use coord_fixed() for fixed aspect ratio",
-    "text": "Use coord_fixed() for fixed aspect ratio\n\n\nggplot(temps_wide, aes(`San Diego`, Houston)) +\n  geom_path() +\n  coord_fixed() +\n  scale_x_continuous(breaks = c(50, 60, 70), limits = c(50, 75))\n\n\n\n\n \n\n\n\n\n\n\n(Even better, similar axis ticks along both axes)"
-  },
-  {
-    "objectID": "slides/coordinate-systems-axes.html#further-reading",
-    "href": "slides/coordinate-systems-axes.html#further-reading",
-    "title": "Coordinate systems and axes",
+    "objectID": "slides/aesthetic-mappings.html#further-reading",
+    "href": "slides/aesthetic-mappings.html#further-reading",
+    "title": "Aesthetic mappings",
     "section": "Further reading",
-    "text": "Further reading\n\nFundamentals of Data Visualization: Chapter 3: Coordinate systems and axes\nggplot2 reference documentation: Scales\nggplot2 reference documentation: Coordinate systems\nggplot2 book: Position scales\nggplot2 book: Coordinate systems"
+    "text": "Further reading\n\nFundamentals of Data Visualization: Chapter 2: Visualizing data\nData Visualization—A Practical Introduction: Chapter 3: Make a plot\nggplot2 reference documentation\nggplot2 book\nggplot2 cheatsheet"
+  },
+  {
+    "objectID": "slides/color-spaces.html#the-rgb-color-space",
+    "href": "slides/color-spaces.html#the-rgb-color-space",
+    "title": "Color spaces and color-vision deficiency",
+    "section": "The RGB color space",
+    "text": "The RGB color space\n\n\n\nred R (0-255):  amount of red light\ngreen G (0-255):  amount of green light\nblue B (0-255):  amount of blue light\n\n\n\n\n\nR\n\n\nG\n\n\nB\n\n\nhex code\n\n\n     color     \n\n\n\n\n\n\n0\n\n\n0\n\n\n0\n\n\n#000000\n\n\n\n\n\n\n255\n\n\n255\n\n\n255\n\n\n#FFFFFF\n\n\n\n\n\n\n255\n\n\n0\n\n\n0\n\n\n#FF0000\n\n\n\n\n\n\n0\n\n\n255\n\n\n255\n\n\n#00FFFF\n\n\n\n\n\n\n128\n\n\n128\n\n\n128\n\n\n#808080\n\n\n\n\n\n\n0\n\n\n158\n\n\n115\n\n\n#009E73"
+  },
+  {
+    "objectID": "slides/color-spaces.html#the-rgb-color-space-1",
+    "href": "slides/color-spaces.html#the-rgb-color-space-1",
+    "title": "Color spaces and color-vision deficiency",
+    "section": "The RGB color space",
+    "text": "The RGB color space\n\n\n\n\n\n\n \n\n\n\n\n\n\nMost people cannot reason well about the RGB color space"
+  },
+  {
+    "objectID": "slides/color-spaces.html#the-hsv-color-space",
+    "href": "slides/color-spaces.html#the-hsv-color-space",
+    "title": "Color spaces and color-vision deficiency",
+    "section": "The HSV color space",
+    "text": "The HSV color space\n\n\nhue H (0-360):  hue of the color\nsaturation S (0-1):  colorfulness relative to the brightness  of the color\nvalue V (0-1):  subjective perception of amount  of light emitted"
+  },
+  {
+    "objectID": "slides/color-spaces.html#the-hsv-color-space-1",
+    "href": "slides/color-spaces.html#the-hsv-color-space-1",
+    "title": "Color spaces and color-vision deficiency",
+    "section": "The HSV color space",
+    "text": "The HSV color space\n\n\n\n\n\n\n \n\n\n\n\n\n\nProblem: Color changes in non-intuitive ways with saturation and value"
+  },
+  {
+    "objectID": "slides/color-spaces.html#the-hls-color-space",
+    "href": "slides/color-spaces.html#the-hls-color-space",
+    "title": "Color spaces and color-vision deficiency",
+    "section": "The HLS color space",
+    "text": "The HLS color space\n\n\nhue H (0-360):  hue of the color\nlightness L (0-1):  brightness relative to the brightness  of a similarly illuminated white\nsaturation S (0-1):  colorfulness relative to the brightness  of the color"
+  },
+  {
+    "objectID": "slides/color-spaces.html#the-hls-color-space-1",
+    "href": "slides/color-spaces.html#the-hls-color-space-1",
+    "title": "Color spaces and color-vision deficiency",
+    "section": "The HLS color space",
+    "text": "The HLS color space\n\n\n\n\n\n\n \n\n\n\n\n\n\nProblem: For high saturation, perceived lightness changes with hue"
+  },
+  {
+    "objectID": "slides/color-spaces.html#the-luv-color-space",
+    "href": "slides/color-spaces.html#the-luv-color-space",
+    "title": "Color spaces and color-vision deficiency",
+    "section": "The Luv color space",
+    "text": "The Luv color space\n\n\nluminance L (0-100):  amount of light emitted\ngreen/red axis u (approx. -100 to 100):  amount of green vs. red\nblue/yellow axis v (approx. -100 to 100):  amount of blue vs. yellow"
+  },
+  {
+    "objectID": "slides/color-spaces.html#the-luv-space-in-polar-coordinates-hcl",
+    "href": "slides/color-spaces.html#the-luv-space-in-polar-coordinates-hcl",
+    "title": "Color spaces and color-vision deficiency",
+    "section": "The Luv space in polar coordinates: HCL",
+    "text": "The Luv space in polar coordinates: HCL\n\n\nhue H (0-360):  hue of the color\nluminance L (0-100):  amount of light emitted\nchroma C ():  colorfulness of the color"
+  },
+  {
+    "objectID": "slides/color-spaces.html#the-hcl-color-space-hue-chroma-plane",
+    "href": "slides/color-spaces.html#the-hcl-color-space-hue-chroma-plane",
+    "title": "Color spaces and color-vision deficiency",
+    "section": "The HCL color space: Hue-Chroma plane",
+    "text": "The HCL color space: Hue-Chroma plane"
+  },
+  {
+    "objectID": "slides/color-spaces.html#the-hcl-color-space-luminance-chroma-plane",
+    "href": "slides/color-spaces.html#the-hcl-color-space-luminance-chroma-plane",
+    "title": "Color spaces and color-vision deficiency",
+    "section": "The HCL color space: Luminance-Chroma plane",
+    "text": "The HCL color space: Luminance-Chroma plane"
+  },
+  {
+    "objectID": "slides/color-spaces.html#we-can-explore-hcl-colors-from-r",
+    "href": "slides/color-spaces.html#we-can-explore-hcl-colors-from-r",
+    "title": "Color spaces and color-vision deficiency",
+    "section": "We can explore HCL colors from R",
+    "text": "We can explore HCL colors from R\ncolorspace::choose_color()"
+  },
+  {
+    "objectID": "slides/color-spaces.html#we-can-explore-hcl-colors-from-r-1",
+    "href": "slides/color-spaces.html#we-can-explore-hcl-colors-from-r-1",
+    "title": "Color spaces and color-vision deficiency",
+    "section": "We can explore HCL colors from R",
+    "text": "We can explore HCL colors from R\nThe app is also available on the class website\n\n\n\n\n\n\n\n\nOpen color chooser app"
+  },
+  {
+    "objectID": "slides/color-spaces.html#avoid-high-chroma",
+    "href": "slides/color-spaces.html#avoid-high-chroma",
+    "title": "Color spaces and color-vision deficiency",
+    "section": "1. Avoid high chroma",
+    "text": "1. Avoid high chroma\n\n\nHigh chroma: Toys\n\n\nLow chroma: Elegance\n\n\n\nToys photo by Pixabay from Pexels\nHome interior photo by Saviesa Home from Pexels"
+  },
+  {
+    "objectID": "slides/color-spaces.html#be-aware-of-color-vision-deficiency",
+    "href": "slides/color-spaces.html#be-aware-of-color-vision-deficiency",
+    "title": "Color spaces and color-vision deficiency",
+    "section": "2. Be aware of color-vision deficiency",
+    "text": "2. Be aware of color-vision deficiency\n\n5%–8% of men are color blind!\n\n\n\nRed-green color-vision deficiency is the most common"
+  },
+  {
+    "objectID": "slides/color-spaces.html#be-aware-of-color-vision-deficiency-1",
+    "href": "slides/color-spaces.html#be-aware-of-color-vision-deficiency-1",
+    "title": "Color spaces and color-vision deficiency",
+    "section": "2. Be aware of color-vision deficiency",
+    "text": "2. Be aware of color-vision deficiency\n5%–8% of men are color blind!\n\nBlue-green color-vision deficiency is rare but does occur"
+  },
+  {
+    "objectID": "slides/color-spaces.html#be-aware-of-color-vision-deficiency-2",
+    "href": "slides/color-spaces.html#be-aware-of-color-vision-deficiency-2",
+    "title": "Color spaces and color-vision deficiency",
+    "section": "2. Be aware of color-vision deficiency",
+    "text": "2. Be aware of color-vision deficiency\nChoose colors that can be distinguished with CVD"
+  },
+  {
+    "objectID": "slides/color-spaces.html#consider-using-the-okabe-ito-scale",
+    "href": "slides/color-spaces.html#consider-using-the-okabe-ito-scale",
+    "title": "Color spaces and color-vision deficiency",
+    "section": "Consider using the Okabe-Ito scale",
+    "text": "Consider using the Okabe-Ito scale\n\n\n\n\n\nName\nHex code   \nR, G, B (0-255)\n\n\n\n\norange\n#E69F00\n230, 159, 0\n\n\nsky blue\n#56B4E9\n86, 180, 233\n\n\nbluish green\n#009E73\n0, 158, 115\n\n\nyellow\n#F0E442\n240, 228, 66\n\n\nblue\n#0072B2\n0, 114, 178\n\n\nvermilion\n#D55E00\n213, 94, 0\n\n\nreddish purple\n#CC79A7\n204, 121, 167\n\n\nblack\n#000000\n0, 0, 0"
+  },
+  {
+    "objectID": "slides/color-spaces.html#cvd-is-worse-for-thin-lines-and-tiny-dots",
+    "href": "slides/color-spaces.html#cvd-is-worse-for-thin-lines-and-tiny-dots",
+    "title": "Color spaces and color-vision deficiency",
+    "section": "CVD is worse for thin lines and tiny dots",
+    "text": "CVD is worse for thin lines and tiny dots"
+  },
+  {
+    "objectID": "slides/color-spaces.html#when-in-doubt-run-cvd-simulations",
+    "href": "slides/color-spaces.html#when-in-doubt-run-cvd-simulations",
+    "title": "Color spaces and color-vision deficiency",
+    "section": "When in doubt, run CVD simulations",
+    "text": "When in doubt, run CVD simulations\n\nOriginal"
+  },
+  {
+    "objectID": "slides/color-spaces.html#further-reading",
+    "href": "slides/color-spaces.html#further-reading",
+    "title": "Color spaces and color-vision deficiency",
+    "section": "Further reading",
+    "text": "Further reading\n\nFundamentals of Data Visualization: Chapter 19: Common pitfalls of color use\nWikipedia: HSL and HSV\ncolorspace package documentation: Color Spaces\ncolorspace package documentation: Apps for Choosing Colors and Palettes Interactively"
+  },
+  {
+    "objectID": "slides/data-wrangling-1.html#elementary-data-manipulations",
+    "href": "slides/data-wrangling-1.html#elementary-data-manipulations",
+    "title": "Data wrangling 1",
+    "section": "Elementary data manipulations",
+    "text": "Elementary data manipulations\n\n\nPick rows: filter()\nPick columns: select()\nSort rows: arrange()\nCount things: count()\nMake new columns: mutate()"
+  },
+  {
+    "objectID": "slides/data-wrangling-1.html#the-pipe-feeds-data-into-functions",
+    "href": "slides/data-wrangling-1.html#the-pipe-feeds-data-into-functions",
+    "title": "Data wrangling 1",
+    "section": "The pipe |> feeds data into functions",
+    "text": "The pipe |&gt; feeds data into functions\n\n\nlibrary(palmerpenguins) # loads the `penguins` dataset\n\nhead(penguins)\n\n# A tibble: 6 × 8\n  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Adelie  Torgersen           39.1          18.7               181        3750\n2 Adelie  Torgersen           39.5          17.4               186        3800\n3 Adelie  Torgersen           40.3          18                 195        3250\n4 Adelie  Torgersen           NA            NA                  NA          NA\n5 Adelie  Torgersen           36.7          19.3               193        3450\n6 Adelie  Torgersen           39.3          20.6               190        3650\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;"
+  },
+  {
+    "objectID": "slides/data-wrangling-1.html#the-pipe-feeds-data-into-functions-1",
+    "href": "slides/data-wrangling-1.html#the-pipe-feeds-data-into-functions-1",
+    "title": "Data wrangling 1",
+    "section": "The pipe |> feeds data into functions",
+    "text": "The pipe |&gt; feeds data into functions\n\n\nlibrary(palmerpenguins) # loads the `penguins` dataset\n\n# head(penguins)\npenguins |&gt;\n  head()\n\n# A tibble: 6 × 8\n  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Adelie  Torgersen           39.1          18.7               181        3750\n2 Adelie  Torgersen           39.5          17.4               186        3800\n3 Adelie  Torgersen           40.3          18                 195        3250\n4 Adelie  Torgersen           NA            NA                  NA          NA\n5 Adelie  Torgersen           36.7          19.3               193        3450\n6 Adelie  Torgersen           39.3          20.6               190        3650\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;"
+  },
+  {
+    "objectID": "slides/data-wrangling-1.html#the-pipe-feeds-data-into-functions-2",
+    "href": "slides/data-wrangling-1.html#the-pipe-feeds-data-into-functions-2",
+    "title": "Data wrangling 1",
+    "section": "The pipe |> feeds data into functions",
+    "text": "The pipe |&gt; feeds data into functions\n\n\nggplot(penguins, aes(bill_length_mm, bill_depth_mm, color = species)) + \n  geom_point()"
+  },
+  {
+    "objectID": "slides/data-wrangling-1.html#the-pipe-feeds-data-into-functions-3",
+    "href": "slides/data-wrangling-1.html#the-pipe-feeds-data-into-functions-3",
+    "title": "Data wrangling 1",
+    "section": "The pipe |> feeds data into functions",
+    "text": "The pipe |&gt; feeds data into functions\n\n\npenguins |&gt;\n  ggplot(aes(bill_length_mm, bill_depth_mm, color = species)) +\n  geom_point()"
+  },
+  {
+    "objectID": "slides/data-wrangling-1.html#old-school-magrittr-pipe",
+    "href": "slides/data-wrangling-1.html#old-school-magrittr-pipe",
+    "title": "Data wrangling 1",
+    "section": "Old-school “magrittr” pipe: %>%",
+    "text": "Old-school “magrittr” pipe: %&gt;%\n\n\npenguins %&gt;%\n  ggplot(aes(bill_length_mm, bill_depth_mm, color = species)) +\n  geom_point()"
+  },
+  {
+    "objectID": "slides/data-wrangling-1.html#which-to-use-native-pipe-or-old-school-pipe",
+    "href": "slides/data-wrangling-1.html#which-to-use-native-pipe-or-old-school-pipe",
+    "title": "Data wrangling 1",
+    "section": "Which to use? Native pipe or old-school pipe?",
+    "text": "Which to use? Native pipe or old-school pipe?\n\n\nThe native pipe |&gt; is the future. I’ll be using it throughout.\nThe magrittr %&gt;% works fine. You can use it if you llike to."
+  },
+  {
+    "objectID": "slides/data-wrangling-1.html#pick-rows-from-a-table-filter",
+    "href": "slides/data-wrangling-1.html#pick-rows-from-a-table-filter",
+    "title": "Data wrangling 1",
+    "section": "Pick rows from a table: filter()",
+    "text": "Pick rows from a table: filter()"
+  },
+  {
+    "objectID": "slides/data-wrangling-1.html#filter-out-penguins-of-species-gentoo",
+    "href": "slides/data-wrangling-1.html#filter-out-penguins-of-species-gentoo",
+    "title": "Data wrangling 1",
+    "section": "Filter out penguins of species Gentoo",
+    "text": "Filter out penguins of species Gentoo\n\n\npenguins |&gt;\n  filter(species == \"Gentoo\")\n\n# A tibble: 124 × 8\n   species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Gentoo  Biscoe           46.1          13.2               211        4500\n 2 Gentoo  Biscoe           50            16.3               230        5700\n 3 Gentoo  Biscoe           48.7          14.1               210        4450\n 4 Gentoo  Biscoe           50            15.2               218        5700\n 5 Gentoo  Biscoe           47.6          14.5               215        5400\n 6 Gentoo  Biscoe           46.5          13.5               210        4550\n 7 Gentoo  Biscoe           45.4          14.6               211        4800\n 8 Gentoo  Biscoe           46.7          15.3               219        5200\n 9 Gentoo  Biscoe           43.3          13.4               209        4400\n10 Gentoo  Biscoe           46.8          15.4               215        5150\n# ℹ 114 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;"
+  },
+  {
+    "objectID": "slides/data-wrangling-1.html#filter-out-penguins-with-bill-length-50-mm",
+    "href": "slides/data-wrangling-1.html#filter-out-penguins-with-bill-length-50-mm",
+    "title": "Data wrangling 1",
+    "section": "Filter out penguins with bill length > 50 mm",
+    "text": "Filter out penguins with bill length &gt; 50 mm\n\n\npenguins |&gt;\n  filter(bill_length_mm &gt; 50)\n\n# A tibble: 52 × 8\n   species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Gentoo  Biscoe           50.2          14.3               218        5700\n 2 Gentoo  Biscoe           59.6          17                 230        6050\n 3 Gentoo  Biscoe           50.5          15.9               222        5550\n 4 Gentoo  Biscoe           50.5          15.9               225        5400\n 5 Gentoo  Biscoe           50.1          15                 225        5000\n 6 Gentoo  Biscoe           50.4          15.3               224        5550\n 7 Gentoo  Biscoe           54.3          15.7               231        5650\n 8 Gentoo  Biscoe           50.7          15                 223        5550\n 9 Gentoo  Biscoe           51.1          16.3               220        6000\n10 Gentoo  Biscoe           52.5          15.6               221        5450\n# ℹ 42 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;"
+  },
+  {
+    "objectID": "slides/data-wrangling-1.html#pick-columns-from-a-table-select",
+    "href": "slides/data-wrangling-1.html#pick-columns-from-a-table-select",
+    "title": "Data wrangling 1",
+    "section": "Pick columns from a table: select()",
+    "text": "Pick columns from a table: select()"
+  },
+  {
+    "objectID": "slides/data-wrangling-1.html#pick-columns-species-island-and-sex",
+    "href": "slides/data-wrangling-1.html#pick-columns-species-island-and-sex",
+    "title": "Data wrangling 1",
+    "section": "Pick columns species, island, and sex",
+    "text": "Pick columns species, island, and sex\n\n\npenguins |&gt;\n  select(species, island, sex)\n\n# A tibble: 344 × 3\n   species island    sex   \n   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt; \n 1 Adelie  Torgersen male  \n 2 Adelie  Torgersen female\n 3 Adelie  Torgersen female\n 4 Adelie  Torgersen &lt;NA&gt;  \n 5 Adelie  Torgersen female\n 6 Adelie  Torgersen male  \n 7 Adelie  Torgersen female\n 8 Adelie  Torgersen male  \n 9 Adelie  Torgersen &lt;NA&gt;  \n10 Adelie  Torgersen &lt;NA&gt;  \n# ℹ 334 more rows"
+  },
+  {
+    "objectID": "slides/data-wrangling-1.html#sort-the-rows-in-a-table-arrange",
+    "href": "slides/data-wrangling-1.html#sort-the-rows-in-a-table-arrange",
+    "title": "Data wrangling 1",
+    "section": "Sort the rows in a table: arrange()",
+    "text": "Sort the rows in a table: arrange()"
+  },
+  {
+    "objectID": "slides/data-wrangling-1.html#sort-penguins-by-bill-length-ascending",
+    "href": "slides/data-wrangling-1.html#sort-penguins-by-bill-length-ascending",
+    "title": "Data wrangling 1",
+    "section": "Sort penguins by bill length, ascending",
+    "text": "Sort penguins by bill length, ascending\n\n\npenguins |&gt;\n  arrange(bill_length_mm)\n\n# A tibble: 344 × 8\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Dream               32.1          15.5               188        3050\n 2 Adelie  Dream               33.1          16.1               178        2900\n 3 Adelie  Torgersen           33.5          19                 190        3600\n 4 Adelie  Dream               34            17.1               185        3400\n 5 Adelie  Torgersen           34.1          18.1               193        3475\n 6 Adelie  Torgersen           34.4          18.4               184        3325\n 7 Adelie  Biscoe              34.5          18.1               187        2900\n 8 Adelie  Torgersen           34.6          21.1               198        4400\n 9 Adelie  Torgersen           34.6          17.2               189        3200\n10 Adelie  Biscoe              35            17.9               190        3450\n# ℹ 334 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;"
+  },
+  {
+    "objectID": "slides/data-wrangling-1.html#sort-penguins-by-bill-length-descending",
+    "href": "slides/data-wrangling-1.html#sort-penguins-by-bill-length-descending",
+    "title": "Data wrangling 1",
+    "section": "Sort penguins by bill length, descending",
+    "text": "Sort penguins by bill length, descending\n\n\npenguins |&gt;\n  arrange(desc(bill_length_mm))\n\n# A tibble: 344 × 8\n   species   island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Gentoo    Biscoe           59.6          17                 230        6050\n 2 Chinstrap Dream            58            17.8               181        3700\n 3 Gentoo    Biscoe           55.9          17                 228        5600\n 4 Chinstrap Dream            55.8          19.8               207        4000\n 5 Gentoo    Biscoe           55.1          16                 230        5850\n 6 Gentoo    Biscoe           54.3          15.7               231        5650\n 7 Chinstrap Dream            54.2          20.8               201        4300\n 8 Chinstrap Dream            53.5          19.9               205        4500\n 9 Gentoo    Biscoe           53.4          15.8               219        5500\n10 Chinstrap Dream            52.8          20                 205        4550\n# ℹ 334 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;"
+  },
+  {
+    "objectID": "slides/data-wrangling-1.html#count-things",
+    "href": "slides/data-wrangling-1.html#count-things",
+    "title": "Data wrangling 1",
+    "section": "Count things",
+    "text": "Count things\n\n\npenguins\n\n# A tibble: 344 × 8\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Torgersen           39.1          18.7               181        3750\n 2 Adelie  Torgersen           39.5          17.4               186        3800\n 3 Adelie  Torgersen           40.3          18                 195        3250\n 4 Adelie  Torgersen           NA            NA                  NA          NA\n 5 Adelie  Torgersen           36.7          19.3               193        3450\n 6 Adelie  Torgersen           39.3          20.6               190        3650\n 7 Adelie  Torgersen           38.9          17.8               181        3625\n 8 Adelie  Torgersen           39.2          19.6               195        4675\n 9 Adelie  Torgersen           34.1          18.1               193        3475\n10 Adelie  Torgersen           42            20.2               190        4250\n# ℹ 334 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;"
+  },
+  {
+    "objectID": "slides/data-wrangling-1.html#count-things-1",
+    "href": "slides/data-wrangling-1.html#count-things-1",
+    "title": "Data wrangling 1",
+    "section": "Count things",
+    "text": "Count things\n\n\npenguins |&gt;\n  count(species)\n\n# A tibble: 3 × 2\n  species       n\n  &lt;fct&gt;     &lt;int&gt;\n1 Adelie      152\n2 Chinstrap    68\n3 Gentoo      124"
+  },
+  {
+    "objectID": "slides/data-wrangling-1.html#count-things-2",
+    "href": "slides/data-wrangling-1.html#count-things-2",
+    "title": "Data wrangling 1",
+    "section": "Count things",
+    "text": "Count things\n\n\npenguins |&gt;\n  count(species, island)\n\n# A tibble: 5 × 3\n  species   island        n\n  &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt;\n1 Adelie    Biscoe       44\n2 Adelie    Dream        56\n3 Adelie    Torgersen    52\n4 Chinstrap Dream        68\n5 Gentoo    Biscoe      124"
+  },
+  {
+    "objectID": "slides/data-wrangling-1.html#use-the-pipe-to-build-analysis-pipelines",
+    "href": "slides/data-wrangling-1.html#use-the-pipe-to-build-analysis-pipelines",
+    "title": "Data wrangling 1",
+    "section": "Use the pipe to build analysis pipelines",
+    "text": "Use the pipe to build analysis pipelines\n\n\npenguins |&gt;\n  filter(species == \"Adelie\")\n\n# A tibble: 152 × 8\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Torgersen           39.1          18.7               181        3750\n 2 Adelie  Torgersen           39.5          17.4               186        3800\n 3 Adelie  Torgersen           40.3          18                 195        3250\n 4 Adelie  Torgersen           NA            NA                  NA          NA\n 5 Adelie  Torgersen           36.7          19.3               193        3450\n 6 Adelie  Torgersen           39.3          20.6               190        3650\n 7 Adelie  Torgersen           38.9          17.8               181        3625\n 8 Adelie  Torgersen           39.2          19.6               195        4675\n 9 Adelie  Torgersen           34.1          18.1               193        3475\n10 Adelie  Torgersen           42            20.2               190        4250\n# ℹ 142 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;"
+  },
+  {
+    "objectID": "slides/data-wrangling-1.html#use-the-pipe-to-build-analysis-pipelines-1",
+    "href": "slides/data-wrangling-1.html#use-the-pipe-to-build-analysis-pipelines-1",
+    "title": "Data wrangling 1",
+    "section": "Use the pipe to build analysis pipelines",
+    "text": "Use the pipe to build analysis pipelines\n\n\npenguins |&gt;\n  filter(species == \"Adelie\") |&gt;\n  select(island, sex)\n\n# A tibble: 152 × 2\n   island    sex   \n   &lt;fct&gt;     &lt;fct&gt; \n 1 Torgersen male  \n 2 Torgersen female\n 3 Torgersen female\n 4 Torgersen &lt;NA&gt;  \n 5 Torgersen female\n 6 Torgersen male  \n 7 Torgersen female\n 8 Torgersen male  \n 9 Torgersen &lt;NA&gt;  \n10 Torgersen &lt;NA&gt;  \n# ℹ 142 more rows"
+  },
+  {
+    "objectID": "slides/data-wrangling-1.html#use-the-pipe-to-build-analysis-pipelines-2",
+    "href": "slides/data-wrangling-1.html#use-the-pipe-to-build-analysis-pipelines-2",
+    "title": "Data wrangling 1",
+    "section": "Use the pipe to build analysis pipelines",
+    "text": "Use the pipe to build analysis pipelines\n\n\npenguins |&gt;\n  filter(species == \"Adelie\") |&gt;\n  select(island, sex) |&gt;\n  count(island, sex)\n\n# A tibble: 8 × 3\n  island    sex        n\n  &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt;\n1 Biscoe    female    22\n2 Biscoe    male      22\n3 Dream     female    27\n4 Dream     male      28\n5 Dream     &lt;NA&gt;       1\n6 Torgersen female    24\n7 Torgersen male      23\n8 Torgersen &lt;NA&gt;       5"
+  },
+  {
+    "objectID": "slides/data-wrangling-1.html#make-a-new-table-column-mutate",
+    "href": "slides/data-wrangling-1.html#make-a-new-table-column-mutate",
+    "title": "Data wrangling 1",
+    "section": "Make a new table column: mutate()",
+    "text": "Make a new table column: mutate()"
+  },
+  {
+    "objectID": "slides/data-wrangling-1.html#example-flipper-length-in-cm",
+    "href": "slides/data-wrangling-1.html#example-flipper-length-in-cm",
+    "title": "Data wrangling 1",
+    "section": "Example: flipper length in cm",
+    "text": "Example: flipper length in cm\n\n\npenguins |&gt;\n  select(species, island, flipper_length_mm)\n\n# A tibble: 344 × 3\n   species island    flipper_length_mm\n   &lt;fct&gt;   &lt;fct&gt;                 &lt;int&gt;\n 1 Adelie  Torgersen               181\n 2 Adelie  Torgersen               186\n 3 Adelie  Torgersen               195\n 4 Adelie  Torgersen                NA\n 5 Adelie  Torgersen               193\n 6 Adelie  Torgersen               190\n 7 Adelie  Torgersen               181\n 8 Adelie  Torgersen               195\n 9 Adelie  Torgersen               193\n10 Adelie  Torgersen               190\n# ℹ 334 more rows"
+  },
+  {
+    "objectID": "slides/data-wrangling-1.html#example-flipper-length-in-cm-1",
+    "href": "slides/data-wrangling-1.html#example-flipper-length-in-cm-1",
+    "title": "Data wrangling 1",
+    "section": "Example: flipper length in cm",
+    "text": "Example: flipper length in cm\n\n\npenguins |&gt;\n  select(species, island, flipper_length_mm) |&gt;\n  mutate(flipper_length_cm = flipper_length_mm / 10)\n\n# A tibble: 344 × 4\n   species island    flipper_length_mm flipper_length_cm\n   &lt;fct&gt;   &lt;fct&gt;                 &lt;int&gt;             &lt;dbl&gt;\n 1 Adelie  Torgersen               181              18.1\n 2 Adelie  Torgersen               186              18.6\n 3 Adelie  Torgersen               195              19.5\n 4 Adelie  Torgersen                NA              NA  \n 5 Adelie  Torgersen               193              19.3\n 6 Adelie  Torgersen               190              19  \n 7 Adelie  Torgersen               181              18.1\n 8 Adelie  Torgersen               195              19.5\n 9 Adelie  Torgersen               193              19.3\n10 Adelie  Torgersen               190              19  \n# ℹ 334 more rows"
+  },
+  {
+    "objectID": "slides/data-wrangling-1.html#make-multiple-columns-at-once",
+    "href": "slides/data-wrangling-1.html#make-multiple-columns-at-once",
+    "title": "Data wrangling 1",
+    "section": "Make multiple columns at once",
+    "text": "Make multiple columns at once\n\n\npenguins |&gt;\n  select(species, island, flipper_length_mm) |&gt;\n  mutate(\n    flipper_length_cm = flipper_length_mm / 10,  # &lt;- notice the comma\n    flipper_length_in = flipper_length_mm / 25.4\n  )\n\n# A tibble: 344 × 5\n   species island    flipper_length_mm flipper_length_cm flipper_length_in\n   &lt;fct&gt;   &lt;fct&gt;                 &lt;int&gt;             &lt;dbl&gt;             &lt;dbl&gt;\n 1 Adelie  Torgersen               181              18.1              7.13\n 2 Adelie  Torgersen               186              18.6              7.32\n 3 Adelie  Torgersen               195              19.5              7.68\n 4 Adelie  Torgersen                NA              NA               NA   \n 5 Adelie  Torgersen               193              19.3              7.60\n 6 Adelie  Torgersen               190              19                7.48\n 7 Adelie  Torgersen               181              18.1              7.13\n 8 Adelie  Torgersen               195              19.5              7.68\n 9 Adelie  Torgersen               193              19.3              7.60\n10 Adelie  Torgersen               190              19                7.48\n# ℹ 334 more rows"
+  },
+  {
+    "objectID": "slides/data-wrangling-1.html#further-reading",
+    "href": "slides/data-wrangling-1.html#further-reading",
+    "title": "Data wrangling 1",
+    "section": "Further reading",
+    "text": "Further reading\n\nR for Data Science: Chapter 5: Data transformation\nR for Data Science: Chapter 18: Pipes\ndplyr documentation: Introduction to dplyr\ndplyr reference documentation: One table verbs"
   },
   {
     "objectID": "slides/figure-design.html#how-do-we-go",
