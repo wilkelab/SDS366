@@ -1,0 +1,71 @@
+---
+title: "Homework 3"
+format:
+  typst:
+    fig-format: png
+    fig-dpi: 300
+    fig-width: 6
+    fig-height: 4
+---
+
+```{r}
+#| echo: false
+#| message: false
+# !! Do not edit this code chunk !!
+library(tidyverse)
+library(palmerpenguins)
+
+penguins2 <- na.omit(penguins)
+
+# data prep:
+OH_pop <- midwest |>
+  filter(state == "OH") |>
+  arrange(desc(poptotal)) |>
+  mutate(row = row_number()) |>
+  filter(poptotal >= 100000) |>
+  select(c(county, poptotal))
+```
+
+**This homework is due on Feb. 6, 2025 at 11:00pm. Please submit as a pdf file on Canvas.**
+
+**Problem 1: (8 pts)** For this Problem you will be working with the `penguins2` dataset which is equivalent to `penguins` but with `NA` values removed.
+
+```{r}
+penguins2
+```
+
+Use ggplot to make a histogram of the `body_mass_g` column. Manually choose appropriate values for `binwidth` and `center`. Explain your choice of values in 2-3 sentences.
+
+```{r}
+# Your code goes here.
+```
+
+*Your explanation goes here.*
+
+**Problem 2: (6 pts)** For Problems 2 and 3, you will work with the dataset `OH_pop` that contains Ohio state demographics and has been derived from the `midwest` dataset provided by **ggplot2**. See here for details of the original dataset: https://ggplot2.tidyverse.org/reference/midwest.html. `OH_pop` contains two columns: `county` and `poptotal` (the county's total population), and it only contains counties with at least 100,000 inhabitants.
+
+```{r}
+OH_pop
+```
+
+Create a plot that satisfies the following two requirements:
+
+(a) Use ggplot to make a scatter plot of `county` vs total population (column `poptotal`) and order the counties by the total population.
+
+(b) Rename the axes and set appropriate limits, breaks and labels. Note: Do not use `xlab()` or `ylab()` to label the axes.
+
+```{r}
+# Your code goes here.
+```
+
+**Problem 2: (6 pts)**
+
+Modify the plot from Problem 2 so it satisfies the following two requirements:
+
+(a) Change the scale for `poptotal` to logarithmic.
+
+(b) Adjust the limits, breaks, and labels so they are appropriate for the logarithmic scale.
+
+```{r}
+# Your code goes here.
+```

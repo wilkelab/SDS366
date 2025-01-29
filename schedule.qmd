@@ -63,6 +63,11 @@ All homeworks are due by 11:00pm on the day they are due. Homeworks need to be s
 
 ### Homework 3 (due Feb 6, 2025)
 
+<p class="nospace">Materials:</p>
+
+- [Quarto template](assignments/HW3.qmd)
+- [PDF](assignments/HW3.pdf)
+
 ### Homework 4 (due Feb 27, 2025)
 
 ### Homework 5 (due Mar 6, 2025)
