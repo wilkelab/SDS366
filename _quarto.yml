@@ -73,8 +73,9 @@ website:
           - text: "Class 9a: Data wrangling 1"
             href: worksheets/data-wrangling-1.qmd
           - text: "Class 9b: Data wrangling 2"
-            href: worksheets/data-wrangling-2.Rmd
-        
+            href: worksheets/data-wrangling-2.qmd
+          - text: "Class 10: Visualizing proportions"
+            href: worksheets/visualizing-proportions.qmd
 
       - text: "Resources"
         menu:
