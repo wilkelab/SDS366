@@ -13,14 +13,14 @@ format: html
 - [Worksheet 1: Introduction to Quarto](worksheets/intro-to-Quarto.qmd)
 - [Worksheet 2: Introduction to R](worksheets/intro-to-R.qmd)
 
-### 2. Jan 16, 2024—Aesthetic mappings
+### 2. Jan 16, 2025—Aesthetic mappings
 
 <p class="nospace">Materials:</p>
 
 - [Slides](slides/aesthetic-mappings.qmd)  
 - [Worksheet](worksheets/aesthetic-mappings.qmd)
 
-### 3. Jan 23, 2024—Visualizing amounts/telling a story
+### 3. Jan 23, 2025—Visualizing amounts/telling a story
 
 <p class="nospace">Materials:</p>
 
@@ -28,20 +28,33 @@ format: html
 - [Slides Part II](slides/telling-a-story.qmd)  
 - [Worksheet](worksheets/visualizing-amounts.qmd)
 
-### 4. Jan 28, 2024—Coordinate systems and axes
+### 4. Jan 28, 2025—Coordinate systems and axes
 
 <p class="nospace">Materials:</p>
 
 - [Slides](slides/coordinate-systems-axes.qmd)  
 - [Worksheet](worksheets/coordinate-systems-axes.qmd)
 
-### 5. Jan 30, 2024—Visualizing distributions 1
+### 5. Jan 30, 2025—Visualizing distributions 1
 
 <p class="nospace">Materials:</p>
 
 - [Slides](slides/visualizing-distributions-1.qmd)  
 - [Worksheet](worksheets/visualizing-distributions-1.qmd)
 
+### 6. Feb 4, 2025—Visualizing distributions 2
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/visualizing-distributions-2.qmd)  
+- [Worksheet](worksheets/visualizing-distributions-2.qmd)
+
+### 7. Feb 6, 2025—Color scales
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/color-scales.qmd)  
+- [Worksheet](worksheets/color-scales.qmd)
 
 ## Homeworks
 
