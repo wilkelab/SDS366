@@ -497,6 +497,13 @@
     "text": "Modifying bandwidth (bw) and kernel parameters\n\nggplot(titanic, aes(age)) +\n  geom_density(\n    fill = \"skyblue\",\n    bw = 2,                 # a moderate bandwidth\n    kernel = \"rectangular\"  # rectangular kernel\n  )"
   },
   {
+    "objectID": "slides/visualizing-distributions-1.html#the-grammar-of-graphics-pipeline",
+    "href": "slides/visualizing-distributions-1.html#the-grammar-of-graphics-pipeline",
+    "title": "Visualizing distributions 1",
+    "section": "The Grammar-of-Graphics pipeline",
+    "text": "The Grammar-of-Graphics pipeline"
+  },
+  {
     "objectID": "slides/visualizing-distributions-1.html#small-multiples-facet_wrap",
     "href": "slides/visualizing-distributions-1.html#small-multiples-facet_wrap",
     "title": "Visualizing distributions 1",

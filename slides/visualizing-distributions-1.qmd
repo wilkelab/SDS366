@@ -611,8 +611,13 @@ ggplot(titanic, aes(age)) +
   )
 ```
 
+# Side-note: The Grammar-of-Graphics pipeline
 
-# Side-note: We often want multiple plots side-by-side
+## The Grammar-of-Graphics pipeline
+
+::: {.move-down-1em}
+![](../assets/general/grammar-of-graphics.svg){width="90%" fig-align="center"}
+:::
 
 ## Small multiples: `facet_wrap()`
 
@@ -643,10 +648,6 @@ ggplot(titanic, aes(age)) +
   # make a separate facet for each combination of class and survival
   facet_grid(survived ~ class)
 ```
-
-<!-- Segment ends here -->
-
-# Setting stats explicitly in **ggplot2**
 
 ## Statistical transformations (stats) can be set explicitly
 
