@@ -1,0 +1,1207 @@
+---
+title: "Visualizing proportions"
+author: "Claus O. Wilke"
+date: last-modified
+format: 
+  revealjs:
+    theme:
+      - default
+      - Wilke-theme.scss
+    auto-stretch: false
+    chalkboard: true
+execute:
+  fig-format: svg
+  fig-asp: 0.618
+  fig-width: 5.5
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+library(cowplot)
+library(ggforce)
+library(here)
+
+# ggplot2 settings so plots scale well for slide size 
+theme_set(theme_gray(14))
+update_geom_defaults("point", list(size = 2))
+#update_geom_defaults("line", list(linewidth = 1))
+
+lincoln_temps <- readRDS(here("datasets", "lincoln_temps.rds"))
+```
+
+## The archetypal visualization of proportions: pie chart
+
+:::: {.fragment}
+::: {.move-down-1em}
+```{r}
+#| label: bundestag-pie
+#| fig-width: 7
+#| fig-asp: 0.58
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+bundestag <- tibble(
+  party = c("CDU/CSU", "SPD", "FDP"),
+  seats = c(243, 214, 39),
+  colors = c("#4E4E4E", "#B6494A", "#E7D739")
+)
+
+bund_pie <- bundestag |>
+  arrange(seats) |>
+  mutate(
+    end_angle = 2*pi*cumsum(seats)/sum(seats),   # ending angle for each pie slice
+    start_angle = lag(end_angle, default = 0),   # starting angle for each pie slice
+    mid_angle = 0.5*(start_angle + end_angle),   # middle of each pie slice, for the text label
+    # horizontal and vertical justifications depend on whether we're to the left/right
+    # or top/bottom of the pie
+    hjust = if_else(mid_angle > pi, 1, 0),
+    vjust = if_else(mid_angle < pi/2 | mid_angle > 3*pi/2, 0, 1)
+  )
+
+# radius of the pie and radius for outside and inside labels
+rpie <- 1
+rlabel_out <- 1.05 * rpie
+rlabel_in <- 0.6 * rpie
+
+bt_pie_base <- ggplot(bund_pie) +
+  geom_arc_bar(
+    aes(
+      x0 = 0, y0 = 0, r0 = 0, r = rpie,
+      start = start_angle, end = end_angle, fill = colors
+    ),
+    color = "white"
+  ) +
+  geom_text(
+    aes(
+      x = rlabel_in * sin(mid_angle),
+      y = rlabel_in * cos(mid_angle),
+      label = seats
+    ),
+    size = 14/.pt,
+    color = c("black", "white", "white")
+  ) +
+  scale_x_continuous(
+    name = NULL,
+    limits = c(-1.7, 1.4),
+    expand = c(0, 0)
+  ) +
+  scale_y_continuous(
+    name = NULL,
+    limits = c(-1.05, 1.15),
+    expand = c(0, 0)
+  ) +
+  scale_fill_identity() +
+  coord_fixed() +
+  theme_map()
+
+# save for later with 12 pt font
+bt_pie <- bt_pie_base +
+  geom_text(
+    aes(
+      x = rlabel_out * sin(mid_angle),
+      y = rlabel_out * cos(mid_angle),
+      label = party,
+      hjust = hjust, vjust = vjust
+    ),
+    size = 12/.pt
+  ) +
+  theme(
+    plot.margin = margin(0, 0, 21, 14)
+  )
+
+# output now with 14 pt font
+bt_pie_base +
+  geom_text(
+    aes(
+      x = rlabel_out * sin(mid_angle),
+      y = rlabel_out * cos(mid_angle),
+      label = party,
+      hjust = hjust, vjust = vjust
+    ),
+    size = 14/.pt
+  )
+```
+:::
+
+::: {.move-up-1em}
+Party composition of the 8th German Bundestag, 1976–1980
+:::
+::::
+
+## Pie chart vs stacked bars vs side-by-side bars
+
+::: {.move-down-3em}
+```{r}
+#| label: bundestag-various-1
+#| fig-width: 10.5
+#| fig-asp: 0.3
+#| fig-cap: "&nbsp;"
+#| out-width: "95%"
+bundestag_stacked <- bundestag |>
+  mutate(
+    label_y = cumsum(seats) - seats/2,
+    colors = factor(colors, levels = rev(colors))
+  )
+
+bt_stacked <- 
+  ggplot(bundestag_stacked, aes(x = 1, y = seats, fill = colors)) + 
+  geom_col(position = "stack", color = "white") + 
+  geom_text(
+    aes(x = 1., y = label_y, label = seats), 
+    size = 14/.pt,
+    color = c("white", "white", "black")
+  ) +
+  scale_y_continuous(
+    expand = expansion(mult = c(0, 0)),
+    breaks = c(0, 100, 200, 300, 400),
+    sec.axis = dup_axis(
+      breaks = bundestag_stacked$label_y,
+      labels = bundestag_stacked$party
+    )
+  ) +
+  scale_x_discrete(expand = c(0, 0), limits = "1", name = NULL) +
+  scale_fill_identity() +
+  coord_cartesian(clip = "off") +
+  theme_minimal_hgrid() +
+  theme(
+    axis.ticks = element_line(color = "gray70"),
+    axis.line.y.right = element_blank(),
+    axis.ticks.y.right = element_blank(),
+    axis.text.y.right = element_text(size = 12),
+    axis.line.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    axis.text.x = element_text(color = NA),
+    axis.title.y.right = element_blank(),
+    plot.margin = margin(7, 14, 7, 14)
+  )
+
+bt_bars <- bundestag |>
+  mutate(party = factor(party, levels = party)) |>
+  ggplot(aes(x = party, y = seats, fill = colors)) + 
+  geom_col() + 
+  geom_text(
+    aes(label = seats),
+    size = 14/.pt,
+    vjust = 2,
+    color = c("white", "white", "black")
+  ) +
+  scale_x_discrete(name = NULL) +
+  scale_y_continuous(
+    expand = expansion(mult = c(0, 0.05)),
+    breaks = c(0, 50, 100, 150, 200)
+  ) +
+  scale_fill_identity() + 
+  coord_cartesian(clip = "off") +
+  theme_minimal_hgrid() +
+  theme(
+    axis.line.x = element_blank(),
+    axis.ticks.x = element_blank()
+  )
+
+plot_grid(
+  bt_pie, NULL, NULL,
+  nrow = 1, rel_widths = c(1.05, .65, .9)
+)
+```
+:::
+
+## Pie chart vs stacked bars vs side-by-side bars
+
+::: {.move-down-3em}
+```{r}
+#| label: bundestag-various-2
+#| fig-width: 10.5
+#| fig-asp: 0.3
+#| fig-cap: "&nbsp;"
+#| out-width: "95%"
+
+plot_grid(
+  bt_pie, bt_stacked, NULL,
+  nrow = 1, rel_widths = c(1.05, .65, .9)
+)
+```
+:::
+
+## Pie chart vs stacked bars vs side-by-side bars
+
+::: {.move-down-3em}
+```{r}
+#| label: bundestag-various-3
+#| fig-width: 10.5
+#| fig-asp: 0.3
+#| fig-cap: "&nbsp;"
+#| out-width: "95%"
+
+plot_grid(
+  bt_pie, bt_stacked, bt_bars,
+  nrow = 1, rel_widths = c(1.05, .65, .9)
+)
+```
+:::
+
+## Example where side-by-side bars are preferred
+
+::: {.move-down-1em}
+```{r}
+#| label: marketshare-side-by-side
+#| fig-width: 7
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+marketshare <- read_csv(here("datasets", "marketshare.csv"))
+
+ggplot(marketshare, aes(x = company, y = percent, fill = company)) + 
+  geom_col() + 
+  facet_wrap(~year) +
+  scale_y_continuous(
+    name = "market share",
+    labels = scales::percent_format(accuracy = 1, scale = 1),
+    expand = c(0, 0)
+  ) +
+  scale_fill_manual(
+    values = c("#E69F00", "#56B4E9", "#009E73", "#0072B2", "#F0E442"),
+    guide = "none"
+  ) + 
+  theme_half_open(16) +
+  theme(strip.background = element_blank())
+```
+:::
+
+::: {.absolute-bottom-right .tiny-font}
+Inspired by: <https://en.wikipedia.org/wiki/File:Piecharts.svg>
+:::
+
+## Example where side-by-side bars are preferred
+
+::: {.move-down-1em}
+```{r}
+#| label: marketshare-stacked
+#| fig-width: 7
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+ggplot(marketshare, aes(x = year, y = percent, fill = company)) + 
+  geom_col(position = "stack") + 
+  scale_y_continuous(
+    name = "market share",
+    labels = scales::percent_format(accuracy = 1, scale = 1),
+    expand = c(0, 0)
+  ) +
+  scale_fill_manual(
+    values = c("#E69F00", "#56B4E9", "#009E73", "#0072B2", "#F0E442")
+  ) + 
+  theme_half_open(16)
+```
+:::
+
+::: {.absolute-bottom-right .tiny-font}
+Inspired by: <https://en.wikipedia.org/wiki/File:Piecharts.svg>
+:::
+
+## Example where side-by-side bars are preferred
+
+::: {.move-down-1em}
+```{r}
+#| label: marketshare-pies
+#| fig-width: 8.5
+#| fig-asp: 0.51 # 7*.618/8.5
+#| fig-cap: "&nbsp;"
+#| out-width: "75%"
+market_pies_df <- marketshare |>
+  group_by(year) |>
+  mutate(
+    total = sum(percent),
+    end_angle = 2*pi*cumsum(percent)/total,      # ending angle for each pie slice
+    start_angle = lag(end_angle, default = 0),   # starting angle for each pie slice
+    mid_angle = 0.5*(start_angle + end_angle),   # middle of each pie slice, for the text label
+    hjust = if_else(mid_angle>pi, 1, 0),
+    vjust = if_else(mid_angle<pi/2 | mid_angle>3*pi/2, 0, 1)
+  )
+
+rpie = 1
+rlabel = 1.05 * rpie
+
+ggplot(market_pies_df) + 
+  geom_arc_bar(
+    aes(
+      x0 = 0, y0 = 0, r0 = 0, r = rpie,
+      start = start_angle, end = end_angle, fill = company
+    ),
+    color = NA
+  ) +
+  geom_text(
+    aes(x = rlabel*sin(mid_angle), y = rlabel*cos(mid_angle), label = company, hjust = hjust, vjust = vjust),
+    size = 13.7/.pt
+  ) +
+  coord_fixed() +
+  facet_wrap(~year) +
+  scale_x_continuous(
+    limits = c(-1.2, 1.2), expand = c(0, 0),
+    name = NULL, breaks = NULL, labels = NULL
+  ) +
+  scale_y_continuous(
+    limits = c(-1.2, 1.2), expand = c(0, 0),
+    name = NULL, breaks = NULL, labels = NULL
+  ) +
+  scale_fill_manual(
+    values = c("#E69F00", "#56B4E9", "#009E73", "#0072B2", "#F0E442"),
+    guide = "none"
+  ) + 
+  theme_half_open(16) +
+  theme(
+    axis.line = element_blank(),
+    axis.title = element_blank(),
+    axis.ticks = element_blank(),
+    axis.ticks.length = grid::unit(0, "pt"),
+    legend.position = "none",
+    strip.background = element_blank(),
+    strip.text.x = element_text(size = 16, margin = margin(0, 0, 0.1, 0))
+  )
+```
+:::
+
+::: {.absolute-bottom-right .tiny-font}
+Inspired by: <https://en.wikipedia.org/wiki/File:Piecharts.svg>
+:::
+
+## Example where side-by-side bars are preferred
+
+::: {.move-down-1em}
+```{r}
+#| label: marketshare-side-by-side2
+#| fig-width: 7
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+ggplot(marketshare, aes(x = company, y = percent, fill = company)) + 
+  geom_col() + 
+  facet_wrap(~year) +
+  scale_y_continuous(
+    name = "market share",
+    labels = scales::percent_format(accuracy = 1, scale = 1),
+    expand = c(0, 0)
+  ) +
+  scale_fill_manual(
+    values = c("#E69F00", "#56B4E9", "#009E73", "#0072B2", "#F0E442"),
+    guide = "none"
+  ) + 
+  theme_half_open(16) +
+  theme(strip.background = element_blank())
+```
+:::
+
+::: {.absolute-bottom-right .tiny-font}
+Inspired by: <https://en.wikipedia.org/wiki/File:Piecharts.svg>
+:::
+
+## Example where stacked bars are preferred
+
+::: {.move-down-2em}
+```{r}
+#| label: women-parliament
+#| fig-width: 7.5
+#| fig-asp: 0.55
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+ccode = "RWA" # Rwanda
+
+women_parliaments <- read_csv(here("datasets", "women_parliaments.csv"))
+
+rwanda_data <- women_parliaments |>
+  filter(country_code == ccode & year > 1990) |>
+  mutate(women = perc_women, men = 100 - perc_women) |>
+  select(-perc_women) |>
+  pivot_longer(cols = c(women, men), names_to = "gender", values_to = "percent") |>
+  mutate(gender = factor(gender, levels = c("women", "men")))
+
+# calculate label position
+rwanda_labels <- filter(rwanda_data, year == max(year)) |>
+  mutate(pos = 100 - cumsum(percent) + 0.5*percent)
+
+ggplot(rwanda_data, aes(x = year, y = percent, fill = gender)) +
+    geom_col(
+      position = "stack",
+      width = 1, color = "#FFFFFF",
+      linewidth = 0.75, alpha = 0.8
+    ) +
+    geom_hline(
+      yintercept = 50,
+      color = "#000000FF", linewidth = 0.4, linetype = 2
+    ) +
+    geom_hline(yintercept = 100, color = "black") +
+    scale_x_continuous(expand = c(0, 0)) +
+    scale_y_continuous(
+      name = "relative proportion",
+      labels = scales::percent_format(accuracy = 1, scale = 1),
+      expand = c(0, 0),
+      sec.axis = dup_axis(
+        breaks = rwanda_labels$pos,
+        labels = rwanda_labels$gender
+      )
+    ) +
+    scale_fill_manual(values = c("#D55E00E0", "#0072B2E0"), guide = "none") +
+    coord_cartesian(clip = "off") +
+    theme_half_open(16) + 
+    theme(
+      axis.line.y = element_blank(),
+      axis.ticks.y.right = element_blank(),
+      axis.text.y.right = element_text(size = 16),
+      axis.title.y.right = element_blank()
+    )
+```
+:::
+
+::: {.small-font .move-up-1em}
+Change in the gender composition of the Rwandan parliament from 1997 to 2016
+:::
+
+## Pros and cons of different approaches
+
+::: {.tiny-font .center-text .move-down-3em}
+&nbsp; | &nbsp;&nbsp;&nbsp; Pie chart &nbsp;&nbsp;&nbsp; | Stacked bars |Side-by-side bars
+:---------------    | :-----: | :-----: | :-----:
+Allows easy comparison of relative proportions   | ✖ | ✖ | ✔ 
+:::
+
+## Pros and cons of different approaches
+
+::: {.tiny-font .center-text .move-down-3em}
+&nbsp; | &nbsp;&nbsp;&nbsp; Pie chart &nbsp;&nbsp;&nbsp; | Stacked bars |Side-by-side bars
+:---------------    | :-----: | :-----: | :-----:
+Allows easy comparison of relative proportions   | ✖ | ✖ | ✔ 
+Shows data as proportions of a whole             | ✔ | ✔ | ✖
+:::
+
+## Pros and cons of different approaches
+
+::: {.tiny-font .center-text .move-down-3em}
+&nbsp; | &nbsp;&nbsp;&nbsp; Pie chart &nbsp;&nbsp;&nbsp; | Stacked bars |Side-by-side bars
+:---------------    | :-----: | :-----: | :-----:
+Allows easy comparison of relative proportions   | ✖ | ✖ | ✔ 
+Shows data as proportions of a whole             | ✔ | ✔ | ✖
+Emphasizes simple fractions (1/2, 1/3, ...) | ✔ | ✖ | ✖
+:::
+
+## Pros and cons of different approaches
+
+::: {.tiny-font .center-text .move-down-3em}
+&nbsp; | &nbsp;&nbsp;&nbsp; Pie chart &nbsp;&nbsp;&nbsp; | Stacked bars |Side-by-side bars
+:---------------    | :-----: | :-----: | :-----:
+Allows easy comparison of relative proportions   | ✖ | ✖ | ✔ 
+Shows data as proportions of a whole             | ✔ | ✔ | ✖
+Emphasizes simple fractions (1/2, 1/3, ...) | ✔ | ✖ | ✖
+Visually appealing for small datasets | ✔ | ✖ | ✔
+:::
+
+## Pros and cons of different approaches
+
+::: {.tiny-font .center-text .move-down-3em}
+&nbsp; | &nbsp;&nbsp;&nbsp; Pie chart &nbsp;&nbsp;&nbsp; | Stacked bars |Side-by-side bars
+:---------------    | :-----: | :-----: | :-----:
+Allows easy comparison of relative proportions   | ✖ | ✖ | ✔ 
+Shows data as proportions of a whole             | ✔ | ✔ | ✖
+Emphasizes simple fractions (1/2, 1/3, ...) | ✔ | ✖ | ✖
+Visually appealing for small datasets | ✔ | ✖ | ✔
+Works well for a large number of subsets | ✖ | ✖ | ✔ 
+:::
+
+## Pros and cons of different approaches
+
+::: {.tiny-font .center-text .move-down-3em}
+&nbsp; | &nbsp;&nbsp;&nbsp; Pie chart &nbsp;&nbsp;&nbsp; | Stacked bars |Side-by-side bars
+:---------------    | :-----: | :-----: | :-----:
+Allows easy comparison of relative proportions   | ✖ | ✖ | ✔ 
+Shows data as proportions of a whole             | ✔ | ✔ | ✖
+Emphasizes simple fractions (1/2, 1/3, ...) | ✔ | ✖ | ✖
+Visually appealing for small datasets | ✔ | ✖ | ✔
+Works well for a large number of subsets | ✖ | ✖ | ✔ 
+Works well for time series and similar | ✖ | ✔ | ✖
+:::
+
+::: {.fragment .small-font .move-down-1em}
+No one visualization fits all scenarios!
+:::
+
+<!-- Segment ends here -->
+
+# Nested proportions: proportions of proportions
+
+## Mosaic plots subdivide data along two dimensions
+
+![](https://clauswilke.com/dataviz/nested_proportions_files/figure-html/bridges-mosaic-1.png){width="75%" fig-align="center"}
+
+::: {.absolute-bottom-right .tiny-font}
+Dataset: Bridges in Pittsburgh by construction material and era of construction
+:::
+
+## Closely related to mosaic plot: Treemap
+
+![](https://clauswilke.com/dataviz/nested_proportions_files/figure-html/bridges-treemap-1.png){width="65%" fig-align="center"}
+
+::: {.absolute-bottom-right .tiny-font}
+Dataset: Bridges in Pittsburgh by construction material and era of construction
+:::
+
+## Treemaps work well for more complex cases
+
+![](https://clauswilke.com/dataviz/nested_proportions_files/figure-html/US-states-treemap-1.png){width="80%" fig-align="center"}
+
+::: {.absolute-bottom-right .tiny-font}
+Dataset: Land surface area of US states
+:::
+
+## We can nest pie charts with clever coloring
+
+![](https://clauswilke.com/dataviz/nested_proportions_files/figure-html/bridges-nested-pie2-1.png){width="70%" fig-align="center"}
+
+::: {.absolute-bottom-right .tiny-font}
+Dataset: Bridges in Pittsburgh by construction material and era of construction
+:::
+
+## Parallel sets can show many subdivisions at once
+
+![](https://clauswilke.com/dataviz/nested_proportions_files/figure-html/bridges-parallel-sets1-1.png){width="75%" fig-align="center"}
+
+::: {.absolute-bottom-right .tiny-font}
+Dataset: Bridges in Pittsburgh by construction material and era of construction
+:::
+
+## Don't show nested proportions without nesting!
+
+![](https://clauswilke.com/dataviz/nested_proportions_files/figure-html/bridges-bars-bad-1.png){.absolute top="20%" left="0%" width="50%"}
+
+![](https://clauswilke.com/dataviz/nested_proportions_files/figure-html/bridges-pie-wrong-1.png){.fragment .absolute top="20%" right="0%" width="50%"}
+
+
+::: {.absolute-bottom-right .tiny-font}
+Dataset: Bridges in Pittsburgh by construction material and era of construction
+:::
+
+<!-- Segment ends here -->
+
+# Making pie charts with **ggplot2**
+
+## Making pie charts with **ggplot2**
+
+::: {.small-font .fragment .move-down-1em}
+We have three options:
+:::
+
+::: {.small-font .fragment}
+- `geom_bar()`/`geom_col()` with poolar coordinates  
+  Pros: simple  
+  Cons: hard to customize
+:::
+
+::: {.small-font .fragment}
+- `geom_arc_bar()` with `stat_pie()`  
+  Pros: relatively simple, some customization  
+  Cons: requires **ggforce** & some more complex code
+:::
+
+::: {.small-font .fragment}
+- `geom_arc_bar()` with manual computation  
+  Pros: maximum flexibility for customization  
+  Cons: requires **ggforce** & much more complex code
+:::
+
+## Making pie charts with **ggplot2**: polar coords
+
+::: {.tiny-font}
+```{r}
+#| echo: true
+# the data
+bundestag <- tibble(
+  party = c("CDU/CSU", "SPD", "FDP"),
+  seats = c(243, 214, 39)
+)
+
+bundestag
+```
+:::
+
+## Making pie charts with **ggplot2**: polar coords
+
+::: {.tiny-font}
+```{r}
+#| label: bundestag-coord-polar1
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+# the data
+bundestag <- tibble(
+  party = c("CDU/CSU", "SPD", "FDP"),
+  seats = c(243, 214, 39)
+)
+
+# make bar chart
+ggplot(bundestag) +
+  aes(seats, "YY", fill = party) + 
+  geom_col()
+```
+:::
+
+## Making pie charts with **ggplot2**: polar coords
+
+::: {.tiny-font}
+```{r}
+#| label: bundestag-coord-polar2
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+# the data
+bundestag <- tibble(
+  party = c("CDU/CSU", "SPD", "FDP"),
+  seats = c(243, 214, 39)
+)
+
+# make bar chart in polar coords
+ggplot(bundestag) +
+  aes(seats, "YY", fill = party) + 
+  geom_col() +
+  coord_polar()
+```
+:::
+
+## Making pie charts with **ggplot2**: polar coords
+
+::: {.tiny-font}
+```{r}
+#| label: bundestag-coord-polar3
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+# the data
+bundestag <- tibble(
+  party = c("CDU/CSU", "SPD", "FDP"),
+  seats = c(243, 214, 39)
+)
+
+# make bar chart in polar coords
+ggplot(bundestag) +
+  aes(seats, "YY", fill = party) + 
+  geom_col() +
+  coord_polar() +
+  scale_x_continuous(
+    name = NULL, breaks = NULL
+  ) +
+  scale_y_discrete(
+    name = NULL, breaks = NULL
+  ) +
+  ggtitle("German Bundestag 1976-1980")
+```
+:::
+
+
+## Making pie charts with **ggplot2**: **ggforce** stat pie
+
+::: {.tiny-font}
+```{r}
+#| label: bundestag-stat-pie1
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+library(ggforce)
+
+ggplot(bundestag) +
+  aes(
+    x0 = 0, y0 = 0, # position of pie center
+    r0 = 0, r = 1,  # inner and outer radius
+    amount = seats, # size of pie slices
+    fill = party
+  ) + 
+  geom_arc_bar(stat = "pie")
+```
+:::
+
+## Making pie charts with **ggplot2**: **ggforce** stat pie
+
+::: {.tiny-font}
+```{r}
+#| label: bundestag-stat-pie2
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+library(ggforce)
+
+ggplot(bundestag) +
+  aes(
+    x0 = 0, y0 = 0, # position of pie center
+    r0 = 0, r = 1,  # inner and outer radius
+    amount = seats, # size of pie slices
+    fill = party
+  ) + 
+  geom_arc_bar(stat = "pie") +
+  coord_fixed() # make pie perfectly circular
+```
+:::
+
+## Making pie charts with **ggplot2**: **ggforce** stat pie
+
+::: {.tiny-font}
+```{r}
+#| label: bundestag-stat-pie3
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+library(ggforce)
+
+ggplot(bundestag) +
+  aes(
+    x0 = 0, y0 = 0, # position of pie center
+    r0 = 0, r = 1,  # inner and outer radius
+    amount = seats, # size of pie slices
+    fill = party
+  ) + 
+  geom_arc_bar(stat = "pie") +
+  coord_fixed(  # make pie perfectly circular
+    # adjust limits as needed
+    xlim = c(-1, 3), ylim = c(-1, 3)
+  )
+```
+:::
+
+## Making pie charts with **ggplot2**: **ggforce** stat pie
+
+::: {.tiny-font}
+```{r}
+#| label: bundestag-stat-pie4
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+library(ggforce)
+
+ggplot(bundestag) +
+  aes(
+    x0 = 1, y0 = 1, # position of pie center
+    r0 = 0, r = 1,  # inner and outer radius
+    amount = seats, # size of pie slices
+    fill = party
+  ) + 
+  geom_arc_bar(stat = "pie") +
+  coord_fixed(  # make pie perfectly circular
+    # adjust limits as needed
+    xlim = c(-1, 3), ylim = c(-1, 3)
+  )
+```
+:::
+
+## Making pie charts with **ggplot2**: **ggforce** stat pie
+
+::: {.tiny-font}
+```{r}
+#| label: bundestag-stat-pie5
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+library(ggforce)
+
+ggplot(bundestag) +
+  aes(
+    x0 = 1, y0 = 1, # position of pie center
+    r0 = 1, r = 2,  # inner and outer radius
+    amount = seats, # size of pie slices
+    fill = party
+  ) + 
+  geom_arc_bar(stat = "pie") +
+  coord_fixed(  # make pie perfectly circular
+    # adjust limits as needed
+    xlim = c(-1, 3), ylim = c(-1, 3)
+  )
+```
+:::
+
+
+## Making pie charts with **ggplot2**: **ggforce** manual
+
+::: {.tiny-font}
+```{r}
+#| echo: true
+# prepare pie data
+pie_data <- bundestag |>
+  arrange(seats)    # sort so pie slices end up sorted
+
+pie_data
+```
+:::
+
+## Making pie charts with **ggplot2**: **ggforce** manual
+
+::: {.tiny-font}
+```{r}
+#| echo: true
+# prepare pie data
+pie_data <- bundestag |>
+  arrange(seats) |> # sort so pie slices end up sorted
+  mutate(
+    end_angle = 2*pi*cumsum(seats)/sum(seats)    # ending angle for each pie slice
+  )
+
+pie_data
+```
+:::
+
+## Making pie charts with **ggplot2**: **ggforce** manual
+
+::: {.tiny-font}
+```{r}
+#| echo: true
+# prepare pie data
+pie_data <- bundestag |>
+  arrange(seats) |> # sort so pie slices end up sorted
+  mutate(
+    end_angle = 2*pi*cumsum(seats)/sum(seats),   # ending angle for each pie slice
+    start_angle = lag(end_angle, default = 0)    # starting angle for each pie slice
+  )
+
+pie_data
+```
+:::
+
+## Making pie charts with **ggplot2**: **ggforce** manual
+
+::: {.tiny-font}
+```{r}
+#| echo: true
+# prepare pie data
+pie_data <- bundestag |>
+  arrange(seats) |> # sort so pie slices end up sorted
+  mutate(
+    end_angle = 2*pi*cumsum(seats)/sum(seats),   # ending angle for each pie slice
+    start_angle = lag(end_angle, default = 0),   # starting angle for each pie slice
+    mid_angle = 0.5*(start_angle + end_angle),   # middle of each pie slice, for text labels
+  )
+
+pie_data
+```
+:::
+
+## Making pie charts with **ggplot2**: **ggforce** manual
+
+::: {.tiny-font}
+```{r}
+#| echo: true
+# prepare pie data
+pie_data <- bundestag |>
+  arrange(seats) |> # sort so pie slices end up sorted
+  mutate(
+    end_angle = 2*pi*cumsum(seats)/sum(seats),   # ending angle for each pie slice
+    start_angle = lag(end_angle, default = 0),   # starting angle for each pie slice
+    mid_angle = 0.5*(start_angle + end_angle),   # middle of each pie slice, for text labels
+    # horizontal and vertical justifications for outer labels
+    hjust = if_else(mid_angle > pi, 1, 0),
+    vjust = if_else(mid_angle < pi/2 | mid_angle > 3*pi/2, 0, 1)
+  )
+
+pie_data
+```
+:::
+
+## Making pie charts with **ggplot2**: **ggforce** manual
+
+::: {.tiny-font}
+```{r}
+#| label: bundestag-arc-bar1
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(pie_data) +
+  aes(
+    x0 = 0, y0 = 0, r0 = 0, r = 1,
+    start = start_angle, end = end_angle,
+    fill = party
+  ) +
+  geom_arc_bar() +
+  coord_fixed()
+```
+:::
+
+## Making pie charts with **ggplot2**: **ggforce** manual
+
+::: {.tiny-font}
+```{r}
+#| label: bundestag-arc-bar2
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(pie_data) +
+  aes(
+    x0 = 0, y0 = 0, r0 = 0, r = 1,
+    start = start_angle, end = end_angle,
+    fill = party
+  ) +
+  geom_arc_bar() +
+  geom_text( # place amounts inside the pie
+    aes(
+      x = 0.6 * sin(mid_angle),
+      y = 0.6 * cos(mid_angle),
+      label = seats
+    )
+  ) +
+  coord_fixed()
+```
+:::
+
+## Making pie charts with **ggplot2**: **ggforce** manual
+
+::: {.tiny-font}
+```{r}
+#| label: bundestag-arc-bar3
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(pie_data) +
+  aes(
+    x0 = 0, y0 = 0, r0 = 0, r = 1,
+    start = start_angle, end = end_angle,
+    fill = party
+  ) +
+  geom_arc_bar() +
+  geom_text( # place amounts inside the pie
+    aes(
+      x = 0.2 * sin(mid_angle),
+      y = 0.2 * cos(mid_angle),
+      label = seats
+    )
+  ) +
+  coord_fixed()
+```
+:::
+
+## Making pie charts with **ggplot2**: **ggforce** manual
+
+::: {.tiny-font}
+```{r}
+#| label: bundestag-arc-bar4
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(pie_data) +
+  aes(
+    x0 = 0, y0 = 0, r0 = 0, r = 1,
+    start = start_angle, end = end_angle,
+    fill = party
+  ) +
+  geom_arc_bar() +
+  geom_text( # place amounts inside the pie
+    aes(
+      x = 0.8 * sin(mid_angle),
+      y = 0.8 * cos(mid_angle),
+      label = seats
+    )
+  ) +
+  coord_fixed()
+```
+:::
+
+## Making pie charts with **ggplot2**: **ggforce** manual
+
+::: {.tiny-font}
+```{r}
+#| label: bundestag-arc-bar5
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(pie_data) +
+  aes(
+    x0 = 0, y0 = 0, r0 = 0, r = 1,
+    start = start_angle, end = end_angle,
+    fill = party
+  ) +
+  geom_arc_bar() +
+  geom_text( # place amounts inside the pie
+    aes(
+      x = 0.6 * sin(mid_angle),
+      y = 0.6 * cos(mid_angle),
+      label = seats
+    )
+  ) +
+  coord_fixed()
+```
+:::
+
+## Making pie charts with **ggplot2**: **ggforce** manual
+
+::: {.tiny-font}
+```{r}
+#| label: bundestag-arc-bar6
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(pie_data) +
+  aes(
+    x0 = 0, y0 = 0, r0 = 0, r = 1,
+    start = start_angle, end = end_angle,
+    fill = party
+  ) +
+  geom_arc_bar() +
+  geom_text( # place amounts inside the pie
+    aes(
+      x = 0.6 * sin(mid_angle),
+      y = 0.6 * cos(mid_angle),
+      label = seats
+    )
+  ) +
+  geom_text( # place party name outside the pie
+    aes(
+      x = 1.05 * sin(mid_angle),
+      y = 1.05 * cos(mid_angle),
+      label = party,
+      hjust = hjust, vjust = vjust
+    )
+  ) +
+  coord_fixed()
+```
+:::
+
+## Making pie charts with **ggplot2**: **ggforce** manual
+
+::: {.tiny-font}
+```{r}
+#| label: bundestag-arc-bar7
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(pie_data) +
+  aes(
+    x0 = 0, y0 = 0, r0 = 0, r = 1,
+    start = start_angle, end = end_angle,
+    fill = party
+  ) +
+  geom_arc_bar() +
+  geom_text( # place amounts inside the pie
+    aes(
+      x = 0.6 * sin(mid_angle),
+      y = 0.6 * cos(mid_angle),
+      label = seats
+    )
+  ) +
+  geom_text( # place party name outside the pie
+    aes(
+      x = 1.05 * sin(mid_angle),
+      y = 1.05 * cos(mid_angle),
+      label = party,
+      hjust = hjust, vjust = vjust
+    )
+  ) +
+  coord_fixed(
+    xlim = c(-1.8, 1.3)
+  )
+```
+:::
+
+## Making pie charts with **ggplot2**: **ggforce** manual
+
+::: {.tiny-font}
+```{r}
+#| label: bundestag-arc-bar8
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(pie_data) +
+  aes(
+    x0 = 0, y0 = 0, r0 = 0.4, r = 1,
+    start = start_angle, end = end_angle,
+    fill = party
+  ) +
+  geom_arc_bar() +
+  geom_text( # place amounts inside the pie
+    aes(
+      x = 0.7 * sin(mid_angle),
+      y = 0.7 * cos(mid_angle),
+      label = seats
+    )
+  ) +
+  geom_text( # place party name outside the pie
+    aes(
+      x = 1.05 * sin(mid_angle),
+      y = 1.05 * cos(mid_angle),
+      label = party,
+      hjust = hjust, vjust = vjust
+    )
+  ) +
+  coord_fixed(
+    xlim = c(-1.8, 1.3)
+  )
+```
+:::
+
+## Making pie charts with **ggplot2**: **ggforce** manual
+
+::: {.tiny-font}
+```{r}
+#| label: bundestag-arc-bar9
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(pie_data) +
+  aes(
+    x0 = 0, y0 = 0, r0 = 0.4, r = 1,
+    start = start_angle, end = end_angle,
+    fill = party
+  ) +
+  geom_arc_bar() +
+  geom_text( # place amounts inside the pie
+    aes(
+      x = 0.7 * sin(mid_angle),
+      y = 0.7 * cos(mid_angle),
+      label = seats
+    )
+  ) +
+  geom_text( # place party name outside the pie
+    aes(
+      x = 1.05 * sin(mid_angle),
+      y = 1.05 * cos(mid_angle),
+      label = party,
+      hjust = hjust, vjust = vjust
+    )
+  ) +
+  coord_fixed(
+    xlim = c(-1.8, 1.3), ylim = c(-1.0, 1.1)
+  ) +
+  theme_void()
+```
+:::
+
+<!-- Segment ends here -->
+
+
+## Further reading
+
+- Fundamentals of Data Visualization: [Chapter 10: Visualizing proportions](https://clauswilke.com/dataviz/visualizing-proportions.html)
+- Fundamentals of Data Visualization: [Chapter 11: Visualizing nested proportions](https://clauswilke.com/dataviz/nested-proportions.html)
+- **ggplot2** reference documentation: [`position_stack()`, `position_fill()`](https://ggplot2.tidyverse.org/reference/position_stack.html)
+- **ggplot2** reference documentation: [`position_dodge()`](https://ggplot2.tidyverse.org/reference/position_dodge.html)
+- **ggforce** reference documentation: [`geom_arc_bar()`](https://ggforce.data-imaginist.com/reference/geom_arc_bar.html)
+

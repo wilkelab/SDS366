@@ -1,0 +1,1889 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.39">
+
+  <meta name="author" content="Claus O. Wilke">
+  <meta name="dcterms.date" content="2025-02-10">
+  <title>SDS 366 – Visualizing proportions</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-781f6ba2a367431802b1f20d16123e35.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Visualizing proportions</h1>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Claus O. Wilke 
+</div>
+</div>
+</div>
+
+  <p class="date">2025-02-10</p>
+</section>
+<section id="the-archetypal-visualization-of-proportions-pie-chart" class="slide level2">
+<h2>The archetypal visualization of proportions: pie chart</h2>
+<div class="fragment">
+<div class="move-down-1em">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-proportions_files/figure-revealjs/bundestag-pie-1.svg" style="width:65.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="move-up-1em">
+<p>Party composition of the 8th German Bundestag, 1976–1980</p>
+</div>
+</div>
+</section>
+<section id="pie-chart-vs-stacked-bars-vs-side-by-side-bars" class="slide level2">
+<h2>Pie chart vs stacked bars vs side-by-side bars</h2>
+<div class="move-down-3em">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-proportions_files/figure-revealjs/bundestag-various-1-1.svg" style="width:95.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="pie-chart-vs-stacked-bars-vs-side-by-side-bars-1" class="slide level2">
+<h2>Pie chart vs stacked bars vs side-by-side bars</h2>
+<div class="move-down-3em">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-proportions_files/figure-revealjs/bundestag-various-2-1.svg" style="width:95.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="pie-chart-vs-stacked-bars-vs-side-by-side-bars-2" class="slide level2">
+<h2>Pie chart vs stacked bars vs side-by-side bars</h2>
+<div class="move-down-3em">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-proportions_files/figure-revealjs/bundestag-various-3-1.svg" style="width:95.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-where-side-by-side-bars-are-preferred" class="slide level2">
+<h2>Example where side-by-side bars are preferred</h2>
+<div class="move-down-1em">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-proportions_files/figure-revealjs/marketshare-side-by-side-1.svg" style="width:65.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute-bottom-right tiny-font">
+<p>Inspired by: <a href="https://en.wikipedia.org/wiki/File:Piecharts.svg" class="uri">https://en.wikipedia.org/wiki/File:Piecharts.svg</a></p>
+</div>
+</section>
+<section id="example-where-side-by-side-bars-are-preferred-1" class="slide level2">
+<h2>Example where side-by-side bars are preferred</h2>
+<div class="move-down-1em">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-proportions_files/figure-revealjs/marketshare-stacked-1.svg" style="width:65.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute-bottom-right tiny-font">
+<p>Inspired by: <a href="https://en.wikipedia.org/wiki/File:Piecharts.svg" class="uri">https://en.wikipedia.org/wiki/File:Piecharts.svg</a></p>
+</div>
+</section>
+<section id="example-where-side-by-side-bars-are-preferred-2" class="slide level2">
+<h2>Example where side-by-side bars are preferred</h2>
+<div class="move-down-1em">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-proportions_files/figure-revealjs/marketshare-pies-1.svg" style="width:75.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute-bottom-right tiny-font">
+<p>Inspired by: <a href="https://en.wikipedia.org/wiki/File:Piecharts.svg" class="uri">https://en.wikipedia.org/wiki/File:Piecharts.svg</a></p>
+</div>
+</section>
+<section id="example-where-side-by-side-bars-are-preferred-3" class="slide level2">
+<h2>Example where side-by-side bars are preferred</h2>
+<div class="move-down-1em">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-proportions_files/figure-revealjs/marketshare-side-by-side2-1.svg" style="width:65.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute-bottom-right tiny-font">
+<p>Inspired by: <a href="https://en.wikipedia.org/wiki/File:Piecharts.svg" class="uri">https://en.wikipedia.org/wiki/File:Piecharts.svg</a></p>
+</div>
+</section>
+<section id="example-where-stacked-bars-are-preferred" class="slide level2">
+<h2>Example where stacked bars are preferred</h2>
+<div class="move-down-2em">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-proportions_files/figure-revealjs/women-parliament-1.svg" style="width:65.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="small-font move-up-1em">
+<p>Change in the gender composition of the Rwandan parliament from 1997 to 2016</p>
+</div>
+</section>
+<section id="pros-and-cons-of-different-approaches" class="slide level2">
+<h2>Pros and cons of different approaches</h2>
+<div class="tiny-font center-text move-down-3em">
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 43%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">&nbsp;</th>
+<th style="text-align: center;">&nbsp;&nbsp;&nbsp; Pie chart &nbsp;&nbsp;&nbsp;</th>
+<th style="text-align: center;">Stacked bars</th>
+<th style="text-align: center;">Side-by-side bars</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Allows easy comparison of relative proportions</td>
+<td style="text-align: center;">✖</td>
+<td style="text-align: center;">✖</td>
+<td style="text-align: center;">✔</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="pros-and-cons-of-different-approaches-1" class="slide level2">
+<h2>Pros and cons of different approaches</h2>
+<div class="tiny-font center-text move-down-3em">
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 43%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">&nbsp;</th>
+<th style="text-align: center;">&nbsp;&nbsp;&nbsp; Pie chart &nbsp;&nbsp;&nbsp;</th>
+<th style="text-align: center;">Stacked bars</th>
+<th style="text-align: center;">Side-by-side bars</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Allows easy comparison of relative proportions</td>
+<td style="text-align: center;">✖</td>
+<td style="text-align: center;">✖</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Shows data as proportions of a whole</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✖</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="pros-and-cons-of-different-approaches-2" class="slide level2">
+<h2>Pros and cons of different approaches</h2>
+<div class="tiny-font center-text move-down-3em">
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 43%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">&nbsp;</th>
+<th style="text-align: center;">&nbsp;&nbsp;&nbsp; Pie chart &nbsp;&nbsp;&nbsp;</th>
+<th style="text-align: center;">Stacked bars</th>
+<th style="text-align: center;">Side-by-side bars</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Allows easy comparison of relative proportions</td>
+<td style="text-align: center;">✖</td>
+<td style="text-align: center;">✖</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Shows data as proportions of a whole</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✖</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Emphasizes simple fractions (1/2, 1/3, …)</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✖</td>
+<td style="text-align: center;">✖</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="pros-and-cons-of-different-approaches-3" class="slide level2">
+<h2>Pros and cons of different approaches</h2>
+<div class="tiny-font center-text move-down-3em">
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 43%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">&nbsp;</th>
+<th style="text-align: center;">&nbsp;&nbsp;&nbsp; Pie chart &nbsp;&nbsp;&nbsp;</th>
+<th style="text-align: center;">Stacked bars</th>
+<th style="text-align: center;">Side-by-side bars</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Allows easy comparison of relative proportions</td>
+<td style="text-align: center;">✖</td>
+<td style="text-align: center;">✖</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Shows data as proportions of a whole</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✖</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Emphasizes simple fractions (1/2, 1/3, …)</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✖</td>
+<td style="text-align: center;">✖</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Visually appealing for small datasets</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✖</td>
+<td style="text-align: center;">✔</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="pros-and-cons-of-different-approaches-4" class="slide level2">
+<h2>Pros and cons of different approaches</h2>
+<div class="tiny-font center-text move-down-3em">
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 43%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">&nbsp;</th>
+<th style="text-align: center;">&nbsp;&nbsp;&nbsp; Pie chart &nbsp;&nbsp;&nbsp;</th>
+<th style="text-align: center;">Stacked bars</th>
+<th style="text-align: center;">Side-by-side bars</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Allows easy comparison of relative proportions</td>
+<td style="text-align: center;">✖</td>
+<td style="text-align: center;">✖</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Shows data as proportions of a whole</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✖</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Emphasizes simple fractions (1/2, 1/3, …)</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✖</td>
+<td style="text-align: center;">✖</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Visually appealing for small datasets</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✖</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Works well for a large number of subsets</td>
+<td style="text-align: center;">✖</td>
+<td style="text-align: center;">✖</td>
+<td style="text-align: center;">✔</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="pros-and-cons-of-different-approaches-5" class="slide level2">
+<h2>Pros and cons of different approaches</h2>
+<div class="tiny-font center-text move-down-3em">
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 43%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">&nbsp;</th>
+<th style="text-align: center;">&nbsp;&nbsp;&nbsp; Pie chart &nbsp;&nbsp;&nbsp;</th>
+<th style="text-align: center;">Stacked bars</th>
+<th style="text-align: center;">Side-by-side bars</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Allows easy comparison of relative proportions</td>
+<td style="text-align: center;">✖</td>
+<td style="text-align: center;">✖</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Shows data as proportions of a whole</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✖</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Emphasizes simple fractions (1/2, 1/3, …)</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✖</td>
+<td style="text-align: center;">✖</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Visually appealing for small datasets</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✖</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Works well for a large number of subsets</td>
+<td style="text-align: center;">✖</td>
+<td style="text-align: center;">✖</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Works well for time series and similar</td>
+<td style="text-align: center;">✖</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✖</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="fragment small-font move-down-1em">
+<p>No one visualization fits all scenarios!</p>
+</div>
+<!-- Segment ends here -->
+</section>
+<section>
+<section id="nested-proportions-proportions-of-proportions" class="title-slide slide level1 center">
+<h1>Nested proportions: proportions of proportions</h1>
+
+</section>
+<section id="mosaic-plots-subdivide-data-along-two-dimensions" class="slide level2">
+<h2>Mosaic plots subdivide data along two dimensions</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://clauswilke.com/dataviz/nested_proportions_files/figure-html/bridges-mosaic-1.png" class="quarto-figure quarto-figure-center" style="width:75.0%"></p>
+</figure>
+</div>
+<div class="absolute-bottom-right tiny-font">
+<p>Dataset: Bridges in Pittsburgh by construction material and era of construction</p>
+</div>
+</section>
+<section id="closely-related-to-mosaic-plot-treemap" class="slide level2">
+<h2>Closely related to mosaic plot: Treemap</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://clauswilke.com/dataviz/nested_proportions_files/figure-html/bridges-treemap-1.png" class="quarto-figure quarto-figure-center" style="width:65.0%"></p>
+</figure>
+</div>
+<div class="absolute-bottom-right tiny-font">
+<p>Dataset: Bridges in Pittsburgh by construction material and era of construction</p>
+</div>
+</section>
+<section id="treemaps-work-well-for-more-complex-cases" class="slide level2">
+<h2>Treemaps work well for more complex cases</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://clauswilke.com/dataviz/nested_proportions_files/figure-html/US-states-treemap-1.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
+</figure>
+</div>
+<div class="absolute-bottom-right tiny-font">
+<p>Dataset: Land surface area of US states</p>
+</div>
+</section>
+<section id="we-can-nest-pie-charts-with-clever-coloring" class="slide level2">
+<h2>We can nest pie charts with clever coloring</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://clauswilke.com/dataviz/nested_proportions_files/figure-html/bridges-nested-pie2-1.png" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
+</figure>
+</div>
+<div class="absolute-bottom-right tiny-font">
+<p>Dataset: Bridges in Pittsburgh by construction material and era of construction</p>
+</div>
+</section>
+<section id="parallel-sets-can-show-many-subdivisions-at-once" class="slide level2">
+<h2>Parallel sets can show many subdivisions at once</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://clauswilke.com/dataviz/nested_proportions_files/figure-html/bridges-parallel-sets1-1.png" class="quarto-figure quarto-figure-center" style="width:75.0%"></p>
+</figure>
+</div>
+<div class="absolute-bottom-right tiny-font">
+<p>Dataset: Bridges in Pittsburgh by construction material and era of construction</p>
+</div>
+</section>
+<section id="dont-show-nested-proportions-without-nesting" class="slide level2">
+<h2>Don’t show nested proportions without nesting!</h2>
+<p><img data-src="https://clauswilke.com/dataviz/nested_proportions_files/figure-html/bridges-bars-bad-1.png" class="absolute" style="top: 20%; left: 0%; width: 50%; "></p>
+<p><img data-src="https://clauswilke.com/dataviz/nested_proportions_files/figure-html/bridges-pie-wrong-1.png" class="fragment absolute" style="top: 20%; right: 0%; width: 50%; "></p>
+<div class="absolute-bottom-right tiny-font">
+<p>Dataset: Bridges in Pittsburgh by construction material and era of construction</p>
+</div>
+<!-- Segment ends here -->
+</section></section>
+<section>
+<section id="making-pie-charts-with-ggplot2" class="title-slide slide level1 center">
+<h1>Making pie charts with <strong>ggplot2</strong></h1>
+
+</section>
+<section id="making-pie-charts-with-ggplot2-1" class="slide level2">
+<h2>Making pie charts with <strong>ggplot2</strong></h2>
+<div class="small-font fragment move-down-1em">
+<p>We have three options:</p>
+</div>
+<div class="small-font fragment">
+<ul>
+<li><code>geom_bar()</code>/<code>geom_col()</code> with poolar coordinates<br>
+Pros: simple<br>
+Cons: hard to customize</li>
+</ul>
+</div>
+<div class="small-font fragment">
+<ul>
+<li><code>geom_arc_bar()</code> with <code>stat_pie()</code><br>
+Pros: relatively simple, some customization<br>
+Cons: requires <strong>ggforce</strong> &amp; some more complex code</li>
+</ul>
+</div>
+<div class="small-font fragment">
+<ul>
+<li><code>geom_arc_bar()</code> with manual computation<br>
+Pros: maximum flexibility for customization<br>
+Cons: requires <strong>ggforce</strong> &amp; much more complex code</li>
+</ul>
+</div>
+</section>
+<section id="making-pie-charts-with-ggplot2-polar-coords" class="slide level2">
+<h2>Making pie charts with <strong>ggplot2</strong>: polar coords</h2>
+<div class="tiny-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co"># the data</span></span>
+<span id="cb1-2"><a></a>bundestag <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb1-3"><a></a>  <span class="at">party =</span> <span class="fu">c</span>(<span class="st">"CDU/CSU"</span>, <span class="st">"SPD"</span>, <span class="st">"FDP"</span>),</span>
+<span id="cb1-4"><a></a>  <span class="at">seats =</span> <span class="fu">c</span>(<span class="dv">243</span>, <span class="dv">214</span>, <span class="dv">39</span>)</span>
+<span id="cb1-5"><a></a>)</span>
+<span id="cb1-6"><a></a></span>
+<span id="cb1-7"><a></a>bundestag</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  party   seats
+  &lt;chr&gt;   &lt;dbl&gt;
+1 CDU/CSU   243
+2 SPD       214
+3 FDP        39</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="making-pie-charts-with-ggplot2-polar-coords-1" class="slide level2">
+<h2>Making pie charts with <strong>ggplot2</strong>: polar coords</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="co"># the data</span></span>
+<span id="cb3-2"><a></a>bundestag <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb3-3"><a></a>  <span class="at">party =</span> <span class="fu">c</span>(<span class="st">"CDU/CSU"</span>, <span class="st">"SPD"</span>, <span class="st">"FDP"</span>),</span>
+<span id="cb3-4"><a></a>  <span class="at">seats =</span> <span class="fu">c</span>(<span class="dv">243</span>, <span class="dv">214</span>, <span class="dv">39</span>)</span>
+<span id="cb3-5"><a></a>)</span>
+<span id="cb3-6"><a></a></span>
+<span id="cb3-7"><a></a><span class="co"># make bar chart</span></span>
+<span id="cb3-8"><a></a><span class="fu">ggplot</span>(bundestag) <span class="sc">+</span></span>
+<span id="cb3-9"><a></a>  <span class="fu">aes</span>(seats, <span class="st">"YY"</span>, <span class="at">fill =</span> party) <span class="sc">+</span> </span>
+<span id="cb3-10"><a></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-proportions_files/figure-revealjs/bundestag-coord-polar1-1.svg" style="width:100.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="making-pie-charts-with-ggplot2-polar-coords-2" class="slide level2">
+<h2>Making pie charts with <strong>ggplot2</strong>: polar coords</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="co"># the data</span></span>
+<span id="cb4-2"><a></a>bundestag <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb4-3"><a></a>  <span class="at">party =</span> <span class="fu">c</span>(<span class="st">"CDU/CSU"</span>, <span class="st">"SPD"</span>, <span class="st">"FDP"</span>),</span>
+<span id="cb4-4"><a></a>  <span class="at">seats =</span> <span class="fu">c</span>(<span class="dv">243</span>, <span class="dv">214</span>, <span class="dv">39</span>)</span>
+<span id="cb4-5"><a></a>)</span>
+<span id="cb4-6"><a></a></span>
+<span id="cb4-7"><a></a><span class="co"># make bar chart in polar coords</span></span>
+<span id="cb4-8"><a></a><span class="fu">ggplot</span>(bundestag) <span class="sc">+</span></span>
+<span id="cb4-9"><a></a>  <span class="fu">aes</span>(seats, <span class="st">"YY"</span>, <span class="at">fill =</span> party) <span class="sc">+</span> </span>
+<span id="cb4-10"><a></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb4-11"><a></a>  <span class="fu">coord_polar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-proportions_files/figure-revealjs/bundestag-coord-polar2-1.svg" style="width:100.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="making-pie-charts-with-ggplot2-polar-coords-3" class="slide level2">
+<h2>Making pie charts with <strong>ggplot2</strong>: polar coords</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="co"># the data</span></span>
+<span id="cb5-2"><a></a>bundestag <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb5-3"><a></a>  <span class="at">party =</span> <span class="fu">c</span>(<span class="st">"CDU/CSU"</span>, <span class="st">"SPD"</span>, <span class="st">"FDP"</span>),</span>
+<span id="cb5-4"><a></a>  <span class="at">seats =</span> <span class="fu">c</span>(<span class="dv">243</span>, <span class="dv">214</span>, <span class="dv">39</span>)</span>
+<span id="cb5-5"><a></a>)</span>
+<span id="cb5-6"><a></a></span>
+<span id="cb5-7"><a></a><span class="co"># make bar chart in polar coords</span></span>
+<span id="cb5-8"><a></a><span class="fu">ggplot</span>(bundestag) <span class="sc">+</span></span>
+<span id="cb5-9"><a></a>  <span class="fu">aes</span>(seats, <span class="st">"YY"</span>, <span class="at">fill =</span> party) <span class="sc">+</span> </span>
+<span id="cb5-10"><a></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb5-11"><a></a>  <span class="fu">coord_polar</span>() <span class="sc">+</span></span>
+<span id="cb5-12"><a></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb5-13"><a></a>    <span class="at">name =</span> <span class="cn">NULL</span>, <span class="at">breaks =</span> <span class="cn">NULL</span></span>
+<span id="cb5-14"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb5-15"><a></a>  <span class="fu">scale_y_discrete</span>(</span>
+<span id="cb5-16"><a></a>    <span class="at">name =</span> <span class="cn">NULL</span>, <span class="at">breaks =</span> <span class="cn">NULL</span></span>
+<span id="cb5-17"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb5-18"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"German Bundestag 1976-1980"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-proportions_files/figure-revealjs/bundestag-coord-polar3-1.svg" style="width:100.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="making-pie-charts-with-ggplot2-ggforce-stat-pie" class="slide level2">
+<h2>Making pie charts with <strong>ggplot2</strong>: <strong>ggforce</strong> stat pie</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">library</span>(ggforce)</span>
+<span id="cb6-2"><a></a></span>
+<span id="cb6-3"><a></a><span class="fu">ggplot</span>(bundestag) <span class="sc">+</span></span>
+<span id="cb6-4"><a></a>  <span class="fu">aes</span>(</span>
+<span id="cb6-5"><a></a>    <span class="at">x0 =</span> <span class="dv">0</span>, <span class="at">y0 =</span> <span class="dv">0</span>, <span class="co"># position of pie center</span></span>
+<span id="cb6-6"><a></a>    <span class="at">r0 =</span> <span class="dv">0</span>, <span class="at">r =</span> <span class="dv">1</span>,  <span class="co"># inner and outer radius</span></span>
+<span id="cb6-7"><a></a>    <span class="at">amount =</span> seats, <span class="co"># size of pie slices</span></span>
+<span id="cb6-8"><a></a>    <span class="at">fill =</span> party</span>
+<span id="cb6-9"><a></a>  ) <span class="sc">+</span> </span>
+<span id="cb6-10"><a></a>  <span class="fu">geom_arc_bar</span>(<span class="at">stat =</span> <span class="st">"pie"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-proportions_files/figure-revealjs/bundestag-stat-pie1-1.svg" style="width:100.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="making-pie-charts-with-ggplot2-ggforce-stat-pie-1" class="slide level2">
+<h2>Making pie charts with <strong>ggplot2</strong>: <strong>ggforce</strong> stat pie</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">library</span>(ggforce)</span>
+<span id="cb7-2"><a></a></span>
+<span id="cb7-3"><a></a><span class="fu">ggplot</span>(bundestag) <span class="sc">+</span></span>
+<span id="cb7-4"><a></a>  <span class="fu">aes</span>(</span>
+<span id="cb7-5"><a></a>    <span class="at">x0 =</span> <span class="dv">0</span>, <span class="at">y0 =</span> <span class="dv">0</span>, <span class="co"># position of pie center</span></span>
+<span id="cb7-6"><a></a>    <span class="at">r0 =</span> <span class="dv">0</span>, <span class="at">r =</span> <span class="dv">1</span>,  <span class="co"># inner and outer radius</span></span>
+<span id="cb7-7"><a></a>    <span class="at">amount =</span> seats, <span class="co"># size of pie slices</span></span>
+<span id="cb7-8"><a></a>    <span class="at">fill =</span> party</span>
+<span id="cb7-9"><a></a>  ) <span class="sc">+</span> </span>
+<span id="cb7-10"><a></a>  <span class="fu">geom_arc_bar</span>(<span class="at">stat =</span> <span class="st">"pie"</span>) <span class="sc">+</span></span>
+<span id="cb7-11"><a></a>  <span class="fu">coord_fixed</span>() <span class="co"># make pie perfectly circular</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-proportions_files/figure-revealjs/bundestag-stat-pie2-1.svg" style="width:100.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="making-pie-charts-with-ggplot2-ggforce-stat-pie-2" class="slide level2">
+<h2>Making pie charts with <strong>ggplot2</strong>: <strong>ggforce</strong> stat pie</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">library</span>(ggforce)</span>
+<span id="cb8-2"><a></a></span>
+<span id="cb8-3"><a></a><span class="fu">ggplot</span>(bundestag) <span class="sc">+</span></span>
+<span id="cb8-4"><a></a>  <span class="fu">aes</span>(</span>
+<span id="cb8-5"><a></a>    <span class="at">x0 =</span> <span class="dv">0</span>, <span class="at">y0 =</span> <span class="dv">0</span>, <span class="co"># position of pie center</span></span>
+<span id="cb8-6"><a></a>    <span class="at">r0 =</span> <span class="dv">0</span>, <span class="at">r =</span> <span class="dv">1</span>,  <span class="co"># inner and outer radius</span></span>
+<span id="cb8-7"><a></a>    <span class="at">amount =</span> seats, <span class="co"># size of pie slices</span></span>
+<span id="cb8-8"><a></a>    <span class="at">fill =</span> party</span>
+<span id="cb8-9"><a></a>  ) <span class="sc">+</span> </span>
+<span id="cb8-10"><a></a>  <span class="fu">geom_arc_bar</span>(<span class="at">stat =</span> <span class="st">"pie"</span>) <span class="sc">+</span></span>
+<span id="cb8-11"><a></a>  <span class="fu">coord_fixed</span>(  <span class="co"># make pie perfectly circular</span></span>
+<span id="cb8-12"><a></a>    <span class="co"># adjust limits as needed</span></span>
+<span id="cb8-13"><a></a>    <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">3</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb8-14"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-proportions_files/figure-revealjs/bundestag-stat-pie3-1.svg" style="width:100.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="making-pie-charts-with-ggplot2-ggforce-stat-pie-3" class="slide level2">
+<h2>Making pie charts with <strong>ggplot2</strong>: <strong>ggforce</strong> stat pie</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">library</span>(ggforce)</span>
+<span id="cb9-2"><a></a></span>
+<span id="cb9-3"><a></a><span class="fu">ggplot</span>(bundestag) <span class="sc">+</span></span>
+<span id="cb9-4"><a></a>  <span class="fu">aes</span>(</span>
+<span id="cb9-5"><a></a>    <span class="at">x0 =</span> <span class="dv">1</span>, <span class="at">y0 =</span> <span class="dv">1</span>, <span class="co"># position of pie center</span></span>
+<span id="cb9-6"><a></a>    <span class="at">r0 =</span> <span class="dv">0</span>, <span class="at">r =</span> <span class="dv">1</span>,  <span class="co"># inner and outer radius</span></span>
+<span id="cb9-7"><a></a>    <span class="at">amount =</span> seats, <span class="co"># size of pie slices</span></span>
+<span id="cb9-8"><a></a>    <span class="at">fill =</span> party</span>
+<span id="cb9-9"><a></a>  ) <span class="sc">+</span> </span>
+<span id="cb9-10"><a></a>  <span class="fu">geom_arc_bar</span>(<span class="at">stat =</span> <span class="st">"pie"</span>) <span class="sc">+</span></span>
+<span id="cb9-11"><a></a>  <span class="fu">coord_fixed</span>(  <span class="co"># make pie perfectly circular</span></span>
+<span id="cb9-12"><a></a>    <span class="co"># adjust limits as needed</span></span>
+<span id="cb9-13"><a></a>    <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">3</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb9-14"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-proportions_files/figure-revealjs/bundestag-stat-pie4-1.svg" style="width:100.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="making-pie-charts-with-ggplot2-ggforce-stat-pie-4" class="slide level2">
+<h2>Making pie charts with <strong>ggplot2</strong>: <strong>ggforce</strong> stat pie</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">library</span>(ggforce)</span>
+<span id="cb10-2"><a></a></span>
+<span id="cb10-3"><a></a><span class="fu">ggplot</span>(bundestag) <span class="sc">+</span></span>
+<span id="cb10-4"><a></a>  <span class="fu">aes</span>(</span>
+<span id="cb10-5"><a></a>    <span class="at">x0 =</span> <span class="dv">1</span>, <span class="at">y0 =</span> <span class="dv">1</span>, <span class="co"># position of pie center</span></span>
+<span id="cb10-6"><a></a>    <span class="at">r0 =</span> <span class="dv">1</span>, <span class="at">r =</span> <span class="dv">2</span>,  <span class="co"># inner and outer radius</span></span>
+<span id="cb10-7"><a></a>    <span class="at">amount =</span> seats, <span class="co"># size of pie slices</span></span>
+<span id="cb10-8"><a></a>    <span class="at">fill =</span> party</span>
+<span id="cb10-9"><a></a>  ) <span class="sc">+</span> </span>
+<span id="cb10-10"><a></a>  <span class="fu">geom_arc_bar</span>(<span class="at">stat =</span> <span class="st">"pie"</span>) <span class="sc">+</span></span>
+<span id="cb10-11"><a></a>  <span class="fu">coord_fixed</span>(  <span class="co"># make pie perfectly circular</span></span>
+<span id="cb10-12"><a></a>    <span class="co"># adjust limits as needed</span></span>
+<span id="cb10-13"><a></a>    <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">3</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb10-14"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-proportions_files/figure-revealjs/bundestag-stat-pie5-1.svg" style="width:100.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="making-pie-charts-with-ggplot2-ggforce-manual" class="slide level2">
+<h2>Making pie charts with <strong>ggplot2</strong>: <strong>ggforce</strong> manual</h2>
+<div class="tiny-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co"># prepare pie data</span></span>
+<span id="cb11-2"><a></a>pie_data <span class="ot">&lt;-</span> bundestag <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a></a>  <span class="fu">arrange</span>(seats)    <span class="co"># sort so pie slices end up sorted</span></span>
+<span id="cb11-4"><a></a></span>
+<span id="cb11-5"><a></a>pie_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  party   seats
+  &lt;chr&gt;   &lt;dbl&gt;
+1 FDP        39
+2 SPD       214
+3 CDU/CSU   243</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="making-pie-charts-with-ggplot2-ggforce-manual-1" class="slide level2">
+<h2>Making pie charts with <strong>ggplot2</strong>: <strong>ggforce</strong> manual</h2>
+<div class="tiny-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="co"># prepare pie data</span></span>
+<span id="cb13-2"><a></a>pie_data <span class="ot">&lt;-</span> bundestag <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a></a>  <span class="fu">arrange</span>(seats) <span class="sc">|&gt;</span> <span class="co"># sort so pie slices end up sorted</span></span>
+<span id="cb13-4"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-5"><a></a>    <span class="at">end_angle =</span> <span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span><span class="fu">cumsum</span>(seats)<span class="sc">/</span><span class="fu">sum</span>(seats)    <span class="co"># ending angle for each pie slice</span></span>
+<span id="cb13-6"><a></a>  )</span>
+<span id="cb13-7"><a></a></span>
+<span id="cb13-8"><a></a>pie_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  party   seats end_angle
+  &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt;
+1 FDP        39     0.494
+2 SPD       214     3.20 
+3 CDU/CSU   243     6.28 </code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="making-pie-charts-with-ggplot2-ggforce-manual-2" class="slide level2">
+<h2>Making pie charts with <strong>ggplot2</strong>: <strong>ggforce</strong> manual</h2>
+<div class="tiny-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="co"># prepare pie data</span></span>
+<span id="cb15-2"><a></a>pie_data <span class="ot">&lt;-</span> bundestag <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a></a>  <span class="fu">arrange</span>(seats) <span class="sc">|&gt;</span> <span class="co"># sort so pie slices end up sorted</span></span>
+<span id="cb15-4"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb15-5"><a></a>    <span class="at">end_angle =</span> <span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span><span class="fu">cumsum</span>(seats)<span class="sc">/</span><span class="fu">sum</span>(seats),   <span class="co"># ending angle for each pie slice</span></span>
+<span id="cb15-6"><a></a>    <span class="at">start_angle =</span> <span class="fu">lag</span>(end_angle, <span class="at">default =</span> <span class="dv">0</span>)    <span class="co"># starting angle for each pie slice</span></span>
+<span id="cb15-7"><a></a>  )</span>
+<span id="cb15-8"><a></a></span>
+<span id="cb15-9"><a></a>pie_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+  party   seats end_angle start_angle
+  &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+1 FDP        39     0.494       0    
+2 SPD       214     3.20        0.494
+3 CDU/CSU   243     6.28        3.20 </code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="making-pie-charts-with-ggplot2-ggforce-manual-3" class="slide level2">
+<h2>Making pie charts with <strong>ggplot2</strong>: <strong>ggforce</strong> manual</h2>
+<div class="tiny-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="co"># prepare pie data</span></span>
+<span id="cb17-2"><a></a>pie_data <span class="ot">&lt;-</span> bundestag <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a></a>  <span class="fu">arrange</span>(seats) <span class="sc">|&gt;</span> <span class="co"># sort so pie slices end up sorted</span></span>
+<span id="cb17-4"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-5"><a></a>    <span class="at">end_angle =</span> <span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span><span class="fu">cumsum</span>(seats)<span class="sc">/</span><span class="fu">sum</span>(seats),   <span class="co"># ending angle for each pie slice</span></span>
+<span id="cb17-6"><a></a>    <span class="at">start_angle =</span> <span class="fu">lag</span>(end_angle, <span class="at">default =</span> <span class="dv">0</span>),   <span class="co"># starting angle for each pie slice</span></span>
+<span id="cb17-7"><a></a>    <span class="at">mid_angle =</span> <span class="fl">0.5</span><span class="sc">*</span>(start_angle <span class="sc">+</span> end_angle),   <span class="co"># middle of each pie slice, for text labels</span></span>
+<span id="cb17-8"><a></a>  )</span>
+<span id="cb17-9"><a></a></span>
+<span id="cb17-10"><a></a>pie_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  party   seats end_angle start_angle mid_angle
+  &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;
+1 FDP        39     0.494       0         0.247
+2 SPD       214     3.20        0.494     1.85 
+3 CDU/CSU   243     6.28        3.20      4.74 </code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="making-pie-charts-with-ggplot2-ggforce-manual-4" class="slide level2">
+<h2>Making pie charts with <strong>ggplot2</strong>: <strong>ggforce</strong> manual</h2>
+<div class="tiny-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="co"># prepare pie data</span></span>
+<span id="cb19-2"><a></a>pie_data <span class="ot">&lt;-</span> bundestag <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a></a>  <span class="fu">arrange</span>(seats) <span class="sc">|&gt;</span> <span class="co"># sort so pie slices end up sorted</span></span>
+<span id="cb19-4"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-5"><a></a>    <span class="at">end_angle =</span> <span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span><span class="fu">cumsum</span>(seats)<span class="sc">/</span><span class="fu">sum</span>(seats),   <span class="co"># ending angle for each pie slice</span></span>
+<span id="cb19-6"><a></a>    <span class="at">start_angle =</span> <span class="fu">lag</span>(end_angle, <span class="at">default =</span> <span class="dv">0</span>),   <span class="co"># starting angle for each pie slice</span></span>
+<span id="cb19-7"><a></a>    <span class="at">mid_angle =</span> <span class="fl">0.5</span><span class="sc">*</span>(start_angle <span class="sc">+</span> end_angle),   <span class="co"># middle of each pie slice, for text labels</span></span>
+<span id="cb19-8"><a></a>    <span class="co"># horizontal and vertical justifications for outer labels</span></span>
+<span id="cb19-9"><a></a>    <span class="at">hjust =</span> <span class="fu">if_else</span>(mid_angle <span class="sc">&gt;</span> pi, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb19-10"><a></a>    <span class="at">vjust =</span> <span class="fu">if_else</span>(mid_angle <span class="sc">&lt;</span> pi<span class="sc">/</span><span class="dv">2</span> <span class="sc">|</span> mid_angle <span class="sc">&gt;</span> <span class="dv">3</span><span class="sc">*</span>pi<span class="sc">/</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb19-11"><a></a>  )</span>
+<span id="cb19-12"><a></a></span>
+<span id="cb19-13"><a></a>pie_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 7
+  party   seats end_angle start_angle mid_angle hjust vjust
+  &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 FDP        39     0.494       0         0.247     0     0
+2 SPD       214     3.20        0.494     1.85      0     1
+3 CDU/CSU   243     6.28        3.20      4.74      1     0</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="making-pie-charts-with-ggplot2-ggforce-manual-5" class="slide level2">
+<h2>Making pie charts with <strong>ggplot2</strong>: <strong>ggforce</strong> manual</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">ggplot</span>(pie_data) <span class="sc">+</span></span>
+<span id="cb21-2"><a></a>  <span class="fu">aes</span>(</span>
+<span id="cb21-3"><a></a>    <span class="at">x0 =</span> <span class="dv">0</span>, <span class="at">y0 =</span> <span class="dv">0</span>, <span class="at">r0 =</span> <span class="dv">0</span>, <span class="at">r =</span> <span class="dv">1</span>,</span>
+<span id="cb21-4"><a></a>    <span class="at">start =</span> start_angle, <span class="at">end =</span> end_angle,</span>
+<span id="cb21-5"><a></a>    <span class="at">fill =</span> party</span>
+<span id="cb21-6"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb21-7"><a></a>  <span class="fu">geom_arc_bar</span>() <span class="sc">+</span></span>
+<span id="cb21-8"><a></a>  <span class="fu">coord_fixed</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-proportions_files/figure-revealjs/bundestag-arc-bar1-1.svg" style="width:100.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="making-pie-charts-with-ggplot2-ggforce-manual-6" class="slide level2">
+<h2>Making pie charts with <strong>ggplot2</strong>: <strong>ggforce</strong> manual</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">ggplot</span>(pie_data) <span class="sc">+</span></span>
+<span id="cb22-2"><a></a>  <span class="fu">aes</span>(</span>
+<span id="cb22-3"><a></a>    <span class="at">x0 =</span> <span class="dv">0</span>, <span class="at">y0 =</span> <span class="dv">0</span>, <span class="at">r0 =</span> <span class="dv">0</span>, <span class="at">r =</span> <span class="dv">1</span>,</span>
+<span id="cb22-4"><a></a>    <span class="at">start =</span> start_angle, <span class="at">end =</span> end_angle,</span>
+<span id="cb22-5"><a></a>    <span class="at">fill =</span> party</span>
+<span id="cb22-6"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb22-7"><a></a>  <span class="fu">geom_arc_bar</span>() <span class="sc">+</span></span>
+<span id="cb22-8"><a></a>  <span class="fu">geom_text</span>( <span class="co"># place amounts inside the pie</span></span>
+<span id="cb22-9"><a></a>    <span class="fu">aes</span>(</span>
+<span id="cb22-10"><a></a>      <span class="at">x =</span> <span class="fl">0.6</span> <span class="sc">*</span> <span class="fu">sin</span>(mid_angle),</span>
+<span id="cb22-11"><a></a>      <span class="at">y =</span> <span class="fl">0.6</span> <span class="sc">*</span> <span class="fu">cos</span>(mid_angle),</span>
+<span id="cb22-12"><a></a>      <span class="at">label =</span> seats</span>
+<span id="cb22-13"><a></a>    )</span>
+<span id="cb22-14"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb22-15"><a></a>  <span class="fu">coord_fixed</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-proportions_files/figure-revealjs/bundestag-arc-bar2-1.svg" style="width:100.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="making-pie-charts-with-ggplot2-ggforce-manual-7" class="slide level2">
+<h2>Making pie charts with <strong>ggplot2</strong>: <strong>ggforce</strong> manual</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">ggplot</span>(pie_data) <span class="sc">+</span></span>
+<span id="cb23-2"><a></a>  <span class="fu">aes</span>(</span>
+<span id="cb23-3"><a></a>    <span class="at">x0 =</span> <span class="dv">0</span>, <span class="at">y0 =</span> <span class="dv">0</span>, <span class="at">r0 =</span> <span class="dv">0</span>, <span class="at">r =</span> <span class="dv">1</span>,</span>
+<span id="cb23-4"><a></a>    <span class="at">start =</span> start_angle, <span class="at">end =</span> end_angle,</span>
+<span id="cb23-5"><a></a>    <span class="at">fill =</span> party</span>
+<span id="cb23-6"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb23-7"><a></a>  <span class="fu">geom_arc_bar</span>() <span class="sc">+</span></span>
+<span id="cb23-8"><a></a>  <span class="fu">geom_text</span>( <span class="co"># place amounts inside the pie</span></span>
+<span id="cb23-9"><a></a>    <span class="fu">aes</span>(</span>
+<span id="cb23-10"><a></a>      <span class="at">x =</span> <span class="fl">0.2</span> <span class="sc">*</span> <span class="fu">sin</span>(mid_angle),</span>
+<span id="cb23-11"><a></a>      <span class="at">y =</span> <span class="fl">0.2</span> <span class="sc">*</span> <span class="fu">cos</span>(mid_angle),</span>
+<span id="cb23-12"><a></a>      <span class="at">label =</span> seats</span>
+<span id="cb23-13"><a></a>    )</span>
+<span id="cb23-14"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb23-15"><a></a>  <span class="fu">coord_fixed</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-proportions_files/figure-revealjs/bundestag-arc-bar3-1.svg" style="width:100.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="making-pie-charts-with-ggplot2-ggforce-manual-8" class="slide level2">
+<h2>Making pie charts with <strong>ggplot2</strong>: <strong>ggforce</strong> manual</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">ggplot</span>(pie_data) <span class="sc">+</span></span>
+<span id="cb24-2"><a></a>  <span class="fu">aes</span>(</span>
+<span id="cb24-3"><a></a>    <span class="at">x0 =</span> <span class="dv">0</span>, <span class="at">y0 =</span> <span class="dv">0</span>, <span class="at">r0 =</span> <span class="dv">0</span>, <span class="at">r =</span> <span class="dv">1</span>,</span>
+<span id="cb24-4"><a></a>    <span class="at">start =</span> start_angle, <span class="at">end =</span> end_angle,</span>
+<span id="cb24-5"><a></a>    <span class="at">fill =</span> party</span>
+<span id="cb24-6"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb24-7"><a></a>  <span class="fu">geom_arc_bar</span>() <span class="sc">+</span></span>
+<span id="cb24-8"><a></a>  <span class="fu">geom_text</span>( <span class="co"># place amounts inside the pie</span></span>
+<span id="cb24-9"><a></a>    <span class="fu">aes</span>(</span>
+<span id="cb24-10"><a></a>      <span class="at">x =</span> <span class="fl">0.8</span> <span class="sc">*</span> <span class="fu">sin</span>(mid_angle),</span>
+<span id="cb24-11"><a></a>      <span class="at">y =</span> <span class="fl">0.8</span> <span class="sc">*</span> <span class="fu">cos</span>(mid_angle),</span>
+<span id="cb24-12"><a></a>      <span class="at">label =</span> seats</span>
+<span id="cb24-13"><a></a>    )</span>
+<span id="cb24-14"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb24-15"><a></a>  <span class="fu">coord_fixed</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-proportions_files/figure-revealjs/bundestag-arc-bar4-1.svg" style="width:100.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="making-pie-charts-with-ggplot2-ggforce-manual-9" class="slide level2">
+<h2>Making pie charts with <strong>ggplot2</strong>: <strong>ggforce</strong> manual</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">ggplot</span>(pie_data) <span class="sc">+</span></span>
+<span id="cb25-2"><a></a>  <span class="fu">aes</span>(</span>
+<span id="cb25-3"><a></a>    <span class="at">x0 =</span> <span class="dv">0</span>, <span class="at">y0 =</span> <span class="dv">0</span>, <span class="at">r0 =</span> <span class="dv">0</span>, <span class="at">r =</span> <span class="dv">1</span>,</span>
+<span id="cb25-4"><a></a>    <span class="at">start =</span> start_angle, <span class="at">end =</span> end_angle,</span>
+<span id="cb25-5"><a></a>    <span class="at">fill =</span> party</span>
+<span id="cb25-6"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb25-7"><a></a>  <span class="fu">geom_arc_bar</span>() <span class="sc">+</span></span>
+<span id="cb25-8"><a></a>  <span class="fu">geom_text</span>( <span class="co"># place amounts inside the pie</span></span>
+<span id="cb25-9"><a></a>    <span class="fu">aes</span>(</span>
+<span id="cb25-10"><a></a>      <span class="at">x =</span> <span class="fl">0.6</span> <span class="sc">*</span> <span class="fu">sin</span>(mid_angle),</span>
+<span id="cb25-11"><a></a>      <span class="at">y =</span> <span class="fl">0.6</span> <span class="sc">*</span> <span class="fu">cos</span>(mid_angle),</span>
+<span id="cb25-12"><a></a>      <span class="at">label =</span> seats</span>
+<span id="cb25-13"><a></a>    )</span>
+<span id="cb25-14"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb25-15"><a></a>  <span class="fu">coord_fixed</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-proportions_files/figure-revealjs/bundestag-arc-bar5-1.svg" style="width:100.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="making-pie-charts-with-ggplot2-ggforce-manual-10" class="slide level2">
+<h2>Making pie charts with <strong>ggplot2</strong>: <strong>ggforce</strong> manual</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">ggplot</span>(pie_data) <span class="sc">+</span></span>
+<span id="cb26-2"><a></a>  <span class="fu">aes</span>(</span>
+<span id="cb26-3"><a></a>    <span class="at">x0 =</span> <span class="dv">0</span>, <span class="at">y0 =</span> <span class="dv">0</span>, <span class="at">r0 =</span> <span class="dv">0</span>, <span class="at">r =</span> <span class="dv">1</span>,</span>
+<span id="cb26-4"><a></a>    <span class="at">start =</span> start_angle, <span class="at">end =</span> end_angle,</span>
+<span id="cb26-5"><a></a>    <span class="at">fill =</span> party</span>
+<span id="cb26-6"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb26-7"><a></a>  <span class="fu">geom_arc_bar</span>() <span class="sc">+</span></span>
+<span id="cb26-8"><a></a>  <span class="fu">geom_text</span>( <span class="co"># place amounts inside the pie</span></span>
+<span id="cb26-9"><a></a>    <span class="fu">aes</span>(</span>
+<span id="cb26-10"><a></a>      <span class="at">x =</span> <span class="fl">0.6</span> <span class="sc">*</span> <span class="fu">sin</span>(mid_angle),</span>
+<span id="cb26-11"><a></a>      <span class="at">y =</span> <span class="fl">0.6</span> <span class="sc">*</span> <span class="fu">cos</span>(mid_angle),</span>
+<span id="cb26-12"><a></a>      <span class="at">label =</span> seats</span>
+<span id="cb26-13"><a></a>    )</span>
+<span id="cb26-14"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb26-15"><a></a>  <span class="fu">geom_text</span>( <span class="co"># place party name outside the pie</span></span>
+<span id="cb26-16"><a></a>    <span class="fu">aes</span>(</span>
+<span id="cb26-17"><a></a>      <span class="at">x =</span> <span class="fl">1.05</span> <span class="sc">*</span> <span class="fu">sin</span>(mid_angle),</span>
+<span id="cb26-18"><a></a>      <span class="at">y =</span> <span class="fl">1.05</span> <span class="sc">*</span> <span class="fu">cos</span>(mid_angle),</span>
+<span id="cb26-19"><a></a>      <span class="at">label =</span> party,</span>
+<span id="cb26-20"><a></a>      <span class="at">hjust =</span> hjust, <span class="at">vjust =</span> vjust</span>
+<span id="cb26-21"><a></a>    )</span>
+<span id="cb26-22"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb26-23"><a></a>  <span class="fu">coord_fixed</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-proportions_files/figure-revealjs/bundestag-arc-bar6-1.svg" style="width:100.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="making-pie-charts-with-ggplot2-ggforce-manual-11" class="slide level2">
+<h2>Making pie charts with <strong>ggplot2</strong>: <strong>ggforce</strong> manual</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">ggplot</span>(pie_data) <span class="sc">+</span></span>
+<span id="cb27-2"><a></a>  <span class="fu">aes</span>(</span>
+<span id="cb27-3"><a></a>    <span class="at">x0 =</span> <span class="dv">0</span>, <span class="at">y0 =</span> <span class="dv">0</span>, <span class="at">r0 =</span> <span class="dv">0</span>, <span class="at">r =</span> <span class="dv">1</span>,</span>
+<span id="cb27-4"><a></a>    <span class="at">start =</span> start_angle, <span class="at">end =</span> end_angle,</span>
+<span id="cb27-5"><a></a>    <span class="at">fill =</span> party</span>
+<span id="cb27-6"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb27-7"><a></a>  <span class="fu">geom_arc_bar</span>() <span class="sc">+</span></span>
+<span id="cb27-8"><a></a>  <span class="fu">geom_text</span>( <span class="co"># place amounts inside the pie</span></span>
+<span id="cb27-9"><a></a>    <span class="fu">aes</span>(</span>
+<span id="cb27-10"><a></a>      <span class="at">x =</span> <span class="fl">0.6</span> <span class="sc">*</span> <span class="fu">sin</span>(mid_angle),</span>
+<span id="cb27-11"><a></a>      <span class="at">y =</span> <span class="fl">0.6</span> <span class="sc">*</span> <span class="fu">cos</span>(mid_angle),</span>
+<span id="cb27-12"><a></a>      <span class="at">label =</span> seats</span>
+<span id="cb27-13"><a></a>    )</span>
+<span id="cb27-14"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb27-15"><a></a>  <span class="fu">geom_text</span>( <span class="co"># place party name outside the pie</span></span>
+<span id="cb27-16"><a></a>    <span class="fu">aes</span>(</span>
+<span id="cb27-17"><a></a>      <span class="at">x =</span> <span class="fl">1.05</span> <span class="sc">*</span> <span class="fu">sin</span>(mid_angle),</span>
+<span id="cb27-18"><a></a>      <span class="at">y =</span> <span class="fl">1.05</span> <span class="sc">*</span> <span class="fu">cos</span>(mid_angle),</span>
+<span id="cb27-19"><a></a>      <span class="at">label =</span> party,</span>
+<span id="cb27-20"><a></a>      <span class="at">hjust =</span> hjust, <span class="at">vjust =</span> vjust</span>
+<span id="cb27-21"><a></a>    )</span>
+<span id="cb27-22"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb27-23"><a></a>  <span class="fu">coord_fixed</span>(</span>
+<span id="cb27-24"><a></a>    <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.8</span>, <span class="fl">1.3</span>)</span>
+<span id="cb27-25"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-proportions_files/figure-revealjs/bundestag-arc-bar7-1.svg" style="width:100.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="making-pie-charts-with-ggplot2-ggforce-manual-12" class="slide level2">
+<h2>Making pie charts with <strong>ggplot2</strong>: <strong>ggforce</strong> manual</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="fu">ggplot</span>(pie_data) <span class="sc">+</span></span>
+<span id="cb28-2"><a></a>  <span class="fu">aes</span>(</span>
+<span id="cb28-3"><a></a>    <span class="at">x0 =</span> <span class="dv">0</span>, <span class="at">y0 =</span> <span class="dv">0</span>, <span class="at">r0 =</span> <span class="fl">0.4</span>, <span class="at">r =</span> <span class="dv">1</span>,</span>
+<span id="cb28-4"><a></a>    <span class="at">start =</span> start_angle, <span class="at">end =</span> end_angle,</span>
+<span id="cb28-5"><a></a>    <span class="at">fill =</span> party</span>
+<span id="cb28-6"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb28-7"><a></a>  <span class="fu">geom_arc_bar</span>() <span class="sc">+</span></span>
+<span id="cb28-8"><a></a>  <span class="fu">geom_text</span>( <span class="co"># place amounts inside the pie</span></span>
+<span id="cb28-9"><a></a>    <span class="fu">aes</span>(</span>
+<span id="cb28-10"><a></a>      <span class="at">x =</span> <span class="fl">0.7</span> <span class="sc">*</span> <span class="fu">sin</span>(mid_angle),</span>
+<span id="cb28-11"><a></a>      <span class="at">y =</span> <span class="fl">0.7</span> <span class="sc">*</span> <span class="fu">cos</span>(mid_angle),</span>
+<span id="cb28-12"><a></a>      <span class="at">label =</span> seats</span>
+<span id="cb28-13"><a></a>    )</span>
+<span id="cb28-14"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb28-15"><a></a>  <span class="fu">geom_text</span>( <span class="co"># place party name outside the pie</span></span>
+<span id="cb28-16"><a></a>    <span class="fu">aes</span>(</span>
+<span id="cb28-17"><a></a>      <span class="at">x =</span> <span class="fl">1.05</span> <span class="sc">*</span> <span class="fu">sin</span>(mid_angle),</span>
+<span id="cb28-18"><a></a>      <span class="at">y =</span> <span class="fl">1.05</span> <span class="sc">*</span> <span class="fu">cos</span>(mid_angle),</span>
+<span id="cb28-19"><a></a>      <span class="at">label =</span> party,</span>
+<span id="cb28-20"><a></a>      <span class="at">hjust =</span> hjust, <span class="at">vjust =</span> vjust</span>
+<span id="cb28-21"><a></a>    )</span>
+<span id="cb28-22"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb28-23"><a></a>  <span class="fu">coord_fixed</span>(</span>
+<span id="cb28-24"><a></a>    <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.8</span>, <span class="fl">1.3</span>)</span>
+<span id="cb28-25"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-proportions_files/figure-revealjs/bundestag-arc-bar8-1.svg" style="width:100.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="making-pie-charts-with-ggplot2-ggforce-manual-13" class="slide level2">
+<h2>Making pie charts with <strong>ggplot2</strong>: <strong>ggforce</strong> manual</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="fu">ggplot</span>(pie_data) <span class="sc">+</span></span>
+<span id="cb29-2"><a></a>  <span class="fu">aes</span>(</span>
+<span id="cb29-3"><a></a>    <span class="at">x0 =</span> <span class="dv">0</span>, <span class="at">y0 =</span> <span class="dv">0</span>, <span class="at">r0 =</span> <span class="fl">0.4</span>, <span class="at">r =</span> <span class="dv">1</span>,</span>
+<span id="cb29-4"><a></a>    <span class="at">start =</span> start_angle, <span class="at">end =</span> end_angle,</span>
+<span id="cb29-5"><a></a>    <span class="at">fill =</span> party</span>
+<span id="cb29-6"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb29-7"><a></a>  <span class="fu">geom_arc_bar</span>() <span class="sc">+</span></span>
+<span id="cb29-8"><a></a>  <span class="fu">geom_text</span>( <span class="co"># place amounts inside the pie</span></span>
+<span id="cb29-9"><a></a>    <span class="fu">aes</span>(</span>
+<span id="cb29-10"><a></a>      <span class="at">x =</span> <span class="fl">0.7</span> <span class="sc">*</span> <span class="fu">sin</span>(mid_angle),</span>
+<span id="cb29-11"><a></a>      <span class="at">y =</span> <span class="fl">0.7</span> <span class="sc">*</span> <span class="fu">cos</span>(mid_angle),</span>
+<span id="cb29-12"><a></a>      <span class="at">label =</span> seats</span>
+<span id="cb29-13"><a></a>    )</span>
+<span id="cb29-14"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb29-15"><a></a>  <span class="fu">geom_text</span>( <span class="co"># place party name outside the pie</span></span>
+<span id="cb29-16"><a></a>    <span class="fu">aes</span>(</span>
+<span id="cb29-17"><a></a>      <span class="at">x =</span> <span class="fl">1.05</span> <span class="sc">*</span> <span class="fu">sin</span>(mid_angle),</span>
+<span id="cb29-18"><a></a>      <span class="at">y =</span> <span class="fl">1.05</span> <span class="sc">*</span> <span class="fu">cos</span>(mid_angle),</span>
+<span id="cb29-19"><a></a>      <span class="at">label =</span> party,</span>
+<span id="cb29-20"><a></a>      <span class="at">hjust =</span> hjust, <span class="at">vjust =</span> vjust</span>
+<span id="cb29-21"><a></a>    )</span>
+<span id="cb29-22"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb29-23"><a></a>  <span class="fu">coord_fixed</span>(</span>
+<span id="cb29-24"><a></a>    <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.8</span>, <span class="fl">1.3</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.0</span>, <span class="fl">1.1</span>)</span>
+<span id="cb29-25"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb29-26"><a></a>  <span class="fu">theme_void</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-proportions_files/figure-revealjs/bundestag-arc-bar9-1.svg" style="width:100.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+<!-- Segment ends here -->
+</section>
+<section id="further-reading" class="slide level2">
+<h2>Further reading</h2>
+<ul>
+<li>Fundamentals of Data Visualization: <a href="https://clauswilke.com/dataviz/visualizing-proportions.html">Chapter 10: Visualizing proportions</a></li>
+<li>Fundamentals of Data Visualization: <a href="https://clauswilke.com/dataviz/nested-proportions.html">Chapter 11: Visualizing nested proportions</a></li>
+<li><strong>ggplot2</strong> reference documentation: <a href="https://ggplot2.tidyverse.org/reference/position_stack.html"><code>position_stack()</code>, <code>position_fill()</code></a></li>
+<li><strong>ggplot2</strong> reference documentation: <a href="https://ggplot2.tidyverse.org/reference/position_dodge.html"><code>position_dodge()</code></a></li>
+<li><strong>ggforce</strong> reference documentation: <a href="https://ggforce.data-imaginist.com/reference/geom_arc_bar.html"><code>geom_arc_bar()</code></a></li>
+</ul>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

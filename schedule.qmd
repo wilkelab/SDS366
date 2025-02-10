@@ -24,9 +24,9 @@ format: html
 
 <p class="nospace">Materials:</p>
 
-- [Slides Part I](slides/visualizing-amounts.qmd)  
-- [Slides Part II](slides/telling-a-story.qmd)  
-- [Worksheet](worksheets/visualizing-amounts.qmd)
+- [Slides Part I](slides/visualizing-amounts.qmd) (visualizing amounts)
+- [Worksheet Part I](worksheets/visualizing-amounts.qmd)
+- [Slides Part II](slides/telling-a-story.qmd) (telling a story)
 
 ### 4. Jan 28, 2025—Coordinate systems and axes
 
@@ -55,6 +55,23 @@ format: html
 
 - [Slides](slides/color-scales.qmd)  
 - [Worksheet](worksheets/color-scales.qmd)
+
+### 8. Feb 11, 2025—Color spaces and color-vision deficiency
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/color-spaces.qmd)  
+- [Worksheet](worksheets/color-selection.qmd)
+
+### 9. Feb 13, 2025—Data wrangling
+
+<p class="nospace">Materials:</p>
+
+- [Slides Part I](slides/data-wrangling-1.qmd) (pipe, sorting, filtering, mutating)
+- [Worksheet Part I](worksheets/data-wrangling-1.qmd)
+- [Slides Part II](slides/data-wrangling-2.qmd) (summarizing, pivoting, joining)
+- [Worksheet Part II](worksheets/data-wrangling-2.qmd)
+
 
 ## Homeworks
 
