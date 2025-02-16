@@ -870,6 +870,29 @@ colorspace::divergingx_palettes(plot = TRUE, n = 9)
 ```
 :::
 
+## All scale functions use `breaks`, `labels`, etc.
+
+```{r}
+#| label: temps-tiles9
+#| echo: true
+#| message: false
+#| fig-show: hold
+#| fig.width: 7
+#| fig.asp: 0.3
+#| fig-cap: "&nbsp;"
+#| out.width: "90%"
+ggplot(temps_months, aes(x = month, y = location, fill = mean)) + 
+  geom_tile(width = 0.95, height = 0.95) + 
+  coord_fixed(expand = FALSE) +
+  theme_classic() +
+  scale_fill_viridis_c(
+    name = "temperature",
+    breaks = c(25, 50, 75, 100),
+    labels = c("25°F", "50°F", "75°F", "100°F")
+  )
+```
+
+
 <!-- Segment ends here -->
 
 # Setting colors manually for discrete, qualitative scales

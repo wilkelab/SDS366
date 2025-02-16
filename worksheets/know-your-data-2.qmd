@@ -1,0 +1,252 @@
+---
+title: "Getting to know your data 2"
+author: "Claus O. Wilke"
+format: live-html
+engine: knitr
+webr:
+  render-df: gt-interactive
+---
+
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+
+## Introduction
+
+In this worksheet, we will discuss how to work with missing values in R.
+
+First we need to load the required R packages. Please wait a moment until the live R session is fully set up and all packages are loaded.
+
+```{webr}
+#| warning: false
+#| edit: false
+library(tidyverse)
+library(naniar)
+```
+
+We will be working with the R built-in dataset `airquality`, which contains daily air quality measurements in New York, May to September 1973. The data columns are mean ozone in parts per billion, solar radiation in Langleys, average wind speed in miles per hour, maximum temperature in Fahrenheit, and numeric month and day of the month.
+```{webr}
+#| edit: false
+airquality
+```
+
+## Reading csv files with missing values
+
+We will first talk about how to replace specific values with `NA` when reading in data files. We prepare a simple comma-separated values (CSV) file with four columns, `a`, `b`, `c`, and `d`, which all use different ways to indicate a missing value.
+
+```{webr}
+#| edit: false
+simple_csv <- "
+a, b, c, d
+dog,#N/A,2,3
+,3,NA,2
+cat,5,3,-99
+"
+```
+
+In column `a`, second row, a field is completely empty, the line starts with a comma. In column `b`, first row, a missing value is indicated with `#N/A`. In column `c`, second row, a missing value is indicated with `NA`. In column `d`, fourth row, a missing value is indicated with `-99`.
+
+If we read this input with `read_csv()`, we can see that the missing values in columns `a` and `c` are treated correctly but the others are not.
+
+```{webr}
+#| edit: false
+read_csv(simple_csv)
+```
+
+This outcome is determined by the `na` argument of `read_csv()`. By default, it is set to `na = c("", "NA")`, which handles empty cells and cells containing `NA` correctly. Modify this argument so that the entire table is read correctly.
+
+```{webr} 
+#| exercise: read_csv-NA
+
+```
+
+::: { .hint exercise="read_csv-NA" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+read_csv(simple_csv, na = ___)
+```
+:::
+:::
+
+::: { .solution exercise="read_csv-NA" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+read_csv(simple_csv, na = c("", "NA", "#N/A", "-99"))
+```
+:::
+:::
+
+Also try other options to see what happens. For example, how does the result change if you remove the empty string from the `na` argument?
+
+
+As an alternative to defining a global set of character strings that should be interpreted as missing values, you can make the substitution on a column-by-column basis, via the function  `replace_with_na_at()` from the **naniar** package. This function allows you to specify one or more columns to work on and the specific data values that should be replaced with `NA`. The first argument to the function is the name of the data column on which you want to operate, given as a string, and the second argument is a logical expression determining whether replacement should be made or not, given as a formula. For example, the following code replaces `-99` with `NA` in column `d`:
+
+```{webr}
+#| edit: false
+read_csv(simple_csv) |>
+  replace_with_na_at("d", ~.x == "-99")
+```
+
+Now use this same construct to replace the string `#N/A` with `NA` in column `b`.
+
+```{webr} 
+#| exercise: read_csv-replace_at
+
+```
+
+::: { .hint exercise="read_csv-replace_at" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+read_csv(simple_csv) |>
+  replace_with_na_at(___)
+```
+:::
+:::
+
+::: { .solution exercise="read_csv-replace_at" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+read_csv(simple_csv) |>
+  replace_with_na_at("b", ~.x == "#N/A")
+```
+:::
+:::
+
+Do you see any remaining issues with this result?
+
+## Computing with missing values
+
+When performing common summary calculations, such as calculating the mean of a numerical column, any missing values will cause the final result to be `NA`. For example, if you wanted to calculate the mean ozone value in the airquality dataset, you might see the following:
+
+```{webr}
+#| edit: false
+mean(airquality$Ozone)
+```
+
+If you are certain that it is Ok to ignore missing values in your summary calculation, you can set the argument `na.rm = TRUE` inside the `mean()` function. Try this.
+
+```{webr} 
+#| exercise: mean-with-NA
+mean(airquality$Ozone) # not ignoring NA values
+mean(airquality$Ozone, ___) # ignoring NA values
+```
+
+::: { .hint exercise="mean-with-NA" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+mean(airquality$Ozone) # not ignoring NA values
+mean(airquality$Ozone, na.rm = ___) # ignoring NA values
+```
+:::
+:::
+
+::: { .solution exercise="mean-with-NA" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+mean(airquality$Ozone) # not ignoring NA values
+mean(airquality$Ozone, na.rm = TRUE) # ignoring NA values
+```
+:::
+:::
+
+Now try the same with the median, the maximum, and the sum of the `Ozone` column.
+
+```{webr} 
+#| exercise: various-with-NA
+
+```
+
+::: { .solution exercise="various-with-NA" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+median(airquality$Ozone)
+median(airquality$Ozone, na.rm = TRUE)
+max(airquality$Ozone)
+max(airquality$Ozone, na.rm = TRUE)
+sum(airquality$Ozone)
+sum(airquality$Ozone, na.rm = TRUE)
+```
+:::
+:::
+
+To test whether a specific value is missing, you cannot use the standard comparison operator `==`. Instead, you have to use the function `is.na()`. Try this out by retaining only the rows in `airquality` for which the `Ozone` column contains a missing value.
+
+```{webr} 
+#| exercise: filter-NA
+airquality |>
+  filter(___)
+```
+
+::: { .hint exercise="filter-NA" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+airquality |>
+  filter(is.na(___))
+```
+:::
+:::
+
+::: { .solution exercise="filter-NA" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+airquality |>
+  filter(is.na(Ozone))
+```
+:::
+:::
+
+Now do the opposite. Retain only the rows for which the `Ozone` column does not contain a missing value.
+
+```{webr} 
+#| exercise: filter-not-NA
+```
+
+::: { .solution exercise="filter-not-NA" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+airquality |>
+  filter(!is.na(Ozone))
+```
+:::
+:::
+
+## Visualizing missing values
+
+It is also useful to be able to visualize missing values easily. By default, when we make for example a scatter plot, missing values are simply not shown, and instead ggplot gives us a warning about missing values.
+
+```{webr}
+#| edit: false
+ggplot(airquality, aes(x = Solar.R, y = Ozone)) +
+ geom_point()
+```
+
+This is not very helpful, because we don't know where the values are missing. In this specific example, are they missing in the `Ozone` column or in the `Solar.R` column? And also, we may want to know whether missing values in one column coincide with particular values in the other column.
+
+This can be addressed by using `geom_miss_point()` from the **naniar** package. Try this out.
+
+```{webr} 
+#| exercise: missing-scatter
+
+```
+
+::: { .solution exercise="missing-scatter" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+ggplot(airquality, aes(x = Solar.R, y = Ozone)) +
+ geom_miss_point()
+```
+:::
+:::
+
+The **naniar** package has various other methods to visualize missing values. For example, `gg_miss_var()` will provide an overall summary of how many missing values there are in each column in the data frame. Try this out.
+
+```{webr} 
+#| exercise: missing-summary
+
+```
+
+::: { .solution exercise="missing-summary" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+gg_miss_var(airquality)
+```
+:::
+:::

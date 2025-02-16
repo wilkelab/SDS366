@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.39">
 
   <meta name="author" content="Claus O. Wilke">
-  <meta name="dcterms.date" content="2025-01-13">
+  <meta name="dcterms.date" content="2025-02-16">
   <title>SDS 366 – Color scales</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -206,7 +206,7 @@ Claus O. Wilke
 </div>
 </div>
 
-  <p class="date">2025-01-13</p>
+  <p class="date">2025-02-16</p>
 </section>
 <section id="uses-of-color-in-data-visualization" class="slide level2">
 <h2>Uses of color in data visualization</h2>
@@ -1065,6 +1065,28 @@ Claus O. Wilke
 </div>
 </div>
 </div>
+</section>
+<section id="all-scale-functions-use-breaks-labels-etc." class="slide level2">
+<h2>All scale functions use <code>breaks</code>, <code>labels</code>, etc.</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">ggplot</span>(temps_months, <span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> location, <span class="at">fill =</span> mean)) <span class="sc">+</span> </span>
+<span id="cb16-2"><a></a>  <span class="fu">geom_tile</span>(<span class="at">width =</span> <span class="fl">0.95</span>, <span class="at">height =</span> <span class="fl">0.95</span>) <span class="sc">+</span> </span>
+<span id="cb16-3"><a></a>  <span class="fu">coord_fixed</span>(<span class="at">expand =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb16-4"><a></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb16-5"><a></a>  <span class="fu">scale_fill_viridis_c</span>(</span>
+<span id="cb16-6"><a></a>    <span class="at">name =</span> <span class="st">"temperature"</span>,</span>
+<span id="cb16-7"><a></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">50</span>, <span class="dv">75</span>, <span class="dv">100</span>),</span>
+<span id="cb16-8"><a></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"25°F"</span>, <span class="st">"50°F"</span>, <span class="st">"75°F"</span>, <span class="st">"100°F"</span>)</span>
+<span id="cb16-9"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="color-scales_files/figure-revealjs/temps-tiles9-1.svg" style="width:90.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <!-- Segment ends here -->
 </section></section>
 <section>
@@ -1075,10 +1097,10 @@ Claus O. Wilke
 <section id="discrete-qualitative-scales-are-best-set-manually" class="slide level2">
 <h2>Discrete, qualitative scales are best set manually</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">ggplot</span>(popgrowth, <span class="fu">aes</span>(<span class="at">x =</span> pop2000, <span class="at">y =</span> popgrowth, <span class="at">color =</span> region)) <span class="sc">+</span></span>
-<span id="cb16-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb16-3"><a></a>  <span class="fu">scale_x_log10</span>()</span>
-<span id="cb16-4"><a></a>  <span class="co"># no color scale defined, default is scale_color_hue()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">ggplot</span>(popgrowth, <span class="fu">aes</span>(<span class="at">x =</span> pop2000, <span class="at">y =</span> popgrowth, <span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb17-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb17-3"><a></a>  <span class="fu">scale_x_log10</span>()</span>
+<span id="cb17-4"><a></a>  <span class="co"># no color scale defined, default is scale_color_hue()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1092,10 +1114,10 @@ Claus O. Wilke
 <section id="discrete-qualitative-scales-are-best-set-manually-1" class="slide level2">
 <h2>Discrete, qualitative scales are best set manually</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">ggplot</span>(popgrowth, <span class="fu">aes</span>(<span class="at">x =</span> pop2000, <span class="at">y =</span> popgrowth, <span class="at">color =</span> region)) <span class="sc">+</span></span>
-<span id="cb17-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb17-3"><a></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
-<span id="cb17-4"><a></a>  <span class="fu">scale_color_hue</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">ggplot</span>(popgrowth, <span class="fu">aes</span>(<span class="at">x =</span> pop2000, <span class="at">y =</span> popgrowth, <span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb18-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb18-3"><a></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb18-4"><a></a>  <span class="fu">scale_color_hue</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1109,12 +1131,12 @@ Claus O. Wilke
 <section id="discrete-qualitative-scales-are-best-set-manually-2" class="slide level2">
 <h2>Discrete, qualitative scales are best set manually</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">library</span>(ggthemes)  <span class="co"># for scale_color_colorblind()</span></span>
-<span id="cb18-2"><a></a></span>
-<span id="cb18-3"><a></a><span class="fu">ggplot</span>(popgrowth, <span class="fu">aes</span>(<span class="at">x =</span> pop2000, <span class="at">y =</span> popgrowth, <span class="at">color =</span> region)) <span class="sc">+</span></span>
-<span id="cb18-4"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb18-5"><a></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
-<span id="cb18-6"><a></a>  <span class="fu">scale_color_colorblind</span>()  <span class="co"># uses Okabe-Ito colors</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">library</span>(ggthemes)  <span class="co"># for scale_color_colorblind()</span></span>
+<span id="cb19-2"><a></a></span>
+<span id="cb19-3"><a></a><span class="fu">ggplot</span>(popgrowth, <span class="fu">aes</span>(<span class="at">x =</span> pop2000, <span class="at">y =</span> popgrowth, <span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb19-4"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb19-5"><a></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb19-6"><a></a>  <span class="fu">scale_color_colorblind</span>()  <span class="co"># uses Okabe-Ito colors</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1128,13 +1150,13 @@ Claus O. Wilke
 <section id="discrete-qualitative-scales-are-best-set-manually-3" class="slide level2">
 <h2>Discrete, qualitative scales are best set manually</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">ggplot</span>(popgrowth, <span class="fu">aes</span>(<span class="at">x =</span> pop2000, <span class="at">y =</span> popgrowth, <span class="at">color =</span> region)) <span class="sc">+</span></span>
-<span id="cb19-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb19-3"><a></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
-<span id="cb19-4"><a></a>  <span class="fu">scale_color_manual</span>(</span>
-<span id="cb19-5"><a></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="at">West =</span> <span class="st">"#E69F00"</span>, <span class="at">South =</span> <span class="st">"#56B4E9"</span>,</span>
-<span id="cb19-6"><a></a>               <span class="at">Midwest =</span> <span class="st">"#009E73"</span>, <span class="at">Northeast =</span> <span class="st">"#F0E442"</span>)</span>
-<span id="cb19-7"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">ggplot</span>(popgrowth, <span class="fu">aes</span>(<span class="at">x =</span> pop2000, <span class="at">y =</span> popgrowth, <span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb20-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb20-3"><a></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb20-4"><a></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb20-5"><a></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="at">West =</span> <span class="st">"#E69F00"</span>, <span class="at">South =</span> <span class="st">"#56B4E9"</span>,</span>
+<span id="cb20-6"><a></a>               <span class="at">Midwest =</span> <span class="st">"#009E73"</span>, <span class="at">Northeast =</span> <span class="st">"#F0E442"</span>)</span>
+<span id="cb20-7"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
