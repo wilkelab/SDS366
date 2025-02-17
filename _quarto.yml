@@ -86,6 +86,8 @@ website:
             href: worksheets/getting-things-in-order.qmd
           - text: "Class 13: Figure design"
             href: worksheets/figure-design.qmd
+          - text: "Class 14: Compound figures"
+            href: worksheets/compound-figures.qmd
 
       - text: "Resources"
         menu:
