@@ -1,0 +1,319 @@
+---
+title: "Figure design"
+author: "Claus O. Wilke"
+format: live-html
+engine: knitr
+webr:
+  render-df: gt-interactive
+---
+
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+
+## Introduction
+
+In this worksheet, we will discuss how to change and customize plot appearance through themes.
+
+First we need to load the required R packages. Please wait a moment until the live R session is fully set up and all packages are loaded.
+
+```{webr}
+#| warning: false
+#| edit: false
+library(tidyverse)
+library(palmerpenguins)
+library(cowplot)
+```
+
+We will be working with the dataset `penguins`, which contains data on individual penguins on Antarctica.
+
+```r
+penguins
+```
+
+::: {.column-page}
+```{webr}
+#| echo: false
+penguins
+```
+:::
+
+## Ready-made themes
+
+Let's start with this simple plot with no specific styling.
+
+```{webr}
+#| edit: false
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point(na.rm = TRUE)  # na.rm = TRUE prevents warning about missing values
+```
+
+The default ggplot theme is `theme_gray()`. Verify that adding this theme to the plot makes no difference in the output. Then change the overall font size by providing the theme function with a numeric font size argument, e.g. `theme_gray(16)`.
+
+```{webr} 
+#| exercise: penguins-simple-theme-gray
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point(na.rm = TRUE) +
+  ___
+```
+
+::: { .solution exercise="penguins-simple-theme-gray" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point(na.rm = TRUE) +
+  theme_gray()
+
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point(na.rm = TRUE) +
+  theme_gray(16)
+```
+:::
+:::
+
+The **ggplot2** package has many built-in themes, including `theme_minimal()`, `theme_bw()`, `theme_void()`, `theme_dark()`. Try these different themes on the above plot. Also try again changing the font size. You can see all themes provided by **ggplot2** here: https://ggplot2.tidyverse.org/reference/ggtheme.html
+
+```{webr} 
+#| exercise: penguins-simple-theme-ggplot2
+
+```
+
+::: { .solution exercise="penguins-simple-theme-ggplot2" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point(na.rm = TRUE) +
+  theme_bw(12)
+
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point(na.rm = TRUE) +
+  theme_minimal(14)
+
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point(na.rm = TRUE) +
+  theme_void()
+```
+:::
+:::
+
+
+Many other packages also provide themes. For example, the **cowplot** package provides themes `theme_half_open()`, `theme_minimal_grid()`, `theme_minimal_hgrid()`, and `theme_minimal_vgrid()`. You can see all **cowplot** themes here: https://wilkelab.org/cowplot/articles/themes.html
+Try these out.
+
+```{webr} 
+#| exercise: penguins-simple-theme-cowplot
+
+```
+
+::: { .solution exercise="penguins-simple-theme-cowplot" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point(na.rm = TRUE) +
+  theme_half_open()
+
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point(na.rm = TRUE) +
+  theme_minimal_grid()
+
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point(na.rm = TRUE) +
+  theme_minimal_hgrid()
+```
+:::
+:::
+
+Compare the visual appearance of `theme_minimal()` from **ggplot2** to `theme_minimal_grid()` from **cowplot**. What similarities and differences to you notice? Which do you prefer? (There is no correct answer here, just be aware of the differences and of your preferences.)
+
+```{webr} 
+#| exercise: penguins-simple-theme-minimal
+
+```
+
+::: { .solution exercise="penguins-simple-theme-minimal" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point(na.rm = TRUE) +
+  theme_minimal()
+
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point(na.rm = TRUE) +
+  theme_minimal_grid()
+```
+:::
+:::
+
+## Modifying theme elements
+
+You can modify theme elements by adding a `theme()` call to the plot. Inside the `theme()` call you specify which theme element you want to modify (e.g., `axis.title`, `axis.text.x`, `panel.background`, etc) and what changes you want to make. For example, to make axis titles blue, you would write:
+
+```r
+theme(
+  axis.title = element_text(color = "blue")
+)
+```
+
+There are many theme settings, and for each one you need to know what type of an element it is (for example, `element_text()`, `element_line()`, `element_rect()` for text, lines, or rectangles, respectively). A complete description of the available options is available at the **ggplot2** website: https://ggplot2.tidyverse.org/reference/theme.html
+
+Here, we will only try a few simple things. For example, see if you can make the legend title blue and the legend text red.
+
+```{webr} 
+#| exercise: penguins-simple-legend
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point(na.rm = TRUE)
+```
+
+::: { .hint exercise="penguins-simple-legend" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point(na.rm = TRUE) +
+  theme(
+    legend.title = ___,
+    legend.text = ___
+  )
+```
+:::
+:::
+
+::: { .solution exercise="penguins-simple-legend" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point(na.rm = TRUE) +
+  theme(
+    legend.title = element_text(color = "blue"),
+    legend.text = element_text(color = "red")
+  )
+```
+:::
+:::
+
+
+Now color the area behind the legend in `"aliceblue"`. **Hint:** The theme element you need to change is called `legend.background`. There is also an element `legend.box.background` but it is only visible if `legend.background` is not shown, and in the default **ggplot2** themes that is not the case.
+
+```{webr} 
+#| exercise: penguins-simple-legend-background
+
+```
+
+::: { .hint exercise="penguins-simple-legend-background" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point(na.rm = TRUE) +
+  theme(
+    legend.background = element_rect(___)
+  )
+```
+:::
+:::
+
+::: { .solution exercise="penguins-simple-legend-background" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point(na.rm = TRUE) +
+  theme(
+    legend.background = element_rect(fill = "aliceblue")
+  )
+```
+:::
+:::
+
+
+Another commonly used feature in themes are margins. Many parts of the plot theme can understand customized margins, which control how much spacing there is between different parts of a plot. Margins are typically specified with the function `margin()`, which takes four numbers specifying the margins in points, in the order top, right, bottom, left. So, `margin(10, 5, 5, 10)` would specify a top margin of 10pt, a right margin of 5pt, a bottom margin of 5pt, and a left margin of 10pt.
+
+Try this out by setting the legend margin (element `legend.margin`) such that there is no top and no bottom margin but 10pt left and right margin.
+
+```{webr} 
+#| exercise: penguins-simple-margin
+
+```
+
+::: { .hint exercise="penguins-simple-margin" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point(na.rm = TRUE) +
+  theme(
+    legend.background = element_rect(fill = "aliceblue"),
+    legend.margin = margin(___)
+  )
+```
+:::
+:::
+
+::: { .solution exercise="penguins-simple-margin" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point(na.rm = TRUE) +
+  theme(
+    legend.background = element_rect(fill = "aliceblue"),
+    legend.margin = margin(0, 10, 0, 10)
+  )
+```
+:::
+:::
+
+There are many other things you can do. Try at least some of the following:
+
+- Change the horizontal or vertical justification of text with `hjust` and `vjust`.
+- Change the font family with `family`.<sup>1</sup>
+- Change the panel grid. For example, create only horizontal lines, or only vertical lines.
+- Change the overall margin of the plot with `plot.margin`.
+- Move the position of the legend with `legend.position` and `legend.justification`.
+- Turn off some elements by setting them to `element_blank()`.
+
+<sup>1</sup> Getting fonts to work well can be tricky in R. Which specific fonts work depends on the graphics device and the operating system. The following fonts work on the edupod class server: `"Palatino"`, `"Times"`, `"Helvetica"`, `"Courier"`, `"ITC Bookman"`, `"ITC Avant Garde Gothic"`, `"ITC Zapf Chancery"`.
+
+## Writing your own theme
+
+You can write a theme by taking an existing theme and making some modifications, like so:
+
+```{webr}
+#| edit: false
+theme_colorful <-
+  theme_bw() +
+  theme(
+    text = element_text(color = "mediumblue"),
+    axis.text = element_text(color = "springgreen4"),
+    legend.text = element_text(color = "firebrick4")
+  )
+```
+
+Now try this out on the penguins scatter plot.
+
+**Hint:** When using this theme, do you have to add `theme_colorful` or `theme_colorful()` to the plot? Do you understand which option is correct and why? If you are unsure, try both and see what happens.
+
+```{webr} 
+#| exercise: penguins-simple-theme-colorful
+
+```
+
+::: { .hint exercise="penguins-simple-theme-colorful" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point(na.rm = TRUE) +
+  ___
+```
+:::
+:::
+
+::: { .solution exercise="penguins-simple-theme-colorful" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point(na.rm = TRUE) +
+  theme_colorful
+```
+:::
+:::
+
+Now write your own theme and then add it to the penguins plot.
+
+```{webr} 
+#| exercise: penguins-own-theme
+
+```

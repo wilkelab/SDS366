@@ -78,6 +78,14 @@ website:
             href: worksheets/data-wrangling-2.qmd
           - text: "Class 10: Visualizing proportions"
             href: worksheets/visualizing-proportions.qmd
+          - text: "Class 11a: Getting to know your data 1"
+            href: worksheets/know-your-data-1.qmd
+          - text: "Class 11b: Getting to know your data 2"
+            href: worksheets/know-your-data-2.qmd
+          - text: "Class 12: Getting things into the right order"
+            href: worksheets/getting-things-in-order.qmd
+          - text: "Class 13: Figure design"
+            href: worksheets/figure-design.qmd
 
       - text: "Resources"
         menu:

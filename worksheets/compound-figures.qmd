@@ -1,0 +1,194 @@
+---
+title: "Compound figures"
+author: "Claus O. Wilke"
+format: live-html
+engine: knitr
+webr:
+  render-df: gt-interactive
+---
+
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+
+## Introduction
+
+In this worksheet, we will discuss how to combine several **ggplot2** plots into one compound figure.
+
+First we need to load the required R packages. Please wait a moment until the live R session is fully set up and all packages are loaded.
+
+```{webr}
+#| warning: false
+#| edit: false
+library(tidyverse)
+library(patchwork)
+```
+
+We will be working with the R builtin dataset `mtcars`, which contains fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models).
+
+```{webr}
+#| edit: false
+mtcars
+```
+
+## Combining plots
+
+First we set up four different plots that we will subsequently combine. The plots are stored in variables `p1`, `p2`, `p3`, `p4`.
+
+```{webr}
+#| edit: false
+#| fig-width: 4
+#| fig-height: 2.472
+p1 <- ggplot(mtcars) + 
+  geom_point(aes(mpg, disp))
+p1  
+p2 <- ggplot(mtcars) + 
+  geom_boxplot(aes(gear, disp, group = gear))
+p2
+p3 <- ggplot(mtcars) + 
+  geom_density(aes(disp), fill = "lightblue")
+p3
+p4 <- ggplot(mtcars) + 
+  geom_bar(aes(carb))
+p4
+```
+
+To show plots side-by-side, the **patchwork** package provides the operator `|`, as in `p1 | p2`. Try this by making a compound plot of plots `p1`, `p2`, `p3` side-by-side.
+
+```{webr}
+#| fig-width: 8
+#| fig-height: 2.472
+#| exercise: plots-side-by-side
+
+```
+
+::: { .solution exercise="plots-side-by-side" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+p1 | p2 | p3
+```
+:::
+:::
+
+To show plots on top of one-another, we use the operator `/`, as in `p1 / p2`. Try this by making a compound plot of plots `p1`, `p2`, `p3` on top of each other.
+
+```{webr}
+#| fig-width: 4
+#| fig-height: 6
+#| exercise: plots-on-top
+
+```
+
+::: { .solution exercise="plots-on-top" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+p1 / p2 / p3
+```
+:::
+:::
+
+We can also use parentheses to group plots with respect to the operators `|` and `/`. For example, we can place several plots side-by-side and then place this entire row of plots on top of another plot. Try this out.
+
+```{webr} 
+#| exercise: plots-complex
+
+```
+
+::: { .hint exercise="plots-complex" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+(___) / p4
+```
+:::
+:::
+
+::: { .solution exercise="plots-complex" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+(p1 | p2 | p3 ) / p4
+```
+:::
+:::
+
+
+## Plot annotations
+
+The **patchwork** package provides a powerful annotation system via the `plot_annotation()` function that can be added to a plot assembly. For example, we can add plot tags (the labels in the upper left corner identifying the plots) via the plot annotation `tag_levels`. You can set `tag_levels = "A"` to generate tags A, B, C, etc. Try this out.
+
+```{webr} 
+#| exercise: plots-w-tags
+(p1 | p2 | p3 ) / p4
+```
+
+::: { .hint exercise="plots-w-tags" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+(p1 | p2 | p3 ) / p4 +
+  plot_annotation(
+    ___
+  )
+```
+:::
+:::
+
+::: { .solution exercise="plots-w-tags" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+(p1 | p2 | p3 ) / p4 +
+  plot_annotation(
+    tag_levels = "A"
+  )
+```
+:::
+:::
+
+Try also tag levels such as `"a"`, `"i"`, or `"1"`.
+
+You can also add elements such as titles, subtitles, and captions, by setting the `title`, `subtitle`, or `caption` argument in `plot_annotation()`. Try this out by adding an overall title to the figure from the previous exercise.
+
+```{webr} 
+#| exercise: plots-w-title
+```
+
+::: { .hint exercise="plots-w-title" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+(p1 | p2 | p3 ) / p4 +
+  plot_annotation(
+    tag_levels = "A",
+    ___
+  )
+```
+:::
+:::
+
+::: { .solution exercise="plots-w-title" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+(p1 | p2 | p3 ) / p4 +
+  plot_annotation(
+    tag_levels = "A",
+    title = "Various observations about old cars"
+  )
+```
+:::
+:::
+
+Also set a subtitle and a caption.
+
+Finally, you can change the theme of all plots in the plot assembly via the `&` operator, as in `(p1 | p2) & theme_bw()`. Try this out.
+
+```{webr}
+#| fig-width: 8
+#| fig-height: 4
+#| exercise: themeing
+
+```
+
+::: { .solution exercise="themeing" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+(p1 | p2) & theme_bw()
+```
+:::
+:::
+
+What happens if you write this expression without parentheses? Do you understand why?
