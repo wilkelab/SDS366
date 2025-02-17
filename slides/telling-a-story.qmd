@@ -38,9 +38,9 @@ preprints <- read_csv("https://wilkelab.org/SDS366/datasets/preprints.csv")
 
 ## How did I get to teach data visualization?
 
-![](../assets/telling-a-story/cowplot-logo.svg){.fragment .absolute  top="22%" left="13%" width="30%" }
+![](../assets/telling-a-story/cowplot-logo.svg){.fragment .absolute top="22%" left="13%" width="30%"}
 
-![](https://clauswilke.com/dataviz/cover.png){.fragment .absolute  top="20%" left="53%" width="30%" style="box-shadow: 3px 5px 3px 1px #00000080;"}
+![](https://clauswilke.com/dataviz/cover.png){.fragment .absolute top="20%" left="53%" width="30%" style="box-shadow: 3px 5px 3px 1px #00000080;"}
 
 ## What is a story?
 

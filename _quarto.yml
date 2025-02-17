@@ -49,6 +49,8 @@ website:
             href: slides/data-wrangling-2.qmd
           - text: "Class 10: Visualizing proportions"
             href: slides/visualizing-proportions.qmd
+          - text: "Class 11: Getting to know your data"
+            href: slides/know-your-data.qmd
           - text: "Class 13: Figure design"
             href: slides/figure-design.qmd
         

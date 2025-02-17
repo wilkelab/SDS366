@@ -1,0 +1,422 @@
+---
+title: "Getting things into the right order"
+author: "Claus O. Wilke"
+date: last-modified
+format: 
+  revealjs:
+    theme:
+      - default
+      - Wilke-theme.scss
+    auto-stretch: false
+    chalkboard: true
+execute:
+  fig-format: svg
+  fig-asp: 0.618
+  fig-width: 5.5
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+library(cowplot)
+library(palmerpenguins)
+library(here)
+
+# ggplot2 settings so plots scale well for slide size 
+theme_set(theme_gray(14))
+update_geom_defaults("point", list(size = 2))
+#update_geom_defaults("line", list(linewidth = 1))
+```
+
+## Remember from "Visualizing amounts"
+
+::: {.small-font}
+We can use `fct_relevel()` to manually order the bars in a bar plot
+
+```{r}
+#| label: penguins-ordered
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+ggplot(penguins) +
+  aes(y = fct_relevel(species, "Chinstrap", "Gentoo", "Adelie")) +
+  geom_bar() + ylab(NULL)
+```
+:::
+
+## Somewhat cleaner: mutate first, then plot
+
+::: {.small-font}
+```{r}
+#| label: penguins-ordered-pipe
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+penguins |>
+  mutate(species = fct_relevel(species, "Chinstrap", "Gentoo", "Adelie")) |>
+  ggplot(aes(y = species)) +
+  geom_bar()
+```
+:::
+
+## We order things in ggplot with factors
+
+::: {.small-font}
+```{r}
+#| echo: true
+penguins |>
+  mutate(species = fct_relevel(species, "Chinstrap", "Gentoo", "Adelie")) |>
+  slice(1:30) |>    # get first 30 rows
+  pull(species)     # pull out just the `species` column
+```
+:::
+
+::: {.small-font .incremental .move-down-1em}
+- The column `species` is a factor
+- A factor is a categorical variable with defined categories called levels
+- For factors, ggplot generally places visual elements in the order defined by the levels
+:::
+
+## We order things in ggplot with factors
+
+::: {.small-font}
+```{r}
+#| echo: true
+penguins |>
+  mutate(species = fct_relevel(species, "Chinstrap", "Gentoo", "Adelie")) |>
+  slice(1:30) |>    # get first 30 rows
+  pull(species)     # pull out just the `species` column
+```
+:::
+
+::: {.small-font .move-down-1em}
+The order of factor levels is independent of the order of values in the table:
+```{r}
+#| echo: true
+penguins |>
+  mutate(species = fct_relevel(species, "Gentoo", "Adelie", "Chinstrap")) |>
+  slice(1:30) |> pull(species)  
+```
+:::
+
+
+## Manual ordering of factor levels: `fct_relevel()`
+
+::: {.small-font}
+```{r}
+#| echo: true
+penguins |>
+  mutate(species = fct_relevel(species)) |>
+  slice(1:30) |> pull(species)
+```
+
+Default: alphabetic order
+:::
+
+## Manual ordering of factor levels: `fct_relevel()`
+
+::: {.small-font}
+```{r}
+#| echo: true
+penguins |>
+  mutate(species = fct_relevel(species, "Gentoo")) |>
+  slice(1:30) |> pull(species)
+```
+
+Move `"Gentoo"` in front, rest alphabetic
+:::
+
+## Manual ordering of factor levels: `fct_relevel()`
+
+::: {.small-font}
+```{r}
+#| echo: true
+penguins |>
+  mutate(species = fct_relevel(species, "Chinstrap", "Gentoo")) |>
+  slice(1:30) |> pull(species)
+```
+
+Move `"Chinstrap"` in front, then `"Gentoo"`, rest alphabetic
+:::
+
+## Manual ordering of factor levels: `fct_relevel()`
+
+::: {.small-font}
+```{r}
+#| echo: true
+penguins |>
+  mutate(species = fct_relevel(species, "Chinstrap", "Adelie", "Gentoo")) |>
+  slice(1:30) |> pull(species)
+```
+
+Use order `"Chinstrap"`, `"Adelie"`, `"Gentoo"`
+:::
+
+## In ggplot, the order of the y axis is from bottom to top
+
+::: {.small-font}
+```{r}
+#| label: penguins-ordered-pipe2
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+penguins |>
+  mutate(species = fct_relevel(species, "Chinstrap", "Gentoo", "Adelie")) |>
+  ggplot(aes(y = species)) +
+  geom_bar()
+```
+:::
+
+## Reorder based on frequency: `fct_infreq()`
+
+::: {.small-font}
+```{r}
+#| echo: true
+penguins |>
+  mutate(species = fct_infreq(species)) |>
+  slice(1:30) |> pull(species)
+```
+:::
+
+::: {.small-font .incremental}
+- Use the order defined by the number of penguins of different species
+- The order is descending, from most frequent to least frequent
+:::
+
+## Reorder based on frequency: `fct_infreq()`
+
+::: {.small-font}
+```{r}
+#| label: penguins-infreq
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+penguins |>
+  mutate(species = fct_infreq(species)) |>
+  ggplot(aes(y = species)) + 
+  geom_bar()
+```
+:::
+
+## Reverse order: `fct_rev()`
+
+::: {.small-font}
+```{r}
+#| label: penguins-infreq-rev
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+penguins |>
+  mutate(species = fct_rev(fct_infreq(species))) |>
+  ggplot(aes(y = species)) + 
+  geom_bar()
+```
+:::
+
+## Reorder based on numeric values: `fct_reorder()`
+
+::: {.small-font}
+```{r}
+#| echo: true
+penguins |>
+  count(species)
+```
+:::
+
+::: {.fragment .small-font .move-down-1em}
+```{r}
+#| echo: true
+penguins |>
+  count(species) |>
+  mutate(species = fct_reorder(species, n)) |>
+  pull(species)
+```
+:::
+
+::: {.small-font .fragment}
+The order is ascending, from smallest to largest value
+:::
+
+## Reorder based on numeric values: `fct_reorder()`
+
+::: {.small-font}
+```{r}
+#| label: penguins-reorder
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+penguins |>
+  count(species) |>
+  mutate(species = fct_reorder(species, n)) |>
+  ggplot(aes(n, species)) + geom_col()
+```
+:::
+
+## Compare to see the difference
+
+:::: {.columns}
+
+::: {.column .tiny-font width="50%"}
+```{r}
+#| echo: true
+penguins |>
+  count(species) |> # summarize data
+  mutate(species = fct_reorder(species, n))
+```
+:::
+
+::: {.fragment .column .tiny-font width="50%"}
+```{r}
+#| echo: true
+penguins |>
+  # modify the original dataset, no summary
+  mutate(species = fct_infreq(species))
+```
+:::
+::::
+
+## Compare to see the difference
+
+:::: {.columns}
+
+::: {.column .tiny-font width="50%"}
+```{r}
+#| label: penguins-geom-col
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+penguins |>
+  count(species) |> # summarize data
+  mutate(species = fct_reorder(species, n)) |>
+  ggplot(aes(n, species)) + geom_col()
+```
+:::
+
+::: {.column .tiny-font width="50%"}
+```{r}
+#| label: penguins-geom-bar
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+penguins |>
+  # modify the original dataset, no summary
+  mutate(species = fct_infreq(species)) |>
+  ggplot(aes(y = species)) + geom_bar()
+```
+:::
+::::
+
+## Compare to see the difference
+
+:::: {.columns}
+
+::: {.column .tiny-font width="50%"}
+```{r}
+#| label: penguins-geom-col2
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+penguins |>
+  count(species) |> # summarize data
+  mutate(species = fct_reorder(species, n)) |>
+  ggplot(aes(n, species)) + geom_col()
+```
+:::
+
+::: {.column .tiny-font width="50%"}
+```{r}
+#| label: penguins-geom-bar2
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+penguins |>
+  # modify the original dataset, no summary
+  mutate(species = fct_infreq(species)) |>
+  ggplot(aes(y = fct_rev(species))) + geom_bar()
+```
+:::
+::::
+
+<!-- Segment ends here -->
+
+# Ordering other plot elements
+
+## The gapminder dataset: Life expectancy data
+
+::: {.tiny-font}
+```{r}
+#| echo: true
+library(gapminder)
+
+gapminder
+```
+:::
+
+## Life expectancy in the Americas in 2007
+
+::: {.tiny-font}
+```{r}
+#| label: gapminder-unordered
+#| echo: true
+#| fig-width: 5
+#| fig-asp: 0.9
+#| fig-cap: "&nbsp;"
+#| out-width: "95%"
+#| output-location: column
+gapminder |>
+  filter(
+    year == 2007,
+    continent == "Americas"
+  ) |>
+  ggplot(aes(lifeExp, country)) + 
+  geom_point()
+```
+:::
+
+::: {.fragment .small-font .move-up-2em}
+Reminder: Default order is alphabetic, from bottom to top
+:::
+
+## Life expectancy, ordered from highest to lowest
+
+::: {.tiny-font}
+```{r}
+#| label: gapminder-ordered
+#| echo: true
+#| fig-width: 5
+#| fig-asp: 0.9
+#| fig-cap: "&nbsp;"
+#| out-width: "95%"
+#| output-location: column
+gapminder |>
+  filter(
+    year == 2007,
+    continent == "Americas"
+  ) |>
+  mutate(
+    country = fct_reorder(country, lifeExp)
+  ) |>
+  ggplot(aes(lifeExp, country)) + 
+  geom_point()
+```
+:::
+
+::: {.small-font .move-up-2em}
+Order is ascending from bottom to top
+:::
+
+## We can also order facets
+
+<!-- Segment ends here -->
+
+## Further reading

@@ -1,0 +1,1068 @@
+---
+title: "Getting to know your data"
+author: "Claus O. Wilke"
+date: last-modified
+format: 
+  revealjs:
+    theme:
+      - default
+      - Wilke-theme.scss
+    auto-stretch: false
+    chalkboard: true
+execute:
+  fig-format: svg
+  fig-asp: 0.618
+  fig-width: 5.5
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+library(cowplot)
+library(patchwork)
+library(here)
+
+# increase number of characters per line
+options(width = 74)
+
+# ggplot2 settings so plots scale well for slide size 
+theme_set(theme_gray(14))
+update_geom_defaults("point", list(size = 2))
+#update_geom_defaults("line", list(linewidth = 1))
+```
+
+## Any data analysis should start with basic quality control
+
+::: {.fragment}
+1. Assess data relevance  
+  (Can the data answer your question in principle?)
+:::
+
+::: {.fragment}
+2. Assess data provenance  
+  (Where does the data come from? Is it reliable?)
+:::
+
+::: {.fragment}
+3. Clean data if required  
+  (In practice, this is 70-80% of data analysis work)
+:::
+  
+::: {.fragment}
+4. Perform descriptive analysis and sanity checks  
+  (Inspect summary statistics, distributions, scatter plots, etc.)
+:::
+
+## Components of data quality
+
+:::: {.columns .small-font}
+::: {.column width="30%"}
+&bull;&nbsp; Accuracy
+
+&bull;&nbsp; Precision
+
+&bull;&nbsp; Usability
+
+&bull;&nbsp; Completeness
+
+&bull;&nbsp; Consistency
+
+&bull;&nbsp; Accessibility
+
+&bull;&nbsp; Relevance
+:::
+
+::: {.column width="70%"}
+&nbsp;
+:::
+::::
+
+## Components of data quality
+
+:::: {.columns .small-font}
+::: {.column width="30%"}
+[&bull;&nbsp; Accuracy]{.highlight}
+
+&bull;&nbsp; Precision
+
+&bull;&nbsp; Usability
+
+&bull;&nbsp; Completeness
+
+&bull;&nbsp; Consistency
+
+&bull;&nbsp; Accessibility
+
+&bull;&nbsp; Relevance
+:::
+
+::: {.column width="70%"}
+[Does the data contain any systematic errors or biases?]{.highlight}
+:::
+::::
+
+## Components of data quality
+
+:::: {.columns .small-font}
+::: {.column width="30%"}
+&bull;&nbsp; Accuracy
+
+[&bull;&nbsp; Precision]{.highlight}
+
+&bull;&nbsp; Usability
+
+&bull;&nbsp; Completeness
+
+&bull;&nbsp; Consistency
+
+&bull;&nbsp; Accessibility
+
+&bull;&nbsp; Relevance
+:::
+
+::: {.column width="70%"}
+Does the data contain any systematic errors or biases?
+
+[How affected are observations by random errors/noise?]{.highlight}
+:::
+::::
+
+## Accuracy means low bias, precision means low noise
+
+![](../assets/know-your-data/accuracy-precision.svg){.absolute top="10%" left="15%" width="60%"}
+
+## Components of data quality
+
+:::: {.columns .small-font}
+::: {.column width="30%"}
+&bull;&nbsp; Accuracy
+
+&bull;&nbsp; Precision
+
+[&bull;&nbsp; Usability]{.highlight}
+
+&bull;&nbsp; Completeness
+
+&bull;&nbsp; Consistency
+
+&bull;&nbsp; Accessibility
+
+&bull;&nbsp; Relevance
+:::
+
+::: {.column width="70%"}
+Does the data contain any systematic errors or biases?
+
+How affected are observations by random errors/noise?
+
+[Is the data documented? Is it machine-readable?]{.highlight}
+:::
+::::
+
+## Usability requires a data dictionary
+
+:::{.fragment .move-down-1em}
+**Data Dictionary**<br>
+A "centralized repository of information about data such as meaning, relationships to other data, origin, usage, and format" ([Wikipedia](https://en.wikipedia.org/wiki/Data_dictionary))
+:::
+
+:::{.fragment .move-down-1em}
+Example: [Palmer penguins reference page](https://allisonhorst.github.io/palmerpenguins/reference/penguins.html)
+:::
+
+## Components of data quality
+
+:::: {.columns .small-font}
+::: {.column width="30%"}
+&bull;&nbsp; Accuracy
+
+&bull;&nbsp; Precision
+
+&bull;&nbsp; Usability
+
+[&bull;&nbsp; Completeness]{.highlight}
+
+&bull;&nbsp; Consistency
+
+&bull;&nbsp; Accessibility
+
+&bull;&nbsp; Relevance
+:::
+
+::: {.column width="70%"}
+Does the data contain any systematic errors or biases?
+
+How affected are observations by random errors/noise?
+
+Is the data documented? Is it machine-readable?
+
+[Are entire records missing? Are observations missing?]{.highlight}
+:::
+::::
+
+## Components of data quality
+
+:::: {.columns .small-font}
+::: {.column width="30%"}
+&bull;&nbsp; Accuracy
+
+&bull;&nbsp; Precision
+
+&bull;&nbsp; Usability
+
+&bull;&nbsp; Completeness
+
+[&bull;&nbsp; Consistency]{.highlight}
+
+&bull;&nbsp; Accessibility
+
+&bull;&nbsp; Relevance
+:::
+
+::: {.column width="70%"}
+Does the data contain any systematic errors or biases?
+
+How affected are observations by random errors/noise?
+
+Is the data documented? Is it machine-readable?
+
+Are entire records missing? Are observations missing?
+
+[Does data vary among sources or over time?]{.highlight}
+:::
+::::
+
+## Components of data quality
+
+:::: {.columns .small-font}
+::: {.column width="30%"}
+&bull;&nbsp; Accuracy
+
+&bull;&nbsp; Precision
+
+&bull;&nbsp; Usability
+
+&bull;&nbsp; Completeness
+
+&bull;&nbsp; Consistency
+
+[&bull;&nbsp; Accessibility]{.highlight}
+
+&bull;&nbsp; Relevance
+:::
+
+::: {.column width="70%"}
+Does the data contain any systematic errors or biases?
+
+How affected are observations by random errors/noise?
+
+Is the data documented? Is it machine-readable?
+
+Are entire records missing? Are observations missing?
+
+Does data vary among sources or over time?
+
+[Do you have access to the data? Can you obtain it?]{.highlight}
+:::
+::::
+
+## Components of data quality
+
+:::: {.columns .small-font}
+::: {.column width="30%"}
+&bull;&nbsp; Accuracy
+
+&bull;&nbsp; Precision
+
+&bull;&nbsp; Usability
+
+&bull;&nbsp; Completeness
+
+&bull;&nbsp; Consistency
+
+&bull;&nbsp; Accessibility
+
+[&bull;&nbsp; Relevance]{.highlight}
+:::
+
+::: {.column width="70%"}
+Does the data contain any systematic errors or biases?
+
+How affected are observations by random errors/noise?
+
+Is the data documented? Is it machine-readable?
+
+Are entire records missing? Are observations missing?
+
+Does data vary among sources or over time?
+
+Do you have access to the data? Can you obtain it?
+
+[Can you use the data to address your question?]{.highlight}
+:::
+::::
+
+<!-- Segment ends here -->
+
+# Inspecting and cleaning a dataset in R
+
+## The dataset: Births in NC
+
+:::: {.columns}
+
+::: {.fragment .column .smaller-font width="50%"}
+**Details and Source**<br>
+This dataset contains data on a sample of 1450 birth records from 2001 that statistician John Holcomb at Cleveland State University selected from the North Carolina State Center for Health and Environmental Statistics.
+
+The dataset has 1450 observations on 15 variables.
+:::
+
+::: {.fragment .column .xtiny-font .move-up-4em width="50%"}
+Variable       | Description
+--------:      | :--------------
+`ID`           | Patient ID code
+`Plural`       | `1`=single birth, `2`=twins, `3`=triplets
+`Sex`          | Sex of the baby: `1`=male `2`=female
+`MomAge`	     | Mother's age (in years)
+`Weeks`        | Completed weeks of gestation
+`Marital`      | Marital status: `1`=married or `2`=not married
+`RaceMom`	     | Mother's race: `1`=white, `2`=black, `3`=American Indian, `4`=Chinese, `5`=Japanese, `6`=Hawaiian, `7`=Filipino, or `8`=Other Asian or Pacific Islander
+`HispMom`	     | Hispanic origin of mother: `C`=Cuban, `M`=Mexican, `N`=not Hispanic, `O`=Other Hispanic, `P`=Puerto Rico, `S`=Central/South America
+`Gained`       | Weight gained during pregnancy (in pounds)
+`Smoke`        | Smoker mom? `1`=yes or `0`=no
+`BirthWeightOz` |	Birth weight in ounces
+`BirthWeightGm` | Birth weight in grams
+`Low`           |	Indicator for low birth weight: `1`=2500 grams or less
+`Premie`       |	Indicator for premature birth: `1`=36 weeks or sooner
+`MomRace`      |	Mother's race: `black`, `hispanic`, `other`, or `white`
+:::
+::::
+
+## Start with a cursory inspection
+
+```{r}
+options(width = 110)
+```
+
+::: {.fragment .tiny-font}
+```{r}
+#| message: false
+#| echo: true
+NCbirths <- read_csv("https://wilkelab.org/SDS366/datasets/NCbirths.csv")
+
+NCbirths
+```
+:::
+
+```{r}
+options(width = 74)
+```
+
+::: {.fragment .small-font}
+Pay attention to the data types of each column
+:::
+
+::: {.fragment .small-font}
+What's going on with the `Gained` column?
+:::
+
+
+## Missing values were not read correctly
+
+```{r}
+options(width = 110)
+```
+
+::: {.tiny-font}
+```{r}
+#| echo: true
+NCbirths |>
+  pull(Gained)
+```
+:::
+
+```{r}
+options(width = 74)
+```
+
+## Use the `na` argument to specify allowed `NA` values
+
+```{r}
+options(width = 110)
+```
+
+::: {.tiny-font}
+```{r}
+#| message: false
+#| echo: true
+NCbirths <- read_csv(
+  "https://wilkelab.org/SDS366/datasets/NCbirths.csv",
+  na = c("", "NA", "#N/A")
+)
+
+NCbirths
+```
+:::
+
+```{r}
+options(width = 74)
+```
+
+## Use the `na` argument to specify allowed `NA` values
+
+```{r}
+options(width = 110)
+```
+
+::: {.tiny-font}
+```{r}
+#| message: false
+#| echo: true
+NCbirths <- read_csv(
+  "https://wilkelab.org/SDS366/datasets/NCbirths.csv",
+  na = c("", "NA", "#N/A")
+)
+
+NCbirths |>
+  pull(Gained)
+```
+:::
+
+```{r}
+options(width = 74)
+```
+
+## Detailed quality checks: Look at all column names
+
+::: {.small-font}
+```{r}
+names(NCbirths)
+```
+:::
+
+::: {.fragment .small-font}
+What's the difference between `RaceMom` and `MomRace`?
+:::
+
+## Detailed quality checks: Look at all column names
+
+From the data dictionary:
+
+- `RaceMom`<br>Mother's race: `1`=white, `2`=black, `3`=American Indian, `4`=Chinese,
+`5`=Japanese, `6`=Hawaiian, `7`=Filipino, or `8`=Other Asian or Pacific Islander
+
+- `MomRace`<br>Mother's race: `black`, `hispanic`, `other`, or `white`
+
+::: {.fragment}
+These are similar but not the same. Important not to confuse them!
+:::
+
+## Detailed quality checks: Look at every data column
+
+:::: {.columns}
+::: {.column .tiny-font width="50%}
+::: {.fragment} 
+```{r}
+#| echo: true
+summary(NCbirths$ID) # five number summary
+```
+:::
+
+<br>
+
+::: {.fragment}
+```{r}
+options(width = 50)
+```
+
+```{r}
+#| echo: true
+unique(NCbirths$ID)  # all unique values
+```
+
+```{r}
+options(width = 74)
+```
+:::
+:::
+
+::: {.fragment .tiny-font .column width="50%"}
+```{r}
+#| label: ID-histogram
+#| fig-width: 6
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| echo: true
+# histogram
+ggplot(NCbirths, aes(ID)) +
+  geom_histogram()
+```
+:::
+::::
+
+## Detailed quality checks: Look at every data column
+
+:::: {.columns}
+::: {.column .tiny-font width="50%}
+```{r}
+#| echo: true
+summary(NCbirths$Plural) # five number summary
+```
+
+<br>
+
+::: {.fragment}
+```{r}
+options(width = 50)
+```
+
+```{r}
+#| echo: true
+unique(NCbirths$Plural)  # all unique values
+```
+
+```{r}
+options(width = 74)
+```
+:::
+:::
+
+::: {.fragment .tiny-font .column width="50%"}
+```{r}
+#| label: plural-histogram
+#| fig-width: 6
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| echo: true
+# histogram
+ggplot(NCbirths, aes(Plural)) +
+  geom_histogram()
+```
+:::
+::::
+
+## Detailed quality checks: Look at every data column
+
+:::: {.columns}
+::: {.column .tiny-font width="50%}
+```{r}
+#| echo: true
+summary(NCbirths$Weeks) # five number summary
+```
+
+<br>
+
+::: {.fragment}
+```{r}
+options(width = 50)
+```
+
+```{r}
+#| echo: true
+unique(NCbirths$Weeks)  # all unique values
+```
+
+```{r}
+options(width = 74)
+```
+:::
+:::
+
+::: {.fragment .tiny-font .column width="50%"}
+```{r}
+#| label: weeks-histogram
+#| fig-width: 6
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| echo: true
+# histogram
+ggplot(NCbirths, aes(Weeks)) +
+  geom_histogram()
+```
+:::
+::::
+
+::: {.fragment .small-font}
+What is the meaning of -999 weeks?
+:::
+
+## In some cases, nonsensical values indicate missingness
+
+```{r}
+# make a copy for plotting
+NCbirths_old <- NCbirths
+```
+
+::: {.fragment .small-font}
+We need to make sure to catch those cases:
+
+```{r}
+#| message: false
+#| echo: true
+library(naniar) # library for handling missing values
+
+NCbirths <- read_csv(
+  "https://wilkelab.org/SDS366/datasets/NCbirths.csv",
+  na = c("", "NA", "#N/A")
+) |> replace_with_na_at("Weeks", ~.x < 0) # recode negative weeks to NA
+```
+:::
+
+<br>
+
+::: {.fragment .small-font}
+```{r}
+#| echo: true
+summary(NCbirths$Weeks)
+```
+:::
+
+<br>
+
+::: {.fragment .small-font}
+```{r}
+#| echo: true
+unique(NCbirths$Weeks)
+```
+:::
+
+## In some cases, nonsensical values indicate missingness
+
+:::: {.columns}
+::: {.column .tiny-font width="50%"}
+Before recoding -999 to `NA`:
+```r
+ggplot(NCbirths, aes(Weeks)) +
+  geom_histogram()
+```
+
+```{r}
+#| label: weeks-histo-flawed
+#| fig-width: 6
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| echo: false
+ggplot(NCbirths_old, aes(Weeks)) +
+  geom_histogram()
+```
+:::
+
+::: {.column .tiny-font width="50%"}
+After recoding -999 to `NA`:
+```{r}
+#| label: weeks-histo-fixed
+#| fig-width: 6
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| echo: true
+ggplot(NCbirths, aes(Weeks)) +
+  geom_histogram()
+```
+:::
+::::
+
+## Consider recoding categorical variables
+
+::: {.small-font}
+Sex of the baby is encoded as 1/2:
+
+```{r}
+#| echo: true
+NCbirths |>
+  pull(Sex)
+```
+:::
+
+## Consider recoding categorical variables
+
+::: {.small-font}
+Recode as `"male"`/`"female"`:
+
+```{r}
+#| echo: true
+NCbirths |>
+  mutate(
+    Sex = if_else(Sex == 1, "male", "female")
+  ) |>
+  pull(Sex)
+```
+:::
+
+## Recode multiple categories with `case_when()`
+
+::: {.small-font}
+The mother's race is encoded as integers from 1 through 8:
+
+```{r}
+#| echo: true
+NCbirths |>
+  pull(RaceMom)
+```
+:::
+
+## Recode multiple categories with `case_when()`
+
+::: {.small-font}
+The mother's race is encoded as integers from 1 through 8:
+
+```{r}
+#| echo: true
+NCbirths |>
+  pull(RaceMom) |>
+  unique() # list all the unique values (ordered by first occurrence)
+```
+:::
+
+## Recode multiple categories with `case_when()`
+
+::: {.small-font}
+We use `case_when()` to recode multiple values all at once:
+:::
+
+:::: {.columns}
+::: {.tiny-font .column width="50%"}
+```r
+NCbirths |>
+  mutate(
+    RaceMom = case_when(
+      RaceMom == 1 ~ "white",
+      RaceMom == 2 ~ "black",
+      RaceMom == 3 ~ "American Indian",
+      RaceMom == 4 ~ "Chinese",
+      RaceMom == 5 ~ "Japanese",
+      RaceMom == 6 ~ "Hawaiian",
+      RaceMom == 7 ~ "Filipino",
+      RaceMom == 8 ~ 
+        "Other Asian or Pacific Islander",
+      TRUE ~ NA # should never reach
+    )
+  )
+```
+:::
+
+::: {.column width="50%"}
+&nbsp;
+:::
+::::
+
+## Recode multiple categories with `case_when()`
+
+::: {.small-font}
+We use `case_when()` to recode multiple values all at once:
+:::
+
+:::: {.columns}
+::: {.tiny-font .column width="50%"}
+```r
+NCbirths |>
+  mutate(
+    RaceMom = case_when(
+      RaceMom == 1 ~ "white",
+      RaceMom == 2 ~ "black",
+      RaceMom == 3 ~ "American Indian",
+      RaceMom == 4 ~ "Chinese",
+      RaceMom == 5 ~ "Japanese",
+      RaceMom == 6 ~ "Hawaiian",
+      RaceMom == 7 ~ "Filipino",
+      RaceMom == 8 ~ 
+        "Other Asian or Pacific Islander",
+      TRUE ~ NA # should never reach
+    )
+  ) |>
+  pull(RaceMom)
+```
+:::
+
+::: {.tiny-font .column width="50%"}
+```{r}
+options(width = 74)
+```
+
+
+```{r}
+NCbirths |>
+  mutate(
+    RaceMom = case_when(
+      RaceMom == 1 ~ "white",
+      RaceMom == 2 ~ "black",
+      RaceMom == 3 ~ "American Indian",
+      RaceMom == 4 ~ "Chinese",
+      RaceMom == 5 ~ "Japanese",
+      RaceMom == 6 ~ "Hawaiian",
+      RaceMom == 7 ~ "Filipino",
+      RaceMom == 8 ~ 
+        "Other Asian or Pacific Islander",
+      TRUE ~ NA # should never reach
+    )
+  ) |>
+  pull(RaceMom)
+```
+:::
+::::
+
+## Make pairwise scatter plots
+
+```{r}
+# recode data as described (not shown on slides)
+NCbirths <- NCbirths |>
+  mutate(
+    Sex = if_else(Sex == 1, "male", "female")
+  )
+```
+
+::: {.tiny-font}
+```r
+ggplot(NCbirths, aes(Plural, Sex, color = Sex)) + geom_point(position = "jitter", size = .5)
+ggplot(NCbirths, aes(Plural, MomAge, color = Sex)) + geom_point(position = "jitter", size = .5)
+```
+:::
+
+```{r}
+#| label: NCbirths-pairs
+#| fig-width: 10
+#| fig-asp: 0.310
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+ggplot(NCbirths, aes(Plural, Sex, color = Sex)) + geom_point(position = "jitter", size = .5) |
+ggplot(NCbirths, aes(Plural, MomAge, color = Sex)) + geom_point(position = "jitter", size = .5)
+```
+
+## Make pairwise scatter plots
+
+::: {.tiny-font}
+```r
+ggplot(NCbirths, aes(Weeks, Plural, color = Sex)) + geom_point(position = "jitter", size = .5)
+ggplot(NCbirths, aes(Weeks, Gained, color = Sex)) + geom_point(position = "jitter", size = .5)
+```
+:::
+
+```{r}
+#| label: NCbirths-pairs2
+#| fig-width: 10
+#| fig-asp: 0.310
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+ggplot(NCbirths, aes(Weeks, Plural, color = Sex)) + geom_point(position = "jitter", size = .5) |
+ggplot(NCbirths, aes(Weeks, Gained, color = Sex)) + geom_point(position = "jitter", size = .5)
+```
+
+::: {.fragment .small-font .move-down-1em}
+If possible, make scatter plots of every variable against every other variable
+:::
+
+<!-- Segment ends here -->
+
+# Working with missing values in R
+
+## R propagates missingness
+
+```{r}
+#| echo: true
+x <- c(1, 2, NA, 4)
+
+sum(x)
+```
+
+::: {.fragment .move-down-1em}
+```{r}
+#| echo: true
+mean(x)
+```
+:::
+
+::: {.fragment .move-down-1em}
+```{r}
+#| echo: true
+x == 2
+```
+:::
+
+## Many functions allow explicit exclusion of `NA` values
+
+```{r}
+#| echo: true
+x <- c(1, 2, NA, 4)
+
+sum(x, na.rm = TRUE)
+```
+
+::: {.fragment .move-down-1em}
+```{r}
+#| echo: true
+mean(x, na.rm = TRUE)
+```
+:::
+
+::: {.fragment .move-down-1em}
+But is this the right thing to do?
+:::
+
+## There is no general right or wrong approach
+
+```{r}
+#| echo: true
+x <- c(2, 1, 1, 2, 1, 1, 1, 2, NA, 1, 2, 1, 1, 2, 1, 1, 1, 2)
+mean(x, na.rm = TRUE)
+```
+
+::: {.fragment .move-down-1em}
+```{r}
+#| echo: true
+x <- c(NA, NA, NA, 2, NA, NA, NA, NA, NA, 1, NA, NA, NA, NA)
+mean(x, na.rm = TRUE)
+```
+:::
+
+::: {.fragment .move-down-1em}
+R's default is conservative: If there's at least one `NA`, the result is `NA`
+:::
+
+## We need to use `is.na()` to check for missing values
+
+```{r}
+#| echo: true
+c(1, 2, NA, 4) == NA   # does not work
+```
+
+::: {.move-down-1em}
+```{r}
+#| echo: true
+is.na(c(1, 2, NA, 4))  # works
+```
+:::
+
+## Replacing `NA` values with something else
+
+Remember from class on data wrangling:
+
+```{r}
+#| echo: true
+#| message: false
+band_data <- full_join(band_members, band_instruments)
+band_data
+```
+
+## Replacing `NA` values with something else
+
+Replace `NA`s with empty strings in `plays` column:
+
+```{r}
+#| echo: true
+band_data |>
+  mutate(plays = replace_na(plays, ""))
+```
+
+## Replacing `NA` values with something else
+
+Replace `NA`s with empty strings in all columns:
+
+```{r}
+#| echo: true
+band_data |>
+  mutate(across(everything(), ~replace_na(.x, "")))
+```
+
+## Replacing things with `NA` values
+
+Replace empty strings with `NA` in `plays` column (requires **naniar** package):
+
+```{r}
+#| echo: true
+band_data |>
+  mutate(across(everything(), ~replace_na(.x, ""))) |>
+  replace_with_na_at("plays", ~.x == "")
+```
+
+## Replacing things with `NA` values
+
+Replace empty strings with `NA` in all columns (requires **naniar** package):
+
+```{r}
+#| echo: true
+band_data |>
+  mutate(across(everything(), ~replace_na(.x, ""))) |>
+  replace_with_na_all(~.x == "")
+```
+
+## Removing rows with `NA` values
+
+Remove all rows with any `NA`s with `na.omit()`:
+
+```{r}
+#| echo: true
+band_data |>
+  na.omit()
+```
+
+## Removing rows with `NA` values
+
+Remove all rows where specific columns contain `NA`s:
+
+```{r}
+#| echo: true
+band_data |>
+  filter(!is.na(plays))
+```
+
+## Removing rows with `NA` values
+
+Conversely:
+
+```{r}
+#| echo: true
+band_data |>
+  filter(is.na(plays))
+```
+
+## Visualizing `NA`s
+
+::: {.small-font}
+By default, missing points are not shown
+
+```{r}
+#| label: NCbirths-plot-missing
+#| fig-width: 6
+#| fig-cap: "&nbsp;"
+#| out-width: "50%"
+#| echo: true
+ggplot(NCbirths) +
+  aes(Weeks, Gained) +
+  geom_point()
+```
+:::
+
+## Visualizing `NA`s
+
+::: {.small-font}
+Can show them with the **naniar** package
+
+```{r}
+#| label: NCbirths-plot-missing2
+#| fig-width: 6
+#| fig-cap: "&nbsp;"
+#| out-width: "50%"
+#| echo: true
+library(naniar)
+
+ggplot(NCbirths) +
+  aes(Weeks, Gained) +
+  geom_miss_point()
+```
+:::
+
+
+
+<!-- Segment ends here -->
+
+
+## Further reading
+
+- Wikipedia: [Data dictionary](https://en.wikipedia.org/wiki/Data_dictionary)
+- **dplyr** reference documentation: [if_else()](https://dplyr.tidyverse.org/reference/if_else.html)
+- **dplyr** reference documentation: [case_when()](https://dplyr.tidyverse.org/reference/case_when.html)
+- **dplyr** reference documentation: [across()](https://dplyr.tidyverse.org/reference/across.html)
+- **naniar** documentation: [Getting started with naniar](http://naniar.njtierney.com/articles/getting-started-w-naniar.html)
+- **naniar** reference documentation: [replace_with_na_at()](http://naniar.njtierney.com/reference/replace_with_na_at.html)
+- **naniar** documentation: [geom_miss_point()](http://naniar.njtierney.com/reference/geom_miss_point.html)
+
+
