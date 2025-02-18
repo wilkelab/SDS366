@@ -701,10 +701,490 @@ Levels: Chinstrap Gentoo Adelie</code></pre>
 </section>
 <section id="we-can-also-order-facets" class="slide level2">
 <h2>We can also order facets</h2>
+<div class="fragment small-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a>gapminder <span class="sc">|&gt;</span></span>
+<span id="cb39-2"><a></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Norway"</span>, <span class="st">"Portugal"</span>, <span class="st">"Spain"</span>, <span class="st">"Austria"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb39-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(year, lifeExp)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb39-4"><a></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(country), <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="getting-things-in-order_files/figure-revealjs/gapminder-europe-unordered-1.svg" style="width:95.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="small-font move-up-2em">
+<ul>
+<li class="fragment">Default ordering is alphabetic; there’s no good reason for this ordering</li>
+<li class="fragment">Let’s apply <code>fct_reorder()</code> and see what happens</li>
+</ul>
+</div>
+</section>
+<section id="we-can-also-order-facets-1" class="slide level2">
+<h2>We can also order facets</h2>
+<div class="small-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a>gapminder <span class="sc">|&gt;</span></span>
+<span id="cb40-2"><a></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Norway"</span>, <span class="st">"Portugal"</span>, <span class="st">"Spain"</span>, <span class="st">"Austria"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb40-3"><a></a>  <span class="fu">mutate</span>(<span class="at">country =</span> <span class="fu">fct_reorder</span>(country, lifeExp)) <span class="sc">|&gt;</span> <span class="co"># default: order by median</span></span>
+<span id="cb40-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(year, lifeExp)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb40-5"><a></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(country), <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="getting-things-in-order_files/figure-revealjs/gapminder-europe-1-1.svg" style="width:95.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="small-font move-up-2em">
+<ul>
+<li class="fragment">When the levels of a factor occur more than once, <code>fct_reorder()</code> applies a summary function</li>
+<li class="fragment">The default summary function is <code>median()</code></li>
+</ul>
+</div>
+</section>
+<section id="we-can-also-order-facets-2" class="slide level2">
+<h2>We can also order facets</h2>
+<div class="small-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a>gapminder <span class="sc">|&gt;</span></span>
+<span id="cb41-2"><a></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Norway"</span>, <span class="st">"Portugal"</span>, <span class="st">"Spain"</span>, <span class="st">"Austria"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb41-3"><a></a>  <span class="fu">mutate</span>(<span class="at">country =</span> <span class="fu">fct_reorder</span>(country, lifeExp, median)) <span class="sc">|&gt;</span> <span class="co"># order by median</span></span>
+<span id="cb41-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(year, lifeExp)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb41-5"><a></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(country), <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="getting-things-in-order_files/figure-revealjs/gapminder-europe-2-1.svg" style="width:95.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="small-font move-up-2em">
+<ul>
+<li>When the levels of a factor occur more than once, <code>fct_reorder()</code> applies a summary function</li>
+<li>The default summary function is <code>median()</code></li>
+</ul>
+</div>
+</section>
+<section id="alternative-orderings-by-smallest-value-per-facet" class="slide level2">
+<h2>Alternative orderings: By smallest value per facet</h2>
+<div class="small-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a>gapminder <span class="sc">|&gt;</span></span>
+<span id="cb42-2"><a></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Norway"</span>, <span class="st">"Portugal"</span>, <span class="st">"Spain"</span>, <span class="st">"Austria"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb42-3"><a></a>  <span class="fu">mutate</span>(<span class="at">country =</span> <span class="fu">fct_reorder</span>(country, lifeExp, min)) <span class="sc">|&gt;</span> <span class="co"># order by minimum</span></span>
+<span id="cb42-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(year, lifeExp)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb42-5"><a></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(country), <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="getting-things-in-order_files/figure-revealjs/gapminder-europe-3-1.svg" style="width:95.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="alternative-orderings-by-largest-value-per-facet" class="slide level2">
+<h2>Alternative orderings: By largest value per facet</h2>
+<div class="small-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a>gapminder <span class="sc">|&gt;</span></span>
+<span id="cb43-2"><a></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Norway"</span>, <span class="st">"Portugal"</span>, <span class="st">"Spain"</span>, <span class="st">"Austria"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb43-3"><a></a>  <span class="fu">mutate</span>(<span class="at">country =</span> <span class="fu">fct_reorder</span>(country, lifeExp, max)) <span class="sc">|&gt;</span> <span class="co"># order by maximum</span></span>
+<span id="cb43-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(year, lifeExp)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb43-5"><a></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(country), <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="getting-things-in-order_files/figure-revealjs/gapminder-europe-4-1.svg" style="width:95.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="alternative-orderings-by-smallest-difference" class="slide level2">
+<h2>Alternative orderings: By smallest difference</h2>
+<div class="small-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a>gapminder <span class="sc">|&gt;</span></span>
+<span id="cb44-2"><a></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Norway"</span>, <span class="st">"Portugal"</span>, <span class="st">"Spain"</span>, <span class="st">"Austria"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb44-3"><a></a>  <span class="fu">mutate</span>(<span class="at">country =</span> <span class="fu">fct_reorder</span>(country, lifeExp, \(x) { <span class="fu">max</span>(x) <span class="sc">-</span> <span class="fu">min</span>(x) })) <span class="sc">|&gt;</span> </span>
+<span id="cb44-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(year, lifeExp)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb44-5"><a></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(country), <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="getting-things-in-order_files/figure-revealjs/gapminder-europe-5-1.svg" style="width:95.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="alternative-orderings-by-largest-difference" class="slide level2">
+<h2>Alternative orderings: By largest difference</h2>
+<div class="small-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a></a>gapminder <span class="sc">|&gt;</span></span>
+<span id="cb45-2"><a></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Norway"</span>, <span class="st">"Portugal"</span>, <span class="st">"Spain"</span>, <span class="st">"Austria"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb45-3"><a></a>  <span class="fu">mutate</span>(<span class="at">country =</span> <span class="fu">fct_reorder</span>(country, lifeExp, \(x) { <span class="fu">min</span>(x) <span class="sc">-</span> <span class="fu">max</span>(x) })) <span class="sc">|&gt;</span> </span>
+<span id="cb45-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(year, lifeExp)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb45-5"><a></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(country), <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="getting-things-in-order_files/figure-revealjs/gapminder-europe-6-1.svg" style="width:95.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="final-example-lumping-factor-levels-together" class="slide level2">
+<h2>Final example: Lumping factor levels together</h2>
+<div class="fragment tiny-font">
+<p>Dataset: Flights out of New York City in 2013</p>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a><span class="fu">library</span>(nycflights13)</span>
+<span id="cb46-2"><a></a></span>
+<span id="cb46-3"><a></a>flight_data <span class="ot">&lt;-</span> flights <span class="sc">|&gt;</span> <span class="co"># take data on individual flights</span></span>
+<span id="cb46-4"><a></a>  <span class="fu">left_join</span>(airlines) <span class="sc">|&gt;</span>  <span class="co"># add in full-length airline names</span></span>
+<span id="cb46-5"><a></a>  <span class="fu">select</span>(name, carrier, flight, year, month, day, origin, dest) <span class="co"># pick columns of interest</span></span>
+<span id="cb46-6"><a></a></span>
+<span id="cb46-7"><a></a>flight_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 336,776 × 8
+   name                     carrier flight  year month   day origin dest 
+   &lt;chr&gt;                    &lt;chr&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;
+ 1 United Air Lines Inc.    UA        1545  2013     1     1 EWR    IAH  
+ 2 United Air Lines Inc.    UA        1714  2013     1     1 LGA    IAH  
+ 3 American Airlines Inc.   AA        1141  2013     1     1 JFK    MIA  
+ 4 JetBlue Airways          B6         725  2013     1     1 JFK    BQN  
+ 5 Delta Air Lines Inc.     DL         461  2013     1     1 LGA    ATL  
+ 6 United Air Lines Inc.    UA        1696  2013     1     1 EWR    ORD  
+ 7 JetBlue Airways          B6         507  2013     1     1 EWR    FLL  
+ 8 ExpressJet Airlines Inc. EV        5708  2013     1     1 LGA    IAD  
+ 9 JetBlue Airways          B6          79  2013     1     1 JFK    MCO  
+10 American Airlines Inc.   AA         301  2013     1     1 LGA    ORD  
+# ℹ 336,766 more rows</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="flights-out-of-new-york-city-in-2013" class="slide level2">
+<h2>Flights out of New York City in 2013</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a></a>flight_data <span class="sc">|&gt;</span></span>
+<span id="cb48-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> name)) <span class="sc">+</span> </span>
+<span id="cb48-3"><a></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="getting-things-in-order_files/figure-revealjs/flights-unordered-1.svg" style="width:95.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+<div class="fragment small-font move-up-2em">
+<p>As (almost) always, the default alphabetic ordering is terrible</p>
+</div>
+</section>
+<section id="flights-out-of-new-york-city-in-2013-1" class="slide level2">
+<h2>Flights out of New York City in 2013</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a></a>flight_data <span class="sc">|&gt;</span></span>
+<span id="cb49-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb49-3"><a></a>    <span class="at">name =</span> <span class="fu">fct_infreq</span>(name)</span>
+<span id="cb49-4"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb49-5"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fct_rev</span>(name))) <span class="sc">+</span> </span>
+<span id="cb49-6"><a></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="getting-things-in-order_files/figure-revealjs/flights-ordered-1.svg" style="width:95.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+<div class="fragment small-font move-up-2em">
+<p>Ordering by frequency is better, but do we need to show all airlines?</p>
+</div>
+</section>
+<section id="flights-out-of-new-york-city-in-2013-with-lumping" class="slide level2">
+<h2>Flights out of New York City in 2013, with lumping</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a></a>flight_data <span class="sc">|&gt;</span></span>
+<span id="cb50-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb50-3"><a></a>    <span class="co"># keep only the 7 most common airlines</span></span>
+<span id="cb50-4"><a></a>    <span class="at">name =</span> <span class="fu">fct_lump_n</span>(name, <span class="dv">7</span>)</span>
+<span id="cb50-5"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb50-6"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fct_rev</span>(name))) <span class="sc">+</span> </span>
+<span id="cb50-7"><a></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="getting-things-in-order_files/figure-revealjs/flights-lumped-1.svg" style="width:95.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+<div class="fragment small-font move-up-2em">
+<p>Now the ordering is again alphabetic…</p>
+</div>
+</section>
+<section id="flights-out-of-new-york-city-in-2013-with-lumping-1" class="slide level2">
+<h2>Flights out of New York City in 2013, with lumping</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a></a>flight_data <span class="sc">|&gt;</span></span>
+<span id="cb51-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb51-3"><a></a>    <span class="co"># order after lumping</span></span>
+<span id="cb51-4"><a></a>    <span class="at">name =</span> <span class="fu">fct_infreq</span>(<span class="fu">fct_lump_n</span>(name, <span class="dv">7</span>))</span>
+<span id="cb51-5"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb51-6"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fct_rev</span>(name))) <span class="sc">+</span> </span>
+<span id="cb51-7"><a></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="getting-things-in-order_files/figure-revealjs/flights-lumped-ordered-1.svg" style="width:95.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="flights-out-of-new-york-city-in-2013-with-lumping-2" class="slide level2">
+<h2>Flights out of New York City in 2013, with lumping</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a></a>flight_data <span class="sc">|&gt;</span></span>
+<span id="cb52-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb52-3"><a></a>    <span class="co"># order before lumping</span></span>
+<span id="cb52-4"><a></a>    <span class="at">name =</span> <span class="fu">fct_lump_n</span>(<span class="fu">fct_infreq</span>(name), <span class="dv">7</span>)</span>
+<span id="cb52-5"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb52-6"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fct_rev</span>(name))) <span class="sc">+</span> </span>
+<span id="cb52-7"><a></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="getting-things-in-order_files/figure-revealjs/flights-lumped-ordered2-1.svg" style="width:95.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+<div class="fragment small-font move-up-2em">
+<p>In most cases, you will want to order before lumping</p>
+</div>
+<div class="fragment small-font">
+<p>Can we visually separate the “Other” category?</p>
+</div>
+</section>
+<section id="flights-out-of-new-york-city-in-2013-with-lumping-3" class="slide level2">
+<h2>Flights out of New York City in 2013, with lumping</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a></a>flight_data <span class="sc">|&gt;</span></span>
+<span id="cb53-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb53-3"><a></a>    <span class="at">name =</span> <span class="fu">fct_lump_n</span>(<span class="fu">fct_infreq</span>(name), <span class="dv">7</span>),</span>
+<span id="cb53-4"><a></a>    <span class="co"># Use `fct_other()` to manually lump all</span></span>
+<span id="cb53-5"><a></a>    <span class="co"># levels not called "Other" into "Named"</span></span>
+<span id="cb53-6"><a></a>    <span class="at">highlight =</span> <span class="fu">fct_other</span>(</span>
+<span id="cb53-7"><a></a>      name,</span>
+<span id="cb53-8"><a></a>      <span class="at">keep =</span> <span class="st">"Other"</span>, <span class="at">other_level =</span> <span class="st">"Named"</span></span>
+<span id="cb53-9"><a></a>    )</span>
+<span id="cb53-10"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb53-11"><a></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb53-12"><a></a>  <span class="fu">aes</span>(</span>
+<span id="cb53-13"><a></a>    <span class="at">y =</span> <span class="fu">fct_rev</span>(name),</span>
+<span id="cb53-14"><a></a>    <span class="at">fill =</span> highlight</span>
+<span id="cb53-15"><a></a>  ) <span class="sc">+</span> </span>
+<span id="cb53-16"><a></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="getting-things-in-order_files/figure-revealjs/flights-highlight-1.svg" style="width:95.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+<div class="fragment small-font move-up-2em">
+<p>One annoying issue: The legend is in the wrong order</p>
+</div>
+</section>
+<section id="flights-out-of-new-york-city-in-2013-with-lumping-4" class="slide level2">
+<h2>Flights out of New York City in 2013, with lumping</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a></a>flight_data <span class="sc">|&gt;</span></span>
+<span id="cb54-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb54-3"><a></a>    <span class="at">name =</span> <span class="fu">fct_lump_n</span>(<span class="fu">fct_infreq</span>(name), <span class="dv">7</span>),</span>
+<span id="cb54-4"><a></a>    <span class="co"># Use `fct_other()` to manually lump all</span></span>
+<span id="cb54-5"><a></a>    <span class="co"># levels not called "Other" into "Named"</span></span>
+<span id="cb54-6"><a></a>    <span class="at">highlight =</span> <span class="fu">fct_other</span>(</span>
+<span id="cb54-7"><a></a>      name,</span>
+<span id="cb54-8"><a></a>      <span class="at">keep =</span> <span class="st">"Other"</span>, <span class="at">other_level =</span> <span class="st">"Named"</span></span>
+<span id="cb54-9"><a></a>    )</span>
+<span id="cb54-10"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb54-11"><a></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb54-12"><a></a>  <span class="fu">aes</span>(</span>
+<span id="cb54-13"><a></a>    <span class="at">y =</span> <span class="fu">fct_rev</span>(name),</span>
+<span id="cb54-14"><a></a>    <span class="co"># reverse fill aesthetic</span></span>
+<span id="cb54-15"><a></a>    <span class="at">fill =</span> <span class="fu">fct_rev</span>(highlight)</span>
+<span id="cb54-16"><a></a>  ) <span class="sc">+</span> </span>
+<span id="cb54-17"><a></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="getting-things-in-order_files/figure-revealjs/flights-highlight2-1.svg" style="width:95.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="flights-out-of-new-york-city-in-2013-final-tweaks" class="slide level2">
+<h2>Flights out of New York City in 2013, final tweaks</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a></a>flight_data <span class="sc">|&gt;</span></span>
+<span id="cb55-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb55-3"><a></a>    <span class="at">name =</span> <span class="fu">fct_lump_n</span>(<span class="fu">fct_infreq</span>(name), <span class="dv">7</span>),</span>
+<span id="cb55-4"><a></a>    <span class="at">highlight =</span> <span class="fu">fct_other</span>(</span>
+<span id="cb55-5"><a></a>      name, <span class="at">keep =</span> <span class="st">"Other"</span>, <span class="at">other_level =</span> <span class="st">"Named"</span></span>
+<span id="cb55-6"><a></a>    )</span>
+<span id="cb55-7"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb55-8"><a></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb55-9"><a></a>  <span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fct_rev</span>(name), <span class="at">fill =</span> highlight) <span class="sc">+</span> </span>
+<span id="cb55-10"><a></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb55-11"><a></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb55-12"><a></a>    <span class="at">name =</span> <span class="st">"Number of flights"</span>,</span>
+<span id="cb55-13"><a></a>    <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.07</span>))</span>
+<span id="cb55-14"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb55-15"><a></a>  <span class="fu">scale_y_discrete</span>(<span class="at">name =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb55-16"><a></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb55-17"><a></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb55-18"><a></a>      <span class="at">Named =</span> <span class="st">"gray50"</span>, <span class="at">Other =</span> <span class="st">"#98545F"</span></span>
+<span id="cb55-19"><a></a>    ),</span>
+<span id="cb55-20"><a></a>    <span class="at">guide =</span> <span class="st">"none"</span></span>
+<span id="cb55-21"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb55-22"><a></a>  <span class="fu">theme_minimal_vgrid</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="getting-things-in-order_files/figure-revealjs/flights-final-1.svg" style="width:95.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="summary-of-key-factor-manipulation-functions" class="slide level2">
+<h2>Summary of key factor manipulation functions</h2>
+<div class="tiny-font center-text move-down-1em">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Function</th>
+<th style="text-align: left;">Use case</th>
+<th style="text-align: center;">Documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>fct_relevel()</code></td>
+<td style="text-align: left;">Change order of factor levels manually</td>
+<td style="text-align: center;"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">click here</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>fct_infreq()</code></td>
+<td style="text-align: left;">Put levels in descending order of how frequently each level occurs in the data</td>
+<td style="text-align: center;"><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">click here</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>fct_rev()</code></td>
+<td style="text-align: left;">Reverse the order of factor levels</td>
+<td style="text-align: center;"><a href="https://forcats.tidyverse.org/reference/fct_rev.html">click here</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>fct_reorder()</code></td>
+<td style="text-align: left;">Put levels in ascending order determined by a numeric variable or summary function</td>
+<td style="text-align: center;"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">click here</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>fct_lump_n()</code></td>
+<td style="text-align: left;">Retain the <em>n</em> most frequent levels and lump all others into <code>"Other"</code></td>
+<td style="text-align: center;"><a href="https://forcats.tidyverse.org/reference/fct_lump.html">click here</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>fct_other()</code></td>
+<td style="text-align: left;">Manually group some factor levels into <code>"Other"</code></td>
+<td style="text-align: center;"><a href="https://forcats.tidyverse.org/reference/fct_other.html">click here</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="fragment small-font move-down-1em">
+<p>For more options, check out the <a href="https://forcats.tidyverse.org/reference/index.html">reference documentation</a> of the <strong>forcats</strong> package</p>
+</div>
 <!-- Segment ends here -->
 </section>
 <section id="further-reading" class="slide level2">
 <h2>Further reading</h2>
+<ul>
+<li>Fundamentals of Data Visualization: <a href="https://clauswilke.com/dataviz/visualizing-amounts.html">Chapter 6: Visualizing amounts</a></li>
+<li><strong>forcats</strong> documentation: <a href="https://forcats.tidyverse.org/articles/forcats.html">Introduction to forcats</a></li>
+<li><strong>forcats</strong> reference documentation: <a href="https://forcats.tidyverse.org/reference/index.html#section-change-order-of-levels">Change order of levels</a></li>
+</ul>
 
 
 </section></section>

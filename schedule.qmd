@@ -72,6 +72,20 @@ format: html
 - [Slides Part II](slides/data-wrangling-2.qmd) (summarizing, pivoting, joining)
 - [Worksheet Part II](worksheets/data-wrangling-2.qmd)
 
+### 10. Feb 18, 2025—Visualizing proportions
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/visualizing-proportions.qmd)  
+- [Worksheet](worksheets/visualizing-proportions.qmd)
+
+### 11. Feb 20, 2025—Getting to know your data
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/know-your-data.qmd)
+- [Worksheet Part I](worksheets/know-your-data-1.qmd) (data cleaning)
+- [Worksheet Part II](worksheets/know-your-data-2.qmd) (missing data)
 
 ## Homeworks
 

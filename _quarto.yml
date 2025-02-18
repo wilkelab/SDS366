@@ -51,6 +51,8 @@ website:
             href: slides/visualizing-proportions.qmd
           - text: "Class 11: Getting to know your data"
             href: slides/know-your-data.qmd
+          - text: "Class 12: Getting things into the right order"
+            href: slides/getting-things-in-order.qmd
           - text: "Class 13: Figure design"
             href: slides/figure-design.qmd
         
