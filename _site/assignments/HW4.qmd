@@ -1,0 +1,81 @@
+---
+title: "Homework 4"
+format:
+  typst:
+    fig-format: png
+    fig-dpi: 300
+    fig-width: 6
+    fig-height: 4
+---
+
+```{r}
+#| echo: false
+#| message: false
+# !! Do not edit this code chunk !!
+library(tidyverse)
+library(ggforce)
+library(colorspace)
+
+# data prep:
+ufo_sightings <- 
+  read_csv("https://wilkelab.org/classes/SDS348/data_sets/ufo_sightings_clean.csv") |>
+  separate(datetime, into = c("month", "day", "year"), sep = "/") |>
+  separate(year, into = c("year", "time"), sep = " ") |>
+  separate(date_posted, into = c("month_posted", "day_posted", "year_posted"), sep = "/") |>
+  select(-time, -month_posted, -day_posted) |>
+  mutate(
+    year = as.numeric(year),
+    state = toupper(state)
+  ) |>
+  filter(!is.na(country))
+```
+
+**This homework is due on Feb. 27, 2025 at 11:00pm. Please submit as a pdf file on Canvas.**
+
+In this homework, we will work with the `ufo_sightings` dataset:
+
+```{r}
+head(ufo_sightings)
+```
+
+The main columns we will use are `year` (the year of the sighting), `city` (the city in which the sighting was reported), and `state` (the state in which the sighting was reported).
+
+**Problem 1: (4 pts)** Since 1940 (inclusive), what are the top 5 cities that have reported the most UFO sightings? Create a new dataframe to answer the question. No plots are necessary.
+
+(Hint: You can use `slice(1:5)` to select the first five rows in a data frame.)
+
+```{r}
+# your code here
+```
+
+**Problem 2: (12 pts)**
+
+Using your data frame from Problem 1, make a pie chart of the relative proportions of UFO sightings within the top five cities. Use the manual method of pie chart creation discussed in class [(link).](https://wilkelab.org/SDS366/slides/visualizing-proportions.html#/making-pie-charts-with-ggplot2-ggforce-manual) Customize the plot so it looks nice. In particular, add labels to each pie slice and remove the separate legend (hint: `guide(fill = "none")`). Also use `scale_fill_manual()` to customize the fill colors and `theme_void()` to remove the grid and axes.
+
+```{r}
+#| fig-width: 4
+#| fig-height: 4
+#| out-width: "60%"
+# your code here
+```
+
+**Problem 3: (4 pts)**
+
+The following is a plot of the number of UFO sightings per year since 1970 in the top-five states with the most UFO sightings. Modify the plot by adding an appropriate color scale from the `colorspace` package. Then explain in 2-3 sentences why you picked this scale function.
+
+```{r}
+#| fig-width: 5
+#| fig-height: 2
+#| out-width: "90%"
+ufo_top_five <- ufo_sightings |>
+  filter(state %in% c("CA", "WA", "FL", "TX", "NY"), year >= 1970) |>
+  count(year, state) |>
+  mutate(state = fct_reorder(state, n)) |>
+  select(year, state, count = n)
+
+ggplot(ufo_top_five, aes(year, state, fill = count)) +
+  geom_tile() +
+  theme_bw()
+```
+
+*Your explanation here.*
