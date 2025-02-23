@@ -9,18 +9,6 @@ format:
       - Wilke-theme.scss
     auto-stretch: false
     chalkboard: true
-    drop:
-      engine: webr
-      webr:
-        packages:
-          - tidyverse
-          - ggthemes
-          - colorspace
-          - ggridges
-          - cowplot
-          - palmerpenguins
-revealjs-plugins:
-  - drop
 execute:
   fig-format: svg
   fig-asp: 0.618

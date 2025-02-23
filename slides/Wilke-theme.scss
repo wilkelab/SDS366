@@ -132,6 +132,11 @@ figcaption {
 .reveal .nogap img {margin-top: 0; margin-bottom: 0}
 .reveal .nogap div.quarto-figure {margin-top: 0; margin-bottom: 0}
 
+// don't impose max height on images (can mess with aspect ratio)
+.reveal img {
+  max-height: unset;
+}
+
 // table formatting
 .reveal table th {
     padding: .1em .5em .1em .5em;

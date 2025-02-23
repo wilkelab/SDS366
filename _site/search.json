@@ -4016,5 +4016,194 @@
     "title": "Visualizing distributions 2",
     "section": "Ridgeline plots",
     "text": "Ridgeline plots\nAs the last alternative for visualizing multiple distributions at once, we will make ridgeline plots. These are multiple density plots staggered vertically. In ridgeline plots, we normally map the grouping variable (e.g. here, the month) to the y axis and the dependent variable (e.g. here, the mean temperature) to the x axis.\nWe can create ridgeline plots using geom_density_ridges() from the ggridges package. Try this out. Use the column month_long instead of month for the name of the month to get a slightly nicer plot. Hint: If you get an error about a missing y aesthetic you need to swap your x and y mappings.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nggplot(lincoln_temps, aes(x = mean_temp, y = month_long)) +\n  geom_density_ridges()\n\n\n\n\nWhat happens when you use month instead of month_long? Can you explain why?\nIt is often a good idea to prune the ridgelines once they are close to zero. You can do this with the parameter rel_min_height, which takes a numeric value relative to the maximum height of any ridgeline anywhere in the plot. So, rel_min_height = 0.01 would prune all lines that are less than 1% of the maximum height in the plot.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nggplot(lincoln_temps, aes(x = mean_temp, y = month_long)) +\n  geom_density_ridges(rel_min_height = ___)\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nggplot(lincoln_temps, aes(x = mean_temp, y = month_long)) +\n  geom_density_ridges(rel_min_height = 0.01)"
+  },
+  {
+    "objectID": "slides/compound-figures.html#compound-figures",
+    "href": "slides/compound-figures.html#compound-figures",
+    "title": "Compound Figures",
+    "section": "Compound figures",
+    "text": "Compound figures\n Two common scenarios:\n\n1. The same type of plot is replicated many times (small multiples)\n\n\n2. Several disparate plots are combined into one display"
+  },
+  {
+    "objectID": "slides/compound-figures.html#further-reading",
+    "href": "slides/compound-figures.html#further-reading",
+    "title": "Compound Figures",
+    "section": "Further reading",
+    "text": "Further reading\n\nFundamentals of Data Visualization: Chapter 21: Multi-panel figures\npatchwork documentation: Getting started\npatchwork documentation: Plot assembly\npatchwork documentation: Adding annotation and style"
+  },
+  {
+    "objectID": "slides/compound-figures.html#small-multiples-facets",
+    "href": "slides/compound-figures.html#small-multiples-facets",
+    "title": "Compound Figures",
+    "section": "Small multiples (facets)",
+    "text": "Small multiples (facets)"
+  },
+  {
+    "objectID": "slides/compound-figures.html#closely-related-to-mosaic-plot-treemap",
+    "href": "slides/compound-figures.html#closely-related-to-mosaic-plot-treemap",
+    "title": "Compound Figures",
+    "section": "Closely related to mosaic plot: Treemap",
+    "text": "Closely related to mosaic plot: Treemap"
+  },
+  {
+    "objectID": "slides/compound-figures.html#small-multiples-facets-1",
+    "href": "slides/compound-figures.html#small-multiples-facets-1",
+    "title": "Compound Figures",
+    "section": "Small multiples (facets)",
+    "text": "Small multiples (facets)\n\n\n\n\n\n\nAvoid bars or other elements that are floating in space"
+  },
+  {
+    "objectID": "slides/compound-figures.html#small-multiples-facets-2",
+    "href": "slides/compound-figures.html#small-multiples-facets-2",
+    "title": "Compound Figures",
+    "section": "Small multiples (facets)",
+    "text": "Small multiples (facets)"
+  },
+  {
+    "objectID": "slides/compound-figures.html#y-axis-ranges-should-be-consistent-among-panels",
+    "href": "slides/compound-figures.html#y-axis-ranges-should-be-consistent-among-panels",
+    "title": "Compound Figures",
+    "section": "y-axis ranges should be consistent among panels",
+    "text": "y-axis ranges should be consistent among panels"
+  },
+  {
+    "objectID": "slides/compound-figures.html#y-axis-ranges-should-be-consistent-among-panels-1",
+    "href": "slides/compound-figures.html#y-axis-ranges-should-be-consistent-among-panels-1",
+    "title": "Compound Figures",
+    "section": "y-axis ranges should be consistent among panels",
+    "text": "y-axis ranges should be consistent among panels"
+  },
+  {
+    "objectID": "slides/compound-figures.html#combining-disparate-figures-into-one-display",
+    "href": "slides/compound-figures.html#combining-disparate-figures-into-one-display",
+    "title": "Compound Figures",
+    "section": "Combining disparate figures into one display",
+    "text": "Combining disparate figures into one display"
+  },
+  {
+    "objectID": "slides/compound-figures.html#dont-use-overly-large-or-otherwise-prominent-labels",
+    "href": "slides/compound-figures.html#dont-use-overly-large-or-otherwise-prominent-labels",
+    "title": "Compound Figures",
+    "section": "Don’t use overly large or otherwise prominent labels",
+    "text": "Don’t use overly large or otherwise prominent labels\n\n\n\n\n\n\n\nNote: Also don’t use serif fonts (such as Times) for labels"
+  },
+  {
+    "objectID": "slides/compound-figures.html#use-a-consistent-color-language-among-sub-plots",
+    "href": "slides/compound-figures.html#use-a-consistent-color-language-among-sub-plots",
+    "title": "Compound Figures",
+    "section": "Use a consistent color language among sub-plots",
+    "text": "Use a consistent color language among sub-plots"
+  },
+  {
+    "objectID": "slides/compound-figures.html#use-a-consistent-color-language-among-sub-plots-1",
+    "href": "slides/compound-figures.html#use-a-consistent-color-language-among-sub-plots-1",
+    "title": "Compound Figures",
+    "section": "Use a consistent color language among sub-plots",
+    "text": "Use a consistent color language among sub-plots"
+  },
+  {
+    "objectID": "slides/compound-figures.html#pay-attention-to-sub-plot-alignment",
+    "href": "slides/compound-figures.html#pay-attention-to-sub-plot-alignment",
+    "title": "Compound Figures",
+    "section": "Pay attention to sub-plot alignment",
+    "text": "Pay attention to sub-plot alignment"
+  },
+  {
+    "objectID": "slides/compound-figures.html#combine-plots-of-different-types",
+    "href": "slides/compound-figures.html#combine-plots-of-different-types",
+    "title": "Compound Figures",
+    "section": "Combine plots of different types",
+    "text": "Combine plots of different types\n\n\n\n\n\n\nThis helps your readers to distinguish different parts of the analysis"
+  },
+  {
+    "objectID": "slides/compound-figures.html#combine-plots-of-different-types-1",
+    "href": "slides/compound-figures.html#combine-plots-of-different-types-1",
+    "title": "Compound Figures",
+    "section": "Combine plots of different types",
+    "text": "Combine plots of different types\n\n\n\n\n\n\nThis helps your readers to distinguish different parts of the analysis"
+  },
+  {
+    "objectID": "slides/compound-figures.html#distinguish-infographics-from-figures-in-articlebook-1",
+    "href": "slides/compound-figures.html#distinguish-infographics-from-figures-in-articlebook-1",
+    "title": "Compound Figures",
+    "section": "Distinguish infographics from figures in article/book",
+    "text": "Distinguish infographics from figures in article/book\n There are two distinct use cases:\n\nInfographic: Standalone, has title/subtitle/caption\n\n\nFigure in article/book: Caption contains title, not part of figure"
+  },
+  {
+    "objectID": "slides/compound-figures.html#pay-attention-to-sub-plot-alignment-1",
+    "href": "slides/compound-figures.html#pay-attention-to-sub-plot-alignment-1",
+    "title": "Compound Figures",
+    "section": "Pay attention to sub-plot alignment",
+    "text": "Pay attention to sub-plot alignment"
+  },
+  {
+    "objectID": "slides/compound-figures.html#corruption-development-figure",
+    "href": "slides/compound-figures.html#corruption-development-figure",
+    "title": "Compound Figures",
+    "section": "",
+    "text": "Figure 1. Corruption and human development. The most developed countries experience the least corruption. Inspired by a posting in The Economist online (2011). Data sources: Transparency International & UN Human Development Report.\n\nExample of figure in article or book"
+  },
+  {
+    "objectID": "slides/compound-figures.html#the-patchwork-package",
+    "href": "slides/compound-figures.html#the-patchwork-package",
+    "title": "Compound Figures",
+    "section": "The patchwork package",
+    "text": "The patchwork package\n\n\n\nlibrary(patchwork)\n\n# make first plot\np1 &lt;- ggplot(mtcars) + \n  geom_point(aes(mpg, disp))\n\np1"
+  },
+  {
+    "objectID": "slides/compound-figures.html#the-patchwork-package-1",
+    "href": "slides/compound-figures.html#the-patchwork-package-1",
+    "title": "Compound Figures",
+    "section": "The patchwork package",
+    "text": "The patchwork package\n\n\n\nlibrary(patchwork)\n\n# make first plot\np1 &lt;- ggplot(mtcars) + \n  geom_point(aes(mpg, disp))\n\n# make second plot\np2 &lt;- ggplot(mtcars) + \n  aes(gear, disp, group = gear) +\n  geom_boxplot()\n\np2"
+  },
+  {
+    "objectID": "slides/compound-figures.html#the-patchwork-package-2",
+    "href": "slides/compound-figures.html#the-patchwork-package-2",
+    "title": "Compound Figures",
+    "section": "The patchwork package",
+    "text": "The patchwork package\n\n\n\nlibrary(patchwork)\n\n# make first plot\np1 &lt;- ggplot(mtcars) + \n  geom_point(aes(mpg, disp))\n\n# make second plot\np2 &lt;- ggplot(mtcars) + \n  aes(gear, disp, group = gear) +\n  geom_boxplot()\n\n# place plots side-by-side\np1 | p2"
+  },
+  {
+    "objectID": "slides/compound-figures.html#the-patchwork-package-3",
+    "href": "slides/compound-figures.html#the-patchwork-package-3",
+    "title": "Compound Figures",
+    "section": "The patchwork package",
+    "text": "The patchwork package\n\n\n\nlibrary(patchwork)\n\n# make first plot\np1 &lt;- ggplot(mtcars) + \n  geom_point(aes(mpg, disp))\n\n# make second plot\np2 &lt;- ggplot(mtcars) + \n  aes(gear, disp, group = gear) +\n  geom_boxplot()\n\n# place plots on top of one-another\np1 / p2"
+  },
+  {
+    "objectID": "slides/compound-figures.html#the-patchwork-package-4",
+    "href": "slides/compound-figures.html#the-patchwork-package-4",
+    "title": "Compound Figures",
+    "section": "The patchwork package",
+    "text": "The patchwork package\n\n\n\n# add a few more plots\np3 &lt;- ggplot(mtcars) + \n  geom_smooth(aes(disp, qsec))\n\np4 &lt;- ggplot(mtcars) + \n  geom_bar(aes(carb))\n\n# make complex arrangement\n(p1 | p2 | p3) / p4"
+  },
+  {
+    "objectID": "slides/compound-figures.html#plot-annotations-and-themes",
+    "href": "slides/compound-figures.html#plot-annotations-and-themes",
+    "title": "Compound Figures",
+    "section": "Plot annotations and themes",
+    "text": "Plot annotations and themes\n\n\n\n(p1 | p2 | p3) / p4 +\n   plot_annotation(\n     tag_levels = \"A\"\n   )\n\n\n\n\n\n \n\n\n\n\n\n\nAutomatic labeling of plots"
+  },
+  {
+    "objectID": "slides/compound-figures.html#plot-annotations-and-themes-1",
+    "href": "slides/compound-figures.html#plot-annotations-and-themes-1",
+    "title": "Compound Figures",
+    "section": "Plot annotations and themes",
+    "text": "Plot annotations and themes\n\n\n\n(p1 | p2 | p3) / p4 +\n   plot_annotation(\n     tag_levels = \"a\"\n   )\n\n\n\n\n\n \n\n\n\n\n\n\nAutomatic labeling of plots"
+  },
+  {
+    "objectID": "slides/compound-figures.html#plot-annotations-and-themes-2",
+    "href": "slides/compound-figures.html#plot-annotations-and-themes-2",
+    "title": "Compound Figures",
+    "section": "Plot annotations and themes",
+    "text": "Plot annotations and themes\n\n\n\n(p1 | p2 | p3) / p4 +\n  plot_annotation(\n   tag_levels = \"a\"\n  ) &\n  theme_minimal_grid()\n\n\n\n\n\n \n\n\n\n\n\n\nApplying one theme to all plots"
+  },
+  {
+    "objectID": "slides/compound-figures.html#plot-annotations-and-themes-3",
+    "href": "slides/compound-figures.html#plot-annotations-and-themes-3",
+    "title": "Compound Figures",
+    "section": "Plot annotations and themes",
+    "text": "Plot annotations and themes\n\n\n\n(p1 | p2 | p3) / p4 +\n  plot_annotation(\n   tag_levels = \"a\",\n   title = \"A plot about mtcars\",\n   subtitle = \"With subtitle...\",\n   caption = \"...and caption\"\n  ) &\n  theme_minimal_grid()\n\n\n\n\n\n \n\n\n\n\n\n\nTitles and captions"
   }
 ]
