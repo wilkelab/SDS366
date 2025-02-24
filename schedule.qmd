@@ -87,6 +87,20 @@ format: html
 - [Worksheet Part I](worksheets/know-your-data-1.qmd) (data cleaning)
 - [Worksheet Part II](worksheets/know-your-data-2.qmd) (missing data)
 
+### 12. Feb 25, 2025—Getting things into the right order
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/getting-things-in-order.qmd)
+- [Worksheet](worksheets/getting-things-in-order.qmd)
+
+### 13. Feb 27, 2025—Figure design
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/figure-design.qmd)
+- [Worksheet](worksheets/figure-design.qmd)
+
 ## Homeworks
 
 All homeworks are due by 11:00pm on the day they are due. Homeworks need to be submitted as pdf files on Canvas.
@@ -121,6 +135,11 @@ All homeworks are due by 11:00pm on the day they are due. Homeworks need to be s
 
 ### Homework 5 (due Mar 6, 2025)
 
+<p class="nospace">Materials:</p>
+
+- [Quarto template](assignments/HW5.qmd)
+- [PDF](assignments/HW5.pdf)
+
 ### Homework 6 (due Apr 3, 2025)
 
 ### Homework 7 (due Apr 10, 2025)
@@ -140,5 +159,13 @@ All projects are due by 11:00pm on the day they are due. Projects need to be sub
 - [Example project (pdf)](assignments/Project_1_example.pdf)
 
 ### Project 2 (due Mar 13, 2025)
+
+<p class="nospace">Materials:</p>
+
+- [Instructions (pdf)](assignments/Project_2_instructions.pdf)
+- [Project Template (qmd)](assignments/Project_2.qmd)
+- [Project Template (pdf)](assignments/Project_2.pdf)
+- [Grading rubric (pdf)](assignments/Project_2_rubric.pdf)
+- [Grading instructions (pdf)](assignments/Project_2_grading.pdf)
 
 ### Project 3 (due Apr 26, 2025)

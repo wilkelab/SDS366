@@ -1,0 +1,429 @@
+---
+title: "Visualizing trends"
+author: "Claus O. Wilke"
+format: live-html
+engine: knitr
+webr:
+  render-df: gt-interactive
+---
+
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+
+## Introduction
+
+In this worksheet, we will discuss how to fit linear regressions (straight lines) and smooth curves to the observations in a dataset.
+
+First we need to load the required R packages. Please wait a moment until the live R session is fully set up and all packages are loaded.
+
+```{webr}
+#| warning: false
+#| edit: false
+library(tidyverse)
+```
+
+Next we set up the data.
+
+```{webr}
+#| edit: false
+#| warning: false
+blue_jays <- read_csv("https://wilkelab.org/SDS366/datasets/blue_jays.csv")
+biorxiv_growth <- read_csv("https://wilkelab.org/SDS366/datasets/preprints.csv") |>
+  filter(archive == "bioRxiv", count > 0) |>
+  select(date_dec, count)
+cars93 <- read_csv("https://wilkelab.org/SDS366/datasets/cars93.csv")
+```
+
+We will be working with three datasets, `blue_jays`, `biorxiv_growth`, and `cars93`. The `blue_jays` dataset contains various measurements taken on blue jay birds.
+
+```{webr}
+#| edit: false
+blue_jays
+```
+
+The `biorxiv_growth` dataset contains the number of article submissions per month to the bioRxiv preprint server. Each row corresponds to one month, and the column `date_dec` shows the date in decimal form. (For example, Feb. 1 2014 is 2014.085, and March 1 2014 is 2014.162. This representation allows us to treat dates as numerical values.)
+
+```{webr}
+#| edit: false
+biorxiv_growth
+```
+
+The `cars93` dataset contains information about various passenger cars that were on the market in 1993.
+
+```{webr}
+#| edit: false
+cars93
+```
+
+
+## Fitting linear trend lines
+
+We start with simple linear regression lines. These can be generated with `geom_smooth(method = "lm")`. Try this on the `blue_jays` dataset. Make a scatter plot of head length (`head_length_mm`) versus body mass (`body_mass_g`) and add a regression line.
+
+```{webr} 
+#| exercise: blue-jays-regression
+
+```
+
+::: { .hint exercise="blue-jays-regression" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+ggplot(blue_jays, aes(body_mass_g, head_length_mm)) +
+  geom_point() +
+  ___
+```
+:::
+:::
+
+::: { .solution exercise="blue-jays-regression" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+ggplot(blue_jays, aes(body_mass_g, head_length_mm)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+:::
+:::
+
+You can turn off the confidence band by setting `se = FALSE`. Try this out. And also change the color of the regression line to black.
+
+```{webr} 
+#| exercise: blue-jays-regression2
+
+```
+
+::: { .hint exercise="blue-jays-regression2" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+ggplot(blue_jays, aes(body_mass_g, head_length_mm)) +
+  geom_point() +
+  geom_smooth(
+    method = "lm",
+    se = ___,
+    color = ___
+  )
+```
+:::
+:::
+
+::: { .solution exercise="blue-jays-regression2" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+ggplot(blue_jays, aes(body_mass_g, head_length_mm)) +
+  geom_point() +
+  geom_smooth(
+    method = "lm",
+    se = FALSE,
+    color = "black"
+  )
+```
+:::
+:::
+
+Now color the points by the birds' sex and generate two separate regression lines, one for each sex.
+
+```{webr} 
+#| exercise: blue-jays-regression-sex
+
+```
+
+::: { .hint exercise="blue-jays-regression-sex" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+ggplot(blue_jays, aes(body_mass_g, head_length_mm, color = ___)) +
+  geom_point() +
+  geom_smooth(___)
+```
+:::
+:::
+
+::: { .solution exercise="blue-jays-regression-sex" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+ggplot(blue_jays, aes(body_mass_g, head_length_mm, color = sex)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+```
+:::
+:::
+
+Now do the same but instead of coloring by sex you facet by sex.
+
+```{webr} 
+#| exercise: blue-jays-regression-facet
+
+```
+
+::: { .hint exercise="blue-jays-regression-facet" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+ggplot(blue_jays, aes(body_mass_g, head_length_mm)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  facet_wrap(___)
+```
+:::
+:::
+
+::: { .solution exercise="blue-jays-regression-facet" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+ggplot(blue_jays, aes(body_mass_g, head_length_mm)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  facet_wrap(~sex)
+```
+:::
+:::
+
+## Linear trend lines in log-transformed data
+
+The blue jay example displayed a nice linear relationship between the variable on the x axis (body mass) and the variable on the y axis (head length). Linear relationships arise in many contexts, but they are not the only type of relationship we encounter in practice. Another commonly encountered relationship is exponential growth, where some quantity increases at a constant rate over time.
+
+As an example of exponential growth, we will examine the `biorxiv_growth` dataset. This dataset contains the number of monthly article submissions to the bioRxiv preprint server from November 2013 to March 2018. A preprint server is a website to which scientists submit their research articles before they are formally published. The bioRxiv server started operation in late 2013, and it experienced rapid growth in subsequent years.
+
+First, make a simple scatter plot of monthly submissions (column `count`) versus time (column `date_dec`).
+
+```{webr} 
+#| exercise: biorxiv-scatter
+
+```
+
+::: { .hint exercise="biorxiv-scatter" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+ggplot(biorxiv_growth, aes(date_dec, count)) +
+  ___
+```
+:::
+:::
+
+::: { .solution exercise="biorxiv-scatter" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+ggplot(biorxiv_growth, aes(date_dec, count)) +
+  geom_point()
+```
+:::
+:::
+
+Now add a linear regression line. You should see that this does not look correct at all for this dataset.
+
+```{webr} 
+#| exercise: biorxiv-linear-reg
+
+```
+
+::: { .hint exercise="biorxiv-linear-reg" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+ggplot(biorxiv_growth, aes(date_dec, count)) +
+  geom_point() +
+  ___
+```
+:::
+:::
+
+::: { .solution exercise="biorxiv-linear-reg" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+ggplot(biorxiv_growth, aes(date_dec, count)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+:::
+:::
+
+We could try to fit an exponential curve to the data points, but such fits tend to be not very accurate. Instead, it is usually better to fit a straight line in log space. To do so, you need to plot the count data on a log scale. Remember that you can make an axis logarithmic by adding `scale_x_log10()` or `scale_y_log10()` to the plot, depending on which axis you want to transform.
+
+```{webr} 
+#| exercise: biorxiv-log
+
+```
+
+::: { .hint exercise="biorxiv-log" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+ggplot(biorxiv_growth, aes(date_dec, count)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  ___
+```
+:::
+:::
+
+::: { .solution exercise="biorxiv-log" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+ggplot(biorxiv_growth, aes(date_dec, count)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  scale_y_log10()
+```
+:::
+:::
+
+Now you can see how closely the points follow the exponential growth pattern. Exponential growth creates a strict linear relationship in log-space.
+
+### Creating a legend for the regression line
+
+Whenever we are creating a plot with data points and a regression line, we may want to add a legend that annotates both of these visual elements, as demonstrated in the following plot.
+
+```{webr}
+#| label: biorxiv-log-legend-demo
+#| edit: false
+#| echo: false
+#| fig-width: 6.5
+#| fig-height: 4
+ggplot(biorxiv_growth, aes(date_dec, count)) +
+  geom_point(aes(color = "original data")) +
+  geom_smooth(
+    aes(color = "regression line"),
+    method = "lm",
+    formula = y ~ x
+  ) +
+  scale_y_log10() +
+  scale_color_manual(
+    name = NULL,
+    values = c("black", "firebrick4")
+  )
+```
+
+How can we coax ggplot to produce such a legend? We are used to mapping a variable to `color` or `fill` and ggplot creates a legend for this mapping, but here the situation is different. We're not mapping a particular variable in the data, we're using two separate geoms.
+
+The solution is that we need to set up a placeholder mapping, such as `aes(color = "original data")`. A mapping defined with `aes()` doesn't always have to refer to a data column in the original data, it can also refer to a constant value provided with the mapping. So, if we give each geom its own mapping, with a different string (e.g., `"original data"` and `"regression line"`), we will get a legend for the aesthetic that we used in the mapping. Try this out with the `color` aesthetic.
+
+```{webr} 
+#| exercise: biorxiv-log-legend
+
+```
+
+::: { .hint exercise="biorxiv-log-legend" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+ggplot(biorxiv_growth, aes(date_dec, count)) +
+  geom_point(aes(color = ___)) +
+  geom_smooth(aes(color = ___), method = "lm") +
+  scale_y_log10()
+```
+:::
+:::
+
+::: { .solution exercise="biorxiv-log-legend" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+ggplot(biorxiv_growth, aes(date_dec, count)) +
+  geom_point(aes(color = "original data")) +
+  geom_smooth(aes(color = "regression line"), method = "lm") +
+  scale_y_log10()
+```
+:::
+:::
+
+
+## Smoothing lines
+
+When you use `geom_smooth()` without any `method` argument, it will create a nonlinear smoothing line that provides a reasonable representation of the x-y relationship in the data. This is a good choice when a simple linear regression is not appropriate.
+
+[Technically, `geom_smooth()` fits a LOESS estimator (locally estimated scatterplot smoothing) when there are fewer than 1000 observations and a GAM estimator (generalized additive model) when there are more observations. The LOESS estimator tends to produce slightly better visual results but is slow for large datasets.]
+
+To try this out, make a scatter plot of fuel tank capacity (`Fuel.tank.capacity`) versus car price (`Price`) in the `cars93` dataset and add a smoothing line. Fuel tank capacity does not continue to increase the more expensive a car gets, therefore a linear regression is not appripriate in this context.
+
+```{webr} 
+#| exercise: cars-smooth
+
+```
+
+::: { .hint exercise="cars-smooth" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+ggplot(cars93, aes(Price, Fuel.tank.capacity)) +
+  ___ + 
+  ___
+```
+:::
+:::
+
+::: { .solution exercise="cars-smooth" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+ggplot(cars93, aes(Price, Fuel.tank.capacity)) +
+  geom_point() + 
+  geom_smooth()
+```
+:::
+:::
+
+
+You can adjust the smoothness of the fitted curve with the `span` argument. Try `span` values between 0.2 and 1.5.
+
+```{webr} 
+#| exercise: cars-smooth2
+
+```
+
+::: { .hint exercise="cars-smooth2" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+ggplot(cars93, aes(Price, Fuel.tank.capacity)) +
+  geom_point() + 
+  geom_smooth(
+    span = ___
+  )
+```
+:::
+:::
+
+::: { .solution exercise="cars-smooth2" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+ggplot(cars93, aes(Price, Fuel.tank.capacity)) +
+  geom_point() + 
+  geom_smooth(
+    span = 0.2
+  )
+
+ggplot(cars93, aes(Price, Fuel.tank.capacity)) +
+  geom_point() + 
+  geom_smooth(
+    span = 1.5
+  )
+```
+:::
+:::
+
+You can also explicitly force a GAM estimator by setting `method = "gam"`. However, in this case you need to also provide a formula that specifies the particular smoothing functions you want to use. For example, `formula = y ~ s(x, k = 3)` creates thin-plate regression splines with three knots. Try this out. Also try different values of `k`.
+
+```{webr} 
+#| exercise: cars-gam
+
+```
+
+::: { .hint exercise="cars-gam" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+ggplot(cars93, aes(Price, Fuel.tank.capacity)) +
+  geom_point() + 
+  geom_smooth(
+    method = ___,
+    formula = ___
+  )
+```
+:::
+:::
+
+::: { .solution exercise="cars-gam" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+ggplot(cars93, aes(Price, Fuel.tank.capacity)) +
+  geom_point() + 
+  geom_smooth(
+    method = "gam",
+    formula = y ~ s(x, k = 3)
+  )
+```
+:::
+:::
+
+
+There are many available options for the formula describing the desired GAM estimator. These options are fully described in the [**mgcv** reference documentation.](https://cran.r-project.org/web/packages/mgcv/mgcv.pdf)
+

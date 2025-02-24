@@ -1,0 +1,107 @@
+---
+title: "Homework 5"
+format:
+  typst:
+    fig-format: png
+    fig-dpi: 300
+    fig-width: 6
+    fig-height: 4
+---
+
+```{r}
+#| echo: false
+#| message: false
+# !! Do not edit this code chunk !!
+library(tidyverse)
+library(colorspace)
+
+# data prep:
+ufo_sightings <- 
+  read_csv("https://wilkelab.org/classes/SDS348/data_sets/ufo_sightings_clean.csv") |>
+  separate(datetime, into = c("month", "day", "year"), sep = "/") |>
+  separate(year, into = c("year", "time"), sep = " ") |>
+  separate(date_posted, into = c("month_posted", "day_posted", "year_posted"), sep = "/") |>
+  select(-time, -month_posted, -day_posted) |>
+  mutate(
+    year = as.numeric(year),
+    state = toupper(state)
+  ) |>
+  filter(!is.na(country))
+
+midwest2 <- midwest |>
+  filter(state != "IN")
+```
+
+**This homework is due on Mar. 6, 2025 at 11:00pm. Please submit as a pdf file on Canvas.**
+
+**Problem 1: (5 pts)** We will once again work with the `ufo_sightings` dataset from Homework 4.
+
+```{r}
+ufo_sightings
+```
+
+Subset the UFO data to the following four cities: Phoenix, Las Vegas, Seattle, Portland. Then create a wide table that shows the number of UFO sightings in each city for each year, in the following format:
+
+| year | city 1 | city 2 | city 3 | city 4 |
+|------|--------|--------|--------|--------|
+| 2014 |        |        |        |        |
+| 2013 |        |        |        |        |
+| 2012 |        |        |        |        |
+| 2011 |        |        |        |        |
+| ...  |        |        |        |        |
+
+The table should be sorted in descending order of years, from most recent to furthest ago.
+
+```{r}
+# Your R code here
+```
+
+**Problem 2: (5 pts)** Continuing on from Problem 2, now make a faceted line plot (using `geom_line()`) of UFO sightings per year for the same cities. Sort the facets by the maximum number of UFO sightings in any given year, in descending order. (The city with the highest number should appear first, and the one with the lowest number last.)
+
+Hints:
+
+1.  Look at the code from Homework 4, Problem 3 for assistance.
+2.  You are not required to modify the plot theme, scales, labels, etc. Default styling is fine.
+
+```{r}
+# Your R code here
+```
+
+**Problem 3: (5 pts)**
+
+Use the color picker app from the **colorspace** package (go here: <https://wilkelab.org/SDS366/apps/bin/choose-color/>, or run `colorspace::choose_color()` in your R session) to create a qualitative color scale containing four colors. One of the four colors should be `#A23C42`, so you need to find three additional colors that go with this one. Use the function `swatchplot()` to plot your colors.
+
+Reminder: In a qualitative color scale, the colors should not appear to have an inherent order, they all need to be easily distinguishable, and no one color should stand out visually against the others.
+
+```{r}
+my_colors <- c('#A23C42') # add three more colors here
+swatchplot(my_colors)
+```
+
+**Problem 4: (5 pts)**
+
+For this problem, we will work with the `midwest2` dataset (derived from `midwest`). In the following plot, you may notice that the axis tick labels are smaller than the axis titles, and also in a different color (gray instead of black).
+
+1.  Use the colors you chose in Problem 2 to color the points.
+2.  Increase the size of the points.
+3.  Make the axis tick labels the same size (`size = 12`) as the axis titles and give them the color black (`color = "black"`)
+4.  Set the entire plot background to the color `"#FEF8F0"`. Make sure there are no white areas remaining, such as behind the plot panel or under the legend.
+
+```{r}
+midwest2 |>
+  ggplot(aes(popdensity, percollege, fill = state)) +
+  geom_point(
+    # change point size here
+    shape = 21, color = "white", stroke = 0.2
+  ) +
+  scale_x_log10(name = "population density") +
+  scale_y_continuous(name = "percent college educated") +
+  theme_classic(12) +
+  # uncomment after defining four colors in Problem 3
+  #scale_fill_manual(
+  #  values = my_colors
+  #) +
+  theme(
+    # add theme modifications here
+  )
+```
