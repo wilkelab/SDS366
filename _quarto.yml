@@ -55,6 +55,8 @@ website:
             href: slides/getting-things-in-order.qmd
           - text: "Class 13: Figure design"
             href: slides/figure-design.qmd
+          - text: "Class 14: Compound figures"
+            href: slides/compound-figures.qmd
         
       - text: "Worksheets"
         menu:
