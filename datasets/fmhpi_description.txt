@@ -1,0 +1,36 @@
+Downloaded 6/23/2024 from: https://www.freddiemac.com/research/indices/house-price-index
+
+Freddie Mac House Price Index (FMHPI)
+fmhpi.txt
+
+Section Listing
+1. FMHPI Definition
+2. Data file format and field definitions
+
+================================================================================
+Section 1
+================================================================================
+FMHPI Definition
+
+The Freddie Mac House Price Index (FMHPI) provides a measure of typical price inflation for houses within the United States. Values are calculated monthly and released at the end of the following month. For example, the FMHPI for March is published in late April. Series are available at three levels of geographical aggregation: Metropolitan Statistical Area (MSA), state, and national (US). All series begin in January 1975. The national index is defined as a weighted average of the 50 states and Washington, D.C. indices. The FMHPI is based on an ever expanding database of loans purchased by either Freddie Mac or Fannie Mae.
+
+Freddie Mac publishes two indexes, a seasonally adjusted (SA) and non-seasonally adjusted (NSA) house price index for each geographical area. 
+
+For a technical description see: http://www.freddiemac.com/research/pdf/FMHPI.pdf
+
+================================================================================
+Section 2
+================================================================================
+File layout for fmhpi_master_file.csv
+
+Column	Field 		Name				Content	Description
+1	Year		Year				Index year
+2	Month		Month				Index month
+3	GEO_Type	CBSA, State, US			Index geography type: CBSA, State, US
+4	GEO_Name	Geography name			CBSA name, State, USA
+5	GEO_Code	Geography CBSA code		Geography code; missing for states and USA
+6	Index_NSA	Index, non-seasonally adjusted	Non-seasonally adjusted index values
+7	Index_SA	Index, seasonally adjusted	Seasonally adjusted index values
+
+
+The Geo_Name variable corresponds to text "US" for the United States, the United States Postal Service (USPS) state abbreviations for states and MSA name for MSAs. The Geo_Code variable is blank for the US and states and contains the Core Based Statistical Area (CBSA) code for metropolitan statistical areas (MSA).  See https://www.census.gov/geo/reference/gtc/gtc_cbsa.html for additional information on the definition of CBSAs.

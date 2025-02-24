@@ -57,6 +57,8 @@ website:
             href: slides/figure-design.qmd
           - text: "Class 14: Compound figures"
             href: slides/compound-figures.qmd
+          - text: "Class 15: Visualizing trends"
+            href: slides/visualizing-trends.qmd
         
       - text: "Worksheets"
         menu:
