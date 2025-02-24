@@ -1,0 +1,1507 @@
+---
+title: "Visualizing Trends"
+author: "Claus O. Wilke"
+date: last-modified
+format: 
+  revealjs:
+    theme:
+      - default
+      - Wilke-theme.scss
+    auto-stretch: false
+    chalkboard: true
+execute:
+  fig-format: svg
+  fig-asp: 0.618
+  fig-width: 5.5
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+library(cowplot)
+library(ggforce)
+library(here)
+
+# ggplot2 settings so plots scale well for slide size 
+theme_set(theme_gray(14))
+update_geom_defaults("point", list(size = 2))
+update_geom_defaults("line", list(linewidth = 1))
+
+blue_jays <- read_csv(here("datasets", "blue_jays.csv"))
+preprints <- read_csv(here("datasets", "preprints.csv"))
+cars93 <- read_csv(here("datasets", "cars93.csv"))
+
+hpi_trends <- read_csv(here("datasets", "fmhpi.csv")) |>
+  filter(year >= 1980) |> # trends are weird before 1980
+  nest(data = -state) |>
+  mutate(
+    # linear trend
+    fit_lin = map(data, ~lm(hpi ~ date_dec, data = .x)),
+    hpi_trend_lin = map2(fit_lin, data, ~predict(.x, .y)),
+    # log trend
+    fit_log = map(data, ~lm(log(hpi) ~ date_dec, data = .x)),
+    hpi_trend_log = map2(fit_log, data, ~exp(predict(.x, .y)))
+  ) |>
+  select(-fit_lin, -fit_log) |>
+  unnest(cols = c(data, hpi_trend_lin, hpi_trend_log))
+
+co2 <- read_csv(here("datasets", "co2.csv")) |>
+  filter(year >= 1959, year < 2024) # use complete years only
+```
+
+## We visualize linear trends with regression lines
+
+```{r}
+#| label: blue-jays-scatter
+#| fig-width: 6
+#| fig-asp: 0.8 # 3.2/4
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+blue_jays |>
+  ggplot(aes(body_mass_g, head_length_mm)) + 
+  geom_point(aes(fill = "blue jay birds"), pch = 21, color = "white", size = 2.5) +
+  scale_fill_manual(
+    values = c(`blue jay birds` = "black", `regression line` = "black"),
+    limits = c("blue jay birds"),
+    name = NULL,
+    guide = guide_legend(
+      direction = "horizontal"
+    )
+  ) +
+  scale_color_manual(
+    values = c(`blue jay birds` = "black", `regression line` = "black"),
+    limits = c("blue jay birds"),
+    name = NULL
+  ) +
+  scale_x_continuous(name = "body mass (g)", limits = c(58.7, 81.6)) +
+  scale_y_continuous(name = "head length (mm)", limits = c(51.5, 60.8)) +
+  theme_minimal_grid() +
+  theme(
+    legend.position = "top",
+    legend.justification = "right",
+    legend.box.spacing = unit(3.5, "pt"), # distance between legend and plot
+    legend.text = element_text(vjust = 0.6),
+    legend.spacing.x = unit(2, "pt"),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.key.width = unit(10, "pt")
+  )
+```
+
+## We visualize linear trends with regression lines
+
+```{r}
+#| label: blue-jays-scatter-lm
+#| fig-width: 6
+#| fig-asp: 0.8 # 3.2/4
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+blue_jays |>
+  ggplot(aes(body_mass_g, head_length_mm)) + 
+  geom_point(aes(fill = "blue jay birds"), pch = 21, color = "white", size = 2.5) +
+  geom_smooth(aes(color = "regression line"), method = "lm", linewidth = 0.75, se = FALSE, fullrange = TRUE) +
+  scale_fill_manual(
+    values = c(`blue jay birds` = "black", `regression line` = "black"),
+    limits = c("regression line", "blue jay birds"),
+    breaks = c("regression line", "blue jay birds"),
+    labels = c("regression line   ", "blue jay birds"),
+    name = NULL,
+    guide = guide_legend(
+      direction = "horizontal"
+    )
+  ) +
+  scale_color_manual(
+    values = c(`blue jay birds` = "black", `regression line` = "black"),
+    limits = c("regression line", "blue jay birds"),
+    breaks = c("regression line", "blue jay birds"),
+    labels = c("regression line   ", "blue jay birds"),
+    name = NULL
+  ) +
+  scale_x_continuous(name = "body mass (g)", limits = c(58.7, 81.6)) +
+  scale_y_continuous(name = "head length (mm)", limits = c(51.5, 60.8)) +
+  theme_minimal_grid() +
+  theme(
+    legend.position = "top",
+    legend.justification = "right",
+    legend.box.spacing = unit(3.5, "pt"), # distance between legend and plot
+    legend.text = element_text(vjust = 0.6),
+    legend.spacing.x = unit(2, "pt"),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.key.width = unit(10, "pt")
+  )
+```
+
+## We visualize linear trends with regression lines
+
+```{r}
+#| label: blue-jays-scatter-sex
+#| fig-width: 6
+#| fig-asp: 0.8 # 3.2/4
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+blue_jays |>
+  ggplot(aes(body_mass_g, head_length_mm)) + 
+  geom_point(aes(fill = sex), pch = 21, color = "white", size = 2.5) +
+  #geom_smooth(method = "lm", size = 0.75, se = FALSE, color = "black", fullrange = TRUE) +
+  scale_x_continuous(name = "body mass (g)", limits = c(58.7, 81.6)) +
+  scale_y_continuous(name = "head length (mm)", limits = c(51.5, 60.8)) +
+  scale_fill_manual(
+    values = c(F = "#D55E00C0", M = "#0072B2C0"),
+    breaks = c("F", "M"),
+    labels = c("female birds   ", "male birds"),
+    name = NULL,
+    guide = guide_legend(
+      direction = "horizontal"
+    )
+  ) +
+  scale_color_manual(
+    values = c(F = "#D55E00", M = "#0072B2"),
+    breaks = c("F", "M"),
+    labels = c("female birds   ", "male birds"),
+    name = NULL
+  ) +
+  theme_minimal_grid() +
+  theme(
+    legend.position = "top",
+    legend.justification = "right",
+    legend.box.spacing = unit(3.5, "pt"), # distance between legend and plot
+    legend.text = element_text(vjust = 0.6),
+    legend.spacing.x = unit(2, "pt"),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.key.width = unit(10, "pt")
+  )
+```
+
+
+## We visualize linear trends with regression lines
+
+```{r}
+#| label: blue-jays-scatter-sex-line
+#| fig-width: 6
+#| fig-asp: 0.8 # 3.2/4
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+blue_jays |>
+  ggplot(aes(body_mass_g, head_length_mm, color = sex, fill = sex)) + 
+  geom_point(pch = 21, color = "white", size = 2.5) +
+  geom_smooth(method = "lm", linewidth = 0.75, se = FALSE, fullrange = TRUE) +
+  scale_x_continuous(name = "body mass (g)", limits = c(58.7, 81.6)) +
+  scale_y_continuous(name = "head length (mm)", limits = c(51.5, 60.8)) +
+  scale_fill_manual(
+    values = c(F = "#D55E00C0", M = "#0072B2C0"),
+    breaks = c("F", "M"),
+    labels = c("female birds   ", "male birds"),
+    name = NULL,
+    guide = guide_legend(
+      direction = "horizontal",
+      override.aes = list(linetype = 0)
+    )
+  ) +
+  scale_color_manual(
+    values = c(F = "#D55E00", M = "#0072B2"),
+    breaks = c("F", "M"),
+    labels = c("female birds   ", "male birds"),
+    name = NULL
+  ) +
+  theme_minimal_grid() +
+  theme(
+    legend.position = "top",
+    legend.justification = "right",
+    legend.box.spacing = unit(3.5, "pt"), # distance between legend and plot
+    legend.text = element_text(vjust = 0.6),
+    legend.spacing.x = unit(2, "pt"),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.key.width = unit(10, "pt")
+  )
+```
+
+## Exponential trends are linear trends on a log scale
+
+```{r}
+#| label: biorxiv-nofit
+#| fig-width: 7
+#| fig-cap: "&nbsp;"
+#| out-width: "75%"
+biorxiv_growth <- preprints |>
+  filter(archive == "bioRxiv", count > 0)
+
+ggplot(biorxiv_growth, aes(date_dec, count)) + 
+  geom_line(aes(color = "data"), linewidth = .5) +
+  geom_point(aes(fill = "data"), color = "white", shape = 21, size = 2) +
+  scale_y_continuous(
+    limits = c(0, 1550),
+    breaks = c(0, 500, 1000, 1500),
+    expand = c(0, 0),
+    name = "preprints / month"
+  ) + 
+  scale_x_continuous(name = NULL) +
+  scale_color_manual(
+    name = NULL,
+    values = "#0072B2",
+    breaks = "data",
+    labels = "actual counts",
+    guide = guide_legend(
+      override.aes = list(
+        linetype = 0
+      )
+    )
+  ) +
+  scale_fill_manual(
+    name = NULL,
+    values = "#0072B2",
+    breaks = "data",
+    labels = "actual counts"
+  ) +
+  theme_half_open() +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(.05, 1),
+    legend.justification = c(0, 1),
+    legend.spacing.x = unit(3, "pt"),
+    legend.title = element_blank() 
+  )
+```
+
+## Exponential trends are linear trends on a log scale
+
+```{r}
+#| label: biorxiv-expfit
+#| fig-width: 7
+#| fig-cap: "&nbsp;"
+#| out-width: "75%"
+biorxiv_growth <- preprints |>
+  filter(archive == "bioRxiv", count > 0)
+
+expfit.out <- nls(
+  count ~ a*exp(b*(date_dec-2014)),
+  data = biorxiv_growth,
+  start = c(a = 60.004, b = .773)
+)
+linfit.out <- nls(
+  log(count) ~ log(a) + b*(date_dec-2014),
+  data = biorxiv_growth,
+  start = c(a = 42.576, b = .878)
+)
+date_seq = seq(min(biorxiv_growth$date_dec), max(biorxiv_growth$date_dec), by = 0.1)
+expfit.df <- data.frame(
+  date_dec = date_seq,
+  count = predict(expfit.out, data.frame(date_dec = date_seq))
+)
+linfit.df <- data.frame(
+  date_dec = date_seq,
+  count = exp(predict(linfit.out, data.frame(date_dec = date_seq)))
+)
+
+ggplot(biorxiv_growth, aes(date_dec, count)) + 
+  geom_line(data = expfit.df, aes(color = "expfit"), linewidth = .5, linetype = 2) +
+  geom_point(aes(fill = "expfit"), shape = NA, na.rm = TRUE) + # dummy for legend
+  geom_line(aes(color = "data"), linewidth = .5) +
+  geom_point(aes(fill = "data"), color = "white", shape = 21, size = 2) +
+  scale_y_continuous(
+    limits = c(0, 1550),
+    breaks = c(0, 500, 1000, 1500),
+    expand = c(0, 0),
+    name = "preprints / month"
+  ) + 
+  scale_x_continuous(name = NULL) +
+  scale_color_manual(
+    name = NULL,
+    values = c(data = "#0072B2", expfit = "black"),
+    breaks = c("data", "expfit"),
+    labels = c("actual counts", "exponential fit"),
+    guide = guide_legend(
+      override.aes = list(
+        color = c("white", "black"),
+        shape = c(21, NA),
+        linetype = c(0, 2)
+      )
+    )
+  ) +
+  scale_fill_manual(
+    name = NULL,
+    values = c(data = "#0072B2", expfit = "black"),
+    breaks = c("data", "expfit"),
+    labels = c("actual counts", "exponential fit")
+  ) +
+  theme_half_open() +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(.05, 1),
+    legend.justification = c(0, 1),
+    legend.spacing.x = unit(3, "pt"),
+    legend.title = element_blank() 
+  )
+```
+
+## Exponential trends are linear trends on a log scale
+
+```{r}
+#| label: biorxiv-expfit-logscale
+#| fig-width: 7
+#| fig-cap: "&nbsp;"
+#| out-width: "75%"
+biorxiv_growth <- preprints |>
+  filter(archive == "bioRxiv", count > 0)
+
+expfit.out <- nls(
+  count ~ a*exp(b*(date_dec-2014)),
+  data = biorxiv_growth,
+  start = c(a = 60.004, b = .773)
+)
+linfit.out <- nls(
+  log(count) ~ log(a) + b*(date_dec-2014),
+  data = biorxiv_growth,
+  start = c(a = 42.576, b = .878)
+)
+date_seq = seq(min(biorxiv_growth$date_dec), max(biorxiv_growth$date_dec), by = 0.1)
+expfit.df <- data.frame(
+  date_dec = date_seq,
+  count = predict(expfit.out, data.frame(date_dec = date_seq))
+)
+linfit.df <- data.frame(
+  date_dec = date_seq,
+  count = exp(predict(linfit.out, data.frame(date_dec = date_seq)))
+)
+
+ggplot(biorxiv_growth, aes(date_dec, count)) + 
+  geom_line(data = expfit.df, aes(color = "expfit"), linewidth = .5, linetype = 2) +
+  geom_point(aes(fill = "expfit"), shape = NA, na.rm = TRUE) + # dummy for legend
+  geom_line(aes(color = "data"), linewidth = .5) +
+  geom_point(aes(fill = "data"), color = "white", shape = 21, size = 2) +
+  scale_y_log10(
+    limits = c(30, 1670),
+    breaks = c(10*(3:9), 100*(1:9), 1000*(1:2)),
+    labels = c(
+      "", "", "50", "", "", "", "", "100", "", "", "", "500",
+      "", "", "", "", "1000", ""
+    ),
+    expand = c(0, 0),
+    name = "preprints / month"
+  ) + 
+  scale_x_continuous(name = NULL) +
+  scale_color_manual(
+    name = NULL,
+    values = c(data = "#0072B2", expfit = "black"),
+    breaks = c("data", "expfit"),
+    labels = c("actual counts", "exponential fit"),
+    guide = guide_legend(
+      override.aes = list(
+        color = c("white", "black"),
+        shape = c(21, NA),
+        linetype = c(0, 2)
+      )
+    )
+  ) +
+  scale_fill_manual(
+    name = NULL,
+    values = c(data = "#0072B2", expfit = "black"),
+    breaks = c("data", "expfit"),
+    labels = c("actual counts", "exponential fit")
+  ) +
+  theme_half_open() +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(.05, 1),
+    legend.justification = c(0, 1),
+    legend.spacing.x = unit(3, "pt"),
+    legend.title = element_blank() 
+  )
+```
+
+## Exponential trends are linear trends on a log scale
+
+```{r}
+#| label: biorxiv-logscale
+#| fig-width: 7
+#| fig-cap: "&nbsp;"
+#| out-width: "75%"
+ggplot(biorxiv_growth, aes(date_dec, count)) +
+  geom_line(data = expfit.df, aes(color = "expfit"), linewidth = .5, linetype = 2) +
+  geom_point(aes(fill = "expfit"), shape = NA, na.rm = TRUE) + # dummy for legend
+  geom_line(data = linfit.df, aes(color = "linfit"), linewidth = .5) +
+  geom_point(aes(fill = "linfit"), shape = NA, na.rm = TRUE) + # dummy for legend
+  geom_line(aes(color = "data"), linewidth = .5) +
+  geom_point(aes(fill = "data"), color = "white", shape = 21, size = 2) +
+  scale_y_log10(
+    limits = c(30, 1670),
+    breaks = c(10*(3:9), 100*(1:9), 1000*(1:2)),
+    labels = c(
+      "", "", "50", "", "", "", "", "100", "", "", "", "500",
+      "", "", "", "", "1000", ""
+    ),
+    expand = c(0, 0),
+    name = "preprints / month"
+  ) + 
+  scale_x_continuous(name = NULL) +
+  scale_color_manual(
+    name = NULL,
+    values = c(data = "#0072B2", expfit = "black", linfit = "black"),
+    breaks = c("data", "expfit", "linfit"),
+    labels = c("actual counts", "exponential fit", "linear fit, log-transformed data"),
+    guide = guide_legend(
+      override.aes = list(
+        color = c("white", "black", "black"),
+        shape = c(21, NA, NA),
+        linetype = c(0, 2, 1)
+      )
+    )
+  ) +
+  scale_fill_manual(
+    name = NULL,
+    values = c(data = "#0072B2", expfit = "black", linfit = "black"),
+    breaks = c("data", "expfit", "linfit"),
+    labels = c("actual counts", "exponential fit", "linear fit, log-transformed data")
+  ) +
+  theme_half_open() +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(.05, 1),
+    legend.justification = c(0, 1),
+    legend.spacing.x = unit(3, "pt"),
+    legend.title = element_blank()
+  )
+```
+
+## Exponential trends are linear trends on a log scale
+
+```{r}
+#| label: biorxiv-logscale-doublefit
+#| fig-width: 7
+#| fig-cap: "&nbsp;"
+#| out-width: "75%"
+ggplot(biorxiv_growth, aes(date_dec, count)) +
+  geom_line(data = expfit.df, aes(color = "expfit"), linewidth = .5, linetype = 2) +
+  geom_point(aes(fill = "expfit"), shape = NA, na.rm = TRUE) + # dummy for legend
+  geom_line(data = linfit.df, aes(color = "linfit"), linewidth = .5) +
+  geom_point(aes(fill = "linfit"), shape = NA, na.rm = TRUE) + # dummy for legend
+  geom_line(aes(color = "data"), linewidth = .5) +
+  geom_point(aes(fill = "data"), color = "white", shape = 21, size = 2) +
+  scale_y_continuous(
+    limits = c(0, 1550),
+    breaks = c(0, 500, 1000, 1500),
+    expand = c(0, 0),
+    name = "preprints / month"
+  ) + 
+  scale_x_continuous(name = NULL) +
+  scale_color_manual(
+    name = NULL,
+    values = c(data = "#0072B2", expfit = "black", linfit = "black"),
+    breaks = c("data", "expfit", "linfit"),
+    labels = c("actual counts", "exponential fit", "linear fit, log-transformed data"),
+    guide = guide_legend(
+      override.aes = list(
+        color = c("white", "black", "black"),
+        shape = c(21, NA, NA),
+        linetype = c(0, 2, 1)
+      )
+    )
+  ) +
+  scale_fill_manual(
+    name = NULL,
+    values = c(data = "#0072B2", expfit = "black", linfit = "black"),
+    breaks = c("data", "expfit", "linfit"),
+    labels = c("actual counts", "exponential fit", "linear fit, log-transformed data")
+  ) +
+  theme_half_open() +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(.05, 1),
+    legend.justification = c(0, 1),
+    legend.spacing.x = unit(3, "pt"),
+    legend.title = element_blank()
+  )
+```
+
+
+## Reminder: The Grammar-of-Graphics pipeline
+
+::: {.move-down-1em}
+![](../assets/general/grammar-of-graphics.svg){width="90%" fig-align="center"}
+:::
+
+::: {.small-font .move-up-1em}
+Scale transformations are applied before statistical transformations
+:::
+
+# Detrending: Removing the underlying trend
+
+## Time series often show long-term persistent trends
+
+:::: {.fragment}
+
+::: {.small-font}
+Housing prices follow long-term exponential growth, overlaid with boom/bust cycles
+:::
+
+```{r}
+#| label: hpi-trends-CA
+#| fig-width: 6
+#| fig-cap: "&nbsp;"
+#| out-width: "70%"
+hpi_trends |>
+  filter(state == "California") |>
+  ggplot(aes(date_dec, hpi)) +
+  geom_line(aes(y = hpi_trend_log), color = "grey50", linewidth = 0.4) +
+  geom_line(color = "#0072B2", linewidth = 0.75) +
+  scale_x_continuous(name = NULL) +
+  scale_y_log10(
+    name = "House Price Index (Dec. 2000 = 100)",
+    breaks = c(30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400),
+    labels = c("", "", "50", "", "", "", "", "100", "", "300", "")
+  ) +
+  theme_minimal_hgrid() +
+  theme(
+    axis.line.x = element_line(color = "grey50"),
+    axis.ticks.x = element_line(color = "grey50"),
+    axis.ticks.y = element_blank(),
+    axis.text.y = element_text(margin = margin(0, 0, 0, 0))
+  )
+```
+
+::: {.absolute-bottom-right .tiny-font}
+House Price Index (HPI) for California. Source: Freddie Mac
+:::
+::::
+
+## Raw time series can be misleading
+
+```{r}
+#| label: hpi-no-trendline
+#| fig-width: 6
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+hpi_trends |>
+  filter(state %in% c("California", "Nevada", "West Virginia", "Texas")) |>
+  ggplot(aes(date_dec, hpi)) +
+  geom_line(color = "#0072B2", linewidth = 0.75) +
+  scale_x_continuous(name = NULL) +
+  scale_y_log10(
+    name = "House Price Index (Dec. 2000 = 100)",
+    breaks = c(30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400),
+    labels = c("", "", "50", "", "", "", "", "100", "", "300", "")
+  ) +
+  facet_wrap(~state, scales = "free_x") +
+  theme_minimal_hgrid() +
+  theme(
+    strip.text = element_text(size = 12),
+    strip.background = element_rect(fill = "grey85"),
+    axis.line.x = element_line(color = "grey50"),
+    axis.ticks.x = element_line(color = "grey50"),
+    axis.ticks.y = element_blank(),
+    axis.text.y = element_text(margin = margin(0, 0, 0, 0))
+  )
+```
+
+
+::: {.fragment .small-font .move-up-2em}
+Did housing prices in California decline substantially from 1990 to 1998?
+:::
+
+::: {.fragment .small-font}
+Did housing prices in West Virginia recover by 2020?
+:::
+
+::: {.absolute-bottom-right .tiny-font}
+US States House Price Index (HPI). Source: Freddie Mac
+:::
+
+## Comparing the raw time series to the trendline helps
+
+```{r}
+#| label: hpi-trends
+#| fig-width: 6
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+hpi_trends |>
+  filter(state %in% c("California", "Nevada", "West Virginia", "Texas")) |>
+  ggplot(aes(date_dec, hpi)) +
+  geom_line(aes(y = hpi_trend_log), color = "grey50", linewidth = 0.4) +
+  geom_line(color = "#0072B2", linewidth = 0.75) +
+  scale_x_continuous(name = NULL) +
+  scale_y_log10(
+    name = "House Price Index (Dec. 2000 = 100)",
+    breaks = c(30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400),
+    labels = c("", "", "50", "", "", "", "", "100", "", "300", "")
+  ) +
+  facet_wrap(~state, scales = "free_x") +
+  theme_minimal_hgrid() +
+  theme(
+    strip.text = element_text(size = 12),
+    strip.background = element_rect(fill = "grey85"),
+    axis.line.x = element_line(color = "grey50"),
+    axis.ticks.x = element_line(color = "grey50"),
+    axis.ticks.y = element_blank(),
+    axis.text.y = element_text(margin = margin(0, 0, 0, 0))
+  )
+```
+
+::: {.small-font .move-up-2em}
+Did housing prices in California decline substantially from 1990 to 1998?
+:::
+
+::: {.small-font}
+Did housing prices in West Virginia recover by 2020?
+:::
+
+::: {.absolute-bottom-right .tiny-font}
+US States House Price Index (HPI). Source: Freddie Mac
+:::
+
+## Even better: Remove underlying trend
+
+```{r}
+#| label: hpi-detrended
+#| fig-width: 6
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+hpi_trends |>
+  filter(state %in% c("California", "Nevada", "West Virginia", "Texas")) |>
+  ggplot(aes(date_dec, hpi/hpi_trend_log)) +
+  geom_hline(yintercept = 1, color = "grey50", linewidth = 0.4) +
+  geom_line(color = "#0072B2", linewidth = 0.75) +
+  scale_x_continuous(name = NULL) +
+  scale_y_log10(
+    name = "House Price Index (detrended)",
+    limits = c(0.5, 2),
+    breaks = c(0.5, 0.7, 1, 1.5, 2)
+  ) +
+  facet_wrap(~state, scales = "free_x") +
+  theme_minimal_hgrid() +
+  theme(
+    strip.text = element_text(size = 12),
+    strip.background = element_rect(fill = "grey85"),
+    axis.line.x = element_line(color = "grey50"),
+    axis.ticks.x = element_line(color = "grey50"),
+    axis.ticks.y = element_blank(),
+    axis.text.y = element_text(margin = margin(0, 0, 0, 0))
+  )
+```
+
+::: {.small-font .move-up-2em}
+Did housing prices in California decline substantially from 1990 to 1998? — yes
+:::
+
+::: {.small-font}
+Did housing prices in West Virginia recover by 2020? — no
+:::
+
+::: {.absolute-bottom-right .tiny-font}
+US States House Price Index (HPI). Source: Freddie Mac
+:::
+
+## Exponential versus linear de-trending
+
+::: {.small-font .fragment}
+Two choices:
+:::
+
+::: {.small-font .incremental}
+- Fit linear trendline, remove by subtraction
+- Fit exponential trendline (linear in log space), remove by division
+:::
+
+::: {.small-font .fragment}
+It is critical to make the correct choice for the dataset at hand
+:::
+
+::: {.small-font .fragment}
+Any type of growth or decay process (change is proportional to present value) **must** be analyzed in log space
+:::
+
+## Housing-price analysis in linear space looks wrong
+
+```{r}
+#| label: hpi-trends-linear
+#| fig-width: 6
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+hpi_trends |>
+  filter(state %in% c("California", "Nevada", "West Virginia", "Texas")) |>
+  ggplot(aes(date_dec, hpi)) +
+  geom_line(aes(y = hpi_trend_lin), color = "grey50", linewidth = 0.4) +
+  geom_line(color = "#0072B2", linewidth = 0.75) +
+  scale_x_continuous(name = NULL) +
+  scale_y_continuous(
+    name = "House Price Index (Dec. 2000 = 100)",
+    breaks = c(50, 100, 150, 200, 250, 300, 350),
+    labels = c("", "100", "", "200", "", "300", "")
+  ) +
+  facet_wrap(~state, scales = "free_x") +
+  theme_minimal_hgrid() +
+  theme(
+    strip.text = element_text(size = 12),
+    strip.background = element_rect(fill = "grey85"),
+    axis.line.x = element_line(color = "grey50"),
+    axis.ticks.x = element_line(color = "grey50"),
+    axis.ticks.y = element_blank(),
+    axis.text.y = element_text(margin = margin(0, 0, 0, 0))
+  )
+```
+
+::: {.absolute-bottom-right .tiny-font}
+US States House Price Index (HPI). Source: Freddie Mac
+:::
+
+## Linear de-trending creates systematic deviations
+
+```{r}
+#| label: hpi-trends-linear-detrended
+#| fig-width: 6
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+hpi_trends |>
+  filter(state %in% c("California", "Nevada", "West Virginia", "Texas")) |>
+  ggplot(aes(date_dec, hpi - hpi_trend_lin)) +
+  geom_hline(yintercept = 1, color = "grey50", linewidth = 0.4) +
+  geom_line(color = "#0072B2", linewidth = 0.75) +
+  scale_x_continuous(name = NULL) +
+  scale_y_continuous(
+    name = "House Price Index (detrended)",
+  ) +
+  facet_wrap(~state, scales = "free_x") +
+  theme_minimal_hgrid() +
+  theme(
+    strip.text = element_text(size = 12),
+    strip.background = element_rect(fill = "grey85"),
+    axis.line.x = element_line(color = "grey50"),
+    axis.ticks.x = element_line(color = "grey50"),
+    axis.ticks.y = element_blank(),
+    axis.text.y = element_text(margin = margin(0, 0, 0, 0))
+  )
+```
+
+::: {.absolute-bottom-right .tiny-font}
+US States House Price Index (HPI). Source: Freddie Mac
+:::
+
+## Log-space de-trending one more time for comparison
+
+```{r}
+#| label: hpi-detrended2
+#| fig-width: 6
+#| fig-cap: "&nbsp;"
+#| out-width: "65%"
+hpi_trends |>
+  filter(state %in% c("California", "Nevada", "West Virginia", "Texas")) |>
+  ggplot(aes(date_dec, hpi/hpi_trend_log)) +
+  geom_hline(yintercept = 1, color = "grey50", linewidth = 0.4) +
+  geom_line(color = "#0072B2", linewidth = 0.75) +
+  scale_x_continuous(name = NULL) +
+  scale_y_log10(
+    name = "House Price Index (detrended)",
+    limits = c(0.5, 2),
+    breaks = c(0.5, 0.7, 1, 1.5, 2)
+  ) +
+  facet_wrap(~state, scales = "free_x") +
+  theme_minimal_hgrid() +
+  theme(
+    strip.text = element_text(size = 12),
+    strip.background = element_rect(fill = "grey85"),
+    axis.line.x = element_line(color = "grey50"),
+    axis.ticks.x = element_line(color = "grey50"),
+    axis.ticks.y = element_blank(),
+    axis.text.y = element_text(margin = margin(0, 0, 0, 0))
+  )
+```
+
+::: {.absolute-bottom-right .tiny-font}
+US States House Price Index (HPI). Source: Freddie Mac
+:::
+
+# Accounting for seasonal fluctuations
+
+## Many time series show regular seasonal fluctuations
+
+```{r}
+#| label: keeling-curve
+#| fig-width: 6
+#| fig-cap: "&nbsp;"
+#| out-width: "70%"
+# convert to time series object
+co2_ts <- ts(
+  data = co2$co2_ave,
+  start = 1959,       # data starts Jan 1959
+  end = c(2023, 12),  # data ends Dec 2023
+  frequency = 12      # we have 12 time points per year
+)
+
+# detrend via STL method
+# Seasonal Decomposition of Time Series by Loess
+# s.window is the span of the loess window; should be odd and at least 7
+co2_stl <- stl(co2_ts, s.window = 7)
+
+co2_detrended <- mutate(
+  co2,
+  seasonal = t(co2_stl$time.series)[1, ],
+  trend = t(co2_stl$time.series)[2, ],
+  remainder = t(co2_stl$time.series)[3, ]
+)
+
+ggplot(co2_detrended, aes(date_dec, co2_ave)) +
+  geom_line(aes(color = "monthly"), linewidth = 0.6) +
+  geom_line(aes(y = trend, color = "trend"), linewidth = 0.6) +
+  scale_color_manual(
+    name = NULL,
+    values = c(monthly = "#0072B2", trend = "#D55E00"),
+    breaks = c("monthly", "trend"),
+    labels = c("monthly average  ", "long-term trend"),
+    guide = guide_legend(
+      override.aes = list(
+        linewidth = 1
+      )
+    )
+  ) +
+  scale_y_continuous(
+    limits = c(295, 430),
+    breaks = c(300, 325, 350, 375, 400, 425),
+    labels = c("300", "", "350", "", "400", ""),
+    name = parse(text = "`CO`[2]*` concentration (ppm)`"),
+    expand = c(0, 0)
+  ) +
+  scale_x_continuous(
+    limits = c(1958, 2024),
+    name = NULL,
+    breaks = c(1960, 1970, 1980, 1990, 2000, 2010, 2020),
+    labels = c("1960", "", "1980", "", "2000", "", "2020"),
+    expand = c(0, 0)
+  ) +
+  theme_minimal_grid(14) +
+  theme(
+    legend.position = "top",
+    legend.justification = "right",
+    legend.box.spacing = unit(3.5, "pt"), # distance between legend and plot
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.key.width = unit(14, "pt")
+  )
+```
+
+::: {.absolute-bottom-right .tiny-font}
+CO<sub>2</sub> abundance in the atmosphere over time. Source: NOAA Global Monitoring Laboratory
+:::
+
+## Many time series show regular seasonal fluctuations
+
+```{r}
+#| label: keeling-curve-zoomed
+#| fig-width: 6
+#| fig-cap: "&nbsp;"
+#| out-width: "70%"
+ggplot(co2_detrended, aes(date_dec, co2_ave)) +
+  geom_line(aes(color = "monthly"), linewidth = 1, na.rm = TRUE) +
+  geom_line(aes(y = trend, color = "trend"), linewidth = 1, na.rm = TRUE) +
+  scale_color_manual(
+    name = NULL,
+    values = c(monthly = "#0072B2", trend = "#D55E00"),
+    breaks = c("monthly", "trend"),
+    labels = c("monthly average  ", "long-term trend")
+  ) +
+  scale_y_continuous(
+    limits = c(383, 404),
+    breaks = c(385, 390, 395, 400),
+    name = parse(text = "`CO`[2]*` concentration (ppm)`"),
+    expand = c(0, 0)
+  ) +
+  scale_x_continuous(
+    limits = c(2009.5, 2014.5),
+    name = NULL,
+    breaks = 2010:2014,
+    expand = c(0, 0)
+  ) +
+  theme_minimal_grid(14) +
+  theme(
+    legend.position = "top",
+    legend.justification = "right",
+    legend.box.spacing = unit(3.5, "pt"), # distance between legend and plot
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.key.width = unit(14, "pt")
+  )
+```
+
+::: {.absolute-bottom-right .tiny-font}
+CO<sub>2</sub> abundance in the atmosphere over time. Source: NOAA Global Monitoring Laboratory
+:::
+
+## Seasonal Decomposition of Time Series by Loess (STL)
+
+We can use STL to decompose a time series into:
+
+1. long-term trend
+
+2. seasonal effect
+
+3. remainder (noise)
+
+## {#keeling-curve-decomposition data-menu-title="Keeling curve decomposition"}
+
+::: {.move-up-1em}
+```{r}
+#| label: keeling-curve-decomposition
+#| fig-width: 9
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+facet_labels <- c("monthly average", "long-term trend", "seasonal fluctuations", "remainder")
+
+co2_detrended |>
+  rename(
+    "monthly average" = co2_ave,
+    "long-term trend" = trend,
+    "seasonal fluctuations" = seasonal
+  ) |>
+  select(date_dec, `monthly average`, `seasonal fluctuations`, `long-term trend`, remainder) |>
+  pivot_longer(-date_dec, names_to = "variable", values_to = "value") |>
+  mutate(variable = factor(variable, levels = facet_labels)) |>
+  filter(date_dec >= 1989) |>
+  ggplot(aes(date_dec, value)) +
+  geom_line(color = "#0072B2", linewidth = 0.6, na.rm = TRUE) +
+  geom_point( # ghost points for scale range
+    data = data.frame(
+      variable = factor(
+        rep(facet_labels, each = 2),
+        levels = facet_labels
+      ),
+      x = 1990,
+      y = c(324, 419, 324, 419, -5, 5, -1, 1)
+    ),
+    aes(x, y),
+    color = NA,
+    na.rm = TRUE
+  ) +
+  scale_y_continuous(
+    name = parse(text = "`CO`[2]*` concentration (ppm)`"),
+    expand = c(0, 0)
+  ) +
+  scale_x_continuous(
+    limits = c(1989, 2023.2),
+    name = NULL,
+    breaks = c(1990, 1995, 2000, 2005, 2010, 2015, 2020),
+    labels = c("1990", "", "2000", "", "2010", "", "2020"),
+    expand = c(0, 0)
+  ) +
+  facet_wrap(facets = vars(variable), ncol = 1, scales = "free") +
+  theme_minimal_grid() +
+  theme(
+    plot.margin = margin(3, 1.5, 3, 1.5),
+    strip.text = element_text(size = 12)
+  )
+```
+:::
+
+::: {.fragment .smaller-font .move-up-2em}
+Magnitude of remainder should be small compared to magnitude of seasonal fluctuations
+:::
+
+## {#keeling-curve-decomposition-zoomed data-menu-title="Keeling curve decomposition zoomed"}
+
+::: {.move-up-1em}
+```{r}
+#| label: keeling-curve-decomposition-zoomed
+#| fig-width: 9
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+facet_labels <- c("monthly average", "long-term trend", "seasonal fluctuations", "remainder")
+
+co2_detrended |>
+  rename(
+    "monthly average" = co2_ave,
+    "long-term trend" = trend,
+    "seasonal fluctuations" = seasonal
+  ) |>
+  select(date_dec, `monthly average`, `seasonal fluctuations`, `long-term trend`, remainder) |>
+  pivot_longer(-date_dec, names_to = "variable", values_to = "value") |>
+  mutate(variable = factor(variable, levels = facet_labels)) |>
+  filter(date_dec > 2009.5 & date_dec < 2014.5) |>
+  ggplot(aes(date_dec, value)) +
+  geom_line(color = "#0072B2", linewidth = 0.6) +
+  geom_point( # ghost points for scale range
+    data = data.frame(
+      variable = factor(
+        rep(facet_labels, each = 2),
+        levels = facet_labels
+      ),
+      x = 2012,
+      y = c(383, 404, 383, 404, -5, 5, -1, 1)
+    ),
+    aes(x, y),
+    color = NA,
+    na.rm = TRUE
+  ) +
+  scale_y_continuous(
+    name = parse(text = "`CO`[2]*` concentration (ppm)`"),
+    expand = c(0, 0)
+  ) +
+  scale_x_continuous(
+    limits = c(2009.5, 2014.5),
+    name = NULL,
+    breaks = 2010:2014,
+    expand = c(0, 0)
+  ) +
+  facet_wrap(facets = vars(variable), ncol = 1, scales = "free") +
+  theme_minimal_grid() +
+  theme(
+    plot.margin = margin(3, 1.5, 3, 1.5),
+    strip.text = element_text(size = 12)
+  )
+```
+:::
+
+::: {.smaller-font .move-up-2em}
+Magnitude of remainder should be small compared to magnitude of seasonal fluctuations
+:::
+
+## Other strategies for adjusting for seasonality
+
+::: {.fragment .small-font}
+Simpler approaches:
+
+- Fit model with fixed or random effects for specific seasons
+:::
+
+::: {.fragment .small-font}
+More complex approaches:
+
+- Perform Fourier or wavelet decomposition
+:::
+
+::: {.fragment .small-font}
+All of these are beyond the scope of this class
+:::
+
+<!-- Segment ends here -->
+
+# Creating trendlines in **ggplot2**
+
+## Getting the data
+
+::: {.small-font}
+First dataset: `blue_jays`
+:::
+
+::: {.tiny-font}
+```{r}
+#| echo: true
+blue_jays <- read_csv("https://wilkelab.org/SDS366/datasets/blue_jays.csv")
+blue_jays
+```
+:::
+
+## Getting the data
+
+::: {.small-font}
+Second dataset: `cars93`
+:::
+
+::: {.tiny-font}
+```{r}
+#| echo: true
+cars93 <- read_csv("https://wilkelab.org/SDS366/datasets/cars93.csv")
+cars93
+```
+:::
+
+## We add trend lines with `geom_smooth()`
+
+::: {.tiny-font}
+```{r}
+#| label: blue-jays-scatter-gg
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(blue_jays) +
+  aes(body_mass_g, head_length_mm) + 
+  geom_point() + 
+  theme_bw()
+```
+:::
+
+::: {.small-font .move-up-1em}
+Scatter plot only
+:::
+
+## We add trend lines with `geom_smooth()`
+
+::: {.tiny-font}
+```{r}
+#| label: blue-jays-scatter-gg-smooth
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(blue_jays) +
+  aes(body_mass_g, head_length_mm) + 
+  geom_point() + 
+  geom_smooth() +
+  theme_bw()
+```
+:::
+
+::: {.small-font .move-up-1em}
+Scatter plot with loess smooth
+:::
+
+## We add trend lines with `geom_smooth()`
+
+::: {.tiny-font}
+```{r}
+#| label: blue-jays-scatter-gg-lm
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(blue_jays) +
+  aes(body_mass_g, head_length_mm) + 
+  geom_point() + 
+  geom_smooth(
+    # smooth using linear model
+    method = "lm"
+  ) +
+  theme_bw()
+```
+:::
+
+::: {.small-font .move-up-1em}
+Scatter plot with linear regression
+:::
+
+## We add trend lines with `geom_smooth()`
+
+::: {.tiny-font}
+```{r}
+#| label: blue-jays-scatter-gg-lm-nose
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(blue_jays) +
+  aes(body_mass_g, head_length_mm) + 
+  geom_point() + 
+  geom_smooth(
+    # smooth using linear model
+    method = "lm",
+    # suppress confidence band
+    se = FALSE
+  ) +
+  theme_bw()
+```
+:::
+
+::: {.small-font .move-up-1em}
+Scatter plot with linear regression, no confidence band
+:::
+
+## We add trend lines with `geom_smooth()`
+
+::: {.tiny-font}
+```{r}
+#| label: blue-jays-scatter-gg-sex
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(blue_jays) +
+  aes(
+    body_mass_g, head_length_mm,
+    color = sex
+  ) + 
+  geom_point() + 
+  geom_smooth(
+    # smooth using linear model
+    method = "lm",
+    # suppress confidence band
+    se = FALSE
+  ) +
+  theme_bw()
+```
+:::
+
+::: {.small-font .move-up-1em}
+Scatter plot with linear regression by sex
+:::
+
+
+# Linear regression can be nonsensical
+
+## Example: Fuel-tank capacity versus price in cars
+
+::: {.tiny-font}
+```{r}
+#| label: cars-lm
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(cars93) +
+  aes(x = Price, y = Fuel.tank.capacity) + 
+  geom_point() + 
+  geom_smooth(
+    # smooth using linear model
+    method = "lm",
+    # suppress confidence band
+    se = FALSE
+  ) +
+  theme_bw()
+```
+:::
+
+::: {.fragment .small-font .move-up-1em}
+Do more expensive cars have a larger fuel tank?
+:::
+
+## Example: Fuel-tank capacity versus price in cars
+
+::: {.tiny-font}
+```{r}
+#| label: cars-loess
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(cars93) +
+  aes(x = Price, y = Fuel.tank.capacity) + 
+  geom_point() +
+  # default: loess smoothing
+  geom_smooth(
+    se = FALSE
+  ) +
+  theme_bw()
+```
+:::
+
+## Example: Fuel-tank capacity versus price in cars
+
+::: {.tiny-font}
+```{r}
+#| label: cars-loess2
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(cars93) +
+  aes(x = Price, y = Fuel.tank.capacity) + 
+  geom_point() +
+  # loess smoothing
+  geom_smooth(
+    se = FALSE,
+    method = "loess",
+    formula = y ~ x
+  ) +
+  theme_bw()
+```
+:::
+
+::: {.fragment .small-font .move-up-1em}
+Caution: Exact shape of smoothing line depends on method details
+:::
+
+## Example: Fuel-tank capacity versus price in cars
+
+::: {.tiny-font}
+```{r}
+#| label: cars-loess3
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(cars93) +
+  aes(x = Price, y = Fuel.tank.capacity) + 
+  geom_point() +
+  # loess smoothing
+  geom_smooth(
+    se = FALSE,
+    method = "loess",
+    formula = y ~ x,
+    span = 0.25
+  ) +
+  theme_bw()
+```
+:::
+
+::: {.small-font .move-up-1em}
+Caution: Exact shape of smoothing line depends on method details
+:::
+
+## Example: Fuel-tank capacity versus price in cars
+
+::: {.tiny-font}
+```{r}
+#| label: cars-loess4
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(cars93) +
+  aes(x = Price, y = Fuel.tank.capacity) + 
+  geom_point() +
+  # loess smoothing
+  geom_smooth(
+    se = FALSE,
+    method = "loess",
+    formula = y ~ x,
+    span = 0.75 # default value
+  ) +
+  theme_bw()
+```
+:::
+
+::: {.small-font .move-up-1em}
+Caution: Exact shape of smoothing line depends on method details
+:::
+
+## Example: Fuel-tank capacity versus price in cars
+
+::: {.tiny-font}
+```{r}
+#| label: cars-loess5
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(cars93) +
+  aes(x = Price, y = Fuel.tank.capacity) + 
+  geom_point() +
+  # loess smoothing
+  geom_smooth(
+    se = FALSE,
+    method = "loess",
+    formula = y ~ x,
+    span = 1.0
+  ) +
+  theme_bw()
+```
+:::
+
+::: {.small-font .move-up-1em}
+Caution: Exact shape of smoothing line depends on method details
+:::
+
+## Example: Fuel-tank capacity versus price in cars
+
+::: {.tiny-font}
+```{r}
+#| label: cars-loess6
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(cars93) +
+  aes(x = Price, y = Fuel.tank.capacity) + 
+  geom_point() +
+  # loess smoothing
+  geom_smooth(
+    se = FALSE,
+    method = "loess",
+    formula = y ~ x,
+    span = 1.5
+  ) +
+  theme_bw()
+```
+:::
+
+::: {.small-font .move-up-1em}
+Caution: Exact shape of smoothing line depends on method details
+:::
+
+## Example: Fuel-tank capacity versus price in cars
+
+::: {.tiny-font}
+```{r}
+#| label: cars-gam
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(cars93) +
+  aes(x = Price, y = Fuel.tank.capacity) + 
+  geom_point() +
+  # cubic spline, 5 knots
+  geom_smooth(
+    se = FALSE,
+    method = "gam",
+    formula = y ~ s(x, k = 5, bs = 'cr')
+  ) +
+  theme_bw()
+```
+:::
+
+::: {.small-font .move-up-1em}
+Caution: Exact shape of smoothing line depends on method details
+:::
+
+## Example: Fuel-tank capacity versus price in cars
+
+::: {.tiny-font}
+```{r}
+#| label: cars-gam2
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(cars93) +
+  aes(x = Price, y = Fuel.tank.capacity) + 
+  geom_point() +
+  # thin-plate spline, 3 knots
+  geom_smooth(
+    se = FALSE,
+    method = "gam",
+    formula = y ~ s(x, k = 3)
+  ) +
+  theme_bw()
+```
+:::
+
+::: {.small-font .move-up-1em}
+Caution: Exact shape of smoothing line depends on method details
+:::
+
+## Example: Fuel-tank capacity versus price in cars
+
+::: {.tiny-font}
+```{r}
+#| label: cars-gam3
+#| echo: true
+#| fig-width: 5.5
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+ggplot(cars93) +
+  aes(x = Price, y = Fuel.tank.capacity) + 
+  geom_point() +
+  # Gaussian process spline, 6 knots
+  geom_smooth(
+    se = FALSE,
+    method = "gam",
+    formula = y ~ s(x, k = 6, bs = 'gp')
+  ) +
+  theme_bw()
+```
+:::
+
+::: {.small-font .move-up-1em}
+Caution: Exact shape of smoothing line depends on method details
+:::
+
+::: {.fragment .small-font}
+Smoothing lines are particularly unreliable near their endpoints
+:::
+
+<!-- Segment ends here -->
+
+## Further reading
+
+- Fundamentals of Data Visualization: [Chapter 14: Visualizing trends](https://clauswilke.com/dataviz/visualizing-trends.html)
+- Data Visualization—A Practical Introduction: [Chapter 6: Work with models](https://socviz.co/modeling.html)
+- **ggplot2** reference documentation: [`geom_smooth()`](https://ggplot2.tidyverse.org/reference/geom_smooth.html)
+- **mgcv** reference documentation (for gam smoothing): [pdf document](https://cran.r-project.org/web/packages/mgcv/mgcv.pdf)

@@ -92,7 +92,6 @@ penguins |>
   ggplot(aes(species, bill_length_mm)) +
   geom_boxplot(na.rm = TRUE) # na.rm = TRUE prevents warning about missing values
 ```
-```
 
 Use the function `fct_relevel()` to place the three species into the order Chinstrap, Gentoo, Adelie. (*Hint:* You will have to use a `mutate()` statement to modify the `species` column.)
 
