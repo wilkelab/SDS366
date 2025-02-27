@@ -50,7 +50,7 @@ The main columns we will use are `year` (the year of the sighting), `city` (the 
 
 **Problem 2: (12 pts)**
 
-Using your data frame from Problem 1, make a pie chart of the relative proportions of UFO sightings within the top five cities. Use the manual method of pie chart creation discussed in class [(link).](https://wilkelab.org/SDS366/slides/visualizing-proportions.html#/making-pie-charts-with-ggplot2-ggforce-manual) Customize the plot so it looks nice. In particular, add labels to each pie slice and remove the separate legend (hint: `guide(fill = "none")`). Also use `scale_fill_manual()` to customize the fill colors and `theme_void()` to remove the grid and axes.
+Using your data frame from Problem 1, make a pie chart of the relative proportions of UFO sightings within the top five cities. Use the manual method of pie chart creation discussed in class [(link).](https://wilkelab.org/SDS366/slides/visualizing-proportions.html#/making-pie-charts-with-ggplot2-ggforce-manual) Customize the plot so it looks nice. In particular, add labels to each pie slice and remove the separate legend (hint: `guides(fill = "none")`). Also use `scale_fill_manual()` to customize the fill colors and `theme_void()` to remove the grid and axes.
 
 ```{r}
 #| fig-width: 4
