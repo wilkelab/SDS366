@@ -98,6 +98,11 @@ website:
             href: worksheets/compound-figures.qmd
           - text: "Class 15: Visualizing trends"
             href: worksheets/visualizing-trends.qmd
+          - text: "Class 16: Functions and functional programming"
+            href: worksheets/functional-programming.qmd
+          - text: "Class 17: Working with models"
+            href: worksheets/working-with-models.qmd
+        
 
       - text: "Resources"
         menu:

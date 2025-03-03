@@ -101,6 +101,20 @@ format: html
 - [Slides](slides/figure-design.qmd)
 - [Worksheet](worksheets/figure-design.qmd)
 
+### 14. Mar 4, 2025—Compound figures
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/compound-figures.qmd)  
+- [Worksheet](worksheets/compound-figures.qmd)
+
+### 15. Mar 6, 2025—Visualizing trends
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/visualizing-trends.qmd)  
+- [Worksheet](worksheets/visualizing-trends.qmd)
+
 ## Homeworks
 
 All homeworks are due by 11:00pm on the day they are due. Homeworks need to be submitted as pdf files on Canvas.

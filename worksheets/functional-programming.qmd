@@ -1,0 +1,500 @@
+---
+title: "Functional programming"
+author: "Claus O. Wilke"
+format: live-html
+engine: knitr
+webr:
+  render-df: paged-table
+---
+
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+
+## Introduction
+
+In this worksheet, we will discuss elements of functional programming in R.
+
+First we need to load the required R packages. Please wait a moment until the live R session is fully set up and all packages are loaded.
+
+```{webr}
+#| warning: false
+#| edit: false
+library(tidyverse)
+library(palmerpenguins)
+```
+
+Next we set up the data. We will be working with data on individual penguins in Antarctica.
+```{webr}
+#| edit: false
+penguins
+```
+
+## Calling functions repeatedly
+
+The core concept in functional programming is a function, which is a way of running the same code multiple times on different input data. In R, functions are defined with the `function` keyword, followed by a list of arguments in parentheses and the body of the function in curly braces. For example, the following code defines a function that squares a numeric value.
+
+```{webr}
+#| edit: false
+square <- function(x) {
+  x^2
+}
+```
+The variable `x` is the argument of the function, and it can then be used in the body of the function for computations. The result of the last expression in the function body is used as the return value of the function, so this simple function returns the square of its argument. Note that functions are first-class objects in R, and we can assign a function to a variable using `<-`, just like any other assignment in R.
+
+To call a function, we write the name of the function followed by parentheses enclosing the argument(s). For example, the following code calculates the squares of 3, 4, and 5:
+
+```{webr}
+#| edit: false
+square(3)
+square(4)
+square(5)
+```
+
+We often want to run a function on a set of given input values. In procedural programming, we would typically do this with a `for` loop. The equivalent concept in functional programming is the map. Specifically, the `map()` function takes as input a vector of values (e.g., the numbers from 3 to 5, `3:5`) and a function name (e.g. `square`, note no parentheses) and applies the function to each value in the input vector.
+
+```{webr}
+#| edit: false
+map(3:5, square)
+```
+
+The return result is a list, hence the weird double brackets (`[[1]]`, `[[2]]`, etc.). If instead we want a regular vector of numbers, we can use `map_dbl()`. Here, "dbl" stands for "double", which is shorthand for "double precision floating point numbers", the default numeric datatype of R.
+
+```{webr}
+#| edit: false
+map_dbl(3:5, square)
+```
+
+When using any of the map functions, instead of providing a function by name, we can also define a function in place, as a formula. We do so by writing an R expression with a tilde (`~`) in front. The parameter supplied by the map function is always called `.x`. So `~.x^2` is equivalent to `function(.x) { .x^2 }`.
+
+```{webr}
+#| edit: false
+map_dbl(1:3, ~.x^2)
+```
+
+Now try these concepts yourself. First write a function that calculates the cube of its argument.
+
+```{webr} 
+#| exercise: cube
+
+```
+
+::: { .hint exercise="cube" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+cube <- function(___) {
+  ___
+}
+
+cube(2)
+cube(3)
+cube(4)
+```
+:::
+:::
+
+::: { .solution exercise="cube" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+cube <- function(x) {
+  x^3
+}
+
+cube(2)
+cube(3)
+cube(4)
+```
+:::
+:::
+
+
+Now use this function in conjunction with either `map()` or `map_dbl()` to calculate the first 5 cubes.
+
+```{webr} 
+#| exercise: cube-map
+
+```
+
+::: { .hint exercise="cube-map" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+cube <- function(x) {
+  x^3
+}
+
+map(1:5, ___)
+```
+:::
+:::
+
+::: { .solution exercise="cube-map" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+cube <- function(x) {
+  x^3
+}
+
+map(1:5, cube)
+map_dbl(1:5, cube)
+```
+:::
+:::
+
+Now calculate the first 5 cubes using the in-place function definition via a formula.
+
+```{webr} 
+#| exercise: cube-formula
+
+```
+
+::: { .hint exercise="cube-formula" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+map(1:5, ~___)
+```
+:::
+:::
+
+::: { .solution exercise="cube-formula" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+map(1:5, ~.x^3)
+map_dbl(1:5, ~.x^3)
+```
+:::
+:::
+
+The `map()` function applies a function taking a single argument to a single vector of values. But what if we have a function with two arguments, say, a function that takes values `x` and `y` and returns their product? In this case, we can use `map2()`, which requires two input vectors and a function of two arguments.
+
+```{webr}
+#| edit: false
+map2(1:3, 2:4, function(x, y) x*y)
+```
+
+To try this out, use a single `map2()` expression to calculate the square of 3, the cube of 4, and the fourth power of 5.
+
+```{webr} 
+#| exercise: map2-exercise
+
+```
+
+::: { .hint exercise="map2-exercise" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+map2(3:5, 2:4, ___)
+```
+:::
+:::
+
+::: { .solution exercise="map2-exercise" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+map2(3:5, 2:4, function(x, y) x^y)
+```
+:::
+:::
+
+Finally, sometimes we want to call a function repeatedly but not to collect the return values but rather for side effects, such as printing output. In this case, we use `walk()` instead of `map()`.
+
+```{webr}
+#| edit: false
+walk(1:3, print)
+```
+
+Try this out by calling the following function `print_value()` on the input values 1, 2, and 3.
+
+```{webr} 
+#| exercise: walk-exercise
+print_value <- function(x) {
+  cat("The value is", x, ".\n")
+}
+```
+
+::: { .hint exercise="walk-exercise" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+print_value <- function(x) {
+  cat("The value is", x, "\n")
+}
+
+walk(1:3, ___)
+```
+:::
+:::
+
+::: { .solution exercise="walk-exercise" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+print_value <- function(x) {
+  cat("The value is", x, "\n")
+}
+
+walk(1:3, print_value)
+```
+:::
+:::
+
+## Nesting and unnesting
+
+Functional programming becomes a very powerful concept in data analysis when combined with nested data frames, so we will be discussing nesting and unnesting next.
+
+We use the function `nest()` to take rectangular regions in a data table and compress them into a single cell in a higher-level table. This process is useful when we want to store all the information for one category of data in a single cell.
+
+For example, we can store all the penguin data in a nested table with three rows and two columns, where one column contains the penguins species and the other column contains all the data for that species. We generate such a table as follows.
+
+```{webr}
+#| edit: false
+penguins |>
+  nest(data = -species)
+```
+
+The specification `data = -species` means "create a new column called `data` and move everything into this column except the contents of the `species` column". The `nest()` function will automatically generate exactly one row for each unique combination of data values that are not being nested. Therefore, we end up with three rows, one for each species.
+
+The `data` column is a list column, and we can access individual values in it via list indexing, i.e., double square brackets. So, `data[[1]]` is the first nested table, `data[[2]]` is the second nested table, and so on. For example, the following code extracts all the data for Gentoo penguins.
+
+```{webr}
+#| edit: false
+penguins_nested <- penguins |>
+  nest(data = -species)
+
+penguins_nested$data[[2]] # data table for Gentoo penguins
+```
+
+Now try this out. First, make a nested table but nest by `island`.
+
+```{webr} 
+#| exercise: island-nested
+penguins |>
+  nest(___)
+```
+
+::: { .hint exercise="island-nested" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+penguins |>
+  nest(data = ___)
+```
+:::
+:::
+
+::: { .solution exercise="island-nested" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+penguins |>
+  nest(data = -island)
+```
+:::
+:::
+
+Now extract the data table for the third island.
+
+```{webr} 
+#| exercise: island-nested-extract
+penguins_nested <- penguins |>
+  ___
+
+penguins_nested$___
+```
+
+::: { .hint exercise="island-nested-extract" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+penguins_nested <- penguins |>
+  nest(data = -island)
+
+penguins_nested$data[[___]]
+```
+:::
+:::
+
+::: { .solution exercise="island-nested-extract" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+penguins_nested <- penguins |>
+  nest(data = -island)
+
+penguins_nested$data[[3]]
+```
+:::
+:::
+
+Now nest by `species` and `island` at the same time. You can nest by multiple columns by excluding both from the newly created data column, via `data = -c(species, island)`.
+
+```{webr} 
+#| exercise: species-island-nested
+penguins |>
+  nest(___)
+```
+
+::: { .hint exercise="species-island-nested" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+penguins |>
+  nest(data = ___)
+```
+:::
+:::
+
+::: { .solution exercise="species-island-nested" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+penguins |>
+  nest(data = -c(species, island))
+```
+:::
+:::
+
+To unnest, we use the function `unnest()`. Its argument `cols` takes the name of the column to be unnested. For example, if we nest into the `data` column, as we have done in all examples so far, then `cols = data` unnests this column.
+
+```{webr}
+#| edit: false
+penguins_nested <- penguins |>
+  nest(data = -species)
+
+penguins_nested |>
+  unnest(cols = data)
+```
+
+Try this for yourself in the following example. Note that the data column has a different name here.
+
+```{webr} 
+#| exercise: unnest
+penguins_nested <- penguins |>
+  nest(species_data = -species)
+
+penguins_nested |>
+  ___
+```
+
+::: { .hint exercise="unnest" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+penguins_nested <- penguins |>
+  nest(species_data = -species)
+
+penguins_nested |>
+  unnest(cols = ___)
+```
+:::
+:::
+
+::: { .solution exercise="unnest" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+penguins_nested <- penguins |>
+  nest(species_data = -species)
+
+penguins_nested |>
+  unnest(cols = species_data)
+```
+:::
+:::
+
+## Plotting subsets of data
+
+Now we will use the concepts of mapping and nesting to automatically create plots of subsets of data. Specifically, we will make pie charts of the species composition of penguin species on the different islands. The pie charts will be generated by the following function, which takes as arguments the data for the island and the name of the island.
+
+```{webr}
+#| edit: false
+make_pie <- function(data, island) {
+  data |>
+    ggplot(aes(y = "", fill = species)) +
+    geom_bar(position = "fill") +
+    scale_y_discrete(name = NULL, breaks = NULL) +
+    scale_x_continuous(labels = scales::percent) +
+    ggtitle(island) +
+    coord_polar()
+}
+```
+
+We can use this function for a single island like so.
+
+```{webr}
+#| edit: false
+penguins |>
+  filter(island == "Dream") |>
+  make_pie("Dream")
+```
+
+However, here we want to automate the process of calling this function for all islands separately. See if you can make this happen, using the functions `nest()`, `mutate()`, `map2()`, `pull()`, and `walk()`. Note: The individual stages of the calculation are provided as hints, so you can click through them one-by-one if you get stuck or something is not clear.
+
+```{webr} 
+#| exercise: island-pies
+
+```
+
+::: { .hint exercise="island-pies" }
+::: { .callout-tip title="Hint 1" collapse="false"}
+First create a nested table so it has three rows, one for each island. The table should have a column `data` whose entries contain all the data for each island.
+```
+penguins |>
+  nest(___)
+```
+:::
+:::
+
+::: { .hint exercise="island-pies" }
+::: { .callout-tip title="Hint 2" collapse="false"}
+Next use `mutate()` and `map2()` to run the `make_pie()` function on each subset of data and store the resulting plots.
+```r
+penguins |>
+  # move all data for each island into a single
+  # entry in a column called `data`
+  nest(data = -island) |>
+  ___ # continue here with mutate
+```
+:::
+:::
+
+::: { .hint exercise="island-pies" }
+::: { .callout-tip title="Hint 3" collapse="false"}
+Next extract the `plots` column.
+```r
+penguins |>
+  # move all data for each island into a single
+  # entry in a column called `data`
+  nest(data = -island) |>
+  # run the `make_pie()` function on each dataset separately,
+  # store result in a column `plots`
+  mutate(
+    plots = map2(data, island, make_pie)
+  ) |>
+  ___ # extract the plots column
+```
+:::
+:::
+
+::: { .hint exercise="island-pies" }
+::: { .callout-tip title="Hint 4" collapse="false"}
+Next use `walk()` to print all the plots.
+```r
+penguins |>
+  # move all data for each island into a single
+  # entry in a column called `data`
+  nest(data = -island) |>
+  # run the `make_pie()` function on each dataset separately,
+  # store result in a column `plots`
+  mutate(
+    plots = map2(data, island, make_pie)
+  ) |>
+  pull(plots) |>  # extract the column holding the plots
+  ___ # use `walk()` to print all the plots
+```
+:::
+:::
+
+::: { .solution exercise="island-pies" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+penguins |>
+  # move all data for each island into a single
+  # entry in a column called `data`
+  nest(data = -island) |>
+  # run the `make_pie()` function on each dataset separately,
+  # store result in a column `plots`
+  mutate(
+    plots = map2(data, island, make_pie)
+  ) |>
+  pull(plots) |> # extract the column holding the plots
+  walk(print)    # print all plots one by one
+```
+:::
+:::

@@ -1,0 +1,250 @@
+---
+title: "Working with models"
+author: "Claus O. Wilke"
+format: live-html
+engine: knitr
+webr:
+  render-df: paged-table
+---
+
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+
+## Introduction
+
+In this worksheet, we will discuss how to efficiently fit statistical models (such as linear regressions) to subsets of data and then use for plotting.
+
+First we need to load the required R packages. Please wait a moment until the live R session is fully set up and all packages are loaded.
+
+```{webr}
+#| warning: false
+#| edit: false
+library(tidyverse)
+library(palmerpenguins)
+library(broom)
+library(glue)
+```
+
+Next we set up the data. We will be working with data on individual penguins in Antarctica.
+```{webr}
+#| echo: false
+penguins
+```
+
+## Inserting data into text output
+
+There are several utility functions we need to understand before we can fit models, process them with **broom**, and ultimately plot. These include nesting and unnesting of data tables, using `map()` to apply a function to all the values in a data column, and using `glue()` to generate generate text. We have discussed nesting/unnesting and `map()` in the lecture on functional programming, and you may want to review this material if it is unclear to you. Here, we will discuss how to insert data into text output.
+
+The `glue()` function allows you to place variables into a text string. This is frequently useful when we want to process multiple subsets of a larger data table and generate output for each subset.
+
+For example:
+```{webr}
+#| edit: false
+dog <- "Buddy"
+glue("I have a dog named {dog}.")
+```
+
+This also works for vectorized input.
+```{webr}
+#| edit: false
+pet <- c("dog", "dog", "cat")
+pet_name <- c("Buddy", "Lucy", "Oscar")
+glue("I have a {pet} named {pet_name}.")
+```
+
+Try this for yourself. Create variables holding your first and last name and then print out your complete name using `glue()`.
+
+```{webr} 
+#| exercise: glue-exercise
+first_name <- ___
+last_name <- ___
+
+glue("My name is ___.")
+```
+
+::: { .hint exercise="glue-exercise" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+first_name <- "Claus"
+last_name <- "Wilke"
+
+glue("My name is ___.")
+```
+:::
+:::
+
+::: { .solution exercise="glue-exercise" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+first_name <- "Claus"
+last_name <- "Wilke"
+
+glue("My name is {first_name} {last_name}.")
+```
+:::
+:::
+
+## Cleaning up models with **broom**
+
+R has powerful functions to fit statistical models to data, such as `lm()` to fit linear regression models. However, many of these functions have been written for interactive use and don't work well in an automated data processing pipeline. For example, consider the following code to perform a linear regression analysis on the penguins dataset (ignoring for a moment that there are multiple species):
+
+```{webr}
+#| edit: false
+fit <- lm(bill_length_mm ~ body_mass_g, data = penguins)
+fit
+summary(fit)
+```
+
+The `fit` object stores information about the linear regression, and `summary(fit)` shows us this information in a nice, human-readable form. But what if we want the relevant information in a data table? This is where the **broom** package comes in. The `glance()` function extracts model-level summary data from a fitted object, and the `tidy()` function extracts information about individual regression coefficients.
+
+```{webr}
+#| edit: false
+glance(fit)
+tidy(fit)
+```
+
+Try this yourself. Fit a model of bill length versus bill depth (formula: `bill_length_mm ~ bill_depth_mm`), look at the model fit with `summary()`, and then look at the model fit via `glance()` and `tidy()`.
+
+```{webr} 
+#| exercise: glance-tidy
+# fit linear model
+fit <- lm(___)
+
+# inspect model fit with summary()
+
+# inspect model fit with glance() and tidy()
+```
+
+::: { .hint exercise="glance-tidy" }
+::: { .callout-tip title="Hint 1" collapse="false"}
+```r
+# fit linear model
+fit <- lm(bill_length_mm ~ bill_depth_mm, data = penguins)
+
+# inspect model fit with summary()
+summary(___)
+
+# inspect model fit with glance() and tidy()
+```
+:::
+:::
+
+::: { .hint exercise="glance-tidy" }
+::: { .callout-tip title="Hint 2" collapse="false"}
+```r
+# fit linear model
+fit <- lm(bill_length_mm ~ bill_depth_mm, data = penguins)
+
+# inspect model fit with summary()
+summary(fit)
+
+# inspect model fit with glance() and tidy()
+glance(___)
+tidy(___)
+```
+:::
+:::
+
+::: { .solution exercise="glance-tidy" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+# fit linear model
+fit <- lm(bill_length_mm ~ bill_depth_mm, data = penguins)
+
+# inspect model fit with summary()
+summary(fit)
+
+# inspect model fit with glance() and tidy()
+glance(fit)
+tidy(fit)
+```
+:::
+:::
+
+The real power of `glance()` and `tidy()` becomes apparent in a more complex data analysis pipeline, when we fit a model to subsets of data via `map()` and then combine the results from the individual fits into one large table.
+
+```{webr}
+#| edit: false
+penguins |>
+  nest(data = -species) |>     # nest the data table by species
+  mutate(
+    # use map() to fit a model to each nested data table
+    fit = map(data, ~lm(bill_length_mm ~ body_mass_g, data = .x)),
+    # use map to apply glance() to each model fit
+    glance_out = map(fit, glance)
+  ) |>
+  unnest(cols = glance_out) |> # unnest output from glance
+  select(-data, -fit)          # remove columns data and fit
+```
+
+Now run this code yourself one line at a time and make sure you understand at each step what is happening. Review the materials from the class on functional programming if anything is unclear. Note: The individual stages of the calculation are provided as hints, so you can just click through the hints one-by-one and run each piece.
+
+```{webr} 
+#| exercise: broom-map
+penguins |>
+  nest(data = -species)         # nest the data table by species
+```
+
+::: { .hint exercise="broom-map" }
+::: { .callout-tip title="Hint 1" collapse="false"}
+```r
+penguins |>
+  nest(data = -species) |>     # nest the data table by species
+  mutate(
+    # use map() to fit a model to each nested data table
+    fit = map(data, ~lm(bill_length_mm ~ body_mass_g, data = .x))
+  )
+```
+:::
+:::
+
+::: { .hint exercise="broom-map" }
+::: { .callout-tip title="Hint 2" collapse="false"}
+```r
+penguins |>
+  nest(data = -species) |>     # nest the data table by species
+  mutate(
+    # use map() to fit a model to each nested data table
+    fit = map(data, ~lm(bill_length_mm ~ body_mass_g, data = .x)),
+    # use map to apply glance() to each model fit
+    glance_out = map(fit, glance)
+  )
+```
+:::
+:::
+
+::: { .hint exercise="broom-map" }
+::: { .callout-tip title="Hint 3" collapse="false"}
+```r
+penguins |>
+  nest(data = -species) |>     # nest the data table by species
+  mutate(
+    # use map() to fit a model to each nested data table
+    fit = map(data, ~lm(bill_length_mm ~ body_mass_g, data = .x)),
+    # use map to apply glance() to each model fit
+    glance_out = map(fit, glance)
+  ) |>
+  unnest(cols = glance_out)     # unnest output from glance
+```
+:::
+:::
+
+::: { .solution exercise="broom-map" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+penguins |>
+  nest(data = -species) |>     # nest the data table by species
+  mutate(
+    # use map() to fit a model to each nested data table
+    fit = map(data, ~lm(bill_length_mm ~ body_mass_g, data = .x)),
+    # use map to apply glance() to each model fit
+    glance_out = map(fit, glance)
+  ) |>
+  unnest(cols = glance_out) |> # unnest output from glance
+  select(-data, -fit)           # remove columns data and fit
+```
+:::
+:::
+
+## Plotting model fits
+
+**still to do...**
