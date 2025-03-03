@@ -247,4 +247,182 @@ penguins |>
 
 ## Plotting model fits
 
-**still to do...**
+Finally, we use the results from the model fit to plot a *p* value on each facet of a regression plot. The plot we'll be working with is the following:
+
+```{webr}
+#| edit: false
+#| fig-width: 8
+#| fig-height: 4
+#| message: false
+ggplot(penguins, aes(body_mass_g, bill_length_mm)) +
+  geom_point(na.rm = TRUE) +
+  geom_smooth(method = "lm", formula = y ~ x, na.rm = TRUE) +
+  facet_wrap(~species)
+```
+
+We can generate the fitted models as in the previous section. We will store them in the `penguins_fits`:
+
+```{webr}
+#| edit: false
+penguins_fits <- penguins |>
+  nest(data = -species) |>     # nest the data table by species
+  mutate(
+    # use map() to fit a model to each nested data table
+    fit = map(data, ~lm(bill_length_mm ~ body_mass_g, data = .x)),
+    # use map to apply glance() to each model fit
+    glance_out = map(fit, glance)
+  ) |>
+  unnest(cols = glance_out) |> # unnest output from glance
+  select(-data, -fit)          # remove columns data and fit
+
+penguins_fits
+```
+
+Now, do the following. First, use `mutate()`, `glue()`, and `select()` to convert this table into one that has four columns, `species`, `body_mass_g`, `bill_length_mm`, and `label`. The `species` column holds the penguin species. The next two columns will hold the coordinates of the text label. For example, the values `body_mass_g = 5500` and `bill_length_mm = 32` will work. The last column will hold labels, generated with `glue()`, of the form "p = 7.48e-06". You can use `signif(p.value, 3)` to round *p* values to three significant digits.
+
+Once you have this table, use `geom_text()` to add the labels to the above plot.
+
+```{webr} 
+#| exercise: regression-plot-exercise
+#| fig-width: 8
+#| fig-height: 4
+# first do the data table manipulation
+labels_data <- penguins_fits |>
+  mutate(
+    ___
+  )
+labels_data
+  
+# then plot
+```
+
+::: { .hint exercise="regression-plot-exercise" }
+::: { .callout-tip title="Hint 1" collapse="false"}
+```r
+# first do the data table manipulation
+labels_data <- penguins_fits |>
+  mutate(
+    body_mass_g = ___,
+    bill_length_mm = ___,
+    label = ___
+  )
+labels_data
+
+# then plot
+```
+:::
+:::
+
+::: { .hint exercise="regression-plot-exercise" }
+::: { .callout-tip title="Hint 2" collapse="false"}
+```r
+# first do the data table manipulation
+labels_data <- penguins_fits |>
+  mutate(
+    body_mass_g = 5500,
+    bill_length_mm = 32,
+    label = glue("p = {signif(p.value, 3)}")
+  ) |>
+  select(___)
+labels_data
+
+# then plot
+```
+:::
+:::
+
+::: { .hint exercise="regression-plot-exercise" }
+::: { .callout-tip title="Hint 3" collapse="false"}
+```r
+# first do the data table manipulation
+labels_data <- penguins_fits |>
+  mutate(
+    body_mass_g = 5500,
+    bill_length_mm = 32,
+    label = glue("p = {signif(p.value, 3)}")
+  ) |>
+  select(species, body_mass_g, bill_length_mm, label)
+labels_data
+  
+# then plot
+```
+:::
+:::
+
+::: { .hint exercise="regression-plot-exercise" }
+::: { .callout-tip title="Hint 4" collapse="false"}
+```r
+# first do the data table manipulation
+labels_data <- penguins_fits |>
+  mutate(
+    body_mass_g = 5500,
+    bill_length_mm = 32,
+    label = glue("p = {signif(p.value, 3)}")
+  ) |>
+  select(species, body_mass_g, bill_length_mm, label)
+  
+# then plot
+ggplot(penguins, aes(body_mass_g, bill_length_mm)) +
+  geom_point(na.rm = TRUE) +
+  geom_smooth(method = "lm", formula = y ~ x, na.rm = TRUE) +
+  facet_wrap(vars(species)) +
+  geom_text(___)
+```
+:::
+:::
+
+::: { .hint exercise="regression-plot-exercise" }
+::: { .callout-tip title="Hint 5" collapse="false"}
+```r
+# first do the data table manipulation
+labels_data <- penguins_fits |>
+  mutate(
+    body_mass_g = 5500,
+    bill_length_mm = 32,
+    label = glue("p = {signif(p.value, 3)}")
+  ) |>
+  select(species, body_mass_g, bill_length_mm, label)
+  
+# then plot
+ggplot(penguins, aes(body_mass_g, bill_length_mm)) +
+  geom_point(na.rm = TRUE) +
+  geom_smooth(method = "lm", formula = y ~ x, na.rm = TRUE) +
+  facet_wrap(vars(species)) +
+  geom_text(
+    data = labels_data,
+    aes(___)
+  )
+```
+:::
+:::
+
+::: { .solution exercise="regression-plot-exercise" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+# first do the data table manipulation
+labels_data <- penguins_fits |>
+  mutate(
+    body_mass_g = 5500,
+    bill_length_mm = 32,
+    label = glue("p = {signif(p.value, 3)}")
+  ) |>
+  select(species, body_mass_g, bill_length_mm, label)
+  
+# then plot
+ggplot(penguins, aes(body_mass_g, bill_length_mm)) +
+  geom_point(na.rm = TRUE) +
+  geom_smooth(method = "lm", formula = y ~ x, na.rm = TRUE) +
+  facet_wrap(vars(species)) +
+  geom_text(
+    data = labels_data,
+    aes(label = label)
+  )
+```
+:::
+:::
+
+Once you have successfully made the plot, you can try a few more things:
+
+- Place the labels for the different facets in different locations within each facet.
+- Use `hjust` and `vjust` in `geom_text()` to fine-tune where labels are placed.
+- Make labels that contain the *R*<sup>2</sup> value in addition to the *p* value.
