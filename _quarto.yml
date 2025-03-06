@@ -61,6 +61,8 @@ website:
             href: slides/visualizing-trends.qmd
           - text: "Class 16: Functions and functional programming"
             href: slides/functional-programming.qmd
+          - text: "Class 17: Working with models"
+            href: slides/working-with-models.qmd
         
       - text: "Worksheets"
         menu:

@@ -491,30 +491,56 @@ Claus O. Wilke
 <div class="tiny-font move-down-1em">
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">make_plot</span>(<span class="st">"Adelie"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12" data-code-line-numbers="14-14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>make_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(species) {</span>
+<span id="cb12-2"><a></a>  penguins <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a></a>    <span class="fu">filter</span>(.data<span class="sc">$</span>species <span class="sc">==</span> .env<span class="sc">$</span>species) <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a></a>    <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb12-5"><a></a>    <span class="fu">aes</span>(bill_length_mm, body_mass_g) <span class="sc">+</span></span>
+<span id="cb12-6"><a></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb12-7"><a></a>    <span class="fu">ggtitle</span>(<span class="fu">glue</span>(<span class="st">"Species: {species}"</span>)) <span class="sc">+</span></span>
+<span id="cb12-8"><a></a>    <span class="fu">xlab</span>(<span class="st">"bill length (mm)"</span>) <span class="sc">+</span></span>
+<span id="cb12-9"><a></a>    <span class="fu">ylab</span>(<span class="st">"body mass (g)"</span>) <span class="sc">+</span></span>
+<span id="cb12-10"><a></a>    <span class="fu">theme_minimal_grid</span>() <span class="sc">+</span></span>
+<span id="cb12-11"><a></a>    <span class="fu">theme</span>(<span class="at">plot.title.position =</span> <span class="st">"plot"</span>)</span>
+<span id="cb12-12"><a></a>}</span>
+<span id="cb12-13"><a></a></span>
+<span id="cb12-14"><a></a><span class="fu">make_plot</span>(<span class="st">"Chinstrap"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="functional-programming_files/figure-revealjs/penguins-plot-all-1.svg" style="width:100.0%"></p>
+<p><img data-src="functional-programming_files/figure-revealjs/penguins-plot-Chinstrap3-1.svg" style="width:100.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">make_plot</span>(<span class="st">"Chinstrap"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
+</div>
+</section>
+<section id="step-2-define-a-function-3" class="slide level2">
+<h2>Step 2: Define a function</h2>
+<div class="tiny-font move-down-1em">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="14-14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>make_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(species) {</span>
+<span id="cb13-2"><a></a>  penguins <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a></a>    <span class="fu">filter</span>(.data<span class="sc">$</span>species <span class="sc">==</span> .env<span class="sc">$</span>species) <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a></a>    <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb13-5"><a></a>    <span class="fu">aes</span>(bill_length_mm, body_mass_g) <span class="sc">+</span></span>
+<span id="cb13-6"><a></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb13-7"><a></a>    <span class="fu">ggtitle</span>(<span class="fu">glue</span>(<span class="st">"Species: {species}"</span>)) <span class="sc">+</span></span>
+<span id="cb13-8"><a></a>    <span class="fu">xlab</span>(<span class="st">"bill length (mm)"</span>) <span class="sc">+</span></span>
+<span id="cb13-9"><a></a>    <span class="fu">ylab</span>(<span class="st">"body mass (g)"</span>) <span class="sc">+</span></span>
+<span id="cb13-10"><a></a>    <span class="fu">theme_minimal_grid</span>() <span class="sc">+</span></span>
+<span id="cb13-11"><a></a>    <span class="fu">theme</span>(<span class="at">plot.title.position =</span> <span class="st">"plot"</span>)</span>
+<span id="cb13-12"><a></a>}</span>
+<span id="cb13-13"><a></a></span>
+<span id="cb13-14"><a></a><span class="fu">make_plot</span>(<span class="st">"Gentoo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="functional-programming_files/figure-revealjs/penguins-plot-all-2.svg" style="width:100.0%"></p>
-<figcaption>&nbsp;</figcaption>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">make_plot</span>(<span class="st">"Gentoo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="functional-programming_files/figure-revealjs/penguins-plot-all-3.svg" style="width:100.0%"></p>
+<p><img data-src="functional-programming_files/figure-revealjs/penguins-plot-Gentoo3-1.svg" style="width:100.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -548,9 +574,290 @@ Claus O. Wilke
 <section id="step-3-automate-calling-the-function" class="slide level2">
 <h2>Step 3: Automate calling the function</h2>
 <div class="fragment small-font">
+<p>We need a brief detour to talk about lists and the <code>map()</code> pattern</p>
+</div>
+</section>
+<section id="lists" class="slide level2">
+<h2>Lists</h2>
+<div class="fragment small-font">
+<p>In R, lists are a data structure that can store multiple elements of various types</p>
+</div>
+<div class="fragment small-font">
+<p>A list of words:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>species <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>, <span class="st">"Gentoo"</span>)</span>
-<span id="cb15-2"><a></a>plots <span class="ot">&lt;-</span> <span class="fu">map</span>(species, make_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">list</span>(<span class="st">"apple"</span>, <span class="st">"orange"</span>, <span class="st">"banana"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] "apple"
+
+[[2]]
+[1] "orange"
+
+[[3]]
+[1] "banana"</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="lists-1" class="slide level2">
+<h2>Lists</h2>
+<div class="small-font">
+<p>In R, lists are a data structure that can store multiple elements of various types</p>
+</div>
+<div class="small-font">
+<p>A list of numbers:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">list</span>(<span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 5
+
+[[2]]
+[1] 7
+
+[[3]]
+[1] 12</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="lists-2" class="slide level2">
+<h2>Lists</h2>
+<div class="small-font">
+<p>In R, lists are a data structure that can store multiple elements of various types</p>
+</div>
+<div class="small-font">
+<p>A list of mixed data types:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">list</span>(<span class="dv">5</span>, <span class="st">"apple"</span>, <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 5
+
+[[2]]
+[1] "apple"
+
+[[3]]
+[1] TRUE</code></pre>
+</div>
+</div>
+</div>
+<div class="fragment small-font">
+<p>For comparison, all elements of a vector are coerced into the same type:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">c</span>(<span class="dv">5</span>, <span class="st">"apple"</span>, <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "5"     "apple" "TRUE" </code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="lists-3" class="slide level2">
+<h2>Lists</h2>
+<div class="small-font">
+<p>In R, lists are a data structure that can store multiple elements of various types</p>
+</div>
+<div class="small-font">
+<p>A list of vectors:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="fu">c</span>(<span class="st">"apple"</span>, <span class="st">"orange"</span>, <span class="st">"banana"</span>), <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 1 2 3 4 5
+
+[[2]]
+[1] "apple"  "orange" "banana"
+
+[[3]]
+[1]  TRUE FALSE</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="lists-4" class="slide level2">
+<h2>Lists</h2>
+<div class="small-font">
+<p>In R, lists are a data structure that can store multiple elements of various types</p>
+</div>
+<div class="small-font">
+<p>A list of lists:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">list</span>(<span class="fu">list</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="fu">list</span>(<span class="dv">3</span>, <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[[1]][[1]]
+[1] 1
+
+[[1]][[2]]
+[1] 2
+
+
+[[2]]
+[[2]][[1]]
+[1] 3
+
+[[2]][[2]]
+[1] 4</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="lists-5" class="slide level2">
+<h2>Lists</h2>
+<div class="small-font">
+<p>You can access individual elements of a list with the double brackets operator:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>fruit <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">"apple"</span>, <span class="st">"orange"</span>, <span class="st">"banana"</span>)</span>
+<span id="cb26-2"><a></a>fruit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] "apple"
+
+[[2]]
+[1] "orange"
+
+[[3]]
+[1] "banana"</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="lists-6" class="slide level2">
+<h2>Lists</h2>
+<div class="small-font">
+<p>You can access individual elements of a list with the double brackets operator:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>fruit <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">"apple"</span>, <span class="st">"orange"</span>, <span class="st">"banana"</span>)</span>
+<span id="cb28-2"><a></a>fruit[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "apple"</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="lists-7" class="slide level2">
+<h2>Lists</h2>
+<div class="small-font">
+<p>You can access individual elements of a list with the double brackets operator:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>fruit <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">"apple"</span>, <span class="st">"orange"</span>, <span class="st">"banana"</span>)</span>
+<span id="cb30-2"><a></a>fruit[[<span class="dv">3</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "banana"</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="the-map-pattern" class="slide level2">
+<h2>The <code>map()</code> pattern</h2>
+<div class="fragment small-font">
+<p>The <code>map()</code> function applies a function to all elements of a vector or list and returns the result in a list</p>
+</div>
+<div class="fragment small-font">
+<p>This pattern can be used instead of loops</p>
+</div>
+<div class="fragment small-font">
+<p>Example: Calculate the squares of the numbers 3, 4, 5:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a><span class="co"># define function that calculates square</span></span>
+<span id="cb32-2"><a></a>square <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb32-3"><a></a></span>
+<span id="cb32-4"><a></a><span class="co"># apply function to the numbers 3, 4, 5</span></span>
+<span id="cb32-5"><a></a><span class="fu">map</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>, square) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 9
+
+[[2]]
+[1] 16
+
+[[3]]
+[1] 25</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="the-map-pattern-1" class="slide level2">
+<h2>The <code>map()</code> pattern</h2>
+<div class="small-font">
+<p>We can define the function to be applied on the fly:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a><span class="fu">map</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>, <span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 9
+
+[[2]]
+[1] 16
+
+[[3]]
+[1] 25</code></pre>
+</div>
+</div>
+</div>
+<div class="fragment small-font">
+<p>Even simpler:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="fu">map</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>, \(x) x<span class="sc">^</span><span class="dv">2</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 9
+
+[[2]]
+[1] 16
+
+[[3]]
+[1] 25</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="the-map-pattern-2" class="slide level2">
+<h2>The <code>map()</code> pattern</h2>
+<div class="small-font">
+<p>Also:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="fu">map</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>, <span class="sc">~</span>.x<span class="sc">^</span><span class="dv">2</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 9
+
+[[2]]
+[1] 16
+
+[[3]]
+[1] 25</code></pre>
+</div>
+</div>
+<p>Note: The formula definition is not part of the base R language and only works for certain tidyverse functions</p>
+</div>
+</section>
+<section id="the-map-pattern-3" class="slide level2">
+<h2>The <code>map()</code> pattern</h2>
+<div class="small-font">
+<p>Sometimes it’s more convenient to get a vector as return value:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a><span class="fu">map_dbl</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>, <span class="sc">~</span>.x<span class="sc">^</span><span class="dv">2</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  9 16 25</code></pre>
+</div>
+</div>
+</div>
+<div class="fragment small-font">
+<p>Similarly:</p>
+<ul>
+<li><code>map_chr()</code> returns a vector of strings</li>
+<li><code>map_int()</code> returns a vector of integers</li>
+<li><code>map_lgl()</code> returns a vector of logicals</li>
+</ul>
+</div>
+</section>
+<section id="now-lets-go-back-to-making-plots" class="slide level2">
+<h2>Now let’s go back to making plots</h2>
+<div class="fragment small-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a>species <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>, <span class="st">"Gentoo"</span>)</span>
+<span id="cb42-2"><a></a>plots <span class="ot">&lt;-</span> <span class="fu">map</span>(species, make_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment small-font">
@@ -559,7 +866,7 @@ Claus O. Wilke
 <div class="fragment small-font">
 <p>It returns a list of created plots:</p>
 <div class="cell" data-layout-align="left">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>plots[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a>plots[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
 <figure>
@@ -571,12 +878,12 @@ Claus O. Wilke
 </div>
 </div>
 </section>
-<section id="step-3-automate-calling-the-function-1" class="slide level2">
-<h2>Step 3: Automate calling the function</h2>
+<section id="now-lets-go-back-to-making-plots-1" class="slide level2">
+<h2>Now let’s go back to making plots</h2>
 <div class="small-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>species <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>, <span class="st">"Gentoo"</span>)</span>
-<span id="cb17-2"><a></a>plots <span class="ot">&lt;-</span> <span class="fu">map</span>(species, make_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a>species <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>, <span class="st">"Gentoo"</span>)</span>
+<span id="cb44-2"><a></a>plots <span class="ot">&lt;-</span> <span class="fu">map</span>(species, make_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="small-font">
@@ -585,7 +892,7 @@ Claus O. Wilke
 <div class="small-font">
 <p>It returns a list of created plots:</p>
 <div class="cell" data-layout-align="left">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>plots[[<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a></a>plots[[<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
 <figure>
@@ -597,12 +904,12 @@ Claus O. Wilke
 </div>
 </div>
 </section>
-<section id="step-3-automate-calling-the-function-2" class="slide level2">
-<h2>Step 3: Automate calling the function</h2>
+<section id="now-lets-go-back-to-making-plots-2" class="slide level2">
+<h2>Now let’s go back to making plots</h2>
 <div class="small-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>species <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>, <span class="st">"Gentoo"</span>)</span>
-<span id="cb19-2"><a></a>plots <span class="ot">&lt;-</span> <span class="fu">map</span>(species, make_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a>species <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>, <span class="st">"Gentoo"</span>)</span>
+<span id="cb46-2"><a></a>plots <span class="ot">&lt;-</span> <span class="fu">map</span>(species, make_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="small-font">
@@ -611,7 +918,7 @@ Claus O. Wilke
 <div class="small-font">
 <p>It returns a list of created plots:</p>
 <div class="cell" data-layout-align="left">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>plots[[<span class="dv">3</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a></a>plots[[<span class="dv">3</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
 <figure>
@@ -623,15 +930,15 @@ Claus O. Wilke
 </div>
 </div>
 </section>
-<section id="step-3-automate-calling-the-function-3" class="slide level2">
-<h2>Step 3: Automate calling the function</h2>
+<section id="now-lets-go-back-to-making-plots-3" class="slide level2">
+<h2>Now let’s go back to making plots</h2>
 <div class="small-font">
 <div class="cell" data-layout-align="left">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>species <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>, <span class="st">"Gentoo"</span>)</span>
-<span id="cb21-2"><a></a>plots <span class="ot">&lt;-</span> <span class="fu">map</span>(species, make_plot)</span>
-<span id="cb21-3"><a></a></span>
-<span id="cb21-4"><a></a><span class="co"># put all plots side-by-side with patchwork</span></span>
-<span id="cb21-5"><a></a>patchwork<span class="sc">::</span><span class="fu">wrap_plots</span>(plots)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a></a>species <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>, <span class="st">"Gentoo"</span>)</span>
+<span id="cb48-2"><a></a>plots <span class="ot">&lt;-</span> <span class="fu">map</span>(species, make_plot)</span>
+<span id="cb48-3"><a></a></span>
+<span id="cb48-4"><a></a><span class="co"># put all plots side-by-side with patchwork</span></span>
+<span id="cb48-5"><a></a>patchwork<span class="sc">::</span><span class="fu">wrap_plots</span>(plots)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
 <figure>
@@ -648,18 +955,18 @@ Claus O. Wilke
 <div class="fragment tiny-font move-down-1em">
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb22" data-code-line-numbers="2-2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>make_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(species) {</span>
-<span id="cb22-2"><a></a>  penguins <span class="sc">|&gt;</span> <span class="co"># hard-coded dataset!</span></span>
-<span id="cb22-3"><a></a>    <span class="fu">filter</span>(.data<span class="sc">$</span>species <span class="sc">==</span> .env<span class="sc">$</span>species) <span class="sc">|&gt;</span></span>
-<span id="cb22-4"><a></a>    <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb22-5"><a></a>    <span class="fu">aes</span>(bill_length_mm, body_mass_g) <span class="sc">+</span></span>
-<span id="cb22-6"><a></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb22-7"><a></a>    <span class="fu">ggtitle</span>(<span class="fu">glue</span>(<span class="st">"Species: {species}"</span>)) <span class="sc">+</span></span>
-<span id="cb22-8"><a></a>    <span class="fu">xlab</span>(<span class="st">"bill length (mm)"</span>) <span class="sc">+</span></span>
-<span id="cb22-9"><a></a>    <span class="fu">ylab</span>(<span class="st">"body mass (g)"</span>) <span class="sc">+</span></span>
-<span id="cb22-10"><a></a>    <span class="fu">theme_minimal_grid</span>() <span class="sc">+</span></span>
-<span id="cb22-11"><a></a>    <span class="fu">theme</span>(<span class="at">plot.title.position =</span> <span class="st">"plot"</span>)</span>
-<span id="cb22-12"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49" data-code-line-numbers="2-2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a></a>make_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(species) {</span>
+<span id="cb49-2"><a></a>  penguins <span class="sc">|&gt;</span> <span class="co"># hard-coded dataset!</span></span>
+<span id="cb49-3"><a></a>    <span class="fu">filter</span>(.data<span class="sc">$</span>species <span class="sc">==</span> .env<span class="sc">$</span>species) <span class="sc">|&gt;</span></span>
+<span id="cb49-4"><a></a>    <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb49-5"><a></a>    <span class="fu">aes</span>(bill_length_mm, body_mass_g) <span class="sc">+</span></span>
+<span id="cb49-6"><a></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb49-7"><a></a>    <span class="fu">ggtitle</span>(<span class="fu">glue</span>(<span class="st">"Species: {species}"</span>)) <span class="sc">+</span></span>
+<span id="cb49-8"><a></a>    <span class="fu">xlab</span>(<span class="st">"bill length (mm)"</span>) <span class="sc">+</span></span>
+<span id="cb49-9"><a></a>    <span class="fu">ylab</span>(<span class="st">"body mass (g)"</span>) <span class="sc">+</span></span>
+<span id="cb49-10"><a></a>    <span class="fu">theme_minimal_grid</span>() <span class="sc">+</span></span>
+<span id="cb49-11"><a></a>    <span class="fu">theme</span>(<span class="at">plot.title.position =</span> <span class="st">"plot"</span>)</span>
+<span id="cb49-12"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 
 </div></div>
@@ -670,18 +977,18 @@ Claus O. Wilke
 <div class="tiny-font move-down-1em">
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb23" data-code-line-numbers="1-3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>make_plot2 <span class="ot">&lt;-</span> <span class="cf">function</span>(data, species) {</span>
-<span id="cb23-2"><a></a>  data <span class="sc">|&gt;</span></span>
-<span id="cb23-3"><a></a>    <span class="co"># filter no longer needed</span></span>
-<span id="cb23-4"><a></a>    <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb23-5"><a></a>    <span class="fu">aes</span>(bill_length_mm, body_mass_g) <span class="sc">+</span></span>
-<span id="cb23-6"><a></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb23-7"><a></a>    <span class="fu">ggtitle</span>(<span class="fu">glue</span>(<span class="st">"Species: {species}"</span>)) <span class="sc">+</span></span>
-<span id="cb23-8"><a></a>    <span class="fu">xlab</span>(<span class="st">"bill length (mm)"</span>) <span class="sc">+</span></span>
-<span id="cb23-9"><a></a>    <span class="fu">ylab</span>(<span class="st">"body mass (g)"</span>) <span class="sc">+</span></span>
-<span id="cb23-10"><a></a>    <span class="fu">theme_minimal_grid</span>() <span class="sc">+</span></span>
-<span id="cb23-11"><a></a>    <span class="fu">theme</span>(<span class="at">plot.title.position =</span> <span class="st">"plot"</span>)</span>
-<span id="cb23-12"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50" data-code-line-numbers="1-3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a></a>make_plot2 <span class="ot">&lt;-</span> <span class="cf">function</span>(data, species) {</span>
+<span id="cb50-2"><a></a>  data <span class="sc">|&gt;</span></span>
+<span id="cb50-3"><a></a>    <span class="co"># filter no longer needed</span></span>
+<span id="cb50-4"><a></a>    <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb50-5"><a></a>    <span class="fu">aes</span>(bill_length_mm, body_mass_g) <span class="sc">+</span></span>
+<span id="cb50-6"><a></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb50-7"><a></a>    <span class="fu">ggtitle</span>(<span class="fu">glue</span>(<span class="st">"Species: {species}"</span>)) <span class="sc">+</span></span>
+<span id="cb50-8"><a></a>    <span class="fu">xlab</span>(<span class="st">"bill length (mm)"</span>) <span class="sc">+</span></span>
+<span id="cb50-9"><a></a>    <span class="fu">ylab</span>(<span class="st">"body mass (g)"</span>) <span class="sc">+</span></span>
+<span id="cb50-10"><a></a>    <span class="fu">theme_minimal_grid</span>() <span class="sc">+</span></span>
+<span id="cb50-11"><a></a>    <span class="fu">theme</span>(<span class="at">plot.title.position =</span> <span class="st">"plot"</span>)</span>
+<span id="cb50-12"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 
 </div></div>
@@ -692,28 +999,28 @@ Claus O. Wilke
 <div class="tiny-font move-down-1em">
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>make_plot2 <span class="ot">&lt;-</span> <span class="cf">function</span>(data, species) {</span>
-<span id="cb24-2"><a></a>  data <span class="sc">|&gt;</span></span>
-<span id="cb24-3"><a></a>    <span class="co"># filter no longer needed</span></span>
-<span id="cb24-4"><a></a>    <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb24-5"><a></a>    <span class="fu">aes</span>(bill_length_mm, body_mass_g) <span class="sc">+</span></span>
-<span id="cb24-6"><a></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb24-7"><a></a>    <span class="fu">ggtitle</span>(<span class="fu">glue</span>(<span class="st">"Species: {species}"</span>)) <span class="sc">+</span></span>
-<span id="cb24-8"><a></a>    <span class="fu">xlab</span>(<span class="st">"bill length (mm)"</span>) <span class="sc">+</span></span>
-<span id="cb24-9"><a></a>    <span class="fu">ylab</span>(<span class="st">"body mass (g)"</span>) <span class="sc">+</span></span>
-<span id="cb24-10"><a></a>    <span class="fu">theme_minimal_grid</span>() <span class="sc">+</span></span>
-<span id="cb24-11"><a></a>    <span class="fu">theme</span>(<span class="at">plot.title.position =</span> <span class="st">"plot"</span>)</span>
-<span id="cb24-12"><a></a>}</span>
-<span id="cb24-13"><a></a></span>
-<span id="cb24-14"><a></a>data_adelie <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
-<span id="cb24-15"><a></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Adelie"</span>)</span>
-<span id="cb24-16"><a></a></span>
-<span id="cb24-17"><a></a><span class="fu">make_plot2</span>(data_adelie, <span class="at">species =</span> <span class="st">"Adelie"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a></a>make_plot2 <span class="ot">&lt;-</span> <span class="cf">function</span>(data, species) {</span>
+<span id="cb51-2"><a></a>  data <span class="sc">|&gt;</span></span>
+<span id="cb51-3"><a></a>    <span class="co"># filter no longer needed</span></span>
+<span id="cb51-4"><a></a>    <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb51-5"><a></a>    <span class="fu">aes</span>(bill_length_mm, body_mass_g) <span class="sc">+</span></span>
+<span id="cb51-6"><a></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb51-7"><a></a>    <span class="fu">ggtitle</span>(<span class="fu">glue</span>(<span class="st">"Species: {species}"</span>)) <span class="sc">+</span></span>
+<span id="cb51-8"><a></a>    <span class="fu">xlab</span>(<span class="st">"bill length (mm)"</span>) <span class="sc">+</span></span>
+<span id="cb51-9"><a></a>    <span class="fu">ylab</span>(<span class="st">"body mass (g)"</span>) <span class="sc">+</span></span>
+<span id="cb51-10"><a></a>    <span class="fu">theme_minimal_grid</span>() <span class="sc">+</span></span>
+<span id="cb51-11"><a></a>    <span class="fu">theme</span>(<span class="at">plot.title.position =</span> <span class="st">"plot"</span>)</span>
+<span id="cb51-12"><a></a>}</span>
+<span id="cb51-13"><a></a></span>
+<span id="cb51-14"><a></a>data_adelie <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
+<span id="cb51-15"><a></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Adelie"</span>)</span>
+<span id="cb51-16"><a></a></span>
+<span id="cb51-17"><a></a><span class="fu">make_plot2</span>(data_adelie, <span class="at">species =</span> <span class="st">"Adelie"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="functional-programming_files/figure-revealjs/unnamed-chunk-21-1.svg" style="width:100.0%"></p>
+<p><img data-src="functional-programming_files/figure-revealjs/unnamed-chunk-36-1.svg" style="width:100.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
@@ -725,9 +1032,9 @@ Claus O. Wilke
 <h2>Step 5: Use these concepts in a tidy pipeline</h2>
 <div class="tiny-font move-down-1em">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb25-2"><a></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span>species) <span class="sc">|&gt;</span></span>
-<span id="cb25-3"><a></a>  <span class="fu">mutate</span>(<span class="at">plots =</span> <span class="fu">map</span>(species, make_plot))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb52-2"><a></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span>species) <span class="sc">|&gt;</span></span>
+<span id="cb52-3"><a></a>  <span class="fu">mutate</span>(<span class="at">plots =</span> <span class="fu">map</span>(species, make_plot))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
   species   data               plots 
@@ -743,11 +1050,11 @@ Claus O. Wilke
 <h2>Step 5: Use these concepts in a tidy pipeline</h2>
 <div class="tiny-font">
 <div class="cell" data-layout-align="left">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb27-2"><a></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span>species) <span class="sc">|&gt;</span></span>
-<span id="cb27-3"><a></a>  <span class="fu">mutate</span>(<span class="at">plots =</span> <span class="fu">map</span>(species, make_plot)) <span class="sc">|&gt;</span></span>
-<span id="cb27-4"><a></a>  <span class="fu">pull</span>(plots) <span class="sc">|&gt;</span></span>
-<span id="cb27-5"><a></a>  patchwork<span class="sc">::</span><span class="fu">wrap_plots</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb54-2"><a></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span>species) <span class="sc">|&gt;</span></span>
+<span id="cb54-3"><a></a>  <span class="fu">mutate</span>(<span class="at">plots =</span> <span class="fu">map</span>(species, make_plot)) <span class="sc">|&gt;</span></span>
+<span id="cb54-4"><a></a>  <span class="fu">pull</span>(plots) <span class="sc">|&gt;</span></span>
+<span id="cb54-5"><a></a>  patchwork<span class="sc">::</span><span class="fu">wrap_plots</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
 <figure>
@@ -763,11 +1070,11 @@ Claus O. Wilke
 <h2>Step 5: Use these concepts in a tidy pipeline</h2>
 <div class="tiny-font">
 <div class="cell" data-layout-align="left">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb28-2"><a></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span>species) <span class="sc">|&gt;</span></span>
-<span id="cb28-3"><a></a>  <span class="fu">mutate</span>(<span class="at">plots =</span> <span class="fu">map2</span>(data, species, make_plot2)) <span class="sc">|&gt;</span></span>
-<span id="cb28-4"><a></a>  <span class="fu">pull</span>(plots) <span class="sc">|&gt;</span></span>
-<span id="cb28-5"><a></a>  patchwork<span class="sc">::</span><span class="fu">wrap_plots</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb55-2"><a></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span>species) <span class="sc">|&gt;</span></span>
+<span id="cb55-3"><a></a>  <span class="fu">mutate</span>(<span class="at">plots =</span> <span class="fu">map2</span>(data, species, make_plot2)) <span class="sc">|&gt;</span></span>
+<span id="cb55-4"><a></a>  <span class="fu">pull</span>(plots) <span class="sc">|&gt;</span></span>
+<span id="cb55-5"><a></a>  patchwork<span class="sc">::</span><span class="fu">wrap_plots</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
 <figure>

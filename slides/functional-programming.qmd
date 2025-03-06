@@ -305,18 +305,61 @@ make_plot("Adelie")
 
 ::: {.tiny-font .move-down-1em}
 ```{r}
-#| label: penguins-plot-all
+#| label: penguins-plot-Chinstrap3
 #| echo: true
 #| fig-width: 6
 #| fig-asp: 0.75
 #| fig-cap: "&nbsp;"
 #| out-width: "100%"
 #| output-location: column
-make_plot("Adelie")
+#| code-line-numbers: "14-14"
+make_plot <- function(species) {
+  penguins |>
+    filter(.data$species == .env$species) |>
+    ggplot() +
+    aes(bill_length_mm, body_mass_g) +
+    geom_point() +
+    ggtitle(glue("Species: {species}")) +
+    xlab("bill length (mm)") +
+    ylab("body mass (g)") +
+    theme_minimal_grid() +
+    theme(plot.title.position = "plot")
+}
+
 make_plot("Chinstrap")
+```
+:::
+
+
+## Step 2: Define a function
+
+::: {.tiny-font .move-down-1em}
+```{r}
+#| label: penguins-plot-Gentoo3
+#| echo: true
+#| fig-width: 6
+#| fig-asp: 0.75
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+#| code-line-numbers: "14-14"
+make_plot <- function(species) {
+  penguins |>
+    filter(.data$species == .env$species) |>
+    ggplot() +
+    aes(bill_length_mm, body_mass_g) +
+    geom_point() +
+    ggtitle(glue("Species: {species}")) +
+    xlab("bill length (mm)") +
+    ylab("body mass (g)") +
+    theme_minimal_grid() +
+    theme(plot.title.position = "plot")
+}
+
 make_plot("Gentoo")
 ```
 :::
+
 
 ## Rules of thumb about functions
 
@@ -336,8 +379,196 @@ make_plot("Gentoo")
 - If a function is getting too long, break it into smaller functions
 :::
 
-
 ## Step 3: Automate calling the function
+
+::: {.fragment .small-font}
+We need a brief detour to talk about lists and the `map()` pattern
+:::
+
+## Lists
+
+::: {.fragment .small-font}
+In R, lists are a data structure that can store multiple elements of various types
+:::
+
+::: {.fragment .small-font}
+A list of words:
+```{r}
+#| echo: true
+list("apple", "orange", "banana")
+```
+:::
+
+## Lists
+
+::: {.small-font}
+In R, lists are a data structure that can store multiple elements of various types
+:::
+
+::: {.small-font}
+A list of numbers:
+```{r}
+#| echo: true
+list(5, 7, 12)
+```
+:::
+
+
+## Lists
+
+::: {.small-font}
+In R, lists are a data structure that can store multiple elements of various types
+:::
+
+::: {.small-font}
+A list of mixed data types:
+```{r}
+#| echo: true
+list(5, "apple", TRUE)
+```
+:::
+
+::: {.fragment .small-font}
+For comparison, all elements of a vector are coerced into the same type: 
+```{r}
+#| echo: true
+c(5, "apple", TRUE)
+```
+:::
+
+## Lists
+
+::: {.small-font}
+In R, lists are a data structure that can store multiple elements of various types
+:::
+
+::: {.small-font}
+A list of vectors:
+```{r}
+#| echo: true
+list(1:5, c("apple", "orange", "banana"), c(TRUE, FALSE))
+```
+:::
+
+## Lists
+
+::: {.small-font}
+In R, lists are a data structure that can store multiple elements of various types
+:::
+
+::: {.small-font}
+A list of lists:
+```{r}
+#| echo: true
+list(list(1, 2), list(3, 4))
+```
+:::
+
+## Lists
+
+::: {.small-font}
+You can access individual elements of a list with the double brackets operator:
+```{r}
+#| echo: true
+fruit <- list("apple", "orange", "banana")
+fruit
+```
+:::
+
+## Lists
+
+::: {.small-font}
+You can access individual elements of a list with the double brackets operator:
+```{r}
+#| echo: true
+fruit <- list("apple", "orange", "banana")
+fruit[[1]]
+```
+:::
+
+## Lists
+
+::: {.small-font}
+You can access individual elements of a list with the double brackets operator:
+```{r}
+#| echo: true
+fruit <- list("apple", "orange", "banana")
+fruit[[3]]
+```
+:::
+
+## The `map()` pattern
+
+::: {.fragment .small-font}
+The `map()` function applies a function to all elements of a vector or list and returns the result in a list
+:::
+
+::: {.fragment .small-font}
+This pattern can be used instead of loops
+:::
+
+::: {.fragment .small-font}
+Example: Calculate the squares of the numbers 3, 4, 5:
+```{r}
+#| echo: true
+# define function that calculates square
+square <- function(x) x^2
+
+# apply function to the numbers 3, 4, 5
+map(3:5, square) 
+```
+:::
+
+## The `map()` pattern
+
+::: {.small-font}
+We can define the function to be applied on the fly:
+```{r}
+#| echo: true
+map(3:5, function(x) x^2) 
+```
+:::
+
+::: {.fragment .small-font}
+Even simpler:
+```{r}
+#| echo: true
+map(3:5, \(x) x^2) 
+```
+:::
+
+## The `map()` pattern
+
+::: {.small-font}
+Also:
+```{r}
+#| echo: true
+map(3:5, ~.x^2) 
+```
+
+Note: The formula definition is not part of the base R language and only works for certain tidyverse functions
+:::
+
+## The `map()` pattern
+
+::: {.small-font}
+Sometimes it's more convenient to get a vector as return value:
+```{r}
+#| echo: true
+map_dbl(3:5, ~.x^2) 
+```
+:::
+
+::: {.fragment .small-font}
+Similarly:
+
+- `map_chr()` returns a vector of strings
+- `map_int()` returns a vector of integers
+- `map_lgl()` returns a vector of logicals
+:::
+
+
+## Now let's go back to making plots
 
 ::: {.fragment .small-font}
 ```{r}
@@ -366,7 +597,7 @@ plots[[1]]
 ```
 :::
 
-## Step 3: Automate calling the function
+## Now let's go back to making plots
 
 ::: {.small-font}
 ```{r}
@@ -395,7 +626,7 @@ plots[[2]]
 ```
 :::
 
-## Step 3: Automate calling the function
+## Now let's go back to making plots
 
 ::: {.small-font}
 ```{r}
@@ -424,7 +655,7 @@ plots[[3]]
 ```
 :::
 
-## Step 3: Automate calling the function
+## Now let's go back to making plots
 
 ::: {.small-font}
 ```{r}

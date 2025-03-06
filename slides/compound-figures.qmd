@@ -78,7 +78,9 @@ Avoid bars or other elements that are floating in space
 
 <br>
 
+::: {.fragment}
 ![](https://clauswilke.com/dataviz/multi-panel_figures_files/figure-html/BA-degrees-compound-1.png){width="85%" fig-align="center"}
+:::
 
 ## Don't use overly large or otherwise prominent labels
 

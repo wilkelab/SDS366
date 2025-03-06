@@ -1,0 +1,293 @@
+---
+title: "Working with models"
+author: "Claus O. Wilke"
+date: last-modified
+format: 
+  revealjs:
+    theme:
+      - default
+      - Wilke-theme.scss
+    auto-stretch: false
+    chalkboard: true
+execute:
+  fig-format: svg
+  fig-asp: 0.618
+  fig-width: 5.5
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+library(palmerpenguins)
+library(cowplot)
+library(glue)
+library(here)
+
+# ggplot2 settings so plots scale well for slide size 
+theme_set(theme_gray(14))
+update_geom_defaults("point", list(size = 2))
+update_geom_defaults("line", list(linewidth = 1))
+```
+
+## How do we obtain information about model fits?
+
+```{r}
+#| label: penguins-fits
+#| echo: true
+#| fig-width: 9
+#| fig-asp: 0.4
+#| fig-cap: "&nbsp;"
+#| out-width: "80%"
+penguins |>
+  ggplot(aes(body_mass_g, flipper_length_mm)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  facet_wrap(~species)
+```
+
+## We can fit a linear model with `lm()`
+
+::: {.fragment .small-font}
+```{r}
+#| echo: true
+penguins_adelie <- filter(penguins, species == "Adelie")
+```
+:::
+
+## We can fit a linear model with `lm()`
+
+::: {.small-font}
+```{r}
+#| echo: true
+penguins_adelie <- filter(penguins, species == "Adelie")
+
+lm_out <- lm(flipper_length_mm ~ body_mass_g, data = penguins_adelie)
+```
+:::
+
+
+## We can fit a linear model with `lm()`
+
+::: {.small-font}
+```{r}
+#| echo: true
+penguins_adelie <- filter(penguins, species == "Adelie")
+
+lm_out <- lm(flipper_length_mm ~ body_mass_g, data = penguins_adelie)
+summary(lm_out)
+```
+:::
+
+
+## We use `map()` to fit models to groups of data
+
+::: {.fragment .small-font}
+```{r}
+#| echo: true
+penguins |>
+  nest(data = -species) # nest all data except species column
+```
+:::
+
+## We use `map()` to fit models to groups of data
+
+::: {.small-font}
+```{r}
+#| echo: true
+penguins |>
+  nest(data = -species) |>
+  mutate(
+    # apply linear model to each nested data frame
+    fit = map(data, ~lm(flipper_length_mm ~ body_mass_g, data = .x))
+  )
+```
+:::
+
+## We use `map()` to fit models to groups of data
+
+::: {.small-font}
+```{r}
+#| echo: true
+lm_data <- penguins |>
+  nest(data = -species) |>
+  mutate(
+    # apply linear model to each nested data frame
+    fit = map(data, ~lm(flipper_length_mm ~ body_mass_g, data = .x))
+  )
+
+lm_data$fit[[1]]  # first model fit, for Adelie species
+```
+:::
+
+## Manually extracting summary data is cumbersome
+
+::: {.fragment .small-font}
+```{r}
+#| echo: true
+summary(lm_data$fit[[1]]) # summarize the first model, which is for Adelie
+```
+:::
+
+## Manually extracting summary data is cumbersome
+
+::: {.small-font}
+```{r}
+#| echo: true
+summary(lm_data$fit[[2]]) # second model, Chinstrap
+```
+:::
+
+## Manually extracting summary data is cumbersome
+
+::: {.small-font}
+```{r}
+#| echo: true
+summary(lm_data$fit[[3]]) # third model, Gentoo
+```
+:::
+
+# How do we get this information into a data table?
+
+
+## The **broom** package: `glance()` and `tidy()`
+
+::: {.small-font}
+- `glance()` provides model-wide summary estimates in tidy format
+:::
+
+::: {.fragment .small-font}
+```{r}
+#| echo: true
+library(broom)
+
+glance(lm_data$fit[[1]])
+```
+:::
+
+::: {.fragment .small-font}
+- `tidy()` provides information about regression coefficients in tidy format
+:::
+
+::: {.fragment .small-font}
+```{r}
+#| echo: true
+library(broom)
+
+tidy(lm_data$fit[[1]])
+```
+:::
+
+## Apply these functions to multiple models with `map()`
+
+::: {.fragment .small-font}
+Reminder: This is the nested table with fitted models
+```{r}
+#| echo: true
+lm_data
+```
+:::
+
+## Apply these functions to multiple models with `map()`
+
+::: {.small-font}
+```{r}
+#| echo: true
+lm_data |>
+  mutate(
+    glance_out = map(fit, glance) # apply `glance()` to each fitted model
+  )
+```
+:::
+
+## Apply these functions to multiple models with `map()`
+
+::: {.small-font}
+```{r}
+#| echo: true
+lm_data |>
+  mutate(
+    glance_out = map(fit, glance) # apply `glance()` to each fitted model
+  ) |>
+  select(species, glance_out)     # only keep species name and glance output
+```
+:::
+
+## Apply these functions to multiple models with `map()`
+
+::: {.small-font}
+```{r}
+#| echo: true
+lm_data |>
+  mutate(
+    glance_out = map(fit, glance) # apply `glance()` to each fitted model
+  ) |>
+  select(species, glance_out) |>  # only keep species name and glance output
+  unnest(cols = glance_out)
+```
+:::
+
+## Putting everything into one pipeline
+
+::: {.small-font}
+```{r}
+#| echo: true
+lm_summary <- penguins |>
+  nest(data = -species) |>
+  mutate(
+    fit = map(data, ~lm(flipper_length_mm ~ body_mass_g, data = .x)),
+    glance_out = map(fit, glance)
+  ) |>
+  select(species, glance_out) |>
+  unnest(cols = glance_out)
+
+lm_summary
+```
+:::
+
+# How do we use this approach to annotate plots?
+
+## Make label data
+
+::: {.small-font}
+```{r}
+#| echo: true
+label_data <- lm_summary |>
+  mutate(
+    rsqr = signif(r.squared, 2),  # round to 2 significant digits
+    pval = signif(p.value, 2),
+    label = glue("R^2 = {rsqr}, P = {pval}"),
+    body_mass_g = 6400, flipper_length_mm = 175 # label position in plot
+  ) |>
+  select(species, label, body_mass_g, flipper_length_mm)
+
+label_data
+```
+:::
+
+## And plot
+
+::: {.small-font}
+```{r}
+#| label: penguins-fit-w-labels
+#| echo: true
+#| fig-width: 9
+#| fig-asp: 0.4
+#| fig-cap: "&nbsp;"
+#| out-width: "80%"
+ggplot(penguins, aes(body_mass_g, flipper_length_mm)) + geom_point() +
+  geom_text(
+    data = label_data, aes(label = label),
+    size = 10, size.unit = "pt", hjust = 1  # 10pt, right-justified
+  ) +
+  geom_smooth(method = "lm", se = FALSE) + facet_wrap(vars(species))
+```
+:::
+
+
+<!-- Segment ends here -->
+
+## Further reading
+
+- Data Visualization—A Practical Introduction: [Chapter 6.5: Tidy model objects with broom](https://socviz.co/modeling.html#tidy-model-objects-with-broom)
+- **broom** reference documentation: https://broom.tidymodels.org/
+- Article on using **broom** with **dplyr**: [**broom** and **dplyr**](https://broom.tidymodels.org/articles/broom_and_dplyr.html)
