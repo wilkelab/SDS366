@@ -101,21 +101,21 @@ All these books are freely available online and you do not need to purchase a ph
 
 22.     Clustering 2                hierarchical clustering
         
-23.     Visualizing geospatial      `geom_sf()`, `coord_sf()`
-        data
-
-24.     Redundant coding, text      **ggrepel** package
+23.     Redundant coding, text      **ggrepel** package
         annotations
 
-25.     Over-plotting               jittering, 2d histograms,
+24.     Over-plotting               jittering, 2d histograms,
                                     contour plots
+
+25.     Visualizing geospatial      `geom_sf()`, `coord_sf()`
+        data
 
 26.     Interactive plots           **ggiraph** package
 
 27.     Web technologies and        CSS
         web design
 
-28.     Interactive plots           **gganimate** package
+28.     Animations                  **gganimate** package
 
 
 ----------------------------------------------------------------
