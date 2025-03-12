@@ -115,6 +115,21 @@ format: html
 - [Slides](slides/visualizing-trends.qmd)  
 - [Worksheet](worksheets/visualizing-trends.qmd)
 
+### 16. Mar 11, 2025—Functions and functional programming
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/functional-programming.qmd)  
+- [Worksheet](worksheets/functional-programming.qmd)
+
+### 17. Mar 13, 2025—Working with models
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/working-with-models.qmd)  
+- [Worksheet](worksheets/working-with-models.qmd)
+
+
 ## Homeworks
 
 All homeworks are due by 11:00pm on the day they are due. Homeworks need to be submitted as pdf files on Canvas.

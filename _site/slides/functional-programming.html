@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.39">
 
   <meta name="author" content="Claus O. Wilke">
-  <meta name="dcterms.date" content="2025-03-03">
+  <meta name="dcterms.date" content="2025-03-11">
   <title>SDS 366 – Functions and functional programming</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -205,7 +205,7 @@ Claus O. Wilke
 </div>
 </div>
 
-  <p class="date">2025-03-03</p>
+  <p class="date">2025-03-11</p>
 </section>
 <section id="we-often-have-to-run-similar-code-multiple-times" class="slide level2">
 <h2>We often have to run similar code multiple times</h2>
@@ -1033,8 +1033,25 @@ Claus O. Wilke
 <div class="tiny-font move-down-1em">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb52-2"><a></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span>species) <span class="sc">|&gt;</span></span>
-<span id="cb52-3"><a></a>  <span class="fu">mutate</span>(<span class="at">plots =</span> <span class="fu">map</span>(species, make_plot))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb52-2"><a></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  species   data              
+  &lt;fct&gt;     &lt;list&gt;            
+1 Adelie    &lt;tibble [152 × 7]&gt;
+2 Gentoo    &lt;tibble [124 × 7]&gt;
+3 Chinstrap &lt;tibble [68 × 7]&gt; </code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="step-5-use-these-concepts-in-a-tidy-pipeline-1" class="slide level2">
+<h2>Step 5: Use these concepts in a tidy pipeline</h2>
+<div class="tiny-font move-down-1em">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb54-2"><a></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span>species) <span class="sc">|&gt;</span></span>
+<span id="cb54-3"><a></a>  <span class="fu">mutate</span>(<span class="at">plots =</span> <span class="fu">map</span>(species, make_plot))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
   species   data               plots 
@@ -1046,15 +1063,15 @@ Claus O. Wilke
 </div>
 </div>
 </section>
-<section id="step-5-use-these-concepts-in-a-tidy-pipeline-1" class="slide level2">
+<section id="step-5-use-these-concepts-in-a-tidy-pipeline-2" class="slide level2">
 <h2>Step 5: Use these concepts in a tidy pipeline</h2>
 <div class="tiny-font">
 <div class="cell" data-layout-align="left">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb54-2"><a></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span>species) <span class="sc">|&gt;</span></span>
-<span id="cb54-3"><a></a>  <span class="fu">mutate</span>(<span class="at">plots =</span> <span class="fu">map</span>(species, make_plot)) <span class="sc">|&gt;</span></span>
-<span id="cb54-4"><a></a>  <span class="fu">pull</span>(plots) <span class="sc">|&gt;</span></span>
-<span id="cb54-5"><a></a>  patchwork<span class="sc">::</span><span class="fu">wrap_plots</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb56-2"><a></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span>species) <span class="sc">|&gt;</span></span>
+<span id="cb56-3"><a></a>  <span class="fu">mutate</span>(<span class="at">plots =</span> <span class="fu">map</span>(species, make_plot)) <span class="sc">|&gt;</span></span>
+<span id="cb56-4"><a></a>  <span class="fu">pull</span>(plots) <span class="sc">|&gt;</span></span>
+<span id="cb56-5"><a></a>  patchwork<span class="sc">::</span><span class="fu">wrap_plots</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
 <figure>
@@ -1066,15 +1083,15 @@ Claus O. Wilke
 </div>
 </div>
 </section>
-<section id="step-5-use-these-concepts-in-a-tidy-pipeline-2" class="slide level2">
+<section id="step-5-use-these-concepts-in-a-tidy-pipeline-3" class="slide level2">
 <h2>Step 5: Use these concepts in a tidy pipeline</h2>
 <div class="tiny-font">
 <div class="cell" data-layout-align="left">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb55-2"><a></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span>species) <span class="sc">|&gt;</span></span>
-<span id="cb55-3"><a></a>  <span class="fu">mutate</span>(<span class="at">plots =</span> <span class="fu">map2</span>(data, species, make_plot2)) <span class="sc">|&gt;</span></span>
-<span id="cb55-4"><a></a>  <span class="fu">pull</span>(plots) <span class="sc">|&gt;</span></span>
-<span id="cb55-5"><a></a>  patchwork<span class="sc">::</span><span class="fu">wrap_plots</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb57-2"><a></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span>species) <span class="sc">|&gt;</span></span>
+<span id="cb57-3"><a></a>  <span class="fu">mutate</span>(<span class="at">plots =</span> <span class="fu">map2</span>(data, species, make_plot2)) <span class="sc">|&gt;</span></span>
+<span id="cb57-4"><a></a>  <span class="fu">pull</span>(plots) <span class="sc">|&gt;</span></span>
+<span id="cb57-5"><a></a>  patchwork<span class="sc">::</span><span class="fu">wrap_plots</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
 <figure>

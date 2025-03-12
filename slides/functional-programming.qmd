@@ -755,6 +755,17 @@ make_plot2(data_adelie, species = "Adelie")
 ```{r}
 #| echo: true
 penguins |>
+  nest(data = -species)
+```
+:::
+
+
+## Step 5: Use these concepts in a tidy pipeline
+
+::: {.tiny-font .move-down-1em}
+```{r}
+#| echo: true
+penguins |>
   nest(data = -species) |>
   mutate(plots = map(species, make_plot))
 ```
