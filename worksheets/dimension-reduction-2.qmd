@@ -1,0 +1,246 @@
+---
+title: "Dimension reduction 2"
+author: "Claus O. Wilke"
+format: live-html
+engine: knitr
+webr:
+  render-df: gt-interactive
+---
+
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+
+## Introduction
+
+In this worksheet, we will discuss how to perform t-SNE (t-distributed stochastic neighbor embedding), a type of non-linear dimension reduction.
+
+First we need to load the required R packages. Please wait a moment until the live R session is fully set up and all packages are loaded.
+
+```{webr}
+#| warning: false
+#| edit: false
+library(tidyverse)
+library(Rtsne)
+```
+
+Next we set up the data.
+
+```{webr}
+#| edit: false
+#| warning: false
+spirals <- read_csv("https://wilkelab.org/SDS366/datasets/spirals.csv")
+blue_jays <- read_csv("https://wilkelab.org/SDS366/datasets/blue_jays.csv")
+
+```
+
+We will be working with two datasets, `spirals` and `blue_jays`. The dataset `spirals` contains made-up data in two dimensions that forms three intertwined spirals.
+
+```{webr}
+#| edit: false
+spirals
+```
+
+The dataset `blue_jays` contains various measurements taken on blue jay birds.
+
+```{webr}
+#| edit: false
+blue_jays
+```
+
+
+## Performing t-SNE on the `spirals` dataset
+
+We start by taking a closer look at the `spirals` dataset. It has three columns, `x`, `y`, and `group`. When we create a scatterplot of `y` against `x` and color by `group` we see three intertwined spirals.
+
+```{webr}
+#| edit: false
+ggplot(spirals, aes(x, y, color = group)) +
+  geom_point()
+```
+
+We perform t-SNE on this dataset with the function `Rtsne()`. Data preparation is similar to PCA: First, we discard all non-numeric columns. Then, we scale the variables to zero mean and unit variance.
+
+```{webr}
+#| edit: false
+# choose a random seed to make results reproducible
+set.seed(5623)
+
+# prepare data and run t-SNE
+tsne_fit <- spirals |>
+  select(where(is.numeric)) |>
+  scale() |>
+  Rtsne()
+
+# extract coordinates from the `tsne_fit` object and plot
+tsne_fit$Y |>
+  as.data.frame() |>
+  # put non-numeric data columns back in to the dataset
+  cbind(select(spirals, -where(is.numeric))) |>
+  ggplot(aes(V1, V2, color = group)) +
+  geom_point()
+```
+
+The result looks quite similar to the plot of the raw data. That is the case because we have not customized t-SNE. The main parameter that we change when running t-SNE is the perplexity value (`perplexity`), and its default of 30 is relativley large for the spirals data. We can also change the random seed and the number of iterations until the algorithm is considered converged  (`max_iter`, higher is better).
+
+```{webr}
+#| edit: false
+# random seed
+set.seed(8423)
+
+# run t-SNE with different perplexity and total number of iterations
+tsne_fit <- spirals |>
+  select(where(is.numeric)) |>
+  scale() |>
+  Rtsne(perplexity = 5, max_iter = 500)
+
+# extract coordinates from the `tsne_fit` object and plot
+tsne_fit$Y |>
+  as.data.frame() |>
+  # put non-numeric data columns back in to the dataset
+  cbind(select(spirals, -where(is.numeric))) |>
+  ggplot(aes(V1, V2, color = group)) +
+  geom_point()
+```
+
+Now, to see how the parameter settings change the t-SNE results, run the above code for a few different values of the three custom config parameters we have set up. Pay attention to how the output changes as you change each of these parameters.
+
+```{webr} 
+#| exercise: tsne-exercise
+
+```
+
+::: { .solution exercise="tsne-exercise" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+# random seed
+set.seed(1255)
+
+# run t-SNE with different perplexity and total number of iterations
+tsne_fit <- spirals |>
+  select(where(is.numeric)) |>
+  scale() |>
+  Rtsne(perplexity = 8, max_iter = 1000)
+
+# extract coordinates from the `tsne_fit` object and plot
+tsne_fit$Y |>
+  as.data.frame() |>
+  # put non-numeric data columns back in to the dataset
+  cbind(select(spirals, -where(is.numeric))) |>
+  ggplot(aes(V1, V2, color = group)) +
+  geom_point()
+```
+:::
+:::
+
+## Performing t-SNE on the `blue_jays` dataset
+
+Next we will perform t-SNE on the `blue_jays` dataset. See if you can adapt the code from the spirals data to work with the `blue_jays` dataset.
+
+```{webr} 
+#| exercise: tsne-blue-jays
+
+```
+
+::: { .hint exercise="tsne-blue-jays" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+# random seed
+set.seed(1255)
+
+# run t-SNE with different perplexity and total number of iterations
+tsne_fit <- ___ |>
+  select(where(is.numeric)) |>
+  scale() |>
+  Rtsne(perplexity = 8, max_iter = 1000)
+
+# extract coordinates from the `tsne_fit` object and plot
+tsne_fit$Y |>
+  as.data.frame() |>
+  # put non-numeric data columns back in to the dataset
+  cbind(select(___, -where(is.numeric))) |>
+  ggplot(aes(V1, V2, color = ___)) +
+  geom_point()
+```
+:::
+:::
+
+::: { .solution exercise="tsne-blue-jays" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+# random seed
+set.seed(1255)
+
+# run t-SNE with different perplexity and total number of iterations
+tsne_fit <- blue_jays |>
+  select(where(is.numeric)) |>
+  scale() |>
+  Rtsne(perplexity = 8, max_iter = 1000)
+
+# extract coordinates from the `tsne_fit` object and plot
+tsne_fit$Y |>
+  as.data.frame() |>
+  # put non-numeric data columns back in to the dataset
+  cbind(select(blue_jays, -where(is.numeric))) |>
+  ggplot(aes(V1, V2, color = sex)) +
+  geom_point()
+```
+:::
+:::
+
+As before, change the t-SNE configuration parameters and see what effect different choices have on the results you obtain.
+
+```{webr} 
+#| exercise: tsne-blue-jays2
+
+```
+
+::: { .hint exercise="tsne-blue-jays2" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+# random seed
+set.seed(___)
+
+# run t-SNE with different perplexity and total number of iterations
+tsne_fit <- blue_jays |>
+  select(where(is.numeric)) |>
+  scale() |>
+  Rtsne(
+    perplexity = ___,
+    max_iter = ___
+  )
+
+# extract coordinates from the `tsne_fit` object and plot
+tsne_fit$Y |>
+  as.data.frame() |>
+  # put non-numeric data columns back in to the dataset
+  cbind(select(blue_jays, -where(is.numeric))) |>
+  ggplot(aes(V1, V2, color = sex)) +
+  geom_point()
+```
+:::
+:::
+
+::: { .solution exercise="tsne-blue-jays2" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+# random seed
+set.seed(9327)
+
+# run t-SNE with different perplexity and total number of iterations
+tsne_fit <- blue_jays |>
+  select(where(is.numeric)) |>
+  scale() |>
+  Rtsne(
+    perplexity = 6,
+    max_iter = 2000
+  )
+
+# extract coordinates from the `tsne_fit` object and plot
+tsne_fit$Y |>
+  as.data.frame() |>
+  # put non-numeric data columns back in to the dataset
+  cbind(select(blue_jays, -where(is.numeric))) |>
+  ggplot(aes(V1, V2, color = sex)) +
+  geom_point()
+```
+:::
+:::
