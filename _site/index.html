@@ -308,12 +308,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Class 17: Working with models</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="./worksheets/visualizing-uncertainty.html">
+ <span class="dropdown-text">Class 18: Visualizing uncertainty</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./worksheets/dimension-reduction-1.html">
  <span class="dropdown-text">Class 19: Dimension reduction 1</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./worksheets/dimension-reduction-2.html">
  <span class="dropdown-text">Class 20: Dimension reduction 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./worksheets/clustering.html">
+ <span class="dropdown-text">Class 21: Clustering</span></a>
   </li>  
     </ul>
   </li>
@@ -404,7 +412,7 @@ Upcoming lectures and assignments: <a href="schedule.html">click here</a></p>
 <li>A recent version of R, <a href="https://cloud.r-project.org/">download from here.</a></li>
 <li>A recent version of RStudio, <a href="https://posit.co/download/rstudio-desktop/">download from here,</a> OR a recent version of Positron, <a href="https://positron.posit.co/">download from here.</a></li>
 <li>The following R packages:<br>
-broom, cluster, colorspace, cowplot, gapminder, GGally, gganimate, ggiraph, ggdendro, ggdist, ggforce, ggplot2movies, ggrepel, ggridges, ggthemes, gifski, glue, knitr, learnr, naniar, margins, MASS, Matrix, nycflights13, palmerpenguins, patchwork, quarto, rmarkdown, rnaturalearth, rnaturalearthhires, scales, sf, sp, tidyverse, transformr, tsne, umap</li>
+broom, cluster, colorspace, cowplot, gapminder, GGally, gganimate, ggiraph, ggdendro, ggdist, ggforce, ggplot2movies, ggrepel, ggridges, ggthemes, gifski, glue, knitr, learnr, naniar, margins, MASS, Matrix, nycflights13, palmerpenguins, patchwork, quarto, rmarkdown, rnaturalearth, rnaturalearthhires, Rtsne, scales, sf, sp, tidyverse, transformr, umap</li>
 </ul>
 <p>You can install all required R packages at once by running the following code in the R command line:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first run this command:</span></span>
@@ -415,8 +423,8 @@ broom, cluster, colorspace, cowplot, gapminder, GGally, gganimate, ggiraph, ggde
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ggplot2movies"</span>, <span class="st">"ggrepel"</span>, <span class="st">"ggridges"</span>, <span class="st">"ggthemes"</span>, <span class="st">"gifski"</span>, <span class="st">"glue"</span>,</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"knitr"</span>, <span class="st">"learnr"</span>, <span class="st">"naniar"</span>, <span class="st">"margins"</span>, <span class="st">"MASS"</span>, <span class="st">"Matrix"</span>,</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nycflights13"</span>, <span class="st">"palmerpenguins"</span>, <span class="st">"patchwork"</span>, <span class="st">"quarto"</span>, <span class="st">"rmarkdown"</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rnaturalearth"</span>, <span class="st">"scales"</span>, <span class="st">"sf"</span>, <span class="st">"sp"</span>, <span class="st">"tidyverse"</span>,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"transformr"</span>, <span class="st">"tsne"</span>, <span class="st">"umap"</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rnaturalearth"</span>, <span class="st">"Rtsne"</span>, <span class="st">"scales"</span>, <span class="st">"sf"</span>, <span class="st">"sp"</span>, <span class="st">"tidyverse"</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"transformr"</span>, <span class="st">"umap"</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>

@@ -106,10 +106,15 @@ website:
             href: worksheets/functional-programming.qmd
           - text: "Class 17: Working with models"
             href: worksheets/working-with-models.qmd
+          - text: "Class 18: Visualizing uncertainty"
+            href: worksheets/visualizing-uncertainty.qmd
           - text: "Class 19: Dimension reduction 1"
             href: worksheets/dimension-reduction-1.qmd
           - text: "Class 20: Dimension reduction 2"
             href: worksheets/dimension-reduction-2.qmd
+          - text: "Class 21: Clustering"
+            href: worksheets/clustering.qmd
+            
         
         
 

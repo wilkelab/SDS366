@@ -1,0 +1,399 @@
+---
+title: "Clustering"
+author: "Claus O. Wilke"
+format: live-html
+engine: knitr
+webr:
+  render-df: gt-interactive
+---
+
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+
+## Introduction
+
+In this worksheet, we will discuss how to perform principal components analysis (PCA).
+
+First we need to load the required R packages. Please wait a moment until the live R session is fully set up and all packages are loaded.
+
+```{webr}
+#| warning: false
+#| edit: false
+library(tidyverse)
+library(broom)
+```
+
+Next we set up the data.
+
+```{webr}
+#| edit: false
+#| warning: false
+spirals <- read_csv("https://wilkelab.org/SDS366/datasets/spirals.csv")
+```
+
+We will be working with two datasets, `spirals` and `iris`. The dataset `spirals` contains made-up data in two dimensions that forms three intertwined spirals.
+
+```{webr}
+#| edit: false
+spirals
+```
+
+The dataset `iris` contains measurements on the leaves of flowers of three *Iris* species.
+
+```{webr}
+#| edit: false
+iris
+```
+
+**Hint:** Pay attention to the column names in the `iris` dataset. They are all capitalized (e.g., `Species`), and the first four use a point as a separator (e.g., `Sepal.Length`). It is easy to misspell them and then the R code doesn't work correctly.
+
+## Clustering the `iris` dataset
+
+We perform k-means clustering in R with the function `kmeans()`. It takes two important arguments, the number of clusters we want to generate (`centers`) and the number of times we want to re-run the clustering algorithm with different random starting points (`nstart`). Similarly to a PCA, we need to remove all non-numeric data columns before we can run the analysis.
+
+```{webr}
+#| edit: false
+km_fit <- iris |> 
+  select(where(is.numeric)) |>
+  kmeans(centers = 3, nstart = 10)
+
+km_fit
+```
+
+The output from the fitted object (`km_fit`) gives us various pieces of information in human-readable form, such as the cluster sizes, the cluster means, and the assignment of rows in the original data table to the different clusters ("clustering vector").
+
+At the end of the output, you see a list of "available components." These are various pieces of information about the clustering result that you can extract from the fitted object. For example, `km_fit$cluster` gives you information about which row in the original data table belongs to which cluster.
+
+```{webr}
+#| edit: false
+km_fit$cluster
+```
+
+Similarly, `centers` will give you the positions of the cluster centers and `tot.withinss` will give you the total within sum-of-squares. Try this out. Also, see if you can figure out what the component `size` represents.
+
+```{webr} 
+#| exercise: kmfit-extraction
+km_fit$___
+```
+
+::: { .hint exercise="kmfit-extraction" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+km_fit$cluster
+___
+___
+```
+:::
+:::
+
+::: { .solution exercise="kmfit-extraction" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+km_fit$cluster      # assignment of original data rows to clusters
+km_fit$tot.withinss # total within sum-of-squares
+km_fit$size         # cluster sizes (number of observations in each cluster)
+```
+:::
+:::
+
+Next we move on to plotting the clustering output. The k-means algorithm is a stochastic algorithm that produces slightly different output each time it is run. This is particularly apparent when you set `nstart = 1`. In this case, you will get possibly quite different results for different random seeds. You can set the random seed via `set.seed()`.
+
+In the example below, try various seeds, including 2356, 2357, 2358, 2359, and see what the results are.
+
+```{webr}
+#| exercise: kmeans-random
+set.seed(2356)
+
+km_fit <- iris |> 
+  select(where(is.numeric)) |>
+  kmeans(centers = 3, nstart = 1)
+
+km_fit |>
+  augment(iris) |>
+  ggplot() +
+  aes(x = Sepal.Length, Sepal.Width) +
+  geom_point(aes(color = .cluster, shape = Species))
+```
+
+Now set `nstart = 10` and try the same random seeds once more.
+
+## Finding the appropriate number of clusters
+
+To get a sense of the correct number of clusters for a given dataset, we can plot the total within sum-of-squares as a function of the cluster number and look for a bend ("elbow") in the curve. Remember, the total within sum-of-squares can be obtained from the fitted object via `km_fit$tot.withinss`.
+
+The following code sets up a function `calc_withinss` that calculates the total within sum-of-squares for an arbitrary data set and number of clusters, and then applies it to the `spirals` dataset.
+
+```{webr}
+#| edit: false
+# function to calculate within sum squares
+calc_withinss <- function(data, centers) {
+  km_fit <- select(data, where(is.numeric)) |>
+    kmeans(centers = centers, nstart = 10)
+  km_fit$tot.withinss
+}
+
+tibble(centers = 1:15) |>
+  mutate(
+    within_sum_squares = map_dbl(
+      centers, ~calc_withinss(spirals, .x)
+    )
+  ) 
+```
+
+Now take this code and use it to make a plot of the total within sum-of-squares against cluster number.
+
+```{webr} 
+#| exercise: tot-within-exercise
+
+```
+
+::: { .hint exercise="tot-within-exercise" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+tibble(centers = 1:15) |>
+  mutate(
+    within_sum_squares = map_dbl(
+      centers, ~calc_withinss(spirals, .x)
+    )
+  ) |>
+  ggplot(aes(___)) +
+  ___
+```
+:::
+:::
+
+::: { .solution exercise="tot-within-exercise" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+tibble(centers = 1:15) |>
+  mutate(
+    within_sum_squares = map_dbl(
+      centers, ~calc_withinss(spirals, .x)
+    )
+  ) |>
+  ggplot(aes(centers, within_sum_squares)) +
+  geom_point() +
+  geom_line() +
+  theme_bw()
+```
+:::
+:::
+
+The plot suggests that the correct number of clusters should be around 3 or 4. Now cluster the `spirals` dataset with this number of clusters and then plot it colored by cluster id.
+
+```{webr} 
+#| exercise: spirals-kmeans
+
+```
+
+::: { .hint exercise="spirals-kmeans" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+km_fit <- ___ |> 
+  select(where(is.numeric)) |>
+  kmeans(centers = 3, nstart = 10)
+
+km_fit |>
+  augment(___) |>
+  ___
+```
+:::
+:::
+
+::: { .hint exercise="spirals-kmeans" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+km_fit <- spirals |> 
+  select(where(is.numeric)) |>
+  kmeans(centers = 3, nstart = 10)
+
+km_fit |>
+  augment(spirals) |>
+  ggplot() +
+  aes(___) +
+  geom_point(aes(color = ___, shape = ___))
+```
+:::
+:::
+
+
+::: { .solution exercise="spirals-kmeans" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+km_fit <- spirals |> 
+  select(where(is.numeric)) |>
+  kmeans(centers = 3, nstart = 10)
+
+km_fit |>
+  augment(spirals) |>
+  ggplot() +
+  aes(x, y) +
+  geom_point(aes(color = .cluster, shape = group))
+```
+:::
+:::
+
+Try a few different cluster numbers to see how the algorithm behaves. Do you think k-means clustering works on this dataset?
+
+## Combining k-means and PCA
+
+In practice, we often perform PCA first on a dataset and then cluster the transformed coordinates. Try this out on the `iris` dataset. Run a PCA, then cluster the PCA coordinates, and then plot the clusters in PCA space.
+
+As a reminder, this is how we would do a PCA on this dataset:
+```{webr}
+#| edit: false
+pca_fit <- iris |> 
+  select(where(is.numeric)) |> # retain only numeric columns
+  scale() |>                   # scale to zero mean and unit variance
+  prcomp() 
+
+# combine iris data with PCA data (needed for plot)
+iris_pca <- augment(pca_fit, iris)
+
+# extract PC coordinates from the fitted object
+# (needed for k-means) 
+augment(pca_fit) |>
+  select(-.rownames)  # remove columns with row names; not needed
+```
+
+Now modify this example so you perform a k-means clustering analysis and then color by clusters rather than by species.
+
+```{webr} 
+#| exercise: iris-pca-kmeans
+
+```
+
+::: { .hint exercise="iris-pca-kmeans" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+pca_fit <- iris |> 
+  select(where(is.numeric)) |> # retain only numeric columns
+  scale() |>                   # scale to zero mean and unit variance
+  prcomp()
+
+# combine iris data with PCA data (needed for plot)
+iris_pca <- augment(pca_fit, iris)
+
+# perform k-means
+km_fit <- augment(pca_fit) |>
+  select(-.rownames) |>
+  ___
+```
+:::
+:::
+
+::: { .hint exercise="iris-pca-kmeans" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+pca_fit <- iris |> 
+  select(where(is.numeric)) |> # retain only numeric columns
+  scale() |>                   # scale to zero mean and unit variance
+  prcomp()
+
+# combine iris data with PCA data (needed for plot)
+iris_pca <- augment(pca_fit, iris)
+
+# perform k-means
+km_fit <- augment(pca_fit) |>
+  select(-.rownames) |>
+  kmeans(centers = 3, nstart = 10)
+
+km_fit |>
+  # combine with original data and the PCA coordinates
+  ___ |>
+  # plot
+  ___
+```
+:::
+:::
+
+::: { .hint exercise="iris-pca-kmeans" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+pca_fit <- iris |> 
+  select(where(is.numeric)) |> # retain only numeric columns
+  scale() |>                   # scale to zero mean and unit variance
+  prcomp()
+
+# combine iris data with PCA data (needed for plot)
+iris_pca <- augment(pca_fit, iris)
+
+# perform k-means
+km_fit <- augment(pca_fit) |>
+  select(-.rownames) |>
+  kmeans(centers = 3, nstart = 10)
+
+km_fit |>
+  # combine with original data and the PCA coordinates
+  augment(iris_pca) |>
+  ggplot() +
+  ___
+```
+:::
+:::
+
+::: { .hint exercise="iris-pca-kmeans" }
+::: { .callout-tip title="Hint" collapse="false"}
+```r
+pca_fit <- iris |> 
+  select(where(is.numeric)) |> # retain only numeric columns
+  scale() |>                   # scale to zero mean and unit variance
+  prcomp()
+
+# combine iris data with PCA data (needed for plot)
+iris_pca <- augment(pca_fit, iris)
+
+# perform k-means
+km_fit <- augment(pca_fit) |>
+  select(-.rownames) |>
+  kmeans(centers = 3, nstart = 10)
+
+km_fit |>
+  # combine with original data and the PCA coordinates
+  augment(iris_pca) |>
+  ggplot() +
+  aes(x = .fittedPC1, .fittedPC2) +
+  geom_point(
+    aes(color = .cluster, shape = Species)
+  )
+```
+:::
+:::
+
+::: { .solution exercise="iris-pca-kmeans" }
+::: { .callout-tip title="Solution" collapse="false"}
+```r
+pca_fit <- iris |> 
+  select(where(is.numeric)) |> # retain only numeric columns
+  scale() |>                   # scale to zero mean and unit variance
+  prcomp()
+
+# combine iris data with PCA data (needed for plot)
+iris_pca <- augment(pca_fit, iris)
+
+# perform k-means
+km_fit <- augment(pca_fit) |>
+  select(-.rownames) |>
+  kmeans(centers = 3, nstart = 10)
+
+km_fit |>
+  # combine with original data and the PCA coordinates
+  augment(iris_pca) |>
+  ggplot() +
+  aes(x = .fittedPC1, .fittedPC2) +
+  geom_point(
+    aes(color = .cluster, shape = Species)
+  ) +
+  geom_point(
+    data = tidy(km_fit),
+    aes(fill = cluster),
+    shape = 21, color = "black", size = 4
+  ) +
+  guides(color = "none")
+```
+:::
+:::
+
+Change which components you plot on the x and the y axis to try to get a sense of how the clusters are located in the 4-dimensional PC space.
+
+
+
