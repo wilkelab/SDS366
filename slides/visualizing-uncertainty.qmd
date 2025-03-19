@@ -76,8 +76,385 @@ Head length versus body mass for male blue jays. Data source: Keith Tarvin, Ober
 In particular, error bars can represent many different quantities
 :::
 
-## It's often not clear what the visualizations represent
+::: {.fragment}
+![](https://clauswilke.com/dataviz/visualizing_uncertainty_files/figure-html/cocoa-data-vs-CI-1.png){width="80%" fig-align="center"}
+:::
 
+::: {.absolute-bottom-right .tiny-font}
+Chocolate bar ratings. Source: Manhattan Chocolate Society
+:::
+
+## We can have difficulty interpreting what we see
+
+::: {.incremental}
+- People are not good at reasoning about probabilities
+- People will substitute uncertainty with simpler concepts  
+(Deterministic Construal Error)
+- People will interpret intervals as hard boundaries
+:::
+
+::: {.absolute-bottom-right .tiny-font}
+Lace Padilla, Matthew Kay, and Jessica Hullman (2022): [Uncertainty Visualization](
+https://osf.io/preprints/psyarxiv/ebd6r)
+:::
+
+## Uncertainty shown as 95% CI error bars with caps
+
+::: {.small}
+Chocolate bars from four countries compared to bars from the US<br>&nbsp;
+:::
+
+![](../assets/visualizing-uncertainty/confidence-visualizations-3.png){width="75%" fig-align="center"}
+
+::: {.absolute-bottom-right .tiny-font}
+Relative rankings compared to US chocolate bars. Source: Manhattan Chocolate Society
+:::
+
+## Uncertainty shown as 95% CI error bars with caps
+
+::: {.small}
+Determinstic Construal Error:<br>Error bars are interpreted as min/max values
+:::
+
+![](../assets/visualizing-uncertainty/confidence-visualizations-3.png){width="75%" fig-align="center"}
+
+::: {.absolute-bottom-right .tiny-font}
+Relative rankings compared to US chocolate bars. Source: Manhattan Chocolate Society
+:::
+
+## Uncertainty shown as 95% CI error bars with caps
+
+::: {.small}
+Categorical thinking:<br>Areas outside and inside the error bars are categorically different
+:::
+
+![](../assets/visualizing-uncertainty/confidence-visualizations-3.png){width="75%" fig-align="center"}
+
+::: {.absolute-bottom-right .tiny-font}
+Relative rankings compared to US chocolate bars. Source: Manhattan Chocolate Society
+:::
+
+## Uncertainty shown as 95% CI error bars without caps
+
+::: {.small}
+You can remove caps to make the boundary visually less severe<br>&nbsp;
+:::
+
+![](../assets/visualizing-uncertainty/confidence-visualizations-4.png){width="75%" fig-align="center"}
+
+::: {.absolute-bottom-right .tiny-font}
+Relative rankings compared to US chocolate bars. Source: Manhattan Chocolate Society
+:::
+
+## Uncertainty shown as graded error bars
+
+::: {.small}
+You can show multiple confidence levels to de-emphasize existence of boundary
+:::
+
+![](../assets/visualizing-uncertainty/confidence-visualizations-2.png){width="75%" fig-align="center"}
+
+::: {.absolute-bottom-right .tiny-font}
+Relative rankings compared to US chocolate bars. Source: Manhattan Chocolate Society
+:::
+
+## Uncertainty shown as confidence strips
+
+::: {.small}
+You can use faded strips (but hard to read/interpret)<br>&nbsp;
+:::
+
+![](../assets/visualizing-uncertainty/confidence-visualizations-5.png){width="75%" fig-align="center"}
+
+::: {.absolute-bottom-right .tiny-font}
+Relative rankings compared to US chocolate bars. Source: Manhattan Chocolate Society
+:::
+
+## Uncertainty shown as distributions
+
+::: {.small}
+You can show actual distributions<br>
+Popular in Bayesian inference, but still difficult to interpret
+:::
+
+![](../assets/visualizing-uncertainty/confidence-visualizations-6.png){width="75%" fig-align="center"}
+
+::: {.absolute-bottom-right .tiny-font}
+Relative rankings compared to US chocolate bars. Source: Manhattan Chocolate Society
+:::
+
+## Consider the actual experience of a customer
+
+::: {.fragment}
+If I can buy either a Canadian or a US bar, what is the probability that the Canadian bar will be better?
+:::
+
+::: {.fragment}
+Answer: The Canadian bar has a 53% chance of being better
+:::
+
+::: {.fragment}
+How can we communicate this?
+:::
+
+## Use frequency framing to communicate probabilities
+
+```{r}
+#| label: freq-waffle
+#| fig-cap: "&nbsp;"
+#| fig-width: 4.5
+#| fig-asp: 1
+#| out-width: "50%"
+g <- expand.grid(x = 1:10, y = 1:10)
+
+set.seed(84520)
+data <- data.frame(ratio = c(0.99, 0.9, 0.7, 0.47, 0.3, 0.1)) |>
+  mutate(
+    out = purrr::map(
+      ratio,
+      ~g |> mutate(
+        value = {
+          n <- n()
+          i <- round(n*.x)
+          sample(c(rep("W", i), rep("L", n - i)), n)
+        }
+      )
+    )
+  ) |>
+  unnest(cols = out) |>
+  mutate(
+    label = paste0(round(100*(1-ratio)), "% chance")
+  )
+
+data |> filter(ratio == .47) |>
+  ggplot(aes(x, y, fill = value)) +
+  geom_tile(color = "white", linewidth = 2) +
+  coord_fixed(expand = FALSE, clip = "off") +
+  scale_x_continuous(name = NULL, breaks = NULL) +
+  scale_y_continuous(name = NULL, breaks = NULL) +
+  scale_fill_manual(
+    name = NULL,
+    breaks = c("W", "L"),
+    labels = c("loss   ", "win"),
+    values = c(
+      "L" = desaturate(darken("#0072B2", .4), .5),
+      "W" = desaturate(lighten("#0072B2", .7), .5)
+    ),
+    guide = guide_legend(override.aes = list(size = 0))
+  ) +
+  facet_wrap(~label) +
+  theme_minimal_grid(20) +
+  theme(
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.justification = "right",
+    legend.box.spacing = unit(12, "pt"),
+    legend.spacing.x = unit(3, "pt"),
+    legend.key.size = unit(18, "pt")
+  )
+```
+
+## Use frequency framing to communicate probabilities
+
+```{r}
+#| label: freq-waffle2
+#| fig-cap: "&nbsp;"
+#| fig-width: 4.5
+#| fig-asp: 1
+#| out-width: "50%"
+data |> filter(ratio == .1) |>
+  ggplot(aes(x, y, fill = value)) +
+  geom_tile(color = "white", linewidth = 2) +
+  coord_fixed(expand = FALSE, clip = "off") +
+  scale_x_continuous(name = NULL, breaks = NULL) +
+  scale_y_continuous(name = NULL, breaks = NULL) +
+  scale_fill_manual(
+    name = NULL,
+    breaks = c("W", "L"),
+    labels = c("loss   ", "win"),
+    values = c(
+      "L" = desaturate(darken("#0072B2", .4), .5),
+      "W" = desaturate(lighten("#0072B2", .7), .5)
+    ),
+    guide = guide_legend(override.aes = list(size = 0))
+  ) +
+  facet_wrap(~label) +
+  theme_minimal_grid(20) +
+  theme(
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.justification = "right",
+    legend.box.spacing = unit(12, "pt"),
+    legend.spacing.x = unit(3, "pt"),
+    legend.key.size = unit(18, "pt")
+  )
+```
+
+## Use frequency framing to communicate probabilities
+
+```{r}
+#| label: freq-waffle3
+#| fig-cap: "&nbsp;"
+#| fig-width: 4.5
+#| fig-asp: 1
+#| out-width: "50%"
+data |> filter(ratio == .3) |>
+  ggplot(aes(x, y, fill = value)) +
+  geom_tile(color = "white", linewidth = 2) +
+  coord_fixed(expand = FALSE, clip = "off") +
+  scale_x_continuous(name = NULL, breaks = NULL) +
+  scale_y_continuous(name = NULL, breaks = NULL) +
+  scale_fill_manual(
+    name = NULL,
+    breaks = c("W", "L"),
+    labels = c("loss   ", "win"),
+    values = c(
+      "L" = desaturate(darken("#0072B2", .4), .5),
+      "W" = desaturate(lighten("#0072B2", .7), .5)
+    ),
+    guide = guide_legend(override.aes = list(size = 0))
+  ) +
+  facet_wrap(~label) +
+  theme_minimal_grid(20) +
+  theme(
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.justification = "right",
+    legend.box.spacing = unit(12, "pt"),
+    legend.spacing.x = unit(3, "pt"),
+    legend.key.size = unit(18, "pt")
+  )
+```
+
+## Use frequency framing to communicate probabilities
+
+```{r}
+#| label: freq-waffle4
+#| fig-cap: "&nbsp;"
+#| fig-width: 4.5
+#| fig-asp: 1
+#| out-width: "50%"
+data |> filter(ratio == .7) |>
+  ggplot(aes(x, y, fill = value)) +
+  geom_tile(color = "white", linewidth = 2) +
+  coord_fixed(expand = FALSE, clip = "off") +
+  scale_x_continuous(name = NULL, breaks = NULL) +
+  scale_y_continuous(name = NULL, breaks = NULL) +
+  scale_fill_manual(
+    name = NULL,
+    breaks = c("W", "L"),
+    labels = c("loss   ", "win"),
+    values = c(
+      "L" = desaturate(darken("#0072B2", .4), .5),
+      "W" = desaturate(lighten("#0072B2", .7), .5)
+    ),
+    guide = guide_legend(override.aes = list(size = 0))
+  ) +
+  facet_wrap(~label) +
+  theme_minimal_grid(20) +
+  theme(
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.justification = "right",
+    legend.box.spacing = unit(12, "pt"),
+    legend.spacing.x = unit(3, "pt"),
+    legend.key.size = unit(18, "pt")
+  )
+```
+
+## Use frequency framing to communicate probabilities
+
+```{r}
+#| label: freq-waffle5
+#| fig-cap: "&nbsp;"
+#| fig-width: 4.5
+#| fig-asp: 1
+#| out-width: "50%"
+data |> filter(ratio == .9) |>
+  ggplot(aes(x, y, fill = value)) +
+  geom_tile(color = "white", linewidth = 2) +
+  coord_fixed(expand = FALSE, clip = "off") +
+  scale_x_continuous(name = NULL, breaks = NULL) +
+  scale_y_continuous(name = NULL, breaks = NULL) +
+  scale_fill_manual(
+    name = NULL,
+    breaks = c("W", "L"),
+    labels = c("loss   ", "win"),
+    values = c(
+      "L" = desaturate(darken("#0072B2", .4), .5),
+      "W" = desaturate(lighten("#0072B2", .7), .5)
+    ),
+    guide = guide_legend(override.aes = list(size = 0))
+  ) +
+  facet_wrap(~label) +
+  theme_minimal_grid(20) +
+  theme(
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.justification = "right",
+    legend.box.spacing = unit(12, "pt"),
+    legend.spacing.x = unit(3, "pt"),
+    legend.key.size = unit(18, "pt")
+  )
+```
+
+## Alternatively: Use Hypothetical Outcome Plots
+
+Hypothetical Outcome Plots use animation to let viewers experience uncertainty
+
+::: {.absolute-bottom-right .tiny-font}
+[Hullman et al., PLOS ONE 2015](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0142444)
+:::
+
+## Alternatively: Use Hypothetical Outcome Plots
+
+Hypothetical Outcome Plots use animation to let viewers experience uncertainty
+
+![](https://clauswilke.com/dataviz/visualizing_uncertainty_files/figure-html/chocolate-HOP-animated-1.gif){width="60%" fig-align="center"}
+
+::: {.absolute-bottom-right .tiny-font}
+[Hullman et al., PLOS ONE 2015](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0142444)
+:::
+
+## Let's now consider the uncertainty of trend lines
+
+::: {.fragment}
+What does the confidence band show?
+
+![](../assets/visualizing-uncertainty/blue-jays-static.png){width="65%" fig-align="center"}
+
+::: {.absolute-bottom-right .tiny-font}
+Head length versus body mass for male blue jays. Data source: Keith Tarvin, Oberlin College
+:::
+:::
+
+## Let's now consider the uncertainty of trend lines
+
+Both the intercept and the slope have uncertainty
+
+![](../assets/visualizing-uncertainty/blue-jays-HOP.gif){width="65%" fig-align="center"}
+
+::: {.absolute-bottom-right .tiny-font}
+Head length versus body mass for male blue jays. Data source: Keith Tarvin, Oberlin College
+:::
+
+## It gets even more confusing for non-linear trend lines
+
+Individual sample fits tend to be more wiggly than the mean
+
+![](https://clauswilke.com/dataviz/visualizing_uncertainty_files/figure-html/mpg-uncertain-1.png){width="95%" fig-align="center"}
+
+::: {.absolute-bottom-right .tiny-font}
+Fuel efficiency versus displacement, for 32 cars (1973–74 models). Source: Motor Trend, 1974
+:::
+
+## Hypothetical Outcome Plots again help develop intuition
+
+![](https://clauswilke.com/dataviz/visualizing_uncertainty_files/figure-html/mpg-uncertain-HOP-animated-1.gif){width="65%" fig-align="center"}
+
+::: {.absolute-bottom-right .tiny-font}
+Fuel efficiency versus displacement, for 32 cars (1973–74 models). Source: Motor Trend, 1974
+:::
 
 <!-- Segment ends here -->
 
@@ -93,7 +470,7 @@ Example: Relationship between life expectancy and GDP per capita
 #| fig-cap: "&nbsp;"
 #| fig-width: 7
 #| fig-asp: 0.65
-#| out-width: "60%"
+#| out-width: "75%"
 gapminder |>
   filter(
     continent != "Oceania",

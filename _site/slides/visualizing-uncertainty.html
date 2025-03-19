@@ -260,9 +260,273 @@ Claus O. Wilke
 <div class="fragment">
 <p>In particular, error bars can represent many different quantities</p>
 </div>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://clauswilke.com/dataviz/visualizing_uncertainty_files/figure-html/cocoa-data-vs-CI-1.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+<div class="absolute-bottom-right tiny-font">
+<p>Chocolate bar ratings. Source: Manhattan Chocolate Society</p>
+</div>
 </section>
-<section id="its-often-not-clear-what-the-visualizations-represent-1" class="slide level2">
-<h2>It’s often not clear what the visualizations represent</h2>
+<section id="we-can-have-difficulty-interpreting-what-we-see" class="slide level2">
+<h2>We can have difficulty interpreting what we see</h2>
+<div>
+<ul>
+<li class="fragment">People are not good at reasoning about probabilities</li>
+<li class="fragment">People will substitute uncertainty with simpler concepts<br>
+(Deterministic Construal Error)</li>
+<li class="fragment">People will interpret intervals as hard boundaries</li>
+</ul>
+</div>
+<div class="absolute-bottom-right tiny-font">
+<p>Lace Padilla, Matthew Kay, and Jessica Hullman (2022): <a href="https://osf.io/preprints/psyarxiv/ebd6r">Uncertainty Visualization</a></p>
+</div>
+</section>
+<section id="uncertainty-shown-as-95-ci-error-bars-with-caps" class="slide level2">
+<h2>Uncertainty shown as 95% CI error bars with caps</h2>
+<div class="small">
+<p>Chocolate bars from four countries compared to bars from the US<br>&nbsp;</p>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../assets/visualizing-uncertainty/confidence-visualizations-3.png" class="quarto-figure quarto-figure-center" style="width:75.0%"></p>
+</figure>
+</div>
+<div class="absolute-bottom-right tiny-font">
+<p>Relative rankings compared to US chocolate bars. Source: Manhattan Chocolate Society</p>
+</div>
+</section>
+<section id="uncertainty-shown-as-95-ci-error-bars-with-caps-1" class="slide level2">
+<h2>Uncertainty shown as 95% CI error bars with caps</h2>
+<div class="small">
+<p>Determinstic Construal Error:<br>Error bars are interpreted as min/max values</p>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../assets/visualizing-uncertainty/confidence-visualizations-3.png" class="quarto-figure quarto-figure-center" style="width:75.0%"></p>
+</figure>
+</div>
+<div class="absolute-bottom-right tiny-font">
+<p>Relative rankings compared to US chocolate bars. Source: Manhattan Chocolate Society</p>
+</div>
+</section>
+<section id="uncertainty-shown-as-95-ci-error-bars-with-caps-2" class="slide level2">
+<h2>Uncertainty shown as 95% CI error bars with caps</h2>
+<div class="small">
+<p>Categorical thinking:<br>Areas outside and inside the error bars are categorically different</p>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../assets/visualizing-uncertainty/confidence-visualizations-3.png" class="quarto-figure quarto-figure-center" style="width:75.0%"></p>
+</figure>
+</div>
+<div class="absolute-bottom-right tiny-font">
+<p>Relative rankings compared to US chocolate bars. Source: Manhattan Chocolate Society</p>
+</div>
+</section>
+<section id="uncertainty-shown-as-95-ci-error-bars-without-caps" class="slide level2">
+<h2>Uncertainty shown as 95% CI error bars without caps</h2>
+<div class="small">
+<p>You can remove caps to make the boundary visually less severe<br>&nbsp;</p>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../assets/visualizing-uncertainty/confidence-visualizations-4.png" class="quarto-figure quarto-figure-center" style="width:75.0%"></p>
+</figure>
+</div>
+<div class="absolute-bottom-right tiny-font">
+<p>Relative rankings compared to US chocolate bars. Source: Manhattan Chocolate Society</p>
+</div>
+</section>
+<section id="uncertainty-shown-as-graded-error-bars" class="slide level2">
+<h2>Uncertainty shown as graded error bars</h2>
+<div class="small">
+<p>You can show multiple confidence levels to de-emphasize existence of boundary</p>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../assets/visualizing-uncertainty/confidence-visualizations-2.png" class="quarto-figure quarto-figure-center" style="width:75.0%"></p>
+</figure>
+</div>
+<div class="absolute-bottom-right tiny-font">
+<p>Relative rankings compared to US chocolate bars. Source: Manhattan Chocolate Society</p>
+</div>
+</section>
+<section id="uncertainty-shown-as-confidence-strips" class="slide level2">
+<h2>Uncertainty shown as confidence strips</h2>
+<div class="small">
+<p>You can use faded strips (but hard to read/interpret)<br>&nbsp;</p>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../assets/visualizing-uncertainty/confidence-visualizations-5.png" class="quarto-figure quarto-figure-center" style="width:75.0%"></p>
+</figure>
+</div>
+<div class="absolute-bottom-right tiny-font">
+<p>Relative rankings compared to US chocolate bars. Source: Manhattan Chocolate Society</p>
+</div>
+</section>
+<section id="uncertainty-shown-as-distributions" class="slide level2">
+<h2>Uncertainty shown as distributions</h2>
+<div class="small">
+<p>You can show actual distributions<br> Popular in Bayesian inference, but still difficult to interpret</p>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../assets/visualizing-uncertainty/confidence-visualizations-6.png" class="quarto-figure quarto-figure-center" style="width:75.0%"></p>
+</figure>
+</div>
+<div class="absolute-bottom-right tiny-font">
+<p>Relative rankings compared to US chocolate bars. Source: Manhattan Chocolate Society</p>
+</div>
+</section>
+<section id="consider-the-actual-experience-of-a-customer" class="slide level2">
+<h2>Consider the actual experience of a customer</h2>
+<div class="fragment">
+<p>If I can buy either a Canadian or a US bar, what is the probability that the Canadian bar will be better?</p>
+</div>
+<div class="fragment">
+<p>Answer: The Canadian bar has a 53% chance of being better</p>
+</div>
+<div class="fragment">
+<p>How can we communicate this?</p>
+</div>
+</section>
+<section id="use-frequency-framing-to-communicate-probabilities" class="slide level2">
+<h2>Use frequency framing to communicate probabilities</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-uncertainty_files/figure-revealjs/freq-waffle-1.svg" style="width:50.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="use-frequency-framing-to-communicate-probabilities-1" class="slide level2">
+<h2>Use frequency framing to communicate probabilities</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-uncertainty_files/figure-revealjs/freq-waffle2-1.svg" style="width:50.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="use-frequency-framing-to-communicate-probabilities-2" class="slide level2">
+<h2>Use frequency framing to communicate probabilities</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-uncertainty_files/figure-revealjs/freq-waffle3-1.svg" style="width:50.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="use-frequency-framing-to-communicate-probabilities-3" class="slide level2">
+<h2>Use frequency framing to communicate probabilities</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-uncertainty_files/figure-revealjs/freq-waffle4-1.svg" style="width:50.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="use-frequency-framing-to-communicate-probabilities-4" class="slide level2">
+<h2>Use frequency framing to communicate probabilities</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="visualizing-uncertainty_files/figure-revealjs/freq-waffle5-1.svg" style="width:50.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="alternatively-use-hypothetical-outcome-plots" class="slide level2">
+<h2>Alternatively: Use Hypothetical Outcome Plots</h2>
+<p>Hypothetical Outcome Plots use animation to let viewers experience uncertainty</p>
+<div class="absolute-bottom-right tiny-font">
+<p><a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0142444">Hullman et al., PLOS ONE 2015</a></p>
+</div>
+</section>
+<section id="alternatively-use-hypothetical-outcome-plots-1" class="slide level2">
+<h2>Alternatively: Use Hypothetical Outcome Plots</h2>
+<p>Hypothetical Outcome Plots use animation to let viewers experience uncertainty</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://clauswilke.com/dataviz/visualizing_uncertainty_files/figure-html/chocolate-HOP-animated-1.gif" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
+</figure>
+</div>
+<div class="absolute-bottom-right tiny-font">
+<p><a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0142444">Hullman et al., PLOS ONE 2015</a></p>
+</div>
+</section>
+<section id="lets-now-consider-the-uncertainty-of-trend-lines" class="slide level2">
+<h2>Let’s now consider the uncertainty of trend lines</h2>
+<div class="fragment">
+<p>What does the confidence band show?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../assets/visualizing-uncertainty/blue-jays-static.png" class="quarto-figure quarto-figure-center" style="width:65.0%"></p>
+</figure>
+</div>
+<div class="absolute-bottom-right tiny-font">
+<p>Head length versus body mass for male blue jays. Data source: Keith Tarvin, Oberlin College</p>
+</div>
+</div>
+</section>
+<section id="lets-now-consider-the-uncertainty-of-trend-lines-1" class="slide level2">
+<h2>Let’s now consider the uncertainty of trend lines</h2>
+<p>Both the intercept and the slope have uncertainty</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../assets/visualizing-uncertainty/blue-jays-HOP.gif" class="quarto-figure quarto-figure-center" style="width:65.0%"></p>
+</figure>
+</div>
+<div class="absolute-bottom-right tiny-font">
+<p>Head length versus body mass for male blue jays. Data source: Keith Tarvin, Oberlin College</p>
+</div>
+</section>
+<section id="it-gets-even-more-confusing-for-non-linear-trend-lines" class="slide level2">
+<h2>It gets even more confusing for non-linear trend lines</h2>
+<p>Individual sample fits tend to be more wiggly than the mean</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://clauswilke.com/dataviz/visualizing_uncertainty_files/figure-html/mpg-uncertain-1.png" class="quarto-figure quarto-figure-center" style="width:95.0%"></p>
+</figure>
+</div>
+<div class="absolute-bottom-right tiny-font">
+<p>Fuel efficiency versus displacement, for 32 cars (1973–74 models). Source: Motor Trend, 1974</p>
+</div>
+</section>
+<section id="hypothetical-outcome-plots-again-help-develop-intuition" class="slide level2">
+<h2>Hypothetical Outcome Plots again help develop intuition</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://clauswilke.com/dataviz/visualizing_uncertainty_files/figure-html/mpg-uncertain-HOP-animated-1.gif" class="quarto-figure quarto-figure-center" style="width:65.0%"></p>
+</figure>
+</div>
+<div class="absolute-bottom-right tiny-font">
+<p>Fuel efficiency versus displacement, for 32 cars (1973–74 models). Source: Motor Trend, 1974</p>
+</div>
 <!-- Segment ends here -->
 </section>
 <section>
@@ -278,7 +542,7 @@ Claus O. Wilke
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="visualizing-uncertainty_files/figure-revealjs/gapminder-regressions-1.svg" style="width:60.0%"></p>
+<p><img data-src="visualizing-uncertainty_files/figure-revealjs/gapminder-regressions-1.svg" style="width:75.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>

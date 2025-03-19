@@ -63,6 +63,10 @@ website:
             href: slides/functional-programming.qmd
           - text: "Class 17: Working with models"
             href: slides/working-with-models.qmd
+          - text: "Class 18: Visualizing uncertainty"
+            href: slides/visualizing-uncertainty.qmd
+          - text: "Class 19: Dimension reduction 1"
+            href: slides/dimension-reduction-1.qmd
         
       - text: "Worksheets"
         menu:

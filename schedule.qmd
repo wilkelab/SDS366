@@ -129,6 +129,20 @@ format: html
 - [Slides](slides/working-with-models.qmd)  
 - [Worksheet](worksheets/working-with-models.qmd)
 
+### 18. Mar 25, 2025—Visualizing uncertainty
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/visualizing-uncertainty.qmd)  
+- [Worksheet](worksheets/visualizing-uncertainty.qmd)
+
+### 19. Mar 27, 2025—Dimension reduction 1
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/dimension-reduction-1.qmd)  
+- [Worksheet](worksheets/dimension-reduction-1.qmd)
+
 
 ## Homeworks
 
@@ -170,6 +184,11 @@ All homeworks are due by 11:00pm on the day they are due. Homeworks need to be s
 - [PDF](assignments/HW5.pdf)
 
 ### Homework 6 (due Apr 3, 2025)
+
+<p class="nospace">Materials:</p>
+
+- [Quarto template](assignments/HW6.qmd)
+- [PDF](assignments/HW6.pdf)
 
 ### Homework 7 (due Apr 10, 2025)
 
