@@ -1,0 +1,469 @@
+---
+title: "Visualizing Uncertainty"
+author: "Claus O. Wilke"
+date: last-modified
+format: 
+  revealjs:
+    theme:
+      - default
+      - Wilke-theme.scss
+    auto-stretch: false
+    chalkboard: true
+execute:
+  fig-format: svg
+  fig-asp: 0.618
+  fig-width: 5.5
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+library(colorspace)
+library(cowplot)
+library(broom)
+library(gapminder)
+library(here)
+
+# ggplot2 settings so plots scale well for slide size 
+theme_set(theme_gray(14))
+update_geom_defaults("point", list(size = 2))
+update_geom_defaults("line", list(linewidth = 1))
+```
+
+## We all know how to visualize uncertainty, right?
+
+::: {.move-down-1em}
+![](https://clauswilke.com/dataviz/visualizing_uncertainty_files/figure-html/butterfat-bars-1.png){width="75%" fig-align="center"}
+:::
+
+::: {.absolute-bottom-right .tiny-font}
+Milk butterfat contents by cattle breed. 
+Source: Canadian Record of Performance for Purebred Dairy Cattle
+:::
+
+## We all know how to visualize uncertainty, right?
+
+::: {.move-down-1em}
+![](https://clauswilke.com/dataviz/visualizing_uncertainty_files/figure-html/median-age-income-1.png){width="65%" fig-align="center"}
+:::
+
+::: {.absolute-bottom-right .tiny-font}
+Income versus age for 67 counties in Pennsylvania. 
+Source: 2015 Five-Year American Community Survey
+:::
+
+## We all know how to visualize uncertainty, right?
+
+::: {.move-down-1em}
+![](../assets/visualizing-uncertainty/blue-jays-static.png){width="65%" fig-align="center"}
+:::
+
+::: {.absolute-bottom-right .tiny-font}
+Head length versus body mass for male blue jays. Data source: Keith Tarvin, Oberlin College
+:::
+
+## These commonly used visualizations have problems
+
+
+::: {.incremental}
+- It's often not clear what exactly the visualizations represent
+- Even if we know, we can have difficulty interpreting what we see
+:::
+
+## It's often not clear what the visualizations represent
+
+::: {.fragment}
+In particular, error bars can represent many different quantities
+:::
+
+## It's often not clear what the visualizations represent
+
+
+<!-- Segment ends here -->
+
+# Uncertainty visualizations in R
+
+## Making a plot with error bars
+
+::: {.fragment .small-font}
+Example: Relationship between life expectancy and GDP per capita
+
+```{r}
+#| label: gapminder-regressions
+#| fig-cap: "&nbsp;"
+#| fig-width: 7
+#| fig-asp: 0.65
+#| out-width: "60%"
+gapminder |>
+  filter(
+    continent != "Oceania",
+    year %in% c(1952, 1967, 1982, 1997)
+  ) |>
+  mutate(
+    continent = fct_relevel(continent,  "Americas", "Europe", "Asia",  "Africa")
+  ) |>
+  ggplot(aes(log(gdpPercap), lifeExp)) +
+  geom_point(size = 0.5, color = "#0072B2") +
+  geom_smooth(method = "lm", color = "black") +
+  xlab("log GDP per capita") +
+  scale_y_continuous(
+    name = "life expectancy",
+    breaks = c(40, 60, 80)
+  ) +
+  facet_grid(year ~ continent) +
+  theme_minimal_grid(14, rel_small = 1) +
+  panel_border(color = "black")
+```
+:::
+
+## Making a plot with error bars
+
+::: {.small-font}
+Example: Relationship between life expectancy and GDP per capita
+:::
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| label: gapminder-regressions2
+#| fig-cap: "&nbsp;"
+#| fig-width: 7
+#| fig-asp: 0.65
+#| out-width: "100%"
+gapminder |>
+  filter(
+    continent != "Oceania",
+    year %in% c(1952, 1967, 1982, 1997)
+  ) |>
+  mutate(
+    continent = fct_relevel(continent,  "Americas", "Europe", "Asia",  "Africa")
+  ) |>
+  ggplot(aes(log(gdpPercap), lifeExp)) +
+  geom_point(size = 0.5, color = "#0072B2") +
+  geom_smooth(method = "lm", color = "black") +
+  xlab("log GDP per capita") +
+  scale_y_continuous(
+    name = "life expectancy",
+    breaks = c(40, 60, 80)
+  ) +
+  facet_grid(year ~ continent) +
+  theme_minimal_grid(14, rel_small = 1) +
+  panel_border(color = "black")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: gapminder-summary
+#| fig-cap: "&nbsp;"
+#| fig-width: 7
+#| fig-asp: 0.5
+#| out-width: "100%"
+gapminder |>
+  nest(data = -c(continent, year)) |>
+  mutate(
+    fit = map(data, ~lm(lifeExp ~ log(gdpPercap), data = .x)),
+    tidy_out = map(fit, tidy)
+  ) |>
+  unnest(cols = tidy_out) |>
+  filter(term != "(Intercept)", continent != "Oceania") |>
+  mutate(
+    continent = fct_relevel(continent, "Americas", "Europe", "Asia",  "Africa")
+  ) |>
+  ggplot() +
+  aes(
+    x = year, y = estimate,
+    ymin = estimate - 1.96*std.error,
+    ymax = estimate + 1.96*std.error,
+    color = continent
+  ) +
+  geom_pointrange(
+    position = position_dodge(width = 1)
+  ) +
+  scale_x_continuous(
+    breaks = c(1952, 1962, 1972, 1982, 1992, 2002)
+  ) + 
+  scale_y_continuous(
+    name = "regression slope"
+  ) +
+  scale_color_manual(
+    values = c(Africa = "#009E73", Americas = "#0072B2", Asia = "#D55E00", Europe = "#F0E442")
+  ) +
+  theme_minimal_grid(16, rel_small = 1) +
+  theme(legend.position = "top")
+```
+:::
+
+::::
+
+## Making a plot with error bars
+
+::: {.tiny-font}
+```{r}
+#| echo: true
+lm_data <- gapminder |>
+  nest(data = -c(continent, year))
+
+lm_data
+```
+:::
+
+## Making a plot with error bars
+
+::: {.tiny-font}
+```{r}
+#| echo: true
+lm_data <- gapminder |>
+  nest(data = -c(continent, year)) |>
+  mutate(
+    fit = map(data, ~lm(lifeExp ~ log(gdpPercap), data = .x))
+  )
+
+lm_data
+```
+:::
+
+## Making a plot with error bars
+
+::: {.tiny-font}
+```{r}
+#| echo: true
+lm_data <- gapminder |>
+  nest(data = -c(continent, year)) |>
+  mutate(
+    fit = map(data, ~lm(lifeExp ~ log(gdpPercap), data = .x)),
+    tidy_out = map(fit, tidy)
+  )
+
+lm_data
+```
+:::
+
+## Making a plot with error bars
+
+::: {.tiny-font}
+```{r}
+#| echo: true
+lm_data <- gapminder |>
+  nest(data = -c(continent, year)) |>
+  mutate(
+    fit = map(data, ~lm(lifeExp ~ log(gdpPercap), data = .x)),
+    tidy_out = map(fit, tidy)
+  ) |>
+  unnest(cols = tidy_out)
+
+lm_data
+```
+:::
+
+## Making a plot with error bars
+
+::: {.tiny-font}
+```{r}
+#| echo: true
+lm_data <- gapminder |>
+  nest(data = -c(continent, year)) |>
+  mutate(
+    fit = map(data, ~lm(lifeExp ~ log(gdpPercap), data = .x)),
+    tidy_out = map(fit, tidy)
+  ) |>
+  unnest(cols = tidy_out) |>
+  select(-fit, -data)
+
+lm_data
+```
+:::
+
+## Making a plot with error bars
+
+::: {.tiny-font}
+```{r}
+#| echo: true
+lm_data <- gapminder |>
+  nest(data = -c(continent, year)) |>
+  mutate(
+    fit = map(data, ~lm(lifeExp ~ log(gdpPercap), data = .x)),
+    tidy_out = map(fit, tidy)
+  ) |>
+  unnest(cols = tidy_out) |>
+  select(-fit, -data) |>
+  filter(term != "(Intercept)", continent != "Oceania")
+
+lm_data
+```
+:::
+
+## Making a plot with error bars
+
+::: {.tiny-font}
+```{r}
+#| echo: true
+#| label: gapminder-model
+#| fig-cap: "&nbsp;"
+#| fig-width: 6
+#| out-width: "100%"
+#| output-location: column
+ggplot(lm_data) +
+  aes(
+    x = year, y = estimate,
+    ymin = estimate - 1.96*std.error,
+    ymax = estimate + 1.96*std.error,
+    color = continent
+  ) +
+  geom_pointrange(
+    position = position_dodge(width = 1)
+  ) +
+  scale_x_continuous(
+    breaks = unique(gapminder$year)
+  ) + 
+  theme(legend.position = "top")
+```
+:::
+
+## Half-eyes, gradient intervals, etc
+
+::: {.fragment .small-font}
+The **ggdist** package provides many different visualizations of uncertainty
+:::
+
+::: {.fragment .tiny-font}
+```{r}
+#| echo: true
+#| label: gapminder-halfeye
+#| fig-cap: "&nbsp;"
+#| fig-width: 6
+#| out-width: "100%"
+#| output-location: column
+library(ggdist)
+library(distributional) # for dist_normal()
+
+lm_data |>
+  filter(year == 1952) |>
+  mutate(
+    continent = 
+      fct_reorder(continent, estimate) 
+  ) |>
+  ggplot(aes(x = estimate, y = continent)) +
+  stat_dist_halfeye(
+    aes(dist = dist_normal(
+      mu = estimate, sigma = std.error
+    )),
+    point_size = 4
+  )
+```
+:::
+
+## Half-eyes, gradient intervals, etc
+
+::: {.small-font}
+The **ggdist** package provides many different visualizations of uncertainty
+:::
+
+::: {.tiny-font}
+```{r}
+#| echo: true
+#| label: gapminder-gradinterval
+#| fig-cap: "&nbsp;"
+#| fig-width: 6
+#| out-width: "100%"
+#| output-location: column
+library(ggdist)
+library(distributional) # for dist_normal()
+
+lm_data |>
+  filter(year == 1952) |>
+  mutate(
+    continent = 
+      fct_reorder(continent, estimate) 
+  ) |>
+  ggplot(aes(x = estimate, y = continent)) +
+  stat_dist_gradientinterval(
+    aes(dist = dist_normal(
+      mu = estimate, sigma = std.error
+    )),
+    point_size = 4,
+    fill = "skyblue"
+  )
+```
+:::
+
+## Half-eyes, gradient intervals, etc
+
+::: {.small-font}
+The **ggdist** package provides many different visualizations of uncertainty
+:::
+
+::: {.tiny-font}
+```{r}
+#| echo: true
+#| label: gapminder-quantiledots
+#| fig-cap: "&nbsp;"
+#| fig-width: 6
+#| out-width: "100%"
+#| output-location: column
+library(ggdist)
+library(distributional) # for dist_normal()
+
+lm_data |>
+  filter(year == 1952) |>
+  mutate(
+    continent = 
+      fct_reorder(continent, estimate) 
+  ) |>
+  ggplot(aes(x = estimate, y = continent)) +
+  stat_dist_dotsinterval(
+    aes(dist = dist_normal(
+      mu = estimate, sigma = std.error
+    )),
+    point_size = 4,
+    fill = "skyblue",
+    quantiles = 20
+  )
+```
+:::
+
+## Half-eyes, gradient intervals, etc
+
+::: {.small-font}
+The **ggdist** package provides many different visualizations of uncertainty
+:::
+
+::: {.tiny-font}
+```{r}
+#| echo: true
+#| label: gapminder-quantiledots2
+#| fig-cap: "&nbsp;"
+#| fig-width: 6
+#| out-width: "100%"
+#| output-location: column
+library(ggdist)
+library(distributional) # for dist_normal()
+
+lm_data |>
+  filter(year == 1952) |>
+  mutate(
+    continent = 
+      fct_reorder(continent, estimate) 
+  ) |>
+  ggplot(aes(x = estimate, y = continent)) +
+  stat_dist_dotsinterval(
+    aes(dist = dist_normal(
+      mu = estimate, sigma = std.error
+    )),
+    point_size = 4,
+    fill = "skyblue",
+    quantiles = 10
+  )
+```
+:::
+
+<!-- Segment ends here -->
+
+## Further reading
+
+- Fundamentals of Data Visualization: [Chapter 16: Visualizing uncertainty](https://clauswilke.com/dataviz/visualizing-uncertainty.html)
+- Data Visualization—A Practical Introduction: [Chapter 6.6: Grouped analysis and list columns](https://socviz.co/modeling.html#grouped-analysis-and-list-columns)
+- Data Visualization—A Practical Introduction: [Chapter 6.7: Plot marginal effects](https://socviz.co/modeling.html#plot-marginal-effects)
+- **ggdist** reference documentation: https://mjskay.github.io/ggdist/index.html
+- **ggdist** vignette: [Frequentist uncertainty visualization](https://mjskay.github.io/ggdist/articles/freq-uncertainty-vis.html)
