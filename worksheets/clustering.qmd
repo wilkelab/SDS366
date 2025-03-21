@@ -11,7 +11,7 @@ webr:
 
 ## Introduction
 
-In this worksheet, we will discuss how to perform principal components analysis (PCA).
+In this worksheet, we will discuss how to perform k-means clustering.
 
 First we need to load the required R packages. Please wait a moment until the live R session is fully set up and all packages are loaded.
 

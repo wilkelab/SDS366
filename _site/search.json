@@ -347,14 +347,14 @@
     "href": "worksheets/clustering.html",
     "title": "Clustering",
     "section": "",
-    "text": "In this worksheet, we will discuss how to perform principal components analysis (PCA).\nFirst we need to load the required R packages. Please wait a moment until the live R session is fully set up and all packages are loaded.\n\n\n\n\n\n\n\n\nNext we set up the data.\n\n\n\n\n\n\n\n\nWe will be working with two datasets, spirals and iris. The dataset spirals contains made-up data in two dimensions that forms three intertwined spirals.\n\n\n\n\n\n\n\n\nThe dataset iris contains measurements on the leaves of flowers of three Iris species.\n\n\n\n\n\n\n\n\nHint: Pay attention to the column names in the iris dataset. They are all capitalized (e.g., Species), and the first four use a point as a separator (e.g., Sepal.Length). It is easy to misspell them and then the R code doesn’t work correctly."
+    "text": "In this worksheet, we will discuss how to perform k-means clustering.\nFirst we need to load the required R packages. Please wait a moment until the live R session is fully set up and all packages are loaded.\n\n\n\n\n\n\n\n\nNext we set up the data.\n\n\n\n\n\n\n\n\nWe will be working with two datasets, spirals and iris. The dataset spirals contains made-up data in two dimensions that forms three intertwined spirals.\n\n\n\n\n\n\n\n\nThe dataset iris contains measurements on the leaves of flowers of three Iris species.\n\n\n\n\n\n\n\n\nHint: Pay attention to the column names in the iris dataset. They are all capitalized (e.g., Species), and the first four use a point as a separator (e.g., Sepal.Length). It is easy to misspell them and then the R code doesn’t work correctly."
   },
   {
     "objectID": "worksheets/clustering.html#introduction",
     "href": "worksheets/clustering.html#introduction",
     "title": "Clustering",
     "section": "",
-    "text": "In this worksheet, we will discuss how to perform principal components analysis (PCA).\nFirst we need to load the required R packages. Please wait a moment until the live R session is fully set up and all packages are loaded.\n\n\n\n\n\n\n\n\nNext we set up the data.\n\n\n\n\n\n\n\n\nWe will be working with two datasets, spirals and iris. The dataset spirals contains made-up data in two dimensions that forms three intertwined spirals.\n\n\n\n\n\n\n\n\nThe dataset iris contains measurements on the leaves of flowers of three Iris species.\n\n\n\n\n\n\n\n\nHint: Pay attention to the column names in the iris dataset. They are all capitalized (e.g., Species), and the first four use a point as a separator (e.g., Sepal.Length). It is easy to misspell them and then the R code doesn’t work correctly."
+    "text": "In this worksheet, we will discuss how to perform k-means clustering.\nFirst we need to load the required R packages. Please wait a moment until the live R session is fully set up and all packages are loaded.\n\n\n\n\n\n\n\n\nNext we set up the data.\n\n\n\n\n\n\n\n\nWe will be working with two datasets, spirals and iris. The dataset spirals contains made-up data in two dimensions that forms three intertwined spirals.\n\n\n\n\n\n\n\n\nThe dataset iris contains measurements on the leaves of flowers of three Iris species.\n\n\n\n\n\n\n\n\nHint: Pay attention to the column names in the iris dataset. They are all capitalized (e.g., Species), and the first four use a point as a separator (e.g., Sepal.Length). It is easy to misspell them and then the R code doesn’t work correctly."
   },
   {
     "objectID": "worksheets/clustering.html#clustering-the-iris-dataset",
@@ -2513,6 +2513,524 @@
     "text": "Further reading\n\nFundamentals of Data Visualization: Chapter 19: Common pitfalls of color use\nWikipedia: HSL and HSV\ncolorspace package documentation: Color Spaces\ncolorspace package documentation: Apps for Choosing Colors and Palettes Interactively"
   },
   {
+    "objectID": "slides/clustering.html#kmeans-motivation",
+    "href": "slides/clustering.html#kmeans-motivation",
+    "title": "Clustering",
+    "section": "",
+    "text": "These points correspond to three clusters. Can a computer find them automatically?"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-motivation-color",
+    "href": "slides/clustering.html#kmeans-motivation-color",
+    "title": "Clustering",
+    "section": "",
+    "text": "These points correspond to three clusters. Can a computer find them automatically?"
+  },
+  {
+    "objectID": "slides/clustering.html#k-means-clustering",
+    "href": "slides/clustering.html#k-means-clustering",
+    "title": "Clustering",
+    "section": "k-means clustering",
+    "text": "k-means clustering\n\n1. Start with k randomly chosen means\n\n\n2. Color data points by the shortest distance to any mean\n\n\n3. Move means to centroid position of each group of points\n\n\n4. Repeat from step 2 until convergence"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-animation-2",
+    "href": "slides/clustering.html#kmeans-animation-2",
+    "title": "Clustering",
+    "section": "",
+    "text": "Add means at arbitrary locations"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-animation-3",
+    "href": "slides/clustering.html#kmeans-animation-3",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-animation-4",
+    "href": "slides/clustering.html#kmeans-animation-4",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-animation-5",
+    "href": "slides/clustering.html#kmeans-animation-5",
+    "title": "Clustering",
+    "section": "",
+    "text": "Move means to centroid position of each group of points"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-animation-6",
+    "href": "slides/clustering.html#kmeans-animation-6",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-animation-7",
+    "href": "slides/clustering.html#kmeans-animation-7",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-animation-8",
+    "href": "slides/clustering.html#kmeans-animation-8",
+    "title": "Clustering",
+    "section": "",
+    "text": "Move means to centroid position of each group of points"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-animation-9",
+    "href": "slides/clustering.html#kmeans-animation-9",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-animation-10",
+    "href": "slides/clustering.html#kmeans-animation-10",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-animation-11",
+    "href": "slides/clustering.html#kmeans-animation-11",
+    "title": "Clustering",
+    "section": "",
+    "text": "Move means to centroid position of each group of points"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-animation-12",
+    "href": "slides/clustering.html#kmeans-animation-12",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-animation-13",
+    "href": "slides/clustering.html#kmeans-animation-13",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-animation-14",
+    "href": "slides/clustering.html#kmeans-animation-14",
+    "title": "Clustering",
+    "section": "",
+    "text": "Move means to centroid position of each group of points"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-animation-15",
+    "href": "slides/clustering.html#kmeans-animation-15",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-animation-16",
+    "href": "slides/clustering.html#kmeans-animation-16",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-animation-17",
+    "href": "slides/clustering.html#kmeans-animation-17",
+    "title": "Clustering",
+    "section": "",
+    "text": "Move means to centroid position of each group of points"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-animation-18",
+    "href": "slides/clustering.html#kmeans-animation-18",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-animation-19",
+    "href": "slides/clustering.html#kmeans-animation-19",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-animation-20",
+    "href": "slides/clustering.html#kmeans-animation-20",
+    "title": "Clustering",
+    "section": "",
+    "text": "Final result"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-five-clusters-2",
+    "href": "slides/clustering.html#kmeans-five-clusters-2",
+    "title": "Clustering",
+    "section": "",
+    "text": "Add means at arbitrary locations"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-five-clusters-3",
+    "href": "slides/clustering.html#kmeans-five-clusters-3",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-five-clusters-4",
+    "href": "slides/clustering.html#kmeans-five-clusters-4",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-five-clusters-5",
+    "href": "slides/clustering.html#kmeans-five-clusters-5",
+    "title": "Clustering",
+    "section": "",
+    "text": "Move means to centroid position of each group of points"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-five-clusters-6",
+    "href": "slides/clustering.html#kmeans-five-clusters-6",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-five-clusters-7",
+    "href": "slides/clustering.html#kmeans-five-clusters-7",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-five-clusters-8",
+    "href": "slides/clustering.html#kmeans-five-clusters-8",
+    "title": "Clustering",
+    "section": "",
+    "text": "Move means to centroid position of each group of points"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-five-clusters-9",
+    "href": "slides/clustering.html#kmeans-five-clusters-9",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-five-clusters-10",
+    "href": "slides/clustering.html#kmeans-five-clusters-10",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-five-clusters-11",
+    "href": "slides/clustering.html#kmeans-five-clusters-11",
+    "title": "Clustering",
+    "section": "",
+    "text": "Move means to centroid position of each group of points"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-five-clusters-12",
+    "href": "slides/clustering.html#kmeans-five-clusters-12",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-five-clusters-13",
+    "href": "slides/clustering.html#kmeans-five-clusters-13",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-five-clusters-14",
+    "href": "slides/clustering.html#kmeans-five-clusters-14",
+    "title": "Clustering",
+    "section": "",
+    "text": "Move means to centroid position of each group of points"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-five-clusters-15",
+    "href": "slides/clustering.html#kmeans-five-clusters-15",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-five-clusters-16",
+    "href": "slides/clustering.html#kmeans-five-clusters-16",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-five-clusters-17",
+    "href": "slides/clustering.html#kmeans-five-clusters-17",
+    "title": "Clustering",
+    "section": "",
+    "text": "Move means to centroid position of each group of points"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-five-clusters-18",
+    "href": "slides/clustering.html#kmeans-five-clusters-18",
+    "title": "Clustering",
+    "section": "",
+    "text": "Final result"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-spirals-2",
+    "href": "slides/clustering.html#kmeans-spirals-2",
+    "title": "Clustering",
+    "section": "",
+    "text": "Add means at arbitrary locations"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-spirals-3",
+    "href": "slides/clustering.html#kmeans-spirals-3",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-spirals-4",
+    "href": "slides/clustering.html#kmeans-spirals-4",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-spirals-5",
+    "href": "slides/clustering.html#kmeans-spirals-5",
+    "title": "Clustering",
+    "section": "",
+    "text": "Move means to centroid position of each group of points"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-spirals-6",
+    "href": "slides/clustering.html#kmeans-spirals-6",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-spirals-7",
+    "href": "slides/clustering.html#kmeans-spirals-7",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-spirals-8",
+    "href": "slides/clustering.html#kmeans-spirals-8",
+    "title": "Clustering",
+    "section": "",
+    "text": "Move means to centroid position of each group of points"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-spirals-9",
+    "href": "slides/clustering.html#kmeans-spirals-9",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-spirals-10",
+    "href": "slides/clustering.html#kmeans-spirals-10",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-spirals-11",
+    "href": "slides/clustering.html#kmeans-spirals-11",
+    "title": "Clustering",
+    "section": "",
+    "text": "Move means to centroid position of each group of points"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-spirals-12",
+    "href": "slides/clustering.html#kmeans-spirals-12",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-spirals-13",
+    "href": "slides/clustering.html#kmeans-spirals-13",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-spirals-14",
+    "href": "slides/clustering.html#kmeans-spirals-14",
+    "title": "Clustering",
+    "section": "",
+    "text": "Move means to centroid position of each group of points"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-spirals-15",
+    "href": "slides/clustering.html#kmeans-spirals-15",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-spirals-16",
+    "href": "slides/clustering.html#kmeans-spirals-16",
+    "title": "Clustering",
+    "section": "",
+    "text": "Color data points by the shortest distance to any mean"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-spirals-17",
+    "href": "slides/clustering.html#kmeans-spirals-17",
+    "title": "Clustering",
+    "section": "",
+    "text": "Move means to centroid position of each group of points"
+  },
+  {
+    "objectID": "slides/clustering.html#kmeans-spirals-18",
+    "href": "slides/clustering.html#kmeans-spirals-18",
+    "title": "Clustering",
+    "section": "",
+    "text": "Final result"
+  },
+  {
+    "objectID": "slides/clustering.html#other-clustering-algorithms",
+    "href": "slides/clustering.html#other-clustering-algorithms",
+    "title": "Clustering",
+    "section": "Other clustering algorithms",
+    "text": "Other clustering algorithms\n\n\n\n\n\n\n\n\nFrom George Seif (2018) The 5 Clustering Algorithms Data Scientists Need to Know"
+  },
+  {
+    "objectID": "slides/clustering.html#example-dataset-iris",
+    "href": "slides/clustering.html#example-dataset-iris",
+    "title": "Clustering",
+    "section": "Example dataset: iris",
+    "text": "Example dataset: iris\n\nMeasurements on the sepals and petals of three iris species\n\niris\n\n    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species\n1            5.1         3.5          1.4         0.2     setosa\n2            4.9         3.0          1.4         0.2     setosa\n3            4.7         3.2          1.3         0.2     setosa\n4            4.6         3.1          1.5         0.2     setosa\n5            5.0         3.6          1.4         0.2     setosa\n6            5.4         3.9          1.7         0.4     setosa\n7            4.6         3.4          1.4         0.3     setosa\n8            5.0         3.4          1.5         0.2     setosa\n9            4.4         2.9          1.4         0.2     setosa\n10           4.9         3.1          1.5         0.1     setosa\n11           5.4         3.7          1.5         0.2     setosa\n12           4.8         3.4          1.6         0.2     setosa\n13           4.8         3.0          1.4         0.1     setosa\n14           4.3         3.0          1.1         0.1     setosa\n15           5.8         4.0          1.2         0.2     setosa\n16           5.7         4.4          1.5         0.4     setosa\n17           5.4         3.9          1.3         0.4     setosa\n18           5.1         3.5          1.4         0.3     setosa\n19           5.7         3.8          1.7         0.3     setosa\n20           5.1         3.8          1.5         0.3     setosa\n21           5.4         3.4          1.7         0.2     setosa\n22           5.1         3.7          1.5         0.4     setosa\n23           4.6         3.6          1.0         0.2     setosa\n24           5.1         3.3          1.7         0.5     setosa\n25           4.8         3.4          1.9         0.2     setosa\n26           5.0         3.0          1.6         0.2     setosa\n27           5.0         3.4          1.6         0.4     setosa\n28           5.2         3.5          1.5         0.2     setosa\n29           5.2         3.4          1.4         0.2     setosa\n30           4.7         3.2          1.6         0.2     setosa\n31           4.8         3.1          1.6         0.2     setosa\n32           5.4         3.4          1.5         0.4     setosa\n33           5.2         4.1          1.5         0.1     setosa\n34           5.5         4.2          1.4         0.2     setosa\n35           4.9         3.1          1.5         0.2     setosa\n36           5.0         3.2          1.2         0.2     setosa\n37           5.5         3.5          1.3         0.2     setosa\n38           4.9         3.6          1.4         0.1     setosa\n39           4.4         3.0          1.3         0.2     setosa\n40           5.1         3.4          1.5         0.2     setosa\n41           5.0         3.5          1.3         0.3     setosa\n42           4.5         2.3          1.3         0.3     setosa\n43           4.4         3.2          1.3         0.2     setosa\n44           5.0         3.5          1.6         0.6     setosa\n45           5.1         3.8          1.9         0.4     setosa\n46           4.8         3.0          1.4         0.3     setosa\n47           5.1         3.8          1.6         0.2     setosa\n48           4.6         3.2          1.4         0.2     setosa\n49           5.3         3.7          1.5         0.2     setosa\n50           5.0         3.3          1.4         0.2     setosa\n51           7.0         3.2          4.7         1.4 versicolor\n52           6.4         3.2          4.5         1.5 versicolor\n53           6.9         3.1          4.9         1.5 versicolor\n54           5.5         2.3          4.0         1.3 versicolor\n55           6.5         2.8          4.6         1.5 versicolor\n56           5.7         2.8          4.5         1.3 versicolor\n57           6.3         3.3          4.7         1.6 versicolor\n58           4.9         2.4          3.3         1.0 versicolor\n59           6.6         2.9          4.6         1.3 versicolor\n60           5.2         2.7          3.9         1.4 versicolor\n61           5.0         2.0          3.5         1.0 versicolor\n62           5.9         3.0          4.2         1.5 versicolor\n63           6.0         2.2          4.0         1.0 versicolor\n64           6.1         2.9          4.7         1.4 versicolor\n65           5.6         2.9          3.6         1.3 versicolor\n66           6.7         3.1          4.4         1.4 versicolor\n67           5.6         3.0          4.5         1.5 versicolor\n68           5.8         2.7          4.1         1.0 versicolor\n69           6.2         2.2          4.5         1.5 versicolor\n70           5.6         2.5          3.9         1.1 versicolor\n71           5.9         3.2          4.8         1.8 versicolor\n72           6.1         2.8          4.0         1.3 versicolor\n73           6.3         2.5          4.9         1.5 versicolor\n74           6.1         2.8          4.7         1.2 versicolor\n75           6.4         2.9          4.3         1.3 versicolor\n76           6.6         3.0          4.4         1.4 versicolor\n77           6.8         2.8          4.8         1.4 versicolor\n78           6.7         3.0          5.0         1.7 versicolor\n79           6.0         2.9          4.5         1.5 versicolor\n80           5.7         2.6          3.5         1.0 versicolor\n81           5.5         2.4          3.8         1.1 versicolor\n82           5.5         2.4          3.7         1.0 versicolor\n83           5.8         2.7          3.9         1.2 versicolor\n84           6.0         2.7          5.1         1.6 versicolor\n85           5.4         3.0          4.5         1.5 versicolor\n86           6.0         3.4          4.5         1.6 versicolor\n87           6.7         3.1          4.7         1.5 versicolor\n88           6.3         2.3          4.4         1.3 versicolor\n89           5.6         3.0          4.1         1.3 versicolor\n90           5.5         2.5          4.0         1.3 versicolor\n91           5.5         2.6          4.4         1.2 versicolor\n92           6.1         3.0          4.6         1.4 versicolor\n93           5.8         2.6          4.0         1.2 versicolor\n94           5.0         2.3          3.3         1.0 versicolor\n95           5.6         2.7          4.2         1.3 versicolor\n96           5.7         3.0          4.2         1.2 versicolor\n97           5.7         2.9          4.2         1.3 versicolor\n98           6.2         2.9          4.3         1.3 versicolor\n99           5.1         2.5          3.0         1.1 versicolor\n100          5.7         2.8          4.1         1.3 versicolor\n101          6.3         3.3          6.0         2.5  virginica\n102          5.8         2.7          5.1         1.9  virginica\n103          7.1         3.0          5.9         2.1  virginica\n104          6.3         2.9          5.6         1.8  virginica\n105          6.5         3.0          5.8         2.2  virginica\n106          7.6         3.0          6.6         2.1  virginica\n107          4.9         2.5          4.5         1.7  virginica\n108          7.3         2.9          6.3         1.8  virginica\n109          6.7         2.5          5.8         1.8  virginica\n110          7.2         3.6          6.1         2.5  virginica\n111          6.5         3.2          5.1         2.0  virginica\n112          6.4         2.7          5.3         1.9  virginica\n113          6.8         3.0          5.5         2.1  virginica\n114          5.7         2.5          5.0         2.0  virginica\n115          5.8         2.8          5.1         2.4  virginica\n116          6.4         3.2          5.3         2.3  virginica\n117          6.5         3.0          5.5         1.8  virginica\n118          7.7         3.8          6.7         2.2  virginica\n119          7.7         2.6          6.9         2.3  virginica\n120          6.0         2.2          5.0         1.5  virginica\n121          6.9         3.2          5.7         2.3  virginica\n122          5.6         2.8          4.9         2.0  virginica\n123          7.7         2.8          6.7         2.0  virginica\n124          6.3         2.7          4.9         1.8  virginica\n125          6.7         3.3          5.7         2.1  virginica\n126          7.2         3.2          6.0         1.8  virginica\n127          6.2         2.8          4.8         1.8  virginica\n128          6.1         3.0          4.9         1.8  virginica\n129          6.4         2.8          5.6         2.1  virginica\n130          7.2         3.0          5.8         1.6  virginica\n131          7.4         2.8          6.1         1.9  virginica\n132          7.9         3.8          6.4         2.0  virginica\n133          6.4         2.8          5.6         2.2  virginica\n134          6.3         2.8          5.1         1.5  virginica\n135          6.1         2.6          5.6         1.4  virginica\n136          7.7         3.0          6.1         2.3  virginica\n137          6.3         3.4          5.6         2.4  virginica\n138          6.4         3.1          5.5         1.8  virginica\n139          6.0         3.0          4.8         1.8  virginica\n140          6.9         3.1          5.4         2.1  virginica\n141          6.7         3.1          5.6         2.4  virginica\n142          6.9         3.1          5.1         2.3  virginica\n143          5.8         2.7          5.1         1.9  virginica\n144          6.8         3.2          5.9         2.3  virginica\n145          6.7         3.3          5.7         2.5  virginica\n146          6.7         3.0          5.2         2.3  virginica\n147          6.3         2.5          5.0         1.9  virginica\n148          6.5         3.0          5.2         2.0  virginica\n149          6.2         3.4          5.4         2.3  virginica\n150          5.9         3.0          5.1         1.8  virginica"
+  },
+  {
+    "objectID": "slides/clustering.html#example-dataset-iris-1",
+    "href": "slides/clustering.html#example-dataset-iris-1",
+    "title": "Clustering",
+    "section": "Example dataset: iris",
+    "text": "Example dataset: iris\n\nMeasurements on the sepals and petals of three iris species\n\nggplot(iris, aes(Petal.Length, Petal.Width, color = Species)) +\n  geom_point()"
+  },
+  {
+    "objectID": "slides/clustering.html#we-perform-k-means-clustering-with-kmeans",
+    "href": "slides/clustering.html#we-perform-k-means-clustering-with-kmeans",
+    "title": "Clustering",
+    "section": "We perform k-means clustering with kmeans()",
+    "text": "We perform k-means clustering with kmeans()\n\n\nkm_fit &lt;- iris |&gt; \n  select(where(is.numeric)) |&gt;\n  kmeans(\n    centers = 3,  # number of cluster centers\n    nstart = 10   # number of independent restarts of the algorithm\n  )\n\nkm_fit\n\nK-means clustering with 3 clusters of sizes 50, 38, 62\n\nCluster means:\n  Sepal.Length Sepal.Width Petal.Length Petal.Width\n1     5.006000    3.428000     1.462000    0.246000\n2     6.850000    3.073684     5.742105    2.071053\n3     5.901613    2.748387     4.393548    1.433871\n\nClustering vector:\n  [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\n [38] 1 1 1 1 1 1 1 1 1 1 1 1 1 3 3 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3\n [75] 3 3 3 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2 3 2 2 2 2 3 2 2 2 2\n[112] 2 2 3 3 2 2 2 2 3 2 3 2 3 2 2 3 3 2 2 2 2 2 3 2 2 2 2 3 2 2 2 3 2 2 2 3 2\n[149] 2 3\n\nWithin cluster sum of squares by cluster:\n[1] 15.15100 23.87947 39.82097\n (between_SS / total_SS =  88.4 %)\n\nAvailable components:\n\n[1] \"cluster\"      \"centers\"      \"totss\"        \"withinss\"     \"tot.withinss\"\n[6] \"betweenss\"    \"size\"         \"iter\"         \"ifault\""
+  },
+  {
+    "objectID": "slides/clustering.html#we-perform-k-means-clustering-with-kmeans-1",
+    "href": "slides/clustering.html#we-perform-k-means-clustering-with-kmeans-1",
+    "title": "Clustering",
+    "section": "We perform k-means clustering with kmeans()",
+    "text": "We perform k-means clustering with kmeans()\n\n\n\n# run kmeans clustering\nkm_fit &lt;- iris |&gt; \n  select(where(is.numeric)) |&gt;\n  kmeans(centers = 3, nstart = 10)\n\n# plot\nkm_fit |&gt;\n  # combine with original data\n  augment(iris) |&gt;\n  ggplot() +\n  aes(x = Petal.Length, Petal.Width) +\n  geom_point( # points representing original data\n    aes(color = .cluster, shape = Species)\n  ) +\n  geom_point( # points representing centroids\n    data = tidy(km_fit),\n    aes(fill = cluster),\n    shape = 21, color = \"black\", size = 4\n  ) +\n  guides(color = \"none\")\n\n\n\n\n\n \n\n\n\n\n\n\nHow do we choose the number of clusters?"
+  },
+  {
+    "objectID": "slides/clustering.html#we-perform-k-means-clustering-with-kmeans-2",
+    "href": "slides/clustering.html#we-perform-k-means-clustering-with-kmeans-2",
+    "title": "Clustering",
+    "section": "We perform k-means clustering with kmeans()",
+    "text": "We perform k-means clustering with kmeans()\n\n\n\n# run kmeans clustering\nkm_fit &lt;- iris |&gt; \n  select(where(is.numeric)) |&gt;\n  kmeans(centers = 2, nstart = 10)\n\n# plot\nkm_fit |&gt;\n  # combine with original data\n  augment(iris) |&gt;\n  ggplot() +\n  aes(x = Petal.Length, Petal.Width) +\n  geom_point( # points representing original data\n    aes(color = .cluster, shape = Species)\n  ) +\n  geom_point( # points representing centroids\n    data = tidy(km_fit),\n    aes(fill = cluster),\n    shape = 21, color = \"black\", size = 4\n  ) +\n  guides(color = \"none\")\n\n\n\n\n\n \n\n\n\n\n\n\nHow do we choose the number of clusters?"
+  },
+  {
+    "objectID": "slides/clustering.html#we-perform-k-means-clustering-with-kmeans-3",
+    "href": "slides/clustering.html#we-perform-k-means-clustering-with-kmeans-3",
+    "title": "Clustering",
+    "section": "We perform k-means clustering with kmeans()",
+    "text": "We perform k-means clustering with kmeans()\n\n\n\n# run kmeans clustering\nkm_fit &lt;- iris |&gt; \n  select(where(is.numeric)) |&gt;\n  kmeans(centers = 5, nstart = 10)\n\n# plot\nkm_fit |&gt;\n  # combine with original data\n  augment(iris) |&gt;\n  ggplot() +\n  aes(x = Petal.Length, Petal.Width) +\n  geom_point( # points representing original data\n    aes(color = .cluster, shape = Species)\n  ) +\n  geom_point( # points representing centroids\n    data = tidy(km_fit),\n    aes(fill = cluster),\n    shape = 21, color = \"black\", size = 4\n  ) +\n  guides(color = \"none\")\n\n\n\n\n\n \n\n\n\n\n\n\nHow do we choose the number of clusters?"
+  },
+  {
+    "objectID": "slides/clustering.html#look-for-elbow-in-scree-plot",
+    "href": "slides/clustering.html#look-for-elbow-in-scree-plot",
+    "title": "Clustering",
+    "section": "Look for elbow in scree plot",
+    "text": "Look for elbow in scree plot\n\n\n\n# function to calculate within sum squares\ncalc_withinss &lt;- function(data, centers) {\n  km_fit &lt;- select(data, where(is.numeric)) |&gt;\n    kmeans(centers = centers, nstart = 10)\n  km_fit$tot.withinss\n}\n\ntibble(centers = 1:15) |&gt;\n  mutate(\n    within_sum_squares = map_dbl(\n      centers, ~calc_withinss(iris, .x)\n    )\n  ) |&gt;\n  ggplot() +\n  aes(centers, within_sum_squares) +\n  geom_point() +\n  geom_line()\n\n\n\n\n\n \n\n\n\n\n\n\nPlot suggests that around 3 clusters is the right choice"
+  },
+  {
+    "objectID": "slides/clustering.html#further-reading",
+    "href": "slides/clustering.html#further-reading",
+    "title": "Clustering",
+    "section": "Further reading",
+    "text": "Further reading\n\nWikipedia: k-means clustering\nNaftali Harris blog post: Interactive k-means demonstration\nStackoverflow post: Determining the appropriate number of clusters in k-means\nGeorge Seif: The 5 Clustering Algorithms Data Scientists Need to Know"
+  },
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "SDS 366 Schedule Spring 2025",
+    "section": "",
+    "text": "Materials:\n\n\nSlides\n\nWorksheet 1: Introduction to Quarto\nWorksheet 2: Introduction to R\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (visualizing amounts)\nWorksheet Part I\nSlides Part II (telling a story)\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (pipe, sorting, filtering, mutating)\nWorksheet Part I\nSlides Part II (summarizing, pivoting, joining)\nWorksheet Part II\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet Part I (data cleaning)\nWorksheet Part II (missing data)\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
+  },
+  {
+    "objectID": "schedule.html#lectures",
+    "href": "schedule.html#lectures",
+    "title": "SDS 366 Schedule Spring 2025",
+    "section": "",
+    "text": "Materials:\n\n\nSlides\n\nWorksheet 1: Introduction to Quarto\nWorksheet 2: Introduction to R\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (visualizing amounts)\nWorksheet Part I\nSlides Part II (telling a story)\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (pipe, sorting, filtering, mutating)\nWorksheet Part I\nSlides Part II (summarizing, pivoting, joining)\nWorksheet Part II\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet Part I (data cleaning)\nWorksheet Part II (missing data)\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
+  },
+  {
+    "objectID": "schedule.html#homeworks",
+    "href": "schedule.html#homeworks",
+    "title": "SDS 366 Schedule Spring 2025",
+    "section": "Homeworks",
+    "text": "Homeworks\nAll homeworks are due by 11:00pm on the day they are due. Homeworks need to be submitted as pdf files on Canvas.\n\nHomework 1 (due Jan 23, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 2 (due Jan 30, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 3 (due Feb 6, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 4 (due Feb 27, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 5 (due Mar 6, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 6 (due Apr 3, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 7 (due Apr 10, 2025)"
+  },
+  {
+    "objectID": "schedule.html#projects",
+    "href": "schedule.html#projects",
+    "title": "SDS 366 Schedule Spring 2025",
+    "section": "Projects",
+    "text": "Projects\nAll projects are due by 11:00pm on the day they are due. Projects need to be submitted on Canvas. Please carefully read the submission instructions for each project.\n\nProject 1 (due Feb 13, 2025)\n\nMaterials:\n\n\nInstructions (pdf)\nProject Template (qmd)\nProject Template (pdf)\nGrading rubric (pdf)\nExample project (pdf)\n\n\n\nProject 2 (due Mar 13, 2025)\n\nMaterials:\n\n\nInstructions (pdf)\nProject Template (qmd)\nProject Template (pdf)\nGrading rubric (pdf)\nGrading instructions (pdf)\n\n\n\nProject 3 (due Apr 17, 2025)"
+  },
+  {
+    "objectID": "accommodations.html",
+    "href": "accommodations.html",
+    "title": "Disability and Access Accommodations",
+    "section": "",
+    "text": "Some students receive special course accommodations from Disability and Access. Below is a list of common accommodation requests and my explanation of how I usually handle them. If you have any questions regarding any of these accommodations and/or have additional requests, please reach out to me on Canvas, in office hours, or after class and we can discuss."
+  },
+  {
+    "objectID": "accommodations.html#classroom-accommodations",
+    "href": "accommodations.html#classroom-accommodations",
+    "title": "Disability and Access Accommodations",
+    "section": "Classroom Accommodations",
+    "text": "Classroom Accommodations\n\nUse of technology to take notes during class. You are welcome to use any note-taking technology you find helpful. To the extent that your note-taking technology creates any sort of recordings of class materials, see the next point.\nUse of technology to audio record during class. You are welcome to record audio, for your own personal use as a study aid. Audio recordings should not be shared or otherwise made available to third parties. Be aware that the section in the syllabus about class recordings applies to any personal recordings you may be making.\nA copy of class notes from a volunteer. I am happy to ask whether there are any volunteers willing to share class notes.\nAccess to materials shown in class. All materials are posted either on Canvas or on the class website, https://wilkelab.org/SDS366.\nFlexibility with deadlines. The amount of flexibility we can provide is strongly constrained by the class structure. We cannot accept homework submissions after the assignment has been graded and solutions have been released. This will typically happen 2-3 days after the original deadline. We cannot accept project submissions after the project has been released for peer grading. This will happen 2 days after the original deadline. In all cases, if you need a deadline extension please reach out on Canvas as early as possible (ideally before the deadline has passed) and ask for a specific amount of time you would like to have added to the deadline. (Example: “Could I have a deadline extension of one day?”) Mention in your message that you have an approved accommodation for flexibility with deadlines. You do not need to explain why you need the extension.\nPlease note that deadline extensions should be occasional, one-off events. I will not approve a blanket deadline extension for all assingments throughout the semester. I also encourage you to manage your deadlines proactively. Materials for homework assignments will be posted at least one week before the deadline, and materials for projects will be posted at least two weeks before the deadline. This should give you plenty of time to complete your assignments early and not push things to the last minute.\nFlexibility with attendance. Regular attendance is a component of the overall grade in this class. However, you are not required to attend every single lecture. You can make up for missed lectures by participating in the online discussions on Canvas instead. See the participation component of the class grade described in the syllabus."
+  },
+  {
+    "objectID": "accommodations.html#testing-accommodations",
+    "href": "accommodations.html#testing-accommodations",
+    "title": "Disability and Access Accommodations",
+    "section": "Testing accommodations",
+    "text": "Testing accommodations\nThis class does not have any timed exams or tests and therefore testing accommodations do not apply."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "SDS 366",
+    "section": "",
+    "text": "This is the home page for SDS 366, Data Visualization in R. All course materials will be posted on this site.\nInstructor: Claus O. Wilke\nMeeting times: TTH 5:00pm to 6:30pm\nVenue: FAC 21\nSyllabus: click here\nUpcoming lectures and assignments: click here"
+  },
+  {
+    "objectID": "index.html#computing-requirements",
+    "href": "index.html#computing-requirements",
+    "title": "SDS 366",
+    "section": "Computing requirements",
+    "text": "Computing requirements\nFor students enrolled in this course, you only need a working web browser to access the edupod server, located at: https://edupod.cns.utexas.edu/\nIf you are using the edupod server, stop reading here. Everything is pre-installed and no further action is needed.\nTo run any of the materials locally on your own machine, you will need the following:\n\nA recent version of R, download from here.\nA recent version of RStudio, download from here, OR a recent version of Positron, download from here.\nThe following R packages:\nbroom, cluster, colorspace, cowplot, gapminder, GGally, gganimate, ggiraph, ggdendro, ggdist, ggforce, ggplot2movies, ggrepel, ggridges, ggthemes, gifski, glue, knitr, learnr, naniar, margins, MASS, Matrix, nycflights13, palmerpenguins, patchwork, quarto, rmarkdown, rnaturalearth, rnaturalearthhires, Rtsne, scales, sf, sp, tidyverse, transformr, umap\n\nYou can install all required R packages at once by running the following code in the R command line:\n# first run this command:\ninstall.packages(\n  c(\n    \"broom\", \"cluster\", \"colorspace\", \"cowplot\", \"gapminder\", \n    \"GGally\", \"gganimate\", \"ggiraph\", \"ggdendro\", \"ggdist\", \"ggforce\",\n    \"ggplot2movies\", \"ggrepel\", \"ggridges\", \"ggthemes\", \"gifski\", \"glue\",\n    \"knitr\", \"learnr\", \"naniar\", \"margins\", \"MASS\", \"Matrix\",\n    \"nycflights13\", \"palmerpenguins\", \"patchwork\", \"quarto\", \"rmarkdown\",\n    \"rnaturalearth\", \"Rtsne\", \"scales\", \"sf\", \"sp\", \"tidyverse\",\n    \"transformr\", \"umap\"\n  )\n)\n\n# then run this command:\ninstall.packages(\n  \"rnaturalearthhires\", repos = \"https://packages.ropensci.org\", type = \"source\"\n)"
+  },
+  {
     "objectID": "slides/aesthetic-mappings.html#dataset-daily-average-temperatures-for-various-locations",
     "href": "slides/aesthetic-mappings.html#dataset-daily-average-temperatures-for-various-locations",
     "title": "Aesthetic mappings",
@@ -2658,69 +3176,6 @@
     "title": "Aesthetic mappings",
     "section": "Further reading",
     "text": "Further reading\n\nFundamentals of Data Visualization: Chapter 2: Visualizing data\nData Visualization—A Practical Introduction: Chapter 3: Make a plot\nggplot2 reference documentation\nggplot2 book\nggplot2 cheatsheet"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "SDS 366",
-    "section": "",
-    "text": "This is the home page for SDS 366, Data Visualization in R. All course materials will be posted on this site.\nInstructor: Claus O. Wilke\nMeeting times: TTH 5:00pm to 6:30pm\nVenue: FAC 21\nSyllabus: click here\nUpcoming lectures and assignments: click here"
-  },
-  {
-    "objectID": "index.html#computing-requirements",
-    "href": "index.html#computing-requirements",
-    "title": "SDS 366",
-    "section": "Computing requirements",
-    "text": "Computing requirements\nFor students enrolled in this course, you only need a working web browser to access the edupod server, located at: https://edupod.cns.utexas.edu/\nIf you are using the edupod server, stop reading here. Everything is pre-installed and no further action is needed.\nTo run any of the materials locally on your own machine, you will need the following:\n\nA recent version of R, download from here.\nA recent version of RStudio, download from here, OR a recent version of Positron, download from here.\nThe following R packages:\nbroom, cluster, colorspace, cowplot, gapminder, GGally, gganimate, ggiraph, ggdendro, ggdist, ggforce, ggplot2movies, ggrepel, ggridges, ggthemes, gifski, glue, knitr, learnr, naniar, margins, MASS, Matrix, nycflights13, palmerpenguins, patchwork, quarto, rmarkdown, rnaturalearth, rnaturalearthhires, Rtsne, scales, sf, sp, tidyverse, transformr, umap\n\nYou can install all required R packages at once by running the following code in the R command line:\n# first run this command:\ninstall.packages(\n  c(\n    \"broom\", \"cluster\", \"colorspace\", \"cowplot\", \"gapminder\", \n    \"GGally\", \"gganimate\", \"ggiraph\", \"ggdendro\", \"ggdist\", \"ggforce\",\n    \"ggplot2movies\", \"ggrepel\", \"ggridges\", \"ggthemes\", \"gifski\", \"glue\",\n    \"knitr\", \"learnr\", \"naniar\", \"margins\", \"MASS\", \"Matrix\",\n    \"nycflights13\", \"palmerpenguins\", \"patchwork\", \"quarto\", \"rmarkdown\",\n    \"rnaturalearth\", \"Rtsne\", \"scales\", \"sf\", \"sp\", \"tidyverse\",\n    \"transformr\", \"umap\"\n  )\n)\n\n# then run this command:\ninstall.packages(\n  \"rnaturalearthhires\", repos = \"https://packages.ropensci.org\", type = \"source\"\n)"
-  },
-  {
-    "objectID": "accommodations.html",
-    "href": "accommodations.html",
-    "title": "Disability and Access Accommodations",
-    "section": "",
-    "text": "Some students receive special course accommodations from Disability and Access. Below is a list of common accommodation requests and my explanation of how I usually handle them. If you have any questions regarding any of these accommodations and/or have additional requests, please reach out to me on Canvas, in office hours, or after class and we can discuss."
-  },
-  {
-    "objectID": "accommodations.html#classroom-accommodations",
-    "href": "accommodations.html#classroom-accommodations",
-    "title": "Disability and Access Accommodations",
-    "section": "Classroom Accommodations",
-    "text": "Classroom Accommodations\n\nUse of technology to take notes during class. You are welcome to use any note-taking technology you find helpful. To the extent that your note-taking technology creates any sort of recordings of class materials, see the next point.\nUse of technology to audio record during class. You are welcome to record audio, for your own personal use as a study aid. Audio recordings should not be shared or otherwise made available to third parties. Be aware that the section in the syllabus about class recordings applies to any personal recordings you may be making.\nA copy of class notes from a volunteer. I am happy to ask whether there are any volunteers willing to share class notes.\nAccess to materials shown in class. All materials are posted either on Canvas or on the class website, https://wilkelab.org/SDS366.\nFlexibility with deadlines. The amount of flexibility we can provide is strongly constrained by the class structure. We cannot accept homework submissions after the assignment has been graded and solutions have been released. This will typically happen 2-3 days after the original deadline. We cannot accept project submissions after the project has been released for peer grading. This will happen 2 days after the original deadline. In all cases, if you need a deadline extension please reach out on Canvas as early as possible (ideally before the deadline has passed) and ask for a specific amount of time you would like to have added to the deadline. (Example: “Could I have a deadline extension of one day?”) Mention in your message that you have an approved accommodation for flexibility with deadlines. You do not need to explain why you need the extension.\nPlease note that deadline extensions should be occasional, one-off events. I will not approve a blanket deadline extension for all assingments throughout the semester. I also encourage you to manage your deadlines proactively. Materials for homework assignments will be posted at least one week before the deadline, and materials for projects will be posted at least two weeks before the deadline. This should give you plenty of time to complete your assignments early and not push things to the last minute.\nFlexibility with attendance. Regular attendance is a component of the overall grade in this class. However, you are not required to attend every single lecture. You can make up for missed lectures by participating in the online discussions on Canvas instead. See the participation component of the class grade described in the syllabus."
-  },
-  {
-    "objectID": "accommodations.html#testing-accommodations",
-    "href": "accommodations.html#testing-accommodations",
-    "title": "Disability and Access Accommodations",
-    "section": "Testing accommodations",
-    "text": "Testing accommodations\nThis class does not have any timed exams or tests and therefore testing accommodations do not apply."
-  },
-  {
-    "objectID": "schedule.html",
-    "href": "schedule.html",
-    "title": "SDS 366 Schedule Spring 2025",
-    "section": "",
-    "text": "Materials:\n\n\nSlides\n\nWorksheet 1: Introduction to Quarto\nWorksheet 2: Introduction to R\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (visualizing amounts)\nWorksheet Part I\nSlides Part II (telling a story)\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (pipe, sorting, filtering, mutating)\nWorksheet Part I\nSlides Part II (summarizing, pivoting, joining)\nWorksheet Part II\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet Part I (data cleaning)\nWorksheet Part II (missing data)\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
-  },
-  {
-    "objectID": "schedule.html#lectures",
-    "href": "schedule.html#lectures",
-    "title": "SDS 366 Schedule Spring 2025",
-    "section": "",
-    "text": "Materials:\n\n\nSlides\n\nWorksheet 1: Introduction to Quarto\nWorksheet 2: Introduction to R\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (visualizing amounts)\nWorksheet Part I\nSlides Part II (telling a story)\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (pipe, sorting, filtering, mutating)\nWorksheet Part I\nSlides Part II (summarizing, pivoting, joining)\nWorksheet Part II\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet Part I (data cleaning)\nWorksheet Part II (missing data)\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
-  },
-  {
-    "objectID": "schedule.html#homeworks",
-    "href": "schedule.html#homeworks",
-    "title": "SDS 366 Schedule Spring 2025",
-    "section": "Homeworks",
-    "text": "Homeworks\nAll homeworks are due by 11:00pm on the day they are due. Homeworks need to be submitted as pdf files on Canvas.\n\nHomework 1 (due Jan 23, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 2 (due Jan 30, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 3 (due Feb 6, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 4 (due Feb 27, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 5 (due Mar 6, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 6 (due Apr 3, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 7 (due Apr 10, 2025)"
-  },
-  {
-    "objectID": "schedule.html#projects",
-    "href": "schedule.html#projects",
-    "title": "SDS 366 Schedule Spring 2025",
-    "section": "Projects",
-    "text": "Projects\nAll projects are due by 11:00pm on the day they are due. Projects need to be submitted on Canvas. Please carefully read the submission instructions for each project.\n\nProject 1 (due Feb 13, 2025)\n\nMaterials:\n\n\nInstructions (pdf)\nProject Template (qmd)\nProject Template (pdf)\nGrading rubric (pdf)\nExample project (pdf)\n\n\n\nProject 2 (due Mar 13, 2025)\n\nMaterials:\n\n\nInstructions (pdf)\nProject Template (qmd)\nProject Template (pdf)\nGrading rubric (pdf)\nGrading instructions (pdf)\n\n\n\nProject 3 (due Apr 26, 2025)"
   },
   {
     "objectID": "slides/color-scales.html#uses-of-color-in-data-visualization",
