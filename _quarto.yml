@@ -69,6 +69,8 @@ website:
             href: slides/dimension-reduction-1.qmd
           - text: "Class 20: Dimension reduction 2"
             href: slides/dimension-reduction-2.qmd
+          - text: "Class 21: Clustering"
+            href: slides/clustering.qmd
         
       - text: "Worksheets"
         menu:
