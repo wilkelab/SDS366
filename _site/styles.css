@@ -2,3 +2,9 @@
 .nospace {
     margin-bottom: 0;
 }
+
+/* make sure drop down menus become scrollable when they're very long */
+.dropdown-menu {
+    max-height: 100vh;
+    overflow: scroll;
+}
