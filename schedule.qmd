@@ -217,3 +217,11 @@ All projects are due by 11:00pm on the day they are due. Projects need to be sub
 - [Grading instructions (pdf)](assignments/Project_2_grading.pdf)
 
 ### Project 3 (due Apr 17, 2025)
+
+<p class="nospace">Materials:</p>
+
+- [Instructions (pdf)](assignments/Project_3_instructions.pdf)
+- [Project Template (qmd)](assignments/Project_3.qmd)
+- [Project Template (pdf)](assignments/Project_3.pdf)
+- [Grading rubric (pdf)](assignments/Project_3_rubric.pdf)
+
