@@ -122,7 +122,10 @@ website:
             href: worksheets/dimension-reduction-2.qmd
           - text: "Class 21: Clustering"
             href: worksheets/clustering.qmd
-            
+          - text: "Class 22: Hierarchical clustering"
+            href: worksheets/hierarchical-clustering.qmd 
+          - text: "Class 23: Redundant coding"
+            href: worksheets/hierarchical-clustering.qmd 
         
         
 
