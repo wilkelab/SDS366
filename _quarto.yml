@@ -71,7 +71,11 @@ website:
             href: slides/dimension-reduction-2.qmd
           - text: "Class 21: Clustering"
             href: slides/clustering.qmd
-        
+          - text: "Class 22: Hierarchical clustering"
+            href: slides/hierarchical-clustering.qmd 
+          - text: "Class 23: Redundant coding"
+            href: slides/hierarchical-clustering.qmd 
+       
       - text: "Worksheets"
         menu:
           - text: "Class 1a: Introduction to Quarto"

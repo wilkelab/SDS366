@@ -192,6 +192,11 @@ All homeworks are due by 11:00pm on the day they are due. Homeworks need to be s
 
 ### Homework 7 (due Apr 10, 2025)
 
+<p class="nospace">Materials:</p>
+
+- [Quarto template](assignments/HW7.qmd)
+- [PDF](assignments/HW7.pdf)
+
 ## Projects
 
 All projects are due by 11:00pm on the day they are due. Projects need to be submitted on Canvas. Please carefully read the submission instructions for each project.
