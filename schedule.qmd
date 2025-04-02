@@ -143,6 +143,20 @@ format: html
 - [Slides](slides/dimension-reduction-1.qmd)  
 - [Worksheet](worksheets/dimension-reduction-1.qmd)
 
+### 20. Apr 1, 2025—Dimension reduction 2
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/dimension-reduction-2.qmd)  
+- [Worksheet](worksheets/dimension-reduction-2.qmd)
+
+### 21. Apr 3, 2025—Clustering
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/clustering.qmd)  
+- [Worksheet](worksheets/clustering.qmd)
+
 
 ## Homeworks
 
