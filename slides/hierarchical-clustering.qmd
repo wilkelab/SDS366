@@ -1028,6 +1028,7 @@ We'll cluster the US state stats dataset:
 
 ::: {.tiny-font}
 ```{r}
+#| echo: true
 US_state_stats <- read_csv("https://wilkelab.org/SDS366/datasets/US_state_stats.csv") |>
   filter(state != "District of Columbia")
 

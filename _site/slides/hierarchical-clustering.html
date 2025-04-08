@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.39">
 
   <meta name="author" content="Claus O. Wilke">
-  <meta name="dcterms.date" content="2025-03-31">
+  <meta name="dcterms.date" content="2025-04-08">
   <title>SDS 366 – Hierarchical clustering</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -207,7 +207,7 @@ Claus O. Wilke
 </div>
 </div>
 
-  <p class="date">2025-03-31</p>
+  <p class="date">2025-04-08</p>
 </section>
 <section id="example-data-state-level-statistics-for-us" class="slide level2">
 <h2>Example data: State level statistics for US</h2>
@@ -937,6 +937,10 @@ Claus O. Wilke
 </div>
 <div class="tiny-font">
 <div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>US_state_stats <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://wilkelab.org/SDS366/datasets/US_state_stats.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a></a>  <span class="fu">filter</span>(state <span class="sc">!=</span> <span class="st">"District of Columbia"</span>)</span>
+<span id="cb3-3"><a></a></span>
+<span id="cb3-4"><a></a>US_state_stats </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 50 × 20
    state       homeownership multiunit income med_income poverty fed_spend smoke
@@ -963,10 +967,10 @@ Claus O. Wilke
 <h2>Step 1: Calculate the distance matrix</h2>
 <div class="tiny-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>US_state_stats <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a></a>  <span class="fu">column_to_rownames</span>(<span class="at">var =</span> <span class="st">"state"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-3"><a></a>  <span class="fu">scale</span>() <span class="sc">|&gt;</span></span>
-<span id="cb4-4"><a></a>  <span class="fu">dist</span>(<span class="at">method =</span> <span class="st">"euclidean"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>US_state_stats <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a></a>  <span class="fu">column_to_rownames</span>(<span class="at">var =</span> <span class="st">"state"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a></a>  <span class="fu">scale</span>() <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a></a>  <span class="fu">dist</span>(<span class="at">method =</span> <span class="st">"euclidean"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                 Alabama    Alaska   Arizona  Arkansas California  Colorado Connecticut  Delaware   Florida   Georgia    Hawaii     Idaho  Illinois   Indiana      Iowa    Kansas  Kentucky Louisiana
 Alaska         10.598996                                                                                                                                                                             
@@ -1126,10 +1130,10 @@ Wyoming         8.644524  7.238965  8.071010     8.835251     9.108380       8.3
 <h2>Step 1: Calculate the distance matrix</h2>
 <div class="tiny-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>US_state_stats <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a></a>  <span class="fu">column_to_rownames</span>(<span class="at">var =</span> <span class="st">"state"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb6-3"><a></a>  <span class="fu">scale</span>() <span class="sc">|&gt;</span></span>
-<span id="cb6-4"><a></a>  <span class="fu">dist</span>(<span class="at">method =</span> <span class="st">"manhattan"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>US_state_stats <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a></a>  <span class="fu">column_to_rownames</span>(<span class="at">var =</span> <span class="st">"state"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a></a>  <span class="fu">scale</span>() <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a></a>  <span class="fu">dist</span>(<span class="at">method =</span> <span class="st">"manhattan"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                 Alabama    Alaska   Arizona  Arkansas California  Colorado Connecticut  Delaware   Florida   Georgia    Hawaii     Idaho  Illinois   Indiana      Iowa    Kansas  Kentucky Louisiana
 Alaska         39.364617                                                                                                                                                                             
@@ -1289,10 +1293,10 @@ Wyoming        29.363848 24.440022 27.382921    30.496770    31.239854      29.6
 <h2>Step 1: Calculate the distance matrix</h2>
 <div class="tiny-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>US_state_stats <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a></a>  <span class="fu">column_to_rownames</span>(<span class="at">var =</span> <span class="st">"state"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a></a>  <span class="fu">scale</span>() <span class="sc">|&gt;</span></span>
-<span id="cb8-4"><a></a>  <span class="fu">dist</span>(<span class="at">method =</span> <span class="st">"maximum"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>US_state_stats <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a></a>  <span class="fu">column_to_rownames</span>(<span class="at">var =</span> <span class="st">"state"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a></a>  <span class="fu">scale</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a></a>  <span class="fu">dist</span>(<span class="at">method =</span> <span class="st">"maximum"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                 Alabama    Alaska   Arizona  Arkansas California  Colorado Connecticut  Delaware   Florida   Georgia    Hawaii     Idaho  Illinois   Indiana      Iowa    Kansas  Kentucky Louisiana
 Alaska         5.0230030                                                                                                                                                                             
@@ -1452,10 +1456,10 @@ Wyoming        4.5084606 3.9886987 3.8761187    4.5873718    3.8773153      4.05
 <h2>Step 1: Calculate the distance matrix</h2>
 <div class="tiny-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>US_state_stats <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a></a>  <span class="fu">column_to_rownames</span>(<span class="at">var =</span> <span class="st">"state"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb10-3"><a></a>  <span class="fu">scale</span>() <span class="sc">|&gt;</span></span>
-<span id="cb10-4"><a></a>  <span class="fu">dist</span>(<span class="at">method =</span> <span class="st">"euclidean"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>US_state_stats <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a></a>  <span class="fu">column_to_rownames</span>(<span class="at">var =</span> <span class="st">"state"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a></a>  <span class="fu">scale</span>() <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a></a>  <span class="fu">dist</span>(<span class="at">method =</span> <span class="st">"euclidean"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                 Alabama    Alaska   Arizona  Arkansas California  Colorado Connecticut  Delaware   Florida   Georgia    Hawaii     Idaho  Illinois   Indiana      Iowa    Kansas  Kentucky Louisiana
 Alaska         10.598996                                                                                                                                                                             
@@ -1616,17 +1620,17 @@ Wyoming         8.644524  7.238965  8.071010     8.835251     9.108380       8.3
 <div class="columns">
 <div class="tiny-font column" style="width:55%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>dist_out <span class="ot">&lt;-</span> US_state_stats <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a></a>  <span class="fu">column_to_rownames</span>(<span class="at">var =</span> <span class="st">"state"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a></a>  <span class="fu">scale</span>() <span class="sc">|&gt;</span></span>
-<span id="cb12-4"><a></a>  <span class="fu">dist</span>(<span class="at">method =</span> <span class="st">"euclidean"</span>)</span>
-<span id="cb12-5"><a></a></span>
-<span id="cb12-6"><a></a>hc_out <span class="ot">&lt;-</span> <span class="fu">hclust</span>(</span>
-<span id="cb12-7"><a></a>  dist_out, <span class="at">method =</span> <span class="st">"average"</span></span>
-<span id="cb12-8"><a></a>)</span>
-<span id="cb12-9"><a></a></span>
-<span id="cb12-10"><a></a><span class="fu">library</span>(ggdendro)</span>
-<span id="cb12-11"><a></a><span class="fu">ggdendrogram</span>(hc_out, <span class="at">rotate =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>dist_out <span class="ot">&lt;-</span> US_state_stats <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a></a>  <span class="fu">column_to_rownames</span>(<span class="at">var =</span> <span class="st">"state"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a></a>  <span class="fu">scale</span>() <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a></a>  <span class="fu">dist</span>(<span class="at">method =</span> <span class="st">"euclidean"</span>)</span>
+<span id="cb13-5"><a></a></span>
+<span id="cb13-6"><a></a>hc_out <span class="ot">&lt;-</span> <span class="fu">hclust</span>(</span>
+<span id="cb13-7"><a></a>  dist_out, <span class="at">method =</span> <span class="st">"average"</span></span>
+<span id="cb13-8"><a></a>)</span>
+<span id="cb13-9"><a></a></span>
+<span id="cb13-10"><a></a><span class="fu">library</span>(ggdendro)</span>
+<span id="cb13-11"><a></a><span class="fu">ggdendrogram</span>(hc_out, <span class="at">rotate =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>method = "average"</code>: UPGMA</p>
 </div><div class="move-up-2em column" style="width:45%;">
@@ -1647,17 +1651,17 @@ Wyoming         8.644524  7.238965  8.071010     8.835251     9.108380       8.3
 <div class="columns">
 <div class="tiny-font column" style="width:55%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>dist_out <span class="ot">&lt;-</span> US_state_stats <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a></a>  <span class="fu">column_to_rownames</span>(<span class="at">var =</span> <span class="st">"state"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-3"><a></a>  <span class="fu">scale</span>() <span class="sc">|&gt;</span></span>
-<span id="cb13-4"><a></a>  <span class="fu">dist</span>(<span class="at">method =</span> <span class="st">"euclidean"</span>)</span>
-<span id="cb13-5"><a></a></span>
-<span id="cb13-6"><a></a>hc_out <span class="ot">&lt;-</span> <span class="fu">hclust</span>(</span>
-<span id="cb13-7"><a></a>  dist_out, <span class="at">method =</span> <span class="st">"ward.D2"</span></span>
-<span id="cb13-8"><a></a>)</span>
-<span id="cb13-9"><a></a></span>
-<span id="cb13-10"><a></a><span class="fu">library</span>(ggdendro)</span>
-<span id="cb13-11"><a></a><span class="fu">ggdendrogram</span>(hc_out, <span class="at">rotate =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>dist_out <span class="ot">&lt;-</span> US_state_stats <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a></a>  <span class="fu">column_to_rownames</span>(<span class="at">var =</span> <span class="st">"state"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a></a>  <span class="fu">scale</span>() <span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a></a>  <span class="fu">dist</span>(<span class="at">method =</span> <span class="st">"euclidean"</span>)</span>
+<span id="cb14-5"><a></a></span>
+<span id="cb14-6"><a></a>hc_out <span class="ot">&lt;-</span> <span class="fu">hclust</span>(</span>
+<span id="cb14-7"><a></a>  dist_out, <span class="at">method =</span> <span class="st">"ward.D2"</span></span>
+<span id="cb14-8"><a></a>)</span>
+<span id="cb14-9"><a></a></span>
+<span id="cb14-10"><a></a><span class="fu">library</span>(ggdendro)</span>
+<span id="cb14-11"><a></a><span class="fu">ggdendrogram</span>(hc_out, <span class="at">rotate =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>method = "ward.D2"</code>: Ward’s minimum variance method</p>
 </div><div class="move-up-2em column" style="width:45%;">
@@ -1678,17 +1682,17 @@ Wyoming         8.644524  7.238965  8.071010     8.835251     9.108380       8.3
 <div class="columns">
 <div class="tiny-font column" style="width:55%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>dist_out <span class="ot">&lt;-</span> US_state_stats <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a></a>  <span class="fu">column_to_rownames</span>(<span class="at">var =</span> <span class="st">"state"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb14-3"><a></a>  <span class="fu">scale</span>() <span class="sc">|&gt;</span></span>
-<span id="cb14-4"><a></a>  <span class="fu">dist</span>(<span class="at">method =</span> <span class="st">"euclidean"</span>)</span>
-<span id="cb14-5"><a></a></span>
-<span id="cb14-6"><a></a>hc_out <span class="ot">&lt;-</span> <span class="fu">hclust</span>(</span>
-<span id="cb14-7"><a></a>  dist_out, <span class="at">method =</span> <span class="st">"complete"</span></span>
-<span id="cb14-8"><a></a>)</span>
-<span id="cb14-9"><a></a></span>
-<span id="cb14-10"><a></a><span class="fu">library</span>(ggdendro)</span>
-<span id="cb14-11"><a></a><span class="fu">ggdendrogram</span>(hc_out, <span class="at">rotate =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>dist_out <span class="ot">&lt;-</span> US_state_stats <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a></a>  <span class="fu">column_to_rownames</span>(<span class="at">var =</span> <span class="st">"state"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a></a>  <span class="fu">scale</span>() <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a></a>  <span class="fu">dist</span>(<span class="at">method =</span> <span class="st">"euclidean"</span>)</span>
+<span id="cb15-5"><a></a></span>
+<span id="cb15-6"><a></a>hc_out <span class="ot">&lt;-</span> <span class="fu">hclust</span>(</span>
+<span id="cb15-7"><a></a>  dist_out, <span class="at">method =</span> <span class="st">"complete"</span></span>
+<span id="cb15-8"><a></a>)</span>
+<span id="cb15-9"><a></a></span>
+<span id="cb15-10"><a></a><span class="fu">library</span>(ggdendro)</span>
+<span id="cb15-11"><a></a><span class="fu">ggdendrogram</span>(hc_out, <span class="at">rotate =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>method = "complete"</code>: complete linkage method</p>
 </div><div class="move-up-2em column" style="width:45%;">
@@ -1709,25 +1713,25 @@ Wyoming         8.644524  7.238965  8.071010     8.835251     9.108380       8.3
 <div class="columns">
 <div class="tiny-font column" style="width:55%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>ddata <span class="ot">&lt;-</span> <span class="fu">dendro_data</span>(</span>
-<span id="cb15-2"><a></a>  hc_out,</span>
-<span id="cb15-3"><a></a>  <span class="at">type =</span> <span class="st">"rectangle"</span></span>
-<span id="cb15-4"><a></a>)</span>
-<span id="cb15-5"><a></a>segments <span class="ot">&lt;-</span> <span class="fu">segment</span>(ddata)</span>
-<span id="cb15-6"><a></a>labels <span class="ot">&lt;-</span> <span class="fu">label</span>(ddata)</span>
-<span id="cb15-7"><a></a></span>
-<span id="cb15-8"><a></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb15-9"><a></a>  <span class="fu">geom_segment</span>(</span>
-<span id="cb15-10"><a></a>    <span class="at">data =</span> segments,</span>
-<span id="cb15-11"><a></a>    <span class="fu">aes</span>(x, y, <span class="at">xend =</span> xend, <span class="at">yend =</span> yend)</span>
-<span id="cb15-12"><a></a>  ) <span class="sc">+</span> </span>
-<span id="cb15-13"><a></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb15-14"><a></a>    <span class="at">data =</span> labels,</span>
-<span id="cb15-15"><a></a>    <span class="fu">aes</span>(x, y <span class="sc">-</span> .<span class="dv">5</span>, <span class="at">label =</span> label),</span>
-<span id="cb15-16"><a></a>    <span class="at">hjust =</span> <span class="dv">1</span>,</span>
-<span id="cb15-17"><a></a>    <span class="at">size =</span> <span class="dv">8</span><span class="sc">/</span>.pt</span>
-<span id="cb15-18"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb15-19"><a></a>  <span class="fu">coord_flip</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">12</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>ddata <span class="ot">&lt;-</span> <span class="fu">dendro_data</span>(</span>
+<span id="cb16-2"><a></a>  hc_out,</span>
+<span id="cb16-3"><a></a>  <span class="at">type =</span> <span class="st">"rectangle"</span></span>
+<span id="cb16-4"><a></a>)</span>
+<span id="cb16-5"><a></a>segments <span class="ot">&lt;-</span> <span class="fu">segment</span>(ddata)</span>
+<span id="cb16-6"><a></a>labels <span class="ot">&lt;-</span> <span class="fu">label</span>(ddata)</span>
+<span id="cb16-7"><a></a></span>
+<span id="cb16-8"><a></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb16-9"><a></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb16-10"><a></a>    <span class="at">data =</span> segments,</span>
+<span id="cb16-11"><a></a>    <span class="fu">aes</span>(x, y, <span class="at">xend =</span> xend, <span class="at">yend =</span> yend)</span>
+<span id="cb16-12"><a></a>  ) <span class="sc">+</span> </span>
+<span id="cb16-13"><a></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb16-14"><a></a>    <span class="at">data =</span> labels,</span>
+<span id="cb16-15"><a></a>    <span class="fu">aes</span>(x, y <span class="sc">-</span> .<span class="dv">5</span>, <span class="at">label =</span> label),</span>
+<span id="cb16-16"><a></a>    <span class="at">hjust =</span> <span class="dv">1</span>,</span>
+<span id="cb16-17"><a></a>    <span class="at">size =</span> <span class="dv">8</span><span class="sc">/</span>.pt</span>
+<span id="cb16-18"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb16-19"><a></a>  <span class="fu">coord_flip</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">12</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="move-up-2em column" style="width:45%;">
 <div class="cell">
@@ -1746,8 +1750,8 @@ Wyoming         8.644524  7.238965  8.071010     8.835251     9.108380       8.3
 <h2>Assign clusters by cutting the dendrogram</h2>
 <div class="tiny-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="co"># cut dendrogram at height 5</span></span>
-<span id="cb16-2"><a></a><span class="fu">cutree</span>(hc_out, <span class="at">h =</span> <span class="dv">5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="co"># cut dendrogram at height 5</span></span>
+<span id="cb17-2"><a></a><span class="fu">cutree</span>(hc_out, <span class="at">h =</span> <span class="dv">5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       Alabama         Alaska        Arizona       Arkansas     California       Colorado 
              1              2              1              1              3              4 
@@ -1775,8 +1779,8 @@ Wyoming         8.644524  7.238965  8.071010     8.835251     9.108380       8.3
 <h2>Assign clusters by cutting the dendrogram</h2>
 <div class="tiny-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="co"># cut dendrogram at height 8</span></span>
-<span id="cb18-2"><a></a><span class="fu">cutree</span>(hc_out, <span class="at">h =</span> <span class="dv">8</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="co"># cut dendrogram at height 8</span></span>
+<span id="cb19-2"><a></a><span class="fu">cutree</span>(hc_out, <span class="at">h =</span> <span class="dv">8</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       Alabama         Alaska        Arizona       Arkansas     California       Colorado 
              1              2              1              1              3              4 
@@ -1804,8 +1808,8 @@ Wyoming         8.644524  7.238965  8.071010     8.835251     9.108380       8.3
 <h2>Assign clusters by cutting the dendrogram</h2>
 <div class="tiny-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="co"># cut dendrogram so there are 4 clusters</span></span>
-<span id="cb20-2"><a></a><span class="fu">cutree</span>(hc_out, <span class="at">k =</span> <span class="dv">4</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="co"># cut dendrogram so there are 4 clusters</span></span>
+<span id="cb21-2"><a></a><span class="fu">cutree</span>(hc_out, <span class="at">k =</span> <span class="dv">4</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       Alabama         Alaska        Arizona       Arkansas     California       Colorado 
              1              2              1              1              3              1 
@@ -1834,18 +1838,18 @@ Wyoming         8.644524  7.238965  8.071010     8.835251     9.108380       8.3
 <div class="tiny-font">
 <div class="cell columns column-output-location" data-output-width="100%">
 <div class="column">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="co"># cut dendrogram so there are 4 clusters</span></span>
-<span id="cb22-2"><a></a>cluster <span class="ot">&lt;-</span> <span class="fu">cutree</span>(hc_out, <span class="at">k =</span> <span class="dv">4</span>)</span>
-<span id="cb22-3"><a></a></span>
-<span id="cb22-4"><a></a>US_state_stats <span class="sc">|&gt;</span></span>
-<span id="cb22-5"><a></a>  <span class="fu">left_join</span>(</span>
-<span id="cb22-6"><a></a>    <span class="fu">tibble</span>(</span>
-<span id="cb22-7"><a></a>      <span class="at">state =</span> <span class="fu">names</span>(cluster),</span>
-<span id="cb22-8"><a></a>      <span class="at">cluster =</span> <span class="fu">factor</span>(cluster)</span>
-<span id="cb22-9"><a></a>    )</span>
-<span id="cb22-10"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb22-11"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(income, tr_deaths)) <span class="sc">+</span></span>
-<span id="cb22-12"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> cluster))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="co"># cut dendrogram so there are 4 clusters</span></span>
+<span id="cb23-2"><a></a>cluster <span class="ot">&lt;-</span> <span class="fu">cutree</span>(hc_out, <span class="at">k =</span> <span class="dv">4</span>)</span>
+<span id="cb23-3"><a></a></span>
+<span id="cb23-4"><a></a>US_state_stats <span class="sc">|&gt;</span></span>
+<span id="cb23-5"><a></a>  <span class="fu">left_join</span>(</span>
+<span id="cb23-6"><a></a>    <span class="fu">tibble</span>(</span>
+<span id="cb23-7"><a></a>      <span class="at">state =</span> <span class="fu">names</span>(cluster),</span>
+<span id="cb23-8"><a></a>      <span class="at">cluster =</span> <span class="fu">factor</span>(cluster)</span>
+<span id="cb23-9"><a></a>    )</span>
+<span id="cb23-10"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb23-11"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(income, tr_deaths)) <span class="sc">+</span></span>
+<span id="cb23-12"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> cluster))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
