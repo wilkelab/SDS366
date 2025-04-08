@@ -157,6 +157,20 @@ format: html
 - [Slides](slides/clustering.qmd)  
 - [Worksheet](worksheets/clustering.qmd)
 
+### 22. Apr 8, 2025—Hierarchical clustering
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/hierarchical-clustering.qmd)  
+- [Worksheet](worksheets/hierarchical-clustering.qmd)
+
+### 23. Apr 10, 2025—Redundant coding, text annotations
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/redundant-coding.qmd)  
+- [Worksheet](worksheets/redundant-coding.qmd)
+
 
 ## Homeworks
 
