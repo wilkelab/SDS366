@@ -130,6 +130,8 @@ website:
             href: worksheets/hierarchical-clustering.qmd 
           - text: "Class 23: Redundant coding"
             href: worksheets/hierarchical-clustering.qmd 
+          - text: "Class 24: Dealing with overplotting"
+            href: worksheets/overplotting.qmd 
           - text: "Class 25: Visualizing geospatial data"
             href: worksheets/geospatial-data.qmd
         

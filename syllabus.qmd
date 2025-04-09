@@ -104,7 +104,7 @@ All these books are freely available online and you do not need to purchase a ph
 23.     Redundant coding, text      **ggrepel** package
         annotations
 
-24.     Over-plotting               jittering, 2d histograms,
+24.     Dealing with overplotting   jittering, 2d histograms,
                                     contour plots
 
 25.     Visualizing geospatial      `geom_sf()`, `coord_sf()`
