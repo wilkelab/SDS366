@@ -75,6 +75,8 @@ website:
             href: slides/hierarchical-clustering.qmd 
           - text: "Class 23: Redundant coding"
             href: slides/hierarchical-clustering.qmd 
+          - text: "Class 24: Dealing with overplotting"
+            href: slides/overplotting.qmd 
        
       - text: "Worksheets"
         menu:

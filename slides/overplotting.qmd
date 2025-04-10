@@ -1,0 +1,1242 @@
+---
+title: "Dealing with issues of overplotting"
+author: "Claus O. Wilke"
+date: last-modified
+format: 
+  revealjs:
+    theme:
+      - default
+      - Wilke-theme.scss
+    auto-stretch: false
+    chalkboard: true
+execute:
+  fig-format: svg
+  fig-asp: 0.618
+  fig-width: 5.5
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+library(colorspace)
+library(cowplot)
+library(here)
+
+# ggplot2 settings so plots scale well for slide size 
+theme_set(theme_gray(14))
+update_geom_defaults("point", list(size = 2))
+update_geom_defaults("line", list(linewidth = 1))
+
+blue_jays <- read_csv(here("datasets", "blue_jays.csv"))
+```
+
+
+## Be aware of points plotted exactly on top of one another
+
+```{r}
+#| label: mpg-cty-displ-solid
+#| fig-width: 6
+#| fig-asp: 0.7416
+#| fig-cap: "&nbsp;"
+#| out-width: "60%"
+p_mpg_solid <- ggplot(mpg, aes(y = cty, x = displ, color = drv, fill = drv)) +
+  geom_point(size = 3, shape = 21) + 
+  scale_x_continuous(
+    name = "displacement (l)",
+    limits = c(1.4, 7.1),
+    breaks = 2:7
+  ) +
+  scale_y_continuous(
+    name = "fuel economy (mpg)",
+    limits = c(5.3, 37),
+    breaks = 5*(2:7),
+    expand = c(0, 0)
+  ) +
+  scale_color_manual(
+    values = c("#202020", "#E69F00", "#56B4E9"), 
+    name = "drive train",
+    breaks = c("f", "r", "4"),
+    labels = c("FWD", "RWD", "4WD")
+  ) +
+  scale_fill_manual(
+    values = c("#202020", "#E69F00", "#56B4E9"), 
+    name = "drive train",
+    breaks = c("f", "r", "4"),
+    labels = c("FWD", "RWD", "4WD")
+  ) +
+  theme_half_open() +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(.7, .8),
+    plot.margin = margin(3, 7, 3, 1.5)
+  )
+
+stamp_bad(p_mpg_solid)
+```
+
+::: {.fragment .small-font .move-up-1em}
+Technical term for this problem: overplotting
+:::
+
+## Partial transparency helps highlight overlapping points
+
+```{r}
+#| label: mpg-cty-displ-transp
+#| fig-width: 6
+#| fig-asp: 0.7416
+#| fig-cap: "&nbsp;"
+#| out-width: "60%"
+ggplot(mpg, aes(y = cty, x = displ, color = drv, fill = drv)) +
+  geom_point(size = 3, shape = 21) + 
+  scale_x_continuous(
+    name = "displacement (l)",
+    limits = c(1.4, 7.1),
+    breaks = 2:7
+  ) +
+  scale_y_continuous(
+    name = "fuel economy (mpg)",
+    limits = c(5.3, 37),
+    breaks = 5*(2:7),
+    expand = c(0, 0)
+  ) +
+  scale_color_manual(
+    values = c("#202020", "#E69F00", "#56B4E9"), 
+    name = "drive train",
+    breaks = c("f", "r", "4"),
+    labels = c("FWD", "RWD", "4WD")
+  ) +
+  scale_fill_manual(
+    values = c("#20202080", "#E69F0080", "#56B4E980"),
+    name = "drive train",
+    breaks = c("f", "r", "4"),
+    labels = c("FWD", "RWD", "4WD")
+  ) +
+  theme_half_open() +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(.7, .8),
+    plot.margin = margin(3, 7, 3, 1.5)
+  )
+```
+
+## A little jitter shows overlaps even more clearly
+
+```{r}
+#| label: mpg-cty-displ-jitter
+#| fig-width: 6
+#| fig-asp: 0.7416
+#| fig-cap: "&nbsp;"
+#| out-width: "60%"
+ggplot(mpg, aes(y = cty, x = displ, color = drv, fill = drv)) +
+  geom_point(
+    size = 3, shape = 21,
+    position = position_jitter(
+      width = 0.01 * diff(range(mpg$displ)),
+      height = 0.01 * diff(range(mpg$cty)),
+      seed = 7384
+    )
+  ) + 
+  scale_x_continuous(
+    name = "displacement (l)",
+    limits = c(1.4, 7.1),
+    breaks = 2:7
+  ) +
+  scale_y_continuous(
+    name = "fuel economy (mpg)",
+    limits = c(5.3, 37),
+    breaks = 5*(2:7),
+    expand = c(0, 0)
+  ) +
+  scale_color_manual(
+    values = c("#202020", "#E69F00", "#56B4E9"), 
+    name = "drive train",
+    breaks = c("f", "r", "4"),
+    labels = c("FWD", "RWD", "4WD")
+  ) +
+  scale_fill_manual(
+    values = c("#20202080", "#E69F0080", "#56B4E980"),
+    name = "drive train",
+    breaks = c("f", "r", "4"),
+    labels = c("FWD", "RWD", "4WD")
+  ) +
+  theme_half_open() +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(.7, .8),
+    plot.margin = margin(3, 7, 3, 1.5)
+  )
+```
+
+## But don't jitter too much
+
+```{r}
+#| label: mpg-cty-displ-extreme
+#| fig-width: 6
+#| fig-asp: 0.7416
+#| fig-cap: "&nbsp;"
+#| out-width: "60%"
+p_mpg_jitter_extreme <- ggplot(mpg, aes(y = cty, x = displ, color = drv, fill = drv)) +
+  geom_point(
+    size = 3, shape = 21,
+    position = position_jitter(
+      width = 0.1 * diff(range(mpg$displ)),
+      height = 0.1 * diff(range(mpg$cty)),
+      seed = 7384
+    )
+  ) + 
+  scale_x_continuous(
+    name = "displacement (l)",
+    limits = c(1.4, 7.1),
+    breaks = 2:7
+  ) +
+  scale_y_continuous(
+    name = "fuel economy (mpg)",
+    limits = c(5.3, 37),
+    breaks = 5*(2:7),
+    expand = c(0, 0)
+  ) +
+  scale_color_manual(
+    values = c("#202020", "#E69F00", "#56B4E9"), 
+    name = "drive train",
+    breaks = c("f", "r", "4"),
+    labels = c("FWD", "RWD", "4WD")
+  ) +
+  scale_fill_manual(
+    values = c("#20202080", "#E69F0080", "#56B4E980"),
+    name = "drive train",
+    breaks = c("f", "r", "4"),
+    labels = c("FWD", "RWD", "4WD")
+  ) +
+  theme_half_open() +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(.7, .8),
+    plot.margin = margin(3, 7, 3, 1.5)
+  )
+
+stamp_bad(p_mpg_jitter_extreme)
+```
+
+# 2D density plots: Contour lines and contour bands
+
+## Contour lines are the 2D version of density plots
+
+```{r}
+#| label: blue-jays-scatter
+#| fig-width: 6
+#| fig-asp: 0.75
+#| fig-cap: "&nbsp;"
+#| out-width: "70%"
+blue_jays_base <- ggplot(blue_jays, aes(body_mass_g, head_length_mm)) + 
+  scale_x_continuous(
+    limits = c(57, 82),
+    expand = c(0, 0),
+    name = "body mass (g)") +
+  scale_y_continuous(
+    limits = c(49, 61),
+    expand = c(0, 0),
+    name = "head length (mm)"
+  ) +
+  theme_minimal_grid(16) +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(1, 0),
+    legend.justification = c(1, 0),
+    legend.text = element_text(vjust = 0.6),
+    legend.spacing.x = unit(2, "pt"),
+    legend.background = element_rect(fill = "white", color = NA),
+    axis.ticks.length = unit(0, "pt"),
+    axis.ticks = element_blank()
+  )
+
+blue_jays_base + 
+  geom_point(color = "#202020", size = 2, alpha = 0.7)
+```
+
+## Contour lines are the 2D version of density plots
+
+```{r}
+#| label: blue-jays-contour
+#| fig-width: 6
+#| fig-asp: 0.75
+#| fig-cap: "&nbsp;"
+#| out-width: "70%"
+blue_jays_base + 
+  geom_density_2d(color = "black", size = 0.3, binwidth = 0.004) +
+  geom_point(color = "#202020", size = 2, alpha = 0.7)
+```
+
+## We can vary shading for added effect
+
+```{r}
+#| label: blue-jays-contour-filled
+#| fig-width: 6
+#| fig-asp: 0.75
+#| fig-cap: "&nbsp;"
+#| out-width: "70%"
+blue_jays_base + 
+  geom_density_2d_filled(color = NA, binwidth = 0.004) +
+  geom_density_2d(color = "black", size = 0.3, binwidth = 0.004) +
+  geom_point(color = "#202020", size = 2, alpha = 0.7) +
+  scale_fill_manual(
+    values = scales::colour_ramp(c("#F2F2F200", "#80808080"))((0:5)/5),
+    guide = "none"
+  )
+```
+
+## What do we do when there are multiple groups?
+
+```{r}
+#| label: blue-jays-no-contour-by-sex
+#| fig-width: 6
+#| fig-asp: 0.75
+#| fig-cap: "&nbsp;"
+#| out-width: "70%"
+blue_jays_base + 
+  aes(color = sex) +
+  geom_point(size = 2, alpha = 0.7) +
+  scale_color_manual(
+    values = c(F = "#D55E00", M = "#0072B2"),
+    breaks = c("F", "M"),
+    labels = c("female birds   ", "male birds"),
+    name = NULL,
+    guide = guide_legend(
+      direction = "horizontal",
+      override.aes = list(size = 2, linetype = 0)
+    )
+  )
+```
+
+## Colored contour lines can work for 2 to 3 groups
+
+```{r}
+#| label: blue-jays-contour-by-sex
+#| fig-width: 6
+#| fig-asp: 0.75
+#| fig-cap: "&nbsp;"
+#| out-width: "70%"
+blue_jays_base + 
+  aes(color = sex) +
+  geom_density_2d(size = 0.3, binwidth = 0.006) +
+  geom_point(size = 2, alpha = 0.7) +
+  scale_color_manual(
+    values = c(F = "#D55E00", M = "#0072B2"),
+    breaks = c("F", "M"),
+    labels = c("female birds   ", "male birds"),
+    name = NULL,
+    guide = guide_legend(
+      direction = "horizontal",
+      override.aes = list(size = 2, linetype = 0)
+    )
+  ) +
+  theme_minimal_grid(16) +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(1, 0),
+    legend.justification = c(1, 0),
+    legend.text = element_text(vjust = 0.6),
+    legend.spacing.x = unit(2, "pt"),
+    legend.background = element_rect(fill = "white", color = NA),
+    axis.ticks.length = unit(0, "pt"),
+    axis.ticks = element_blank()
+  )
+```
+
+## What if there are multiple groups intermingled?
+
+```{r}
+#| label: diamonds-points
+#| fig-width: 6
+#| fig-asp: 0.75
+#| fig-cap: "&nbsp;"
+#| out-width: "70%"
+set.seed(6932)
+diamonds_small <- diamonds[sample(1:nrow(diamonds), 6000), ]
+
+diamonds_plot_base <- ggplot(diamonds_small, aes(carat, price, color = cut)) + 
+  scale_x_continuous(
+    limits = c(-.5, 5)  # set limits larger than coords to not limit contour lines
+  ) +
+  scale_y_log10(
+    name = "price (USD)",
+    breaks = c(300, 1000, 3000, 10000),
+    labels = c("$300", "$1,000", "$3,000", "$10,000"),
+    limits = c(240, 25000)
+  ) +
+  scale_color_discrete_sequential(
+    palette = "Inferno",
+    nmax = 6,
+    order = 1:5,
+    rev = FALSE,
+    breaks = c("Ideal", "Premium", "Very Good", "Good", "Fair"),
+    labels = c("ideal", "premium", "very good", "good", "fair"),
+    guide = guide_legend(
+      override.aes = list(size = 2, alpha = 1)
+    )
+  ) +
+  coord_cartesian(
+    xlim = c(-.1, 3.2),
+    ylim = c(240, 25000),
+    expand = FALSE
+  ) + 
+  theme_minimal_grid() +
+  panel_border() +
+  theme(
+    plot.margin = margin(18, 7, 1, 1.5),
+    legend.key.width = unit(6, "pt"),
+    legend.spacing.y = unit(3, "pt"),
+    legend.title = element_text(hjust = 0, margin = margin(0, 0, 0, 0)),
+    legend.position = "inside",
+    legend.position.inside = c(.97, .3),
+    legend.justification = c(1, 0.5),
+    legend.box.margin = margin(7, 7, 7, 7),
+    legend.box.background = element_rect(fill = "#FFFFFFD0", color = NA),
+    axis.ticks.length = unit(0, "pt")
+  )
+
+diamonds_plot_points <- diamonds_plot_base +
+  geom_point(size = .4, alpha = 1/5)
+  
+diamonds_plot_points
+```
+
+## Don't make plots that look like spaghetti
+
+```{r}
+#| label: diamonds-contours
+#| fig-width: 6
+#| fig-asp: 0.75
+#| fig-cap: "&nbsp;"
+#| out-width: "70%"
+diamonds_plot_contours <- diamonds_plot_base +
+  geom_density2d(size = 0.3, binwidth = 0.35)
+  
+stamp_bad(diamonds_plot_contours)
+```
+
+## Contour lines work well with small multiples (facets)
+
+```{r}
+#| label: diamonds-contour-facets
+#| fig-width: 8
+#| fig-asp: 0.618
+#| fig-cap: "&nbsp;"
+#| out-width: "90%"
+diamonds_facet_base <- ggplot(diamonds_small, aes(carat, price)) + 
+  scale_x_continuous(
+    limits = c(-.5, 5)  # set limits larger than coords to not limit contour lines
+  ) +
+  scale_y_log10(
+    name = "price (USD)",
+    breaks = c(300, 1000, 3000, 10000),
+    labels = c("$300", "$1,000", "$3,000", "$10,000"),
+    limits = c(240, 25000)
+  ) +
+  coord_cartesian(
+    xlim = c(-.1, 3.2),
+    ylim = c(240, 25000),
+    expand = FALSE
+  ) + 
+  facet_wrap(~cut, scales = "free_x", labeller = labeller(cut = tolower)) +
+  theme_minimal_grid(12, rel_small = 1) +
+  panel_border() +
+  theme(
+    legend.title = element_text(hjust = 0.5),
+    legend.position = "inside",
+    legend.position.inside = c(.95, .05),
+    legend.justification = c(1, 0),
+    axis.ticks.length = unit(0, "pt")
+  )
+
+diamonds_facet_base +
+  geom_density2d_filled(binwidth = 0.4) +
+  geom_density2d(color = darken("#0072B2", .2), size = .3, binwidth = 0.4) +
+  scale_fill_manual(
+    values = scales::colour_ramp(c("#ECF0F620", "#8498B3C0"))((0:9)/9),
+    guide = "none"
+  )
+
+#> desaturate(lighten("#0072B2", .9), .6)
+#[1] "#ECF0F6"
+#> desaturate(lighten("#0072B2", .3), .6)
+#[1] "#8498B3"
+```
+
+# 2D histograms: Rectangular and hex bins
+
+## 2D histograms: rectangular bins
+
+```{r}
+#| label: diamonds-bin2d-facets
+#| fig-width: 8
+#| fig-asp: 0.618
+#| fig-cap: "&nbsp;"
+#| out-width: "80%"
+diamonds_facet_base +
+  geom_bin2d(binwidth = c(0.2, 0.1)) +
+  scale_color_continuous_sequential(
+    aesthetics = c("color", "fill"),
+    palette = "SunsetDark",
+    alpha = 0.7,
+    limits = c(0, 280),
+    breaks = c(0, 100, 200),
+    guide = guide_colourbar(
+      direction = "horizontal",
+      title.position = "top",
+      barwidth = grid::unit(1.8, "in"),
+      barheight = grid::unit(0.3, "in"),
+      ticks.colour = "black"
+    )
+  ) +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(0.97, .25),
+    legend.justification = c(1, 0.5)
+  )
+```
+
+::: {.fragment .small-font .move-up-2em}
+We need to choose a bin size as in regular histograms
+:::
+
+## 2D histograms: rectangular bins
+
+```{r}
+#| label: diamonds-bin2d-facets2
+#| fig-width: 8
+#| fig-asp: 0.618
+#| fig-cap: "&nbsp;"
+#| out-width: "80%"
+diamonds_facet_base +
+  geom_bin2d(binwidth = c(0.1, 0.05)) +
+  scale_color_continuous_sequential(
+    aesthetics = c("color", "fill"),
+    palette = "SunsetDark",
+    alpha = 0.7,
+    limits = c(0, 120),
+    breaks = c(0, 25, 50, 75, 100),
+    guide = guide_colourbar(
+      direction = "horizontal",
+      title.position = "top",
+      barwidth = grid::unit(1.8, "in"),
+      barheight = grid::unit(0.3, "in"),
+      ticks.colour = "black"
+    )
+  ) +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(0.97, .25),
+    legend.justification = c(1, 0.5)
+  )
+```
+
+::: {.small-font .move-up-2em}
+We need to choose a bin size as in regular histograms
+:::
+
+## 2D histograms: hex bins
+
+```{r}
+#| label: diamonds-hexbin-facets
+#| fig-width: 8
+#| fig-asp: 0.618
+#| fig-cap: "&nbsp;"
+#| out-width: "80%"
+diamonds_facet_base +
+  geom_hex(aes(colour = after_stat(count), fill = after_stat(count)), bins = 20) +
+  scale_color_continuous_sequential(
+    palette = "SunsetDark",
+    alpha = 0.7,
+    limits = c(0, 280),
+    breaks = c(0, 100, 200),
+    guide = guide_colourbar(
+      direction = "horizontal",
+      title.position = "top",
+      barwidth = grid::unit(1.8, "in"),
+      barheight = grid::unit(0.3, "in"),
+      ticks.colour = "black"
+    )
+  ) +
+  scale_fill_continuous_sequential(
+    palette = "SunsetDark",
+    alpha = 0.7,
+    limits = c(0, 280),
+    breaks = c(0, 100, 200),
+    guide = guide_colourbar(
+      direction = "horizontal",
+      title.position = "top",
+      barwidth = grid::unit(1.8, "in"),
+      barheight = grid::unit(0.3, "in"),
+      ticks.colour = "black"
+    )
+  ) +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(0.97, .25),
+    legend.justification = c(1, 0.5)
+  )
+```
+
+## 2D histograms: hex bins
+
+```{r}
+#| label: diamonds-hexbin-facets2
+#| fig-width: 8
+#| fig-asp: 0.618
+#| fig-cap: "&nbsp;"
+#| out-width: "80%"
+diamonds_facet_base +
+  geom_hex(aes(colour = after_stat(count), fill = after_stat(count)), bins = 50) +
+  scale_color_continuous_sequential(
+    palette = "SunsetDark",
+    alpha = 0.7,
+    limits = c(0, 100),
+    breaks = c(0, 25, 50, 75, 100),
+    guide = guide_colourbar(
+      direction = "horizontal",
+      title.position = "top",
+      barwidth = grid::unit(1.8, "in"),
+      barheight = grid::unit(0.3, "in"),
+      ticks.colour = "black"
+    )
+  ) +
+  scale_fill_continuous_sequential(
+    palette = "SunsetDark",
+    alpha = 0.7,
+    limits = c(0, 100),
+    breaks = c(0, 25, 50, 75, 100),
+    guide = guide_colourbar(
+      direction = "horizontal",
+      title.position = "top",
+      barwidth = grid::unit(1.8, "in"),
+      barheight = grid::unit(0.3, "in"),
+      ticks.colour = "black"
+    )
+  ) +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(0.97, .25),
+    legend.justification = c(1, 0.5)
+  )
+```
+
+## Choosing the right color scale
+
+```{r}
+#| label: diamonds-hexbin-facets-sunset-dark
+#| fig-width: 8
+#| fig-asp: 0.618
+#| fig-cap: "&nbsp;"
+#| out-width: "80%"
+diamonds_facet_base +
+  geom_hex(aes(colour = after_stat(count), fill = after_stat(count)), bins = 50) +
+  scale_color_continuous_sequential(
+    palette = "SunsetDark",
+    alpha = 0.7,
+    limits = c(0, 100),
+    breaks = c(0, 25, 50, 75, 100),
+    guide = guide_colourbar(
+      direction = "horizontal",
+      title.position = "top",
+      barwidth = grid::unit(1.8, "in"),
+      barheight = grid::unit(0.3, "in"),
+      ticks.colour = "black"
+    )
+  ) +
+  scale_fill_continuous_sequential(
+    palette = "SunsetDark",
+    alpha = 0.7,
+    limits = c(0, 100),
+    breaks = c(0, 25, 50, 75, 100),
+    guide = guide_colourbar(
+      direction = "horizontal",
+      title.position = "top",
+      barwidth = grid::unit(1.8, "in"),
+      barheight = grid::unit(0.3, "in"),
+      ticks.colour = "black"
+    )
+  ) +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(0.97, .25),
+    legend.justification = c(1, 0.5)
+  )
+```
+
+::: {.small-font .move-up-2em}
+palette: SunsetDark
+:::
+
+## Choosing the right color scale
+
+```{r}
+#| label: diamonds-hexbin-facets-batlow
+#| fig-width: 8
+#| fig-asp: 0.618
+#| fig-cap: "&nbsp;"
+#| out-width: "80%"
+diamonds_facet_base +
+  geom_hex(aes(colour = after_stat(count), fill = after_stat(count)), bins = 50) +
+  scale_color_continuous_sequential(
+    palette = "Batlow",
+    alpha = 0.7,
+    limits = c(0, 100),
+    breaks = c(0, 25, 50, 75, 100),
+    guide = guide_colourbar(
+      direction = "horizontal",
+      title.position = "top",
+      barwidth = grid::unit(1.8, "in"),
+      barheight = grid::unit(0.3, "in"),
+      ticks.colour = "black"
+    )
+  ) +
+  scale_fill_continuous_sequential(
+    palette = "Batlow",
+    alpha = 0.7,
+    limits = c(0, 100),
+    breaks = c(0, 25, 50, 75, 100),
+    guide = guide_colourbar(
+      direction = "horizontal",
+      title.position = "top",
+      barwidth = grid::unit(1.8, "in"),
+      barheight = grid::unit(0.3, "in"),
+      ticks.colour = "black"
+    )
+  ) +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(0.97, .25),
+    legend.justification = c(1, 0.5)
+  )
+```
+
+::: {.small-font .move-up-2em}
+palette: Batlow
+:::
+
+## Choosing the right color scale
+
+```{r}
+#| label: diamonds-hexbin-facets-ylorrd
+#| fig-width: 8
+#| fig-asp: 0.618
+#| fig-cap: "&nbsp;"
+#| out-width: "80%"
+diamonds_facet_base +
+  geom_hex(aes(colour = after_stat(count), fill = after_stat(count)), bins = 50) +
+  scale_color_continuous_sequential(
+    palette = "YlOrRd",
+    alpha = 0.7,
+    limits = c(0, 100),
+    breaks = c(0, 25, 50, 75, 100),
+    guide = guide_colourbar(
+      direction = "horizontal",
+      title.position = "top",
+      barwidth = grid::unit(1.8, "in"),
+      barheight = grid::unit(0.3, "in"),
+      ticks.colour = "black"
+    )
+  ) +
+  scale_fill_continuous_sequential(
+    palette = "YlOrRd",
+    alpha = 0.7,
+    limits = c(0, 100),
+    breaks = c(0, 25, 50, 75, 100),
+    guide = guide_colourbar(
+      direction = "horizontal",
+      title.position = "top",
+      barwidth = grid::unit(1.8, "in"),
+      barheight = grid::unit(0.3, "in"),
+      ticks.colour = "black"
+    )
+  ) +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(0.97, .25),
+    legend.justification = c(1, 0.5)
+  )
+```
+
+::: {.small-font .move-up-2em}
+palette: YlOrRd
+:::
+
+## Choosing the right color scale
+
+```{r}
+#| label: diamonds-hexbin-facets-bluyl
+#| fig-width: 8
+#| fig-asp: 0.618
+#| fig-cap: "&nbsp;"
+#| out-width: "80%"
+diamonds_facet_base +
+  geom_hex(aes(colour = after_stat(count), fill = after_stat(count)), bins = 50) +
+  scale_color_continuous_sequential(
+    palette = "BluYl",
+    alpha = 0.7,
+    limits = c(0, 100),
+    breaks = c(0, 25, 50, 75, 100),
+    guide = guide_colourbar(
+      direction = "horizontal",
+      title.position = "top",
+      barwidth = grid::unit(1.8, "in"),
+      barheight = grid::unit(0.3, "in"),
+      ticks.colour = "black"
+    )
+  ) +
+  scale_fill_continuous_sequential(
+    palette = "BluYl",
+    alpha = 0.7,
+    limits = c(0, 100),
+    breaks = c(0, 25, 50, 75, 100),
+    guide = guide_colourbar(
+      direction = "horizontal",
+      title.position = "top",
+      barwidth = grid::unit(1.8, "in"),
+      barheight = grid::unit(0.3, "in"),
+      ticks.colour = "black"
+    )
+  ) +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(0.97, .25),
+    legend.justification = c(1, 0.5)
+  )
+```
+
+::: {.small-font .move-up-2em}
+palette: BluYl
+:::
+
+
+## Choosing the right color scale
+
+```{r}
+#| label: diamonds-hexbin-facets-heat
+#| fig-width: 8
+#| fig-asp: 0.618
+#| fig-cap: "&nbsp;"
+#| out-width: "80%"
+diamonds_facet_base +
+  geom_hex(aes(colour = after_stat(count), fill = after_stat(count)), bins = 50) +
+  scale_color_continuous_sequential(
+    palette = "Heat",
+    alpha = 0.7,
+    limits = c(0, 100),
+    breaks = c(0, 25, 50, 75, 100),
+    guide = guide_colourbar(
+      direction = "horizontal",
+      title.position = "top",
+      barwidth = grid::unit(1.8, "in"),
+      barheight = grid::unit(0.3, "in"),
+      ticks.colour = "black"
+    )
+  ) +
+  scale_fill_continuous_sequential(
+    palette = "Heat",
+    alpha = 0.7,
+    limits = c(0, 100),
+    breaks = c(0, 25, 50, 75, 100),
+    guide = guide_colourbar(
+      direction = "horizontal",
+      title.position = "top",
+      barwidth = grid::unit(1.8, "in"),
+      barheight = grid::unit(0.3, "in"),
+      ticks.colour = "black"
+    )
+  ) +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(0.97, .25),
+    legend.justification = c(1, 0.5)
+  )
+```
+
+::: {.small-font .move-up-2em}
+palette: Heat
+:::
+
+## Choosing the right color scale
+
+```{r}
+#| label: diamonds-hexbin-facets-ag_GrnYl
+#| fig-width: 8
+#| fig-asp: 0.618
+#| fig-cap: "&nbsp;"
+#| out-width: "80%"
+diamonds_facet_base +
+  geom_hex(aes(colour = after_stat(count), fill = after_stat(count)), bins = 50) +
+  scale_color_continuous_sequential(
+    palette = "ag_GrnYl",
+    alpha = 0.7,
+    limits = c(0, 100),
+    breaks = c(0, 25, 50, 75, 100),
+    guide = guide_colourbar(
+      direction = "horizontal",
+      title.position = "top",
+      barwidth = grid::unit(1.8, "in"),
+      barheight = grid::unit(0.3, "in"),
+      ticks.colour = "black"
+    )
+  ) +
+  scale_fill_continuous_sequential(
+    palette = "ag_GrnYl",
+    alpha = 0.7,
+    limits = c(0, 100),
+    breaks = c(0, 25, 50, 75, 100),
+    guide = guide_colourbar(
+      direction = "horizontal",
+      title.position = "top",
+      barwidth = grid::unit(1.8, "in"),
+      barheight = grid::unit(0.3, "in"),
+      ticks.colour = "black"
+    )
+  ) +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(0.97, .25),
+    legend.justification = c(1, 0.5)
+  )
+```
+
+::: {.small-font .move-up-2em}
+palette: ag_GrnYl
+:::
+
+
+## Choosing the right color scale
+
+```{r}
+#| label: diamonds-hexbin-facets-sunset-dark2
+#| fig-width: 8
+#| fig-asp: 0.618
+#| fig-cap: "&nbsp;"
+#| out-width: "80%"
+diamonds_facet_base +
+  geom_hex(aes(colour = after_stat(count), fill = after_stat(count)), bins = 50) +
+  scale_color_continuous_sequential(
+    palette = "SunsetDark",
+    alpha = 0.7,
+    limits = c(0, 100),
+    breaks = c(0, 25, 50, 75, 100),
+    guide = guide_colourbar(
+      direction = "horizontal",
+      title.position = "top",
+      barwidth = grid::unit(1.8, "in"),
+      barheight = grid::unit(0.3, "in"),
+      ticks.colour = "black"
+    )
+  ) +
+  scale_fill_continuous_sequential(
+    palette = "SunsetDark",
+    alpha = 0.7,
+    limits = c(0, 100),
+    breaks = c(0, 25, 50, 75, 100),
+    guide = guide_colourbar(
+      direction = "horizontal",
+      title.position = "top",
+      barwidth = grid::unit(1.8, "in"),
+      barheight = grid::unit(0.3, "in"),
+      ticks.colour = "black"
+    )
+  ) +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(0.97, .25),
+    legend.justification = c(1, 0.5)
+  )
+```
+
+::: {.small-font .move-up-2em}
+palette: SunsetDark
+:::
+
+<!-- Segment ends here -->
+
+# Creating 2D density plots and histograms in R
+
+## Contour lines
+
+::: {.fragment .small-font}
+Getting the data:
+
+```{r}
+#| echo: true
+blue_jays <- read_csv("https://wilkelab.org/SDS366/datasets/blue_jays.csv")
+
+blue_jays
+```
+:::
+
+## Contour lines
+
+::: {.tiny-font}
+```{r}
+#| label: scatter-demo
+#| echo: true
+#| fig-width: 6
+#| fig-asp: 0.75
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+blue_jays |>
+  ggplot() +
+  aes(body_mass_g, head_length_mm) +
+  geom_point() +
+  theme_bw()
+```
+:::
+
+## Contour lines
+
+::: {.tiny-font}
+```{r}
+#| label: contour-lines-demo
+#| echo: true
+#| fig-width: 6
+#| fig-asp: 0.75
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+blue_jays |>
+  ggplot() +
+  aes(body_mass_g, head_length_mm) +
+  geom_density_2d() +
+  geom_point() +
+  theme_bw()
+```
+:::
+
+## Contour lines
+
+::: {.tiny-font}
+```{r}
+#| label: contour-lines-demo2
+#| echo: true
+#| fig-width: 6
+#| fig-asp: 0.75
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+blue_jays |>
+  ggplot() +
+  aes(body_mass_g, head_length_mm) +
+  geom_density_2d(bins = 5) +
+  geom_point() +
+  theme_bw()
+```
+:::
+
+## Contour bands
+
+::: {.tiny-font}
+```{r}
+#| label: contour-bands-demo
+#| echo: true
+#| fig-width: 6
+#| fig-asp: 0.75
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+blue_jays |>
+  ggplot() +
+  aes(body_mass_g, head_length_mm) +
+  geom_density_2d_filled(bins = 5) +
+  geom_point() +
+  theme_bw()
+```
+:::
+
+## Contour bands
+
+::: {.tiny-font}
+```{r}
+#| label: contour-bands-demo2
+#| echo: true
+#| fig-width: 6
+#| fig-asp: 0.75
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+blue_jays |>
+  ggplot() +
+  aes(body_mass_g, head_length_mm) +
+  geom_density_2d_filled(
+    bins = 5,
+    alpha = 0.5
+  ) +
+  geom_point() +
+  theme_bw()
+```
+:::
+
+## Contour bands
+
+::: {.tiny-font}
+```{r}
+#| label: contour-bands-demo3
+#| echo: true
+#| fig-width: 6
+#| fig-asp: 0.75
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+blue_jays |>
+  ggplot() +
+  aes(body_mass_g, head_length_mm) +
+  geom_density_2d_filled(
+    bins = 5,
+    alpha = 0.5
+  ) +
+  geom_density_2d(
+    bins = 5,
+    color = "black",
+    linewidth = 0.2
+  ) +
+  geom_point() +
+  theme_bw()
+```
+:::
+
+## 2D histograms
+
+::: {.tiny-font}
+```{r}
+#| label: bins-2d-demo
+#| echo: true
+#| fig-width: 6
+#| fig-asp: 0.75
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+blue_jays |>
+  ggplot() +
+  aes(body_mass_g, head_length_mm) +
+  geom_bin_2d() +
+  theme_bw()
+```
+:::
+
+## 2D histograms
+
+::: {.tiny-font}
+```{r}
+#| label: bins-2d-demo2
+#| echo: true
+#| fig-width: 6
+#| fig-asp: 0.75
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+blue_jays |>
+  ggplot() +
+  aes(body_mass_g, head_length_mm) +
+  geom_bin_2d(binwidth = c(3, 3)) +
+  theme_bw()
+```
+:::
+
+## 2D histograms
+
+::: {.tiny-font}
+```{r}
+#| label: bins-2d-demo3
+#| echo: true
+#| fig-width: 6
+#| fig-asp: 0.75
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+blue_jays |>
+  ggplot() +
+  aes(body_mass_g, head_length_mm) +
+  geom_bin_2d(binwidth = c(1, 5)) +
+  theme_bw()
+```
+:::
+
+## 2D histograms
+
+::: {.tiny-font}
+```{r}
+#| label: bins-2d-demo4
+#| echo: true
+#| fig-width: 6
+#| fig-asp: 0.75
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+blue_jays |>
+  ggplot() +
+  aes(body_mass_g, head_length_mm) +
+  geom_bin_2d(binwidth = c(5, 1)) +
+  theme_bw()
+```
+:::
+
+## Hex bins
+
+::: {.tiny-font}
+```{r}
+#| label: hex-demo
+#| echo: true
+#| fig-width: 6
+#| fig-asp: 0.75
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+blue_jays |>
+  ggplot() +
+  aes(body_mass_g, head_length_mm) +
+  geom_hex() +
+  theme_bw()
+```
+:::
+
+## Hex bins
+
+::: {.tiny-font}
+```{r}
+#| label: hex-demo2
+#| echo: true
+#| fig-width: 6
+#| fig-asp: 0.75
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+blue_jays |>
+  ggplot() +
+  aes(body_mass_g, head_length_mm) +
+  geom_hex(bins = 15) +
+  theme_bw()
+```
+:::
+
+## Hex bins
+
+::: {.tiny-font}
+```{r}
+#| label: hex-demo3
+#| echo: true
+#| fig-width: 6
+#| fig-asp: 0.75
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+blue_jays |>
+  ggplot() +
+  aes(body_mass_g, head_length_mm) +
+  geom_hex(bins = 10) +
+  theme_bw()
+```
+:::
+
+<!-- Segment ends here -->
+
+## Further reading
+
+- Fundamentals of Data Visualization: [Chapter 18: Handling overlapping points](https://clauswilke.com/dataviz/overlapping-points.html)
+- **ggplot2** reference documentation: [`geom_density_2d()`](https://ggplot2.tidyverse.org/reference/geom_density_2d.html)
+- **ggplot2** reference documentation: [`geom_bin_2d()`](https://ggplot2.tidyverse.org/reference/geom_bin_2d.html)
+- **ggplot2** reference documentation: [`geom_hex()`](https://ggplot2.tidyverse.org/reference/geom_hex.html)
+
