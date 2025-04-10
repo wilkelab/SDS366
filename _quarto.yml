@@ -74,7 +74,7 @@ website:
           - text: "Class 22: Hierarchical clustering"
             href: slides/hierarchical-clustering.qmd 
           - text: "Class 23: Redundant coding"
-            href: slides/hierarchical-clustering.qmd 
+            href: slides/redundant-coding.qmd 
           - text: "Class 24: Dealing with overplotting"
             href: slides/overplotting.qmd 
        
@@ -131,7 +131,7 @@ website:
           - text: "Class 22: Hierarchical clustering"
             href: worksheets/hierarchical-clustering.qmd 
           - text: "Class 23: Redundant coding"
-            href: worksheets/hierarchical-clustering.qmd 
+            href: worksheets/redundant-coding.qmd 
           - text: "Class 24: Dealing with overplotting"
             href: worksheets/overplotting.qmd 
           - text: "Class 25: Visualizing geospatial data"
