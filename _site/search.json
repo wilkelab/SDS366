@@ -5016,7 +5016,7 @@
     "href": "slides/hierarchical-clustering.html#hierarchical-clustering-methods-require-two-ingredients",
     "title": "Hierarchical clustering",
     "section": "Hierarchical clustering methods require two ingredients",
-    "text": "Hierarchical clustering methods require two ingredients\n\n1. Distance metric\nExamples: Euclidean distance, maximum distance\n\n\n\n2. Linkage criteria\nExamples: - Unweighted average linkage clustering\n(unweighted pair group method with arithmetic mean, UPGMA) - Complete linkage clustering - Minimum energy clustering\n(See: https://en.wikipedia.org/wiki/Hierarchical_clustering)"
+    "text": "Hierarchical clustering methods require two ingredients\n\n1. Distance metric\nExamples: Euclidean distance, maximum distance\n\n\n\n2. Linkage criteria\nExamples:\n\nUnweighted average linkage clustering\n(unweighted pair group method with arithmetic mean, UPGMA)\nComplete linkage clustering\nMinimum energy clustering\n\n(See: https://en.wikipedia.org/wiki/Hierarchical_clustering)"
   },
   {
     "objectID": "slides/hierarchical-clustering.html#hierarchical-clustering-via-upgma-1",

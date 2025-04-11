@@ -487,6 +487,7 @@ Examples: Euclidean distance, maximum distance
 2\. Linkage criteria
 
 Examples:
+
 - Unweighted average linkage clustering  
    (unweighted pair group method with arithmetic mean, UPGMA)
 - Complete linkage clustering
