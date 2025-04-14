@@ -171,6 +171,19 @@ format: html
 - [Slides](slides/redundant-coding.qmd)  
 - [Worksheet](worksheets/redundant-coding.qmd)
 
+### 24. Apr 15, 2025—Overplotting
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/overplotting.qmd)  
+- [Worksheet](worksheets/overplotting.qmd)
+
+### 25. Apr 17, 2025—Visualizing geospatial data
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/geospatial-data.qmd)  
+- [Worksheet](worksheets/geospatial-data.qmd)
 
 ## Homeworks
 

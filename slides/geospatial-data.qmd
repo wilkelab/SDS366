@@ -1,0 +1,652 @@
+---
+title: "Visualizing geospatial data"
+author: "Claus O. Wilke"
+date: last-modified
+format: 
+  revealjs:
+    theme:
+      - default
+      - Wilke-theme.scss
+    auto-stretch: false
+    chalkboard: true
+execute:
+  fig-format: svg
+  fig-asp: 0.618
+  fig-width: 5.5
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+library(cowplot)
+library(colorspace)
+library(sf)
+library(here)
+
+# ggplot2 settings so plots scale well for slide size 
+theme_set(theme_gray(14))
+update_geom_defaults("point", list(size = 2))
+update_geom_defaults("line", list(linewidth = 1))
+```
+
+## Parallels (latitude) and meridians (longitude)
+
+![](https://clauswilke.com/dataviz/geospatial_data_files/figure-html/world-orthographic-1.png){width="55%" fig-align="center"}
+
+## There are many ways to project onto a 2D plane
+
+![](https://clauswilke.com/dataviz/coordinate_systems_axes_files/figure-html/worldmap-four-projections-1.png){width="85%" fig-align="center"}
+
+## There are many ways to project onto a 2D plane
+
+![](https://clauswilke.com/dataviz/geospatial_data_files/figure-html/world-mercator-1.png){width="55%" fig-align="center"}
+
+::: {.small-font .move-up-1em}
+Mercator projection: Shapes are preserved, areas are severely distorted
+:::
+
+## There are many ways to project onto a 2D plane
+
+![](https://clauswilke.com/dataviz/geospatial_data_files/figure-html/world-goode-1.png){width="95%" fig-align="center"}
+
+::: {.small-font .move-up-1em}
+Goode homolosine: Areas are preserved, shapes are somewhat distorted
+:::
+
+## Projecting the US
+
+![](https://clauswilke.com/dataviz/geospatial_data_files/figure-html/usa-orthographic-1.png){width="50%" fig-align="center"}
+
+::: {.small-font .move-up-1em}
+Alaska, Hawaii, and the lower 48 are far apart; difficult to show on one map
+:::
+
+## Projecting the US
+
+![](https://clauswilke.com/dataviz/geospatial_data_files/figure-html/usa-true-albers-1.png){width="65%" fig-align="center"}
+
+::: {.small-font .move-up-1em}
+A fair, area-preserving projection
+:::
+
+## A common visualization. What happened to Alaska?
+
+![](https://clauswilke.com/dataviz/geospatial_data_files/figure-html/usa-albers-1.png){width="75%" fig-align="center"}
+
+::: {.small-font .move-up-1em}
+Alaska and Hawaii were moved closer; Alaska was also reduced in size
+:::
+
+## A fair visualization of the 50 states
+
+![](https://clauswilke.com/dataviz/geospatial_data_files/figure-html/usa-albers-revised-1.png){width="65%" fig-align="center"}
+
+::: {.small-font .move-up-1em}
+Alaska is the largest state; 2.2 the size of Texas
+:::
+
+<!-- Segment ends here -->
+
+# Choropleth mapping: Coloring areas by a data value
+
+## US population density as a choropleth map
+
+![](https://clauswilke.com/dataviz/geospatial_data_files/figure-html/population-density-counties-1.png){width="65%" fig-align="center"}
+
+::: {.small-font .move-up-1em}
+Alaska has very low population density
+:::
+
+## US population density as a choropleth map
+
+![](https://clauswilke.com/dataviz/geospatial_data_files/figure-html/population-density-counties2-1.png){width="65%" fig-align="center"}
+
+::: {.small-font .move-up-1em}
+Alaska has very low population density
+:::
+
+## US median income as a choropleth map
+
+![](https://clauswilke.com/dataviz/geospatial_data_files/figure-html/median-income-counties-binned-1.png){width="65%" fig-align="center"}
+
+::: {.small-font .move-up-1em}
+A binned color scale can make the map more readable
+:::
+
+## Choropleth maps can be misleading
+
+![](https://clauswilke.com/dataviz/geospatial_data_files/figure-html/median-income-states-1.png){width="65%" fig-align="center"}
+
+::: {.small-font .move-up-1em}
+Large area of Alaska makes it appear very rich; but remember, it's mostly empty
+:::
+
+## A cartogram heatmap may be preferable
+
+![](https://clauswilke.com/dataviz/geospatial_data_files/figure-html/median-income-statebins-1.png){width="75%" fig-align="center"}
+
+::: {.small-font .move-up-1em}
+Each state is shown as an equally sized square
+:::
+
+<!-- Segment ends here -->
+
+# Maps and layers
+
+## Maps show data in a geospatial context
+
+![](https://clauswilke.com/dataviz/geospatial_data_files/figure-html/sfbay-overview-1.png){width="65%" fig-align="center"}
+
+::: {.small-font .move-up-1em}
+Wind turbines in the San Francisco Bay Area
+:::
+
+## Maps are composed of several distinct layers
+
+![](https://clauswilke.com/dataviz/geospatial_data_files/figure-html/sfbay-layers-1.png){width="65%" fig-align="center"}
+
+::: {.small-font .move-up-1em}
+Wind turbines in the San Francisco Bay Area
+:::
+
+## The concept of aesthetic mappings still applies
+
+![](https://clauswilke.com/dataviz/geospatial_data_files/figure-html/shiloh-map-1.png){width="65%" fig-align="center"}
+
+::: {.small-font .move-up-1em}
+Location of individual wind turbines in the Shiloh Wind Farm
+:::
+
+<!-- Segment ends here -->
+
+# Making geospatial visualizations in R
+
+## The **sf** package: Simple Features in R
+
+::: {.move-up-half-em}
+![](https://user-images.githubusercontent.com/520851/50280460-e35c1880-044c-11e9-9ed7-cc46754e49db.jpg){width="80%" fig-align="center"}
+:::
+
+![](https://user-images.githubusercontent.com/520851/34849243-0972e474-f722-11e7-9a3d-2d4bf5075835.png){style="position: absolute; width: 2.5in; top: 0%; right: 0%;"}
+<!-- https://gist.github.com/edzer/f461a3a95570c4ab7edf3125c2f19d20 -->
+
+::: {.small-font .absolute-bottom-right}
+Artwork by [Allison Horst](https://twitter.com/allison_horst/status/1071456081308614656)
+:::
+
+## Getting the data
+
+::: {.small-font}
+We'll be working with the `texas_income` dataset:
+:::
+
+::: {.tiny-font}
+```{r}
+#| echo: true
+library(sf)  # always load the sf package when working with geospatial data
+
+texas_income <- readRDS(url("https://wilkelab.org/SDS366/datasets/Texas_income.rds"))
+
+texas_income
+```
+:::
+
+## The **sf** package: Simple Features in R
+
+::: {.tiny-font}
+```{r}
+#| echo: true
+# the entire dataset
+texas_income
+```
+:::
+
+## The **sf** package: Simple Features in R
+
+::: {.tiny-font}
+```{r}
+#| echo: true
+#| message: true
+# the column holding geometry information
+print(texas_income$geometry)
+```
+:::
+
+## The **sf** package: Simple Features in R
+
+::: {.tiny-font}
+```{r}
+#| echo: true
+# data wrangling works as normal
+texas_income |>
+  filter(county == "Travis")
+```
+:::
+
+## ggplot supports simple features with `geom_sf()`
+
+::: {.tiny-font}
+```{r}
+#| label: texas-no-aes
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig-width: 5
+#| fig-asp: 1
+#| output-location: "column"
+#| output-width: "100%"
+# plot all of Texas
+ggplot(texas_income) + 
+  geom_sf()
+```
+:::
+
+## ggplot supports simple features with `geom_sf()`
+
+::: {.tiny-font}
+```{r}
+#| label: texas-sf-filter
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig-width: 5
+#| fig-asp: 1
+#| output-location: "column"
+#| output-width: "100%"
+# plot only Travis County
+texas_income |>
+  filter(county == "Travis") |>
+  ggplot() + 
+  geom_sf()
+```
+:::
+
+## ggplot supports simple features with `geom_sf()`
+
+::: {.tiny-font}
+```{r}
+#| label: texas-sf-filter2
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig-width: 6
+#| output-location: "column"
+#| output-width: "100%"
+# plot the ten richest counties
+texas_income |>
+  slice_max(median_income, n = 10) |>
+  ggplot() + 
+  geom_sf()
+```
+:::
+
+## ggplot supports simple features with `geom_sf()`
+
+::: {.tiny-font}
+```{r}
+#| label: texas-aes
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig-width: 6
+#| output-location: "column"
+#| output-width: "100%"
+# color counties by median income
+texas_income |>
+  ggplot(aes(fill = median_income)) + 
+  geom_sf() +
+  scale_fill_continuous_sequential(
+    palette = "Blues", rev = TRUE
+  )
+```
+:::
+
+## ggplot supports simple features with `geom_sf()`
+
+::: {.tiny-font}
+```{r}
+#| label: texas-sf-mutate
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig-width: 6
+#| output-location: "column"
+#| output-width: "100%"
+# highlight the ten richest counties
+texas_income |>
+  mutate(
+    top_ten = rank(desc(median_income)) <= 10
+  ) |>
+  ggplot(aes(fill = top_ten)) + 
+  geom_sf() +
+  scale_fill_manual(
+    values = c(
+      `TRUE` = "#D55E00",
+      `FALSE` = "#E8EEF9"
+    )
+  )
+```
+:::
+
+## ggplot supports simple features with `geom_sf()`
+
+::: {.tiny-font}
+```{r}
+#| label: texas-sf-mutate2
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig-width: 7
+#| output-location: "column"
+#| output-width: "100%"
+# highlight the ten richest counties
+texas_income |>
+  mutate(
+    top_ten = rank(desc(median_income)) <= 10
+  ) |>
+  ggplot(aes(fill = top_ten)) + 
+  geom_sf(color = "black", linewidth = 0.1) +
+  scale_fill_manual(
+    name = NULL,
+    values = c(
+      `TRUE` = "#D55E00",
+      `FALSE` = "#E8EEF9"
+    ),
+    breaks = c(TRUE),
+    labels = "top-10 median income"
+  ) +
+  theme_minimal_grid(14)
+```
+:::
+
+::: {.small-font}
+We apply styling as usual
+:::
+
+## We can customize the projection with `coord_sf()`
+
+::: {.tiny-font}
+```{r}
+#| label: texas-styled
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig-width: 7
+#| output-location: "column"
+#| output-width: "100%"
+ggplot(texas_income) + 
+  geom_sf(
+    aes(fill = median_income),
+    color = "black", linewidth = 0.1
+  ) +
+  scale_fill_continuous_sequential(
+    palette = "Blues", rev = TRUE
+  ) +
+  theme_minimal_grid(14)
+```
+:::
+
+## We can customize the projection with `coord_sf()`
+
+::: {.tiny-font}
+```{r}
+#| label: texas-coord-sf
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig-width: 7
+#| output-location: "column"
+#| output-width: "100%"
+ggplot(texas_income) + 
+  geom_sf(
+    aes(fill = median_income),
+    color = "black", linewidth = 0.1
+  ) +
+  scale_fill_continuous_sequential(
+    palette = "Blues", rev = TRUE
+  ) +
+  coord_sf() + # added by default with geom_sf()
+  theme_minimal_grid(14)
+```
+:::
+
+## We can customize the projection with `coord_sf()`
+
+::: {.tiny-font}
+```{r}
+#| label: texas-coord-sf-3083
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig-width: 7
+#| output-location: "column"
+#| output-width: "100%"
+ggplot(texas_income) + 
+  geom_sf(
+    aes(fill = median_income),
+    color = "black", linewidth = 0.1
+  ) +
+  scale_fill_continuous_sequential(
+    palette = "Blues", rev = TRUE
+  ) +
+  coord_sf(
+    # Texas Centric Albers Equal Area projection
+    crs = 3083
+  ) +
+  theme_minimal_grid(14)
+```
+:::
+
+::: {.absolute-bottom-right .small-font}
+Reference: <https://spatialreference.org/ref/epsg/3083/>
+:::
+
+## We can customize the projection with `coord_sf()`
+
+::: {.tiny-font}
+```{r}
+#| label: texas-coord-sf-32139
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig-width: 7
+#| output-location: "column"
+#| output-width: "100%"
+ggplot(texas_income) + 
+  geom_sf(
+    aes(fill = median_income),
+    color = "black", linewidth = 0.1
+  ) +
+  scale_fill_continuous_sequential(
+    palette = "Blues", rev = TRUE
+  ) +
+  coord_sf(
+    # Texas Centric Lambert Conformal Conic projection
+    crs = 32139
+  ) +
+  theme_minimal_grid(14)
+```
+:::
+
+::: {.absolute-bottom-right .small-font}
+Reference: <https://spatialreference.org/ref/epsg/32139/>
+:::
+
+## We can customize the projection with `coord_sf()`
+
+::: {.tiny-font}
+```{r}
+#| label: texas-coord-sf-3857
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig-width: 7
+#| output-location: "column"
+#| output-width: "100%"
+ggplot(texas_income) + 
+  geom_sf(
+    aes(fill = median_income),
+    color = "black", linewidth = 0.1
+  ) +
+  scale_fill_continuous_sequential(
+    palette = "Blues", rev = TRUE
+  ) +
+  coord_sf(
+    # Web Mercator (Google Maps)
+    crs = 3857
+  ) +
+  theme_minimal_grid(14)
+```
+:::
+
+::: {.absolute-bottom-right .small-font}
+Reference: <https://spatialreference.org/ref/epsg/3857>
+:::
+
+## We can customize the projection with `coord_sf()`
+
+::: {.tiny-font}
+```{r}
+#| label: texas-coord-sf-4326
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig-width: 7
+#| output-location: "column"
+#| output-width: "100%"
+ggplot(texas_income) + 
+  geom_sf(
+    aes(fill = median_income),
+    color = "black", linewidth = 0.1
+  ) +
+  scale_fill_continuous_sequential(
+    palette = "Blues", rev = TRUE
+  ) +
+  coord_sf(
+    # Longitude-Latitude WGS84 (GPS)
+    crs = 4326
+  ) +
+  theme_minimal_grid(14)
+```
+:::
+
+::: {.absolute-bottom-right .small-font}
+Reference: <https://spatialreference.org/ref/epsg/4326/>
+:::
+
+## We can customize the projection with `coord_sf()`
+
+::: {.tiny-font}
+```{r}
+#| label: texas-coord-sf-3338
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig-width: 7
+#| output-location: "column"
+#| output-width: "100%"
+ggplot(texas_income) + 
+  geom_sf(
+    aes(fill = median_income),
+    color = "black", linewidth = 0.1
+  ) +
+  scale_fill_continuous_sequential(
+    palette = "Blues", rev = TRUE
+  ) +
+  coord_sf(
+    # Alaska Albers equal area
+    crs = 3338
+  ) +
+  theme_minimal_grid(14)
+```
+:::
+
+::: {.absolute-bottom-right .small-font}
+Reference: <https://spatialreference.org/ref/epsg/3338/>
+:::
+
+## We can get map data from the rnaturalearth package
+
+::: {.tiny-font}
+```{r}
+#| label: world-map
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig-width: 8
+#| output-width: "100%"
+library(rnaturalearth)
+
+sf_world <- ne_countries(returnclass='sf')
+ggplot(sf_world) + geom_sf()
+```
+:::
+
+## We can get map data from the rnaturalearth package
+
+::: {.tiny-font}
+```{r}
+#| label: world-map-robinson
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig-width: 8
+#| output-width: "100%"
+library(rnaturalearth)
+
+sf_world <- ne_countries(returnclass='sf')
+ggplot(sf_world) + geom_sf() + coord_sf(crs = "ESRI:54030") # Robinson projection
+```
+:::
+
+::: {.absolute-bottom-right .small-font}
+Reference: <https://spatialreference.org/ref/esri/54030/>
+:::
+
+## We can get map data from the rnaturalearth package
+
+::: {.small-font}
+A map of the lower 48:
+:::
+
+::: {.tiny-font}
+```{r}
+#| label: lower-48-map
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig-width: 7
+#| output-width: "65%"
+sf_us <- ne_states(
+  country = "United States of America",
+  returnclass='sf'
+)
+
+sf_us |>
+  # exclude Alaska (US02), Hawaii (US15)
+  filter(!code_local %in% c("US02", "US15")) |>
+  ggplot() + geom_sf()
+```
+:::
+
+## We can get map data from the rnaturalearth package
+
+::: {.small-font}
+A map of the lower 48:
+:::
+
+::: {.tiny-font}
+```{r}
+#| label: lower-48-map-Albers
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig-width: 7
+#| output-width: "65%"
+sf_us <- ne_states(
+  country = "United States of America",
+  returnclass='sf'
+)
+
+sf_us |>
+  # exclude Alaska (US02), Hawaii (US15)
+  filter(!code_local %in% c("US02", "US15")) |>
+  ggplot() + geom_sf() + coord_sf(crs = "ESRI:102003") # US Albers equal area
+```
+:::
+
+::: {.absolute-bottom-right .small-font}
+Reference: <https://spatialreference.org/ref/esri/102003/>
+:::
+
+<!-- Segment ends here -->
+
+## Further reading
+
+- Fundamentals of Data Visualization: [Chapter 15: Visualizing geospatial data](https://clauswilke.com/dataviz/geospatial-data.html)
+- **sf** package documentation: [Simple Features for R](https://r-spatial.github.io/sf/index.html)
+- **ggplot2** reference documentation: [`geom_sf()`, `coord_sf()`](https://ggplot2.tidyverse.org/reference/ggsf.html)
+

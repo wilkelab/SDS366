@@ -77,6 +77,8 @@ website:
             href: slides/redundant-coding.qmd 
           - text: "Class 24: Dealing with overplotting"
             href: slides/overplotting.qmd 
+          - text: "Class 25: Visualizing geospatial data"
+            href: slides/geospatial-data.qmd
        
       - text: "Worksheets"
         menu:
