@@ -138,6 +138,8 @@ website:
             href: worksheets/overplotting.qmd 
           - text: "Class 25: Visualizing geospatial data"
             href: worksheets/geospatial-data.qmd
+          - text: "Class 26: Interactive plots"
+            href: worksheets/interactive-plots.qmd
         
         
 
