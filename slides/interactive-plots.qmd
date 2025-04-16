@@ -1,0 +1,698 @@
+---
+title: "Interactive plots"
+author: "Claus O. Wilke"
+date: last-modified
+format: 
+  revealjs:
+    theme:
+      - default
+      - Wilke-theme.scss
+    auto-stretch: false
+    chalkboard: true
+execute:
+  fig-format: svg
+  fig-asp: 0.618
+  fig-width: 5.5
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+library(colorspace)
+library(cowplot)
+library(ggrepel)
+library(ggiraph)
+library(lubridate)
+library(sf)
+library(here)
+
+# ggplot2 settings so plots scale well for slide size 
+theme_set(theme_gray(14))
+update_geom_defaults("point", list(size = 2))
+update_geom_defaults("line", list(linewidth = 1))
+
+# US_states dataset
+US_states <- readRDS(here("datasets", "US_states.rds"))
+
+# tx_counties dataset
+US_census <- read_csv(here("datasets", "US_census.csv"))
+
+texas_income <- readRDS(url("https://wilkelab.org/SDS366/datasets/Texas_income.rds")) |>
+  select(-county)
+
+tx_census <- US_census |> 
+  filter(state == "Texas") |>
+  select(FIPS, name, pop2010, area) |>
+  extract(name, "county", regex = "(.+) County") |>
+  mutate(
+    FIPS = as.character(FIPS),
+    popratio = pop2010/median(pop2010),
+  )
+
+tx_counties <- left_join(texas_income, tx_census, by = "FIPS")
+
+# CSS for the standard tool tips we'll use
+tooltip_css <- "font-size:20px;padding:2px 4px 2px 4px;background:black;color:white;border-radius:2px 2px 2px 2px;"
+```
+
+
+## Interactivity can make a plot more informative
+
+```{r}
+#| label: iris-scatter-three-shapes
+breaks <- c("setosa", "virginica", "versicolor")
+labels <- paste0("Iris ", breaks)
+
+iris_scatter <- iris |>
+  mutate(
+    tooltip = glue::glue("Sepal length: {Sepal.Length}; Sepal width: {Sepal.Width}")
+  ) |>
+  ggplot(
+    aes(Sepal.Length, Sepal.Width, shape = Species, fill = Species, color = Species)
+  ) +     
+  scale_shape_manual(
+    values = c(21, 22, 23),
+    breaks = breaks,
+    labels = labels,
+    name = NULL
+  ) +
+  scale_color_manual(
+    values = darken(c("#56B4E9", "#E69F00", "#009E73"), 0.3),
+    breaks = breaks,
+    labels = labels,
+    name = NULL
+  ) +
+  scale_fill_manual(
+    values = c("#56B4E980", "#E69F0080", "#009E7380"),
+    breaks = breaks,
+    labels = labels,
+    name = NULL
+  ) +
+  scale_x_continuous(
+    limits = c(3.95, 8.2), expand = c(0, 0),
+    labels = c("4.0", "5.0", "6.0", "7.0", "8.0"),
+    name = "Sepal length"
+  ) +
+  scale_y_continuous(
+    limits = c(1.9, 4.6), expand = c(0, 0),
+    name = "Sepal width"
+  ) + 
+  geom_point_interactive(
+    aes(tooltip = tooltip),
+    size=2.5, stroke = 0.5,
+    position = position_jitter(
+      width = 0.01 * diff(range(iris$Sepal.Length)),
+      height = 0.01 * diff(range(iris$Sepal.Width)),
+      seed = 3942
+    )
+  ) +
+  theme_minimal_grid() +
+  theme(
+    legend.title = element_text(hjust = 0.5),
+    legend.text = element_text(face = "italic"),
+    legend.spacing.y = unit(3.5, "pt"),
+    plot.margin = margin(7, 7, 3, 1.5)
+  )
+
+girafe(
+  ggobj = iris_scatter,
+  width_svg = 6,
+  height_svg = 6*.618,
+  options = list(
+    opts_tooltip(css = tooltip_css, delay_mouseover = 0, delay_mouseout = 0),
+    opts_sizing(rescale = TRUE, width = 0.8)
+  )
+)
+```
+
+::: {.absolute-bottom-right .small-font}
+Hover over the data points
+:::
+
+## You probably want to highlight the selected points ...
+
+```{r}
+#| label: iris-scatter-three-shapes-hover
+breaks <- c("setosa", "virginica", "versicolor")
+labels <- paste0("Iris ", breaks)
+
+iris_scatter <- iris |>
+  mutate(
+    tooltip = glue::glue("Sepal length: {Sepal.Length}; Sepal width: {Sepal.Width}")
+  ) |>
+  ggplot(
+    aes(Sepal.Length, Sepal.Width, shape = Species, fill = Species, color = Species)
+  ) +     
+  scale_shape_manual(
+    values = c(21, 22, 23),
+    breaks = breaks,
+    labels = labels,
+    name = NULL
+  ) +
+  scale_color_manual(
+    values = darken(c("#56B4E9", "#E69F00", "#009E73"), 0.3),
+    breaks = breaks,
+    labels = labels,
+    name = NULL
+  ) +
+  scale_fill_manual(
+    values = c("#56B4E980", "#E69F0080", "#009E7380"),
+    breaks = breaks,
+    labels = labels,
+    name = NULL
+  ) +
+  scale_x_continuous(
+    limits = c(3.95, 8.2), expand = c(0, 0),
+    labels = c("4.0", "5.0", "6.0", "7.0", "8.0"),
+    name = "Sepal length"
+  ) +
+  scale_y_continuous(
+    limits = c(1.9, 4.6), expand = c(0, 0),
+    name = "Sepal width"
+  ) + 
+  geom_point_interactive(
+    aes(data_id = tooltip, tooltip = tooltip),
+    size=2.5, stroke = 0.5,
+    position = position_jitter(
+      width = 0.01 * diff(range(iris$Sepal.Length)),
+      height = 0.01 * diff(range(iris$Sepal.Width)),
+      seed = 3942
+    )
+  ) +
+  theme_minimal_grid() +
+  theme(
+    legend.title = element_text(hjust = 0.5),
+    legend.text = element_text(face = "italic"),
+    legend.spacing.y = unit(3.5, "pt"),
+    plot.margin = margin(7, 7, 3, 1.5)
+  )
+
+girafe(
+  ggobj = iris_scatter,
+  width_svg = 6,
+  height_svg = 6*.618,
+  options = list(
+    opts_tooltip(css = tooltip_css, delay_mouseover = 0, delay_mouseout = 0),
+    opts_hover(css = "stroke:#000000;fill-opacity:1.0;stroke-opacity:1.0"),
+    opts_sizing(rescale = TRUE, width = 0.8)
+  )
+)
+```
+
+::: {.absolute-bottom-right .small-font}
+Hover over the data points
+:::
+
+## ... and/or de-emphasize all others
+
+```{r}
+#| label: iris-scatter-three-shapes-hover2
+breaks <- c("setosa", "virginica", "versicolor")
+labels <- paste0("Iris ", breaks)
+
+iris_scatter <- iris |>
+  mutate(
+    tooltip = glue::glue("Sepal length: {Sepal.Length}; Sepal width: {Sepal.Width}")
+  ) |>
+  ggplot(
+    aes(Sepal.Length, Sepal.Width, shape = Species, fill = Species, color = Species)
+  ) +     
+  scale_shape_manual(
+    values = c(21, 22, 23),
+    breaks = breaks,
+    labels = labels,
+    name = NULL
+  ) +
+  scale_color_manual(
+    values = darken(c("#56B4E9", "#E69F00", "#009E73"), 0.3),
+    breaks = breaks,
+    labels = labels,
+    name = NULL
+  ) +
+  scale_fill_manual(
+    values = c("#56B4E980", "#E69F0080", "#009E7380"),
+    breaks = breaks,
+    labels = labels,
+    name = NULL
+  ) +
+  scale_x_continuous(
+    limits = c(3.95, 8.2), expand = c(0, 0),
+    labels = c("4.0", "5.0", "6.0", "7.0", "8.0"),
+    name = "Sepal length"
+  ) +
+  scale_y_continuous(
+    limits = c(1.9, 4.6), expand = c(0, 0),
+    name = "Sepal width"
+  ) + 
+  geom_point_interactive(
+    aes(data_id = Species, tooltip = tooltip),
+    size=2.5, stroke = 0.5,
+    position = position_jitter(
+      width = 0.01 * diff(range(iris$Sepal.Length)),
+      height = 0.01 * diff(range(iris$Sepal.Width)),
+      seed = 3942
+    )
+  ) +
+  theme_minimal_grid() +
+  theme(
+    legend.title = element_text(hjust = 0.5),
+    legend.text = element_text(face = "italic"),
+    legend.spacing.y = unit(3.5, "pt"),
+    plot.margin = margin(7, 7, 3, 1.5)
+  )
+
+girafe(
+  ggobj = iris_scatter,
+  width_svg = 6,
+  height_svg = 6*.618,
+  options = list(
+    opts_tooltip(
+      css = tooltip_css,
+      delay_mouseover = 0, delay_mouseout = 0
+    ),
+    opts_hover(
+      css = "stroke:#000000;fill-opacity:1.0;stroke-opacity:1.0"
+    ),
+    opts_hover_inv(css = "opacity:0.5;"),
+    opts_sizing(rescale = TRUE, width = 0.8)
+  )
+)
+```
+
+::: {.absolute-bottom-right .small-font}
+Hover over the data points
+:::
+
+## You can combine interactivity with explicit labels
+
+```{r}
+#| label: texas-counties-log
+set.seed(3878)
+
+tx_counties_labels <- tx_counties |> 
+  mutate(popratio = pop2010/median(pop2010)) |>
+  arrange(desc(popratio)) |>
+  mutate(
+    index = 1:n(),
+    label = ifelse(index <= 3 | index > n()-3 | runif(n()) < .04, county, ""),
+    label_large = ifelse(index <= 6, county, "")
+  )
+
+tx_counties_plot <- ggplot(tx_counties_labels, aes(x = index, y = popratio)) +
+  geom_hline(yintercept = 1, linetype = 2, color = "grey40") +
+  geom_point_interactive(
+    aes(tooltip = county, data_id = county),
+    size = 0.5,
+    color = "#0072B2"
+  ) +
+  geom_text_repel(
+    aes(label = label),
+    size = 10/.pt,
+    point.padding = .4, color = "black",
+    min.segment.length = 0,
+    max.overlaps = 1000
+  ) +
+  scale_y_log10(
+    breaks = c(.01, .1, 1, 10, 100),
+    name = "population number / median",
+    labels = expression(10^-2, 10^-1, 10^0, 10^1, 10^2)
+  ) +
+  scale_x_continuous(
+    limits = c(.5, nrow(tx_counties) + .5), expand = c(0, 0),
+    breaks = NULL, #c(1, 50*(1:5)),
+    name = "Texas counties, from most to least populous"
+  ) +
+  coord_cartesian(clip = "off") +
+  theme_minimal_hgrid(14) +
+  theme(axis.line = element_blank())
+
+girafe(
+  ggobj = tx_counties_plot,
+  width_svg = 8,
+  height_svg = 8*.6,
+  options = list(
+    opts_tooltip(css = tooltip_css, delay_mouseover = 0, delay_mouseout = 0),
+    opts_hover(css = "stroke-width: 3; stroke: #E69F00;"),
+    opts_sizing(rescale = TRUE, width = 0.8)
+  )
+)
+
+```
+
+::: {.absolute-bottom-right .small-font}
+Hover over the data points
+:::
+
+## Also consider linking to further info
+
+```{r}
+#| label: US_states_clickthrough
+US_map <- US_states |>
+  mutate(
+    onclick = glue::glue(
+'window.open("https://en.wikipedia.org/wiki/{name}")'
+)
+ ) |>
+ ggplot() +
+  geom_sf_interactive(
+    aes(data_id = name, tooltip = name, onclick = onclick),
+    fill = "#EDBE8A", color = "black", size = 0.5/.pt
+  ) +
+  theme_void()
+
+girafe(
+  ggobj = US_map,
+  width_svg = 9,
+  height_svg = 9*.618,
+  options = list(
+    opts_tooltip(css = tooltip_css, delay_mouseover = 0, delay_mouseout = 0),
+    opts_hover(css = "fill:#E69F00;"),
+    opts_sizing(rescale = TRUE, width = 0.8)
+  )
+)
+```
+
+::: {.absolute-bottom-right .small-font}
+Click on one of the states
+:::
+
+## Highlight across two plots for added context
+
+```{r}
+#| label: tx_income_combined
+texas_scatter <- tx_counties |>
+  ggplot(aes(pop2010, median_income)) +
+  geom_point_interactive(
+    aes(
+      tooltip = county,
+      data_id = county
+    ),
+    na.rm = TRUE, size = 3,
+    shape = 21,
+    color = "#0072B2", fill = "#0072B280"
+  ) +
+  scale_y_continuous(
+    name = "Median income (USD)",
+    limits = c(21000, 97000),
+    breaks = c(40000, 60000, 80000),
+    labels = scales::dollar_format(),
+    expand = c(0, 0)
+  ) +
+  scale_x_log10(
+    name = "Number of inhabitants",
+    limits = c(300, 4100000),
+    breaks = c(1e2, 1e3, 1e4, 1e5, 1e6),
+    labels = expression(10^2, 10^3, 10^4, 10^5, 10^6)
+  ) +
+  theme_minimal_grid(12)
+
+texas_county_map <- tx_counties |>
+  mutate(
+    onclick = glue::glue('window.open("https://en.wikipedia.org/wiki/{county} County, Texas")')
+  ) |>
+  ggplot() +
+  geom_sf_interactive(
+    aes(
+      tooltip = county,
+      data_id = county,
+      onclick = onclick
+    ),
+    fill = "#0072B240", color = "black", size = 0.5/.pt
+  ) +
+  coord_sf(crs = 3083) +
+  theme_void()
+
+girafe(
+  ggobj = plot_grid(texas_scatter, texas_county_map, rel_widths = c(1.2, 1)),
+  width_svg = 8,
+  height_svg = 4,
+  options = list(
+    opts_tooltip(css = tooltip_css, delay_mouseover = 0, delay_mouseout = 0),
+    opts_hover(css = "fill: #E69F00; fill-opacity: 1.0; stroke: #E69F00;")
+  )
+)
+```
+
+<!-- Segment ends here -->
+
+# Interactive plots in R
+
+## We can make plots interactive with the **ggiraph** package
+
+::: {.tiny-font}
+```{r}
+#| label: iris-no-girafe-demo
+#| echo: true
+#| fig-width: 6
+#| fig-cap: "&nbsp;"
+#| out-width: "100%"
+#| output-location: column
+#
+
+iris_scatter <- ggplot(iris) + 
+  aes(
+    Sepal.Length, Sepal.Width,
+    color = Species
+  ) +
+  geom_point()
+
+iris_scatter
+```
+:::
+
+::: {.small-font}
+Regular **ggplot2** plot:  
+hovering does nothing
+:::
+
+## We can make plots interactive with the **ggiraph** package
+
+::: {.tiny-font}
+```{r}
+#| label: iris-girafe-demo
+#| echo: true
+#| output-location: column
+#| code-line-numbers: "1,8-10,12-17"
+library(ggiraph)
+
+iris_scatter <- ggplot(iris) + 
+  aes(
+    Sepal.Length, Sepal.Width,
+    color = Species
+  ) +
+  geom_point_interactive(
+    aes(tooltip = Species)
+  )
+
+girafe(
+  ggobj = iris_scatter,
+  width_svg = 6,
+  height_svg = 6*0.618
+)            
+```
+:::
+
+::: {.small-font}
+**ggiraph** version:  
+hovering displays species names
+:::
+
+## Styling happens via Cascading Style Sheets (CSS)
+
+::: {.tiny-font}
+```{r}
+#| label: iris-girafe-demo2
+#| echo: true
+#| output-location: column
+#| code-line-numbers: "16-22"
+library(ggiraph)
+
+iris_scatter <- ggplot(iris) + 
+  aes(
+    Sepal.Length, Sepal.Width,
+    color = Species
+  ) +
+  geom_point_interactive(
+    aes(tooltip = Species)
+  )
+
+girafe(
+  ggobj = iris_scatter,
+  width_svg = 6,
+  height_svg = 6*0.618,
+  options = list(
+    opts_tooltip(
+      css = "background: #F5F5F5;
+             color: #191970;
+             font-family: sans-serif;"
+    )
+  )
+)
+```
+:::
+
+## Select multiple points at once with `data_id` aesthetic
+
+::: {.tiny-font}
+```{r}
+#| label: iris-girafe-demo3
+#| echo: true
+#| output-location: column
+#| code-line-numbers: "9"
+library(ggiraph)
+
+iris_scatter <- ggplot(iris) + 
+  aes(
+    Sepal.Length, Sepal.Width,
+    color = Species
+  ) +
+  geom_point_interactive(
+    aes(data_id = Species),
+    size = 2
+  )
+
+girafe(
+  ggobj = iris_scatter,
+  width_svg = 6,
+  height_svg = 6*0.618
+) 
+```
+:::
+
+## Select multiple points at once with `data_id` aesthetic
+
+::: {.tiny-font}
+```{r}
+#| label: iris-girafe-demo4
+#| echo: true
+#| output-location: column
+#| code-line-numbers: "9,18,19"
+library(ggiraph)
+
+iris_scatter <- ggplot(iris) + 
+  aes(
+    Sepal.Length, Sepal.Width,
+    color = Species
+  ) +
+  geom_point_interactive(
+    aes(data_id = Species),
+    size = 2
+  )
+
+girafe(
+  ggobj = iris_scatter,
+  width_svg = 6,
+  height_svg = 6*0.618,
+  options = list(
+    opts_hover(css = "fill: #202020;"),
+    opts_hover_inv(css = "opacity: 0.2;")
+  )
+) 
+```
+:::
+
+::: {.small-font}
+Again, styling via CSS
+:::
+
+## Interactive map example
+
+::: {.tiny-font}
+```{r}
+#| echo: true
+# load data
+US_states <- readRDS(url("https://wilkelab.org/SDS366/datasets/US_states.rds"))
+
+US_states
+```
+:::
+
+## Interactive map example
+
+::: {.tiny-font}
+```{r}
+#| label: US_states_highlight-demo
+#| echo: true
+#| output-location: column
+#| code-line-numbers: "3-5"
+US_map <- US_states |>
+  ggplot() +
+  geom_sf_interactive(
+    aes(data_id = name, tooltip = name)
+  ) +
+  theme_void()
+
+girafe(
+  ggobj = US_map,
+  width_svg = 6,
+  height_svg = 6*0.618
+)
+```
+:::
+
+::: {.small-font}
+Hover over the states
+:::
+
+## Interactive map example
+
+::: {.tiny-font}
+```{r}
+#| label: US_states_clickthrough-demo
+#| echo: true
+#| output-location: column
+#| code-line-numbers: "2-6,11"
+US_map <- US_states |>
+  mutate( # JavaScript call to open website 
+    onclick = glue::glue(
+'window.open(
+"https://en.wikipedia.org/wiki/{name}")')
+  ) |>
+  ggplot() +
+  geom_sf_interactive(
+    aes(
+      data_id = name, tooltip = name,
+      onclick = onclick
+    )
+  ) +
+  theme_void()
+
+girafe(
+  ggobj = US_map,
+  width_svg = 6,
+  height_svg = 6*0.618
+)
+```
+:::
+
+::: {.small-font}
+Click to open a state's wikipedia page
+:::
+
+<!-- Segment ends here -->
+
+# A (very) brief intro to CSS
+
+## A (very) brief intro to CSS
+
+::: {.fragment}
+CSS is the language used to style web pages
+:::
+
+::: {.fragment}
+Many online tutorials, e.g.: <https://www.w3schools.com/css/default.asp>
+:::
+
+::: {.fragment}
+Interactive websites for practicing, e.g.: <https://jsfiddle.net/>
+:::
+
+<!-- Segment ends here -->
+
+## Further reading
+
+- **ggiraph** documentation: [ggiraph-book](https://www.ardata.fr/ggiraph-book/)
+- **ggiraph** documentation: [Function reference](https://davidgohel.github.io/ggiraph/reference/index.html)
+- MDN Web Docs: [Learn to style HTML using CSS
+](https://developer.mozilla.org/en-US/docs/Learn/CSS)
+- w3schools.com: [CSS Tutorial](https://www.w3schools.com/css/default.asp)

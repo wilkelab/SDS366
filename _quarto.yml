@@ -79,6 +79,8 @@ website:
             href: slides/overplotting.qmd 
           - text: "Class 25: Visualizing geospatial data"
             href: slides/geospatial-data.qmd
+          - text: "Class 26: Interactive plots"
+            href: slides/interactive-plots.qmd
        
       - text: "Worksheets"
         menu:
