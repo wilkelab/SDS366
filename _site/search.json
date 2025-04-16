@@ -3647,69 +3647,6 @@
     "text": "Further reading\n\nWikipedia: k-means clustering\nNaftali Harris blog post: Interactive k-means demonstration\nStackoverflow post: Determining the appropriate number of clusters in k-means\nGeorge Seif: The 5 Clustering Algorithms Data Scientists Need to Know"
   },
   {
-    "objectID": "schedule.html",
-    "href": "schedule.html",
-    "title": "SDS 366 Schedule Spring 2025",
-    "section": "",
-    "text": "Materials:\n\n\nSlides\n\nWorksheet 1: Introduction to Quarto\nWorksheet 2: Introduction to R\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (visualizing amounts)\nWorksheet Part I\nSlides Part II (telling a story)\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (pipe, sorting, filtering, mutating)\nWorksheet Part I\nSlides Part II (summarizing, pivoting, joining)\nWorksheet Part II\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet Part I (data cleaning)\nWorksheet Part II (missing data)\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
-  },
-  {
-    "objectID": "schedule.html#lectures",
-    "href": "schedule.html#lectures",
-    "title": "SDS 366 Schedule Spring 2025",
-    "section": "",
-    "text": "Materials:\n\n\nSlides\n\nWorksheet 1: Introduction to Quarto\nWorksheet 2: Introduction to R\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (visualizing amounts)\nWorksheet Part I\nSlides Part II (telling a story)\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (pipe, sorting, filtering, mutating)\nWorksheet Part I\nSlides Part II (summarizing, pivoting, joining)\nWorksheet Part II\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet Part I (data cleaning)\nWorksheet Part II (missing data)\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
-  },
-  {
-    "objectID": "schedule.html#homeworks",
-    "href": "schedule.html#homeworks",
-    "title": "SDS 366 Schedule Spring 2025",
-    "section": "Homeworks",
-    "text": "Homeworks\nAll homeworks are due by 11:00pm on the day they are due. Homeworks need to be submitted as pdf files on Canvas.\n\nHomework 1 (due Jan 23, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 2 (due Jan 30, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 3 (due Feb 6, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 4 (due Feb 27, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 5 (due Mar 6, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 6 (due Apr 3, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 7 (due Apr 10, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF"
-  },
-  {
-    "objectID": "schedule.html#projects",
-    "href": "schedule.html#projects",
-    "title": "SDS 366 Schedule Spring 2025",
-    "section": "Projects",
-    "text": "Projects\nAll projects are due by 11:00pm on the day they are due. Projects need to be submitted on Canvas. Please carefully read the submission instructions for each project.\n\nProject 1 (due Feb 13, 2025)\n\nMaterials:\n\n\nInstructions (pdf)\nProject Template (qmd)\nProject Template (pdf)\nGrading rubric (pdf)\nExample project (pdf)\n\n\n\nProject 2 (due Mar 13, 2025)\n\nMaterials:\n\n\nInstructions (pdf)\nProject Template (qmd)\nProject Template (pdf)\nGrading rubric (pdf)\nGrading instructions (pdf)\n\n\n\nProject 3 (due Apr 17, 2025)\n\nMaterials:\n\n\nInstructions (pdf)\nProject Template (qmd)\nProject Template (pdf)\nGrading rubric (pdf)"
-  },
-  {
-    "objectID": "accommodations.html",
-    "href": "accommodations.html",
-    "title": "Disability and Access Accommodations",
-    "section": "",
-    "text": "Some students receive special course accommodations from Disability and Access. Below is a list of common accommodation requests and my explanation of how I usually handle them. If you have any questions regarding any of these accommodations and/or have additional requests, please reach out to me on Canvas, in office hours, or after class and we can discuss."
-  },
-  {
-    "objectID": "accommodations.html#classroom-accommodations",
-    "href": "accommodations.html#classroom-accommodations",
-    "title": "Disability and Access Accommodations",
-    "section": "Classroom Accommodations",
-    "text": "Classroom Accommodations\n\nUse of technology to take notes during class. You are welcome to use any note-taking technology you find helpful. To the extent that your note-taking technology creates any sort of recordings of class materials, see the next point.\nUse of technology to audio record during class. You are welcome to record audio, for your own personal use as a study aid. Audio recordings should not be shared or otherwise made available to third parties. Be aware that the section in the syllabus about class recordings applies to any personal recordings you may be making.\nA copy of class notes from a volunteer. I am happy to ask whether there are any volunteers willing to share class notes.\nAccess to materials shown in class. All materials are posted either on Canvas or on the class website, https://wilkelab.org/SDS366.\nFlexibility with deadlines. The amount of flexibility we can provide is strongly constrained by the class structure. We cannot accept homework submissions after the assignment has been graded and solutions have been released. This will typically happen 2-3 days after the original deadline. We cannot accept project submissions after the project has been released for peer grading. This will happen 2 days after the original deadline. In all cases, if you need a deadline extension please reach out on Canvas as early as possible (ideally before the deadline has passed) and ask for a specific amount of time you would like to have added to the deadline. (Example: “Could I have a deadline extension of one day?”) Mention in your message that you have an approved accommodation for flexibility with deadlines. You do not need to explain why you need the extension.\nPlease note that deadline extensions should be occasional, one-off events. I will not approve a blanket deadline extension for all assingments throughout the semester. I also encourage you to manage your deadlines proactively. Materials for homework assignments will be posted at least one week before the deadline, and materials for projects will be posted at least two weeks before the deadline. This should give you plenty of time to complete your assignments early and not push things to the last minute.\nFlexibility with attendance. Regular attendance is a component of the overall grade in this class. However, you are not required to attend every single lecture. You can make up for missed lectures by participating in the online discussions on Canvas instead. See the participation component of the class grade described in the syllabus."
-  },
-  {
-    "objectID": "accommodations.html#testing-accommodations",
-    "href": "accommodations.html#testing-accommodations",
-    "title": "Disability and Access Accommodations",
-    "section": "Testing accommodations",
-    "text": "Testing accommodations\nThis class does not have any timed exams or tests and therefore testing accommodations do not apply."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "SDS 366",
-    "section": "",
-    "text": "This is the home page for SDS 366, Data Visualization in R. All course materials will be posted on this site.\nInstructor: Claus O. Wilke\nMeeting times: TTH 5:00pm to 6:30pm\nVenue: FAC 21\nSyllabus: click here\nUpcoming lectures and assignments: click here"
-  },
-  {
-    "objectID": "index.html#computing-requirements",
-    "href": "index.html#computing-requirements",
-    "title": "SDS 366",
-    "section": "Computing requirements",
-    "text": "Computing requirements\nFor students enrolled in this course, you only need a working web browser to access the edupod server, located at: https://edupod.cns.utexas.edu/\nIf you are using the edupod server, stop reading here. Everything is pre-installed and no further action is needed.\nTo run any of the materials locally on your own machine, you will need the following:\n\nA recent version of R, download from here.\nA recent version of RStudio, download from here, OR a recent version of Positron, download from here.\nThe following R packages:\nbroom, cluster, colorspace, cowplot, gapminder, GGally, gganimate, ggiraph, ggdendro, ggdist, ggforce, ggplot2movies, ggrepel, ggridges, ggthemes, gifski, glue, knitr, learnr, naniar, margins, MASS, Matrix, nycflights13, palmerpenguins, patchwork, quarto, rmarkdown, rnaturalearth, rnaturalearthhires, Rtsne, scales, sf, sp, tidyverse, transformr, umap\n\nYou can install all required R packages at once by running the following code in the R command line:\n# first run this command:\ninstall.packages(\n  c(\n    \"broom\", \"cluster\", \"colorspace\", \"cowplot\", \"gapminder\", \n    \"GGally\", \"gganimate\", \"ggiraph\", \"ggdendro\", \"ggdist\", \"ggforce\",\n    \"ggplot2movies\", \"ggrepel\", \"ggridges\", \"ggthemes\", \"gifski\", \"glue\",\n    \"knitr\", \"learnr\", \"naniar\", \"margins\", \"MASS\", \"Matrix\",\n    \"nycflights13\", \"palmerpenguins\", \"patchwork\", \"quarto\", \"rmarkdown\",\n    \"rnaturalearth\", \"Rtsne\", \"scales\", \"sf\", \"sp\", \"tidyverse\",\n    \"transformr\", \"umap\"\n  )\n)\n\n# then run this command:\ninstall.packages(\n  \"rnaturalearthhires\", repos = \"https://packages.ropensci.org\", type = \"source\"\n)"
-  },
-  {
     "objectID": "slides/aesthetic-mappings.html#dataset-daily-average-temperatures-for-various-locations",
     "href": "slides/aesthetic-mappings.html#dataset-daily-average-temperatures-for-various-locations",
     "title": "Aesthetic mappings",
@@ -3855,6 +3792,153 @@
     "title": "Aesthetic mappings",
     "section": "Further reading",
     "text": "Further reading\n\nFundamentals of Data Visualization: Chapter 2: Visualizing data\nData Visualization—A Practical Introduction: Chapter 3: Make a plot\nggplot2 reference documentation\nggplot2 book\nggplot2 cheatsheet"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "SDS 366",
+    "section": "",
+    "text": "This is the home page for SDS 366, Data Visualization in R. All course materials will be posted on this site.\nInstructor: Claus O. Wilke\nMeeting times: TTH 5:00pm to 6:30pm\nVenue: FAC 21\nSyllabus: click here\nUpcoming lectures and assignments: click here"
+  },
+  {
+    "objectID": "index.html#computing-requirements",
+    "href": "index.html#computing-requirements",
+    "title": "SDS 366",
+    "section": "Computing requirements",
+    "text": "Computing requirements\nFor students enrolled in this course, you only need a working web browser to access the edupod server, located at: https://edupod.cns.utexas.edu/\nIf you are using the edupod server, stop reading here. Everything is pre-installed and no further action is needed.\nTo run any of the materials locally on your own machine, you will need the following:\n\nA recent version of R, download from here.\nA recent version of RStudio, download from here, OR a recent version of Positron, download from here.\nThe following R packages:\nbroom, cluster, colorspace, cowplot, gapminder, GGally, gganimate, ggiraph, ggdendro, ggdist, ggforce, ggplot2movies, ggrepel, ggridges, ggthemes, gifski, glue, knitr, learnr, naniar, margins, MASS, Matrix, nycflights13, palmerpenguins, patchwork, quarto, rmarkdown, rnaturalearth, rnaturalearthhires, Rtsne, scales, sf, sp, tidyverse, transformr, umap\n\nYou can install all required R packages at once by running the following code in the R command line:\n# first run this command:\ninstall.packages(\n  c(\n    \"broom\", \"cluster\", \"colorspace\", \"cowplot\", \"gapminder\", \n    \"GGally\", \"gganimate\", \"ggiraph\", \"ggdendro\", \"ggdist\", \"ggforce\",\n    \"ggplot2movies\", \"ggrepel\", \"ggridges\", \"ggthemes\", \"gifski\", \"glue\",\n    \"knitr\", \"learnr\", \"naniar\", \"margins\", \"MASS\", \"Matrix\",\n    \"nycflights13\", \"palmerpenguins\", \"patchwork\", \"quarto\", \"rmarkdown\",\n    \"rnaturalearth\", \"Rtsne\", \"scales\", \"sf\", \"sp\", \"tidyverse\",\n    \"transformr\", \"umap\"\n  )\n)\n\n# then run this command:\ninstall.packages(\n  \"rnaturalearthhires\", repos = \"https://packages.ropensci.org\", type = \"source\"\n)"
+  },
+  {
+    "objectID": "accommodations.html",
+    "href": "accommodations.html",
+    "title": "Disability and Access Accommodations",
+    "section": "",
+    "text": "Some students receive special course accommodations from Disability and Access. Below is a list of common accommodation requests and my explanation of how I usually handle them. If you have any questions regarding any of these accommodations and/or have additional requests, please reach out to me on Canvas, in office hours, or after class and we can discuss."
+  },
+  {
+    "objectID": "accommodations.html#classroom-accommodations",
+    "href": "accommodations.html#classroom-accommodations",
+    "title": "Disability and Access Accommodations",
+    "section": "Classroom Accommodations",
+    "text": "Classroom Accommodations\n\nUse of technology to take notes during class. You are welcome to use any note-taking technology you find helpful. To the extent that your note-taking technology creates any sort of recordings of class materials, see the next point.\nUse of technology to audio record during class. You are welcome to record audio, for your own personal use as a study aid. Audio recordings should not be shared or otherwise made available to third parties. Be aware that the section in the syllabus about class recordings applies to any personal recordings you may be making.\nA copy of class notes from a volunteer. I am happy to ask whether there are any volunteers willing to share class notes.\nAccess to materials shown in class. All materials are posted either on Canvas or on the class website, https://wilkelab.org/SDS366.\nFlexibility with deadlines. The amount of flexibility we can provide is strongly constrained by the class structure. We cannot accept homework submissions after the assignment has been graded and solutions have been released. This will typically happen 2-3 days after the original deadline. We cannot accept project submissions after the project has been released for peer grading. This will happen 2 days after the original deadline. In all cases, if you need a deadline extension please reach out on Canvas as early as possible (ideally before the deadline has passed) and ask for a specific amount of time you would like to have added to the deadline. (Example: “Could I have a deadline extension of one day?”) Mention in your message that you have an approved accommodation for flexibility with deadlines. You do not need to explain why you need the extension.\nPlease note that deadline extensions should be occasional, one-off events. I will not approve a blanket deadline extension for all assingments throughout the semester. I also encourage you to manage your deadlines proactively. Materials for homework assignments will be posted at least one week before the deadline, and materials for projects will be posted at least two weeks before the deadline. This should give you plenty of time to complete your assignments early and not push things to the last minute.\nFlexibility with attendance. Regular attendance is a component of the overall grade in this class. However, you are not required to attend every single lecture. You can make up for missed lectures by participating in the online discussions on Canvas instead. See the participation component of the class grade described in the syllabus."
+  },
+  {
+    "objectID": "accommodations.html#testing-accommodations",
+    "href": "accommodations.html#testing-accommodations",
+    "title": "Disability and Access Accommodations",
+    "section": "Testing accommodations",
+    "text": "Testing accommodations\nThis class does not have any timed exams or tests and therefore testing accommodations do not apply."
+  },
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "SDS 366 Schedule Spring 2025",
+    "section": "",
+    "text": "Materials:\n\n\nSlides\n\nWorksheet 1: Introduction to Quarto\nWorksheet 2: Introduction to R\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (visualizing amounts)\nWorksheet Part I\nSlides Part II (telling a story)\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (pipe, sorting, filtering, mutating)\nWorksheet Part I\nSlides Part II (summarizing, pivoting, joining)\nWorksheet Part II\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet Part I (data cleaning)\nWorksheet Part II (missing data)\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
+  },
+  {
+    "objectID": "schedule.html#lectures",
+    "href": "schedule.html#lectures",
+    "title": "SDS 366 Schedule Spring 2025",
+    "section": "",
+    "text": "Materials:\n\n\nSlides\n\nWorksheet 1: Introduction to Quarto\nWorksheet 2: Introduction to R\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (visualizing amounts)\nWorksheet Part I\nSlides Part II (telling a story)\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (pipe, sorting, filtering, mutating)\nWorksheet Part I\nSlides Part II (summarizing, pivoting, joining)\nWorksheet Part II\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet Part I (data cleaning)\nWorksheet Part II (missing data)\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
+  },
+  {
+    "objectID": "schedule.html#homeworks",
+    "href": "schedule.html#homeworks",
+    "title": "SDS 366 Schedule Spring 2025",
+    "section": "Homeworks",
+    "text": "Homeworks\nAll homeworks are due by 11:00pm on the day they are due. Homeworks need to be submitted as pdf files on Canvas.\n\nHomework 1 (due Jan 23, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 2 (due Jan 30, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 3 (due Feb 6, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 4 (due Feb 27, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 5 (due Mar 6, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 6 (due Apr 3, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF\n\n\n\nHomework 7 (due Apr 10, 2025)\n\nMaterials:\n\n\nQuarto template\nPDF"
+  },
+  {
+    "objectID": "schedule.html#projects",
+    "href": "schedule.html#projects",
+    "title": "SDS 366 Schedule Spring 2025",
+    "section": "Projects",
+    "text": "Projects\nAll projects are due by 11:00pm on the day they are due. Projects need to be submitted on Canvas. Please carefully read the submission instructions for each project.\n\nProject 1 (due Feb 13, 2025)\n\nMaterials:\n\n\nInstructions (pdf)\nProject Template (qmd)\nProject Template (pdf)\nGrading rubric (pdf)\nExample project (pdf)\n\n\n\nProject 2 (due Mar 13, 2025)\n\nMaterials:\n\n\nInstructions (pdf)\nProject Template (qmd)\nProject Template (pdf)\nGrading rubric (pdf)\nGrading instructions (pdf)\n\n\n\nProject 3 (due Apr 17, 2025)\n\nMaterials:\n\n\nInstructions (pdf)\nProject Template (qmd)\nProject Template (pdf)\nGrading rubric (pdf)"
+  },
+  {
+    "objectID": "slides/animations.html#animations-can-create-more-engaging-displays",
+    "href": "slides/animations.html#animations-can-create-more-engaging-displays",
+    "title": "Animations",
+    "section": "Animations can create more engaging displays",
+    "text": "Animations can create more engaging displays\n\n\n\n\n\n \n\n\n\n\n\nData source: World Bank"
+  },
+  {
+    "objectID": "slides/animations.html#animations-can-create-more-engaging-displays-1",
+    "href": "slides/animations.html#animations-can-create-more-engaging-displays-1",
+    "title": "Animations",
+    "section": "Animations can create more engaging displays",
+    "text": "Animations can create more engaging displays\n\n\n\n\n\n \n\n\n\n\n\nData source: World Bank"
+  },
+  {
+    "objectID": "slides/animations.html#we-make-animations-in-r-with-gganimate",
+    "href": "slides/animations.html#we-make-animations-in-r-with-gganimate",
+    "title": "Animations",
+    "section": "We make animations in R with gganimate",
+    "text": "We make animations in R with gganimate\n\n\nlibrary(tidyverse)\nlibrary(gganimate)\n\n# make fun animations\n...\n\n\n\nThe gganimate package adds powerful animation tools to ggplot2"
+  },
+  {
+    "objectID": "slides/animations.html#getting-the-data",
+    "href": "slides/animations.html#getting-the-data",
+    "title": "Animations",
+    "section": "Getting the data",
+    "text": "Getting the data\n\nWe’ll be working with the gdp_ranked dataset:\n\ngdp_ranked &lt;- read_csv(\"https://wilkelab.org/SDS366/datasets/gdp_ranked.csv\") |&gt;\n  mutate(rank = fct_rev(factor(rank)))\n\ngdp_ranked\n\n# A tibble: 500 × 6\n   country country_code  year   gdp rank  gdp_rel\n   &lt;chr&gt;   &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;   &lt;dbl&gt;\n 1 Brazil  BRA           1970  42.3 10     0.0395\n 2 Brazil  BRA           1971  49.2 10     0.0424\n 3 Brazil  BRA           1972  58.5 10     0.0457\n 4 Brazil  BRA           1973  79.3 10     0.0555\n 5 Brazil  BRA           1974 105   9      0.0677\n 6 Brazil  BRA           1975 124   9      0.0738\n 7 Brazil  BRA           1976 153   9      0.0818\n 8 Brazil  BRA           1977 176   8      0.0846\n 9 Brazil  BRA           1978 201   8      0.0855\n10 Brazil  BRA           1979 225   8      0.0856\n# ℹ 490 more rows"
+  },
+  {
+    "objectID": "slides/animations.html#think-of-an-animation-as-faceting-by-time",
+    "href": "slides/animations.html#think-of-an-animation-as-faceting-by-time",
+    "title": "Animations",
+    "section": "Think of an animation as faceting by time",
+    "text": "Think of an animation as faceting by time"
+  },
+  {
+    "objectID": "slides/animations.html#we-know-how-to-make-a-faceted-plot",
+    "href": "slides/animations.html#we-know-how-to-make-a-faceted-plot",
+    "title": "Animations",
+    "section": "We know how to make a faceted plot",
+    "text": "We know how to make a faceted plot\n\n\ngdp_ranked |&gt;\n  filter(year &gt; 1985 & year %% 5 == 0) |&gt;\n  ggplot(aes(gdp, rank)) +\n  geom_col(aes(fill = country)) +\n  facet_wrap(~year)"
+  },
+  {
+    "objectID": "slides/animations.html#making-an-animation-is-about-as-complicated",
+    "href": "slides/animations.html#making-an-animation-is-about-as-complicated",
+    "title": "Animations",
+    "section": "Making an animation is about as complicated",
+    "text": "Making an animation is about as complicated\n\ngdp_ranked |&gt;\n  # gganimate uses the `group` aesthetic to track objects across frames\n  ggplot(aes(gdp, rank, group = country)) + \n  geom_col(aes(fill = country)) +\n  transition_states(year, transition_length = 5)"
+  },
+  {
+    "objectID": "slides/animations.html#adding-country-names-and-plot-title",
+    "href": "slides/animations.html#adding-country-names-and-plot-title",
+    "title": "Animations",
+    "section": "Adding country names and plot title",
+    "text": "Adding country names and plot title\n\n\ngdp_ranked |&gt;\n  ggplot(aes(gdp, rank, group = country)) +\n  geom_col(aes(fill = country)) +\n  geom_text(\n    aes(x = -200, label = country),\n    hjust = 1, size = 14/.pt\n  ) +\n  xlim(-7000, 23000) +\n  labs(title = \"year: {closest_state}\") +\n  theme_minimal_vgrid(14, rel_small = 1) +\n  theme(\n    axis.text.y = element_blank(),\n    axis.title.y = element_blank(),\n    axis.ticks.y = element_blank(),\n    axis.line.y = element_blank()\n  ) + \n  guides(fill = \"none\") +\n  transition_states(year, transition_length = 5)"
+  },
+  {
+    "objectID": "slides/animations.html#we-make-time-series-with-transition_reveal",
+    "href": "slides/animations.html#we-make-time-series-with-transition_reveal",
+    "title": "Animations",
+    "section": "We make time series with transition_reveal()",
+    "text": "We make time series with transition_reveal()\n\n\nselected &lt;- c(\"China\", \"Japan\",\n  \"United States\", \"Germany\", \"Brazil\")\n\ngdp_ranked |&gt;\n  filter(country %in% selected) |&gt;\n  ggplot(aes(year, gdp, color = country)) +\n  geom_line() +\n  geom_point(size = 3) +\n  scale_y_log10() +\n  transition_reveal(year)"
+  },
+  {
+    "objectID": "slides/animations.html#this-works-also-with-ggrepel-for-labeling",
+    "href": "slides/animations.html#this-works-also-with-ggrepel-for-labeling",
+    "title": "Animations",
+    "section": "This works also with ggrepel for labeling",
+    "text": "This works also with ggrepel for labeling\n\n\ngdp_ranked |&gt;\n  filter(country %in% selected) |&gt;\n  ggplot(aes(year, gdp, color = country)) +\n  geom_line() +\n  geom_point(size = 3) +\n  geom_text_repel(\n    aes(label = country),\n    hjust = 0,\n    nudge_x = 2,\n    direction = \"y\",\n    xlim = c(NA, Inf),\n    segment.color = NA\n  ) +\n  scale_y_log10() +\n  guides(color = \"none\") +\n  coord_cartesian(clip = \"off\") +\n  theme(plot.margin = margin(7, 100, 7, 7)) +\n  transition_reveal(year)"
+  },
+  {
+    "objectID": "slides/animations.html#reproducing-the-famous-gapminder-animation",
+    "href": "slides/animations.html#reproducing-the-famous-gapminder-animation",
+    "title": "Animations",
+    "section": "Reproducing the famous gapminder animation",
+    "text": "Reproducing the famous gapminder animation\n\n\nlibrary(gapminder)\n\ngapminder %&gt;% filter(continent != \"Oceania\") |&gt;\n  ggplot() +\n  aes(gdpPercap, lifeExp, size = pop) +\n  geom_point(alpha = 0.7, color = \"#0072B2\") +\n  scale_size(range = c(2, 12), guide = \"none\") +\n  scale_x_log10(name = \"GDP per capita\") +\n  facet_wrap(~continent, nrow = 2) +\n  labs(\n    title = \"Year: {frame_time}\",\n    y = \"life expectancy\"\n  ) +\n  transition_time(year) +\n  ease_aes(\"linear\")\n\n\n\n\n\n\n\n\n\n\n\n\nSee Hans Rosling video here"
+  },
+  {
+    "objectID": "slides/animations.html#further-reading",
+    "href": "slides/animations.html#further-reading",
+    "title": "Animations",
+    "section": "Further reading",
+    "text": "Further reading\n\ngganimate documentation: Getting started\ngganimate reference documentation: transition_states()\ngganimate reference documentation: transition_reveal()"
   },
   {
     "objectID": "slides/color-scales.html#uses-of-color-in-data-visualization",

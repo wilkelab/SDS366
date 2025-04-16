@@ -1,0 +1,539 @@
+---
+title: "Animations"
+author: "Claus O. Wilke"
+date: last-modified
+format: 
+  revealjs:
+    theme:
+      - default
+      - Wilke-theme.scss
+    auto-stretch: false
+    chalkboard: true
+execute:
+  fig-format: svg
+  fig-asp: 0.618
+  fig-width: 5.5
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+library(cowplot)
+library(glue)
+library(ggrepel)
+library(gganimate)
+library(gapminder)
+library(here)
+
+# ggplot2 settings so plots scale well for slide size 
+theme_set(theme_gray(14))
+update_geom_defaults("point", list(size = 2))
+update_geom_defaults("line", list(linewidth = 1))
+
+# gdp dataset
+gdp_ranked <- read_csv(here("datasets", "gdp_ranked.csv")) |>
+  mutate(rank = fct_rev(factor(rank)))
+
+# animation parameters
+params <- list(nframes = 200, fps = 20, res = 150)
+```
+
+## Animations can create more engaging displays
+
+```{r}
+#| label: gdp-anim-bar-race
+#| fig-cap: "&nbsp;"
+#| out-width: "55%"
+p <- gdp_ranked |>
+  mutate(
+    #label = scales::comma(gdp, 1), # doesn't work for some reason
+    label = paste0(gdp),
+    highlight = ifelse(country == "China", "China", "other")
+  ) |>
+  ggplot(
+    aes(
+      gdp, rank, group = country,
+      color = highlight, fill = highlight
+    )
+  ) +
+  geom_col(alpha = 0.8) +
+  geom_text(
+    aes(x = -200, label = country),
+    hjust = 1, size = 12/.pt
+  ) +
+  geom_text(
+    aes(x = gdp + 200, label = label),
+    hjust = 0, size = 12/.pt
+  ) +
+  scale_color_manual(
+    aesthetics = c("color", "fill"),
+    values = c(
+      other = "gray35", China = "#AB4A39"
+    ),
+    guide = "none"
+  ) +
+  scale_x_continuous(
+    name = "GDP (billions USD)",
+    limits = 1000*c(-7, 23),
+    breaks = 1000*c(0, 5, 10, 15, 20),
+    labels = scales::comma
+  ) +
+  labs(
+    title = "China's rise in GDP",
+    subtitle = "Year: {closest_state}"
+  ) +
+  theme_minimal_vgrid(12, rel_small = 1) +
+  theme(
+    axis.text.y = element_blank(),
+    axis.title.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    axis.line.y = element_blank(),
+    axis.title.x = element_text(hjust = 1)
+  ) +
+  #facet_wrap(vars(year)) + NULL
+  transition_states(year, transition_length = 5)
+
+animate(
+  p,
+  width = 6,
+  height = 6,
+  res = params$res,
+  nframes = params$nframes,
+  fps = params$fps,
+  device = 'ragg_png'
+)
+```
+
+::: {.absolute-bottom-right .tiny-font}
+Data source: World Bank
+:::
+
+## Animations can create more engaging displays
+
+```{r}
+#| label: gdp-anim-lines-race
+#| fig-cap: "&nbsp;"
+#| out-width: "85%"
+p <- gdp_ranked |>
+  filter(
+    #TRUE
+    country %in% c("China", "Japan", "United States", "Germany", "Brazil")
+  ) |>
+  mutate(
+    label = glue::glue(" {country}")
+  ) |>
+  ggplot(aes(year, gdp, color = country)) +
+  geom_line() +
+  geom_point(size = 3) +
+  geom_text_repel(
+    aes(label = label),
+    hjust = 0,
+    nudge_x = 1,
+    direction = "y",
+    xlim = c(NA, Inf),
+    segment.color = NA,
+    size = 14/.pt
+  ) +
+  scale_y_log10(name = "GDP (billion USD)", labels = scales::comma) +
+  scale_color_manual(
+    values = c("#009E73", "#404040", "#0072B2", "#D55E00", "#CC79A7"),
+    guide = "none"
+  ) +
+  coord_cartesian(clip = "off") +
+  theme_minimal_hgrid(14, rel_small = 1) +
+  theme(plot.margin = margin(7, 100, 7, 7)) +
+  transition_reveal(year)
+
+animate(
+  p,
+  width = 8,
+  height = 0.618*8,
+  res = params$res,
+  nframes = params$nframes,
+  fps = params$fps,
+  device = 'ragg_png'
+)
+```
+
+::: {.absolute-bottom-right .tiny-font}
+Data source: World Bank
+:::
+
+
+## We make animations in R with **gganimate**
+
+:::: {.columns}
+
+::: {.column width="70%"}
+```r
+library(tidyverse)
+library(gganimate)
+
+# make fun animations
+...
+```
+:::
+
+::: {.move-up-1em .column width="30%"}
+![](https://gganimate.com/reference/figures/logo.png){width="50%"}
+:::
+::::
+
+The **gganimate** package adds powerful animation tools to **ggplot2**
+
+## Getting the data
+
+::: {.small-font}
+We'll be working with the `gdp_ranked` dataset:
+
+```{r}
+#| echo: true
+gdp_ranked <- read_csv("https://wilkelab.org/SDS366/datasets/gdp_ranked.csv") |>
+  mutate(rank = fct_rev(factor(rank)))
+
+gdp_ranked
+```
+:::
+
+# How should we think about making an animation?
+
+## Think of an animation as faceting by time
+
+```{r}
+#| label: gdp-anim-bar-facets
+#| fig-cap: "&nbsp;"
+#| fig-width: 9
+#| fig-asp: 0.6
+#| out-width: "100%"
+gdp_ranked |>
+  filter(year > 1985 & year %% 5 == 0) |>
+  mutate(
+    #label = scales::comma(gdp, 1), # doesn't work for some reason
+    label = paste0(gdp),
+    highlight = ifelse(country == "China", "China", "other")
+  ) |>
+  ggplot(
+    aes(
+      gdp, rank, group = country,
+      color = highlight, fill = highlight
+    )
+  ) +
+  geom_col(alpha = 0.8) +
+  geom_text(
+    aes(x = -200, label = country),
+    hjust = 1, size = 8/.pt
+  ) +
+  geom_text(
+    aes(x = gdp + 200, label = label),
+    hjust = 0, size = 8/.pt
+  ) +
+  scale_color_manual(
+    aesthetics = c("color", "fill"),
+    values = c(
+      other = "gray35", China = "#AB4A39"
+    ),
+    guide = "none"
+  ) +
+  scale_x_continuous(
+    name = "GDP (billions USD)",
+    limits = 1000*c(-10, 23),
+    breaks = 1000*c(0, 5, 10, 15, 20),
+    labels = scales::comma
+  ) +
+  facet_wrap(vars(year), scales = "free_x") +
+  theme_minimal_vgrid(8, rel_small = 1) +
+  theme(
+    axis.text.y = element_blank(),
+    axis.title.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    axis.line.y = element_blank(),
+    axis.title.x = element_text(hjust = 1),
+    panel.grid.major.x = element_line(linewidth = 0.4)
+  )
+```
+
+## We know how to make a faceted plot
+
+::: {.tiny-font}
+```{r}
+#| label: gdp-facet-demo
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig-width: 6
+#| fig-asp: 0.6
+#| out-width: "65%"
+gdp_ranked |>
+  filter(year > 1985 & year %% 5 == 0) |>
+  ggplot(aes(gdp, rank)) +
+  geom_col(aes(fill = country)) +
+  facet_wrap(~year)
+```
+:::
+
+## Making an animation is about as complicated
+
+::: {.tiny-font}
+```r
+gdp_ranked |>
+  # gganimate uses the `group` aesthetic to track objects across frames
+  ggplot(aes(gdp, rank, group = country)) + 
+  geom_col(aes(fill = country)) +
+  transition_states(year, transition_length = 5)
+```
+:::
+
+```{r}
+#| label: gdp-bar-race-demo
+#| fig-cap: "&nbsp;"
+#| out-width: "45%"
+p <- gdp_ranked |>
+  ggplot(aes(gdp, rank, group = country)) +
+  geom_col(aes(fill = country)) +
+  transition_states(year, transition_length = 5)
+
+animate(
+  p,
+  width = 6,
+  height = 5,
+  res = params$res,
+  nframes = params$nframes,
+  fps = params$fps,
+  device = 'ragg_png'
+)
+```
+
+## Adding country names and plot title
+
+:::: {.columns}
+
+::: {.tiny-font .column width="50%"}
+```r
+gdp_ranked |>
+  ggplot(aes(gdp, rank, group = country)) +
+  geom_col(aes(fill = country)) +
+  geom_text(
+    aes(x = -200, label = country),
+    hjust = 1, size = 14/.pt
+  ) +
+  xlim(-7000, 23000) +
+  labs(title = "year: {closest_state}") +
+  theme_minimal_vgrid(14, rel_small = 1) +
+  theme(
+    axis.text.y = element_blank(),
+    axis.title.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    axis.line.y = element_blank()
+  ) + 
+  guides(fill = "none") +
+  transition_states(year, transition_length = 5)
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: gdp-anim-fancy
+p <- gdp_ranked |>
+  ggplot(aes(gdp, rank, group = country)) +
+  geom_col(aes(fill = country)) +
+  geom_text(
+    aes(x = -200, label = country),
+    hjust = 1, size = 14/.pt
+  ) +
+  xlim(-7000, 23000) +
+  labs(title = "year: {closest_state}") +
+  theme_minimal_vgrid(14, rel_small = 1) +
+  theme(
+    axis.text.y = element_blank(),
+    axis.title.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    axis.line.y = element_blank()
+  ) + 
+  guides(fill = "none") +
+  transition_states(year, transition_length = 5)
+
+animate(
+  p,
+  width = 6,
+  height = 6,
+  res = params$res,
+  nframes = params$nframes,
+  fps = params$fps,
+  device = 'ragg_png'
+)
+```
+:::
+::::
+
+## We make time series with `transition_reveal()`
+
+:::: {.columns}
+
+::: {.tiny-font .column width="50%"}
+```r
+selected <- c("China", "Japan",
+  "United States", "Germany", "Brazil")
+
+gdp_ranked |>
+  filter(country %in% selected) |>
+  ggplot(aes(year, gdp, color = country)) +
+  geom_line() +
+  geom_point(size = 3) +
+  scale_y_log10() +
+  transition_reveal(year)
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: gdp-line-race-demo
+selected <- c("China", "Japan",
+  "United States", "Germany", "Brazil")
+
+p <- gdp_ranked |>
+  filter(country %in% selected) |>
+  ggplot(aes(year, gdp, color = country)) +
+  geom_line() +
+  geom_point(size = 3) +
+  scale_y_log10() +
+  transition_reveal(year)
+
+animate(
+  p,
+  width = 6,
+  height = 0.618*6,
+  res = params$res,
+  nframes = params$nframes,
+  fps = params$fps,
+  device = 'ragg_png'
+)
+```
+:::
+::::
+
+## This works also with **ggrepel** for labeling
+
+:::: {.columns}
+
+::: {.tiny-font .column width="50%"}
+```r
+gdp_ranked |>
+  filter(country %in% selected) |>
+  ggplot(aes(year, gdp, color = country)) +
+  geom_line() +
+  geom_point(size = 3) +
+  geom_text_repel(
+    aes(label = country),
+    hjust = 0,
+    nudge_x = 2,
+    direction = "y",
+    xlim = c(NA, Inf),
+    segment.color = NA
+  ) +
+  scale_y_log10() +
+  guides(color = "none") +
+  coord_cartesian(clip = "off") +
+  theme(plot.margin = margin(7, 100, 7, 7)) +
+  transition_reveal(year)
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: gdp-line-race-labeled
+p <- gdp_ranked |>
+  filter(country %in% selected) |>
+  ggplot(aes(year, gdp, color = country)) +
+  geom_line() +
+  geom_point(size = 3) +
+  geom_text_repel(
+    aes(label = country),
+    hjust = 0,
+    nudge_x = 2,
+    direction = "y",
+    xlim = c(NA, Inf),
+    segment.color = NA
+  ) +
+  scale_y_log10() +
+  guides(color = "none") +
+  coord_cartesian(clip = "off") +
+  theme(plot.margin = margin(7, 100, 7, 7)) +
+  transition_reveal(year)
+
+animate(
+  p,
+  width = 6,
+  height = 0.618*6,
+  res = params$res,
+  nframes = params$nframes,
+  fps = params$fps,
+  device = 'ragg_png'
+)
+```
+:::
+::::
+
+## Reproducing the famous gapminder animation
+
+:::: {.columns}
+
+::: {.tiny-font .column width="50%"}
+```r
+library(gapminder)
+
+gapminder %>% filter(continent != "Oceania") |>
+  ggplot() +
+  aes(gdpPercap, lifeExp, size = pop) +
+  geom_point(alpha = 0.7, color = "#0072B2") +
+  scale_size(range = c(2, 12), guide = "none") +
+  scale_x_log10(name = "GDP per capita") +
+  facet_wrap(~continent, nrow = 2) +
+  labs(
+    title = "Year: {frame_time}",
+    y = "life expectancy"
+  ) +
+  transition_time(year) +
+  ease_aes("linear")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: gapminder-bubbles
+p <- gapminder %>% filter(continent != "Oceania") |>
+  ggplot() +
+  aes(gdpPercap, lifeExp, size = pop) +
+  geom_point(alpha = 0.7, color = "#0072B2") +
+  scale_size(range = c(2, 12), guide = "none") +
+  scale_x_log10(name = "GDP per capita") +
+  facet_wrap(~continent, nrow = 2) +
+  labs(
+    title = "Year: {frame_time}",
+    y = "life expectancy"
+  ) +
+  transition_time(year) +
+  ease_aes("linear")
+
+animate(
+  p,
+  width = 6,
+  height = 6,
+  res = params$res,
+  nframes = params$nframes,
+  fps = params$fps,
+  device = 'ragg_png'
+)
+```
+:::
+::::
+
+::: {.tiny-font .absolute-bottom-right}
+See Hans Rosling [video here](https://www.youtube.com/watch?v=jbkSRLYSojo)
+:::
+
+<!-- Segment ends here -->
+
+## Further reading
+
+- **gganimate** documentation: [Getting started](https://gganimate.com/articles/gganimate.html)
+- **gganimate** reference documentation: [`transition_states()`](https://gganimate.com/reference/transition_states.html)
+- **gganimate** reference documentation: [`transition_reveal()`](https://gganimate.com/reference/transition_reveal.html)

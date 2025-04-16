@@ -81,6 +81,8 @@ website:
             href: slides/geospatial-data.qmd
           - text: "Class 26: Interactive plots"
             href: slides/interactive-plots.qmd
+          - text: "Class 27: Animations"
+            href: slides/animations.qmd
        
       - text: "Worksheets"
         menu:
