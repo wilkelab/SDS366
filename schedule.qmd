@@ -197,7 +197,7 @@ format: html
 
 <p class="nospace">Materials:</p>
 
-- [Slides](slides/web-design.qmd.qmd)  
+- [Slides](slides/web-design.qmd)  
 - [Worksheet](slides/web-design-worksheet.qmd)
 
 ## Homeworks
