@@ -686,6 +686,83 @@
     "text": "Further reading\n\nData Visualization—A Practical Introduction: Chapter 6.5: Tidy model objects with broom\nbroom reference documentation: https://broom.tidymodels.org/\nArticle on using broom with dplyr: broom and dplyr"
   },
   {
+    "objectID": "slides/web-design-worksheet.html#exercise-instructions",
+    "href": "slides/web-design-worksheet.html#exercise-instructions",
+    "title": "Web design worksheet",
+    "section": "Exercise instructions",
+    "text": "Exercise instructions\n\nFor each of the following exercises, try to reproduce the output shown in the box using the indicated HTML tags and CSS properties.\n\n\nAfter each exercise slide the solutions are shown on the next slide, so don’t jump ahead.\n\n\nDo the exercises on JSFiddle: https://jsfiddle.net/"
+  },
+  {
+    "objectID": "slides/web-design-worksheet.html#exercise-1",
+    "href": "slides/web-design-worksheet.html#exercise-1",
+    "title": "Web design worksheet",
+    "section": "Exercise 1",
+    "text": "Exercise 1\n\n\nThe quick brown fox jumps over the lazy dog.\n\nHTML tags used: &lt;span&gt;\n\nCSS properties used:\ncolor: brown;\nfont-style: italic;"
+  },
+  {
+    "objectID": "slides/web-design-worksheet.html#solution-to-exercise-1",
+    "href": "slides/web-design-worksheet.html#solution-to-exercise-1",
+    "title": "Web design worksheet",
+    "section": "Solution to Exercise 1",
+    "text": "Solution to Exercise 1\n\n\nHTML input:\nThe quick &lt;span class = \"brown\"&gt;brown&lt;/span&gt; fox\njumps over the &lt;span class = \"italics\"&gt;lazy\ndog&lt;span&gt;.\n\nCSS input:\n.brown {\n  color: brown;\n}\n\n.italics {\n  font-style: italic;\n}"
+  },
+  {
+    "objectID": "slides/web-design-worksheet.html#exercise-2",
+    "href": "slides/web-design-worksheet.html#exercise-2",
+    "title": "Web design worksheet",
+    "section": "Exercise 2",
+    "text": "Exercise 2\n\n\n\nThe quick brown fox\n\n\njumps over the lazy dog.\n\n\nHTML tags used: &lt;div&gt;\n\nCSS properties used:\nbackground-color: AliceBlue;\nmargin: 1em 0;"
+  },
+  {
+    "objectID": "slides/web-design-worksheet.html#solution-to-exercise-2",
+    "href": "slides/web-design-worksheet.html#solution-to-exercise-2",
+    "title": "Web design worksheet",
+    "section": "Solution to Exercise 2",
+    "text": "Solution to Exercise 2\n\n\nHTML input:\n&lt;div&gt;The quick brown fox&lt;/div&gt;\n&lt;div&gt;jumps over the lazy dog.&lt;/div&gt;\n\nCSS input:\ndiv {\n  background-color: AliceBlue;\n  margin: 1em 0;\n}"
+  },
+  {
+    "objectID": "slides/web-design-worksheet.html#exercise-3",
+    "href": "slides/web-design-worksheet.html#exercise-3",
+    "title": "Web design worksheet",
+    "section": "Exercise 3",
+    "text": "Exercise 3\n\n\nThe quick brown fox jumps over the lazy dog.\n\nHTML tags used: &lt;span&gt;\n\nCSS properties used:\nbackground-color: AliceBlue;\npadding: 0.5em;\nmargin: 0 0.5em;"
+  },
+  {
+    "objectID": "slides/web-design-worksheet.html#solution-to-exercise-3",
+    "href": "slides/web-design-worksheet.html#solution-to-exercise-3",
+    "title": "Web design worksheet",
+    "section": "Solution to Exercise 3",
+    "text": "Solution to Exercise 3\n\n\nHTML input:\n&lt;span&gt;The quick brown fox&lt;/span&gt;\n&lt;span&gt;jumps over the lazy dog.&lt;/span&gt;\n\nCSS input:\nspan {\n  background-color: AliceBlue;\n  padding: 0.5em;\n  margin: 0 0.5em;\n}"
+  },
+  {
+    "objectID": "slides/web-design-worksheet.html#exercise-4",
+    "href": "slides/web-design-worksheet.html#exercise-4",
+    "title": "Web design worksheet",
+    "section": "Exercise 4",
+    "text": "Exercise 4\n\n\n\nChapter 1\n\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\n\nHTML tags used: &lt;div&gt;\n\nCSS properties used:\nfont-family: fantasy;\nfont-family: cursive;\nfont-size: 1.6em;\nfont-weight: bold;"
+  },
+  {
+    "objectID": "slides/web-design-worksheet.html#solution-to-exercise-4",
+    "href": "slides/web-design-worksheet.html#solution-to-exercise-4",
+    "title": "Web design worksheet",
+    "section": "Solution to Exercise 4",
+    "text": "Solution to Exercise 4\n\n\nHTML input:\n&lt;div class = \"heading\"&gt;Chapter 1&lt;/div&gt;\n\n&lt;div class = \"body\"&gt;Lorem ipsum dolor sit\namet, consectetur adipiscing elit, sed do\neiusmod tempor incididunt ut labore et dolore\nmagna aliqua. Ut enim ad minim veniam, quis\nnostrud exercitation ullamco laboris nisi ut\naliquip ex ea commodo consequat.&lt;/div&gt;\n\nCSS input:\n.heading {\n  font-family: fantasy;\n  font-size: 1.6em;\n  font-weight: bold;\n}\n\n.body {\n  font-family: cursive;\n}"
+  },
+  {
+    "objectID": "slides/web-design-worksheet.html#exercise-5",
+    "href": "slides/web-design-worksheet.html#exercise-5",
+    "title": "Web design worksheet",
+    "section": "Exercise 5",
+    "text": "Exercise 5\n\n\n\nChapter 1\n\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\n\nHTML tags used: &lt;div&gt;\n\nCSS properties used:\nfont-size: 1.6em;\nfont-weight: bold;\ntext-align: center;\ncolor: MidnightBlue;\nbackground-color: AliceBlue;\npadding: 0.5em;\nmargin-top: 1em;"
+  },
+  {
+    "objectID": "slides/web-design-worksheet.html#solution-to-exercise-5",
+    "href": "slides/web-design-worksheet.html#solution-to-exercise-5",
+    "title": "Web design worksheet",
+    "section": "Solution to Exercise 5",
+    "text": "Solution to Exercise 5\n\n\nHTML input:\n&lt;div class = \"heading\"&gt;Chapter 1&lt;/div&gt;\n\n&lt;div class = \"body\"&gt;Lorem ipsum dolor sit\namet, consectetur adipiscing elit, sed do\neiusmod tempor incididunt ut labore et dolore\nmagna aliqua. Ut enim ad minim veniam, quis\nnostrud exercitation ullamco laboris nisi ut\naliquip ex ea commodo consequat.&lt;/div&gt;\n\nCSS input:\ndiv {\n  color: MidnightBlue;\n}\n\n.heading {\n  font-size: 1.6em;\n  font-weight: bold;\n  text-align: center;\n  background-color: AliceBlue;\n  padding: 0.5em;\n}\n\n.body {\n  margin-top: 1em;\n}"
+  },
+  {
     "objectID": "slides/visualizing-trends.html#we-visualize-linear-trends-with-regression-lines",
     "href": "slides/visualizing-trends.html#we-visualize-linear-trends-with-regression-lines",
     "title": "Visualizing Trends",
@@ -3833,14 +3910,14 @@
     "href": "schedule.html",
     "title": "SDS 366 Schedule Spring 2025",
     "section": "",
-    "text": "Materials:\n\n\nSlides\n\nWorksheet 1: Introduction to Quarto\nWorksheet 2: Introduction to R\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (visualizing amounts)\nWorksheet Part I\nSlides Part II (telling a story)\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (pipe, sorting, filtering, mutating)\nWorksheet Part I\nSlides Part II (summarizing, pivoting, joining)\nWorksheet Part II\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet Part I (data cleaning)\nWorksheet Part II (missing data)\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
+    "text": "Materials:\n\n\nSlides\n\nWorksheet 1: Introduction to Quarto\nWorksheet 2: Introduction to R\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (visualizing amounts)\nWorksheet Part I\nSlides Part II (telling a story)\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (pipe, sorting, filtering, mutating)\nWorksheet Part I\nSlides Part II (summarizing, pivoting, joining)\nWorksheet Part II\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet Part I (data cleaning)\nWorksheet Part II (missing data)\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides: Interactive plots\n\nWorksheet: Interactive plots\nSlides: Animations\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
   },
   {
     "objectID": "schedule.html#lectures",
     "href": "schedule.html#lectures",
     "title": "SDS 366 Schedule Spring 2025",
     "section": "",
-    "text": "Materials:\n\n\nSlides\n\nWorksheet 1: Introduction to Quarto\nWorksheet 2: Introduction to R\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (visualizing amounts)\nWorksheet Part I\nSlides Part II (telling a story)\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (pipe, sorting, filtering, mutating)\nWorksheet Part I\nSlides Part II (summarizing, pivoting, joining)\nWorksheet Part II\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet Part I (data cleaning)\nWorksheet Part II (missing data)\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
+    "text": "Materials:\n\n\nSlides\n\nWorksheet 1: Introduction to Quarto\nWorksheet 2: Introduction to R\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (visualizing amounts)\nWorksheet Part I\nSlides Part II (telling a story)\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (pipe, sorting, filtering, mutating)\nWorksheet Part I\nSlides Part II (summarizing, pivoting, joining)\nWorksheet Part II\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet Part I (data cleaning)\nWorksheet Part II (missing data)\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides: Interactive plots\n\nWorksheet: Interactive plots\nSlides: Animations\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
   },
   {
     "objectID": "schedule.html#homeworks",
@@ -6963,6 +7040,146 @@
     "title": "Visualizing Uncertainty",
     "section": "Further reading",
     "text": "Further reading\n\nFundamentals of Data Visualization: Chapter 16: Visualizing uncertainty\nData Visualization—A Practical Introduction: Chapter 6.6: Grouped analysis and list columns\nData Visualization—A Practical Introduction: Chapter 6.7: Plot marginal effects\nggdist reference documentation: https://mjskay.github.io/ggdist/index.html\nggdist vignette: Frequentist uncertainty visualization"
+  },
+  {
+    "objectID": "slides/web-design.html#anatomy-of-a-web-site",
+    "href": "slides/web-design.html#anatomy-of-a-web-site",
+    "title": "Introduction to web design",
+    "section": "Anatomy of a web site",
+    "text": "Anatomy of a web site\n\nWeb sites consist of three components:\n\n\nHTML: Content of the site\n\n\nCSS: Appearance of the site\n\n\nJavaScript: Interactivity\n\n\nWe won’t be discussing JavaScript here"
+  },
+  {
+    "objectID": "slides/web-design.html#block-and-inline-elements",
+    "href": "slides/web-design.html#block-and-inline-elements",
+    "title": "Introduction to web design",
+    "section": "Block and inline elements",
+    "text": "Block and inline elements\n\n&lt;div&gt;: Contents stacked vertically\n\n\n&lt;span&gt;: Contents placed inline"
+  },
+  {
+    "objectID": "slides/web-design.html#block-and-inline-elements-1",
+    "href": "slides/web-design.html#block-and-inline-elements-1",
+    "title": "Introduction to web design",
+    "section": "Block and inline elements",
+    "text": "Block and inline elements\n\n\nHTML input:\n&lt;div&gt;This&lt;/div&gt;\n&lt;div&gt;is&lt;/div&gt;\n&lt;div&gt;an&lt;/div&gt;\n&lt;div&gt;example&lt;/div&gt;\n\nRendered output:\n\n\nThis\n\n\nis\n\n\nan\n\n\nexample\n\n\n\n\n&lt;div&gt; elements are stacked vertically from top to bottom"
+  },
+  {
+    "objectID": "slides/web-design.html#block-and-inline-elements-2",
+    "href": "slides/web-design.html#block-and-inline-elements-2",
+    "title": "Introduction to web design",
+    "section": "Block and inline elements",
+    "text": "Block and inline elements\n\n\nHTML input:\n&lt;span&gt;This&lt;/span&gt;\n&lt;span&gt;is&lt;/span&gt;\n&lt;span&gt;an&lt;/span&gt;\n&lt;span&gt;example&lt;/span&gt;\n\nRendered output:\n\nThis is an example\n\n\n\n&lt;span&gt; elements are placed inline"
+  },
+  {
+    "objectID": "slides/web-design.html#elements-can-be-nested",
+    "href": "slides/web-design.html#elements-can-be-nested",
+    "title": "Introduction to web design",
+    "section": "Elements can be nested",
+    "text": "Elements can be nested\n\n\nHTML input:\n&lt;div&gt;\n  &lt;span&gt;This&lt;/span&gt;\n  &lt;span&gt;is&lt;/span&gt;\n&lt;/div&gt;\n&lt;div&gt;\n  &lt;span&gt;an&lt;/span&gt;\n  &lt;span&gt;example&lt;/span&gt;\n&lt;div&gt;\n\nRendered output:\n\n\nThis is\n\n\nan example"
+  },
+  {
+    "objectID": "slides/web-design.html#elements-are-styled-with-css",
+    "href": "slides/web-design.html#elements-are-styled-with-css",
+    "title": "Introduction to web design",
+    "section": "Elements are styled with CSS",
+    "text": "Elements are styled with CSS\n\n\nHTML input:\n&lt;div&gt;\nThis is an &lt;span&gt;example&lt;/span&gt;\n&lt;/div&gt;\n\nCSS input:\nspan { \n  color: #91322F;\n  font-weight: bold;\n}\n\n\nRendered output:\n\nThis is an example"
+  },
+  {
+    "objectID": "slides/web-design.html#elements-are-styled-with-css-1",
+    "href": "slides/web-design.html#elements-are-styled-with-css-1",
+    "title": "Introduction to web design",
+    "section": "Elements are styled with CSS",
+    "text": "Elements are styled with CSS\n\n\nHTML input:\n&lt;div&gt;\nThis is an &lt;span&gt;example&lt;/span&gt;\n&lt;/div&gt;\n\nCSS input:\nspan { color: #91322F; }\n\ndiv {\n  background-color: #D4E1F3;\n}\n\n\nRendered output:\n\n\nThis is an example"
+  },
+  {
+    "objectID": "slides/web-design.html#elements-are-styled-with-css-2",
+    "href": "slides/web-design.html#elements-are-styled-with-css-2",
+    "title": "Introduction to web design",
+    "section": "Elements are styled with CSS",
+    "text": "Elements are styled with CSS\n\n\nHTML input:\n&lt;div&gt;\nThis is an &lt;span&gt;example&lt;/span&gt;\n&lt;/div&gt;\n\nCSS input:\nspan { color: #91322F; }\n\ndiv {\n  background-color: #D4E1F3;\n  padding: 36px 8px 24px 8px;\n}\n\n\nRendered output:\n\n\nThis is an example"
+  },
+  {
+    "objectID": "slides/web-design.html#elements-are-styled-with-css-3",
+    "href": "slides/web-design.html#elements-are-styled-with-css-3",
+    "title": "Introduction to web design",
+    "section": "Elements are styled with CSS",
+    "text": "Elements are styled with CSS\n\n\nHTML input:\n&lt;div&gt;\nThis is an &lt;span&gt;example&lt;/span&gt;\n&lt;/div&gt;\n\nCSS input:\nspan {\n  color: #91322F;\n  background-color: #D4E1F3;\n  padding: 48px 8px 64px 8px;\n}\n\n\nRendered output:\n\n\nThis is an example\n\n\n\n\nTop and bottom padding don’t affect the height of an inline element"
+  },
+  {
+    "objectID": "slides/web-design.html#creating-complex-designs-css-classes-and-selectors",
+    "href": "slides/web-design.html#creating-complex-designs-css-classes-and-selectors",
+    "title": "Introduction to web design",
+    "section": "Creating complex designs: CSS classes and selectors",
+    "text": "Creating complex designs: CSS classes and selectors\n\n\nHTML input:\nThis is &lt;span class = \"red\"&gt;red&lt;/span&gt;,\n&lt;span class = \"green\"&gt;green&lt;/span&gt;,\nand &lt;span class = \"blue\"&gt;blue&lt;/span&gt;\ntext.\n\nCSS input:\n.red { color: red; }\n.green { color: green; }\n.blue { color: blue; }\n\n\nRendered output:\n\nThis is red, green, and blue text."
+  },
+  {
+    "objectID": "slides/web-design.html#creating-complex-designs-css-classes-and-selectors-1",
+    "href": "slides/web-design.html#creating-complex-designs-css-classes-and-selectors-1",
+    "title": "Introduction to web design",
+    "section": "Creating complex designs: CSS classes and selectors",
+    "text": "Creating complex designs: CSS classes and selectors\n\n\nHTML input:\nThis is &lt;span class = \"red\"&gt;red&lt;/span&gt;,\n&lt;span class = \"green\"&gt;green&lt;/span&gt;,\nand &lt;span class = \"blue\"&gt;blue&lt;/span&gt;\ntext.\n\nCSS input:\n.red { color: red; }\n.green { color: green; }\n.blue { color: blue; }\nspan { font-weight: bold; }\n\n\nRendered output:\n\nThis is red, green, and blue text."
+  },
+  {
+    "objectID": "slides/web-design.html#creating-complex-designs-css-classes-and-selectors-2",
+    "href": "slides/web-design.html#creating-complex-designs-css-classes-and-selectors-2",
+    "title": "Introduction to web design",
+    "section": "Creating complex designs: CSS classes and selectors",
+    "text": "Creating complex designs: CSS classes and selectors\n\n\nHTML input:\nThis is &lt;span class = \"red\"&gt;red&lt;/span&gt;,\n&lt;span class = \"green\"&gt;green&lt;/span&gt;,\nand &lt;span class = \"blue\"&gt;blue&lt;/span&gt;\ntext.\n\nCSS input:\n.red { color: red; }\n.green { color: green; }\n.blue { color: blue; }\nspan { font-weight: bold; }\nspan.red { color: firebrick; }\n\n\nRendered output:\n\nThis is red, green, and blue text."
+  },
+  {
+    "objectID": "slides/web-design.html#creating-complex-designs-css-classes-and-selectors-3",
+    "href": "slides/web-design.html#creating-complex-designs-css-classes-and-selectors-3",
+    "title": "Introduction to web design",
+    "section": "Creating complex designs: CSS classes and selectors",
+    "text": "Creating complex designs: CSS classes and selectors\n\n\nHTML input:\n&lt;div class = \"red\"&gt;\nThis is &lt;span class = \"red\"&gt;red&lt;/span&gt;,\n&lt;span class = \"green\"&gt;green&lt;/span&gt;,\nand &lt;span class = \"blue\"&gt;blue&lt;/span&gt;\ntext.\n&lt;/div&gt;\n\nCSS input:\n.red { color: red; }\n.green { color: green; }\n.blue { color: blue; }\nspan { font-weight: bold; }\nspan.red { color: firebrick; }\n\n\nRendered output:\n\n\nThis is red, green, and blue text.\n\n\n\n\nThe CSS selector span.red is more specific than .red and therefore takes priority"
+  },
+  {
+    "objectID": "slides/web-design.html#the-img-tag-images",
+    "href": "slides/web-design.html#the-img-tag-images",
+    "title": "Introduction to web design",
+    "section": "The <img> tag: images",
+    "text": "The &lt;img&gt; tag: images\n\nHTML input:\n&lt;img src = \"https://clauswilke.com/dataviz/cover.png\", width = 30% /&gt;\n\n\nRendered output:"
+  },
+  {
+    "objectID": "slides/web-design.html#the-img-tag-images-1",
+    "href": "slides/web-design.html#the-img-tag-images-1",
+    "title": "Introduction to web design",
+    "section": "The <img> tag: images",
+    "text": "The &lt;img&gt; tag: images\n\nHTML input:\n&lt;img src = \"https://clauswilke.com/dataviz/cover.png\", width = 100% /&gt;\n\n\nRendered output:"
+  },
+  {
+    "objectID": "slides/web-design.html#the-a-tag-links",
+    "href": "slides/web-design.html#the-a-tag-links",
+    "title": "Introduction to web design",
+    "section": "The <a> tag: links",
+    "text": "The &lt;a&gt; tag: links\n\nHTML input:\nMy book on data visualization:\n&lt;a href = \"https://clauswilke.com/dataviz/\"&gt;\nFundamentals of Data Visualization&lt;/a&gt;\n\n\nRendered output:\n\nMy book on data visualization:  Fundamentals of Data Visualization"
+  },
+  {
+    "objectID": "slides/web-design.html#the-br-tag-line-breaks",
+    "href": "slides/web-design.html#the-br-tag-line-breaks",
+    "title": "Introduction to web design",
+    "section": "The <br> tag: line breaks",
+    "text": "The &lt;br&gt; tag: line breaks\n\nHTML input:\nMy book on data visualization:&lt;br&gt;\n&lt;a href = \"https://clauswilke.com/dataviz/\"&gt;\nFundamentals of Data Visualization&lt;/a&gt;\n\n\nRendered output:\n\nMy book on data visualization:  Fundamentals of Data Visualization"
+  },
+  {
+    "objectID": "slides/web-design.html#the-ul-and-li-tags-unordered-lists",
+    "href": "slides/web-design.html#the-ul-and-li-tags-unordered-lists",
+    "title": "Introduction to web design",
+    "section": "The <ul> and <li> tags: unordered lists",
+    "text": "The &lt;ul&gt; and &lt;li&gt; tags: unordered lists\n\n\nHTML input:\nSome fruit:\n\n&lt;ul&gt;\n  &lt;li&gt;Apples&lt;/li&gt;\n  &lt;li&gt;Oranges&lt;/li&gt;\n  &lt;li&gt;Bananas&lt;/li&gt;\n&lt;/ul&gt;\n\nRendered output:\n\nSome fruit:\n\n\nApples\n\n\nOranges\n\n\nBananas"
+  },
+  {
+    "objectID": "slides/web-design.html#the-ol-and-li-tags-unordered-lists",
+    "href": "slides/web-design.html#the-ol-and-li-tags-unordered-lists",
+    "title": "Introduction to web design",
+    "section": "The <ol> and <li> tags: unordered lists",
+    "text": "The &lt;ol&gt; and &lt;li&gt; tags: unordered lists\n\n\nHTML input:\nSome fruit:\n\n&lt;ol&gt;\n  &lt;li&gt;Apples&lt;/li&gt;\n  &lt;li&gt;Oranges&lt;/li&gt;\n  &lt;li&gt;Bananas&lt;/li&gt;\n&lt;/ol&gt;\n\nRendered output:\n\nSome fruit:\n\n\nApples\n\n\nOranges\n\n\nBananas"
+  },
+  {
+    "objectID": "slides/web-design.html#further-reading",
+    "href": "slides/web-design.html#further-reading",
+    "title": "Introduction to web design",
+    "section": "Further reading",
+    "text": "Further reading\n\nMDN Web Docs: Learn to style HTML using CSS\nw3schools.com: CSS Tutorial\nQuarto: Guide"
   },
   {
     "objectID": "syllabus.html",

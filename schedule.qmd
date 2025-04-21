@@ -185,6 +185,21 @@ format: html
 - [Slides](slides/geospatial-data.qmd)  
 - [Worksheet](worksheets/geospatial-data.qmd)
 
+### 26. Apr 22, 2025—Interactive plots, animations
+
+<p class="nospace">Materials:</p>
+
+- [Slides: Interactive plots](slides/interactive-plots.qmd)  
+- [Worksheet: Interactive plots](worksheets/interactive-plots.qmd)
+- [Slides: Animations](slides/animations.qmd)  
+
+### 27. Apr 24, 2025—Introduction to web design concepts
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/web-design.qmd.qmd)  
+- [Worksheet](slides/web-design-worksheet.qmd)
+
 ## Homeworks
 
 All homeworks are due by 11:00pm on the day they are due. Homeworks need to be submitted as pdf files on Canvas.

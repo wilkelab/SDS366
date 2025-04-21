@@ -1,0 +1,323 @@
+---
+title: "Web design worksheet"
+author: "Claus O. Wilke"
+date: last-modified
+format: 
+  revealjs:
+    theme:
+      - default
+      - Wilke-theme.scss
+      - web-design-worksheet.scss
+    auto-stretch: false
+    chalkboard: true
+execute:
+  fig-format: svg
+  fig-asp: 0.618
+  fig-width: 5.5
+---
+
+## Exercise instructions
+
+::: {.move-down-1em}
+For each of the following exercises, try to reproduce the output shown in the box using the indicated HTML tags and CSS properties.
+:::
+
+::: {.fragment .move-down-1em}
+After each exercise slide the solutions are shown on the next slide, so don't jump ahead.
+:::
+
+::: {.fragment .move-down-1em}
+Do the exercises on JSFiddle: <https://jsfiddle.net/>
+:::
+
+## Exercise 1
+
+:::: {.columns .small-font}
+::: {.html-example}
+The quick <span class = "ex1 brown">brown</span> fox jumps over
+the <span class = "ex1 italics">lazy dog<span>.
+:::
+
+<br>
+
+::: {.column width="50%"}
+HTML tags used: `<span>`
+:::
+
+::: {.column width="50%"}
+CSS properties used:
+
+```css
+color: brown;
+font-style: italic;
+```
+:::
+::::
+
+## Solution to Exercise 1
+
+:::: {.columns .small-font}
+::: {.column width="65%"}
+HTML input:
+
+```html
+The quick <span class = "brown">brown</span> fox
+jumps over the <span class = "italics">lazy
+dog<span>.
+```
+:::
+
+::: {.column width="35%"}
+CSS input:
+
+```css
+.brown {
+  color: brown;
+}
+
+.italics {
+  font-style: italic;
+}
+```
+:::
+::::
+
+## Exercise 2
+
+:::: {.columns .small-font}
+::: {.html-example}
+<div class = "ex2">The quick brown fox</div>
+<div class = "ex2">jumps over the lazy dog.</div>
+:::
+
+<br>
+
+::: {.column width="50%"}
+HTML tags used: `<div>`
+:::
+
+::: {.column width="50%"}
+CSS properties used:
+
+```css
+background-color: AliceBlue;
+margin: 1em 0;
+```
+:::
+::::
+
+## Solution to Exercise 2
+
+:::: {.columns .small-font}
+::: {.column width="55%"}
+HTML input:
+
+```html
+<div>The quick brown fox</div>
+<div>jumps over the lazy dog.</div>
+```
+:::
+
+::: {.column width="45%"}
+CSS input:
+
+```css
+div {
+  background-color: AliceBlue;
+  margin: 1em 0;
+}
+```
+:::
+::::
+
+## Exercise 3
+
+:::: {.columns .small-font}
+::: {.html-example}
+<span class = "ex3">The quick brown fox</span>
+<span class = "ex3">jumps over the lazy dog.</span>
+:::
+
+<br>
+
+::: {.column width="50%"}
+HTML tags used: `<span>`
+:::
+
+::: {.column width="50%"}
+CSS properties used:
+
+```css
+background-color: AliceBlue;
+padding: 0.5em;
+margin: 0 0.5em;
+```
+:::
+::::
+
+## Solution to Exercise 3
+
+:::: {.columns .small-font}
+::: {.column width="55%"}
+HTML input:
+
+```html
+<span>The quick brown fox</span>
+<span>jumps over the lazy dog.</span>
+```
+:::
+
+::: {.column width="45%"}
+CSS input:
+
+```css
+span {
+  background-color: AliceBlue;
+  padding: 0.5em;
+  margin: 0 0.5em;
+}
+```
+:::
+::::
+
+## Exercise 4
+
+:::: {.columns .small-font}
+::: {.html-example}
+<div class = "ex4 heading">Chapter 1</div>
+
+<div class = "ex4 body">Lorem ipsum dolor sit
+amet, consectetur adipiscing elit, sed do
+eiusmod tempor incididunt ut labore et dolore
+magna aliqua. Ut enim ad minim veniam, quis
+nostrud exercitation ullamco laboris nisi ut
+aliquip ex ea commodo consequat.</div>
+:::
+
+<br>
+
+::: {.column width="50%"}
+HTML tags used: `<div>`
+:::
+
+::: {.column width="50%"}
+CSS properties used:
+
+```css
+font-family: fantasy;
+font-family: cursive;
+font-size: 1.6em;
+font-weight: bold;
+```
+:::
+::::
+
+## Solution to Exercise 4
+
+:::: {.columns .small-font}
+::: {.column width="60%"}
+HTML input:
+
+```html
+<div class = "heading">Chapter 1</div>
+
+<div class = "body">Lorem ipsum dolor sit
+amet, consectetur adipiscing elit, sed do
+eiusmod tempor incididunt ut labore et dolore
+magna aliqua. Ut enim ad minim veniam, quis
+nostrud exercitation ullamco laboris nisi ut
+aliquip ex ea commodo consequat.</div>
+```
+:::
+
+::: {.column width="40%"}
+CSS input:
+
+```css
+.heading {
+  font-family: fantasy;
+  font-size: 1.6em;
+  font-weight: bold;
+}
+
+.body {
+  font-family: cursive;
+}
+```
+:::
+::::
+
+## Exercise 5
+
+:::: {.columns .small-font}
+::: {.html-example}
+<div class = "ex5 heading">Chapter 1</div>
+
+<div class = "ex5 body">Lorem ipsum dolor sit
+amet, consectetur adipiscing elit, sed do
+eiusmod tempor incididunt ut labore et dolore
+magna aliqua. Ut enim ad minim veniam, quis
+nostrud exercitation ullamco laboris nisi ut
+aliquip ex ea commodo consequat.</div>
+:::
+
+::: {.column width="50%"}
+HTML tags used: `<div>`
+:::
+
+::: {.column width="50%"}
+CSS properties used:
+
+```css
+font-size: 1.6em;
+font-weight: bold;
+text-align: center;
+color: MidnightBlue;
+background-color: AliceBlue;
+padding: 0.5em;
+margin-top: 1em;
+```
+:::
+::::
+
+## Solution to Exercise 5
+
+:::: {.columns .small-font}
+::: {.column width="60%"}
+HTML input:
+
+```html
+<div class = "heading">Chapter 1</div>
+
+<div class = "body">Lorem ipsum dolor sit
+amet, consectetur adipiscing elit, sed do
+eiusmod tempor incididunt ut labore et dolore
+magna aliqua. Ut enim ad minim veniam, quis
+nostrud exercitation ullamco laboris nisi ut
+aliquip ex ea commodo consequat.</div>
+```
+:::
+
+::: {.column width="40%"}
+CSS input:
+
+```css
+div {
+  color: MidnightBlue;
+}
+
+.heading {
+  font-size: 1.6em;
+  font-weight: bold;
+  text-align: center;
+  background-color: AliceBlue;
+  padding: 0.5em;
+}
+
+.body {
+  margin-top: 1em;
+}
+```
+:::
+::::
+

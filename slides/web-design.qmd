@@ -1,0 +1,636 @@
+---
+title: "Introduction to web design"
+author: "Claus O. Wilke"
+date: last-modified
+format: 
+  revealjs:
+    theme:
+      - default
+      - Wilke-theme.scss
+    auto-stretch: false
+    chalkboard: true
+execute:
+  fig-format: svg
+  fig-asp: 0.618
+  fig-width: 5.5
+---
+
+## Anatomy of a web site
+
+::: {.fragment .move-down-1em}
+Web sites consist of three components:
+:::
+
+::: {.fragment .move-down-1em}
+**HTML:** Content of the site
+:::
+
+::: {.fragment .move-down-1em}
+**CSS:** Appearance of the site
+:::
+
+::: {.fragment .move-down-1em}
+**JavaScript:** Interactivity
+:::
+
+::: {.fragment .move-down-1em}
+We won't be discussing JavaScript here
+:::
+
+## Block and inline elements
+
+::: {.fragment .move-down-1em}
+`<div>`: Contents stacked vertically
+:::
+
+::: {.fragment .move-down-1em}
+`<span>`: Contents placed inline
+:::
+
+## Block and inline elements
+
+:::: {.columns}
+
+::: {.small-font .column width="50%"}
+HTML input:
+
+```html
+<div>This</div>
+<div>is</div>
+<div>an</div>
+<div>example</div>
+```
+:::
+
+::: {.fragment .small-font .column width="50%"}
+Rendered output:
+
+::: {.html-example}
+<div>This</div>
+<div>is</div>
+<div>an</div>
+<div>example</div>
+:::
+:::
+
+::::
+
+::: {.fragment .small-font}
+`<div>` elements are stacked vertically from top to bottom
+:::
+
+## Block and inline elements
+
+:::: {.columns}
+
+::: {.small-font .column width="50%"}
+HTML input:
+
+```html
+<span>This</span>
+<span>is</span>
+<span>an</span>
+<span>example</span>
+```
+:::
+
+::: {.fragment .small-font .column width="50%"}
+Rendered output:
+
+::: {.html-example}
+<span>This</span>
+<span>is</span>
+<span>an</span>
+<span>example</span>
+:::
+:::
+
+::::
+
+::: {.fragment .small-font}
+`<span>` elements are placed inline
+:::
+
+## Elements can be nested
+
+:::: {.columns}
+
+::: {.small-font .column width="50%"}
+HTML input:
+
+```html
+<div>
+  <span>This</span>
+  <span>is</span>
+</div>
+<div>
+  <span>an</span>
+  <span>example</span>
+<div>
+```
+:::
+
+::: {.fragment .small-font .column width="50%"}
+Rendered output:
+
+::: {.html-example}
+<div>
+  <span>This</span>
+  <span>is</span>
+</div>
+<div>
+  <span>an</span>
+  <span>example</span>
+</div>
+:::
+:::
+
+::::
+
+## Elements are styled with CSS
+
+:::: {.columns}
+
+::: {.small-font .column width="50%"}
+HTML input:
+
+```html
+<div>
+This is an <span>example</span>
+</div>
+```
+
+::: {.fragment .move-down-1em }
+CSS input:
+
+```css
+span { 
+  color: #91322F;
+  font-weight: bold;
+}
+```
+:::
+:::
+
+::: {.fragment .small-font .column width="50%"}
+Rendered output:
+
+::: {.html-example}
+This is an <span style = "color: #91322F; font-weight: bold;">example</span>
+:::
+:::
+
+::::
+
+## Elements are styled with CSS
+
+:::: {.columns}
+
+::: {.small-font .column width="50%"}
+HTML input:
+
+```html
+<div>
+This is an <span>example</span>
+</div>
+```
+
+::: {.move-down-1em }
+CSS input:
+
+```css
+span { color: #91322F; }
+
+div {
+  background-color: #D4E1F3;
+}
+```
+:::
+:::
+
+::: {.small-font .column width="50%"}
+Rendered output:
+
+::: {.html-example}
+<div style = "background-color: #D4E1F3;">
+This is an <span style = "color: #91322F;">example</span>
+</div>
+:::
+:::
+
+::::
+
+## Elements are styled with CSS
+
+:::: {.columns}
+
+::: {.small-font .column width="50%"}
+HTML input:
+
+```html
+<div>
+This is an <span>example</span>
+</div>
+```
+
+::: {.move-down-1em }
+CSS input:
+
+```css
+span { color: #91322F; }
+
+div {
+  background-color: #D4E1F3;
+  padding: 36px 8px 24px 8px;
+}
+```
+:::
+:::
+
+::: {.small-font .column width="50%"}
+Rendered output:
+
+::: {.html-example}
+<div style = "background-color: #D4E1F3; padding: 36px 8px 24px 8px;">
+This is an <span style = "color: #91322F;">example</span>
+</div>
+:::
+:::
+
+::::
+
+## Elements are styled with CSS
+
+:::: {.columns}
+
+::: {.small-font .column width="50%"}
+HTML input:
+
+```html
+<div>
+This is an <span>example</span>
+</div>
+```
+
+::: {.move-down-1em }
+CSS input:
+
+```css
+span {
+  color: #91322F;
+  background-color: #D4E1F3;
+  padding: 48px 8px 64px 8px;
+}
+```
+:::
+:::
+
+::: {.small-font .column width="50%"}
+Rendered output:
+
+::: {.html-example}
+<div>
+This is an <span style = "color: #91322F; background-color: #D4E1F3; padding: 48px 8px 64px 8px;">example</span>
+</div>
+:::
+:::
+
+::::
+
+::: {.fragment .small-font .move-down-1em}
+Top and bottom padding don't affect the height of an inline element
+:::
+
+## Creating complex designs: CSS classes and selectors
+
+:::: {.columns}
+
+::: {.small-font .column width="60%"}
+HTML input:
+
+```html
+This is <span class = "red">red</span>,
+<span class = "green">green</span>,
+and <span class = "blue">blue</span>
+text.
+```
+
+::: {.fragment .move-down-1em }
+CSS input:
+
+```css
+.red { color: red; }
+.green { color: green; }
+.blue { color: blue; }
+```
+:::
+:::
+
+::: {.fragment .small-font .column width="40%"}
+Rendered output:
+
+::: {.html-example}
+This is
+<span style = "color: red;">red</span>,
+<span style = "color: green;">green</span>,
+and
+<span style = "color: blue">blue</span>
+text.
+:::
+:::
+
+::::
+
+## Creating complex designs: CSS classes and selectors
+
+:::: {.columns}
+
+::: {.small-font .column width="60%"}
+HTML input:
+
+```html
+This is <span class = "red">red</span>,
+<span class = "green">green</span>,
+and <span class = "blue">blue</span>
+text.
+```
+
+::: {.move-down-1em }
+CSS input:
+
+```css
+.red { color: red; }
+.green { color: green; }
+.blue { color: blue; }
+span { font-weight: bold; }
+```
+:::
+:::
+
+::: {.small-font .column width="40%"}
+Rendered output:
+
+::: {.html-example}
+This is
+<span style = "color: red; font-weight: bold;">red</span>,
+<span style = "color: green; font-weight: bold;">green</span>,
+and
+<span style = "color: blue; font-weight: bold;">blue</span>
+text.
+:::
+:::
+
+::::
+
+## Creating complex designs: CSS classes and selectors
+
+:::: {.columns}
+
+::: {.small-font .column width="60%"}
+HTML input:
+
+```html
+This is <span class = "red">red</span>,
+<span class = "green">green</span>,
+and <span class = "blue">blue</span>
+text.
+```
+
+::: {.move-down-1em }
+CSS input:
+
+```css
+.red { color: red; }
+.green { color: green; }
+.blue { color: blue; }
+span { font-weight: bold; }
+span.red { color: firebrick; }
+```
+:::
+:::
+
+::: {.small-font .column width="40%"}
+Rendered output:
+
+::: {.html-example}
+This is
+<span style = "color: firebrick; font-weight: bold;">red</span>,
+<span style = "color: green; font-weight: bold;">green</span>,
+and
+<span style = "color: blue; font-weight: bold;">blue</span>
+text.
+:::
+:::
+
+::::
+
+## Creating complex designs: CSS classes and selectors
+
+:::: {.columns}
+
+::: {.small-font .column width="60%"}
+HTML input:
+
+```html
+<div class = "red">
+This is <span class = "red">red</span>,
+<span class = "green">green</span>,
+and <span class = "blue">blue</span>
+text.
+</div>
+```
+
+::: {.move-down-1em }
+CSS input:
+
+```css
+.red { color: red; }
+.green { color: green; }
+.blue { color: blue; }
+span { font-weight: bold; }
+span.red { color: firebrick; }
+```
+:::
+:::
+
+::: {.small-font .column width="40%"}
+Rendered output:
+
+::: {.html-example}
+<div style = "color: red;">
+This is
+<span style = "color: firebrick; font-weight: bold;">red</span>,
+<span style = "color: green; font-weight: bold;">green</span>,
+and
+<span style = "color: blue; font-weight: bold;">blue</span>
+text.
+</div>
+:::
+:::
+
+::::
+
+::: {.fragment .small-font .move-down-1em}
+The CSS selector `span.red` is more specific than `.red` and therefore takes priority
+:::
+
+# Try this out for yourself: <https://jsfiddle.net/>
+
+# A few more tags to know
+
+## The `<img>` tag: images
+
+::: {.small-font}
+HTML input:
+
+```html
+<img src = "https://clauswilke.com/dataviz/cover.png", width = 30% />
+```
+:::
+
+::: {.fragment .small-font .move-down-1em}
+Rendered output:
+
+::: {.width-60 .html-example}
+![](https://clauswilke.com/dataviz/cover.png){width="30%"}
+:::
+
+:::
+
+## The `<img>` tag: images
+
+::: {.small-font}
+HTML input:
+
+```html
+<img src = "https://clauswilke.com/dataviz/cover.png", width = 100% />
+```
+:::
+
+::: {.small-font .move-down-1em}
+Rendered output:
+
+::: {.width-80 .html-example}
+![](https://clauswilke.com/dataviz/cover.png){width="100%"}
+:::
+
+:::
+
+## The `<a>` tag: links
+
+::: {.small-font}
+HTML input:
+
+```html
+My book on data visualization:
+<a href = "https://clauswilke.com/dataviz/">
+Fundamentals of Data Visualization</a>
+```
+:::
+
+::: {.small-font .move-down-1em}
+Rendered output:
+
+::: {.width-80 .html-example}
+My book on data visualization:
+<a href = "https://clauswilke.com/dataviz/">
+Fundamentals of Data Visualization</a>
+:::
+:::
+
+## The `<br>` tag: line breaks
+
+::: {.small-font}
+HTML input:
+
+```html
+My book on data visualization:<br>
+<a href = "https://clauswilke.com/dataviz/">
+Fundamentals of Data Visualization</a>
+```
+:::
+
+::: {.small-font .move-down-1em}
+Rendered output:
+
+::: {.width-80 .html-example}
+My book on data visualization:<br>
+<a href = "https://clauswilke.com/dataviz/">
+Fundamentals of Data Visualization</a>
+:::
+:::
+
+## The `<ul>` and `<li>` tags: unordered lists
+
+:::: {.columns}
+
+::: {.small-font .column width="50%"}
+HTML input:
+
+```html
+Some fruit:
+
+<ul>
+  <li>Apples</li>
+  <li>Oranges</li>
+  <li>Bananas</li>
+</ul>
+```
+:::
+
+::: {.small-font .column width="50%"}
+Rendered output:
+
+::: {.html-example}
+Some fruit:
+
+<ul>
+  <li>Apples</li>
+  <li>Oranges</li>
+  <li>Bananas</li>
+</ul>
+:::
+:::
+::::
+
+## The `<ol>` and `<li>` tags: unordered lists
+
+:::: {.columns}
+
+::: {.small-font .column width="50%"}
+HTML input:
+
+```html
+Some fruit:
+
+<ol>
+  <li>Apples</li>
+  <li>Oranges</li>
+  <li>Bananas</li>
+</ol>
+```
+:::
+
+::: {.small-font .column width="50%"}
+Rendered output:
+
+::: {.html-example}
+Some fruit:
+
+<ol>
+  <li>Apples</li>
+  <li>Oranges</li>
+  <li>Bananas</li>
+</ol>
+:::
+:::
+::::
+
+<!-- Segment ends here -->
+
+## Further reading
+
+- MDN Web Docs: [Learn to style HTML using CSS
+](https://developer.mozilla.org/en-US/docs/Learn/CSS)
+- w3schools.com: [CSS Tutorial](https://www.w3schools.com/css/default.asp)
+- Quarto: [Guide](https://quarto.org/docs/guide/)

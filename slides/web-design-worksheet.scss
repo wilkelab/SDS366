@@ -1,0 +1,49 @@
+/* Reveal theme modifications (applied to default) for
+ * web design worksheet
+ */
+
+/*-- scss:rules --*/
+
+.ex1.brown {
+  color: brown;
+}
+.ex1.italics {
+  font-style: italic;
+}
+
+div.ex2 {
+  background-color: AliceBlue;
+  margin: 1em 0;
+}
+
+span.ex3 {
+  background-color: AliceBlue;
+  padding: 0.5em;
+  margin: 0 0.5em;
+}
+
+.ex4.heading {
+  font-family: fantasy;
+  font-size: 1.6em;
+  font-weight: bold;
+}
+
+.ex4.body {
+  font-family: cursive;
+}
+
+div.ex5 {
+  color: MidnightBlue;
+}
+
+.ex5.heading {
+  font-size: 1.6em;
+  font-weight: bold;
+  text-align: center;
+  background-color: AliceBlue;
+  padding: 0.5em;
+}
+
+.ex5.body {
+  margin-top: 1em;
+}
