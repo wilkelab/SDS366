@@ -628,6 +628,89 @@ Some fruit:
 
 <!-- Segment ends here -->
 
+# Making a website with Quarto
+
+::: {.move-up-3em}
+![](../assets/web-design/quarto-guide.png){fig-align="center" width="85%"}
+:::
+
+::: {.absolute-bottom-right .tiny-font}
+Quarto Guide: <https://quarto.org/docs/guide>
+:::
+
+## {#quarto-package-1 data-menu-title="Creating a website with Quarto"}
+
+![](../assets/web-design/quarto-package-1.png){fig-align="center" width="100%"}
+
+## {#quarto-package-2 data-menu-title="Creating a website with Quarto"}
+
+![](../assets/web-design/quarto-package-2.png){fig-align="center" width="100%"}
+
+## {#quarto-package-3 data-menu-title="Creating a website with Quarto"}
+
+![](../assets/web-design/quarto-package-3.png){fig-align="center" width="100%"}
+
+## {#quarto-package-4 data-menu-title="Creating a website with Quarto"}
+
+![](../assets/web-design/quarto-package-4.png){fig-align="center" width="100%"}
+
+## {#quarto-package-5 data-menu-title="Creating a website with Quarto"}
+
+![](../assets/web-design/quarto-package-5.png){fig-align="center" width="100%"}
+
+# Rendering the site
+
+## {#quarto-build-1 data-menu-title="Rendering a Quarto site"}
+
+![](../assets/web-design/quarto-build-1.png){fig-align="center" width="100%"}
+
+## {#quarto-build-2 data-menu-title="Rendering a Quarto site"}
+
+![](../assets/web-design/quarto-build-2.png){fig-align="center" width="100%"}
+
+
+# Publishing the site
+
+## {#publishing-1 data-menu-title="Publishing a Quarto site"}
+
+![](../assets/web-design/netlify-1.png){fig-align="center" width="100%"}
+
+## {#publishing-2 data-menu-title="Publishing a Quarto site"}
+
+![](../assets/web-design/netlify-2.png){fig-align="center" width="100%"}
+
+## {#publishing-3 data-menu-title="Publishing a Quarto site"}
+
+![](../assets/web-design/netlify-3.png){fig-align="center" width="100%"}
+
+## {#publishing-4 data-menu-title="Publishing a Quarto site"}
+
+![](../assets/web-design/netlify-4.png){fig-align="center" width="100%"}
+
+## {#publishing-5 data-menu-title="Publishing a Quarto site"}
+
+![](../assets/web-design/netlify-5.png){fig-align="center" width="100%"}
+
+## {#publishing-6 data-menu-title="Publishing a Quarto site"}
+
+![](../assets/web-design/netlify-6.png){fig-align="center" width="100%"}
+
+## Alternatives to Netlify
+
+::: {.incremental}
+- [GitHub pages](https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages)
+
+- [QuartoPub](https://quartopub.com/)
+
+- Any webhosting service
+:::
+
+::: {.fragment .move-down-1em}
+For details and more options, see: <https://quarto.org/docs/publishing/>
+:::
+
+<!-- Segment ends here -->
+
 ## Further reading
 
 - MDN Web Docs: [Learn to style HTML using CSS

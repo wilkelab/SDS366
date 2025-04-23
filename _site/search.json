@@ -7175,6 +7175,13 @@
     "text": "The &lt;ol&gt; and &lt;li&gt; tags: unordered lists\n\n\nHTML input:\nSome fruit:\n\n&lt;ol&gt;\n  &lt;li&gt;Apples&lt;/li&gt;\n  &lt;li&gt;Oranges&lt;/li&gt;\n  &lt;li&gt;Bananas&lt;/li&gt;\n&lt;/ol&gt;\n\nRendered output:\n\nSome fruit:\n\n\nApples\n\n\nOranges\n\n\nBananas"
   },
   {
+    "objectID": "slides/web-design.html#alternatives-to-netlify",
+    "href": "slides/web-design.html#alternatives-to-netlify",
+    "title": "Introduction to web design",
+    "section": "Alternatives to Netlify",
+    "text": "Alternatives to Netlify\n\n\nGitHub pages\nQuartoPub\nAny webhosting service\n\n\n\nFor details and more options, see: https://quarto.org/docs/publishing/"
+  },
+  {
     "objectID": "slides/web-design.html#further-reading",
     "href": "slides/web-design.html#further-reading",
     "title": "Introduction to web design",
