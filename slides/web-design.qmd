@@ -687,6 +687,10 @@ Quarto Guide: <https://quarto.org/docs/guide>
 
 ![](../assets/web-design/netlify-4.png){fig-align="center" width="100%"}
 
+::: {.absolute-bottom-right .tiny-font}
+<https://app.netlify.com/drop>
+:::
+
 ## {#publishing-5 data-menu-title="Publishing a Quarto site"}
 
 ![](../assets/web-design/netlify-5.png){fig-align="center" width="100%"}
