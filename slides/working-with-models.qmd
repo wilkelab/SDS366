@@ -246,11 +246,40 @@ lm_summary
 
 # How do we use this approach to annotate plots?
 
-## Make label data
+## Turn model summary into label data
 
 ::: {.small-font}
 ```{r}
 #| echo: true
+# Reminder: summary of the model fits
+lm_summary
+```
+:::
+
+## Turn model summary into label data
+
+::: {.small-font}
+```{r}
+#| echo: true
+# Turn R^2 and p value into labels
+label_data <- lm_summary |>
+  mutate(
+    rsqr = signif(r.squared, 2),  # round to 2 significant digits
+    pval = signif(p.value, 2),
+    label = glue("R^2 = {rsqr}, P = {pval}"),
+  ) |>
+  select(species, label)
+
+label_data
+```
+:::
+
+## Turn model summary into label data
+
+::: {.small-font}
+```{r}
+#| echo: true
+# Add label position in the plot
 label_data <- lm_summary |>
   mutate(
     rsqr = signif(r.squared, 2),  # round to 2 significant digits

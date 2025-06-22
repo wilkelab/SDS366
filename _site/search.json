@@ -665,11 +665,25 @@
     "text": "Putting everything into one pipeline\n\n\nlm_summary &lt;- penguins |&gt;\n  nest(data = -species) |&gt;\n  mutate(\n    fit = map(data, ~lm(flipper_length_mm ~ body_mass_g, data = .x)),\n    glance_out = map(fit, glance)\n  ) |&gt;\n  select(species, glance_out) |&gt;\n  unnest(cols = glance_out)\n\nlm_summary\n\n# A tibble: 3 × 13\n  species   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC\n  &lt;fct&gt;         &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;\n1 Adelie        0.219         0.214  5.80      41.8 1.34e- 9     1  -479.  963.\n2 Gentoo        0.494         0.490  4.63     118.  1.33e-19     1  -362.  730.\n3 Chinstrap     0.412         0.403  5.51      46.2 3.75e- 9     1  -212.  429.\n# ℹ 4 more variables: BIC &lt;dbl&gt;, deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;"
   },
   {
-    "objectID": "slides/working-with-models.html#make-label-data",
-    "href": "slides/working-with-models.html#make-label-data",
+    "objectID": "slides/working-with-models.html#turn-model-summary-into-label-data",
+    "href": "slides/working-with-models.html#turn-model-summary-into-label-data",
     "title": "Working with models",
-    "section": "Make label data",
-    "text": "Make label data\n\n\nlabel_data &lt;- lm_summary |&gt;\n  mutate(\n    rsqr = signif(r.squared, 2),  # round to 2 significant digits\n    pval = signif(p.value, 2),\n    label = glue(\"R^2 = {rsqr}, P = {pval}\"),\n    body_mass_g = 6400, flipper_length_mm = 175 # label position in plot\n  ) |&gt;\n  select(species, label, body_mass_g, flipper_length_mm)\n\nlabel_data\n\n# A tibble: 3 × 4\n  species   label                   body_mass_g flipper_length_mm\n  &lt;fct&gt;     &lt;glue&gt;                        &lt;dbl&gt;             &lt;dbl&gt;\n1 Adelie    R^2 = 0.22, P = 1.3e-09        6400               175\n2 Gentoo    R^2 = 0.49, P = 1.3e-19        6400               175\n3 Chinstrap R^2 = 0.41, P = 3.7e-09        6400               175"
+    "section": "Turn model summary into label data",
+    "text": "Turn model summary into label data\n\n\n# Reminder: summary of the model fits\nlm_summary\n\n# A tibble: 3 × 13\n  species   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC\n  &lt;fct&gt;         &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;\n1 Adelie        0.219         0.214  5.80      41.8 1.34e- 9     1  -479.  963.\n2 Gentoo        0.494         0.490  4.63     118.  1.33e-19     1  -362.  730.\n3 Chinstrap     0.412         0.403  5.51      46.2 3.75e- 9     1  -212.  429.\n# ℹ 4 more variables: BIC &lt;dbl&gt;, deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;"
+  },
+  {
+    "objectID": "slides/working-with-models.html#turn-model-summary-into-label-data-1",
+    "href": "slides/working-with-models.html#turn-model-summary-into-label-data-1",
+    "title": "Working with models",
+    "section": "Turn model summary into label data",
+    "text": "Turn model summary into label data\n\n\n# Turn R^2 and p value into labels\nlabel_data &lt;- lm_summary |&gt;\n  mutate(\n    rsqr = signif(r.squared, 2),  # round to 2 significant digits\n    pval = signif(p.value, 2),\n    label = glue(\"R^2 = {rsqr}, P = {pval}\"),\n  ) |&gt;\n  select(species, label)\n\nlabel_data\n\n# A tibble: 3 × 2\n  species   label                  \n  &lt;fct&gt;     &lt;glue&gt;                 \n1 Adelie    R^2 = 0.22, P = 1.3e-09\n2 Gentoo    R^2 = 0.49, P = 1.3e-19\n3 Chinstrap R^2 = 0.41, P = 3.7e-09"
+  },
+  {
+    "objectID": "slides/working-with-models.html#turn-model-summary-into-label-data-2",
+    "href": "slides/working-with-models.html#turn-model-summary-into-label-data-2",
+    "title": "Working with models",
+    "section": "Turn model summary into label data",
+    "text": "Turn model summary into label data\n\n\n# Add label position in the plot\nlabel_data &lt;- lm_summary |&gt;\n  mutate(\n    rsqr = signif(r.squared, 2),  # round to 2 significant digits\n    pval = signif(p.value, 2),\n    label = glue(\"R^2 = {rsqr}, P = {pval}\"),\n    body_mass_g = 6400, flipper_length_mm = 175 # label position in plot\n  ) |&gt;\n  select(species, label, body_mass_g, flipper_length_mm)\n\nlabel_data\n\n# A tibble: 3 × 4\n  species   label                   body_mass_g flipper_length_mm\n  &lt;fct&gt;     &lt;glue&gt;                        &lt;dbl&gt;             &lt;dbl&gt;\n1 Adelie    R^2 = 0.22, P = 1.3e-09        6400               175\n2 Gentoo    R^2 = 0.49, P = 1.3e-19        6400               175\n3 Chinstrap R^2 = 0.41, P = 3.7e-09        6400               175"
   },
   {
     "objectID": "slides/working-with-models.html#and-plot",
@@ -4540,7 +4554,7 @@
     "href": "slides/data-wrangling-1.html#which-to-use-native-pipe-or-old-school-pipe",
     "title": "Data wrangling 1",
     "section": "Which to use? Native pipe or old-school pipe?",
-    "text": "Which to use? Native pipe or old-school pipe?\n\n\nThe native pipe |&gt; is the future. I’ll be using it throughout.\nThe magrittr %&gt;% works fine. You can use it if you llike to."
+    "text": "Which to use? Native pipe or old-school pipe?\n\n\nThe native pipe |&gt; is the future. I’ll be using it throughout.\nThe magrittr %&gt;% works fine. You can use it if you like to."
   },
   {
     "objectID": "slides/data-wrangling-1.html#pick-rows-from-a-table-filter",

@@ -110,7 +110,7 @@ penguins %>%
 
 ::: {.incremental}
 - The native pipe `|>` is the future. I'll be using it throughout.
-- The magrittr `%>%` works fine. You can use it if you llike to.
+- The magrittr `%>%` works fine. You can use it if you like to.
 :::
 
 <!-- Segment ends here -->

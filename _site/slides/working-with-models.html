@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.39">
 
   <meta name="author" content="Claus O. Wilke">
-  <meta name="dcterms.date" content="2025-03-06">
+  <meta name="dcterms.date" content="2025-06-22">
   <title>SDS 366 – Working with models</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -205,7 +205,7 @@ Claus O. Wilke
 </div>
 </div>
 
-  <p class="date">2025-03-06</p>
+  <p class="date">2025-06-22</p>
 </section>
 <section id="how-do-we-obtain-information-about-model-fits" class="slide level2">
 <h2>How do we obtain information about model fits?</h2>
@@ -578,20 +578,64 @@ F-statistic: 46.17 on 1 and 66 DF,  p-value: 3.748e-09</code></pre>
 <h1>How do we use this approach to annotate plots?</h1>
 
 </section>
-<section id="make-label-data" class="slide level2">
-<h2>Make label data</h2>
+<section id="turn-model-summary-into-label-data" class="slide level2">
+<h2>Turn model summary into label data</h2>
 <div class="small-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>label_data <span class="ot">&lt;-</span> lm_summary <span class="sc">|&gt;</span></span>
-<span id="cb32-2"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb32-3"><a></a>    <span class="at">rsqr =</span> <span class="fu">signif</span>(r.squared, <span class="dv">2</span>),  <span class="co"># round to 2 significant digits</span></span>
-<span id="cb32-4"><a></a>    <span class="at">pval =</span> <span class="fu">signif</span>(p.value, <span class="dv">2</span>),</span>
-<span id="cb32-5"><a></a>    <span class="at">label =</span> <span class="fu">glue</span>(<span class="st">"R^2 = {rsqr}, P = {pval}"</span>),</span>
-<span id="cb32-6"><a></a>    <span class="at">body_mass_g =</span> <span class="dv">6400</span>, <span class="at">flipper_length_mm =</span> <span class="dv">175</span> <span class="co"># label position in plot</span></span>
-<span id="cb32-7"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb32-8"><a></a>  <span class="fu">select</span>(species, label, body_mass_g, flipper_length_mm)</span>
-<span id="cb32-9"><a></a></span>
-<span id="cb32-10"><a></a>label_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a><span class="co"># Reminder: summary of the model fits</span></span>
+<span id="cb32-2"><a></a>lm_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 13
+  species   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC
+  &lt;fct&gt;         &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+1 Adelie        0.219         0.214  5.80      41.8 1.34e- 9     1  -479.  963.
+2 Gentoo        0.494         0.490  4.63     118.  1.33e-19     1  -362.  730.
+3 Chinstrap     0.412         0.403  5.51      46.2 3.75e- 9     1  -212.  429.
+# ℹ 4 more variables: BIC &lt;dbl&gt;, deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="turn-model-summary-into-label-data-1" class="slide level2">
+<h2>Turn model summary into label data</h2>
+<div class="small-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a><span class="co"># Turn R^2 and p value into labels</span></span>
+<span id="cb34-2"><a></a>label_data <span class="ot">&lt;-</span> lm_summary <span class="sc">|&gt;</span></span>
+<span id="cb34-3"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb34-4"><a></a>    <span class="at">rsqr =</span> <span class="fu">signif</span>(r.squared, <span class="dv">2</span>),  <span class="co"># round to 2 significant digits</span></span>
+<span id="cb34-5"><a></a>    <span class="at">pval =</span> <span class="fu">signif</span>(p.value, <span class="dv">2</span>),</span>
+<span id="cb34-6"><a></a>    <span class="at">label =</span> <span class="fu">glue</span>(<span class="st">"R^2 = {rsqr}, P = {pval}"</span>),</span>
+<span id="cb34-7"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb34-8"><a></a>  <span class="fu">select</span>(species, label)</span>
+<span id="cb34-9"><a></a></span>
+<span id="cb34-10"><a></a>label_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  species   label                  
+  &lt;fct&gt;     &lt;glue&gt;                 
+1 Adelie    R^2 = 0.22, P = 1.3e-09
+2 Gentoo    R^2 = 0.49, P = 1.3e-19
+3 Chinstrap R^2 = 0.41, P = 3.7e-09</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="turn-model-summary-into-label-data-2" class="slide level2">
+<h2>Turn model summary into label data</h2>
+<div class="small-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="co"># Add label position in the plot</span></span>
+<span id="cb36-2"><a></a>label_data <span class="ot">&lt;-</span> lm_summary <span class="sc">|&gt;</span></span>
+<span id="cb36-3"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb36-4"><a></a>    <span class="at">rsqr =</span> <span class="fu">signif</span>(r.squared, <span class="dv">2</span>),  <span class="co"># round to 2 significant digits</span></span>
+<span id="cb36-5"><a></a>    <span class="at">pval =</span> <span class="fu">signif</span>(p.value, <span class="dv">2</span>),</span>
+<span id="cb36-6"><a></a>    <span class="at">label =</span> <span class="fu">glue</span>(<span class="st">"R^2 = {rsqr}, P = {pval}"</span>),</span>
+<span id="cb36-7"><a></a>    <span class="at">body_mass_g =</span> <span class="dv">6400</span>, <span class="at">flipper_length_mm =</span> <span class="dv">175</span> <span class="co"># label position in plot</span></span>
+<span id="cb36-8"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb36-9"><a></a>  <span class="fu">select</span>(species, label, body_mass_g, flipper_length_mm)</span>
+<span id="cb36-10"><a></a></span>
+<span id="cb36-11"><a></a>label_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 4
   species   label                   body_mass_g flipper_length_mm
@@ -607,12 +651,12 @@ F-statistic: 46.17 on 1 and 66 DF,  p-value: 3.748e-09</code></pre>
 <h2>And plot</h2>
 <div class="small-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(body_mass_g, flipper_length_mm)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb34-2"><a></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb34-3"><a></a>    <span class="at">data =</span> label_data, <span class="fu">aes</span>(<span class="at">label =</span> label),</span>
-<span id="cb34-4"><a></a>    <span class="at">size =</span> <span class="dv">10</span>, <span class="at">size.unit =</span> <span class="st">"pt"</span>, <span class="at">hjust =</span> <span class="dv">1</span>  <span class="co"># 10pt, right-justified</span></span>
-<span id="cb34-5"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb34-6"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(species))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(body_mass_g, flipper_length_mm)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb38-2"><a></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb38-3"><a></a>    <span class="at">data =</span> label_data, <span class="fu">aes</span>(<span class="at">label =</span> label),</span>
+<span id="cb38-4"><a></a>    <span class="at">size =</span> <span class="dv">10</span>, <span class="at">size.unit =</span> <span class="st">"pt"</span>, <span class="at">hjust =</span> <span class="dv">1</span>  <span class="co"># 10pt, right-justified</span></span>
+<span id="cb38-5"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb38-6"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(species))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
