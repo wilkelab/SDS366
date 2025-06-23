@@ -586,14 +586,33 @@ p_scatter
 
 ## Getting the data
 
-We'll be working with the `blue_jays` dataset:
-
 ::: {.small-font}
+The `blue_jays` dataset:
+:::
+
+::: {.smaller-font}
 ```{r}
 #| echo: true
+#| message: false
 blue_jays <- read_csv("https://wilkelab.org/SDS366/datasets/blue_jays.csv")
 
 blue_jays
+```
+:::
+
+## Getting the data
+
+::: {.small-font}
+The `pottery` dataset:
+:::
+
+::: {.smaller-font}
+```{r}
+#| echo: true
+#| message: false
+pottery <- read_csv("https://wilkelab.org/SDS366/datasets/pottery.csv")
+
+pottery
 ```
 :::
 
@@ -784,6 +803,133 @@ pca_fit |>
   scale_x_continuous(
     # create one axis tick per PC
     breaks = 1:6
+  ) +
+  scale_y_continuous(
+    name = "variance explained",
+    # format y axis ticks as percent values
+    label = scales::label_percent(accuracy = 1)
+  )
+```
+:::
+
+## PCA on pottery data
+
+::: {.fragment .tiny-font}
+```{r}
+#| echo: true
+#| label: pottery-pca-plot
+#| fig-cap: "&nbsp;"
+#| fig-width: 5
+#| fig-asp: 0.75
+#| out-width: "100%"
+#| output-location: "column"
+pca_fit <- pottery |> 
+  select(where(is.numeric)) |>
+  scale() |>
+  prcomp()
+
+pca_fit |>
+  augment(pottery) |>
+  ggplot(aes(.fittedPC1, .fittedPC2)) +
+  geom_point(aes(color = Region)) +
+  theme(legend.position = "top")
+```
+:::
+
+## Plot the rotation matrix
+
+::: {.tiny-font}
+```{r}
+#| echo: true
+#| label: pottery-pca-rotation
+#| fig-cap: "&nbsp;"
+#| fig-width: 5
+#| fig-asp: 0.75
+#| out-width: "100%"
+#| output-location: "column"
+arrow_style <- arrow(
+  angle = 20, length = grid::unit(8, "pt"),
+  ends = "first", type = "closed"
+)
+
+pca_fit |>
+  tidy(matrix = "rotation") |>
+  pivot_wider(
+    names_from = "PC", values_from = "value",
+    names_prefix = "PC"
+  ) |>
+  ggplot(aes(PC1, PC2)) +
+  geom_segment(
+    xend = 0, yend = 0,
+    arrow = arrow_style
+  ) +
+  geom_text(aes(label = column), hjust = 1) +
+  coord_fixed(
+    xlim = c(-.7, 0.7),
+    ylim = c(-.5, .7) 
+  )
+```
+:::
+
+## Plot the rotation matrix w/ manual label adjustment
+
+::: {.tiny-font}
+```{r}
+#| echo: true
+#| label: pottery-pca-rotation2
+#| fig-cap: "&nbsp;"
+#| fig-width: 5
+#| fig-asp: 0.75
+#| out-width: "100%"
+#| output-location: "column"
+arrow_style <- arrow(
+  angle = 20, length = grid::unit(8, "pt"),
+  ends = "first", type = "closed"
+)
+
+pca_fit |>
+  tidy(matrix = "rotation") |>
+  pivot_wider(
+    names_from = "PC", values_from = "value",
+    names_prefix = "PC"
+  )  |>
+  mutate(
+    # order of variables is:
+    # Al2O3, Fe2O3, MgO, CaO, Na2O, K2O, TiO2, MnO, BaO  
+    hjust = c(1.05, -.05, -.05, .5, .5, -.05, 1.05, -.05, 1.05),
+    vjust = c(.5, .5, .5, -.1, -.1, .8, .5, .2, 0)
+  ) |>
+  ggplot(aes(PC1, PC2)) +
+  geom_segment(
+    xend = 0, yend = 0,
+    arrow = arrow_style
+  ) +
+  geom_text(aes(label = column, hjust = hjust, vjust = vjust)) +
+  coord_fixed(
+    xlim = c(-.7, 0.7),
+    ylim = c(-.5, .7) 
+  )
+```
+:::
+
+## Plot the variance explained
+
+::: {.tiny-font}
+```{r}
+#| echo: true
+#| label: pottery-pca-eigenvalues
+#| fig-cap: "&nbsp;"
+#| fig-width: 5
+#| fig-asp: 0.75
+#| out-width: "100%"
+#| output-location: "column"
+pca_fit |>
+  tidy(matrix = "eigenvalues") |>
+  ggplot(aes(PC, percent)) + 
+  geom_col() + 
+  scale_x_continuous(
+    # create one axis tick per PC
+    breaks = 1:9
   ) +
   scale_y_continuous(
     name = "variance explained",

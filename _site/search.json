@@ -4820,7 +4820,14 @@
     "href": "slides/dimension-reduction-1.html#getting-the-data",
     "title": "Dimension reduction 1",
     "section": "Getting the data",
-    "text": "Getting the data\nWe’ll be working with the blue_jays dataset:\n\n\nblue_jays &lt;- read_csv(\"https://wilkelab.org/SDS366/datasets/blue_jays.csv\")\n\nblue_jays\n\n# A tibble: 123 × 8\n   bird_id    sex   bill_depth_mm bill_width_mm bill_length_mm head_length_mm\n   &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;         &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;\n 1 0000-00000 M              8.26          9.21           25.9           56.6\n 2 1142-05901 M              8.54          8.76           25.0           56.4\n 3 1142-05905 M              8.39          8.78           26.1           57.3\n 4 1142-05907 F              7.78          9.3            23.5           53.8\n 5 1142-05909 M              8.71          9.84           25.5           57.3\n 6 1142-05911 F              7.28          9.3            22.2           52.2\n 7 1142-05912 M              8.74          9.28           25.4           57.1\n 8 1142-05914 M              8.72          9.94           30             60.7\n 9 1142-05917 F              8.2           9.01           22.8           52.8\n10 1142-05920 F              7.67          9.31           24.6           54.9\n# ℹ 113 more rows\n# ℹ 2 more variables: body_mass_g &lt;dbl&gt;, skull_size_mm &lt;dbl&gt;"
+    "text": "Getting the data\n\nThe blue_jays dataset:\n\n\n\nblue_jays &lt;- read_csv(\"https://wilkelab.org/SDS366/datasets/blue_jays.csv\")\n\nblue_jays\n\n# A tibble: 123 × 8\n   bird_id    sex   bill_depth_mm bill_width_mm bill_length_mm head_length_mm\n   &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;         &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;\n 1 0000-00000 M              8.26          9.21           25.9           56.6\n 2 1142-05901 M              8.54          8.76           25.0           56.4\n 3 1142-05905 M              8.39          8.78           26.1           57.3\n 4 1142-05907 F              7.78          9.3            23.5           53.8\n 5 1142-05909 M              8.71          9.84           25.5           57.3\n 6 1142-05911 F              7.28          9.3            22.2           52.2\n 7 1142-05912 M              8.74          9.28           25.4           57.1\n 8 1142-05914 M              8.72          9.94           30             60.7\n 9 1142-05917 F              8.2           9.01           22.8           52.8\n10 1142-05920 F              7.67          9.31           24.6           54.9\n# ℹ 113 more rows\n# ℹ 2 more variables: body_mass_g &lt;dbl&gt;, skull_size_mm &lt;dbl&gt;"
+  },
+  {
+    "objectID": "slides/dimension-reduction-1.html#getting-the-data-1",
+    "href": "slides/dimension-reduction-1.html#getting-the-data-1",
+    "title": "Dimension reduction 1",
+    "section": "Getting the data",
+    "text": "Getting the data\n\nThe pottery dataset:\n\n\n\npottery &lt;- read_csv(\"https://wilkelab.org/SDS366/datasets/pottery.csv\")\n\npottery\n\n# A tibble: 48 × 12\n   ID    Kiln       Region Al2O3 Fe2O3   MgO   CaO  Na2O   K2O  TiO2   MnO   BaO\n   &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n 1 GA1   Gloucester Glouc…  18.8  9.52  2     0.79  0.4   3.2   1.01 0.077 0.015\n 2 GA2   Gloucester Glouc…  16.9  7.33  1.65  0.84  0.4   3.05  0.99 0.067 0.018\n 3 GA3   Gloucester Glouc…  18.2  7.64  1.82  0.77  0.4   3.07  0.98 0.087 0.014\n 4 GA4   Gloucester Glouc…  17.4  7.48  1.71  1.01  0.4   3.16  0.03 0.084 0.017\n 5 GA5   Gloucester Glouc…  16.9  7.29  1.56  0.76  0.4   3.05  1    0.063 0.019\n 6 GB1   Gloucester Glouc…  17.8  7.24  1.83  0.92  0.43  3.12  0.93 0.061 0.019\n 7 GB2   Gloucester Glouc…  18.8  7.45  2.06  0.87  0.25  3.26  0.98 0.072 0.017\n 8 GB3   Gloucester Glouc…  16.5  7.05  1.81  1.73  0.33  3.2   0.95 0.066 0.019\n 9 GB4   Gloucester Glouc…  18    7.42  2.06  1     0.28  3.37  0.96 0.072 0.017\n10 GB5   Gloucester Glouc…  15.8  7.15  1.62  0.71  0.38  3.25  0.93 0.062 0.017\n# ℹ 38 more rows"
   },
   {
     "objectID": "slides/dimension-reduction-1.html#prerequisite-scaling-of-numeric-columns",
@@ -4877,6 +4884,34 @@
     "title": "Dimension reduction 1",
     "section": "Plot the variance explained",
     "text": "Plot the variance explained\n\n\n\npca_fit |&gt;\n  # extract eigenvalues\n  tidy(matrix = \"eigenvalues\") |&gt;\n  ggplot(aes(PC, percent)) + \n  geom_col() + \n  scale_x_continuous(\n    # create one axis tick per PC\n    breaks = 1:6\n  ) +\n  scale_y_continuous(\n    name = \"variance explained\",\n    # format y axis ticks as percent values\n    label = scales::label_percent(accuracy = 1)\n  )"
+  },
+  {
+    "objectID": "slides/dimension-reduction-1.html#pca-on-pottery-data",
+    "href": "slides/dimension-reduction-1.html#pca-on-pottery-data",
+    "title": "Dimension reduction 1",
+    "section": "PCA on pottery data",
+    "text": "PCA on pottery data\n\n\n\npca_fit &lt;- pottery |&gt; \n  select(where(is.numeric)) |&gt;\n  scale() |&gt;\n  prcomp()\n\npca_fit |&gt;\n  augment(pottery) |&gt;\n  ggplot(aes(.fittedPC1, .fittedPC2)) +\n  geom_point(aes(color = Region)) +\n  theme(legend.position = \"top\")"
+  },
+  {
+    "objectID": "slides/dimension-reduction-1.html#plot-the-rotation-matrix-1",
+    "href": "slides/dimension-reduction-1.html#plot-the-rotation-matrix-1",
+    "title": "Dimension reduction 1",
+    "section": "Plot the rotation matrix",
+    "text": "Plot the rotation matrix\n\n\n\narrow_style &lt;- arrow(\n  angle = 20, length = grid::unit(8, \"pt\"),\n  ends = \"first\", type = \"closed\"\n)\n\npca_fit |&gt;\n  tidy(matrix = \"rotation\") |&gt;\n  pivot_wider(\n    names_from = \"PC\", values_from = \"value\",\n    names_prefix = \"PC\"\n  ) |&gt;\n  ggplot(aes(PC1, PC2)) +\n  geom_segment(\n    xend = 0, yend = 0,\n    arrow = arrow_style\n  ) +\n  geom_text(aes(label = column), hjust = 1) +\n  coord_fixed(\n    xlim = c(-.7, 0.7),\n    ylim = c(-.5, .7) \n  )"
+  },
+  {
+    "objectID": "slides/dimension-reduction-1.html#plot-the-rotation-matrix-w-manual-label-adjustment",
+    "href": "slides/dimension-reduction-1.html#plot-the-rotation-matrix-w-manual-label-adjustment",
+    "title": "Dimension reduction 1",
+    "section": "Plot the rotation matrix w/ manual label adjustment",
+    "text": "Plot the rotation matrix w/ manual label adjustment\n\n\n\narrow_style &lt;- arrow(\n  angle = 20, length = grid::unit(8, \"pt\"),\n  ends = \"first\", type = \"closed\"\n)\n\npca_fit |&gt;\n  tidy(matrix = \"rotation\") |&gt;\n  pivot_wider(\n    names_from = \"PC\", values_from = \"value\",\n    names_prefix = \"PC\"\n  )  |&gt;\n  mutate(\n    # order of variables is:\n    # Al2O3, Fe2O3, MgO, CaO, Na2O, K2O, TiO2, MnO, BaO  \n    hjust = c(1.05, -.05, -.05, .5, .5, -.05, 1.05, -.05, 1.05),\n    vjust = c(.5, .5, .5, -.1, -.1, .8, .5, .2, 0)\n  ) |&gt;\n  ggplot(aes(PC1, PC2)) +\n  geom_segment(\n    xend = 0, yend = 0,\n    arrow = arrow_style\n  ) +\n  geom_text(aes(label = column, hjust = hjust, vjust = vjust)) +\n  coord_fixed(\n    xlim = c(-.7, 0.7),\n    ylim = c(-.5, .7) \n  )"
+  },
+  {
+    "objectID": "slides/dimension-reduction-1.html#plot-the-variance-explained-1",
+    "href": "slides/dimension-reduction-1.html#plot-the-variance-explained-1",
+    "title": "Dimension reduction 1",
+    "section": "Plot the variance explained",
+    "text": "Plot the variance explained\n\n\n\npca_fit |&gt;\n  tidy(matrix = \"eigenvalues\") |&gt;\n  ggplot(aes(PC, percent)) + \n  geom_col() + \n  scale_x_continuous(\n    # create one axis tick per PC\n    breaks = 1:9\n  ) +\n  scale_y_continuous(\n    name = \"variance explained\",\n    # format y axis ticks as percent values\n    label = scales::label_percent(accuracy = 1)\n  )"
   },
   {
     "objectID": "slides/dimension-reduction-1.html#further-reading",

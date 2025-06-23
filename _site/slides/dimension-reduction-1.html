@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.39">
 
   <meta name="author" content="Claus O. Wilke">
-  <meta name="dcterms.date" content="2025-03-19">
+  <meta name="dcterms.date" content="2025-06-22">
   <title>SDS 366 – Dimension reduction 1</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -205,7 +205,7 @@ Claus O. Wilke
 </div>
 </div>
 
-  <p class="date">2025-03-19</p>
+  <p class="date">2025-06-22</p>
 </section>
 <section id="problem-how-do-we-visualize-datasets-with-many-variables" class="slide level2">
 <h2>Problem:<br>How do we visualize datasets with many variables?</h2>
@@ -1604,8 +1604,10 @@ Claus O. Wilke
 </section>
 <section id="getting-the-data" class="slide level2">
 <h2>Getting the data</h2>
-<p>We’ll be working with the <code>blue_jays</code> dataset:</p>
 <div class="small-font">
+<p>The <code>blue_jays</code> dataset:</p>
+</div>
+<div class="smaller-font">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>blue_jays <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://wilkelab.org/SDS366/datasets/blue_jays.csv"</span>)</span>
 <span id="cb1-2"><a></a></span>
@@ -1630,6 +1632,35 @@ Claus O. Wilke
 </div>
 </div>
 </section>
+<section id="getting-the-data-1" class="slide level2">
+<h2>Getting the data</h2>
+<div class="small-font">
+<p>The <code>pottery</code> dataset:</p>
+</div>
+<div class="smaller-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>pottery <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://wilkelab.org/SDS366/datasets/pottery.csv"</span>)</span>
+<span id="cb3-2"><a></a></span>
+<span id="cb3-3"><a></a>pottery</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 48 × 12
+   ID    Kiln       Region Al2O3 Fe2O3   MgO   CaO  Na2O   K2O  TiO2   MnO   BaO
+   &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 GA1   Gloucester Glouc…  18.8  9.52  2     0.79  0.4   3.2   1.01 0.077 0.015
+ 2 GA2   Gloucester Glouc…  16.9  7.33  1.65  0.84  0.4   3.05  0.99 0.067 0.018
+ 3 GA3   Gloucester Glouc…  18.2  7.64  1.82  0.77  0.4   3.07  0.98 0.087 0.014
+ 4 GA4   Gloucester Glouc…  17.4  7.48  1.71  1.01  0.4   3.16  0.03 0.084 0.017
+ 5 GA5   Gloucester Glouc…  16.9  7.29  1.56  0.76  0.4   3.05  1    0.063 0.019
+ 6 GB1   Gloucester Glouc…  17.8  7.24  1.83  0.92  0.43  3.12  0.93 0.061 0.019
+ 7 GB2   Gloucester Glouc…  18.8  7.45  2.06  0.87  0.25  3.26  0.98 0.072 0.017
+ 8 GB3   Gloucester Glouc…  16.5  7.05  1.81  1.73  0.33  3.2   0.95 0.066 0.019
+ 9 GB4   Gloucester Glouc…  18    7.42  2.06  1     0.28  3.37  0.96 0.072 0.017
+10 GB5   Gloucester Glouc…  15.8  7.15  1.62  0.71  0.38  3.25  0.93 0.062 0.017
+# ℹ 38 more rows</code></pre>
+</div>
+</div>
+</div>
+</section>
 <section id="prerequisite-scaling-of-numeric-columns" class="slide level2">
 <h2>Prerequisite: Scaling of numeric columns</h2>
 <div class="small-font">
@@ -1638,10 +1669,10 @@ Claus O. Wilke
 <div class="tiny-font">
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>blue_jays <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb3-3"><a></a>  <span class="fu">aes</span>(skull_size_mm, head_length_mm) <span class="sc">+</span> </span>
-<span id="cb3-4"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> sex))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>blue_jays <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb5-3"><a></a>  <span class="fu">aes</span>(skull_size_mm, head_length_mm) <span class="sc">+</span> </span>
+<span id="cb5-4"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> sex))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -1662,12 +1693,12 @@ Claus O. Wilke
 <div class="tiny-font">
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>blue_jays <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a></a>  <span class="co"># scale all numeric columns</span></span>
-<span id="cb4-3"><a></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), scale)) <span class="sc">|&gt;</span></span>
-<span id="cb4-4"><a></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb4-5"><a></a>  <span class="fu">aes</span>(skull_size_mm, head_length_mm) <span class="sc">+</span> </span>
-<span id="cb4-6"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> sex))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>blue_jays <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a></a>  <span class="co"># scale all numeric columns</span></span>
+<span id="cb6-3"><a></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), scale)) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb6-5"><a></a>  <span class="fu">aes</span>(skull_size_mm, head_length_mm) <span class="sc">+</span> </span>
+<span id="cb6-6"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> sex))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -1684,10 +1715,10 @@ Claus O. Wilke
 <h2>We perform a PCA with <code>prcomp()</code></h2>
 <div class="small-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>blue_jays <span class="sc">|&gt;</span> </span>
-<span id="cb5-2"><a></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">|&gt;</span> <span class="co"># retain only numeric columns</span></span>
-<span id="cb5-3"><a></a>  <span class="fu">scale</span>() <span class="sc">|&gt;</span>                   <span class="co"># scale to zero mean and unit variance</span></span>
-<span id="cb5-4"><a></a>  <span class="fu">prcomp</span>()                     <span class="co"># do PCA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>blue_jays <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">|&gt;</span> <span class="co"># retain only numeric columns</span></span>
+<span id="cb7-3"><a></a>  <span class="fu">scale</span>() <span class="sc">|&gt;</span>                   <span class="co"># scale to zero mean and unit variance</span></span>
+<span id="cb7-4"><a></a>  <span class="fu">prcomp</span>()                     <span class="co"># do PCA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Standard deviations (1, .., p=6):
 [1] 1.801735505 1.001664889 0.898426518 0.736457067 0.633147386 0.001337779
@@ -1716,21 +1747,21 @@ skull_size_mm  -0.4231339911</code></pre>
 <div class="small-font">
 <p>First we run the PCA and store results as <code>pca_fit</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>pca_fit <span class="ot">&lt;-</span> blue_jays <span class="sc">|&gt;</span> </span>
-<span id="cb7-2"><a></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">|&gt;</span> <span class="co"># retain only numeric columns</span></span>
-<span id="cb7-3"><a></a>  <span class="fu">scale</span>() <span class="sc">|&gt;</span>                   <span class="co"># scale to zero mean and unit variance</span></span>
-<span id="cb7-4"><a></a>  <span class="fu">prcomp</span>()                     <span class="co"># do PCA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>pca_fit <span class="ot">&lt;-</span> blue_jays <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">|&gt;</span> <span class="co"># retain only numeric columns</span></span>
+<span id="cb9-3"><a></a>  <span class="fu">scale</span>() <span class="sc">|&gt;</span>                   <span class="co"># scale to zero mean and unit variance</span></span>
+<span id="cb9-4"><a></a>  <span class="fu">prcomp</span>()                     <span class="co"># do PCA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment small-font">
 <p>Then we add PC coordinates into original dataset and plot:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">library</span>(broom)  <span class="co"># for augment(), tidy()</span></span>
-<span id="cb8-2"><a></a></span>
-<span id="cb8-3"><a></a>pca_fit <span class="sc">|&gt;</span></span>
-<span id="cb8-4"><a></a>  <span class="co"># add PCs to the original dataset</span></span>
-<span id="cb8-5"><a></a>  <span class="fu">augment</span>(blue_jays) <span class="sc">|&gt;</span></span>
-<span id="cb8-6"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(.fittedPC1, .fittedPC2)) <span class="sc">+</span></span>
-<span id="cb8-7"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> sex))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">library</span>(broom)  <span class="co"># for augment(), tidy()</span></span>
+<span id="cb10-2"><a></a></span>
+<span id="cb10-3"><a></a>pca_fit <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a></a>  <span class="co"># add PCs to the original dataset</span></span>
+<span id="cb10-5"><a></a>  <span class="fu">augment</span>(blue_jays) <span class="sc">|&gt;</span></span>
+<span id="cb10-6"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(.fittedPC1, .fittedPC2)) <span class="sc">+</span></span>
+<span id="cb10-7"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> sex))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="calculate-the-components-and-plot-1" class="slide level2">
@@ -1741,11 +1772,11 @@ skull_size_mm  -0.4231339911</code></pre>
 <div class="tiny-font">
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>pca_fit <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a></a>  <span class="co"># add PCs to the original dataset</span></span>
-<span id="cb9-3"><a></a>  <span class="fu">augment</span>(blue_jays) <span class="sc">|&gt;</span></span>
-<span id="cb9-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(.fittedPC1, .fittedPC2)) <span class="sc">+</span></span>
-<span id="cb9-5"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> sex))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>pca_fit <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a></a>  <span class="co"># add PCs to the original dataset</span></span>
+<span id="cb11-3"><a></a>  <span class="fu">augment</span>(blue_jays) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(.fittedPC1, .fittedPC2)) <span class="sc">+</span></span>
+<span id="cb11-5"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> sex))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -1766,11 +1797,11 @@ skull_size_mm  -0.4231339911</code></pre>
 <div class="tiny-font">
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>pca_fit <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a></a>  <span class="co"># add PCs to the original dataset</span></span>
-<span id="cb10-3"><a></a>  <span class="fu">augment</span>(blue_jays) <span class="sc">|&gt;</span></span>
-<span id="cb10-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(.fittedPC2, .fittedPC3)) <span class="sc">+</span></span>
-<span id="cb10-5"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> sex))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>pca_fit <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a></a>  <span class="co"># add PCs to the original dataset</span></span>
+<span id="cb12-3"><a></a>  <span class="fu">augment</span>(blue_jays) <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(.fittedPC2, .fittedPC3)) <span class="sc">+</span></span>
+<span id="cb12-5"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> sex))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -1788,28 +1819,28 @@ skull_size_mm  -0.4231339911</code></pre>
 <div class="tiny-font">
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>arrow_style <span class="ot">&lt;-</span> <span class="fu">arrow</span>(</span>
-<span id="cb11-2"><a></a>  <span class="at">angle =</span> <span class="dv">20</span>, <span class="at">length =</span> grid<span class="sc">::</span><span class="fu">unit</span>(<span class="dv">8</span>, <span class="st">"pt"</span>),</span>
-<span id="cb11-3"><a></a>  <span class="at">ends =</span> <span class="st">"first"</span>, <span class="at">type =</span> <span class="st">"closed"</span></span>
-<span id="cb11-4"><a></a>)</span>
-<span id="cb11-5"><a></a></span>
-<span id="cb11-6"><a></a>pca_fit <span class="sc">|&gt;</span></span>
-<span id="cb11-7"><a></a>  <span class="co"># extract rotation matrix</span></span>
-<span id="cb11-8"><a></a>  <span class="fu">tidy</span>(<span class="at">matrix =</span> <span class="st">"rotation"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb11-9"><a></a>  <span class="fu">pivot_wider</span>(</span>
-<span id="cb11-10"><a></a>    <span class="at">names_from =</span> <span class="st">"PC"</span>, <span class="at">values_from =</span> <span class="st">"value"</span>,</span>
-<span id="cb11-11"><a></a>    <span class="at">names_prefix =</span> <span class="st">"PC"</span></span>
-<span id="cb11-12"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb11-13"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(PC1, PC2)) <span class="sc">+</span></span>
-<span id="cb11-14"><a></a>  <span class="fu">geom_segment</span>(</span>
-<span id="cb11-15"><a></a>    <span class="at">xend =</span> <span class="dv">0</span>, <span class="at">yend =</span> <span class="dv">0</span>,</span>
-<span id="cb11-16"><a></a>    <span class="at">arrow =</span> arrow_style</span>
-<span id="cb11-17"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb11-18"><a></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> column), <span class="at">hjust =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb11-19"><a></a>  <span class="fu">coord_fixed</span>(</span>
-<span id="cb11-20"><a></a>    <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">0.5</span>),</span>
-<span id="cb11-21"><a></a>    <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) </span>
-<span id="cb11-22"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>arrow_style <span class="ot">&lt;-</span> <span class="fu">arrow</span>(</span>
+<span id="cb13-2"><a></a>  <span class="at">angle =</span> <span class="dv">20</span>, <span class="at">length =</span> grid<span class="sc">::</span><span class="fu">unit</span>(<span class="dv">8</span>, <span class="st">"pt"</span>),</span>
+<span id="cb13-3"><a></a>  <span class="at">ends =</span> <span class="st">"first"</span>, <span class="at">type =</span> <span class="st">"closed"</span></span>
+<span id="cb13-4"><a></a>)</span>
+<span id="cb13-5"><a></a></span>
+<span id="cb13-6"><a></a>pca_fit <span class="sc">|&gt;</span></span>
+<span id="cb13-7"><a></a>  <span class="co"># extract rotation matrix</span></span>
+<span id="cb13-8"><a></a>  <span class="fu">tidy</span>(<span class="at">matrix =</span> <span class="st">"rotation"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-9"><a></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb13-10"><a></a>    <span class="at">names_from =</span> <span class="st">"PC"</span>, <span class="at">values_from =</span> <span class="st">"value"</span>,</span>
+<span id="cb13-11"><a></a>    <span class="at">names_prefix =</span> <span class="st">"PC"</span></span>
+<span id="cb13-12"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb13-13"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(PC1, PC2)) <span class="sc">+</span></span>
+<span id="cb13-14"><a></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb13-15"><a></a>    <span class="at">xend =</span> <span class="dv">0</span>, <span class="at">yend =</span> <span class="dv">0</span>,</span>
+<span id="cb13-16"><a></a>    <span class="at">arrow =</span> arrow_style</span>
+<span id="cb13-17"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb13-18"><a></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> column), <span class="at">hjust =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb13-19"><a></a>  <span class="fu">coord_fixed</span>(</span>
+<span id="cb13-20"><a></a>    <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">0.5</span>),</span>
+<span id="cb13-21"><a></a>    <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) </span>
+<span id="cb13-22"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -1827,25 +1858,164 @@ skull_size_mm  -0.4231339911</code></pre>
 <div class="tiny-font">
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>pca_fit <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a></a>  <span class="co"># extract eigenvalues</span></span>
-<span id="cb12-3"><a></a>  <span class="fu">tidy</span>(<span class="at">matrix =</span> <span class="st">"eigenvalues"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb12-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(PC, percent)) <span class="sc">+</span> </span>
-<span id="cb12-5"><a></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
-<span id="cb12-6"><a></a>  <span class="fu">scale_x_continuous</span>(</span>
-<span id="cb12-7"><a></a>    <span class="co"># create one axis tick per PC</span></span>
-<span id="cb12-8"><a></a>    <span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
-<span id="cb12-9"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb12-10"><a></a>  <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb12-11"><a></a>    <span class="at">name =</span> <span class="st">"variance explained"</span>,</span>
-<span id="cb12-12"><a></a>    <span class="co"># format y axis ticks as percent values</span></span>
-<span id="cb12-13"><a></a>    <span class="at">label =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)</span>
-<span id="cb12-14"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>pca_fit <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a></a>  <span class="co"># extract eigenvalues</span></span>
+<span id="cb14-3"><a></a>  <span class="fu">tidy</span>(<span class="at">matrix =</span> <span class="st">"eigenvalues"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(PC, percent)) <span class="sc">+</span> </span>
+<span id="cb14-5"><a></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
+<span id="cb14-6"><a></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb14-7"><a></a>    <span class="co"># create one axis tick per PC</span></span>
+<span id="cb14-8"><a></a>    <span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
+<span id="cb14-9"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb14-10"><a></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb14-11"><a></a>    <span class="at">name =</span> <span class="st">"variance explained"</span>,</span>
+<span id="cb14-12"><a></a>    <span class="co"># format y axis ticks as percent values</span></span>
+<span id="cb14-13"><a></a>    <span class="at">label =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)</span>
+<span id="cb14-14"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="dimension-reduction-1_files/figure-revealjs/blue-jays-pca-eigenvalues-1.svg" style="width:100.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="pca-on-pottery-data" class="slide level2">
+<h2>PCA on pottery data</h2>
+<div class="fragment tiny-font">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>pca_fit <span class="ot">&lt;-</span> pottery <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a></a>  <span class="fu">scale</span>() <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a></a>  <span class="fu">prcomp</span>()</span>
+<span id="cb15-5"><a></a></span>
+<span id="cb15-6"><a></a>pca_fit <span class="sc">|&gt;</span></span>
+<span id="cb15-7"><a></a>  <span class="fu">augment</span>(pottery) <span class="sc">|&gt;</span></span>
+<span id="cb15-8"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(.fittedPC1, .fittedPC2)) <span class="sc">+</span></span>
+<span id="cb15-9"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Region)) <span class="sc">+</span></span>
+<span id="cb15-10"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="dimension-reduction-1_files/figure-revealjs/pottery-pca-plot-1.svg" style="width:100.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="plot-the-rotation-matrix-1" class="slide level2">
+<h2>Plot the rotation matrix</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>arrow_style <span class="ot">&lt;-</span> <span class="fu">arrow</span>(</span>
+<span id="cb16-2"><a></a>  <span class="at">angle =</span> <span class="dv">20</span>, <span class="at">length =</span> grid<span class="sc">::</span><span class="fu">unit</span>(<span class="dv">8</span>, <span class="st">"pt"</span>),</span>
+<span id="cb16-3"><a></a>  <span class="at">ends =</span> <span class="st">"first"</span>, <span class="at">type =</span> <span class="st">"closed"</span></span>
+<span id="cb16-4"><a></a>)</span>
+<span id="cb16-5"><a></a></span>
+<span id="cb16-6"><a></a>pca_fit <span class="sc">|&gt;</span></span>
+<span id="cb16-7"><a></a>  <span class="fu">tidy</span>(<span class="at">matrix =</span> <span class="st">"rotation"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-8"><a></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb16-9"><a></a>    <span class="at">names_from =</span> <span class="st">"PC"</span>, <span class="at">values_from =</span> <span class="st">"value"</span>,</span>
+<span id="cb16-10"><a></a>    <span class="at">names_prefix =</span> <span class="st">"PC"</span></span>
+<span id="cb16-11"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb16-12"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(PC1, PC2)) <span class="sc">+</span></span>
+<span id="cb16-13"><a></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb16-14"><a></a>    <span class="at">xend =</span> <span class="dv">0</span>, <span class="at">yend =</span> <span class="dv">0</span>,</span>
+<span id="cb16-15"><a></a>    <span class="at">arrow =</span> arrow_style</span>
+<span id="cb16-16"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb16-17"><a></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> column), <span class="at">hjust =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb16-18"><a></a>  <span class="fu">coord_fixed</span>(</span>
+<span id="cb16-19"><a></a>    <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">7</span>, <span class="fl">0.7</span>),</span>
+<span id="cb16-20"><a></a>    <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">5</span>, .<span class="dv">7</span>) </span>
+<span id="cb16-21"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="dimension-reduction-1_files/figure-revealjs/pottery-pca-rotation-1.svg" style="width:100.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="plot-the-rotation-matrix-w-manual-label-adjustment" class="slide level2">
+<h2>Plot the rotation matrix w/ manual label adjustment</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>arrow_style <span class="ot">&lt;-</span> <span class="fu">arrow</span>(</span>
+<span id="cb17-2"><a></a>  <span class="at">angle =</span> <span class="dv">20</span>, <span class="at">length =</span> grid<span class="sc">::</span><span class="fu">unit</span>(<span class="dv">8</span>, <span class="st">"pt"</span>),</span>
+<span id="cb17-3"><a></a>  <span class="at">ends =</span> <span class="st">"first"</span>, <span class="at">type =</span> <span class="st">"closed"</span></span>
+<span id="cb17-4"><a></a>)</span>
+<span id="cb17-5"><a></a></span>
+<span id="cb17-6"><a></a>pca_fit <span class="sc">|&gt;</span></span>
+<span id="cb17-7"><a></a>  <span class="fu">tidy</span>(<span class="at">matrix =</span> <span class="st">"rotation"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb17-8"><a></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb17-9"><a></a>    <span class="at">names_from =</span> <span class="st">"PC"</span>, <span class="at">values_from =</span> <span class="st">"value"</span>,</span>
+<span id="cb17-10"><a></a>    <span class="at">names_prefix =</span> <span class="st">"PC"</span></span>
+<span id="cb17-11"><a></a>  )  <span class="sc">|&gt;</span></span>
+<span id="cb17-12"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-13"><a></a>    <span class="co"># order of variables is:</span></span>
+<span id="cb17-14"><a></a>    <span class="co"># Al2O3, Fe2O3, MgO, CaO, Na2O, K2O, TiO2, MnO, BaO  </span></span>
+<span id="cb17-15"><a></a>    <span class="at">hjust =</span> <span class="fu">c</span>(<span class="fl">1.05</span>, <span class="sc">-</span>.<span class="dv">05</span>, <span class="sc">-</span>.<span class="dv">05</span>, .<span class="dv">5</span>, .<span class="dv">5</span>, <span class="sc">-</span>.<span class="dv">05</span>, <span class="fl">1.05</span>, <span class="sc">-</span>.<span class="dv">05</span>, <span class="fl">1.05</span>),</span>
+<span id="cb17-16"><a></a>    <span class="at">vjust =</span> <span class="fu">c</span>(.<span class="dv">5</span>, .<span class="dv">5</span>, .<span class="dv">5</span>, <span class="sc">-</span>.<span class="dv">1</span>, <span class="sc">-</span>.<span class="dv">1</span>, .<span class="dv">8</span>, .<span class="dv">5</span>, .<span class="dv">2</span>, <span class="dv">0</span>)</span>
+<span id="cb17-17"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb17-18"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(PC1, PC2)) <span class="sc">+</span></span>
+<span id="cb17-19"><a></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb17-20"><a></a>    <span class="at">xend =</span> <span class="dv">0</span>, <span class="at">yend =</span> <span class="dv">0</span>,</span>
+<span id="cb17-21"><a></a>    <span class="at">arrow =</span> arrow_style</span>
+<span id="cb17-22"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb17-23"><a></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> column, <span class="at">hjust =</span> hjust, <span class="at">vjust =</span> vjust)) <span class="sc">+</span></span>
+<span id="cb17-24"><a></a>  <span class="fu">coord_fixed</span>(</span>
+<span id="cb17-25"><a></a>    <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">7</span>, <span class="fl">0.7</span>),</span>
+<span id="cb17-26"><a></a>    <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">5</span>, .<span class="dv">7</span>) </span>
+<span id="cb17-27"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="dimension-reduction-1_files/figure-revealjs/pottery-pca-rotation2-1.svg" style="width:100.0%"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="plot-the-variance-explained-1" class="slide level2">
+<h2>Plot the variance explained</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>pca_fit <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a></a>  <span class="fu">tidy</span>(<span class="at">matrix =</span> <span class="st">"eigenvalues"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(PC, percent)) <span class="sc">+</span> </span>
+<span id="cb18-4"><a></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
+<span id="cb18-5"><a></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb18-6"><a></a>    <span class="co"># create one axis tick per PC</span></span>
+<span id="cb18-7"><a></a>    <span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span></span>
+<span id="cb18-8"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb18-9"><a></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb18-10"><a></a>    <span class="at">name =</span> <span class="st">"variance explained"</span>,</span>
+<span id="cb18-11"><a></a>    <span class="co"># format y axis ticks as percent values</span></span>
+<span id="cb18-12"><a></a>    <span class="at">label =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)</span>
+<span id="cb18-13"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="dimension-reduction-1_files/figure-revealjs/pottery-pca-eigenvalues-1.svg" style="width:100.0%"></p>
 <figcaption>&nbsp;</figcaption>
 </figure>
 </div>
