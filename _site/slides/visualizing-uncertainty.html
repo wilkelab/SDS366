@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.39">
 
   <meta name="author" content="Claus O. Wilke">
-  <meta name="dcterms.date" content="2025-03-19">
+  <meta name="dcterms.date" content="2025-06-22">
   <title>SDS 366 – Visualizing Uncertainty</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -205,7 +205,7 @@ Claus O. Wilke
 </div>
 </div>
 
-  <p class="date">2025-03-19</p>
+  <p class="date">2025-06-22</p>
 </section>
 <section id="we-all-know-how-to-visualize-uncertainty-right" class="slide level2">
 <h2>We all know how to visualize uncertainty, right?</h2>
@@ -534,6 +534,35 @@ Claus O. Wilke
 <h1>Uncertainty visualizations in R</h1>
 
 </section>
+<section id="getting-the-data" class="slide level2">
+<h2>Getting the data</h2>
+<div class="small-font">
+<p>The <code>gapminder</code> dataset:</p>
+</div>
+<div class="smaller-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb1-2"><a></a></span>
+<span id="cb1-3"><a></a>gapminder</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,704 × 6
+   country     continent  year lifeExp      pop gdpPercap
+   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+ 1 Afghanistan Asia       1952    28.8  8425333      779.
+ 2 Afghanistan Asia       1957    30.3  9240934      821.
+ 3 Afghanistan Asia       1962    32.0 10267083      853.
+ 4 Afghanistan Asia       1967    34.0 11537966      836.
+ 5 Afghanistan Asia       1972    36.1 13079460      740.
+ 6 Afghanistan Asia       1977    38.4 14880372      786.
+ 7 Afghanistan Asia       1982    39.9 12881816      978.
+ 8 Afghanistan Asia       1987    40.8 13867957      852.
+ 9 Afghanistan Asia       1992    41.7 16317921      649.
+10 Afghanistan Asia       1997    41.8 22227415      635.
+# ℹ 1,694 more rows</code></pre>
+</div>
+</div>
+</div>
+</section>
 <section id="making-a-plot-with-error-bars" class="slide level2">
 <h2>Making a plot with error bars</h2>
 <div class="fragment small-font">
@@ -584,10 +613,10 @@ Claus O. Wilke
 <h2>Making a plot with error bars</h2>
 <div class="tiny-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>lm_data <span class="ot">&lt;-</span> gapminder <span class="sc">|&gt;</span></span>
-<span id="cb1-2"><a></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span><span class="fu">c</span>(continent, year))</span>
-<span id="cb1-3"><a></a></span>
-<span id="cb1-4"><a></a>lm_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>lm_data <span class="ot">&lt;-</span> gapminder <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span><span class="fu">c</span>(continent, year))</span>
+<span id="cb3-3"><a></a></span>
+<span id="cb3-4"><a></a>lm_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 60 × 3
    continent  year data             
@@ -611,13 +640,13 @@ Claus O. Wilke
 <h2>Making a plot with error bars</h2>
 <div class="tiny-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>lm_data <span class="ot">&lt;-</span> gapminder <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span><span class="fu">c</span>(continent, year)) <span class="sc">|&gt;</span></span>
-<span id="cb3-3"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb3-4"><a></a>    <span class="at">fit =</span> <span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(lifeExp <span class="sc">~</span> <span class="fu">log</span>(gdpPercap), <span class="at">data =</span> .x))</span>
-<span id="cb3-5"><a></a>  )</span>
-<span id="cb3-6"><a></a></span>
-<span id="cb3-7"><a></a>lm_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>lm_data <span class="ot">&lt;-</span> gapminder <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span><span class="fu">c</span>(continent, year)) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-4"><a></a>    <span class="at">fit =</span> <span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(lifeExp <span class="sc">~</span> <span class="fu">log</span>(gdpPercap), <span class="at">data =</span> .x))</span>
+<span id="cb5-5"><a></a>  )</span>
+<span id="cb5-6"><a></a></span>
+<span id="cb5-7"><a></a>lm_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 60 × 4
    continent  year data              fit   
@@ -641,14 +670,14 @@ Claus O. Wilke
 <h2>Making a plot with error bars</h2>
 <div class="tiny-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>lm_data <span class="ot">&lt;-</span> gapminder <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span><span class="fu">c</span>(continent, year)) <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb5-4"><a></a>    <span class="at">fit =</span> <span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(lifeExp <span class="sc">~</span> <span class="fu">log</span>(gdpPercap), <span class="at">data =</span> .x)),</span>
-<span id="cb5-5"><a></a>    <span class="at">tidy_out =</span> <span class="fu">map</span>(fit, tidy)</span>
-<span id="cb5-6"><a></a>  )</span>
-<span id="cb5-7"><a></a></span>
-<span id="cb5-8"><a></a>lm_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>lm_data <span class="ot">&lt;-</span> gapminder <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span><span class="fu">c</span>(continent, year)) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-4"><a></a>    <span class="at">fit =</span> <span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(lifeExp <span class="sc">~</span> <span class="fu">log</span>(gdpPercap), <span class="at">data =</span> .x)),</span>
+<span id="cb7-5"><a></a>    <span class="at">tidy_out =</span> <span class="fu">map</span>(fit, tidy)</span>
+<span id="cb7-6"><a></a>  )</span>
+<span id="cb7-7"><a></a></span>
+<span id="cb7-8"><a></a>lm_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 60 × 5
    continent  year data              fit    tidy_out        
@@ -672,15 +701,15 @@ Claus O. Wilke
 <h2>Making a plot with error bars</h2>
 <div class="tiny-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>lm_data <span class="ot">&lt;-</span> gapminder <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span><span class="fu">c</span>(continent, year)) <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb7-4"><a></a>    <span class="at">fit =</span> <span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(lifeExp <span class="sc">~</span> <span class="fu">log</span>(gdpPercap), <span class="at">data =</span> .x)),</span>
-<span id="cb7-5"><a></a>    <span class="at">tidy_out =</span> <span class="fu">map</span>(fit, tidy)</span>
-<span id="cb7-6"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb7-7"><a></a>  <span class="fu">unnest</span>(<span class="at">cols =</span> tidy_out)</span>
-<span id="cb7-8"><a></a></span>
-<span id="cb7-9"><a></a>lm_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>lm_data <span class="ot">&lt;-</span> gapminder <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span><span class="fu">c</span>(continent, year)) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb9-4"><a></a>    <span class="at">fit =</span> <span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(lifeExp <span class="sc">~</span> <span class="fu">log</span>(gdpPercap), <span class="at">data =</span> .x)),</span>
+<span id="cb9-5"><a></a>    <span class="at">tidy_out =</span> <span class="fu">map</span>(fit, tidy)</span>
+<span id="cb9-6"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb9-7"><a></a>  <span class="fu">unnest</span>(<span class="at">cols =</span> tidy_out)</span>
+<span id="cb9-8"><a></a></span>
+<span id="cb9-9"><a></a>lm_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 120 × 9
    continent  year data     fit    term     estimate std.error statistic p.value
@@ -704,16 +733,16 @@ Claus O. Wilke
 <h2>Making a plot with error bars</h2>
 <div class="tiny-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>lm_data <span class="ot">&lt;-</span> gapminder <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span><span class="fu">c</span>(continent, year)) <span class="sc">|&gt;</span></span>
-<span id="cb9-3"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb9-4"><a></a>    <span class="at">fit =</span> <span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(lifeExp <span class="sc">~</span> <span class="fu">log</span>(gdpPercap), <span class="at">data =</span> .x)),</span>
-<span id="cb9-5"><a></a>    <span class="at">tidy_out =</span> <span class="fu">map</span>(fit, tidy)</span>
-<span id="cb9-6"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb9-7"><a></a>  <span class="fu">unnest</span>(<span class="at">cols =</span> tidy_out) <span class="sc">|&gt;</span></span>
-<span id="cb9-8"><a></a>  <span class="fu">select</span>(<span class="sc">-</span>fit, <span class="sc">-</span>data)</span>
-<span id="cb9-9"><a></a></span>
-<span id="cb9-10"><a></a>lm_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>lm_data <span class="ot">&lt;-</span> gapminder <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span><span class="fu">c</span>(continent, year)) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb11-4"><a></a>    <span class="at">fit =</span> <span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(lifeExp <span class="sc">~</span> <span class="fu">log</span>(gdpPercap), <span class="at">data =</span> .x)),</span>
+<span id="cb11-5"><a></a>    <span class="at">tidy_out =</span> <span class="fu">map</span>(fit, tidy)</span>
+<span id="cb11-6"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb11-7"><a></a>  <span class="fu">unnest</span>(<span class="at">cols =</span> tidy_out) <span class="sc">|&gt;</span></span>
+<span id="cb11-8"><a></a>  <span class="fu">select</span>(<span class="sc">-</span>fit, <span class="sc">-</span>data)</span>
+<span id="cb11-9"><a></a></span>
+<span id="cb11-10"><a></a>lm_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 120 × 7
    continent  year term           estimate std.error statistic  p.value
@@ -737,17 +766,17 @@ Claus O. Wilke
 <h2>Making a plot with error bars</h2>
 <div class="tiny-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>lm_data <span class="ot">&lt;-</span> gapminder <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span><span class="fu">c</span>(continent, year)) <span class="sc">|&gt;</span></span>
-<span id="cb11-3"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb11-4"><a></a>    <span class="at">fit =</span> <span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(lifeExp <span class="sc">~</span> <span class="fu">log</span>(gdpPercap), <span class="at">data =</span> .x)),</span>
-<span id="cb11-5"><a></a>    <span class="at">tidy_out =</span> <span class="fu">map</span>(fit, tidy)</span>
-<span id="cb11-6"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb11-7"><a></a>  <span class="fu">unnest</span>(<span class="at">cols =</span> tidy_out) <span class="sc">|&gt;</span></span>
-<span id="cb11-8"><a></a>  <span class="fu">select</span>(<span class="sc">-</span>fit, <span class="sc">-</span>data) <span class="sc">|&gt;</span></span>
-<span id="cb11-9"><a></a>  <span class="fu">filter</span>(term <span class="sc">!=</span> <span class="st">"(Intercept)"</span>, continent <span class="sc">!=</span> <span class="st">"Oceania"</span>)</span>
-<span id="cb11-10"><a></a></span>
-<span id="cb11-11"><a></a>lm_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>lm_data <span class="ot">&lt;-</span> gapminder <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span><span class="fu">c</span>(continent, year)) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-4"><a></a>    <span class="at">fit =</span> <span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(lifeExp <span class="sc">~</span> <span class="fu">log</span>(gdpPercap), <span class="at">data =</span> .x)),</span>
+<span id="cb13-5"><a></a>    <span class="at">tidy_out =</span> <span class="fu">map</span>(fit, tidy)</span>
+<span id="cb13-6"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb13-7"><a></a>  <span class="fu">unnest</span>(<span class="at">cols =</span> tidy_out) <span class="sc">|&gt;</span></span>
+<span id="cb13-8"><a></a>  <span class="fu">select</span>(<span class="sc">-</span>fit, <span class="sc">-</span>data) <span class="sc">|&gt;</span></span>
+<span id="cb13-9"><a></a>  <span class="fu">filter</span>(term <span class="sc">!=</span> <span class="st">"(Intercept)"</span>, continent <span class="sc">!=</span> <span class="st">"Oceania"</span>)</span>
+<span id="cb13-10"><a></a></span>
+<span id="cb13-11"><a></a>lm_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 48 × 7
    continent  year term           estimate std.error statistic       p.value
@@ -772,20 +801,20 @@ Claus O. Wilke
 <div class="tiny-font">
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">ggplot</span>(lm_data) <span class="sc">+</span></span>
-<span id="cb13-2"><a></a>  <span class="fu">aes</span>(</span>
-<span id="cb13-3"><a></a>    <span class="at">x =</span> year, <span class="at">y =</span> estimate,</span>
-<span id="cb13-4"><a></a>    <span class="at">ymin =</span> estimate <span class="sc">-</span> <span class="fl">1.96</span><span class="sc">*</span>std.error,</span>
-<span id="cb13-5"><a></a>    <span class="at">ymax =</span> estimate <span class="sc">+</span> <span class="fl">1.96</span><span class="sc">*</span>std.error,</span>
-<span id="cb13-6"><a></a>    <span class="at">color =</span> continent</span>
-<span id="cb13-7"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb13-8"><a></a>  <span class="fu">geom_pointrange</span>(</span>
-<span id="cb13-9"><a></a>    <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="dv">1</span>)</span>
-<span id="cb13-10"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb13-11"><a></a>  <span class="fu">scale_x_continuous</span>(</span>
-<span id="cb13-12"><a></a>    <span class="at">breaks =</span> <span class="fu">unique</span>(gapminder<span class="sc">$</span>year)</span>
-<span id="cb13-13"><a></a>  ) <span class="sc">+</span> </span>
-<span id="cb13-14"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">ggplot</span>(lm_data) <span class="sc">+</span></span>
+<span id="cb15-2"><a></a>  <span class="fu">aes</span>(</span>
+<span id="cb15-3"><a></a>    <span class="at">x =</span> year, <span class="at">y =</span> estimate,</span>
+<span id="cb15-4"><a></a>    <span class="at">ymin =</span> estimate <span class="sc">-</span> <span class="fl">1.96</span><span class="sc">*</span>std.error,</span>
+<span id="cb15-5"><a></a>    <span class="at">ymax =</span> estimate <span class="sc">+</span> <span class="fl">1.96</span><span class="sc">*</span>std.error,</span>
+<span id="cb15-6"><a></a>    <span class="at">color =</span> continent</span>
+<span id="cb15-7"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb15-8"><a></a>  <span class="fu">geom_pointrange</span>(</span>
+<span id="cb15-9"><a></a>    <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="dv">1</span>)</span>
+<span id="cb15-10"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb15-11"><a></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb15-12"><a></a>    <span class="at">breaks =</span> <span class="fu">unique</span>(gapminder<span class="sc">$</span>year)</span>
+<span id="cb15-13"><a></a>  ) <span class="sc">+</span> </span>
+<span id="cb15-14"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -806,22 +835,22 @@ Claus O. Wilke
 <div class="fragment tiny-font">
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">library</span>(ggdist)</span>
-<span id="cb14-2"><a></a><span class="fu">library</span>(distributional) <span class="co"># for dist_normal()</span></span>
-<span id="cb14-3"><a></a></span>
-<span id="cb14-4"><a></a>lm_data <span class="sc">|&gt;</span></span>
-<span id="cb14-5"><a></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1952</span>) <span class="sc">|&gt;</span></span>
-<span id="cb14-6"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb14-7"><a></a>    <span class="at">continent =</span> </span>
-<span id="cb14-8"><a></a>      <span class="fu">fct_reorder</span>(continent, estimate) </span>
-<span id="cb14-9"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb14-10"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> estimate, <span class="at">y =</span> continent)) <span class="sc">+</span></span>
-<span id="cb14-11"><a></a>  <span class="fu">stat_dist_halfeye</span>(</span>
-<span id="cb14-12"><a></a>    <span class="fu">aes</span>(<span class="at">dist =</span> <span class="fu">dist_normal</span>(</span>
-<span id="cb14-13"><a></a>      <span class="at">mu =</span> estimate, <span class="at">sigma =</span> std.error</span>
-<span id="cb14-14"><a></a>    )),</span>
-<span id="cb14-15"><a></a>    <span class="at">point_size =</span> <span class="dv">4</span></span>
-<span id="cb14-16"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">library</span>(ggdist)</span>
+<span id="cb16-2"><a></a><span class="fu">library</span>(distributional) <span class="co"># for dist_normal()</span></span>
+<span id="cb16-3"><a></a></span>
+<span id="cb16-4"><a></a>lm_data <span class="sc">|&gt;</span></span>
+<span id="cb16-5"><a></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1952</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-6"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb16-7"><a></a>    <span class="at">continent =</span> </span>
+<span id="cb16-8"><a></a>      <span class="fu">fct_reorder</span>(continent, estimate) </span>
+<span id="cb16-9"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb16-10"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> estimate, <span class="at">y =</span> continent)) <span class="sc">+</span></span>
+<span id="cb16-11"><a></a>  <span class="fu">stat_dist_halfeye</span>(</span>
+<span id="cb16-12"><a></a>    <span class="fu">aes</span>(<span class="at">dist =</span> <span class="fu">dist_normal</span>(</span>
+<span id="cb16-13"><a></a>      <span class="at">mu =</span> estimate, <span class="at">sigma =</span> std.error</span>
+<span id="cb16-14"><a></a>    )),</span>
+<span id="cb16-15"><a></a>    <span class="at">point_size =</span> <span class="dv">4</span></span>
+<span id="cb16-16"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -842,23 +871,23 @@ Claus O. Wilke
 <div class="tiny-font">
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">library</span>(ggdist)</span>
-<span id="cb15-2"><a></a><span class="fu">library</span>(distributional) <span class="co"># for dist_normal()</span></span>
-<span id="cb15-3"><a></a></span>
-<span id="cb15-4"><a></a>lm_data <span class="sc">|&gt;</span></span>
-<span id="cb15-5"><a></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1952</span>) <span class="sc">|&gt;</span></span>
-<span id="cb15-6"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb15-7"><a></a>    <span class="at">continent =</span> </span>
-<span id="cb15-8"><a></a>      <span class="fu">fct_reorder</span>(continent, estimate) </span>
-<span id="cb15-9"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb15-10"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> estimate, <span class="at">y =</span> continent)) <span class="sc">+</span></span>
-<span id="cb15-11"><a></a>  <span class="fu">stat_dist_gradientinterval</span>(</span>
-<span id="cb15-12"><a></a>    <span class="fu">aes</span>(<span class="at">dist =</span> <span class="fu">dist_normal</span>(</span>
-<span id="cb15-13"><a></a>      <span class="at">mu =</span> estimate, <span class="at">sigma =</span> std.error</span>
-<span id="cb15-14"><a></a>    )),</span>
-<span id="cb15-15"><a></a>    <span class="at">point_size =</span> <span class="dv">4</span>,</span>
-<span id="cb15-16"><a></a>    <span class="at">fill =</span> <span class="st">"skyblue"</span></span>
-<span id="cb15-17"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">library</span>(ggdist)</span>
+<span id="cb17-2"><a></a><span class="fu">library</span>(distributional) <span class="co"># for dist_normal()</span></span>
+<span id="cb17-3"><a></a></span>
+<span id="cb17-4"><a></a>lm_data <span class="sc">|&gt;</span></span>
+<span id="cb17-5"><a></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1952</span>) <span class="sc">|&gt;</span></span>
+<span id="cb17-6"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-7"><a></a>    <span class="at">continent =</span> </span>
+<span id="cb17-8"><a></a>      <span class="fu">fct_reorder</span>(continent, estimate) </span>
+<span id="cb17-9"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb17-10"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> estimate, <span class="at">y =</span> continent)) <span class="sc">+</span></span>
+<span id="cb17-11"><a></a>  <span class="fu">stat_dist_gradientinterval</span>(</span>
+<span id="cb17-12"><a></a>    <span class="fu">aes</span>(<span class="at">dist =</span> <span class="fu">dist_normal</span>(</span>
+<span id="cb17-13"><a></a>      <span class="at">mu =</span> estimate, <span class="at">sigma =</span> std.error</span>
+<span id="cb17-14"><a></a>    )),</span>
+<span id="cb17-15"><a></a>    <span class="at">point_size =</span> <span class="dv">4</span>,</span>
+<span id="cb17-16"><a></a>    <span class="at">fill =</span> <span class="st">"skyblue"</span></span>
+<span id="cb17-17"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -879,24 +908,24 @@ Claus O. Wilke
 <div class="tiny-font">
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">library</span>(ggdist)</span>
-<span id="cb16-2"><a></a><span class="fu">library</span>(distributional) <span class="co"># for dist_normal()</span></span>
-<span id="cb16-3"><a></a></span>
-<span id="cb16-4"><a></a>lm_data <span class="sc">|&gt;</span></span>
-<span id="cb16-5"><a></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1952</span>) <span class="sc">|&gt;</span></span>
-<span id="cb16-6"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb16-7"><a></a>    <span class="at">continent =</span> </span>
-<span id="cb16-8"><a></a>      <span class="fu">fct_reorder</span>(continent, estimate) </span>
-<span id="cb16-9"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb16-10"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> estimate, <span class="at">y =</span> continent)) <span class="sc">+</span></span>
-<span id="cb16-11"><a></a>  <span class="fu">stat_dist_dotsinterval</span>(</span>
-<span id="cb16-12"><a></a>    <span class="fu">aes</span>(<span class="at">dist =</span> <span class="fu">dist_normal</span>(</span>
-<span id="cb16-13"><a></a>      <span class="at">mu =</span> estimate, <span class="at">sigma =</span> std.error</span>
-<span id="cb16-14"><a></a>    )),</span>
-<span id="cb16-15"><a></a>    <span class="at">point_size =</span> <span class="dv">4</span>,</span>
-<span id="cb16-16"><a></a>    <span class="at">fill =</span> <span class="st">"skyblue"</span>,</span>
-<span id="cb16-17"><a></a>    <span class="at">quantiles =</span> <span class="dv">20</span></span>
-<span id="cb16-18"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">library</span>(ggdist)</span>
+<span id="cb18-2"><a></a><span class="fu">library</span>(distributional) <span class="co"># for dist_normal()</span></span>
+<span id="cb18-3"><a></a></span>
+<span id="cb18-4"><a></a>lm_data <span class="sc">|&gt;</span></span>
+<span id="cb18-5"><a></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1952</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-6"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb18-7"><a></a>    <span class="at">continent =</span> </span>
+<span id="cb18-8"><a></a>      <span class="fu">fct_reorder</span>(continent, estimate) </span>
+<span id="cb18-9"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb18-10"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> estimate, <span class="at">y =</span> continent)) <span class="sc">+</span></span>
+<span id="cb18-11"><a></a>  <span class="fu">stat_dist_dotsinterval</span>(</span>
+<span id="cb18-12"><a></a>    <span class="fu">aes</span>(<span class="at">dist =</span> <span class="fu">dist_normal</span>(</span>
+<span id="cb18-13"><a></a>      <span class="at">mu =</span> estimate, <span class="at">sigma =</span> std.error</span>
+<span id="cb18-14"><a></a>    )),</span>
+<span id="cb18-15"><a></a>    <span class="at">point_size =</span> <span class="dv">4</span>,</span>
+<span id="cb18-16"><a></a>    <span class="at">fill =</span> <span class="st">"skyblue"</span>,</span>
+<span id="cb18-17"><a></a>    <span class="at">quantiles =</span> <span class="dv">20</span></span>
+<span id="cb18-18"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -917,24 +946,24 @@ Claus O. Wilke
 <div class="tiny-font">
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">library</span>(ggdist)</span>
-<span id="cb17-2"><a></a><span class="fu">library</span>(distributional) <span class="co"># for dist_normal()</span></span>
-<span id="cb17-3"><a></a></span>
-<span id="cb17-4"><a></a>lm_data <span class="sc">|&gt;</span></span>
-<span id="cb17-5"><a></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1952</span>) <span class="sc">|&gt;</span></span>
-<span id="cb17-6"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb17-7"><a></a>    <span class="at">continent =</span> </span>
-<span id="cb17-8"><a></a>      <span class="fu">fct_reorder</span>(continent, estimate) </span>
-<span id="cb17-9"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb17-10"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> estimate, <span class="at">y =</span> continent)) <span class="sc">+</span></span>
-<span id="cb17-11"><a></a>  <span class="fu">stat_dist_dotsinterval</span>(</span>
-<span id="cb17-12"><a></a>    <span class="fu">aes</span>(<span class="at">dist =</span> <span class="fu">dist_normal</span>(</span>
-<span id="cb17-13"><a></a>      <span class="at">mu =</span> estimate, <span class="at">sigma =</span> std.error</span>
-<span id="cb17-14"><a></a>    )),</span>
-<span id="cb17-15"><a></a>    <span class="at">point_size =</span> <span class="dv">4</span>,</span>
-<span id="cb17-16"><a></a>    <span class="at">fill =</span> <span class="st">"skyblue"</span>,</span>
-<span id="cb17-17"><a></a>    <span class="at">quantiles =</span> <span class="dv">10</span></span>
-<span id="cb17-18"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">library</span>(ggdist)</span>
+<span id="cb19-2"><a></a><span class="fu">library</span>(distributional) <span class="co"># for dist_normal()</span></span>
+<span id="cb19-3"><a></a></span>
+<span id="cb19-4"><a></a>lm_data <span class="sc">|&gt;</span></span>
+<span id="cb19-5"><a></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1952</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-6"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-7"><a></a>    <span class="at">continent =</span> </span>
+<span id="cb19-8"><a></a>      <span class="fu">fct_reorder</span>(continent, estimate) </span>
+<span id="cb19-9"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb19-10"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> estimate, <span class="at">y =</span> continent)) <span class="sc">+</span></span>
+<span id="cb19-11"><a></a>  <span class="fu">stat_dist_dotsinterval</span>(</span>
+<span id="cb19-12"><a></a>    <span class="fu">aes</span>(<span class="at">dist =</span> <span class="fu">dist_normal</span>(</span>
+<span id="cb19-13"><a></a>      <span class="at">mu =</span> estimate, <span class="at">sigma =</span> std.error</span>
+<span id="cb19-14"><a></a>    )),</span>
+<span id="cb19-15"><a></a>    <span class="at">point_size =</span> <span class="dv">4</span>,</span>
+<span id="cb19-16"><a></a>    <span class="at">fill =</span> <span class="st">"skyblue"</span>,</span>
+<span id="cb19-17"><a></a>    <span class="at">quantiles =</span> <span class="dv">10</span></span>
+<span id="cb19-18"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">

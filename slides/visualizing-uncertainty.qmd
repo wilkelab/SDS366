@@ -460,6 +460,22 @@ Fuel efficiency versus displacement, for 32 cars (1973–74 models). Source: Mot
 
 # Uncertainty visualizations in R
 
+## Getting the data
+
+::: {.small-font}
+The `gapminder` dataset:
+:::
+
+::: {.smaller-font}
+```{r}
+#| echo: true
+#| message: false
+library(gapminder)
+
+gapminder
+```
+:::
+
 ## Making a plot with error bars
 
 ::: {.fragment .small-font}

@@ -6958,6 +6958,13 @@
     "text": "Hypothetical Outcome Plots again help develop intuition\n\n\n\n\n\n\nFuel efficiency versus displacement, for 32 cars (1973–74 models). Source: Motor Trend, 1974"
   },
   {
+    "objectID": "slides/visualizing-uncertainty.html#getting-the-data",
+    "href": "slides/visualizing-uncertainty.html#getting-the-data",
+    "title": "Visualizing Uncertainty",
+    "section": "Getting the data",
+    "text": "Getting the data\n\nThe gapminder dataset:\n\n\n\nlibrary(gapminder)\n\ngapminder\n\n# A tibble: 1,704 × 6\n   country     continent  year lifeExp      pop gdpPercap\n   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;\n 1 Afghanistan Asia       1952    28.8  8425333      779.\n 2 Afghanistan Asia       1957    30.3  9240934      821.\n 3 Afghanistan Asia       1962    32.0 10267083      853.\n 4 Afghanistan Asia       1967    34.0 11537966      836.\n 5 Afghanistan Asia       1972    36.1 13079460      740.\n 6 Afghanistan Asia       1977    38.4 14880372      786.\n 7 Afghanistan Asia       1982    39.9 12881816      978.\n 8 Afghanistan Asia       1987    40.8 13867957      852.\n 9 Afghanistan Asia       1992    41.7 16317921      649.\n10 Afghanistan Asia       1997    41.8 22227415      635.\n# ℹ 1,694 more rows"
+  },
+  {
     "objectID": "slides/visualizing-uncertainty.html#making-a-plot-with-error-bars",
     "href": "slides/visualizing-uncertainty.html#making-a-plot-with-error-bars",
     "title": "Visualizing Uncertainty",
