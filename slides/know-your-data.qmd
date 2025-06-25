@@ -436,6 +436,7 @@ options(width = 74)
 
 ::: {.small-font}
 ```{r}
+#| echo: true
 names(NCbirths)
 ```
 :::

@@ -1754,7 +1754,7 @@
     "href": "slides/know-your-data.html#detailed-quality-checks-look-at-all-column-names",
     "title": "Getting to know your data",
     "section": "Detailed quality checks: Look at all column names",
-    "text": "Detailed quality checks: Look at all column names\n\n\n\n [1] \"ID\"            \"Plural\"        \"Sex\"           \"MomAge\"       \n [5] \"Weeks\"         \"Marital\"       \"RaceMom\"       \"HispMom\"      \n [9] \"Gained\"        \"Smoke\"         \"BirthWeightOz\" \"BirthWeightGm\"\n[13] \"Low\"           \"Premie\"        \"MomRace\"      \n\n\n\n\nWhat’s the difference between RaceMom and MomRace?"
+    "text": "Detailed quality checks: Look at all column names\n\n\nnames(NCbirths)\n\n [1] \"ID\"            \"Plural\"        \"Sex\"           \"MomAge\"       \n [5] \"Weeks\"         \"Marital\"       \"RaceMom\"       \"HispMom\"      \n [9] \"Gained\"        \"Smoke\"         \"BirthWeightOz\" \"BirthWeightGm\"\n[13] \"Low\"           \"Premie\"        \"MomRace\"      \n\n\n\n\nWhat’s the difference between RaceMom and MomRace?"
   },
   {
     "objectID": "slides/know-your-data.html#detailed-quality-checks-look-at-all-column-names-1",
@@ -2216,49 +2216,49 @@
     "href": "slides/getting-things-in-order.html#we-can-also-order-facets",
     "title": "Getting things into the right order",
     "section": "We can also order facets",
-    "text": "We can also order facets\n\n\ngapminder |&gt;\n  filter(country %in% c(\"Norway\", \"Portugal\", \"Spain\", \"Austria\")) |&gt;\n  ggplot(aes(year, lifeExp)) + geom_line() +\n  facet_wrap(vars(country), nrow = 1)\n\n\n\n\n \n\n\n\n\n\n\n\nDefault ordering is alphabetic; there’s no good reason for this ordering\nLet’s apply fct_reorder() and see what happens"
+    "text": "We can also order facets\n\n\ngapminder |&gt;\n  filter(country %in% c(\"Norway\", \"Portugal\", \"Spain\", \"Austria\")) |&gt;\n  ggplot(aes(year, lifeExp)) + geom_line() +\n  facet_wrap(~country, nrow = 1)\n\n\n\n\n \n\n\n\n\n\n\n\nDefault ordering is alphabetic; there’s no good reason for this ordering\nLet’s apply fct_reorder() and see what happens"
   },
   {
     "objectID": "slides/getting-things-in-order.html#we-can-also-order-facets-1",
     "href": "slides/getting-things-in-order.html#we-can-also-order-facets-1",
     "title": "Getting things into the right order",
     "section": "We can also order facets",
-    "text": "We can also order facets\n\n\ngapminder |&gt;\n  filter(country %in% c(\"Norway\", \"Portugal\", \"Spain\", \"Austria\")) |&gt;\n  mutate(country = fct_reorder(country, lifeExp)) |&gt; # default: order by median\n  ggplot(aes(year, lifeExp)) + geom_line() +\n  facet_wrap(vars(country), nrow = 1)\n\n\n\n\n \n\n\n\n\n\n\n\nWhen the levels of a factor occur more than once, fct_reorder() applies a summary function\nThe default summary function is median()"
+    "text": "We can also order facets\n\n\ngapminder |&gt;\n  filter(country %in% c(\"Norway\", \"Portugal\", \"Spain\", \"Austria\")) |&gt;\n  mutate(country = fct_reorder(country, lifeExp)) |&gt; # default: order by median\n  ggplot(aes(year, lifeExp)) + geom_line() +\n  facet_wrap(~country, nrow = 1)\n\n\n\n\n \n\n\n\n\n\n\n\nWhen the levels of a factor occur more than once, fct_reorder() applies a summary function\nThe default summary function is median()"
   },
   {
     "objectID": "slides/getting-things-in-order.html#we-can-also-order-facets-2",
     "href": "slides/getting-things-in-order.html#we-can-also-order-facets-2",
     "title": "Getting things into the right order",
     "section": "We can also order facets",
-    "text": "We can also order facets\n\n\ngapminder |&gt;\n  filter(country %in% c(\"Norway\", \"Portugal\", \"Spain\", \"Austria\")) |&gt;\n  mutate(country = fct_reorder(country, lifeExp, median)) |&gt; # order by median\n  ggplot(aes(year, lifeExp)) + geom_line() +\n  facet_wrap(vars(country), nrow = 1)\n\n\n\n\n \n\n\n\n\n\n\n\nWhen the levels of a factor occur more than once, fct_reorder() applies a summary function\nThe default summary function is median()"
+    "text": "We can also order facets\n\n\ngapminder |&gt;\n  filter(country %in% c(\"Norway\", \"Portugal\", \"Spain\", \"Austria\")) |&gt;\n  mutate(country = fct_reorder(country, lifeExp, median)) |&gt; # order by median\n  ggplot(aes(year, lifeExp)) + geom_line() +\n  facet_wrap(~country, nrow = 1)\n\n\n\n\n \n\n\n\n\n\n\n\nWhen the levels of a factor occur more than once, fct_reorder() applies a summary function\nThe default summary function is median()"
   },
   {
     "objectID": "slides/getting-things-in-order.html#alternative-orderings-by-smallest-value-per-facet",
     "href": "slides/getting-things-in-order.html#alternative-orderings-by-smallest-value-per-facet",
     "title": "Getting things into the right order",
     "section": "Alternative orderings: By smallest value per facet",
-    "text": "Alternative orderings: By smallest value per facet\n\n\ngapminder |&gt;\n  filter(country %in% c(\"Norway\", \"Portugal\", \"Spain\", \"Austria\")) |&gt;\n  mutate(country = fct_reorder(country, lifeExp, min)) |&gt; # order by minimum\n  ggplot(aes(year, lifeExp)) + geom_line() +\n  facet_wrap(vars(country), nrow = 1)"
+    "text": "Alternative orderings: By smallest value per facet\n\n\ngapminder |&gt;\n  filter(country %in% c(\"Norway\", \"Portugal\", \"Spain\", \"Austria\")) |&gt;\n  mutate(country = fct_reorder(country, lifeExp, min)) |&gt; # order by minimum\n  ggplot(aes(year, lifeExp)) + geom_line() +\n  facet_wrap(~country, nrow = 1)"
   },
   {
     "objectID": "slides/getting-things-in-order.html#alternative-orderings-by-largest-value-per-facet",
     "href": "slides/getting-things-in-order.html#alternative-orderings-by-largest-value-per-facet",
     "title": "Getting things into the right order",
     "section": "Alternative orderings: By largest value per facet",
-    "text": "Alternative orderings: By largest value per facet\n\n\ngapminder |&gt;\n  filter(country %in% c(\"Norway\", \"Portugal\", \"Spain\", \"Austria\")) |&gt;\n  mutate(country = fct_reorder(country, lifeExp, max)) |&gt; # order by maximum\n  ggplot(aes(year, lifeExp)) + geom_line() +\n  facet_wrap(vars(country), nrow = 1)"
+    "text": "Alternative orderings: By largest value per facet\n\n\ngapminder |&gt;\n  filter(country %in% c(\"Norway\", \"Portugal\", \"Spain\", \"Austria\")) |&gt;\n  mutate(country = fct_reorder(country, lifeExp, max)) |&gt; # order by maximum\n  ggplot(aes(year, lifeExp)) + geom_line() +\n  facet_wrap(~country, nrow = 1)"
   },
   {
     "objectID": "slides/getting-things-in-order.html#alternative-orderings-by-smallest-difference",
     "href": "slides/getting-things-in-order.html#alternative-orderings-by-smallest-difference",
     "title": "Getting things into the right order",
     "section": "Alternative orderings: By smallest difference",
-    "text": "Alternative orderings: By smallest difference\n\n\ngapminder |&gt;\n  filter(country %in% c(\"Norway\", \"Portugal\", \"Spain\", \"Austria\")) |&gt;\n  mutate(country = fct_reorder(country, lifeExp, \\(x) { max(x) - min(x) })) |&gt; \n  ggplot(aes(year, lifeExp)) + geom_line() +\n  facet_wrap(vars(country), nrow = 1)"
+    "text": "Alternative orderings: By smallest difference\n\n\ngapminder |&gt;\n  filter(country %in% c(\"Norway\", \"Portugal\", \"Spain\", \"Austria\")) |&gt;\n  mutate(country = fct_reorder(country, lifeExp, \\(x) { max(x) - min(x) })) |&gt; \n  ggplot(aes(year, lifeExp)) + geom_line() +\n  facet_wrap(~country, nrow = 1)"
   },
   {
     "objectID": "slides/getting-things-in-order.html#alternative-orderings-by-largest-difference",
     "href": "slides/getting-things-in-order.html#alternative-orderings-by-largest-difference",
     "title": "Getting things into the right order",
     "section": "Alternative orderings: By largest difference",
-    "text": "Alternative orderings: By largest difference\n\n\ngapminder |&gt;\n  filter(country %in% c(\"Norway\", \"Portugal\", \"Spain\", \"Austria\")) |&gt;\n  mutate(country = fct_reorder(country, lifeExp, \\(x) { min(x) - max(x) })) |&gt; \n  ggplot(aes(year, lifeExp)) + geom_line() +\n  facet_wrap(vars(country), nrow = 1)"
+    "text": "Alternative orderings: By largest difference\n\n\ngapminder |&gt;\n  filter(country %in% c(\"Norway\", \"Portugal\", \"Spain\", \"Austria\")) |&gt;\n  mutate(country = fct_reorder(country, lifeExp, \\(x) { min(x) - max(x) })) |&gt; \n  ggplot(aes(year, lifeExp)) + geom_line() +\n  facet_wrap(~country, nrow = 1)"
   },
   {
     "objectID": "slides/getting-things-in-order.html#final-example-lumping-factor-levels-together",

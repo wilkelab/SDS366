@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.39">
 
   <meta name="author" content="Claus O. Wilke">
-  <meta name="dcterms.date" content="2025-02-17">
+  <meta name="dcterms.date" content="2025-06-25">
   <title>SDS 366 – Getting to know your data</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -205,7 +205,7 @@ Claus O. Wilke
 </div>
 </div>
 
-  <p class="date">2025-02-17</p>
+  <p class="date">2025-06-25</p>
 </section>
 <section id="any-data-analysis-should-start-with-basic-quality-control" class="slide level2">
 <h2>Any data analysis should start with basic quality control</h2>
@@ -718,6 +718,7 @@ Claus O. Wilke
 <h2>Detailed quality checks: Look at all column names</h2>
 <div class="small-font">
 <div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">names</span>(NCbirths)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "ID"            "Plural"        "Sex"           "MomAge"       
  [5] "Weeks"         "Marital"       "RaceMom"       "HispMom"      
@@ -747,7 +748,7 @@ Claus O. Wilke
 <div class="column tiny-font" style="width:&quot;50%;">
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">summary</span>(NCbirths<span class="sc">$</span>ID) <span class="co"># five number summary</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">summary</span>(NCbirths<span class="sc">$</span>ID) <span class="co"># five number summary</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
     1.0   363.2   725.5   725.5  1087.8  1450.0 </code></pre>
@@ -757,7 +758,7 @@ Claus O. Wilke
 <p><br></p>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">unique</span>(NCbirths<span class="sc">$</span>ID)  <span class="co"># all unique values</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">unique</span>(NCbirths<span class="sc">$</span>ID)  <span class="co"># all unique values</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   [1]    1    2    3    4    5    6    7    8
    [9]    9   10   11   12   13   14   15   16
@@ -946,9 +947,9 @@ Claus O. Wilke
 </div>
 </div><div class="fragment tiny-font column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="co"># histogram</span></span>
-<span id="cb14-2"><a></a><span class="fu">ggplot</span>(NCbirths, <span class="fu">aes</span>(ID)) <span class="sc">+</span></span>
-<span id="cb14-3"><a></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="co"># histogram</span></span>
+<span id="cb15-2"><a></a><span class="fu">ggplot</span>(NCbirths, <span class="fu">aes</span>(ID)) <span class="sc">+</span></span>
+<span id="cb15-3"><a></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -965,7 +966,7 @@ Claus O. Wilke
 <div class="columns">
 <div class="column tiny-font" style="width:&quot;50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">summary</span>(NCbirths<span class="sc">$</span>Plural) <span class="co"># five number summary</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">summary</span>(NCbirths<span class="sc">$</span>Plural) <span class="co"># five number summary</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   1.000   1.000   1.000   1.037   1.000   3.000 </code></pre>
@@ -974,7 +975,7 @@ Claus O. Wilke
 <p><br></p>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">unique</span>(NCbirths<span class="sc">$</span>Plural)  <span class="co"># all unique values</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">unique</span>(NCbirths<span class="sc">$</span>Plural)  <span class="co"># all unique values</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1 2 3</code></pre>
 </div>
@@ -982,9 +983,9 @@ Claus O. Wilke
 </div>
 </div><div class="fragment tiny-font column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="co"># histogram</span></span>
-<span id="cb19-2"><a></a><span class="fu">ggplot</span>(NCbirths, <span class="fu">aes</span>(Plural)) <span class="sc">+</span></span>
-<span id="cb19-3"><a></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="co"># histogram</span></span>
+<span id="cb20-2"><a></a><span class="fu">ggplot</span>(NCbirths, <span class="fu">aes</span>(Plural)) <span class="sc">+</span></span>
+<span id="cb20-3"><a></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1001,7 +1002,7 @@ Claus O. Wilke
 <div class="columns">
 <div class="column tiny-font" style="width:&quot;50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">summary</span>(NCbirths<span class="sc">$</span>Weeks) <span class="co"># five number summary</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">summary</span>(NCbirths<span class="sc">$</span>Weeks) <span class="co"># five number summary</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 -999.00   38.00   39.00   37.91   40.00   45.00 </code></pre>
@@ -1010,7 +1011,7 @@ Claus O. Wilke
 <p><br></p>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">unique</span>(NCbirths<span class="sc">$</span>Weeks)  <span class="co"># all unique values</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">unique</span>(NCbirths<span class="sc">$</span>Weeks)  <span class="co"># all unique values</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]   40   37   39   43   42   41   36   38   30
 [10]   31   45   33   34   44   32   35   24   27
@@ -1020,9 +1021,9 @@ Claus O. Wilke
 </div>
 </div><div class="fragment tiny-font column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="co"># histogram</span></span>
-<span id="cb24-2"><a></a><span class="fu">ggplot</span>(NCbirths, <span class="fu">aes</span>(Weeks)) <span class="sc">+</span></span>
-<span id="cb24-3"><a></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="co"># histogram</span></span>
+<span id="cb25-2"><a></a><span class="fu">ggplot</span>(NCbirths, <span class="fu">aes</span>(Weeks)) <span class="sc">+</span></span>
+<span id="cb25-3"><a></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1042,18 +1043,18 @@ Claus O. Wilke
 <div class="fragment small-font">
 <p>We need to make sure to catch those cases:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">library</span>(naniar) <span class="co"># library for handling missing values</span></span>
-<span id="cb25-2"><a></a></span>
-<span id="cb25-3"><a></a>NCbirths <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb25-4"><a></a>  <span class="st">"https://wilkelab.org/SDS366/datasets/NCbirths.csv"</span>,</span>
-<span id="cb25-5"><a></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>, <span class="st">"#N/A"</span>)</span>
-<span id="cb25-6"><a></a>) <span class="sc">|&gt;</span> <span class="fu">replace_with_na_at</span>(<span class="st">"Weeks"</span>, <span class="sc">~</span>.x <span class="sc">&lt;</span> <span class="dv">0</span>) <span class="co"># recode negative weeks to NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">library</span>(naniar) <span class="co"># library for handling missing values</span></span>
+<span id="cb26-2"><a></a></span>
+<span id="cb26-3"><a></a>NCbirths <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb26-4"><a></a>  <span class="st">"https://wilkelab.org/SDS366/datasets/NCbirths.csv"</span>,</span>
+<span id="cb26-5"><a></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>, <span class="st">"#N/A"</span>)</span>
+<span id="cb26-6"><a></a>) <span class="sc">|&gt;</span> <span class="fu">replace_with_na_at</span>(<span class="st">"Weeks"</span>, <span class="sc">~</span>.x <span class="sc">&lt;</span> <span class="dv">0</span>) <span class="co"># recode negative weeks to NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p><br></p>
 <div class="fragment small-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">summary</span>(NCbirths<span class="sc">$</span>Weeks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">summary</span>(NCbirths<span class="sc">$</span>Weeks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
   22.00   38.00   39.00   38.62   40.00   45.00       1 </code></pre>
@@ -1063,7 +1064,7 @@ Claus O. Wilke
 <p><br></p>
 <div class="fragment small-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="fu">unique</span>(NCbirths<span class="sc">$</span>Weeks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="fu">unique</span>(NCbirths<span class="sc">$</span>Weeks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 40 37 39 43 42 41 36 38 30 31 45 33 34 44 32 35 24 27 23 29 25 28 22
 [24] NA 26</code></pre>
@@ -1076,8 +1077,8 @@ Claus O. Wilke
 <div class="columns">
 <div class="column tiny-font" style="width:50%;">
 <p>Before recoding -999 to <code>NA</code>:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="fu">ggplot</span>(NCbirths, <span class="fu">aes</span>(Weeks)) <span class="sc">+</span></span>
-<span id="cb30-2"><a></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="fu">ggplot</span>(NCbirths, <span class="fu">aes</span>(Weeks)) <span class="sc">+</span></span>
+<span id="cb31-2"><a></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -1091,8 +1092,8 @@ Claus O. Wilke
 </div><div class="column tiny-font" style="width:50%;">
 <p>After recoding -999 to <code>NA</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="fu">ggplot</span>(NCbirths, <span class="fu">aes</span>(Weeks)) <span class="sc">+</span></span>
-<span id="cb31-2"><a></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a><span class="fu">ggplot</span>(NCbirths, <span class="fu">aes</span>(Weeks)) <span class="sc">+</span></span>
+<span id="cb32-2"><a></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1109,8 +1110,8 @@ Claus O. Wilke
 <div class="small-font">
 <p>Sex of the baby is encoded as 1/2:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>NCbirths <span class="sc">|&gt;</span></span>
-<span id="cb32-2"><a></a>  <span class="fu">pull</span>(Sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>NCbirths <span class="sc">|&gt;</span></span>
+<span id="cb33-2"><a></a>  <span class="fu">pull</span>(Sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   [1] 1 2 1 1 1 1 2 2 2 2 1 2 2 2 2 1 1 1 1 1 2 2 2 2 2 1 2 2 1 2 1 2 2 1
   [35] 2 2 1 2 1 2 2 1 2 1 1 1 2 1 1 2 2 1 2 2 2 1 1 2 1 2 1 2 1 2 2 1 1 2
@@ -1164,11 +1165,11 @@ Claus O. Wilke
 <div class="small-font">
 <p>Recode as <code>"male"</code>/<code>"female"</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a>NCbirths <span class="sc">|&gt;</span></span>
-<span id="cb34-2"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb34-3"><a></a>    <span class="at">Sex =</span> <span class="fu">if_else</span>(Sex <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"male"</span>, <span class="st">"female"</span>)</span>
-<span id="cb34-4"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb34-5"><a></a>  <span class="fu">pull</span>(Sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a>NCbirths <span class="sc">|&gt;</span></span>
+<span id="cb35-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb35-3"><a></a>    <span class="at">Sex =</span> <span class="fu">if_else</span>(Sex <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"male"</span>, <span class="st">"female"</span>)</span>
+<span id="cb35-4"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb35-5"><a></a>  <span class="fu">pull</span>(Sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   [1] "male"   "female" "male"   "male"   "male"   "male"   "female"
    [8] "female" "female" "female" "male"   "female" "female" "female"
@@ -1387,8 +1388,8 @@ Claus O. Wilke
 <div class="small-font">
 <p>The mother’s race is encoded as integers from 1 through 8:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a>NCbirths <span class="sc">|&gt;</span></span>
-<span id="cb36-2"><a></a>  <span class="fu">pull</span>(RaceMom)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a>NCbirths <span class="sc">|&gt;</span></span>
+<span id="cb37-2"><a></a>  <span class="fu">pull</span>(RaceMom)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 5 1 5 1 1 1 5 1 1 5 1 5 1 1 1 5 1 1 1 5 1
   [35] 1 1 5 5 5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 1 1 1 1 1 1 1 5 1 5 1 1 5
@@ -1442,9 +1443,9 @@ Claus O. Wilke
 <div class="small-font">
 <p>The mother’s race is encoded as integers from 1 through 8:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a>NCbirths <span class="sc">|&gt;</span></span>
-<span id="cb38-2"><a></a>  <span class="fu">pull</span>(RaceMom) <span class="sc">|&gt;</span></span>
-<span id="cb38-3"><a></a>  <span class="fu">unique</span>() <span class="co"># list all the unique values (ordered by first occurrence)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a>NCbirths <span class="sc">|&gt;</span></span>
+<span id="cb39-2"><a></a>  <span class="fu">pull</span>(RaceMom) <span class="sc">|&gt;</span></span>
+<span id="cb39-3"><a></a>  <span class="fu">unique</span>() <span class="co"># list all the unique values (ordered by first occurrence)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1 5 2 3 4 7 8</code></pre>
 </div>
@@ -1452,32 +1453,6 @@ Claus O. Wilke
 </div>
 </section>
 <section id="recode-multiple-categories-with-case_when-2" class="slide level2">
-<h2>Recode multiple categories with <code>case_when()</code></h2>
-<div class="small-font">
-<p>We use <code>case_when()</code> to recode multiple values all at once:</p>
-</div>
-<div class="columns">
-<div class="tiny-font column" style="width:50%;">
-<div class="sourceCode" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a>NCbirths <span class="sc">|&gt;</span></span>
-<span id="cb40-2"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb40-3"><a></a>    <span class="at">RaceMom =</span> <span class="fu">case_when</span>(</span>
-<span id="cb40-4"><a></a>      RaceMom <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"white"</span>,</span>
-<span id="cb40-5"><a></a>      RaceMom <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"black"</span>,</span>
-<span id="cb40-6"><a></a>      RaceMom <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">"American Indian"</span>,</span>
-<span id="cb40-7"><a></a>      RaceMom <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="st">"Chinese"</span>,</span>
-<span id="cb40-8"><a></a>      RaceMom <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Japanese"</span>,</span>
-<span id="cb40-9"><a></a>      RaceMom <span class="sc">==</span> <span class="dv">6</span> <span class="sc">~</span> <span class="st">"Hawaiian"</span>,</span>
-<span id="cb40-10"><a></a>      RaceMom <span class="sc">==</span> <span class="dv">7</span> <span class="sc">~</span> <span class="st">"Filipino"</span>,</span>
-<span id="cb40-11"><a></a>      RaceMom <span class="sc">==</span> <span class="dv">8</span> <span class="sc">~</span> </span>
-<span id="cb40-12"><a></a>        <span class="st">"Other Asian or Pacific Islander"</span>,</span>
-<span id="cb40-13"><a></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA</span> <span class="co"># should never reach</span></span>
-<span id="cb40-14"><a></a>    )</span>
-<span id="cb40-15"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column" style="width:50%;">
-<p>&nbsp;</p>
-</div></div>
-</section>
-<section id="recode-multiple-categories-with-case_when-3" class="slide level2">
 <h2>Recode multiple categories with <code>case_when()</code></h2>
 <div class="small-font">
 <p>We use <code>case_when()</code> to recode multiple values all at once:</p>
@@ -1498,8 +1473,34 @@ Claus O. Wilke
 <span id="cb41-12"><a></a>        <span class="st">"Other Asian or Pacific Islander"</span>,</span>
 <span id="cb41-13"><a></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA</span> <span class="co"># should never reach</span></span>
 <span id="cb41-14"><a></a>    )</span>
-<span id="cb41-15"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb41-16"><a></a>  <span class="fu">pull</span>(RaceMom)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb41-15"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:50%;">
+<p>&nbsp;</p>
+</div></div>
+</section>
+<section id="recode-multiple-categories-with-case_when-3" class="slide level2">
+<h2>Recode multiple categories with <code>case_when()</code></h2>
+<div class="small-font">
+<p>We use <code>case_when()</code> to recode multiple values all at once:</p>
+</div>
+<div class="columns">
+<div class="tiny-font column" style="width:50%;">
+<div class="sourceCode" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a>NCbirths <span class="sc">|&gt;</span></span>
+<span id="cb42-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb42-3"><a></a>    <span class="at">RaceMom =</span> <span class="fu">case_when</span>(</span>
+<span id="cb42-4"><a></a>      RaceMom <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"white"</span>,</span>
+<span id="cb42-5"><a></a>      RaceMom <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"black"</span>,</span>
+<span id="cb42-6"><a></a>      RaceMom <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">"American Indian"</span>,</span>
+<span id="cb42-7"><a></a>      RaceMom <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="st">"Chinese"</span>,</span>
+<span id="cb42-8"><a></a>      RaceMom <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Japanese"</span>,</span>
+<span id="cb42-9"><a></a>      RaceMom <span class="sc">==</span> <span class="dv">6</span> <span class="sc">~</span> <span class="st">"Hawaiian"</span>,</span>
+<span id="cb42-10"><a></a>      RaceMom <span class="sc">==</span> <span class="dv">7</span> <span class="sc">~</span> <span class="st">"Filipino"</span>,</span>
+<span id="cb42-11"><a></a>      RaceMom <span class="sc">==</span> <span class="dv">8</span> <span class="sc">~</span> </span>
+<span id="cb42-12"><a></a>        <span class="st">"Other Asian or Pacific Islander"</span>,</span>
+<span id="cb42-13"><a></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA</span> <span class="co"># should never reach</span></span>
+<span id="cb42-14"><a></a>    )</span>
+<span id="cb42-15"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb42-16"><a></a>  <span class="fu">pull</span>(RaceMom)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="tiny-font column" style="width:50%;">
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -2235,8 +2236,8 @@ Claus O. Wilke
 <section id="make-pairwise-scatter-plots" class="slide level2">
 <h2>Make pairwise scatter plots</h2>
 <div class="tiny-font">
-<div class="sourceCode" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a><span class="fu">ggplot</span>(NCbirths, <span class="fu">aes</span>(Plural, Sex, <span class="at">color =</span> Sex)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="st">"jitter"</span>, <span class="at">size =</span> .<span class="dv">5</span>)</span>
-<span id="cb43-2"><a></a><span class="fu">ggplot</span>(NCbirths, <span class="fu">aes</span>(Plural, MomAge, <span class="at">color =</span> Sex)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="st">"jitter"</span>, <span class="at">size =</span> .<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a><span class="fu">ggplot</span>(NCbirths, <span class="fu">aes</span>(Plural, Sex, <span class="at">color =</span> Sex)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="st">"jitter"</span>, <span class="at">size =</span> .<span class="dv">5</span>)</span>
+<span id="cb44-2"><a></a><span class="fu">ggplot</span>(NCbirths, <span class="fu">aes</span>(Plural, MomAge, <span class="at">color =</span> Sex)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="st">"jitter"</span>, <span class="at">size =</span> .<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -2252,8 +2253,8 @@ Claus O. Wilke
 <section id="make-pairwise-scatter-plots-1" class="slide level2">
 <h2>Make pairwise scatter plots</h2>
 <div class="tiny-font">
-<div class="sourceCode" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a><span class="fu">ggplot</span>(NCbirths, <span class="fu">aes</span>(Weeks, Plural, <span class="at">color =</span> Sex)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="st">"jitter"</span>, <span class="at">size =</span> .<span class="dv">5</span>)</span>
-<span id="cb44-2"><a></a><span class="fu">ggplot</span>(NCbirths, <span class="fu">aes</span>(Weeks, Gained, <span class="at">color =</span> Sex)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="st">"jitter"</span>, <span class="at">size =</span> .<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a></a><span class="fu">ggplot</span>(NCbirths, <span class="fu">aes</span>(Weeks, Plural, <span class="at">color =</span> Sex)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="st">"jitter"</span>, <span class="at">size =</span> .<span class="dv">5</span>)</span>
+<span id="cb45-2"><a></a><span class="fu">ggplot</span>(NCbirths, <span class="fu">aes</span>(Weeks, Gained, <span class="at">color =</span> Sex)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="st">"jitter"</span>, <span class="at">size =</span> .<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -2278,16 +2279,16 @@ Claus O. Wilke
 <section id="r-propagates-missingness" class="slide level2">
 <h2>R propagates missingness</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">4</span>)</span>
-<span id="cb45-2"><a></a></span>
-<span id="cb45-3"><a></a><span class="fu">sum</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">4</span>)</span>
+<span id="cb46-2"><a></a></span>
+<span id="cb46-3"><a></a><span class="fu">sum</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NA</code></pre>
 </div>
 </div>
 <div class="fragment move-down-1em">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a></a><span class="fu">mean</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a></a><span class="fu">mean</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NA</code></pre>
 </div>
@@ -2295,7 +2296,7 @@ Claus O. Wilke
 </div>
 <div class="fragment move-down-1em">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a></a>x <span class="sc">==</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a></a>x <span class="sc">==</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE  TRUE    NA FALSE</code></pre>
 </div>
@@ -2305,16 +2306,16 @@ Claus O. Wilke
 <section id="many-functions-allow-explicit-exclusion-of-na-values" class="slide level2">
 <h2>Many functions allow explicit exclusion of <code>NA</code> values</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">4</span>)</span>
-<span id="cb51-2"><a></a></span>
-<span id="cb51-3"><a></a><span class="fu">sum</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">4</span>)</span>
+<span id="cb52-2"><a></a></span>
+<span id="cb52-3"><a></a><span class="fu">sum</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 7</code></pre>
 </div>
 </div>
 <div class="fragment move-down-1em">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a></a><span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a></a><span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.333333</code></pre>
 </div>
@@ -2327,16 +2328,16 @@ Claus O. Wilke
 <section id="there-is-no-general-right-or-wrong-approach" class="slide level2">
 <h2>There is no general right or wrong approach</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
-<span id="cb55-2"><a></a><span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb56-2"><a></a><span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.352941</code></pre>
 </div>
 </div>
 <div class="fragment move-down-1em">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="dv">2</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="dv">1</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>)</span>
-<span id="cb57-2"><a></a><span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="dv">2</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="dv">1</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>)</span>
+<span id="cb58-2"><a></a><span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.5</code></pre>
 </div>
@@ -2349,14 +2350,14 @@ Claus O. Wilke
 <section id="we-need-to-use-is.na-to-check-for-missing-values" class="slide level2">
 <h2>We need to use <code>is.na()</code> to check for missing values</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">4</span>) <span class="sc">==</span> <span class="cn">NA</span>   <span class="co"># does not work</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">4</span>) <span class="sc">==</span> <span class="cn">NA</span>   <span class="co"># does not work</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NA NA NA NA</code></pre>
 </div>
 </div>
 <div class="move-down-1em">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a></a><span class="fu">is.na</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">4</span>))  <span class="co"># works</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a></a><span class="fu">is.na</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">4</span>))  <span class="co"># works</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE FALSE  TRUE FALSE</code></pre>
 </div>
@@ -2367,8 +2368,8 @@ Claus O. Wilke
 <h2>Replacing <code>NA</code> values with something else</h2>
 <p>Remember from class on data wrangling:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a></a>band_data <span class="ot">&lt;-</span> <span class="fu">full_join</span>(band_members, band_instruments)</span>
-<span id="cb63-2"><a></a>band_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a></a>band_data <span class="ot">&lt;-</span> <span class="fu">full_join</span>(band_members, band_instruments)</span>
+<span id="cb64-2"><a></a>band_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
   name  band    plays 
@@ -2384,8 +2385,8 @@ Claus O. Wilke
 <h2>Replacing <code>NA</code> values with something else</h2>
 <p>Replace <code>NA</code>s with empty strings in <code>plays</code> column:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a></a>band_data <span class="sc">|&gt;</span></span>
-<span id="cb65-2"><a></a>  <span class="fu">mutate</span>(<span class="at">plays =</span> <span class="fu">replace_na</span>(plays, <span class="st">""</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a></a>band_data <span class="sc">|&gt;</span></span>
+<span id="cb66-2"><a></a>  <span class="fu">mutate</span>(<span class="at">plays =</span> <span class="fu">replace_na</span>(plays, <span class="st">""</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
   name  band    plays   
@@ -2401,8 +2402,8 @@ Claus O. Wilke
 <h2>Replacing <code>NA</code> values with something else</h2>
 <p>Replace <code>NA</code>s with empty strings in all columns:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a></a>band_data <span class="sc">|&gt;</span></span>
-<span id="cb67-2"><a></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span><span class="fu">replace_na</span>(.x, <span class="st">""</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a></a>band_data <span class="sc">|&gt;</span></span>
+<span id="cb68-2"><a></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span><span class="fu">replace_na</span>(.x, <span class="st">""</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
   name  band      plays   
@@ -2418,9 +2419,9 @@ Claus O. Wilke
 <h2>Replacing things with <code>NA</code> values</h2>
 <p>Replace empty strings with <code>NA</code> in <code>plays</code> column (requires <strong>naniar</strong> package):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a></a>band_data <span class="sc">|&gt;</span></span>
-<span id="cb69-2"><a></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span><span class="fu">replace_na</span>(.x, <span class="st">""</span>))) <span class="sc">|&gt;</span></span>
-<span id="cb69-3"><a></a>  <span class="fu">replace_with_na_at</span>(<span class="st">"plays"</span>, <span class="sc">~</span>.x <span class="sc">==</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a></a>band_data <span class="sc">|&gt;</span></span>
+<span id="cb70-2"><a></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span><span class="fu">replace_na</span>(.x, <span class="st">""</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb70-3"><a></a>  <span class="fu">replace_with_na_at</span>(<span class="st">"plays"</span>, <span class="sc">~</span>.x <span class="sc">==</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
   name  band      plays 
@@ -2436,9 +2437,9 @@ Claus O. Wilke
 <h2>Replacing things with <code>NA</code> values</h2>
 <p>Replace empty strings with <code>NA</code> in all columns (requires <strong>naniar</strong> package):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a></a>band_data <span class="sc">|&gt;</span></span>
-<span id="cb71-2"><a></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span><span class="fu">replace_na</span>(.x, <span class="st">""</span>))) <span class="sc">|&gt;</span></span>
-<span id="cb71-3"><a></a>  <span class="fu">replace_with_na_all</span>(<span class="sc">~</span>.x <span class="sc">==</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a></a>band_data <span class="sc">|&gt;</span></span>
+<span id="cb72-2"><a></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span><span class="fu">replace_na</span>(.x, <span class="st">""</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb72-3"><a></a>  <span class="fu">replace_with_na_all</span>(<span class="sc">~</span>.x <span class="sc">==</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
   name  band    plays 
@@ -2454,8 +2455,8 @@ Claus O. Wilke
 <h2>Removing rows with <code>NA</code> values</h2>
 <p>Remove all rows with any <code>NA</code>s with <code>na.omit()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a></a>band_data <span class="sc">|&gt;</span></span>
-<span id="cb73-2"><a></a>  <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a></a>band_data <span class="sc">|&gt;</span></span>
+<span id="cb74-2"><a></a>  <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 3
   name  band    plays 
@@ -2469,8 +2470,8 @@ Claus O. Wilke
 <h2>Removing rows with <code>NA</code> values</h2>
 <p>Remove all rows where specific columns contain <code>NA</code>s:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a></a>band_data <span class="sc">|&gt;</span></span>
-<span id="cb75-2"><a></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(plays))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a></a>band_data <span class="sc">|&gt;</span></span>
+<span id="cb76-2"><a></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(plays))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
   name  band    plays 
@@ -2485,8 +2486,8 @@ Claus O. Wilke
 <h2>Removing rows with <code>NA</code> values</h2>
 <p>Conversely:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a></a>band_data <span class="sc">|&gt;</span></span>
-<span id="cb77-2"><a></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(plays))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a></a>band_data <span class="sc">|&gt;</span></span>
+<span id="cb78-2"><a></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(plays))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   name  band   plays
@@ -2500,9 +2501,9 @@ Claus O. Wilke
 <div class="small-font">
 <p>By default, missing points are not shown</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a></a><span class="fu">ggplot</span>(NCbirths) <span class="sc">+</span></span>
-<span id="cb79-2"><a></a>  <span class="fu">aes</span>(Weeks, Gained) <span class="sc">+</span></span>
-<span id="cb79-3"><a></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a></a><span class="fu">ggplot</span>(NCbirths) <span class="sc">+</span></span>
+<span id="cb80-2"><a></a>  <span class="fu">aes</span>(Weeks, Gained) <span class="sc">+</span></span>
+<span id="cb80-3"><a></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -2519,11 +2520,11 @@ Claus O. Wilke
 <div class="small-font">
 <p>Can show them with the <strong>naniar</strong> package</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a></a><span class="fu">library</span>(naniar)</span>
-<span id="cb80-2"><a></a></span>
-<span id="cb80-3"><a></a><span class="fu">ggplot</span>(NCbirths) <span class="sc">+</span></span>
-<span id="cb80-4"><a></a>  <span class="fu">aes</span>(Weeks, Gained) <span class="sc">+</span></span>
-<span id="cb80-5"><a></a>  <span class="fu">geom_miss_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a></a><span class="fu">library</span>(naniar)</span>
+<span id="cb81-2"><a></a></span>
+<span id="cb81-3"><a></a><span class="fu">ggplot</span>(NCbirths) <span class="sc">+</span></span>
+<span id="cb81-4"><a></a>  <span class="fu">aes</span>(Weeks, Gained) <span class="sc">+</span></span>
+<span id="cb81-5"><a></a>  <span class="fu">geom_miss_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>

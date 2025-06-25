@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.39">
 
   <meta name="author" content="Claus O. Wilke">
-  <meta name="dcterms.date" content="2025-02-17">
+  <meta name="dcterms.date" content="2025-06-25">
   <title>SDS 366 – Getting things into the right order</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -205,7 +205,7 @@ Claus O. Wilke
 </div>
 </div>
 
-  <p class="date">2025-02-17</p>
+  <p class="date">2025-06-25</p>
 </section>
 <section id="remember-from-visualizing-amounts" class="slide level2">
 <h2>Remember from “Visualizing amounts”</h2>
@@ -706,7 +706,7 @@ Levels: Chinstrap Gentoo Adelie</code></pre>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a>gapminder <span class="sc">|&gt;</span></span>
 <span id="cb39-2"><a></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Norway"</span>, <span class="st">"Portugal"</span>, <span class="st">"Spain"</span>, <span class="st">"Austria"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb39-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(year, lifeExp)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb39-4"><a></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(country), <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb39-4"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>country, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -732,7 +732,7 @@ Levels: Chinstrap Gentoo Adelie</code></pre>
 <span id="cb40-2"><a></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Norway"</span>, <span class="st">"Portugal"</span>, <span class="st">"Spain"</span>, <span class="st">"Austria"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb40-3"><a></a>  <span class="fu">mutate</span>(<span class="at">country =</span> <span class="fu">fct_reorder</span>(country, lifeExp)) <span class="sc">|&gt;</span> <span class="co"># default: order by median</span></span>
 <span id="cb40-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(year, lifeExp)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb40-5"><a></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(country), <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb40-5"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>country, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -758,7 +758,7 @@ Levels: Chinstrap Gentoo Adelie</code></pre>
 <span id="cb41-2"><a></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Norway"</span>, <span class="st">"Portugal"</span>, <span class="st">"Spain"</span>, <span class="st">"Austria"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb41-3"><a></a>  <span class="fu">mutate</span>(<span class="at">country =</span> <span class="fu">fct_reorder</span>(country, lifeExp, median)) <span class="sc">|&gt;</span> <span class="co"># order by median</span></span>
 <span id="cb41-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(year, lifeExp)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb41-5"><a></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(country), <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb41-5"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>country, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -784,7 +784,7 @@ Levels: Chinstrap Gentoo Adelie</code></pre>
 <span id="cb42-2"><a></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Norway"</span>, <span class="st">"Portugal"</span>, <span class="st">"Spain"</span>, <span class="st">"Austria"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb42-3"><a></a>  <span class="fu">mutate</span>(<span class="at">country =</span> <span class="fu">fct_reorder</span>(country, lifeExp, min)) <span class="sc">|&gt;</span> <span class="co"># order by minimum</span></span>
 <span id="cb42-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(year, lifeExp)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb42-5"><a></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(country), <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb42-5"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>country, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -804,7 +804,7 @@ Levels: Chinstrap Gentoo Adelie</code></pre>
 <span id="cb43-2"><a></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Norway"</span>, <span class="st">"Portugal"</span>, <span class="st">"Spain"</span>, <span class="st">"Austria"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb43-3"><a></a>  <span class="fu">mutate</span>(<span class="at">country =</span> <span class="fu">fct_reorder</span>(country, lifeExp, max)) <span class="sc">|&gt;</span> <span class="co"># order by maximum</span></span>
 <span id="cb43-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(year, lifeExp)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb43-5"><a></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(country), <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb43-5"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>country, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -824,7 +824,7 @@ Levels: Chinstrap Gentoo Adelie</code></pre>
 <span id="cb44-2"><a></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Norway"</span>, <span class="st">"Portugal"</span>, <span class="st">"Spain"</span>, <span class="st">"Austria"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb44-3"><a></a>  <span class="fu">mutate</span>(<span class="at">country =</span> <span class="fu">fct_reorder</span>(country, lifeExp, \(x) { <span class="fu">max</span>(x) <span class="sc">-</span> <span class="fu">min</span>(x) })) <span class="sc">|&gt;</span> </span>
 <span id="cb44-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(year, lifeExp)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb44-5"><a></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(country), <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb44-5"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>country, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -844,7 +844,7 @@ Levels: Chinstrap Gentoo Adelie</code></pre>
 <span id="cb45-2"><a></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Norway"</span>, <span class="st">"Portugal"</span>, <span class="st">"Spain"</span>, <span class="st">"Austria"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb45-3"><a></a>  <span class="fu">mutate</span>(<span class="at">country =</span> <span class="fu">fct_reorder</span>(country, lifeExp, \(x) { <span class="fu">min</span>(x) <span class="sc">-</span> <span class="fu">max</span>(x) })) <span class="sc">|&gt;</span> </span>
 <span id="cb45-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(year, lifeExp)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb45-5"><a></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(country), <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb45-5"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>country, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>

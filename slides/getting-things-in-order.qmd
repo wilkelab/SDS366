@@ -428,7 +428,7 @@ Order is ascending from bottom to top
 gapminder |>
   filter(country %in% c("Norway", "Portugal", "Spain", "Austria")) |>
   ggplot(aes(year, lifeExp)) + geom_line() +
-  facet_wrap(vars(country), nrow = 1)
+  facet_wrap(~country, nrow = 1)
 ```
 :::
 
@@ -451,7 +451,7 @@ gapminder |>
   filter(country %in% c("Norway", "Portugal", "Spain", "Austria")) |>
   mutate(country = fct_reorder(country, lifeExp)) |> # default: order by median
   ggplot(aes(year, lifeExp)) + geom_line() +
-  facet_wrap(vars(country), nrow = 1)
+  facet_wrap(~country, nrow = 1)
 ```
 :::
 
@@ -474,7 +474,7 @@ gapminder |>
   filter(country %in% c("Norway", "Portugal", "Spain", "Austria")) |>
   mutate(country = fct_reorder(country, lifeExp, median)) |> # order by median
   ggplot(aes(year, lifeExp)) + geom_line() +
-  facet_wrap(vars(country), nrow = 1)
+  facet_wrap(~country, nrow = 1)
 ```
 :::
 
@@ -497,7 +497,7 @@ gapminder |>
   filter(country %in% c("Norway", "Portugal", "Spain", "Austria")) |>
   mutate(country = fct_reorder(country, lifeExp, min)) |> # order by minimum
   ggplot(aes(year, lifeExp)) + geom_line() +
-  facet_wrap(vars(country), nrow = 1)
+  facet_wrap(~country, nrow = 1)
 ```
 :::
 
@@ -515,7 +515,7 @@ gapminder |>
   filter(country %in% c("Norway", "Portugal", "Spain", "Austria")) |>
   mutate(country = fct_reorder(country, lifeExp, max)) |> # order by maximum
   ggplot(aes(year, lifeExp)) + geom_line() +
-  facet_wrap(vars(country), nrow = 1)
+  facet_wrap(~country, nrow = 1)
 ```
 :::
 
@@ -533,7 +533,7 @@ gapminder |>
   filter(country %in% c("Norway", "Portugal", "Spain", "Austria")) |>
   mutate(country = fct_reorder(country, lifeExp, \(x) { max(x) - min(x) })) |> 
   ggplot(aes(year, lifeExp)) + geom_line() +
-  facet_wrap(vars(country), nrow = 1)
+  facet_wrap(~country, nrow = 1)
 ```
 :::
 
@@ -551,7 +551,7 @@ gapminder |>
   filter(country %in% c("Norway", "Portugal", "Spain", "Austria")) |>
   mutate(country = fct_reorder(country, lifeExp, \(x) { min(x) - max(x) })) |> 
   ggplot(aes(year, lifeExp)) + geom_line() +
-  facet_wrap(vars(country), nrow = 1)
+  facet_wrap(~country, nrow = 1)
 ```
 :::
 
