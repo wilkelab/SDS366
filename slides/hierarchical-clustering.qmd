@@ -34,6 +34,8 @@ update_geom_defaults("line", list(linewidth = 1))
 US_regions <- read_csv(here("datasets", "US_regions.csv"))
 US_state_stats <- read_csv(here("datasets", "US_state_stats.csv")) |>
   filter(state != "District of Columbia")
+
+correlation <- readRDS(here("datasets", "correlation-matrix.rds"))
 ```
 
 ## Example data: State level statistics for US
@@ -362,60 +364,48 @@ pca_fit |>
 
 :::: {.columns}
 
-::: {.column .small-font width="50%"}
+::: {.fragment .column .small-font width="50%"}
 Arbitrary ordering:
 
 ```{r}
-#| label: forensic-correlations1
+#| label: correlation-matrix-1
+#| fig-format: png
+#| fig-dpi: 300
 #| fig-cap: "&nbsp;"
-#| fig-width: 4
+#| fig-width: 3.5
 #| fig-asp: 1
 #| out-width: "100%"
-forensic_glass <- read_csv(here("datasets", "forensic_glass.csv"))
-
-cm <- cor(select(forensic_glass, -type, -RI, -Si))
-df_wide <- as.data.frame(cm)
-df_long <- stack(df_wide)
-names(df_long) <- c("cor", "var1")
-df_long <- cbind(df_long, var2 = rep(rownames(cm), length(rownames(cm))))
-clust <- hclust(as.dist(1-cm), method="average") 
-levels <- clust$labels[clust$order]
-df_long$var1 <- factor(df_long$var1, levels = sort(levels))
-df_long$var2 <- factor(df_long$var2, levels = sort(levels))
-
-ggplot(filter(df_long, as.integer(var1) < as.integer(var2)),
-       aes(var1, var2, fill=cor)) + 
-  geom_tile(color = "white", linewidth = 1) + 
-  scale_x_discrete(position = "top", name = NULL, expand = c(0, 0)) +
-  scale_y_discrete(name = NULL, expand = c(0, 0)) +
-  scale_fill_continuous_diverging(
-    name = "correlation",
-    limits = c(-.5, .5),
-    breaks = c(-.5, 0, .5),
-    labels = c("–0.5", "0.0", "0.5"),
-    palette = "Blue-Red",
-    rev = TRUE
-  ) +
-  guides(
-    fill = guide_colorbar(
-      direction = "horizontal",
-      label.position = "bottom",
-      title.position = "top",
-      barwidth = grid::unit(140, "pt"),
-      barheight = grid::unit(17.5, "pt"),
-      ticks.linewidth = 1
+make_cor_plot <- function(data) {
+  data |>
+  filter(as.integer(x) < as.integer(y)) |>
+    ggplot(aes(x, y, fill = correlation)) + 
+    geom_tile() +
+    scale_x_discrete(
+      name = "gene 1",
+      position = "top"
+    ) +
+    scale_y_discrete(
+      name = "gene 2"
+    ) +
+    scale_fill_continuous_divergingx(
+      palette = "PRGn",
+      limits = c(-0.85, 1)
+    ) +
+    coord_fixed() +
+    theme(
+      axis.text.x = element_blank(),
+      axis.text.y = element_blank(),
+      axis.ticks.x = element_blank(),
+      axis.ticks.y = element_blank(),
+      legend.title = element_text(hjust = 0.5),
+      legend.position = "inside",
+      legend.position.inside = c(1, 0),
+      legend.justification = c(1, 0)
     )
-  ) +
-  coord_fixed() +
-  theme_half_open(rel_small = 1) +
-  theme(
-    axis.line = element_blank(),
-    axis.ticks = element_blank(),
-    axis.ticks.length = grid::unit(3, "pt"),
-    legend.position = c(.97, .0),
-    legend.justification = c(1, 0),
-    legend.title.align = 0.5
-  )
+}
+
+correlation |>
+  make_cor_plot()
 ```
 :::
 
@@ -423,47 +413,19 @@ ggplot(filter(df_long, as.integer(var1) < as.integer(var2)),
 Ordering by clustering similarity:
 
 ```{r}
-#| label: forensic-correlations2
+#| label: correlation-matrix-2
+#| fig-format: png
+#| fig-dpi: 300
 #| fig-cap: "&nbsp;"
-#| fig-width: 4
+#| fig-width: 3.5
 #| fig-asp: 1
 #| out-width: "100%"
-df_long$var1 <- factor(df_long$var1, levels = levels)
-df_long$var2 <- factor(df_long$var2, levels = levels)
-
-ggplot(filter(df_long, as.integer(var1) < as.integer(var2)),
-       aes(var1, var2, fill=cor)) + 
-  geom_tile(color = "white", linewidth = 1) + 
-  scale_x_discrete(position = "top", name = NULL, expand = c(0, 0)) +
-  scale_y_discrete(name = NULL, expand = c(0, 0)) +
-  scale_fill_continuous_diverging(
-    name = "correlation",
-    limits = c(-.5, .5),
-    breaks = c(-.5, 0, .5),
-    labels = c("–0.5", "0.0", "0.5"),
-    palette = "Blue-Red",
-    rev = TRUE
-  ) +
-  guides(
-    fill = guide_colorbar(
-      direction = "horizontal",
-      label.position = "bottom",
-      title.position = "top",
-      barwidth = grid::unit(140, "pt"),
-      barheight = grid::unit(17.5, "pt"),
-      ticks.linewidth = 1
-    )
-  ) +
-  coord_fixed() +
-  theme_half_open(rel_small = 1) +
-  theme(
-    axis.line = element_blank(),
-    axis.ticks = element_blank(),
-    axis.ticks.length = grid::unit(3, "pt"),
-    legend.position = c(.97, .0),
-    legend.justification = c(1, 0),
-    legend.title.align = 0.5
-  )
+correlation |>
+  mutate(
+    x = x_ordered,
+    y = y_ordered
+  ) |>
+  make_cor_plot()
 ```
 :::
 ::::
