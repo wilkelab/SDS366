@@ -407,6 +407,11 @@ make_cor_plot <- function(data) {
 correlation |>
   make_cor_plot()
 ```
+
+::: {.absolute-bottom-right .tiny-font}
+Gene expression data from [Spellman et al. 1998](https://pubmed.ncbi.nlm.nih.gov/9843569/)
+:::
+
 :::
 
 ::: {.fragment .column .small-font width="50%"}

@@ -5569,7 +5569,7 @@
     "href": "slides/hierarchical-clustering.html#hierarchical-clustering-can-be-useful-with-heatmaps",
     "title": "Hierarchical clustering",
     "section": "Hierarchical clustering can be useful with heatmaps",
-    "text": "Hierarchical clustering can be useful with heatmaps\n\n\nArbitrary ordering:\n\n\n\n\n\n \n\n\n\n\n\nOrdering by clustering similarity:"
+    "text": "Hierarchical clustering can be useful with heatmaps\n\n\nArbitrary ordering:\n\n\n\n\n\n \n\n\n\n\n\nGene expression data from Spellman et al. 1998\n\n\nOrdering by clustering similarity:"
   },
   {
     "objectID": "slides/hierarchical-clustering.html#hierarchical-clustering-methods-require-two-ingredients",
