@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.39">
 
   <meta name="author" content="Claus O. Wilke">
-  <meta name="dcterms.date" content="2025-06-22">
+  <meta name="dcterms.date" content="2025-07-02">
   <title>SDS 366 – Working with models</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -205,7 +205,7 @@ Claus O. Wilke
 </div>
 </div>
 
-  <p class="date">2025-06-22</p>
+  <p class="date">2025-07-02</p>
 </section>
 <section id="how-do-we-obtain-information-about-model-fits" class="slide level2">
 <h2>How do we obtain information about model fits?</h2>
@@ -656,7 +656,7 @@ F-statistic: 46.17 on 1 and 66 DF,  p-value: 3.748e-09</code></pre>
 <span id="cb38-3"><a></a>    <span class="at">data =</span> label_data, <span class="fu">aes</span>(<span class="at">label =</span> label),</span>
 <span id="cb38-4"><a></a>    <span class="at">size =</span> <span class="dv">10</span>, <span class="at">size.unit =</span> <span class="st">"pt"</span>, <span class="at">hjust =</span> <span class="dv">1</span>  <span class="co"># 10pt, right-justified</span></span>
 <span id="cb38-5"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb38-6"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(species))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb38-6"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>

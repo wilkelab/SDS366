@@ -690,7 +690,7 @@
     "href": "slides/working-with-models.html#and-plot",
     "title": "Working with models",
     "section": "And plot",
-    "text": "And plot\n\n\nggplot(penguins, aes(body_mass_g, flipper_length_mm)) + geom_point() +\n  geom_text(\n    data = label_data, aes(label = label),\n    size = 10, size.unit = \"pt\", hjust = 1  # 10pt, right-justified\n  ) +\n  geom_smooth(method = \"lm\", se = FALSE) + facet_wrap(vars(species))"
+    "text": "And plot\n\n\nggplot(penguins, aes(body_mass_g, flipper_length_mm)) + geom_point() +\n  geom_text(\n    data = label_data, aes(label = label),\n    size = 10, size.unit = \"pt\", hjust = 1  # 10pt, right-justified\n  ) +\n  geom_smooth(method = \"lm\", se = FALSE) + facet_wrap(~species)"
   },
   {
     "objectID": "slides/working-with-models.html#further-reading",
