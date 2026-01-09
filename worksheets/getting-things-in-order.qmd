@@ -289,7 +289,7 @@ gapminder |>
   mutate(country = fct_reorder(country, lifeExp, median)) |>
   ggplot(aes(year, lifeExp)) + 
   geom_line() +
-  facet_wrap(vars(country))
+  facet_wrap(~country)
 ```
 :::
 :::

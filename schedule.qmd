@@ -5,7 +5,7 @@ format: html
 
 ## Lectures
 
-### 1. Jan 14, 2025—Introduction
+### 1. Jan 13, 2026—Introduction
 
 <p class="nospace">Materials:</p>
 
@@ -13,276 +13,39 @@ format: html
 - [Worksheet 1: Introduction to Quarto](worksheets/intro-to-Quarto.qmd)
 - [Worksheet 2: Introduction to R](worksheets/intro-to-R.qmd)
 
-### 2. Jan 16, 2025—Aesthetic mappings
+### 2. Jan 15, 2026—Aesthetic mappings
 
 <p class="nospace">Materials:</p>
 
 - [Slides](slides/aesthetic-mappings.qmd)  
 - [Worksheet](worksheets/aesthetic-mappings.qmd)
 
-### 3. Jan 23, 2025—Visualizing amounts/telling a story
-
-<p class="nospace">Materials:</p>
-
-- [Slides Part I](slides/visualizing-amounts.qmd) (visualizing amounts)
-- [Worksheet Part I](worksheets/visualizing-amounts.qmd)
-- [Slides Part II](slides/telling-a-story.qmd) (telling a story)
-
-### 4. Jan 28, 2025—Coordinate systems and axes
-
-<p class="nospace">Materials:</p>
-
-- [Slides](slides/coordinate-systems-axes.qmd)  
-- [Worksheet](worksheets/coordinate-systems-axes.qmd)
-
-### 5. Jan 30, 2025—Visualizing distributions 1
-
-<p class="nospace">Materials:</p>
-
-- [Slides](slides/visualizing-distributions-1.qmd)  
-- [Worksheet](worksheets/visualizing-distributions-1.qmd)
-
-### 6. Feb 4, 2025—Visualizing distributions 2
-
-<p class="nospace">Materials:</p>
-
-- [Slides](slides/visualizing-distributions-2.qmd)  
-- [Worksheet](worksheets/visualizing-distributions-2.qmd)
-
-### 7. Feb 6, 2025—Color scales
-
-<p class="nospace">Materials:</p>
-
-- [Slides](slides/color-scales.qmd)  
-- [Worksheet](worksheets/color-scales.qmd)
-
-### 8. Feb 11, 2025—Color spaces and color-vision deficiency
-
-<p class="nospace">Materials:</p>
-
-- [Slides](slides/color-spaces.qmd)  
-- [Worksheet](worksheets/color-selection.qmd)
-
-### 9. Feb 13, 2025—Data wrangling
-
-<p class="nospace">Materials:</p>
-
-- [Slides Part I](slides/data-wrangling-1.qmd) (pipe, sorting, filtering, mutating)
-- [Worksheet Part I](worksheets/data-wrangling-1.qmd)
-- [Slides Part II](slides/data-wrangling-2.qmd) (summarizing, pivoting, joining)
-- [Worksheet Part II](worksheets/data-wrangling-2.qmd)
-
-### 10. Feb 18, 2025—Visualizing proportions
-
-<p class="nospace">Materials:</p>
-
-- [Slides](slides/visualizing-proportions.qmd)  
-- [Worksheet](worksheets/visualizing-proportions.qmd)
-
-### 11. Feb 20, 2025—Getting to know your data
-
-<p class="nospace">Materials:</p>
-
-- [Slides](slides/know-your-data.qmd)
-- [Worksheet Part I](worksheets/know-your-data-1.qmd) (data cleaning)
-- [Worksheet Part II](worksheets/know-your-data-2.qmd) (missing data)
-
-### 12. Feb 25, 2025—Getting things into the right order
-
-<p class="nospace">Materials:</p>
-
-- [Slides](slides/getting-things-in-order.qmd)
-- [Worksheet](worksheets/getting-things-in-order.qmd)
-
-### 13. Feb 27, 2025—Figure design
-
-<p class="nospace">Materials:</p>
-
-- [Slides](slides/figure-design.qmd)
-- [Worksheet](worksheets/figure-design.qmd)
-
-### 14. Mar 4, 2025—Compound figures
-
-<p class="nospace">Materials:</p>
-
-- [Slides](slides/compound-figures.qmd)  
-- [Worksheet](worksheets/compound-figures.qmd)
-
-### 15. Mar 6, 2025—Visualizing trends
-
-<p class="nospace">Materials:</p>
-
-- [Slides](slides/visualizing-trends.qmd)  
-- [Worksheet](worksheets/visualizing-trends.qmd)
-
-### 16. Mar 11, 2025—Functions and functional programming
-
-<p class="nospace">Materials:</p>
-
-- [Slides](slides/functional-programming.qmd)  
-- [Worksheet](worksheets/functional-programming.qmd)
-
-### 17. Mar 13, 2025—Working with models
-
-<p class="nospace">Materials:</p>
-
-- [Slides](slides/working-with-models.qmd)  
-- [Worksheet](worksheets/working-with-models.qmd)
-
-### 18. Mar 25, 2025—Visualizing uncertainty
-
-<p class="nospace">Materials:</p>
-
-- [Slides](slides/visualizing-uncertainty.qmd)  
-- [Worksheet](worksheets/visualizing-uncertainty.qmd)
-
-### 19. Mar 27, 2025—Dimension reduction 1
-
-<p class="nospace">Materials:</p>
-
-- [Slides](slides/dimension-reduction-1.qmd)  
-- [Worksheet](worksheets/dimension-reduction-1.qmd)
-
-### 20. Apr 1, 2025—Dimension reduction 2
-
-<p class="nospace">Materials:</p>
-
-- [Slides](slides/dimension-reduction-2.qmd)  
-- [Worksheet](worksheets/dimension-reduction-2.qmd)
-
-### 21. Apr 3, 2025—Clustering
-
-<p class="nospace">Materials:</p>
-
-- [Slides](slides/clustering.qmd)  
-- [Worksheet](worksheets/clustering.qmd)
-
-### 22. Apr 8, 2025—Hierarchical clustering
-
-<p class="nospace">Materials:</p>
-
-- [Slides](slides/hierarchical-clustering.qmd)  
-- [Worksheet](worksheets/hierarchical-clustering.qmd)
-
-### 23. Apr 10, 2025—Redundant coding, text annotations
-
-<p class="nospace">Materials:</p>
-
-- [Slides](slides/redundant-coding.qmd)  
-- [Worksheet](worksheets/redundant-coding.qmd)
-
-### 24. Apr 15, 2025—Overplotting
-
-<p class="nospace">Materials:</p>
-
-- [Slides](slides/overplotting.qmd)  
-- [Worksheet](worksheets/overplotting.qmd)
-
-### 25. Apr 17, 2025—Visualizing geospatial data
-
-<p class="nospace">Materials:</p>
-
-- [Slides](slides/geospatial-data.qmd)  
-- [Worksheet](worksheets/geospatial-data.qmd)
-
-### 26. Apr 22, 2025—Interactive plots, animations
-
-<p class="nospace">Materials:</p>
-
-- [Slides: Interactive plots](slides/interactive-plots.qmd)  
-- [Worksheet: Interactive plots](worksheets/interactive-plots.qmd)
-- [Slides: Animations](slides/animations.qmd)  
-
-### 27. Apr 24, 2025—Introduction to web design concepts
-
-<p class="nospace">Materials:</p>
-
-- [Slides](slides/web-design.qmd)  
-- [Worksheet](slides/web-design-worksheet.qmd)
 
 ## Homeworks
 
-All homeworks are due by 11:00pm on the day they are due. Homeworks need to be submitted as pdf files on Canvas.
+All homeworks are due by 11:59pm on the day they are due. Homeworks need to be submitted as pdf files on Canvas.
 
-### Homework 1 (due Jan 23, 2025)
+### Homework 1 (due Jan 22, 2026)
 
-<p class="nospace">Materials:</p>
+### Homework 2 (due Jan 29, 2026)
 
-- [Quarto template](assignments/HW1.qmd)
-- [PDF](assignments/HW1.pdf)
+### Homework 3 (due Feb 5, 2026)
 
-### Homework 2 (due Jan 30, 2025)
+### Homework 4 (due Feb 26, 2026)
 
-<p class="nospace">Materials:</p>
+### Homework 5 (due Mar 5, 2026)
 
-- [Quarto template](assignments/HW2.qmd)
-- [PDF](assignments/HW2.pdf)
+### Homework 6 (due Apr 2, 2026)
 
-### Homework 3 (due Feb 6, 2025)
-
-<p class="nospace">Materials:</p>
-
-- [Quarto template](assignments/HW3.qmd)
-- [PDF](assignments/HW3.pdf)
-
-### Homework 4 (due Feb 27, 2025)
-
-<p class="nospace">Materials:</p>
-
-- [Quarto template](assignments/HW4.qmd)
-- [PDF](assignments/HW4.pdf)
-
-### Homework 5 (due Mar 6, 2025)
-
-<p class="nospace">Materials:</p>
-
-- [Quarto template](assignments/HW5.qmd)
-- [PDF](assignments/HW5.pdf)
-
-### Homework 6 (due Apr 3, 2025)
-
-<p class="nospace">Materials:</p>
-
-- [Quarto template](assignments/HW6.qmd)
-- [PDF](assignments/HW6.pdf)
-
-### Homework 7 (due Apr 10, 2025)
-
-<p class="nospace">Materials:</p>
-
-- [Quarto template](assignments/HW7.qmd)
-- [PDF](assignments/HW7.pdf)
+### Homework 7 (due Apr 9, 2026)
 
 ## Projects
 
-All projects are due by 11:00pm on the day they are due. Projects need to be submitted on Canvas. Please carefully read the submission instructions for each project.
+All projects are due by 11:59pm on the day they are due. Projects need to be submitted on Canvas. Please carefully read the submission instructions for each project.
 
-### Project 1 (due Feb 13, 2025)
+### Project 1 (due Feb 12, 2026)
 
-<p class="nospace">Materials:</p>
+### Project 2 (due Mar 12, 2026)
 
-- [Instructions (pdf)](assignments/Project_1_instructions.pdf)
-- [Project Template (qmd)](assignments/Project_1.qmd)
-- [Project Template (pdf)](assignments/Project_1.pdf)
-- [Grading rubric (pdf)](assignments/Project_1_rubric.pdf)
-- [Example project (pdf)](assignments/Project_1_example.pdf)
-
-### Project 2 (due Mar 13, 2025)
-
-<p class="nospace">Materials:</p>
-
-- [Instructions (pdf)](assignments/Project_2_instructions.pdf)
-- [Project Template (qmd)](assignments/Project_2.qmd)
-- [Project Template (pdf)](assignments/Project_2.pdf)
-- [Grading rubric (pdf)](assignments/Project_2_rubric.pdf)
-- [Grading instructions (pdf)](assignments/Project_2_grading.pdf)
-
-### Project 3 (due Apr 17, 2025)
-
-<p class="nospace">Materials:</p>
-
-- [Instructions (pdf)](assignments/Project_3_instructions.pdf)
-- [Project Template (qmd)](assignments/Project_3.qmd)
-- [Project Template (pdf)](assignments/Project_3.pdf)
-- [Grading rubric (pdf)](assignments/Project_3_rubric.pdf)
+### Project 3 (due Apr 16, 2026)
 

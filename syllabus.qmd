@@ -7,16 +7,16 @@ format: html
 ## Course title and instructor
 
 **Title:** SDS 366 Data Visualization in R<br>
-**Semester:** Spring 2025<br>
-**Unique:** 57785, TTH 5:00pm to 6:30pm, FAC 21<br>
+**Semester:** Spring 2026<br>
+**Unique:** 60450, TTH 3:30pm-5:00pm, UTC 3.134<br>
 
 **Instructor:** Claus	O.	Wilke<br>
 **Email:** wilke@austin.utexas.edu<br>
-**Office Hours:** Mon. 9am–10am (open Zoom), Thurs. 10am–11am (open Zoom), or by appointment<br>
+**Office Hours:** Mon. 9am–10am (open Zoom), Wed. 10am–11am (open Zoom), or by appointment<br>
 
-**Teaching Assistant:** Aaron Feller<br>
-**Email:** aaron.feller@utexas.edu<br>
-**Office Hours:** Wed. 2:30pm–3:30pm (open Zoom), Thurs. 3pm–4pm (open Zoom), or by appointment<br>
+**Teaching Assistant:** Luiz Vieira<br>
+**Email:** luiz.vieira@austin.utexas.edu<br>
+**Office Hours:** Wed. 1pm–2pm (open Zoom), Thurs. 1pm–2pm (open Zoom), or by appointment<br>
 
 
 ## Purpose and contents of the class
@@ -144,30 +144,30 @@ Note that edupods will be unavailable due to maintenance approximately two hours
 
 The graded components of this class will be homeworks, projects, peer-grading, and participation. Each week either a homework, a project, or a peer-grading is due. Homeworks will be relatively short visualization problems to be solved by the student, usually involving some small amount of programming to achieve a specified goal. They are graded by the TA. Projects are larger and more involved data analysis problems that involve both programming and writing. They are peer-graded by the students. Students will have at least one week to complete each homework and two weeks to complete each project. The submission deadlines for homeworks and projects will be Thursdays at 11pm.
 
-There will be seven homeworks and three projects. Both homeworks and projects need to be submitted electronically on Canvas. Homeworks are worth 20 points and projects are worth 100 points. The lowest-scoring homework will be dropped, so that a maximum of 120 points can be obtained from the homeworks.
+There will be seven homeworks and three projects. Both homeworks and projects need to be submitted electronically on Canvas. Homeworks are worth 8 points and projects are worth 100 points.
 
-Projects are peer-graded, which involves evaluating three projects by other students according to a detailed grading rubric that will be provided. The final grade for each project is the mean of the peer-graded projects, subject to oversight and potential grade correction (up or down, as warranted) by the TA. The peer-grading itself will also be graded by the TA. Experience has shown that peer-grading is often the most instructive component of this class, so don't take this lightly.
+Projects are peer-graded, which involves evaluating four projects by other students according to a detailed grading rubric that will be provided. The final grade for each project is the mean of the highest three peer grades (the lowest one is dropped), subject to oversight and potential grade correction (up or down, as warranted) by the TA. The peer-grading itself will also be graded by the TA. Experience has shown that peer-grading is often the most instructive component of this class, so don't take this lightly.
 
-Participation is assessed in two ways. First, students will receive 2 points for every lecture they attend. This is tracked via simple quizzes on Canvas. Second, each week students can receive up to 4 points for making substantive contributions to the Canvas online discussion (2 points per contribution). Total participation points are capped at 52 (13 weeks of class times 4 points), so students can compensate for lack of in-person attendance by participating in discussions and vice versa. **You do not have to get full points in both in-person attendance and online discussions.** No participation is assessed in the first week of class.
+Participation is assessed via lecture attendance. Students will receive 1 point for every lecture they attend, up to a maximum of 20 points. (This means students can miss up to six lectures throughout the semester without receiving any grade penalty.) Attendance is tracked via simple quizzes on Canvas. No participation is assessed in the first week of class.
 
 Assignment type   Number     Points per assignment  Total points
 --------------- ---------- ----------------------- -------------
-Homework          6 (+1)                        20           120
+Homework          7                              8            56
 Project           3                            100           300
-Peer grading      3                             16            48
-Participation     26 (+26)                       2            52
+Peer grading      3                              8            24
+Participation     20                             1            20
 
 
-Thus, in summary, each project (+ peer grading) contributes 22% to the final grade, the totality of all homeworks contributes another 23% to the final grade, and participation contributes 10%. **There are no traditional exams in this class and there is no final.**
+Thus, in summary, each project contributes 25% to the final grade, and the totality of all homeworks, attendance, and peer grading contributes another 25% to the final grade. **There are no traditional exams in this class and there is no final.**
 
 The	class	will use +/- grading, and the exact grade boundaries will be determined at the end of the semester. However, the following minimum grades will be guaranteed:	
 
  Points achieved  Minimum guaranteed grade
 ---------------- -------------------------
-       468 (90%)                        A-
-       416 (80%)                        B-
-       364 (70%)                        C-
-       260 (50%)                        D-
+       360 (90%)                        A-
+       320 (80%)                        B-
+       280 (70%)                        C-
+       200 (50%)                        D-
 
 ## Late assignment policy
 

@@ -365,7 +365,7 @@ labels_data <- penguins_fits |>
 ggplot(penguins, aes(body_mass_g, bill_length_mm)) +
   geom_point(na.rm = TRUE) +
   geom_smooth(method = "lm", formula = y ~ x, na.rm = TRUE) +
-  facet_wrap(vars(species)) +
+  facet_wrap(~species) +
   geom_text(___)
 ```
 :::
@@ -387,7 +387,7 @@ labels_data <- penguins_fits |>
 ggplot(penguins, aes(body_mass_g, bill_length_mm)) +
   geom_point(na.rm = TRUE) +
   geom_smooth(method = "lm", formula = y ~ x, na.rm = TRUE) +
-  facet_wrap(vars(species)) +
+  facet_wrap(~species) +
   geom_text(
     data = labels_data,
     aes(___)
@@ -412,7 +412,7 @@ labels_data <- penguins_fits |>
 ggplot(penguins, aes(body_mass_g, bill_length_mm)) +
   geom_point(na.rm = TRUE) +
   geom_smooth(method = "lm", formula = y ~ x, na.rm = TRUE) +
-  facet_wrap(vars(species)) +
+  facet_wrap(~species) +
   geom_text(
     data = labels_data,
     aes(label = label)
