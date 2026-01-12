@@ -21,31 +21,24 @@ format: html
 - [Worksheet](worksheets/aesthetic-mappings.qmd)
 
 
-## Homeworks
+## Assignment due dates
 
-All homeworks are due by 11:59pm on the day they are due. Homeworks need to be submitted as pdf files on Canvas.
+All assignments (homeworks, projects, peer grading) are due by 11:59pm on the day they are due.
 
-### Homework 1 (due Jan 22, 2026)
-
-### Homework 2 (due Jan 29, 2026)
-
-### Homework 3 (due Feb 5, 2026)
-
-### Homework 4 (due Feb 26, 2026)
-
-### Homework 5 (due Mar 5, 2026)
-
-### Homework 6 (due Apr 2, 2026)
-
-### Homework 7 (due Apr 9, 2026)
-
-## Projects
-
-All projects are due by 11:59pm on the day they are due. Projects need to be submitted on Canvas. Please carefully read the submission instructions for each project.
-
-### Project 1 (due Feb 12, 2026)
-
-### Project 2 (due Mar 12, 2026)
-
-### Project 3 (due Apr 16, 2026)
-
+::: {style="width: 50%;"}
+Date         Assignment due
+------------ -----------------------------------
+Jan 22, 2026 Homework 1
+Jan 29, 2026 Homework 2
+Feb 5, 2026  Homework 3
+Feb 12, 2026 Project 1
+Feb 19, 2026 Peer grading, Project 1
+Feb 26, 2026 Homework 4
+Mar 5, 2026  Homework 5
+Mar 12, 2026 Project 2
+Mar 26, 2026 Peer grading, Project 2
+Apr 2, 2026  Homework 6
+Apr 9, 2026  Homework 7
+Apr 16, 2026 Project 3
+Apr 23, 2026 Peer grading, Project 3
+:::
