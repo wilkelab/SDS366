@@ -8,7 +8,7 @@ format: html
 
 **Title:** SDS 366 Data Visualization in R<br>
 **Semester:** Spring 2026<br>
-**Unique:** 60450, TTH 3:30pm-5:00pm, UTC 3.134<br>
+**Unique:** 60450, Tues./Thurs. 3:30pm-5:00pm, UTC 3.134<br>
 
 **Instructor:** Claus	O.	Wilke<br>
 **Email:** wilke@austin.utexas.edu<br>
