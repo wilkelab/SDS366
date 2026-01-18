@@ -31,6 +31,14 @@ update_geom_defaults("line", list(linewidth = 1))
 tempnormals <- read_csv(here("datasets", "tempnormals.csv"))
 ```
 
+
+## The Grammar-of-Graphics pipeline: Coordinate systems
+
+::: {.move-down-1em}
+![](../assets/general/grammar-of-graphics.svg){width="90%" fig-align="center"}
+:::
+
+
 ## Most data visualizations use Cartesian coordinates
 
 ```{r}
@@ -338,6 +346,7 @@ ggplot(tx_counties, aes(x = index, y = popratio)) +
   theme_minimal_hgrid(14) +
   theme(axis.line = element_blank())
 ```
+
 ## Example: Population number of Texas counties
 
 A log scale shows symmetry around the median
@@ -726,7 +735,7 @@ ggplot(boxoffice) +
   aes(amount, fct_reorder(title, amount)) +
   geom_col() +
   scale_x_continuous(
-    name = "weekend gross (million USD)",
+    name = "weekend gross",
     limits = c(0, 80),
     breaks = c(0, 25, 50, 75),
     labels = c("0", "$25M", "$50M", "$75M")
@@ -751,7 +760,7 @@ ggplot(boxoffice) +
   aes(amount, fct_reorder(title, amount)) +
   geom_col() +
   scale_x_continuous(
-    name = "weekend gross (million USD)",
+    name = "weekend gross",
     limits = c(0, 80),
     breaks = c(0, 25, 50, 75),
     labels = c("0", "$25M", "$50M", "$75M"),

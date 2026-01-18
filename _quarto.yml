@@ -27,7 +27,7 @@ website:
         menu:
           - text: "Class 1: Introduction"
             href: slides/introduction.qmd
-          - text: "Class 2: Aesthetic mappings"
+          - text: "Class 2: Aesthetic mappings and the Grammar of Graphics"
             href: slides/aesthetic-mappings.qmd
           - text: "Class 3a: Visualizing amounts"
             href: slides/visualizing-amounts.qmd

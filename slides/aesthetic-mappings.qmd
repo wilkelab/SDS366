@@ -1,5 +1,5 @@
 ---
-title: "Aesthetic mappings"
+title: "Aesthetic mappings and the Grammar of Graphics"
 author: "Claus O. Wilke"
 date: last-modified
 format: 
@@ -206,6 +206,12 @@ ggplot(mtcars, aes(disp, mpg, fill = hp, shape = factor(cyl), size = wt)) +
     legend.box.margin = margin(7, 7, 7, 7)
   )
 ```
+
+## The Grammar-of-Graphics pipeline
+
+::: {.move-down-1em}
+![](../assets/general/grammar-of-graphics.svg){width="90%" fig-align="center"}
+:::
 
 <!-- Segment ends here -->
 

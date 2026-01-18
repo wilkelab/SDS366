@@ -1,5 +1,5 @@
 ---
-title: "SDS 366 Schedule Spring 2025"
+title: "SDS 366 Schedule Spring 2026"
 format: html
 ---
 
@@ -13,13 +13,27 @@ format: html
 - [Worksheet 1: Introduction to Quarto](worksheets/intro-to-Quarto.qmd)
 - [Worksheet 2: Introduction to R](worksheets/intro-to-R.qmd)
 
-### 2. Jan 15, 2026—Aesthetic mappings
+### 2. Jan 15, 2026—Aesthetic mappings and the Grammar of Graphics
 
 <p class="nospace">Materials:</p>
 
 - [Slides](slides/aesthetic-mappings.qmd)  
 - [Worksheet](worksheets/aesthetic-mappings.qmd)
 
+### 3. Jan 20, 2026—Visualizing amounts/telling a story
+
+<p class="nospace">Materials:</p>
+
+- [Slides Part I](slides/visualizing-amounts.qmd) (visualizing amounts)
+- [Worksheet Part I](worksheets/visualizing-amounts.qmd)
+- [Slides Part II](slides/telling-a-story.qmd) (telling a story)
+
+### 4. Jan 22, 2026—Coordinate systems and axes
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/coordinate-systems-axes.qmd)  
+- [Worksheet](worksheets/coordinate-systems-axes.qmd)
 
 ## Assignment due dates
 

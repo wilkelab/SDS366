@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.39">
 
   <meta name="author" content="Claus O. Wilke">
-  <meta name="dcterms.date" content="2025-02-23">
+  <meta name="dcterms.date" content="2026-01-17">
   <title>SDS 366 – Coordinate systems and axes</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -205,7 +205,17 @@ Claus O. Wilke
 </div>
 </div>
 
-  <p class="date">2025-02-23</p>
+  <p class="date">2026-01-17</p>
+</section>
+<section id="the-grammar-of-graphics-pipeline-coordinate-systems" class="slide level2">
+<h2>The Grammar-of-Graphics pipeline: Coordinate systems</h2>
+<div class="move-down-1em">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../assets/general/grammar-of-graphics.svg" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
 </section>
 <section id="most-data-visualizations-use-cartesian-coordinates" class="slide level2">
 <h2>Most data visualizations use Cartesian coordinates</h2>
@@ -589,7 +599,7 @@ Claus O. Wilke
 <span id="cb9-2"><a></a>  <span class="fu">aes</span>(amount, <span class="fu">fct_reorder</span>(title, amount)) <span class="sc">+</span></span>
 <span id="cb9-3"><a></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
 <span id="cb9-4"><a></a>  <span class="fu">scale_x_continuous</span>(</span>
-<span id="cb9-5"><a></a>    <span class="at">name =</span> <span class="st">"weekend gross (million USD)"</span>,</span>
+<span id="cb9-5"><a></a>    <span class="at">name =</span> <span class="st">"weekend gross"</span>,</span>
 <span id="cb9-6"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">80</span>),</span>
 <span id="cb9-7"><a></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">25</span>, <span class="dv">50</span>, <span class="dv">75</span>),</span>
 <span id="cb9-8"><a></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"$25M"</span>, <span class="st">"$50M"</span>, <span class="st">"$75M"</span>)</span>
@@ -618,7 +628,7 @@ Claus O. Wilke
 <span id="cb10-2"><a></a>  <span class="fu">aes</span>(amount, <span class="fu">fct_reorder</span>(title, amount)) <span class="sc">+</span></span>
 <span id="cb10-3"><a></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
 <span id="cb10-4"><a></a>  <span class="fu">scale_x_continuous</span>(</span>
-<span id="cb10-5"><a></a>    <span class="at">name =</span> <span class="st">"weekend gross (million USD)"</span>,</span>
+<span id="cb10-5"><a></a>    <span class="at">name =</span> <span class="st">"weekend gross"</span>,</span>
 <span id="cb10-6"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">80</span>),</span>
 <span id="cb10-7"><a></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">25</span>, <span class="dv">50</span>, <span class="dv">75</span>),</span>
 <span id="cb10-8"><a></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"$25M"</span>, <span class="st">"$50M"</span>, <span class="st">"$75M"</span>),</span>
