@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.39">
 
   <meta name="author" content="Claus O. Wilke">
-  <meta name="dcterms.date" content="2025-02-23">
+  <meta name="dcterms.date" content="2026-01-24">
   <title>SDS 366 – Visualizing distributions 1</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -205,7 +205,7 @@ Claus O. Wilke
 </div>
 </div>
 
-  <p class="date">2025-02-23</p>
+  <p class="date">2026-01-24</p>
 </section>
 <section>
 <section id="histograms-and-density-plots" class="title-slide slide level1 center">
@@ -839,7 +839,7 @@ Claus O. Wilke
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
 <span id="cb3-2"><a></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
 </div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -974,12 +974,12 @@ Claus O. Wilke
 </div>
 </section></section>
 <section>
-<section id="side-note-the-grammar-of-graphics-pipeline" class="title-slide slide level1 center">
-<h1>Side-note: The Grammar-of-Graphics pipeline</h1>
+<section id="the-grammar-of-graphics-pipeline-facets-and-stats" class="title-slide slide level1 center">
+<h1>The Grammar-of-Graphics pipeline: Facets and stats</h1>
 
 </section>
-<section id="the-grammar-of-graphics-pipeline" class="slide level2">
-<h2>The Grammar-of-Graphics pipeline</h2>
+<section id="the-grammar-of-graphics-pipeline-facets" class="slide level2">
+<h2>The Grammar-of-Graphics pipeline: Facets</h2>
 <div class="move-down-1em">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -987,9 +987,12 @@ Claus O. Wilke
 </figure>
 </div>
 </div>
+<div class="fragment move-up-1em">
+<p>Facets are also called “small multiples”</p>
+</div>
 </section>
-<section id="small-multiples-facet_wrap" class="slide level2">
-<h2>Small multiples: <code>facet_wrap()</code></h2>
+<section id="faceting-by-one-variable-facet_wrap" class="slide level2">
+<h2>Faceting by one variable: <code>facet_wrap()</code></h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
 <span id="cb12-2"><a></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>) <span class="sc">+</span></span>
@@ -1005,8 +1008,8 @@ Claus O. Wilke
 </div>
 </div>
 </section>
-<section id="small-multiples-facet_grid" class="slide level2">
-<h2>Small multiples: <code>facet_grid()</code></h2>
+<section id="faceting-by-two-variables-facet_grid" class="slide level2">
+<h2>Faceting by two variables: <code>facet_grid()</code></h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
 <span id="cb13-2"><a></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>) <span class="sc">+</span></span>
@@ -1022,8 +1025,18 @@ Claus O. Wilke
 </div>
 </div>
 </section>
-<section id="statistical-transformations-stats-can-be-set-explicitly" class="slide level2">
-<h2>Statistical transformations (stats) can be set explicitly</h2>
+<section id="the-grammar-of-graphics-pipeline-stats" class="slide level2">
+<h2>The Grammar-of-Graphics pipeline: Stats</h2>
+<div class="move-down-1em">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../assets/general/grammar-of-graphics.svg" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="taking-advantage-of-statistical-transformations-stats" class="slide level2">
+<h2>Taking advantage of statistical transformations (stats)</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
 <span id="cb14-2"><a></a>  <span class="fu">geom_density</span>(</span>
@@ -1040,8 +1053,8 @@ Claus O. Wilke
 </div>
 </div>
 </section>
-<section id="statistical-transformations-stats-can-be-set-explicitly-1" class="slide level2">
-<h2>Statistical transformations (stats) can be set explicitly</h2>
+<section id="taking-advantage-of-statistical-transformations-stats-1" class="slide level2">
+<h2>Taking advantage of statistical transformations (stats)</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
 <span id="cb15-2"><a></a>  <span class="fu">geom_area</span>(  <span class="co"># geom_area() does not normally use stat = "density"</span></span>
@@ -1058,8 +1071,8 @@ Claus O. Wilke
 </div>
 </div>
 </section>
-<section id="statistical-transformations-stats-can-be-set-explicitly-2" class="slide level2">
-<h2>Statistical transformations (stats) can be set explicitly</h2>
+<section id="taking-advantage-of-statistical-transformations-stats-2" class="slide level2">
+<h2>Taking advantage of statistical transformations (stats)</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
 <span id="cb16-2"><a></a>  <span class="fu">geom_line</span>(  <span class="co"># neither does geom_line()</span></span>
@@ -1075,8 +1088,8 @@ Claus O. Wilke
 </div>
 </div>
 </section>
-<section id="statistical-transformations-stats-can-be-set-explicitly-3" class="slide level2">
-<h2>Statistical transformations (stats) can be set explicitly</h2>
+<section id="taking-advantage-of-statistical-transformations-stats-3" class="slide level2">
+<h2>Taking advantage of statistical transformations (stats)</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">ggplot</span>(titanic, <span class="fu">aes</span>(age)) <span class="sc">+</span></span>
 <span id="cb17-2"><a></a>  <span class="co"># we can use multiple geoms on top of each other</span></span>

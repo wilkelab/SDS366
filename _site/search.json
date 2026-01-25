@@ -3959,14 +3959,14 @@
     "href": "schedule.html",
     "title": "SDS 366 Schedule Spring 2026",
     "section": "",
-    "text": "Materials:\n\n\nSlides\n\nWorksheet 1: Introduction to Quarto\nWorksheet 2: Introduction to R\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (visualizing amounts)\nWorksheet Part I\nSlides Part II (telling a story)\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
+    "text": "Materials:\n\n\nSlides\n\nWorksheet 1: Introduction to Quarto\nWorksheet 2: Introduction to R\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (visualizing amounts)\nWorksheet Part I\nSlides Part II (telling a story)\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
   },
   {
     "objectID": "schedule.html#lectures",
     "href": "schedule.html#lectures",
     "title": "SDS 366 Schedule Spring 2026",
     "section": "",
-    "text": "Materials:\n\n\nSlides\n\nWorksheet 1: Introduction to Quarto\nWorksheet 2: Introduction to R\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (visualizing amounts)\nWorksheet Part I\nSlides Part II (telling a story)\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
+    "text": "Materials:\n\n\nSlides\n\nWorksheet 1: Introduction to Quarto\nWorksheet 2: Introduction to R\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (visualizing amounts)\nWorksheet Part I\nSlides Part II (telling a story)\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
   },
   {
     "objectID": "schedule.html#assignment-due-dates",
@@ -6395,7 +6395,7 @@
     "href": "slides/visualizing-distributions-1.html#making-histograms-with-ggplot-geom_histogram",
     "title": "Visualizing distributions 1",
     "section": "Making histograms with ggplot: geom_histogram()",
-    "text": "Making histograms with ggplot: geom_histogram()\n\nggplot(titanic, aes(age)) +\n  geom_histogram()\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`."
+    "text": "Making histograms with ggplot: geom_histogram()\n\nggplot(titanic, aes(age)) +\n  geom_histogram()\n\n`stat_bin()` using `bins = 30`. Pick better value `binwidth`."
   },
   {
     "objectID": "slides/visualizing-distributions-1.html#setting-the-bin-width",
@@ -6447,53 +6447,60 @@
     "text": "Modifying bandwidth (bw) and kernel parameters\n\nggplot(titanic, aes(age)) +\n  geom_density(\n    fill = \"skyblue\",\n    bw = 2,                 # a moderate bandwidth\n    kernel = \"rectangular\"  # rectangular kernel\n  )"
   },
   {
-    "objectID": "slides/visualizing-distributions-1.html#the-grammar-of-graphics-pipeline",
-    "href": "slides/visualizing-distributions-1.html#the-grammar-of-graphics-pipeline",
+    "objectID": "slides/visualizing-distributions-1.html#the-grammar-of-graphics-pipeline-facets",
+    "href": "slides/visualizing-distributions-1.html#the-grammar-of-graphics-pipeline-facets",
     "title": "Visualizing distributions 1",
-    "section": "The Grammar-of-Graphics pipeline",
-    "text": "The Grammar-of-Graphics pipeline"
+    "section": "The Grammar-of-Graphics pipeline: Facets",
+    "text": "The Grammar-of-Graphics pipeline: Facets\n\n\n\n\n\n\n\n\nFacets are also called “small multiples”"
   },
   {
-    "objectID": "slides/visualizing-distributions-1.html#small-multiples-facet_wrap",
-    "href": "slides/visualizing-distributions-1.html#small-multiples-facet_wrap",
+    "objectID": "slides/visualizing-distributions-1.html#faceting-by-one-variable-facet_wrap",
+    "href": "slides/visualizing-distributions-1.html#faceting-by-one-variable-facet_wrap",
     "title": "Visualizing distributions 1",
-    "section": "Small multiples: facet_wrap()",
-    "text": "Small multiples: facet_wrap()\n\nggplot(titanic, aes(age)) +\n  geom_density(fill = \"skyblue\") +\n  # make a separate facet for each class\n  facet_wrap(~class)"
+    "section": "Faceting by one variable: facet_wrap()",
+    "text": "Faceting by one variable: facet_wrap()\n\nggplot(titanic, aes(age)) +\n  geom_density(fill = \"skyblue\") +\n  # make a separate facet for each class\n  facet_wrap(~class)"
   },
   {
-    "objectID": "slides/visualizing-distributions-1.html#small-multiples-facet_grid",
-    "href": "slides/visualizing-distributions-1.html#small-multiples-facet_grid",
+    "objectID": "slides/visualizing-distributions-1.html#faceting-by-two-variables-facet_grid",
+    "href": "slides/visualizing-distributions-1.html#faceting-by-two-variables-facet_grid",
     "title": "Visualizing distributions 1",
-    "section": "Small multiples: facet_grid()",
-    "text": "Small multiples: facet_grid()\n\nggplot(titanic, aes(age)) +\n  geom_density(fill = \"skyblue\") +\n  # make a separate facet for each combination of class and survival\n  facet_grid(survived ~ class)"
+    "section": "Faceting by two variables: facet_grid()",
+    "text": "Faceting by two variables: facet_grid()\n\nggplot(titanic, aes(age)) +\n  geom_density(fill = \"skyblue\") +\n  # make a separate facet for each combination of class and survival\n  facet_grid(survived ~ class)"
   },
   {
-    "objectID": "slides/visualizing-distributions-1.html#statistical-transformations-stats-can-be-set-explicitly",
-    "href": "slides/visualizing-distributions-1.html#statistical-transformations-stats-can-be-set-explicitly",
+    "objectID": "slides/visualizing-distributions-1.html#the-grammar-of-graphics-pipeline-stats",
+    "href": "slides/visualizing-distributions-1.html#the-grammar-of-graphics-pipeline-stats",
     "title": "Visualizing distributions 1",
-    "section": "Statistical transformations (stats) can be set explicitly",
-    "text": "Statistical transformations (stats) can be set explicitly\n\nggplot(titanic, aes(age)) +\n  geom_density(\n    stat = \"density\",    # the default for geom_density()\n    fill = \"skyblue\"\n  )"
+    "section": "The Grammar-of-Graphics pipeline: Stats",
+    "text": "The Grammar-of-Graphics pipeline: Stats"
   },
   {
-    "objectID": "slides/visualizing-distributions-1.html#statistical-transformations-stats-can-be-set-explicitly-1",
-    "href": "slides/visualizing-distributions-1.html#statistical-transformations-stats-can-be-set-explicitly-1",
+    "objectID": "slides/visualizing-distributions-1.html#taking-advantage-of-statistical-transformations-stats",
+    "href": "slides/visualizing-distributions-1.html#taking-advantage-of-statistical-transformations-stats",
     "title": "Visualizing distributions 1",
-    "section": "Statistical transformations (stats) can be set explicitly",
-    "text": "Statistical transformations (stats) can be set explicitly\n\nggplot(titanic, aes(age)) +\n  geom_area(  # geom_area() does not normally use stat = \"density\"\n    stat = \"density\",\n    fill = \"skyblue\"\n  )"
+    "section": "Taking advantage of statistical transformations (stats)",
+    "text": "Taking advantage of statistical transformations (stats)\n\nggplot(titanic, aes(age)) +\n  geom_density(\n    stat = \"density\",    # the default for geom_density()\n    fill = \"skyblue\"\n  )"
   },
   {
-    "objectID": "slides/visualizing-distributions-1.html#statistical-transformations-stats-can-be-set-explicitly-2",
-    "href": "slides/visualizing-distributions-1.html#statistical-transformations-stats-can-be-set-explicitly-2",
+    "objectID": "slides/visualizing-distributions-1.html#taking-advantage-of-statistical-transformations-stats-1",
+    "href": "slides/visualizing-distributions-1.html#taking-advantage-of-statistical-transformations-stats-1",
     "title": "Visualizing distributions 1",
-    "section": "Statistical transformations (stats) can be set explicitly",
-    "text": "Statistical transformations (stats) can be set explicitly\n\nggplot(titanic, aes(age)) +\n  geom_line(  # neither does geom_line()\n    stat = \"density\"\n  )"
+    "section": "Taking advantage of statistical transformations (stats)",
+    "text": "Taking advantage of statistical transformations (stats)\n\nggplot(titanic, aes(age)) +\n  geom_area(  # geom_area() does not normally use stat = \"density\"\n    stat = \"density\",\n    fill = \"skyblue\"\n  )"
   },
   {
-    "objectID": "slides/visualizing-distributions-1.html#statistical-transformations-stats-can-be-set-explicitly-3",
-    "href": "slides/visualizing-distributions-1.html#statistical-transformations-stats-can-be-set-explicitly-3",
+    "objectID": "slides/visualizing-distributions-1.html#taking-advantage-of-statistical-transformations-stats-2",
+    "href": "slides/visualizing-distributions-1.html#taking-advantage-of-statistical-transformations-stats-2",
     "title": "Visualizing distributions 1",
-    "section": "Statistical transformations (stats) can be set explicitly",
-    "text": "Statistical transformations (stats) can be set explicitly\n\nggplot(titanic, aes(age)) +\n  # we can use multiple geoms on top of each other\n  geom_area(stat = \"density\", fill = \"skyblue\") +\n  geom_line(stat = \"density\")"
+    "section": "Taking advantage of statistical transformations (stats)",
+    "text": "Taking advantage of statistical transformations (stats)\n\nggplot(titanic, aes(age)) +\n  geom_line(  # neither does geom_line()\n    stat = \"density\"\n  )"
+  },
+  {
+    "objectID": "slides/visualizing-distributions-1.html#taking-advantage-of-statistical-transformations-stats-3",
+    "href": "slides/visualizing-distributions-1.html#taking-advantage-of-statistical-transformations-stats-3",
+    "title": "Visualizing distributions 1",
+    "section": "Taking advantage of statistical transformations (stats)",
+    "text": "Taking advantage of statistical transformations (stats)\n\nggplot(titanic, aes(age)) +\n  # we can use multiple geoms on top of each other\n  geom_area(stat = \"density\", fill = \"skyblue\") +\n  geom_line(stat = \"density\")"
   },
   {
     "objectID": "slides/visualizing-distributions-1.html#parameters-are-handed-through-to-the-stat",
