@@ -77,7 +77,7 @@ ggplot(penguins, aes(body_mass_g, bill_length_mm, color = species)) +
   geom_point(size = 2, na.rm = TRUE)
 ```
 
-Use the <a href="../choose-color/" target="_blank">color chooser app</a> to manually pick three colors that are appropriate for a qualitative color scale. Then modify the plot to use this scale.
+Use the <a href="../apps/bin/choose-color/" target="_blank">color chooser app</a> to manually pick three colors that are appropriate for a qualitative color scale. Then modify the plot to use this scale.
 
 ```{webr} 
 #| exercise: penguins
@@ -120,7 +120,7 @@ ggplot(temps_months, aes(x = month, y = location, fill = mean)) +
   coord_fixed(expand = FALSE)
 ```
 
-Use the <a href="../choose-color/" target="_blank">color chooser app</a> to manually pick four to six colors that are appropriate for a sequential color scale. Then modify the plot to use this scale. (To create a manual color gradient, use `scale_fill_gradientn()`.)
+Use the <a href="../apps/bin/choose-color/" target="_blank">color chooser app</a> to manually pick four to six colors that are appropriate for a sequential color scale. Then modify the plot to use this scale. (To create a manual color gradient, use `scale_fill_gradientn()`.)
 
 ```{webr} 
 #| exercise: temps
