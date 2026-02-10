@@ -56,6 +56,21 @@ format: html
 - [Slides](slides/color-scales.qmd)  
 - [Worksheet](worksheets/color-scales.qmd)
 
+### 8. Feb 10, 2026—Color spaces and color-vision deficiency
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/color-spaces.qmd)  
+- [Worksheet](worksheets/color-selection.qmd)
+
+### 9. Feb 12, 2026—Data wrangling
+
+<p class="nospace">Materials:</p>
+
+- [Slides Part I](slides/data-wrangling-1.qmd) (pipe, sorting, filtering, mutating)
+- [Worksheet Part I](worksheets/data-wrangling-1.qmd)
+- [Slides Part II](slides/data-wrangling-2.qmd) (summarizing, pivoting, joining)
+- [Worksheet Part II](worksheets/data-wrangling-2.qmd)
 
 ## Assignment due dates
 
