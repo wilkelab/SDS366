@@ -72,6 +72,22 @@ format: html
 - [Slides Part II](slides/data-wrangling-2.qmd) (summarizing, pivoting, joining)
 - [Worksheet Part II](worksheets/data-wrangling-2.qmd)
 
+### 10. Feb 17, 2026—Visualizing proportions
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/visualizing-proportions.qmd)  
+- [Worksheet](worksheets/visualizing-proportions.qmd)
+
+### 11. Feb 19, 2026—Getting to know your data
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/know-your-data.qmd)
+- [Worksheet Part I](worksheets/know-your-data-1.qmd) (data cleaning)
+- [Worksheet Part II](worksheets/know-your-data-2.qmd) (missing data)
+
+
 ## Assignment due dates
 
 All assignments (homeworks, projects, peer grading) are due by 11:59pm on the day they are due.
