@@ -87,6 +87,20 @@ format: html
 - [Worksheet Part I](worksheets/know-your-data-1.qmd) (data cleaning)
 - [Worksheet Part II](worksheets/know-your-data-2.qmd) (missing data)
 
+### 12. Feb 24, 2026—Getting things into the right order
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/getting-things-in-order.qmd)
+- [Worksheet](worksheets/getting-things-in-order.qmd)
+
+### 13. Feb 26, 2026—Figure design
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/figure-design.qmd)
+- [Worksheet](worksheets/figure-design.qmd)
+
 
 ## Assignment due dates
 
