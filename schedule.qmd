@@ -115,6 +115,21 @@ format: html
 - [Slides](slides/visualizing-trends.qmd)  
 - [Worksheet](worksheets/visualizing-trends.qmd)
 
+### 16. Mar 10, 2026—Functions and functional programming
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/functional-programming.qmd)  
+- [Worksheet](worksheets/functional-programming.qmd)
+
+### 17. Mar 12, 2026—Working with models
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/working-with-models.qmd)  
+- [Worksheet](worksheets/working-with-models.qmd)
+
+
 ## Assignment due dates
 
 All assignments (homeworks, projects, peer grading) are due by 11:59pm on the day they are due.
