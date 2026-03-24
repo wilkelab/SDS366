@@ -129,6 +129,20 @@ format: html
 - [Slides](slides/working-with-models.qmd)  
 - [Worksheet](worksheets/working-with-models.qmd)
 
+### 18. Mar 24, 2026—Visualizing uncertainty
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/visualizing-uncertainty.qmd)  
+- [Worksheet](worksheets/visualizing-uncertainty.qmd)
+
+### 19. Mar 26, 2026—Dimension reduction 1
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/dimension-reduction-1.qmd)  
+- [Worksheet](worksheets/dimension-reduction-1.qmd)
+
 
 ## Assignment due dates
 
