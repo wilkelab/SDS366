@@ -143,6 +143,19 @@ format: html
 - [Slides](slides/dimension-reduction-1.qmd)  
 - [Worksheet](worksheets/dimension-reduction-1.qmd)
 
+### 20. Mar 31, 2026—Dimension reduction 2
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/dimension-reduction-2.qmd)  
+- [Worksheet](worksheets/dimension-reduction-2.qmd)
+
+### 21. Apr 2, 2026—Clustering
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/clustering.qmd)  
+- [Worksheet](worksheets/clustering.qmd)
 
 ## Assignment due dates
 
