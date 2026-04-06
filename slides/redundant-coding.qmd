@@ -79,7 +79,7 @@ cvd_sim2 <- function(p, width, height, severity = 1, scale = 0.9, hjust = 0, vju
 
 ## Color encoding alone is not always sufficient
 
-```{r iris-scatter-one-shape}
+```{r}
 #| label: iris-scatter-one-shape
 #| fig-cap: "&nbsp;"
 #| fig-width: 6
@@ -153,7 +153,7 @@ CVD simulation of preceding figure
 
 ## Using both colors and shapes helps
 
-```{r iris-scatter-one-shape}
+```{r}
 #| label: iris-scatter-three-shapes
 #| fig-cap: "&nbsp;"
 #| fig-width: 6
@@ -491,9 +491,282 @@ ggplot(tx_counties_labels, aes(x = index, y = popratio)) +
 
 <!-- Segment ends here -->
 
-# Direct labeling in R
+## 1. Manual labeling with `geom_text()`
 
-## 1. Secondary axis trick
+::: {.small-font}
+The raw input data:
+
+```{r}
+#| echo: true
+iris
+```
+:::
+
+## 1. Manual labeling with `geom_text()`
+
+::: {.small-font}
+Manually create table with label positions:
+
+```{r}
+#| echo: true
+iris_labels <- tibble(
+  Species = c("setosa", "virginica", "versicolor"),
+  Sepal.Width = c(4.2, 3.76, 2.08),
+  Sepal.Length = c(5.7, 7, 5.1),
+  label = c("Iris setosa", "Iris virginica", "Iris versicolor"),
+  hjust = c(0, 0.5, 0),
+  vjust = c(0, 0.5, 1)
+)
+
+iris_labels
+```
+:::
+
+## 1. Manual labeling with `geom_text()`
+
+::: {.tiny-font}
+```{r}
+#| label: iris-manual
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig-width: 5
+#| output-location: "column"
+#| output-width: "100%"
+ggplot(iris) +
+  aes(Sepal.Length, Sepal.Width, color = Species) +
+  geom_point(aes(shape = Species))
+```
+:::
+
+## 1. Manual labeling with `geom_text()`
+
+::: {.tiny-font}
+```{r}
+#| label: iris-manual2
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig-width: 5
+#| fig-asp: 0.8
+#| output-location: "column"
+#| output-width: "100%"
+ggplot(iris) +
+  aes(Sepal.Length, Sepal.Width, color = Species) +
+  geom_point(aes(shape = Species)) +
+  geom_text(
+    data = iris_labels,
+    aes(
+      label = label,
+      hjust = hjust, vjust = vjust
+    ),
+    size = 14, size.unit = "pt" # 14pt font
+  ) +
+  guides(color = "none", shape = "none")
+```
+:::
+
+## 1. Manual labeling with `geom_text()`
+
+::: {.tiny-font}
+```{r}
+#| label: iris-manual3
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig-width: 5
+#| fig-asp: 0.8
+#| output-location: "column"
+#| output-width: "100%"
+ggplot(iris) +
+  aes(Sepal.Length, Sepal.Width, color = Species) +
+  geom_point(aes(shape = Species)) +
+  geom_text(
+    data = iris_labels,
+    aes(
+      label = label,
+      hjust = hjust, vjust = vjust
+    ),
+    size = 14, size.unit = "pt" # 14pt font
+  ) +
+  stat_ellipse(size = 0.5) + 
+  guides(color = "none", shape = "none")
+```
+:::
+
+## 2. Automatic labeling with `geom_text_repel()`
+
+::: {.small-font}
+Prepare data:
+:::
+
+::: {.tiny-font}
+```{r}
+#| echo: true
+mtcars_named <- mtcars |>
+  rownames_to_column("car") |>
+  select(car, weight = wt, mpg)
+
+mtcars_named
+```
+:::
+
+## 2. Automatic labeling with `geom_text_repel()`
+
+::: {.tiny-font}
+```{r}
+#| label: mtcars-plot1
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig-width: 6
+#| fig-asp: 0.75
+#| output-location: "column"
+#| output-width: "100%"
+ggplot(mtcars_named, aes(weight, mpg)) +
+  geom_point()
+```
+:::
+
+## 2. Automatic labeling with `geom_text_repel()`
+
+::: {.tiny-font}
+```{r}
+#| label: mtcars-plot2
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig-width: 6
+#| fig-asp: 0.75
+#| output-location: "column"
+#| output-width: "100%"
+ggplot(mtcars_named, aes(weight, mpg)) +
+  geom_point() +
+  geom_text(aes(label = car))
+```
+:::
+
+## 2. Automatic labeling with `geom_text_repel()`
+
+::: {.tiny-font}
+```{r}
+#| label: mtcars-plot3
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig-width: 6
+#| fig-asp: 0.75
+#| output-location: "column"
+#| output-width: "100%"
+ggplot(mtcars_named, aes(weight, mpg)) +
+  geom_point() +
+  geom_text(aes(label = car), hjust = 0)
+```
+:::
+
+## 2. Automatic labeling with `geom_text_repel()`
+
+::: {.tiny-font}
+```{r}
+#| label: mtcars-plot4
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig-width: 6
+#| fig-asp: 0.75
+#| output-location: "column"
+#| output-width: "100%"
+library(ggrepel)
+
+ggplot(mtcars_named, aes(weight, mpg)) +
+  geom_point() +
+  geom_text_repel(
+    aes(label = car),
+    max.overlaps = Inf
+  )  
+```
+:::
+
+## 2. Automatic labeling with `geom_text_repel()`
+
+::: {.tiny-font}
+```{r}
+#| label: mtcars-plot5
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig-width: 6
+#| fig-asp: 0.75
+#| output-location: "column"
+#| output-width: "100%"
+set.seed(6643)
+
+mtcars_named |>
+  mutate(
+    # randomly exclude 50% of the labels
+    car = ifelse(runif(n()) < 0.5, "", car)
+  ) |> 
+  ggplot(aes(weight, mpg)) +
+  geom_point() +
+  geom_text_repel(
+    aes(label = car),
+    max.overlaps = Inf
+  )
+```
+:::
+
+## 2. Automatic labeling with `geom_text_repel()`
+
+::: {.tiny-font}
+```{r}
+#| label: mtcars-plot6
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig-width: 6
+#| fig-asp: 0.75
+#| output-location: "column"
+#| output-width: "100%"
+set.seed(6644)
+
+mtcars_named |>
+  mutate(
+    # randomly exclude 50% of the labels
+    car = ifelse(runif(n()) < 0.5, "", car)
+  ) |> 
+  ggplot(aes(weight, mpg)) +
+  geom_point() +
+  geom_text_repel(
+    aes(label = car),
+    max.overlaps = Inf
+  )
+```
+:::
+
+## 2. Automatic labeling with `geom_text_repel()`
+
+::: {.tiny-font}
+```{r}
+#| label: mtcars-plot7
+#| echo: true
+#| fig-cap: "&nbsp;"
+#| fig-width: 6
+#| fig-asp: 0.75
+#| output-location: "column"
+#| output-width: "100%"
+set.seed(6644)
+
+mtcars_named |>
+  mutate(
+    # randomly exclude 50% of the labels
+    car = ifelse(runif(n()) < 0.5, "", car)
+  ) |> 
+  ggplot(aes(weight, mpg)) +
+  geom_point() +
+  geom_text_repel(
+    aes(label = car),
+    max.overlaps = Inf,
+    box.padding = 0.7
+  )
+```
+:::
+
+::: {.small-font .move-up-1em}
+`box.padding` controls how far labels are placed from data points
+:::
+
+## 3. Secondary axis trick
 
 ::: {.small-font}
 Data preparation:
@@ -510,7 +783,7 @@ tech_stocks
 ```
 :::
 
-## 1. Secondary axis trick
+## 3. Secondary axis trick
 
 ::: {.small-font}
 Extract most recent values:
@@ -526,8 +799,7 @@ tech_stocks_last
 ```
 :::
 
-
-## 1. Secondary axis trick
+## 3. Secondary axis trick
 
 ::: {.tiny-font}
 ```{r}
@@ -558,7 +830,7 @@ ggplot(tech_stocks) +
 Side remark: The default legend order doesn't match the data
 :::
 
-## 1. Secondary axis trick
+## 3. Secondary axis trick
 
 ::: {.tiny-font}
 ```{r}
@@ -589,281 +861,6 @@ ggplot(tech_stocks) +
   ) +
   guides(color = "none")
 ```
-:::
-
-## 2. Manual labeling with `geom_text()`
-
-::: {.small-font}
-The raw input data:
-
-```{r}
-#| echo: true
-iris
-```
-:::
-
-## 2. Manual labeling with `geom_text()`
-
-::: {.small-font}
-Manually create table with label positions:
-
-```{r}
-#| echo: true
-iris_labels <- tibble(
-  Species = c("setosa", "virginica", "versicolor"),
-  Sepal.Width = c(4.2, 3.76, 2.08),
-  Sepal.Length = c(5.7, 7, 5.1),
-  label = c("Iris setosa", "Iris virginica", "Iris versicolor"),
-  hjust = c(0, 0.5, 0),
-  vjust = c(0, 0.5, 1)
-)
-
-iris_labels
-```
-:::
-
-## 2. Manual labeling with `geom_text()`
-
-::: {.tiny-font}
-```{r}
-#| label: iris-manual
-#| echo: true
-#| fig-cap: "&nbsp;"
-#| fig-width: 5
-#| output-location: "column"
-#| output-width: "100%"
-ggplot(iris) +
-  aes(Sepal.Length, Sepal.Width, color = Species) +
-  geom_point(aes(shape = Species))
-```
-:::
-
-## 2. Manual labeling with `geom_text()`
-
-::: {.tiny-font}
-```{r}
-#| label: iris-manual2
-#| echo: true
-#| fig-cap: "&nbsp;"
-#| fig-width: 5
-#| fig-asp: 0.8
-#| output-location: "column"
-#| output-width: "100%"
-ggplot(iris) +
-  aes(Sepal.Length, Sepal.Width, color = Species) +
-  geom_point(aes(shape = Species)) +
-  geom_text(
-    data = iris_labels,
-    aes(
-      label = label,
-      hjust = hjust, vjust = vjust
-    ),
-    size = 14, size.unit = "pt" # 14pt font
-  ) +
-  guides(color = "none", shape = "none")
-```
-:::
-
-## 2. Manual labeling with `geom_text()`
-
-::: {.tiny-font}
-```{r}
-#| label: iris-manual3
-#| echo: true
-#| fig-cap: "&nbsp;"
-#| fig-width: 5
-#| fig-asp: 0.8
-#| output-location: "column"
-#| output-width: "100%"
-ggplot(iris) +
-  aes(Sepal.Length, Sepal.Width, color = Species) +
-  geom_point(aes(shape = Species)) +
-  geom_text(
-    data = iris_labels,
-    aes(
-      label = label,
-      hjust = hjust, vjust = vjust
-    ),
-    size = 14, size.unit = "pt" # 14pt font
-  ) +
-  stat_ellipse(size = 0.5) + 
-  guides(color = "none", shape = "none")
-```
-:::
-
-## 3. Automatic labeling with `geom_text_repel()`
-
-::: {.small-font}
-Prepare data:
-:::
-
-::: {.tiny-font}
-```{r}
-#| echo: true
-mtcars_named <- mtcars |>
-  rownames_to_column("car") |>
-  select(car, weight = wt, mpg)
-
-mtcars_named
-```
-:::
-
-## 3. Automatic labeling with `geom_text_repel()`
-
-::: {.tiny-font}
-```{r}
-#| label: mtcars-plot1
-#| echo: true
-#| fig-cap: "&nbsp;"
-#| fig-width: 6
-#| fig-asp: 0.75
-#| output-location: "column"
-#| output-width: "100%"
-ggplot(mtcars_named, aes(weight, mpg)) +
-  geom_point()
-```
-:::
-
-## 3. Automatic labeling with `geom_text_repel()`
-
-::: {.tiny-font}
-```{r}
-#| label: mtcars-plot2
-#| echo: true
-#| fig-cap: "&nbsp;"
-#| fig-width: 6
-#| fig-asp: 0.75
-#| output-location: "column"
-#| output-width: "100%"
-ggplot(mtcars_named, aes(weight, mpg)) +
-  geom_point() +
-  geom_text(aes(label = car))
-```
-:::
-
-## 3. Automatic labeling with `geom_text_repel()`
-
-::: {.tiny-font}
-```{r}
-#| label: mtcars-plot3
-#| echo: true
-#| fig-cap: "&nbsp;"
-#| fig-width: 6
-#| fig-asp: 0.75
-#| output-location: "column"
-#| output-width: "100%"
-ggplot(mtcars_named, aes(weight, mpg)) +
-  geom_point() +
-  geom_text(aes(label = car), hjust = 0)
-```
-:::
-
-## 3. Automatic labeling with `geom_text_repel()`
-
-::: {.tiny-font}
-```{r}
-#| label: mtcars-plot4
-#| echo: true
-#| fig-cap: "&nbsp;"
-#| fig-width: 6
-#| fig-asp: 0.75
-#| output-location: "column"
-#| output-width: "100%"
-library(ggrepel)
-
-ggplot(mtcars_named, aes(weight, mpg)) +
-  geom_point() +
-  geom_text_repel(
-    aes(label = car),
-    max.overlaps = Inf
-  )  
-```
-:::
-
-## 3. Automatic labeling with `geom_text_repel()`
-
-::: {.tiny-font}
-```{r}
-#| label: mtcars-plot5
-#| echo: true
-#| fig-cap: "&nbsp;"
-#| fig-width: 6
-#| fig-asp: 0.75
-#| output-location: "column"
-#| output-width: "100%"
-set.seed(6643)
-
-mtcars_named |>
-  mutate(
-    # randomly exclude 50% of the labels
-    car = ifelse(runif(n()) < 0.5, "", car)
-  ) |> 
-  ggplot(aes(weight, mpg)) +
-  geom_point() +
-  geom_text_repel(
-    aes(label = car),
-    max.overlaps = Inf
-  )
-```
-:::
-
-## 3. Automatic labeling with `geom_text_repel()`
-
-::: {.tiny-font}
-```{r}
-#| label: mtcars-plot6
-#| echo: true
-#| fig-cap: "&nbsp;"
-#| fig-width: 6
-#| fig-asp: 0.75
-#| output-location: "column"
-#| output-width: "100%"
-set.seed(6644)
-
-mtcars_named |>
-  mutate(
-    # randomly exclude 50% of the labels
-    car = ifelse(runif(n()) < 0.5, "", car)
-  ) |> 
-  ggplot(aes(weight, mpg)) +
-  geom_point() +
-  geom_text_repel(
-    aes(label = car),
-    max.overlaps = Inf
-  )
-```
-:::
-
-## 3. Automatic labeling with `geom_text_repel()`
-
-::: {.tiny-font}
-```{r}
-#| label: mtcars-plot7
-#| echo: true
-#| fig-cap: "&nbsp;"
-#| fig-width: 6
-#| fig-asp: 0.75
-#| output-location: "column"
-#| output-width: "100%"
-set.seed(6644)
-
-mtcars_named |>
-  mutate(
-    # randomly exclude 50% of the labels
-    car = ifelse(runif(n()) < 0.5, "", car)
-  ) |> 
-  ggplot(aes(weight, mpg)) +
-  geom_point() +
-  geom_text_repel(
-    aes(label = car),
-    max.overlaps = Inf,
-    box.padding = 0.7
-  )
-```
-:::
-
-::: {.small-font .move-up-1em}
-`box.padding` controls how far labels are placed from data points
 :::
 
 <!-- Segment ends here -->

@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.39">
 
   <meta name="author" content="Claus O. Wilke">
-  <meta name="dcterms.date" content="2025-03-31">
+  <meta name="dcterms.date" content="2026-04-06">
   <title>SDS 366 – Redundant coding, text annotations</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -205,7 +205,7 @@ Claus O. Wilke
 </div>
 </div>
 
-  <p class="date">2025-03-31</p>
+  <p class="date">2026-04-06</p>
 </section>
 <section id="color-encoding-alone-is-not-always-sufficient" class="slide level2">
 <h2>Color encoding alone is not always sufficient</h2>
@@ -371,142 +371,12 @@ Claus O. Wilke
 </div>
 <!-- Segment ends here -->
 </section>
-<section>
-<section id="direct-labeling-in-r" class="title-slide slide level1 center">
-<h1>Direct labeling in R</h1>
-
-</section>
-<section id="secondary-axis-trick" class="slide level2">
-<h2>1. Secondary axis trick</h2>
-<div class="small-font">
-<p>Data preparation:</p>
-</div>
-<div class="tiny-font">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>tech_stocks <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://wilkelab.org/SDS366/datasets/tech_stocks.csv"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb1-2"><a></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">ymd</span>(date)) <span class="sc">|&gt;</span></span>
-<span id="cb1-3"><a></a>  <span class="fu">select</span>(company, date, price_indexed)</span>
-<span id="cb1-4"><a></a></span>
-<span id="cb1-5"><a></a>tech_stocks</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 9,569 × 3
-   company  date       price_indexed
-   &lt;chr&gt;    &lt;date&gt;             &lt;dbl&gt;
- 1 Alphabet 2017-06-02          342.
- 2 Alphabet 2017-06-01          339.
- 3 Alphabet 2017-05-31          338.
- 4 Alphabet 2017-05-30          342.
- 5 Alphabet 2017-05-26          341.
- 6 Alphabet 2017-05-25          340.
- 7 Alphabet 2017-05-24          335.
- 8 Alphabet 2017-05-23          333.
- 9 Alphabet 2017-05-22          330.
-10 Alphabet 2017-05-19          327.
-# ℹ 9,559 more rows</code></pre>
-</div>
-</div>
-</div>
-</section>
-<section id="secondary-axis-trick-1" class="slide level2">
-<h2>1. Secondary axis trick</h2>
-<div class="small-font">
-<p>Extract most recent values:</p>
-</div>
-<div class="tiny-font">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>tech_stocks_last <span class="ot">&lt;-</span> tech_stocks <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a></a>  <span class="fu">filter</span>(date <span class="sc">==</span> <span class="fu">max</span>(date))</span>
-<span id="cb3-3"><a></a></span>
-<span id="cb3-4"><a></a>tech_stocks_last</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 3
-  company   date       price_indexed
-  &lt;chr&gt;     &lt;date&gt;             &lt;dbl&gt;
-1 Alphabet  2017-06-02          342.
-2 Apple     2017-06-02          194.
-3 Facebook  2017-06-02          554.
-4 Microsoft 2017-06-02          252.</code></pre>
-</div>
-</div>
-</div>
-</section>
-<section id="secondary-axis-trick-2" class="slide level2">
-<h2>1. Secondary axis trick</h2>
-<div class="tiny-font">
-<div class="cell columns column-output-location" data-output-width="100%">
-<div class="column">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">ggplot</span>(tech_stocks) <span class="sc">+</span></span>
-<span id="cb5-2"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> price_indexed) <span class="sc">+</span></span>
-<span id="cb5-3"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color =</span> company), <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb5-4"><a></a>  <span class="fu">scale_x_date</span>(</span>
-<span id="cb5-5"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(</span>
-<span id="cb5-6"><a></a>      <span class="fu">ymd</span>(<span class="st">"2012-06-01"</span>),</span>
-<span id="cb5-7"><a></a>      <span class="fu">ymd</span>(<span class="st">"2017-05-31"</span>)</span>
-<span id="cb5-8"><a></a>    ),</span>
-<span id="cb5-9"><a></a>    <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb5-10"><a></a>  ) <span class="sc">+</span> </span>
-<span id="cb5-11"><a></a>  <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb5-12"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">560</span>),</span>
-<span id="cb5-13"><a></a>    <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb5-14"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="redundant-coding_files/figure-revealjs/tech-stock-sec-axis-1.svg"></p>
-<figcaption>&nbsp;</figcaption>
-</figure>
-</div>
-</div>
-</div></div>
-</div>
-<div class="small-font">
-<p>Side remark: The default legend order doesn’t match the data</p>
-</div>
-</section>
-<section id="secondary-axis-trick-3" class="slide level2">
-<h2>1. Secondary axis trick</h2>
-<div class="tiny-font">
-<div class="cell columns column-output-location" data-output-width="100%">
-<div class="column">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">ggplot</span>(tech_stocks) <span class="sc">+</span></span>
-<span id="cb6-2"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> price_indexed) <span class="sc">+</span></span>
-<span id="cb6-3"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color =</span> company), <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb6-4"><a></a>  <span class="fu">scale_x_date</span>(</span>
-<span id="cb6-5"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(</span>
-<span id="cb6-6"><a></a>      <span class="fu">ymd</span>(<span class="st">"2012-06-01"</span>),</span>
-<span id="cb6-7"><a></a>      <span class="fu">ymd</span>(<span class="st">"2017-05-31"</span>)</span>
-<span id="cb6-8"><a></a>    ),</span>
-<span id="cb6-9"><a></a>    <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb6-10"><a></a>  ) <span class="sc">+</span> </span>
-<span id="cb6-11"><a></a>  <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb6-12"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">560</span>),</span>
-<span id="cb6-13"><a></a>    <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>),</span>
-<span id="cb6-14"><a></a>    <span class="at">sec.axis =</span> <span class="fu">dup_axis</span>(</span>
-<span id="cb6-15"><a></a>      <span class="at">breaks =</span> tech_stocks_last<span class="sc">$</span>price_indexed,</span>
-<span id="cb6-16"><a></a>      <span class="at">labels =</span> tech_stocks_last<span class="sc">$</span>company,</span>
-<span id="cb6-17"><a></a>      <span class="at">name =</span> <span class="cn">NULL</span></span>
-<span id="cb6-18"><a></a>    )</span>
-<span id="cb6-19"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb6-20"><a></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="redundant-coding_files/figure-revealjs/tech-stock-sec-axis2-1.svg"></p>
-<figcaption>&nbsp;</figcaption>
-</figure>
-</div>
-</div>
-</div></div>
-</div>
-</section>
 <section id="manual-labeling-with-geom_text" class="slide level2">
-<h2>2. Manual labeling with <code>geom_text()</code></h2>
+<h2>1. Manual labeling with <code>geom_text()</code></h2>
 <div class="small-font">
 <p>The raw input data:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>iris</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>iris</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
 1            5.1         3.5          1.4         0.2     setosa
@@ -664,20 +534,20 @@ Claus O. Wilke
 </div>
 </section>
 <section id="manual-labeling-with-geom_text-1" class="slide level2">
-<h2>2. Manual labeling with <code>geom_text()</code></h2>
+<h2>1. Manual labeling with <code>geom_text()</code></h2>
 <div class="small-font">
 <p>Manually create table with label positions:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>iris_labels <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb9-2"><a></a>  <span class="at">Species =</span> <span class="fu">c</span>(<span class="st">"setosa"</span>, <span class="st">"virginica"</span>, <span class="st">"versicolor"</span>),</span>
-<span id="cb9-3"><a></a>  <span class="at">Sepal.Width =</span> <span class="fu">c</span>(<span class="fl">4.2</span>, <span class="fl">3.76</span>, <span class="fl">2.08</span>),</span>
-<span id="cb9-4"><a></a>  <span class="at">Sepal.Length =</span> <span class="fu">c</span>(<span class="fl">5.7</span>, <span class="dv">7</span>, <span class="fl">5.1</span>),</span>
-<span id="cb9-5"><a></a>  <span class="at">label =</span> <span class="fu">c</span>(<span class="st">"Iris setosa"</span>, <span class="st">"Iris virginica"</span>, <span class="st">"Iris versicolor"</span>),</span>
-<span id="cb9-6"><a></a>  <span class="at">hjust =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="dv">0</span>),</span>
-<span id="cb9-7"><a></a>  <span class="at">vjust =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="dv">1</span>)</span>
-<span id="cb9-8"><a></a>)</span>
-<span id="cb9-9"><a></a></span>
-<span id="cb9-10"><a></a>iris_labels</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>iris_labels <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb3-2"><a></a>  <span class="at">Species =</span> <span class="fu">c</span>(<span class="st">"setosa"</span>, <span class="st">"virginica"</span>, <span class="st">"versicolor"</span>),</span>
+<span id="cb3-3"><a></a>  <span class="at">Sepal.Width =</span> <span class="fu">c</span>(<span class="fl">4.2</span>, <span class="fl">3.76</span>, <span class="fl">2.08</span>),</span>
+<span id="cb3-4"><a></a>  <span class="at">Sepal.Length =</span> <span class="fu">c</span>(<span class="fl">5.7</span>, <span class="dv">7</span>, <span class="fl">5.1</span>),</span>
+<span id="cb3-5"><a></a>  <span class="at">label =</span> <span class="fu">c</span>(<span class="st">"Iris setosa"</span>, <span class="st">"Iris virginica"</span>, <span class="st">"Iris versicolor"</span>),</span>
+<span id="cb3-6"><a></a>  <span class="at">hjust =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="dv">0</span>),</span>
+<span id="cb3-7"><a></a>  <span class="at">vjust =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="dv">1</span>)</span>
+<span id="cb3-8"><a></a>)</span>
+<span id="cb3-9"><a></a></span>
+<span id="cb3-10"><a></a>iris_labels</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 6
   Species    Sepal.Width Sepal.Length label           hjust vjust
@@ -690,13 +560,13 @@ Claus O. Wilke
 </div>
 </section>
 <section id="manual-labeling-with-geom_text-2" class="slide level2">
-<h2>2. Manual labeling with <code>geom_text()</code></h2>
+<h2>1. Manual labeling with <code>geom_text()</code></h2>
 <div class="tiny-font">
 <div class="cell columns column-output-location" data-output-width="100%">
 <div class="column">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">ggplot</span>(iris) <span class="sc">+</span></span>
-<span id="cb11-2"><a></a>  <span class="fu">aes</span>(Sepal.Length, Sepal.Width, <span class="at">color =</span> Species) <span class="sc">+</span></span>
-<span id="cb11-3"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> Species))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">ggplot</span>(iris) <span class="sc">+</span></span>
+<span id="cb5-2"><a></a>  <span class="fu">aes</span>(Sepal.Length, Sepal.Width, <span class="at">color =</span> Species) <span class="sc">+</span></span>
+<span id="cb5-3"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> Species))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -710,22 +580,22 @@ Claus O. Wilke
 </div>
 </section>
 <section id="manual-labeling-with-geom_text-3" class="slide level2">
-<h2>2. Manual labeling with <code>geom_text()</code></h2>
+<h2>1. Manual labeling with <code>geom_text()</code></h2>
 <div class="tiny-font">
 <div class="cell columns column-output-location" data-output-width="100%">
 <div class="column">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">ggplot</span>(iris) <span class="sc">+</span></span>
-<span id="cb12-2"><a></a>  <span class="fu">aes</span>(Sepal.Length, Sepal.Width, <span class="at">color =</span> Species) <span class="sc">+</span></span>
-<span id="cb12-3"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> Species)) <span class="sc">+</span></span>
-<span id="cb12-4"><a></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb12-5"><a></a>    <span class="at">data =</span> iris_labels,</span>
-<span id="cb12-6"><a></a>    <span class="fu">aes</span>(</span>
-<span id="cb12-7"><a></a>      <span class="at">label =</span> label,</span>
-<span id="cb12-8"><a></a>      <span class="at">hjust =</span> hjust, <span class="at">vjust =</span> vjust</span>
-<span id="cb12-9"><a></a>    ),</span>
-<span id="cb12-10"><a></a>    <span class="at">size =</span> <span class="dv">14</span>, <span class="at">size.unit =</span> <span class="st">"pt"</span> <span class="co"># 14pt font</span></span>
-<span id="cb12-11"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb12-12"><a></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="st">"none"</span>, <span class="at">shape =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">ggplot</span>(iris) <span class="sc">+</span></span>
+<span id="cb6-2"><a></a>  <span class="fu">aes</span>(Sepal.Length, Sepal.Width, <span class="at">color =</span> Species) <span class="sc">+</span></span>
+<span id="cb6-3"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> Species)) <span class="sc">+</span></span>
+<span id="cb6-4"><a></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb6-5"><a></a>    <span class="at">data =</span> iris_labels,</span>
+<span id="cb6-6"><a></a>    <span class="fu">aes</span>(</span>
+<span id="cb6-7"><a></a>      <span class="at">label =</span> label,</span>
+<span id="cb6-8"><a></a>      <span class="at">hjust =</span> hjust, <span class="at">vjust =</span> vjust</span>
+<span id="cb6-9"><a></a>    ),</span>
+<span id="cb6-10"><a></a>    <span class="at">size =</span> <span class="dv">14</span>, <span class="at">size.unit =</span> <span class="st">"pt"</span> <span class="co"># 14pt font</span></span>
+<span id="cb6-11"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb6-12"><a></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="st">"none"</span>, <span class="at">shape =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -739,23 +609,23 @@ Claus O. Wilke
 </div>
 </section>
 <section id="manual-labeling-with-geom_text-4" class="slide level2">
-<h2>2. Manual labeling with <code>geom_text()</code></h2>
+<h2>1. Manual labeling with <code>geom_text()</code></h2>
 <div class="tiny-font">
 <div class="cell columns column-output-location" data-output-width="100%">
 <div class="column">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">ggplot</span>(iris) <span class="sc">+</span></span>
-<span id="cb13-2"><a></a>  <span class="fu">aes</span>(Sepal.Length, Sepal.Width, <span class="at">color =</span> Species) <span class="sc">+</span></span>
-<span id="cb13-3"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> Species)) <span class="sc">+</span></span>
-<span id="cb13-4"><a></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb13-5"><a></a>    <span class="at">data =</span> iris_labels,</span>
-<span id="cb13-6"><a></a>    <span class="fu">aes</span>(</span>
-<span id="cb13-7"><a></a>      <span class="at">label =</span> label,</span>
-<span id="cb13-8"><a></a>      <span class="at">hjust =</span> hjust, <span class="at">vjust =</span> vjust</span>
-<span id="cb13-9"><a></a>    ),</span>
-<span id="cb13-10"><a></a>    <span class="at">size =</span> <span class="dv">14</span>, <span class="at">size.unit =</span> <span class="st">"pt"</span> <span class="co"># 14pt font</span></span>
-<span id="cb13-11"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb13-12"><a></a>  <span class="fu">stat_ellipse</span>(<span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
-<span id="cb13-13"><a></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="st">"none"</span>, <span class="at">shape =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">ggplot</span>(iris) <span class="sc">+</span></span>
+<span id="cb7-2"><a></a>  <span class="fu">aes</span>(Sepal.Length, Sepal.Width, <span class="at">color =</span> Species) <span class="sc">+</span></span>
+<span id="cb7-3"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> Species)) <span class="sc">+</span></span>
+<span id="cb7-4"><a></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb7-5"><a></a>    <span class="at">data =</span> iris_labels,</span>
+<span id="cb7-6"><a></a>    <span class="fu">aes</span>(</span>
+<span id="cb7-7"><a></a>      <span class="at">label =</span> label,</span>
+<span id="cb7-8"><a></a>      <span class="at">hjust =</span> hjust, <span class="at">vjust =</span> vjust</span>
+<span id="cb7-9"><a></a>    ),</span>
+<span id="cb7-10"><a></a>    <span class="at">size =</span> <span class="dv">14</span>, <span class="at">size.unit =</span> <span class="st">"pt"</span> <span class="co"># 14pt font</span></span>
+<span id="cb7-11"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb7-12"><a></a>  <span class="fu">stat_ellipse</span>(<span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb7-13"><a></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="st">"none"</span>, <span class="at">shape =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -769,17 +639,17 @@ Claus O. Wilke
 </div>
 </section>
 <section id="automatic-labeling-with-geom_text_repel" class="slide level2">
-<h2>3. Automatic labeling with <code>geom_text_repel()</code></h2>
+<h2>2. Automatic labeling with <code>geom_text_repel()</code></h2>
 <div class="small-font">
 <p>Prepare data:</p>
 </div>
 <div class="tiny-font">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>mtcars_named <span class="ot">&lt;-</span> mtcars <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a></a>  <span class="fu">rownames_to_column</span>(<span class="st">"car"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb14-3"><a></a>  <span class="fu">select</span>(car, <span class="at">weight =</span> wt, mpg)</span>
-<span id="cb14-4"><a></a></span>
-<span id="cb14-5"><a></a>mtcars_named</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>mtcars_named <span class="ot">&lt;-</span> mtcars <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a></a>  <span class="fu">rownames_to_column</span>(<span class="st">"car"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a></a>  <span class="fu">select</span>(car, <span class="at">weight =</span> wt, mpg)</span>
+<span id="cb8-4"><a></a></span>
+<span id="cb8-5"><a></a>mtcars_named</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                   car weight  mpg
 1            Mazda RX4  2.620 21.0
@@ -819,12 +689,12 @@ Claus O. Wilke
 </div>
 </section>
 <section id="automatic-labeling-with-geom_text_repel-1" class="slide level2">
-<h2>3. Automatic labeling with <code>geom_text_repel()</code></h2>
+<h2>2. Automatic labeling with <code>geom_text_repel()</code></h2>
 <div class="tiny-font">
 <div class="cell columns column-output-location" data-output-width="100%">
 <div class="column">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">ggplot</span>(mtcars_named, <span class="fu">aes</span>(weight, mpg)) <span class="sc">+</span></span>
-<span id="cb16-2"><a></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">ggplot</span>(mtcars_named, <span class="fu">aes</span>(weight, mpg)) <span class="sc">+</span></span>
+<span id="cb10-2"><a></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -838,13 +708,13 @@ Claus O. Wilke
 </div>
 </section>
 <section id="automatic-labeling-with-geom_text_repel-2" class="slide level2">
-<h2>3. Automatic labeling with <code>geom_text_repel()</code></h2>
+<h2>2. Automatic labeling with <code>geom_text_repel()</code></h2>
 <div class="tiny-font">
 <div class="cell columns column-output-location" data-output-width="100%">
 <div class="column">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">ggplot</span>(mtcars_named, <span class="fu">aes</span>(weight, mpg)) <span class="sc">+</span></span>
-<span id="cb17-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb17-3"><a></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> car))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">ggplot</span>(mtcars_named, <span class="fu">aes</span>(weight, mpg)) <span class="sc">+</span></span>
+<span id="cb11-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb11-3"><a></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> car))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -858,13 +728,13 @@ Claus O. Wilke
 </div>
 </section>
 <section id="automatic-labeling-with-geom_text_repel-3" class="slide level2">
-<h2>3. Automatic labeling with <code>geom_text_repel()</code></h2>
+<h2>2. Automatic labeling with <code>geom_text_repel()</code></h2>
 <div class="tiny-font">
 <div class="cell columns column-output-location" data-output-width="100%">
 <div class="column">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">ggplot</span>(mtcars_named, <span class="fu">aes</span>(weight, mpg)) <span class="sc">+</span></span>
-<span id="cb18-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb18-3"><a></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> car), <span class="at">hjust =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">ggplot</span>(mtcars_named, <span class="fu">aes</span>(weight, mpg)) <span class="sc">+</span></span>
+<span id="cb12-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb12-3"><a></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> car), <span class="at">hjust =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -878,18 +748,18 @@ Claus O. Wilke
 </div>
 </section>
 <section id="automatic-labeling-with-geom_text_repel-4" class="slide level2">
-<h2>3. Automatic labeling with <code>geom_text_repel()</code></h2>
+<h2>2. Automatic labeling with <code>geom_text_repel()</code></h2>
 <div class="tiny-font">
 <div class="cell columns column-output-location" data-output-width="100%">
 <div class="column">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">library</span>(ggrepel)</span>
-<span id="cb19-2"><a></a></span>
-<span id="cb19-3"><a></a><span class="fu">ggplot</span>(mtcars_named, <span class="fu">aes</span>(weight, mpg)) <span class="sc">+</span></span>
-<span id="cb19-4"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb19-5"><a></a>  <span class="fu">geom_text_repel</span>(</span>
-<span id="cb19-6"><a></a>    <span class="fu">aes</span>(<span class="at">label =</span> car),</span>
-<span id="cb19-7"><a></a>    <span class="at">max.overlaps =</span> <span class="cn">Inf</span></span>
-<span id="cb19-8"><a></a>  )  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb13-2"><a></a></span>
+<span id="cb13-3"><a></a><span class="fu">ggplot</span>(mtcars_named, <span class="fu">aes</span>(weight, mpg)) <span class="sc">+</span></span>
+<span id="cb13-4"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb13-5"><a></a>  <span class="fu">geom_text_repel</span>(</span>
+<span id="cb13-6"><a></a>    <span class="fu">aes</span>(<span class="at">label =</span> car),</span>
+<span id="cb13-7"><a></a>    <span class="at">max.overlaps =</span> <span class="cn">Inf</span></span>
+<span id="cb13-8"><a></a>  )  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -903,23 +773,23 @@ Claus O. Wilke
 </div>
 </section>
 <section id="automatic-labeling-with-geom_text_repel-5" class="slide level2">
-<h2>3. Automatic labeling with <code>geom_text_repel()</code></h2>
+<h2>2. Automatic labeling with <code>geom_text_repel()</code></h2>
 <div class="tiny-font">
 <div class="cell columns column-output-location" data-output-width="100%">
 <div class="column">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">set.seed</span>(<span class="dv">6643</span>)</span>
-<span id="cb20-2"><a></a></span>
-<span id="cb20-3"><a></a>mtcars_named <span class="sc">|&gt;</span></span>
-<span id="cb20-4"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb20-5"><a></a>    <span class="co"># randomly exclude 50% of the labels</span></span>
-<span id="cb20-6"><a></a>    <span class="at">car =</span> <span class="fu">ifelse</span>(<span class="fu">runif</span>(<span class="fu">n</span>()) <span class="sc">&lt;</span> <span class="fl">0.5</span>, <span class="st">""</span>, car)</span>
-<span id="cb20-7"><a></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb20-8"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(weight, mpg)) <span class="sc">+</span></span>
-<span id="cb20-9"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb20-10"><a></a>  <span class="fu">geom_text_repel</span>(</span>
-<span id="cb20-11"><a></a>    <span class="fu">aes</span>(<span class="at">label =</span> car),</span>
-<span id="cb20-12"><a></a>    <span class="at">max.overlaps =</span> <span class="cn">Inf</span></span>
-<span id="cb20-13"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">set.seed</span>(<span class="dv">6643</span>)</span>
+<span id="cb14-2"><a></a></span>
+<span id="cb14-3"><a></a>mtcars_named <span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb14-5"><a></a>    <span class="co"># randomly exclude 50% of the labels</span></span>
+<span id="cb14-6"><a></a>    <span class="at">car =</span> <span class="fu">ifelse</span>(<span class="fu">runif</span>(<span class="fu">n</span>()) <span class="sc">&lt;</span> <span class="fl">0.5</span>, <span class="st">""</span>, car)</span>
+<span id="cb14-7"><a></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb14-8"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(weight, mpg)) <span class="sc">+</span></span>
+<span id="cb14-9"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb14-10"><a></a>  <span class="fu">geom_text_repel</span>(</span>
+<span id="cb14-11"><a></a>    <span class="fu">aes</span>(<span class="at">label =</span> car),</span>
+<span id="cb14-12"><a></a>    <span class="at">max.overlaps =</span> <span class="cn">Inf</span></span>
+<span id="cb14-13"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -933,23 +803,23 @@ Claus O. Wilke
 </div>
 </section>
 <section id="automatic-labeling-with-geom_text_repel-6" class="slide level2">
-<h2>3. Automatic labeling with <code>geom_text_repel()</code></h2>
+<h2>2. Automatic labeling with <code>geom_text_repel()</code></h2>
 <div class="tiny-font">
 <div class="cell columns column-output-location" data-output-width="100%">
 <div class="column">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">set.seed</span>(<span class="dv">6644</span>)</span>
-<span id="cb21-2"><a></a></span>
-<span id="cb21-3"><a></a>mtcars_named <span class="sc">|&gt;</span></span>
-<span id="cb21-4"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb21-5"><a></a>    <span class="co"># randomly exclude 50% of the labels</span></span>
-<span id="cb21-6"><a></a>    <span class="at">car =</span> <span class="fu">ifelse</span>(<span class="fu">runif</span>(<span class="fu">n</span>()) <span class="sc">&lt;</span> <span class="fl">0.5</span>, <span class="st">""</span>, car)</span>
-<span id="cb21-7"><a></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb21-8"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(weight, mpg)) <span class="sc">+</span></span>
-<span id="cb21-9"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb21-10"><a></a>  <span class="fu">geom_text_repel</span>(</span>
-<span id="cb21-11"><a></a>    <span class="fu">aes</span>(<span class="at">label =</span> car),</span>
-<span id="cb21-12"><a></a>    <span class="at">max.overlaps =</span> <span class="cn">Inf</span></span>
-<span id="cb21-13"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">set.seed</span>(<span class="dv">6644</span>)</span>
+<span id="cb15-2"><a></a></span>
+<span id="cb15-3"><a></a>mtcars_named <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb15-5"><a></a>    <span class="co"># randomly exclude 50% of the labels</span></span>
+<span id="cb15-6"><a></a>    <span class="at">car =</span> <span class="fu">ifelse</span>(<span class="fu">runif</span>(<span class="fu">n</span>()) <span class="sc">&lt;</span> <span class="fl">0.5</span>, <span class="st">""</span>, car)</span>
+<span id="cb15-7"><a></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb15-8"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(weight, mpg)) <span class="sc">+</span></span>
+<span id="cb15-9"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb15-10"><a></a>  <span class="fu">geom_text_repel</span>(</span>
+<span id="cb15-11"><a></a>    <span class="fu">aes</span>(<span class="at">label =</span> car),</span>
+<span id="cb15-12"><a></a>    <span class="at">max.overlaps =</span> <span class="cn">Inf</span></span>
+<span id="cb15-13"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -963,24 +833,24 @@ Claus O. Wilke
 </div>
 </section>
 <section id="automatic-labeling-with-geom_text_repel-7" class="slide level2">
-<h2>3. Automatic labeling with <code>geom_text_repel()</code></h2>
+<h2>2. Automatic labeling with <code>geom_text_repel()</code></h2>
 <div class="tiny-font">
 <div class="cell columns column-output-location" data-output-width="100%">
 <div class="column">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">set.seed</span>(<span class="dv">6644</span>)</span>
-<span id="cb22-2"><a></a></span>
-<span id="cb22-3"><a></a>mtcars_named <span class="sc">|&gt;</span></span>
-<span id="cb22-4"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb22-5"><a></a>    <span class="co"># randomly exclude 50% of the labels</span></span>
-<span id="cb22-6"><a></a>    <span class="at">car =</span> <span class="fu">ifelse</span>(<span class="fu">runif</span>(<span class="fu">n</span>()) <span class="sc">&lt;</span> <span class="fl">0.5</span>, <span class="st">""</span>, car)</span>
-<span id="cb22-7"><a></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb22-8"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(weight, mpg)) <span class="sc">+</span></span>
-<span id="cb22-9"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb22-10"><a></a>  <span class="fu">geom_text_repel</span>(</span>
-<span id="cb22-11"><a></a>    <span class="fu">aes</span>(<span class="at">label =</span> car),</span>
-<span id="cb22-12"><a></a>    <span class="at">max.overlaps =</span> <span class="cn">Inf</span>,</span>
-<span id="cb22-13"><a></a>    <span class="at">box.padding =</span> <span class="fl">0.7</span></span>
-<span id="cb22-14"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">set.seed</span>(<span class="dv">6644</span>)</span>
+<span id="cb16-2"><a></a></span>
+<span id="cb16-3"><a></a>mtcars_named <span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb16-5"><a></a>    <span class="co"># randomly exclude 50% of the labels</span></span>
+<span id="cb16-6"><a></a>    <span class="at">car =</span> <span class="fu">ifelse</span>(<span class="fu">runif</span>(<span class="fu">n</span>()) <span class="sc">&lt;</span> <span class="fl">0.5</span>, <span class="st">""</span>, car)</span>
+<span id="cb16-7"><a></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb16-8"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(weight, mpg)) <span class="sc">+</span></span>
+<span id="cb16-9"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb16-10"><a></a>  <span class="fu">geom_text_repel</span>(</span>
+<span id="cb16-11"><a></a>    <span class="fu">aes</span>(<span class="at">label =</span> car),</span>
+<span id="cb16-12"><a></a>    <span class="at">max.overlaps =</span> <span class="cn">Inf</span>,</span>
+<span id="cb16-13"><a></a>    <span class="at">box.padding =</span> <span class="fl">0.7</span></span>
+<span id="cb16-14"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -995,6 +865,131 @@ Claus O. Wilke
 <div class="small-font move-up-1em">
 <p><code>box.padding</code> controls how far labels are placed from data points</p>
 </div>
+</section>
+<section id="secondary-axis-trick" class="slide level2">
+<h2>3. Secondary axis trick</h2>
+<div class="small-font">
+<p>Data preparation:</p>
+</div>
+<div class="tiny-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>tech_stocks <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://wilkelab.org/SDS366/datasets/tech_stocks.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">ymd</span>(date)) <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a></a>  <span class="fu">select</span>(company, date, price_indexed)</span>
+<span id="cb17-4"><a></a></span>
+<span id="cb17-5"><a></a>tech_stocks</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9,569 × 3
+   company  date       price_indexed
+   &lt;chr&gt;    &lt;date&gt;             &lt;dbl&gt;
+ 1 Alphabet 2017-06-02          342.
+ 2 Alphabet 2017-06-01          339.
+ 3 Alphabet 2017-05-31          338.
+ 4 Alphabet 2017-05-30          342.
+ 5 Alphabet 2017-05-26          341.
+ 6 Alphabet 2017-05-25          340.
+ 7 Alphabet 2017-05-24          335.
+ 8 Alphabet 2017-05-23          333.
+ 9 Alphabet 2017-05-22          330.
+10 Alphabet 2017-05-19          327.
+# ℹ 9,559 more rows</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="secondary-axis-trick-1" class="slide level2">
+<h2>3. Secondary axis trick</h2>
+<div class="small-font">
+<p>Extract most recent values:</p>
+</div>
+<div class="tiny-font">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>tech_stocks_last <span class="ot">&lt;-</span> tech_stocks <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a></a>  <span class="fu">filter</span>(date <span class="sc">==</span> <span class="fu">max</span>(date))</span>
+<span id="cb19-3"><a></a></span>
+<span id="cb19-4"><a></a>tech_stocks_last</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 3
+  company   date       price_indexed
+  &lt;chr&gt;     &lt;date&gt;             &lt;dbl&gt;
+1 Alphabet  2017-06-02          342.
+2 Apple     2017-06-02          194.
+3 Facebook  2017-06-02          554.
+4 Microsoft 2017-06-02          252.</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="secondary-axis-trick-2" class="slide level2">
+<h2>3. Secondary axis trick</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location" data-output-width="100%">
+<div class="column">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">ggplot</span>(tech_stocks) <span class="sc">+</span></span>
+<span id="cb21-2"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> price_indexed) <span class="sc">+</span></span>
+<span id="cb21-3"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color =</span> company), <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb21-4"><a></a>  <span class="fu">scale_x_date</span>(</span>
+<span id="cb21-5"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(</span>
+<span id="cb21-6"><a></a>      <span class="fu">ymd</span>(<span class="st">"2012-06-01"</span>),</span>
+<span id="cb21-7"><a></a>      <span class="fu">ymd</span>(<span class="st">"2017-05-31"</span>)</span>
+<span id="cb21-8"><a></a>    ),</span>
+<span id="cb21-9"><a></a>    <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb21-10"><a></a>  ) <span class="sc">+</span> </span>
+<span id="cb21-11"><a></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb21-12"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">560</span>),</span>
+<span id="cb21-13"><a></a>    <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb21-14"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="redundant-coding_files/figure-revealjs/tech-stock-sec-axis-1.svg"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+<div class="small-font">
+<p>Side remark: The default legend order doesn’t match the data</p>
+</div>
+</section>
+<section id="secondary-axis-trick-3" class="slide level2">
+<h2>3. Secondary axis trick</h2>
+<div class="tiny-font">
+<div class="cell columns column-output-location" data-output-width="100%">
+<div class="column">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">ggplot</span>(tech_stocks) <span class="sc">+</span></span>
+<span id="cb22-2"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> price_indexed) <span class="sc">+</span></span>
+<span id="cb22-3"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color =</span> company), <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb22-4"><a></a>  <span class="fu">scale_x_date</span>(</span>
+<span id="cb22-5"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(</span>
+<span id="cb22-6"><a></a>      <span class="fu">ymd</span>(<span class="st">"2012-06-01"</span>),</span>
+<span id="cb22-7"><a></a>      <span class="fu">ymd</span>(<span class="st">"2017-05-31"</span>)</span>
+<span id="cb22-8"><a></a>    ),</span>
+<span id="cb22-9"><a></a>    <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb22-10"><a></a>  ) <span class="sc">+</span> </span>
+<span id="cb22-11"><a></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb22-12"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">560</span>),</span>
+<span id="cb22-13"><a></a>    <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>),</span>
+<span id="cb22-14"><a></a>    <span class="at">sec.axis =</span> <span class="fu">dup_axis</span>(</span>
+<span id="cb22-15"><a></a>      <span class="at">breaks =</span> tech_stocks_last<span class="sc">$</span>price_indexed,</span>
+<span id="cb22-16"><a></a>      <span class="at">labels =</span> tech_stocks_last<span class="sc">$</span>company,</span>
+<span id="cb22-17"><a></a>      <span class="at">name =</span> <span class="cn">NULL</span></span>
+<span id="cb22-18"><a></a>    )</span>
+<span id="cb22-19"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb22-20"><a></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="redundant-coding_files/figure-revealjs/tech-stock-sec-axis2-1.svg"></p>
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
 <!-- Segment ends here -->
 </section>
 <section id="further-reading" class="slide level2">
@@ -1007,7 +1002,7 @@ Claus O. Wilke
 </ul>
 
 
-</section></section>
+</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

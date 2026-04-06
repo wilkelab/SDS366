@@ -157,6 +157,21 @@ format: html
 - [Slides](slides/clustering.qmd)  
 - [Worksheet](worksheets/clustering.qmd)
 
+### 22. Apr 7, 2026—Hierarchical clustering
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/hierarchical-clustering.qmd)  
+- [Worksheet](worksheets/hierarchical-clustering.qmd)
+
+### 23. Apr 9, 2026—Redundant coding, text annotations
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/redundant-coding.qmd)  
+- [Worksheet](worksheets/redundant-coding.qmd)
+
+
 ## Assignment due dates
 
 All assignments (homeworks, projects, peer grading) are due by 11:59pm on the day they are due.
