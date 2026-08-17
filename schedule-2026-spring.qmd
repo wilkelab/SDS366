@@ -1,0 +1,224 @@
+---
+title: "SDS 366 Schedule Spring 2026"
+format: html
+---
+
+## Lectures
+
+### 1. Jan 13, 2026—Introduction
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/introduction.qmd)  
+- [Worksheet 1: Introduction to Quarto](worksheets/intro-to-Quarto.qmd)
+- [Worksheet 2: Introduction to R](worksheets/intro-to-R.qmd)
+
+### 2. Jan 15, 2026—Aesthetic mappings and the Grammar of Graphics
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/aesthetic-mappings.qmd)  
+- [Worksheet](worksheets/aesthetic-mappings.qmd)
+
+### 3. Jan 20, 2026—Visualizing amounts/telling a story
+
+<p class="nospace">Materials:</p>
+
+- [Slides Part I](slides/visualizing-amounts.qmd) (visualizing amounts)
+- [Worksheet Part I](worksheets/visualizing-amounts.qmd)
+- [Slides Part II](slides/telling-a-story.qmd) (telling a story)
+
+### 4. Jan 22, 2026—Coordinate systems and axes
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/coordinate-systems-axes.qmd)  
+- [Worksheet](worksheets/coordinate-systems-axes.qmd)
+
+### 5. Jan 29, 2026—Visualizing distributions 1
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/visualizing-distributions-1.qmd)  
+- [Worksheet](worksheets/visualizing-distributions-1.qmd)
+
+### 6. Feb 3, 2026—Visualizing distributions 2
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/visualizing-distributions-2.qmd)  
+- [Worksheet](worksheets/visualizing-distributions-2.qmd)
+
+### 7. Feb 5, 2026—Color scales
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/color-scales.qmd)  
+- [Worksheet](worksheets/color-scales.qmd)
+
+### 8. Feb 10, 2026—Color spaces and color-vision deficiency
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/color-spaces.qmd)  
+- [Worksheet](worksheets/color-selection.qmd)
+
+### 9. Feb 12, 2026—Data wrangling
+
+<p class="nospace">Materials:</p>
+
+- [Slides Part I](slides/data-wrangling-1.qmd) (pipe, sorting, filtering, mutating)
+- [Worksheet Part I](worksheets/data-wrangling-1.qmd)
+- [Slides Part II](slides/data-wrangling-2.qmd) (summarizing, pivoting, joining)
+- [Worksheet Part II](worksheets/data-wrangling-2.qmd)
+
+### 10. Feb 17, 2026—Visualizing proportions
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/visualizing-proportions.qmd)  
+- [Worksheet](worksheets/visualizing-proportions.qmd)
+
+### 11. Feb 19, 2026—Getting to know your data
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/know-your-data.qmd)
+- [Worksheet Part I](worksheets/know-your-data-1.qmd) (data cleaning)
+- [Worksheet Part II](worksheets/know-your-data-2.qmd) (missing data)
+
+### 12. Feb 24, 2026—Getting things into the right order
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/getting-things-in-order.qmd)
+- [Worksheet](worksheets/getting-things-in-order.qmd)
+
+### 13. Feb 26, 2026—Figure design
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/figure-design.qmd)
+- [Worksheet](worksheets/figure-design.qmd)
+
+### 14. Mar 3, 2026—Compound figures
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/compound-figures.qmd)  
+- [Worksheet](worksheets/compound-figures.qmd)
+
+### 15. Mar 5, 2026—Visualizing trends
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/visualizing-trends.qmd)  
+- [Worksheet](worksheets/visualizing-trends.qmd)
+
+### 16. Mar 10, 2026—Functions and functional programming
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/functional-programming.qmd)  
+- [Worksheet](worksheets/functional-programming.qmd)
+
+### 17. Mar 12, 2026—Working with models
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/working-with-models.qmd)  
+- [Worksheet](worksheets/working-with-models.qmd)
+
+### 18. Mar 24, 2026—Visualizing uncertainty
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/visualizing-uncertainty.qmd)  
+- [Worksheet](worksheets/visualizing-uncertainty.qmd)
+
+### 19. Mar 26, 2026—Dimension reduction 1
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/dimension-reduction-1.qmd)  
+- [Worksheet](worksheets/dimension-reduction-1.qmd)
+
+### 20. Mar 31, 2026—Dimension reduction 2
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/dimension-reduction-2.qmd)  
+- [Worksheet](worksheets/dimension-reduction-2.qmd)
+
+### 21. Apr 2, 2026—Clustering
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/clustering.qmd)  
+- [Worksheet](worksheets/clustering.qmd)
+
+### 22. Apr 7, 2026—Hierarchical clustering
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/hierarchical-clustering.qmd)  
+- [Worksheet](worksheets/hierarchical-clustering.qmd)
+
+### 23. Apr 9, 2026—Redundant coding, text annotations
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/redundant-coding.qmd)  
+- [Worksheet](worksheets/redundant-coding.qmd)
+
+### 24. Apr 14, 2026—Overplotting
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/overplotting.qmd)  
+- [Worksheet](worksheets/overplotting.qmd)
+
+### 25. Apr 16, 2026—Visualizing geospatial data
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/geospatial-data.qmd)  
+- [Worksheet](worksheets/geospatial-data.qmd)
+
+### 26. Apr 21, 2026—Interactive plots, animations
+
+<p class="nospace">Materials:</p>
+
+- [Slides: Interactive plots](slides/interactive-plots.qmd)  
+- [Worksheet: Interactive plots](worksheets/interactive-plots.qmd)
+- [Slides: Animations](slides/animations.qmd)  
+
+### 27. Apr 23, 2026—Introduction to web design concepts
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/web-design.qmd)  
+- [Worksheet](slides/web-design-worksheet.qmd)
+
+
+## Assignment due dates
+
+All assignments (homeworks, projects, peer grading) are due by 11:59pm on the day they are due.
+
+::: {style="width: 50%;"}
+Date         Assignment due
+------------ -----------------------------------
+Jan 22, 2026 Homework 1
+Jan 29, 2026 Homework 2
+Feb 5, 2026  Homework 3
+Feb 12, 2026 Project 1
+Feb 19, 2026 Peer grading, Project 1
+Feb 26, 2026 Homework 4
+Mar 5, 2026  Homework 5
+Mar 12, 2026 Project 2
+Mar 26, 2026 Peer grading, Project 2
+Apr 2, 2026  Homework 6
+Apr 9, 2026  Homework 7
+Apr 16, 2026 Project 3
+Apr 23, 2026 Peer grading, Project 3
+:::

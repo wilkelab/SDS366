@@ -3906,18 +3906,39 @@
     "text": "Further reading\n\nFundamentals of Data Visualization: Chapter 2: Visualizing data\nData Visualization—A Practical Introduction: Chapter 3: Make a plot\nggplot2 reference documentation\nggplot2 book\nggplot2 cheatsheet"
   },
   {
-    "objectID": "schedule-2025.html",
-    "href": "schedule-2025.html",
-    "title": "SDS 366 Schedule Spring 2025",
+    "objectID": "schedule-2026-spring.html",
+    "href": "schedule-2026-spring.html",
+    "title": "SDS 366 Schedule Spring 2026",
     "section": "",
     "text": "Materials:\n\n\nSlides\n\nWorksheet 1: Introduction to Quarto\nWorksheet 2: Introduction to R\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (visualizing amounts)\nWorksheet Part I\nSlides Part II (telling a story)\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (pipe, sorting, filtering, mutating)\nWorksheet Part I\nSlides Part II (summarizing, pivoting, joining)\nWorksheet Part II\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet Part I (data cleaning)\nWorksheet Part II (missing data)\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides: Interactive plots\n\nWorksheet: Interactive plots\nSlides: Animations\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
   },
   {
-    "objectID": "schedule-2025.html#lectures",
-    "href": "schedule-2025.html#lectures",
-    "title": "SDS 366 Schedule Spring 2025",
+    "objectID": "schedule-2026-spring.html#lectures",
+    "href": "schedule-2026-spring.html#lectures",
+    "title": "SDS 366 Schedule Spring 2026",
     "section": "",
     "text": "Materials:\n\n\nSlides\n\nWorksheet 1: Introduction to Quarto\nWorksheet 2: Introduction to R\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (visualizing amounts)\nWorksheet Part I\nSlides Part II (telling a story)\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (pipe, sorting, filtering, mutating)\nWorksheet Part I\nSlides Part II (summarizing, pivoting, joining)\nWorksheet Part II\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet Part I (data cleaning)\nWorksheet Part II (missing data)\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides: Interactive plots\n\nWorksheet: Interactive plots\nSlides: Animations\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
+  },
+  {
+    "objectID": "schedule-2026-spring.html#assignment-due-dates",
+    "href": "schedule-2026-spring.html#assignment-due-dates",
+    "title": "SDS 366 Schedule Spring 2026",
+    "section": "Assignment due dates",
+    "text": "Assignment due dates\nAll assignments (homeworks, projects, peer grading) are due by 11:59pm on the day they are due.\n\n\n\n\nDate\nAssignment due\n\n\n\n\nJan 22, 2026\nHomework 1\n\n\nJan 29, 2026\nHomework 2\n\n\nFeb 5, 2026\nHomework 3\n\n\nFeb 12, 2026\nProject 1\n\n\nFeb 19, 2026\nPeer grading, Project 1\n\n\nFeb 26, 2026\nHomework 4\n\n\nMar 5, 2026\nHomework 5\n\n\nMar 12, 2026\nProject 2\n\n\nMar 26, 2026\nPeer grading, Project 2\n\n\nApr 2, 2026\nHomework 6\n\n\nApr 9, 2026\nHomework 7\n\n\nApr 16, 2026\nProject 3\n\n\nApr 23, 2026\nPeer grading, Project 3"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "SDS 366",
+    "section": "",
+    "text": "This is the home page for SDS 366, Data Visualization in R. All course materials will be posted on this site.\nInstructor: Claus O. Wilke\nMeeting times: Tues./Thurs. 3:30pm-5:00pm\nVenue: UTC 3.134\nSyllabus: click here\nUpcoming lectures and assignments: click here"
+  },
+  {
+    "objectID": "index.html#computing-requirements",
+    "href": "index.html#computing-requirements",
+    "title": "SDS 366",
+    "section": "Computing requirements",
+    "text": "Computing requirements\nFor students enrolled in this course, you only need a working web browser to access the edupod server, located at: https://edupod.cns.utexas.edu/\nIf you are using the edupod server, stop reading here. Everything is pre-installed and no further action is needed.\nTo run any of the materials locally on your own machine, you will need the following:\n\nA recent version of R, download from here.\nA recent version of RStudio, download from here, OR a recent version of Positron, download from here.\nThe following R packages:\nbroom, cluster, colorspace, cowplot, gapminder, GGally, gganimate, ggiraph, ggdendro, ggdist, ggforce, ggplot2movies, ggrepel, ggridges, ggthemes, gifski, glue, hexbin, knitr, learnr, naniar, margins, MASS, Matrix, nycflights13, palmerpenguins, patchwork, quarto, rmarkdown, rnaturalearth, rnaturalearthdata, rnaturalearthhires, Rtsne, scales, sf, sp, tidyverse, transformr, umap\n\nYou can install all required R packages at once by running the following code in the R command line:\n# first run this command:\ninstall.packages(\n  c(\n    \"broom\", \"cluster\", \"colorspace\", \"cowplot\", \"gapminder\", \n    \"GGally\", \"gganimate\", \"ggiraph\", \"ggdendro\", \"ggdist\", \"ggforce\",\n    \"ggplot2movies\", \"ggrepel\", \"ggridges\", \"ggthemes\", \"gifski\", \"glue\",\n    \"hexbin\", knitr\", \"learnr\", \"naniar\", \"margins\", \"MASS\", \"Matrix\",\n    \"nycflights13\", \"palmerpenguins\", \"patchwork\", \"quarto\", \"rmarkdown\",\n    \"rnaturalearth\", \"rnaturalearthdata\", \"Rtsne\", \"scales\", \"sf\", \"sp\", \"tidyverse\",\n    \"transformr\", \"umap\"\n  )\n)\n\n# then run this command:\ninstall.packages(\n  \"rnaturalearthhires\", repos = \"https://packages.ropensci.org\", type = \"source\"\n)"
   },
   {
     "objectID": "accommodations.html",
@@ -3941,39 +3962,39 @@
     "text": "Testing accommodations\nThis class does not have any timed exams or tests and therefore testing accommodations do not apply."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "SDS 366",
+    "objectID": "schedule-2025.html",
+    "href": "schedule-2025.html",
+    "title": "SDS 366 Schedule Spring 2025",
     "section": "",
-    "text": "This is the home page for SDS 366, Data Visualization in R. All course materials will be posted on this site.\nInstructor: Claus O. Wilke\nMeeting times: Tues./Thurs. 3:30pm-5:00pm\nVenue: UTC 3.134\nSyllabus: click here\nUpcoming lectures and assignments: click here"
+    "text": "Materials:\n\n\nSlides\n\nWorksheet 1: Introduction to Quarto\nWorksheet 2: Introduction to R\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (visualizing amounts)\nWorksheet Part I\nSlides Part II (telling a story)\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (pipe, sorting, filtering, mutating)\nWorksheet Part I\nSlides Part II (summarizing, pivoting, joining)\nWorksheet Part II\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet Part I (data cleaning)\nWorksheet Part II (missing data)\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides: Interactive plots\n\nWorksheet: Interactive plots\nSlides: Animations\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
   },
   {
-    "objectID": "index.html#computing-requirements",
-    "href": "index.html#computing-requirements",
-    "title": "SDS 366",
-    "section": "Computing requirements",
-    "text": "Computing requirements\nFor students enrolled in this course, you only need a working web browser to access the edupod server, located at: https://edupod.cns.utexas.edu/\nIf you are using the edupod server, stop reading here. Everything is pre-installed and no further action is needed.\nTo run any of the materials locally on your own machine, you will need the following:\n\nA recent version of R, download from here.\nA recent version of RStudio, download from here, OR a recent version of Positron, download from here.\nThe following R packages:\nbroom, cluster, colorspace, cowplot, gapminder, GGally, gganimate, ggiraph, ggdendro, ggdist, ggforce, ggplot2movies, ggrepel, ggridges, ggthemes, gifski, glue, hexbin, knitr, learnr, naniar, margins, MASS, Matrix, nycflights13, palmerpenguins, patchwork, quarto, rmarkdown, rnaturalearth, rnaturalearthdata, rnaturalearthhires, Rtsne, scales, sf, sp, tidyverse, transformr, umap\n\nYou can install all required R packages at once by running the following code in the R command line:\n# first run this command:\ninstall.packages(\n  c(\n    \"broom\", \"cluster\", \"colorspace\", \"cowplot\", \"gapminder\", \n    \"GGally\", \"gganimate\", \"ggiraph\", \"ggdendro\", \"ggdist\", \"ggforce\",\n    \"ggplot2movies\", \"ggrepel\", \"ggridges\", \"ggthemes\", \"gifski\", \"glue\",\n    \"hexbin\", knitr\", \"learnr\", \"naniar\", \"margins\", \"MASS\", \"Matrix\",\n    \"nycflights13\", \"palmerpenguins\", \"patchwork\", \"quarto\", \"rmarkdown\",\n    \"rnaturalearth\", \"rnaturalearthdata\", \"Rtsne\", \"scales\", \"sf\", \"sp\", \"tidyverse\",\n    \"transformr\", \"umap\"\n  )\n)\n\n# then run this command:\ninstall.packages(\n  \"rnaturalearthhires\", repos = \"https://packages.ropensci.org\", type = \"source\"\n)"
+    "objectID": "schedule-2025.html#lectures",
+    "href": "schedule-2025.html#lectures",
+    "title": "SDS 366 Schedule Spring 2025",
+    "section": "",
+    "text": "Materials:\n\n\nSlides\n\nWorksheet 1: Introduction to Quarto\nWorksheet 2: Introduction to R\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (visualizing amounts)\nWorksheet Part I\nSlides Part II (telling a story)\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (pipe, sorting, filtering, mutating)\nWorksheet Part I\nSlides Part II (summarizing, pivoting, joining)\nWorksheet Part II\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet Part I (data cleaning)\nWorksheet Part II (missing data)\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides: Interactive plots\n\nWorksheet: Interactive plots\nSlides: Animations\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
   },
   {
     "objectID": "schedule.html",
     "href": "schedule.html",
-    "title": "SDS 366 Schedule Spring 2026",
+    "title": "SDS 366 Schedule Fall 2026",
     "section": "",
-    "text": "Materials:\n\n\nSlides\n\nWorksheet 1: Introduction to Quarto\nWorksheet 2: Introduction to R\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (visualizing amounts)\nWorksheet Part I\nSlides Part II (telling a story)\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (pipe, sorting, filtering, mutating)\nWorksheet Part I\nSlides Part II (summarizing, pivoting, joining)\nWorksheet Part II\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet Part I (data cleaning)\nWorksheet Part II (missing data)\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides: Interactive plots\n\nWorksheet: Interactive plots\nSlides: Animations\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
+    "text": "Materials:\n\n\nSlides\n\nWorksheet 1: Introduction to Quarto\nWorksheet 2: Introduction to R\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
   },
   {
     "objectID": "schedule.html#lectures",
     "href": "schedule.html#lectures",
-    "title": "SDS 366 Schedule Spring 2026",
+    "title": "SDS 366 Schedule Fall 2026",
     "section": "",
-    "text": "Materials:\n\n\nSlides\n\nWorksheet 1: Introduction to Quarto\nWorksheet 2: Introduction to R\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (visualizing amounts)\nWorksheet Part I\nSlides Part II (telling a story)\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides Part I (pipe, sorting, filtering, mutating)\nWorksheet Part I\nSlides Part II (summarizing, pivoting, joining)\nWorksheet Part II\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet Part I (data cleaning)\nWorksheet Part II (missing data)\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet\n\n\n\n\n\nMaterials:\n\n\nSlides: Interactive plots\n\nWorksheet: Interactive plots\nSlides: Animations\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
+    "text": "Materials:\n\n\nSlides\n\nWorksheet 1: Introduction to Quarto\nWorksheet 2: Introduction to R\n\n\n\n\n\nMaterials:\n\n\nSlides\n\nWorksheet"
   },
   {
     "objectID": "schedule.html#assignment-due-dates",
     "href": "schedule.html#assignment-due-dates",
-    "title": "SDS 366 Schedule Spring 2026",
+    "title": "SDS 366 Schedule Fall 2026",
     "section": "Assignment due dates",
-    "text": "Assignment due dates\nAll assignments (homeworks, projects, peer grading) are due by 11:59pm on the day they are due.\n\n\n\n\nDate\nAssignment due\n\n\n\n\nJan 22, 2026\nHomework 1\n\n\nJan 29, 2026\nHomework 2\n\n\nFeb 5, 2026\nHomework 3\n\n\nFeb 12, 2026\nProject 1\n\n\nFeb 19, 2026\nPeer grading, Project 1\n\n\nFeb 26, 2026\nHomework 4\n\n\nMar 5, 2026\nHomework 5\n\n\nMar 12, 2026\nProject 2\n\n\nMar 26, 2026\nPeer grading, Project 2\n\n\nApr 2, 2026\nHomework 6\n\n\nApr 9, 2026\nHomework 7\n\n\nApr 16, 2026\nProject 3\n\n\nApr 23, 2026\nPeer grading, Project 3"
+    "text": "Assignment due dates\nAll assignments (homeworks, projects, peer grading) are due by 11:59pm on the day they are due."
   },
   {
     "objectID": "slides/animations.html#animations-can-create-more-engaging-displays",
@@ -7291,14 +7312,14 @@
     "href": "syllabus.html",
     "title": "Syllabus",
     "section": "",
-    "text": "Title: SDS 366 Data Visualization in R Semester: Spring 2026 Unique: 60450, Tues./Thurs. 3:30pm-5:00pm, UTC 3.134\nInstructor: Claus O. Wilke Email: wilke@austin.utexas.edu Office Hours: Mon. 9am–10am (open Zoom), Wed. 10am–11am (open Zoom), or by appointment\nTeaching Assistant: Luiz Vieira Email: luiz.vieira@austin.utexas.edu Office Hours: Wed. 1pm–2pm (open Zoom), Thurs. 1pm–2pm (open Zoom), or by appointment"
+    "text": "Title: SDS 366 Data Visualization in R Semester: Fall 2026 Unique: 63040, Mon./Wed. 3:30pm-5:00pm, UTC 4.132\nInstructor: Claus O. Wilke Email: wilke@austin.utexas.edu Office Hours: Tues. 9am–10am (open Zoom), Thurs. 10am–11am (open Zoom), or by appointment\nTeaching Assistant: Bahar Kasgari Email: btak@austin.utexas.edu Office Hours:"
   },
   {
     "objectID": "syllabus.html#course-title-and-instructor",
     "href": "syllabus.html#course-title-and-instructor",
     "title": "Syllabus",
     "section": "",
-    "text": "Title: SDS 366 Data Visualization in R Semester: Spring 2026 Unique: 60450, Tues./Thurs. 3:30pm-5:00pm, UTC 3.134\nInstructor: Claus O. Wilke Email: wilke@austin.utexas.edu Office Hours: Mon. 9am–10am (open Zoom), Wed. 10am–11am (open Zoom), or by appointment\nTeaching Assistant: Luiz Vieira Email: luiz.vieira@austin.utexas.edu Office Hours: Wed. 1pm–2pm (open Zoom), Thurs. 1pm–2pm (open Zoom), or by appointment"
+    "text": "Title: SDS 366 Data Visualization in R Semester: Fall 2026 Unique: 63040, Mon./Wed. 3:30pm-5:00pm, UTC 4.132\nInstructor: Claus O. Wilke Email: wilke@austin.utexas.edu Office Hours: Tues. 9am–10am (open Zoom), Thurs. 10am–11am (open Zoom), or by appointment\nTeaching Assistant: Bahar Kasgari Email: btak@austin.utexas.edu Office Hours:"
   },
   {
     "objectID": "syllabus.html#purpose-and-contents-of-the-class",
