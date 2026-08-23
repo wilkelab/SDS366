@@ -16,7 +16,7 @@ format: html
 
 **Teaching Assistant:** Bahar Kasgari<br>
 **Email:** btak@austin.utexas.edu<br>
-**Office Hours:** 
+**Office Hours:** Wed. 12:00pm–1:00pm (open Zoom), Thurs. 3pm–4pm (open Zoom), or by appointment<br>
 
 
 ## Purpose and contents of the class
@@ -70,52 +70,53 @@ All these books are freely available online and you do not need to purchase a ph
 8.      Color spaces, color vision  **colorspace** package
         deficiency
 
-9.      Data wrangling              `mutate()`, `filter()`, `arrange()`
-                                    `summarize()`, `join()`, `pivot_longer()`
+9.      Data wrangling 1            `mutate()`, `filter()`, `arrange()`
 
-10.     Visualizing proportions     bar charts, pie charts
+10.     Data wrangling 2            `summarize()`, `join()`, `pivot_longer()`
 
-11.     Getting to know your data   handling missing data, `is.na()`, `case_when()`
+11.     Visualizing proportions     bar charts, pie charts
 
-12.     Getting things into the     `fct_reorder()`, `fct_lump()`
+12.     Getting to know your data   handling missing data, `is.na()`, `case_when()`
+
+13.     Getting things into the     `fct_reorder()`, `fct_lump()`
         right order
 
-13.     Figure design               ggplot themes
+14.     Figure design               ggplot themes
 
-14.     Compound figures            **patchwork** package
+15.     Compound figures            **patchwork** package
 
-15.     Visualizing trends          `geom_smooth()`
+16.     Visualizing trends          `geom_smooth()`
 
-16.     Functions and functional    `map()`, `nest()`, **purrr** package
+17.     Functions and functional    `map()`, `nest()`, **purrr** package
         programming
 
-17.     Working with models         `lm`, `cor.test`, **broom** package
+18.     Working with models         `lm`, `cor.test`, **broom** package
 
-18.     Visualizing uncertainty     frequency framing, error bars, **ggdist** package
+19.     Visualizing uncertainty     frequency framing, error bars, **ggdist** package
 
-19.     Dimension reduction 1       PCA
+20.     Dimension reduction 1       PCA
 
-20.     Dimension reduction 2       kernel PCA, t-SNE, UMAP
+21.     Dimension reduction 2       kernel PCA, t-SNE, UMAP
 
-21.     Clustering 1                k-means clustering
+22.     Clustering 1                k-means clustering
 
-22.     Clustering 2                hierarchical clustering
+23.     Clustering 2                hierarchical clustering
         
-23.     Redundant coding, text      **ggrepel** package
+24.     Redundant coding, text      **ggrepel** package
         annotations
 
-24.     Dealing with overplotting   jittering, 2d histograms,
+25.     Dealing with overplotting   jittering, 2d histograms,
                                     contour plots
 
-25.     Visualizing geospatial      `geom_sf()`, `coord_sf()`
+26.     Visualizing geospatial      `geom_sf()`, `coord_sf()`
         data
 
-26.     Interactive plots           **ggiraph** package
+27.     Interactive plots           **ggiraph** package
 
-27.     Web technologies and        CSS
+28.     Web technologies and        CSS
         web design
 
-28.     Animations                  **gganimate** package
+29.     Animations                  **gganimate** package
 
 
 ----------------------------------------------------------------
@@ -123,7 +124,7 @@ All these books are freely available online and you do not need to purchase a ph
 
 ## Computing requirements
 
-Programming needs to be learned by doing, and a significant portion of the in-class time will be dedicated to working through simple problems. All programming exercises will be available through a web-based system, so the only system requirement for student computers is a modern web browser.
+Programming needs to be learned by doing, and a significant portion of the in-class time will be dedicated to working through simple problems. All programming exercises will be available through a web-based system, so the only system requirement for student computers is a modern web browser. However, students are welcome to install the necessary software (R, an IDE such as RStudio or Positron, and the required R packages) on their own computers and do all work locally.
 
 ## Course site
 
@@ -148,26 +149,25 @@ There will be seven homeworks and three projects. Both homeworks and projects ne
 
 Projects are peer-graded, which involves evaluating four projects by other students according to a detailed grading rubric that will be provided. The final grade for each project is the mean of the highest three peer grades (the lowest one is dropped), subject to oversight and potential grade correction (up or down, as warranted) by the TA. The peer-grading itself will also be graded by the TA. Experience has shown that peer-grading is often the most instructive component of this class, so don't take this lightly.
 
-Attendance is tracked via simple quizzes on Canvas. Students will receive 1 point for every lecture they attend, up to a maximum of 20 points. (This means students can miss up to six lectures throughout the semester without receiving any grade penalty.) No attendance points will be awarded in the first week of class.
+Attendance is tracked via simple quizzes on Canvas. Students will receive 4 point for every lecture they attend, up to a maximum of 88 points for 22 classes attended. No attendance points will be awarded in the first week of class. There are 27 classes after week one, so students can miss 5 classes and still receive full attendance points. This policy is intended to allow students to miss the occasional class for various reasons (minor illness, an important live event, too much going on in other classes) without having to ask for an excuse or providing an explanation. 
 
 Assignment type   Number     Points per assignment  Total points
 --------------- ---------- ----------------------- -------------
 Homework          7                              8            56
 Project           3                            100           300
-Peer grading      3                              8            24
-Attendance        20                             1            20
+Peer grading      3                             16            48
+Attendance        22                             4            88
 
-
-Thus, in summary, each project contributes 25% to the final grade, and the totality of all homeworks, attendance, and peer grading contributes another 25% to the final grade. **There are no traditional exams in this class and there is no final.**
+In total, there are 492 points that can be obtained in this class. Each project contributes approximately 20% to the final grade, the totality of all homeworks and peer grading contributes another 20% to the final grade, and the last 20% comes from attendance. **There are no traditional exams in this class and there is no final.**
 
 The	class	will use +/- grading, and the exact grade boundaries will be determined at the end of the semester. However, the following minimum grades will be guaranteed:	
 
  Points achieved  Minimum guaranteed grade
 ---------------- -------------------------
-       360 (90%)                        A-
-       320 (80%)                        B-
-       280 (70%)                        C-
-       200 (50%)                        D-
+       443 (90%)                        A-
+       394 (80%)                        B-
+       344 (70%)                        C-
+       246 (50%)                        D-
 
 ## Late assignment policy
 
@@ -228,4 +228,4 @@ Any materials posted on the public class website ([https://wilkelab.org/SDS366/]
 
 ## Class recordings
 
-In case any class recordings are provided they are reserved only for students in this class for educational purposes and are protected under FERPA. The recordings should not be shared outside the class in any form. Violation of this restriction by a student could lead to Student Misconduct proceedings.
+HOP 2-9970 prohibits students from recording class instruction (audio or video) unless a student obtains the instructor’s permission or Disability & Access has approved audio recording as an accommodation.
