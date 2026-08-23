@@ -28,18 +28,18 @@ All assignments (homeworks, projects, peer grading) are due on Thursdays by 11:5
 ::: {style="width: 50%;"}
 Date         Assignment due
 ------------ -----------------------------------
-Sep 3, 2026 Homework 1
+Sep 3, 2026  Homework 1
 Sep 10, 2026 Homework 2
-Sep 17, 2026  Homework 3
+Sep 17, 2026 Homework 3
 Sep 24, 2026 Project 1
-Oct 1, 2026 Peer grading, Project 1
-Oct 8, 2026 Homework 4
-Oct 15, 2026  Homework 5
+Oct 1, 2026  Peer grading, Project 1
+Oct 8, 2026  Homework 4
+Oct 15, 2026 Homework 5
 Oct 22, 2026 Project 2
 Oct 29, 2026 Peer grading, Project 2
 Nov 5, 2026  Homework 6
-Nov 12, 2026  Homework 7
+Nov 12, 2026 Homework 7
 Nov 19, 2026 Project 3
-Dec 3, 2026 Peer grading, Project 3
+Dec 3, 2026  Peer grading, Project 3
 :::
 
