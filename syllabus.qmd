@@ -70,53 +70,52 @@ All these books are freely available online and you do not need to purchase a ph
 8.      Color spaces, color vision  **colorspace** package
         deficiency
 
-9.      Data wrangling 1            `mutate()`, `filter()`, `arrange()`
+9.      Data wrangling              `mutate()`, `filter()`, `arrange()`
+                                    `summarize()`, `join()`, `pivot_longer()`
 
-10.     Data wrangling 2            `summarize()`, `join()`, `pivot_longer()`
+10.     Visualizing proportions     bar charts, pie charts
 
-11.     Visualizing proportions     bar charts, pie charts
+11.     Getting to know your data   handling missing data, `is.na()`, `case_when()`
 
-12.     Getting to know your data   handling missing data, `is.na()`, `case_when()`
-
-13.     Getting things into the     `fct_reorder()`, `fct_lump()`
+12.     Getting things into the     `fct_reorder()`, `fct_lump()`
         right order
 
-14.     Figure design               ggplot themes
+13.     Figure design               ggplot themes
 
-15.     Compound figures            **patchwork** package
+14.     Compound figures            **patchwork** package
 
-16.     Visualizing trends          `geom_smooth()`
+15.     Visualizing trends          `geom_smooth()`
 
-17.     Functions and functional    `map()`, `nest()`, **purrr** package
+16.     Functions and functional    `map()`, `nest()`, **purrr** package
         programming
 
-18.     Working with models         `lm`, `cor.test`, **broom** package
+17.     Working with models         `lm`, `cor.test`, **broom** package
 
-19.     Visualizing uncertainty     frequency framing, error bars, **ggdist** package
+18.     Visualizing uncertainty     frequency framing, error bars, **ggdist** package
 
-20.     Dimension reduction 1       PCA
+19.     Dimension reduction 1       PCA
 
-21.     Dimension reduction 2       kernel PCA, t-SNE, UMAP
+20.     Dimension reduction 2       kernel PCA, t-SNE, UMAP
 
-22.     Clustering 1                k-means clustering
+21.     Clustering 1                k-means clustering
 
-23.     Clustering 2                hierarchical clustering
+22.     Clustering 2                hierarchical clustering
         
-24.     Redundant coding, text      **ggrepel** package
+23.     Redundant coding, text      **ggrepel** package
         annotations
 
-25.     Dealing with overplotting   jittering, 2d histograms,
+24.     Dealing with overplotting   jittering, 2d histograms,
                                     contour plots
 
-26.     Visualizing geospatial      `geom_sf()`, `coord_sf()`
+25.     Visualizing geospatial      `geom_sf()`, `coord_sf()`
         data
 
-27.     Interactive plots           **ggiraph** package
+26.     Interactive plots           **ggiraph** package
 
-28.     Web technologies and        CSS
+27.     Web technologies and        CSS
         web design
 
-29.     Animations                  **gganimate** package
+28.     Animations                  **gganimate** package
 
 
 ----------------------------------------------------------------
