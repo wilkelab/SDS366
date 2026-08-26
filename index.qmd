@@ -34,7 +34,7 @@ install.packages(
     "broom", "cluster", "colorspace", "cowplot", "gapminder", 
     "GGally", "gganimate", "ggiraph", "ggdendro", "ggdist", "ggforce",
     "ggplot2movies", "ggrepel", "ggridges", "ggthemes", "gifski", "glue",
-    "hexbin", knitr", "learnr", "naniar", "margins", "MASS", "Matrix",
+    "hexbin", "knitr", "learnr", "naniar", "margins", "MASS", "Matrix",
     "nycflights13", "palmerpenguins", "patchwork", "quarto", "rmarkdown",
     "rnaturalearth", "rnaturalearthdata", "Rtsne", "scales", "sf", "sp", "tidyverse",
     "transformr", "umap"
