@@ -35,6 +35,26 @@ format: html
 - [Slides](slides/coordinate-systems-axes.qmd)  
 - [Worksheet](worksheets/coordinate-systems-axes.qmd)
 
+### 5. Sep 9, 2026—Visualizing distributions 1
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/visualizing-distributions-1.qmd)  
+- [Worksheet](worksheets/visualizing-distributions-1.qmd)
+
+### 6. Sep 14, 2026—Visualizing distributions 2
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/visualizing-distributions-2.qmd)  
+- [Worksheet](worksheets/visualizing-distributions-2.qmd)
+
+### 7. Sep 16, 2026—Color scales
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/color-scales.qmd)  
+- [Worksheet](worksheets/color-scales.qmd)
 
 ## Assignment due dates
 
