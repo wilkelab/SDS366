@@ -533,7 +533,7 @@ The app is also available on the class website
 :::
 
 ::: {.move-up-2em}
-<a href="https://wilkelab.org/SDS366/choose-color/" target="_blank">Open color chooser app</a>
+<a href="https://wilkelab.org/SDS366/apps/bin/choose-color/" target="_blank">Open color chooser app</a>
 :::
 
 <!-- Segment ends here -->
